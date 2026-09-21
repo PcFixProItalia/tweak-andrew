@@ -1,0 +1,344 @@
+lblSubtitle	Windows optimization and control — PcFixPro Italia
+tabPerf	Performance
+tabPrivacy	Privacy
+tabUi	Interface
+tabNet	Network
+tabStorage	Storage
+ttlLatency	LATENCY AND SCHEDULING
+chkMMCSS	MMCSS — gaming and audio responsiveness
+chkPriority	CPU scheduling — foreground priority (0x26)
+chkKernelMem	Kernel memory — disable executive paging
+chkKernelDpc	Kernel and DPC latency
+chkTimer	System timer — precision policy
+chkPowerThrottling	Power throttling — disable
+chkUSBSuspend	USB selective suspend — disable
+chkNtfsPerf	NTFS — disable last access time, large cache
+ttlRam	MEMORY
+chkRamTweak	SvcHost split threshold (based on RAM)
+lblRamInstalled	Installed RAM:
+lblRamHint	Detected automatically at startup; can be changed manually.
+ttlGraphics	GRAPHICS AND GAMING
+chkGameMode	Game Mode — enable
+chkFSO	Fullscreen optimizations (FSO) — disable
+chkGameDVR	Game DVR and Xbox recording — disable
+chkHAGS	Hardware-accelerated GPU scheduling — enable
+chkVisualFX	Visual effects — adjust for best performance
+chkApplyMPO	Apply Multiplane Overlay (MPO) setting
+mpoOn	Enabled (Windows default)
+mpoOff	Disabled (fixes stutter and flicker)
+mpoCompat	Enabled, compatible (2 planes)
+ttlRisky	ADVANCED — THESE REDUCE SECURITY
+lblRiskyHint	Excluded from «Select all». Enable only if you know the consequences.
+chkVBS	VBS / Memory integrity — disable
+chkMitigations	System exploit mitigations — disable
+tabPower	Power
+tabGpu	Graphics
+ttlPlans	POWER PLANS
+btnRefreshPlans	Refresh
+btnRemoveTestPlans	Remove test plans
+ttlSleep	SLEEP AND SAVING
+lblSleepHint	These are applied with the Apply button.
+ttlPlanWarn	BEFORE YOU TRY
+lblPlanWarn	The plans under «To test» come from third parties. Try one at a time and go back to Balanced if the computer becomes unstable.
+ttlGpuDetected	DETECTED CARD
+btnDetectGpu	Refresh
+lblGpuHint	This trims the driver already installed: telemetry, extra services and menu entries.
+ttlGpuCommon	COMMON SETTINGS
+chkGpuTdr	TDR — raise the driver timeout to 10 s
+chkGpuMsi	MSI interrupts for the graphics card — enable
+ttlNvidia	NVIDIA
+lblNvidiaHint	Skipped if the card is not NVIDIA.
+chkNvTelemetry	NVIDIA telemetry — disable
+chkNvGfe	GeForce Experience in background — disable
+chkNvPerfMode	GPU power management — maximum performance
+chkNvUpdates	NVIDIA driver update check — disable
+ttlAmd	AMD RADEON
+lblAmdHint	Skipped if the card is not AMD.
+chkAmdUx	AMD User Experience Program — disable
+chkAmdBloat	AMD services and auto-start entries — disable
+ttlIntelGpu	INTEL GRAPHICS
+chkIntelBloat	Intel Graphics extra services — disable
+lblUiScale	Interface scale
+ttlShader	SHADER CACHE
+lblShaderHint	Shaders already compiled by games. Clearing frees space and fixes artifacts after a driver change. The first launch of each game will be slower, then back to normal.
+btnShaderScan	Measure used space
+btnShaderClear	Clear shader cache
+ttlStart	START MENU
+chkStartMorePins	More room for pins, less for recommendations
+chkStartHideRec	«Recommended» section — hide
+chkStartNoWeb	Recommended websites in Start — remove
+chkStartNoAccount	Account notifications in Start — remove
+ttlFeat	HIDDEN FEATURES
+lblFeatHint	Turn a Windows feature on or off by its numeric id, the same way ViVeTool does. The ids change with every build: take them from a source that matches yours.
+featOn	Enable
+featOff	Disable
+featReset	Back to default
+lblFeatId	Feature id
+btnFeatApply	Apply
+btnFeatList	List active changes
+chkFastStartup	Fast startup — disable
+chkHibernation	Hibernation — disable (frees space on C:)
+chkS0Sleep	Network connectivity in modern standby — disable
+chkS3Sleep	Classic S3 sleep — force
+ttlTelemetry	TELEMETRY AND TRACKING
+chkTelemetry	Telemetry and DiagTrack — disable
+chkTelemetryTasks	Telemetry scheduled tasks — disable
+chkActivityHistory	Activity history — disable
+chkLocationTracking	Location tracking — disable
+chkAdvertisingID	Advertising ID — disable
+chkTailoredExp	Tailored experiences — disable
+chkFeedback	Feedback requests — disable
+chkErrorReporting	Windows error reporting — disable
+chkInkingTyping	Inking and typing personalization — disable
+chkWiFiSense	Wi-Fi Sense — disable
+ttlContent	SUGGESTIONS AND CONTENT
+chkConsumerFeatures	Suggested apps and auto-install — block
+chkStoreSearch	Microsoft Store search suggestions — disable
+chkSuggestedContent	Suggested content in Settings — disable
+chkLockScreenAds	Lock screen Spotlight and ads — disable
+chkStartBing	Bing search in Start menu — disable
+chkStartRecs	Start menu recommendations — disable
+chkStartTracking	Most used apps and recent documents — stop tracking
+chkFolderDiscovery	File Explorer folder type discovery — disable
+ttlMsApps	MICROSOFT APPS
+chkWindowsAI	Copilot, Recall and Windows AI — disable
+chkEdgeDebloat	Microsoft Edge — debloat
+chkOneDriveRemove	OneDrive — disable sync
+chkOutlookNew	Automatic switch to new Outlook — block
+ttlServices	SERVICES AND COMPONENTS
+chkServicesManual	Non-essential services — set to Manual
+chkDeliveryOpt	Delivery Optimization — disable
+chkBitLocker	BitLocker automatic encryption — disable
+chkWPBT	OEM binary table (WPBT) — disable
+chkBackgroundApps	Background apps — disable
+chkTeredo	Teredo tunneling — disable
+chkRDPWarnings	RDP unsigned file warnings — disable
+chkRemoteAssistance	Remote Assistance — disable
+chkCompanionApps	Device companion apps — block
+chkDriverUpdates	Drivers from Windows Update — block
+ttlSystemUi	SYSTEM AND FILE EXPLORER
+chkDarkTheme	Windows dark theme — enable
+chkFileExt	Show file extensions
+chkHiddenFiles	Show hidden files
+chkLongPaths	Long paths over 260 characters — enable
+chkClassicMenu	Classic context menu (Windows 11)
+chkExplorerThisPC	File Explorer opens to «This PC»
+chkRemove3D	Remove «3D Objects» from This PC
+chkRecycleConfirm	Ask for confirmation before deleting
+chkMenuDelay	Menu show delay — set to zero
+ttlTaskbar	TASKBAR AND START
+chkTaskbarCenter	Centered taskbar icons
+chkTaskbarSearch	Search icon — hide
+chkTaskbarTaskView	Task View icon — hide
+chkTaskbarWidgets	Widgets and News — hide
+chkTaskbarChat	Chat / Teams icon — hide
+chkTaskbarEndTask	«End task» in taskbar menu — enable
+chkClockSeconds	Seconds in the clock — show
+chkBatteryPct	Battery percentage in the system tray
+chkSettingsHome	Settings home page — hide
+chkWindowSnapping	Window snapping — enable
+ttlInput	INPUT AND ACCESSIBILITY
+chkMouseAccel	Mouse acceleration — disable
+chkNumLock	Num Lock on startup — enable
+chkStickyKeys	Sticky Keys prompt — disable
+chkScrollbars	Always visible scrollbars
+ttlLock	SIGN-IN AND DIAGNOSTICS
+chkLockScreen	Lock screen — disable
+chkLogonBlur	Sign-in acrylic blur — disable
+chkBSODVerbose	Verbose blue screen
+chkLogonVerbose	Verbose sign-in messages
+chkApplyNetwork	Apply network settings when «Apply» is clicked
+lblNetHint	Without this box the Network tab stays informational and nothing is changed.
+btnFlushDns	Flush DNS cache
+ttlTcpProfile	TCP PROFILE
+radTcpOptimal	Optimal (gaming)
+radTcpDefault	Windows default
+radTcpCurrent	Current (leave untouched)
+radTcpCustom	Custom
+ttlTcpIp	TCP / IP
+lblAutoTuning	TCP window auto-tuning:
+lblHeuristics	Scaling heuristics:
+lblCongestion	Congestion control provider:
+lblRss	Receive-Side Scaling (RSS):
+lblRsc	Receive Segment Coalescing (RSC):
+lblTtl	Time To Live (TTL):
+lblEcn	ECN capability:
+lblTimestamps	TCP timestamps (RFC 1323):
+ttlDns	DNS
+chkApplyDns	Change DNS servers on active adapters
+dnsAuto	Automatic from router (DHCP)
+ttlNetAdv	ADVANCED NETWORK
+lblThrottling	Network throttling index:
+lblResponsiveness	System responsiveness:
+lblNagle	Nagle's algorithm:
+lblHostPriority	Host resolution priority:
+lblNetMem	LargeSystemCache / Size:
+lblPortAlloc	Dynamic port allocation:
+lblMaxConn	Max connections per server:
+chkNetPowerSave	Network adapter power saving — disable
+chkDisableIPv6	IPv6 — disable (only if your ISP does not use it)
+ttlDrives	DETECTED DRIVES
+lblDrivesHint	Installed drives and free space on each volume.
+btnDetectStorage	Refresh
+ttlProfile	PROFILE TO APPLY
+lblProfileHint	SSD: runs TRIM and never defragments. HDD: keeps Prefetch and SysMain and starts optimization.
+radStorageSSD	SSD / NVMe
+radStorageHDD	Mechanical HDD
+chkStorageProfile	Disk profile
+ttlNow	IMMEDIATE ACTIONS
+lblNowHint	These run right away, without going through «Apply».
+btnTrimNow	Run TRIM now
+btnOptimizeNow	Optimize / defragment C:
+btnEmptyRecycle	Empty the Recycle Bin
+btnCleanUpdates	Delete Windows Update cache
+ttlMaintenance	MAINTENANCE ON APPLY
+chkDiskCleanup	Disk Cleanup and WinSxS compaction (DISM)
+chkTempCleanup	Delete temporary files
+chkSmartChkdsk	Smart CHKDSK (SSD or HDD)
+ttlSpace	SPACE AND POLICIES
+chkStorageSense	Storage Sense — disable
+chkReservedStorage	Windows reserved storage (7 GB) — disable
+lblSelected	Selected:
+chkRestorePoint	Restore point
+btnSelectAll	Select all
+btnDeselectAll	Clear all
+btnDetectActive	Detect applied
+btnRun	Apply changes
+btnUndo	Restore defaults
+tabAdv	Advanced
+ttlAdvIntro	BEFORE YOU START
+lblAdvIntro	These options strip out parts of Windows that most computers never use. The gain is real on a machine dedicated to gaming or work, but some things stop working: read each entry. Create a restore point before applying, and reboot afterwards.
+ttlSvc	SERVICES TO STOP
+lblSvcHint	Missing services are skipped. They can always be turned back on from services.msc.
+chkSvcSysMain	SysMain — preloading apps into memory
+chkSvcDiag	Diagnostics and event tracing
+chkSvcErrors	Windows Error Reporting
+chkSvcPca	Program Compatibility Assistant
+chkSvcDiscovery	Network device discovery (UPnP, SSDP)
+chkSvcSensors	Sensors and geolocation
+chkSvcSmartCard	Smart cards
+chkSvcParental	Parental controls and Insider program
+chkSvcHyperV	Hyper-V services (if you run no virtual machines)
+chkSvcPrint	Print spooler — risky: no printing
+chkSvcSearch	Windows Search — risky: no Start menu search
+chkSvcRemote	Remote Desktop and Remote Registry — risky if you connect from outside
+chkSvcBiometric	Biometrics — risky: no Windows Hello
+chkSvcTouch	Pen and on-screen keyboard — risky on touch laptops
+ttlTasks	SCHEDULED TASKS
+chkTaskExtra	Non-essential Microsoft tasks
+chkTaskMaint	Nightly automatic maintenance
+chkTaskDefrag	Scheduled drive optimization — risky: it also issues TRIM on SSDs
+ttlMem	MEMORY AND PROCESSES
+chkPrefetch	Prefetch and Superfetch registry values
+chkFth	Fault Tolerant Heap — no automatic patching
+chkAppCompat	Compatibility engine and program inventory
+chkSvcHostSplit	Fewer svchost processes (group the services)
+chkMemCompression	Memory compression — risky below 16 GB of RAM
+ttlWu	UPDATES
+chkWuNoReboot	No automatic reboots while you are using the computer
+chkWuDefer	Defer new Windows releases by one year
+chkWuNoStore	Automatic Store app updates
+ttlBoot	SYSTEM STARTUP
+btnBootReset	Restore
+lblBootHint	Changes to the boot configuration. Restore puts the Windows defaults back.
+chkBootQuiet	Boot without the animated logo
+chkBootMenu	Classic boot menu (F8 available)
+chkBootTimeout	No wait in the boot menu
+chkBootDynTick	Kernel dynamic tick — risky: try it and measure
+chkBootTsc	Enhanced TSC sync policy — risky: try it and measure
+ttlAppx	PREINSTALLED APPS
+lblAppxHint	They can be reinstalled from the Store whenever needed.
+chkAppxBloat	Non-essential apps (news, weather, maps, Skype...)
+chkAppxXbox	Xbox apps and game overlay
+chkAppxProvision	Do not restore them for new users
+ttlSec	REDUCED SECURITY
+lblSecHint	All risky and never part of «Select all». They genuinely lower the computer's defenses: use them only on a machine that does not browse the web or open attachments.
+chkSecSmartScreen	SmartScreen — checking downloaded files
+chkSecSpectre	Spectre and Meltdown mitigations
+chkSecDefenderIdle	Defender: scan only when idle, CPU capped at 20%
+tabSched	Priority
+ttlPs	PROCESSOR PRIORITY
+lblPsHint	Decides how much processor time programs get and how much of an edge the foreground window has. Takes effect immediately, no restart.
+lblPsCurrent	Current value
+lblPsPreset	Profile
+psI02	0x02 · Windows default
+psI26	0x26 · Short, variable, foreground 3:1 (gaming)
+psI28	0x28 · Short, fixed, no boost
+psI2A	0x2A · Short, fixed, foreground 3:1
+psI24	0x24 · Short, variable, no boost
+psI16	0x16 · Long, variable, foreground 3:1
+psI18	0x18 · Long, fixed (server)
+psICustom	Custom
+lblPsCustom	Hex value
+btnPsDefault	Default
+btnPsApply	Apply
+ttlMm	MULTIMEDIA CLASS SCHEDULER
+btnMmReload	Reload
+lblMmHint	The Windows service that gives priority to games, audio and video. Changes take effect after the next restart.
+lblMmNet	Network throttling
+lblMmResp	CPU reserved for the system
+lblMmTask	Task
+lblMmAffinity	Affinity (hex, 0 = all cores)
+lblMmClock	Clock rate (100 ns units)
+lblMmGpu	GPU priority
+lblMmPrio	Priority
+lblMmSched	Scheduling category
+lblMmSfio	I/O priority
+lblMmBgOnly	Background only
+lblMmBgPrio	Background priority
+lblMmLatency	Latency sensitive
+btnMmBackup	Save backup
+btnMmDefault	Defaults
+btnMmApply	Save
+chkAmdUlps	Maximum performance — ULPS off
+ttlShutdownMenu	POWER MENU
+lblShutdownHint	Take effect immediately, without Apply. The power plan settings are not touched.
+chkMenuSleep	Sleep in the power menu
+chkMenuHibernate	Hibernate in the power menu
+tabPriv2	Advanced privacy
+tabExp	File Explorer
+tabTask	Start and taskbar
+tabNotif	Notifications and sounds
+tabGame	Games and effects
+tabWin	Windows and services
+tabApps	Apps and software
+navGrpSystem	SYSTEM
+navGrpPrivacy	PRIVACY
+navGrpCustom	CUSTOMIZE
+navGrpWindows	WINDOWS AND APPS
+ttlNvProfile	NVIDIA: PROFILE PERFORMANCE
+lblNvProfileHint	Written to the driver's global profile, as in the NVIDIA Control Panel.
+chkNvP2	CUDA: no forced P2 state
+chkNvDrsPower	Power management: maximum performance
+chkNvLowLatency	Low latency mode: Ultra
+chkNvThreaded	Threaded optimization on
+chkNvTexPerf	Texture filtering: high performance
+chkNvAniso	Anisotropic sample optimization
+chkNvShaderCache	Unlimited shader cache
+chkNvNoFxaa	FXAA and Ansel off
+ttlNvReg	NVIDIA: DRIVER REGISTRY
+chkNvDisplayPower	Display power saving off
+chkNvHdcp	HDCP off
+chkNvPreempt	Compute preemption off
+chkNvDynPstate	Clocks always at maximum (P0)
+chkNvLatency	Driver latency pack
+chkAmdAntiLag	Anti-Lag on
+chkAmdShaderCache	Shader cache always on
+chkAmdTexPerf	Texture filtering: performance
+chkAmdTess	Tessellation limited by the driver
+chkAmdFlipQueue	Frame queue set to 1
+chkAmdNoFrtc	Driver frame limiter off
+chkAmdStutter	Stutter mode off
+chkAmdAspm	Card PCIe power saving off
+chkAmdPowerGating	Power gating off
+chkAmdDma	DMA copies and block write
+chkAmdPreempt	Compute preemption off
+ttlPowerAdv	ACTIVE PLAN: ADVANCED SETTINGS
+lblPowerAdvHint	They apply at once to the plan in use, on AC and battery. Switching plans starts from its own values.
+radAppsCatalog	Catalog
+radAppsInstalled	Installed
+lblAppSearchHint	Search...
+btnAppsUpgrade	Update all apps
+btnAppsClear	Clear selection
+btnAppsRefresh	Refresh list
+lblProfileQueued	Pick a profile: it joins the changes to apply. A second click removes it.

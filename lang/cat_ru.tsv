@@ -1,0 +1,577 @@
+g.exp.desk	Значки рабочего стола
+exp.icoPc	Этот компьютер на рабочем столе
+exp.icoBin	Корзина на рабочем столе
+exp.icoUser	Папка пользователя на рабочем столе
+exp.icoCpl	Панель управления на рабочем столе
+exp.icoNet	Сеть на рабочем столе
+exp.lnkSuffix	Имя новых ярлыков
+exp.lnkSuffix#keep	С «- ярлык»
+exp.lnkSuffix#drop	Без суффикса
+exp.lnkArrow	Стрелка на ярлыках
+exp.lnkArrow#show	Видна
+exp.lnkArrow#hide	Скрыта
+g.exp.ctx	Контекстное меню
+exp.ctxTerminal	Открыть в Терминале
+exp.ctxOwner	Стать владельцем
+exp.ctxSfc	Проверка системных файлов (SFC)
+exp.ctxDism	Восстановить образ Windows (DISM)
+exp.ctxExt	Показать или скрыть расширения
+g.exp.gen	Общие
+exp.recent	Недавние файлы на главной
+exp.frequent	Часто используемые папки на главной
+exp.office	Файлы с Office.com на главной
+exp.syncAds	Уведомления облачных служб в Проводнике
+exp.sepProc	Папки в отдельном процессе
+exp.persist	Открывать папки заново при входе
+exp.checkSel	Флажки для выбора элементов
+exp.menus	Всегда показывать строку меню
+exp.compact	Компактный вид
+exp.fullPath	Полный путь в заголовке
+exp.statusBar	Строка состояния
+exp.infoTip	Описание при наведении
+exp.folderSize	Размер папки в описании
+exp.preview	Просмотр в области просмотра
+exp.iconsOnly	Только значки, без эскизов
+exp.typeOverlay	Значок программы на эскизах
+exp.superHidden	Защищённые системные файлы
+exp.emptyDrives	Скрывать пустые диски
+exp.driveLetters	Буквы дисков
+exp.ntfsColor	Сжатые и зашифрованные файлы цветом
+exp.mergeAsk	Спрашивать перед слиянием одноимённых папок
+exp.sharingWiz	Мастер общего доступа
+exp.lnkExt	Расширение .lnk у ярлыков
+exp.iconCache	Кэш значков
+exp.iconCache#def	По умолчанию
+exp.iconCache#4096	Большой (4096 значков)
+exp.iconCache#8192	Очень большой (8192 значка)
+exp.thumbClean	Автоочистка эскизов
+g.exp.thispc	Папки в «Этот компьютер»
+exp.pcDesktop	Рабочий стол
+exp.pcDocs	Документы
+exp.pcDown	Загрузки
+exp.pcMusic	Музыка
+exp.pcPics	Изображения
+exp.pcVideos	Видео
+g.exp.nav	Область навигации
+exp.navHome	Главная
+exp.navGallery	Коллекция
+exp.navLibs	Библиотеки
+exp.navExpand	Разворачивать до открытой папки
+exp.navAll	Показывать все папки
+exp.navCloud	Состояние синхронизации всегда видно
+exp.navDupDrives	Дубли съёмных дисков
+g.exp.dev	Устройства
+exp.autoplay	Автозапуск
+exp.lighting	Динамическая подсветка
+exp.lightingApp	Активные приложения управляют подсветкой
+exp.printer	Windows выбирает принтер по умолчанию
+exp.pwdless	Автовход в «Учётные записи пользователей»
+g.task.start	Меню «Пуск»
+task.allApps	Вид «Все приложения»
+task.allApps#cat	По категориям
+task.allApps#grid	Сетка
+task.allApps#list	Список
+task.recentApps	Недавно добавленные приложения
+task.frequentApps	Часто используемые приложения
+task.recentDocs	Рекомендуемые и недавние файлы
+task.startLock	«Заблокировать» в меню учётной записи
+g.task.bar	Панель задач
+task.autoHide	Автоматически скрывать панель задач
+task.badges	Значки-счётчики
+task.flashing	Мигающие значки
+task.allDisplays	Панель на всех дисплеях
+task.mmMode	Кнопки на других дисплеях
+task.mmMode#all	На всех панелях
+task.mmMode#main	Главная панель и там, где открыто
+task.mmMode#open	Только там, где открыто
+task.share	Демонстрация окна с панели
+task.cornerDesk	Угол для показа рабочего стола
+task.combine	Группировать кнопки
+task.combine#always	Всегда, скрывать подписи
+task.combine#full	При заполнении панели
+task.combine#never	Никогда
+task.combineMm	Группировать на других дисплеях
+task.combineMm#always	Всегда, скрывать подписи
+task.combineMm#full	При заполнении панели
+task.combineMm#never	Никогда
+task.small	Маленькие кнопки
+task.small#always	Всегда
+task.small#full	При заполнении панели
+task.small#never	Никогда
+task.copilot	Кнопка Copilot
+task.bell	Колокольчик уведомлений
+task.hover	Задержка предпросмотра
+task.hover#1	Мгновенно
+task.hover#100	Быстро (100 мс)
+task.hover#200	Средне (200 мс)
+task.hover#def	По умолчанию (400 мс)
+g.notif.toast	Уведомления
+notif.toast	Уведомления приложений
+notif.sound	Звук уведомлений
+notif.lock	Уведомления на экране блокировки
+notif.lockVoip	Напоминания и звонки на экране блокировки
+g.notif.tips	Советы Windows
+notif.welcome	Знакомство после обновлений
+notif.scoobe	Предложения завершить настройку
+notif.tipsUse	Советы при работе с Windows
+g.notif.sys	Системные уведомления
+notif.capAccess	Уведомление при использовании микрофона или местоположения
+notif.startupApp	Уведомление о новых приложениях автозапуска
+notif.locPrompt	Уведомление при запросе местоположения
+notif.dst	Уведомление о переводе часов
+notif.secMaint	Безопасность и обслуживание
+notif.defender	Уведомления «Безопасности Windows»
+g.notif.sound	Звуки
+notif.bootSound	Звук запуска Windows
+notif.ducking	Во время звонков
+notif.ducking#mute	Отключать другие звуки
+notif.ducking#80	Приглушать другие звуки на 80%
+notif.ducking#50	Приглушать другие звуки на 50%
+notif.ducking#none	Ничего не делать
+notif.voiceAct	Голосовая активация приложений
+notif.accSounds	Звуки включения спецвозможностей
+notif.accWarn	Предупреждающие звуки спецвозможностей
+g.notif.access	Сочетания спецвозможностей
+notif.filterKeys	Фильтрация ввода (правый Shift 8 секунд)
+notif.toggleKeys	Озвучивание переключения (Num Lock 5 секунд)
+notif.mouseKeys	Управление указателем с клавиатуры (Alt+Shift+Num Lock)
+notif.contrast	Высокая контрастность (Alt+Shift+Print Screen)
+notif.narrator	Экранный диктор (Win+Ctrl+Enter)
+notif.hoverTime	Задержка наведения указателя
+notif.hoverTime#10	Мгновенно (10 мс)
+notif.hoverTime#100	Быстро (100 мс)
+notif.hoverTime#200	Средне (200 мс)
+notif.hoverTime#def	По умолчанию (400 мс)
+g.game.gfx	Графика и игры
+game.windowed	Оптимизации для игр в окне
+game.vrr	Переменная частота для неподдерживаемых игр
+game.autoHdr	Auto HDR
+game.gbController	Game Bar по кнопке Xbox геймпада
+game.gbTips	Советы при запуске Game Bar
+game.jpegFull	Обои в полном качестве
+game.startDelay	Задержка приложений автозапуска
+game.altTab	Alt+Tab показывает
+game.altTab#open	Только открытые окна
+game.altTab#five	Окна и 5 последних вкладок
+game.altTab#three	Окна и 3 последние вкладки
+game.altTab#all	Окна и все вкладки
+g.game.vfx	Визуальные эффекты
+game.fxControls	Анимация элементов в окнах
+game.fxMinMax	Анимация сворачивания и развёртывания
+game.fxTaskbar	Анимация панели задач
+game.fxPeek	Предпросмотр рабочего стола (Peek)
+game.fxMenuFade	Плавное появление меню
+game.fxTipFade	Плавное появление подсказок
+game.fxItemFade	Затухание пунктов меню после щелчка
+game.fxCursorShadow	Тень указателя
+game.fxWinShadow	Тени под окнами
+game.fxCombo	Плавное раскрытие списков
+game.fxSmoothList	Плавная прокрутка списков
+game.fxSelRect	Прозрачный прямоугольник выделения
+game.fxDrag	Содержимое окна при перетаскивании
+game.fxFonts	Сглаживание шрифтов
+game.fxIconShadow	Тени у подписей значков
+game.fxThumbCache	Сохранять эскизы панели задач
+g.win.sec	Безопасность
+win.uac	Контроль учётных записей
+win.uac#always	Всегда уведомлять
+win.uac#notify	Уведомлять при изменениях от приложений
+win.uac#nodim	То же, без затемнения
+win.uac#never	Никогда не уведомлять
+win.psPolicy	Выполнение сценариев PowerShell
+win.psPolicy#restricted	Запрещены (по умолчанию)
+win.psPolicy#remote	Локальные да, загруженные только подписанные
+win.psPolicy#signed	Только подписанные сценарии
+win.psPolicy#all	Все, с предупреждением
+win.psPolicy#bypass	Все, без предупреждения
+win.devMode	Режим разработчика
+win.workplace	Запросы «Разрешить организации управлять устройством»
+win.autoMaint	Автоматическое обслуживание
+g.win.upd	Центр обновления Windows
+win.wuMode	Режим Центра обновления
+win.wuMode#auto	Автоматически (по умолчанию)
+win.wuMode#notify	Уведомлять перед загрузкой
+win.wuMode#ask	Загружать, спрашивать перед установкой
+win.wuMode#off	Отключено (не рекомендуется)
+win.wuLatest	Новые функции сразу после выхода
+win.wuOther	Обновления других продуктов Microsoft
+win.wuExpedite	Обновлять меня как можно скорее
+win.wuRestartNote	Уведомлять о необходимости перезагрузки
+win.wuMetered	Загружать через лимитные подключения
+win.coInstallers	Приложения производителя вместе с драйверами
+g.win.svc	Службы
+win.svcSysMain	SysMain (предзагрузка приложений)
+win.svcSearch	Windows Search (индексирование)
+win.svcSpooler	Диспетчер печати
+win.svcDiagTrack	Функциональные возможности и телеметрия
+win.svcCdp	Платформа подключённых устройств
+win.svcPca	Помощник по совместимости программ
+win.svcWer	Отчёты об ошибках
+win.svcGeo	Геолокация
+win.svcRetail	Демонстрационный режим для магазинов
+win.svcInsider	Windows Insider
+win.svcPhone	Телефонная служба
+win.svcWallet	Служба кошелька
+win.svcSmartCard	Смарт-карта
+win.svcMaps	Диспетчер скачанных карт
+win.svcFax	Факс
+win.svcWmpShare	Общий доступ Windows Media Player
+win.svcMixed	Смешанная реальность OpenXR
+win.svcHotspot	Мобильный хот-спот
+win.svcSms	Маршрутизатор SMS
+win.svcParental	Родительский контроль
+win.svcNfc	Платежи и NFC
+win.svcSpot	Точечная проверка
+win.svcRas	Подключения удалённого доступа
+win.svcRdp	Удалённый рабочий стол
+win.svcXbox	Службы Xbox Live
+win.svcBio	Биометрия
+win.svcTouch	Сенсорная клавиатура и перо
+win.svcTapi	Телефония (TAPI)
+win.svcSensors	Датчики
+g.win.tasks	Запланированные задачи
+win.tAppraiser	Оценщик совместимости Microsoft
+win.tPdu	Обновление данных программ
+win.tStartupApp	Анализ приложений автозапуска
+win.tCeip	Программа улучшения качества
+win.tDiskDiag	Сбор диагностики дисков
+win.tFeedback	Запросы отзывов
+win.tWer	Очередь отчётов об ошибках
+win.tMaps	Обновление и уведомления карт
+win.tAutochk	Прокси Autochk
+win.tFamily	Мониторинг Family Safety
+win.tPowerDiag	Диагностика энергоэффективности
+win.tSqm	Задачи SQM
+g.priv.uPriv	Конфиденциальность
+pv.adId	Отключить и сбросить рекламный идентификатор
+pv.typing	Не отправлять данные о вводе
+pv.timeline	Без предложений на временной шкале
+pv.startSugg	Без предложений в «Пуске»
+pv.tips	Без советов и подсказок при работе
+pv.settingsSugg	Без рекомендуемого содержимого в «Параметрах»
+pv.finishSetup	Без предложений завершить настройку
+pv.welcome	Без знакомства после обновлений
+pv.silentApps	Без тихо устанавливаемых приложений
+pv.appLaunch	Не отслеживать запуск приложений
+pv.accountNotif	Без уведомлений об учётной записи в «Параметрах»
+pv.langList	Не сообщать сайтам список языков
+pv.textPred	Без подсказок на сенсорной клавиатуре
+pv.appNotif	Отключить уведомления приложений
+pv.storeUrls	SmartScreen не проверяет веб-содержимое приложений
+g.priv.uClip	Журнал действий и буфер обмена
+pv.clipHist	Не хранить журнал буфера обмена
+pv.clipCloud	Не синхронизировать буфер обмена в облаке
+g.priv.uApps	Конфиденциальность приложений
+pv.uAccount	Запретить доступ к сведениям учётной записи
+pv.uDiag	Запретить доступ к диагностике других приложений
+pv.uMotion	Запретить доступ к данным о движении
+pv.uDevices	Запретить связь с несопряжёнными устройствами
+pv.uGaze	Запретить доступ к отслеживанию взгляда
+pv.uContacts	Запретить доступ к контактам
+pv.uCalendar	Запретить доступ к календарю
+pv.uCallHist	Запретить доступ к журналу вызовов
+pv.uCalls	Запретить звонки из приложений
+pv.uEmail	Запретить доступ к почте
+pv.uTasks	Запретить доступ к задачам
+pv.uMessages	Запретить доступ к сообщениям
+pv.uRadios	Запретить управление радиомодулями
+pv.uNotifications	Запретить доступ к уведомлениям
+pv.uLocation	Запретить доступ к местоположению
+pv.uCamera	Запретить доступ к камере
+pv.uMic	Запретить доступ к микрофону
+pv.uDocs	Запретить доступ к документам
+pv.uPics	Запретить доступ к изображениям
+pv.uVideos	Запретить доступ к видео
+pv.uFiles	Запретить доступ ко всей файловой системе
+pv.uBackground	Запретить приложениям работать в фоне
+g.priv.uSync	Синхронизация параметров
+pv.syncPwd	Не синхронизировать пароли
+pv.syncTheme	Не синхронизировать тему и обои
+pv.syncLang	Не синхронизировать языки
+pv.syncAccess	Не синхронизировать спецвозможности
+pv.syncOther	Не синхронизировать другие параметры Windows
+g.priv.uSpeech	Речь и ввод
+pv.speech	Отключить онлайн-распознавание речи
+pv.inking	Не собирать рукописный ввод и контакты
+pv.voiceAct	Приложения не слушают слово активации
+g.priv.uAi	ИИ в Windows
+pv.uCopilot	Отключить Copilot
+pv.uRecall	Отключить Recall
+pv.uClickToDo	Отключить Click to Do
+pv.copilotAvail	Скрыть Copilot в оболочке
+pv.bingChat	Отключить встроенный чат Bing
+pv.insights	Отключить аналитику ввода
+pv.nudges	Без предложений попробовать Copilot
+pv.copilotBtn	Скрыть кнопку Copilot
+pv.copilotMic	Copilot не может использовать микрофон
+pv.wordCopilot	Отключить Copilot в Word
+pv.excelCopilot	Отключить Copilot в Excel
+pv.officeCloud	Ограничить онлайн-службы Office
+g.priv.uBehav	Поведение пользователя
+pv.tailored	Без персонализации по данным диагностики
+pv.feedback	Windows не просит отзывы
+pv.thirdParty	Без предложений сторонних компаний
+pv.spotSettings	Без Spotlight в «Параметрах»
+pv.spotAll	Отключить все функции Spotlight
+pv.wmp	Windows Media Player не отслеживает использование
+g.priv.uExp	Проводник
+pv.syncAds	Без рекламы в Проводнике
+pv.officeFiles	Без файлов Office.com на главной
+pv.recentFiles	Не показывать недавние файлы
+pv.frequent	Не показывать частые папки
+pv.recentDocs	Не отслеживать открытые документы
+g.priv.uLock	Экран блокировки
+pv.lockFacts	Без фактов и советов на экране блокировки
+pv.lockSpot	Без картинок Spotlight на экране блокировки
+pv.lockToast	Без уведомлений на экране блокировки
+g.priv.uSearch	Поиск
+pv.searchHist	Не хранить журнал поиска
+pv.searchHigh	Без основных моментов в поиске
+pv.searchBing	Без веб-результатов Bing в «Пуске»
+pv.searchMsa	Не искать в содержимом учётной записи Microsoft
+pv.searchAad	Не искать в содержимом рабочей учётной записи
+g.priv.uBar	Панель задач
+pv.meetNow	Скрыть «Провести собрание»
+pv.chatBtn	Скрыть чат Teams
+g.priv.uMisc	Разное
+pv.resume	Не продолжать на ПК действия с телефона
+g.priv.mSec	Безопасность
+pv.pwdReveal	Скрыть кнопку показа пароля
+pv.stepsRec	Отключить средство записи действий
+pv.inventory	Отключить инвентаризацию программ
+pv.appTelemetry	Отключить телеметрию приложений
+pv.lockCam	Отключить камеру на экране блокировки
+pv.kms	Без онлайн-проверки активации KMS
+pv.drm	Без доступа в Интернет для DRM Windows Media
+pv.remoteAssist	Отключить удалённого помощника
+g.priv.mPriv	Конфиденциальность
+pv.telemetry	Свести телеметрию к минимуму
+pv.deviceName	Не отправлять имя ПК с телеметрией
+pv.feedbackNotif	Без запросов отзывов
+pv.diagLogs	Ограничить сбор журналов диагностики
+pv.dumps	Ограничить отправку дампов памяти
+pv.oneSettings	Не загружать конфигурации телеметрии
+pv.diagViewer	Отключить просмотр диагностических данных
+pv.mAdId	Отключить рекламный идентификатор для всех
+pv.ceip	Выйти из программы улучшения качества
+pv.handErr	Не отправлять ошибки распознавания почерка
+pv.handShare	Не передавать данные пера
+pv.inputPers	Отключить персонализацию ввода
+pv.onlineTips	Без онлайн-советов в «Параметрах»
+pv.helpFb	Без оценок справки
+pv.wer	Отключить отчёты об ошибках
+pv.cloudContent	Без содержимого, оптимизированного облаком
+pv.softLanding	Без советов Windows
+pv.consumer	Без автоматической установки потребительских приложений
+pv.consumerAcct	Без содержимого личной учётной записи
+g.priv.mClip	Журнал действий и буфер обмена
+pv.actFeed	Отключить журнал действий
+pv.mClip	Отключить журнал буфера обмена для всех
+pv.crossClip	Без общего буфера обмена между устройствами
+g.priv.mApps	Конфиденциальность приложений
+pv.mAccount	Запретить приложениям сведения учётной записи
+pv.mDiag	Запретить приложениям диагностику других приложений
+pv.mMotion	Запретить приложениям данные о движении
+pv.mTrusted	Запретить приложениям доверенные устройства
+pv.mSync	Запретить приложениям несопряжённые устройства
+pv.mGaze	Запретить приложениям отслеживание взгляда
+pv.mSpatial	Запретить приложениям фоновое пространственное восприятие
+pv.mVoice	Запретить приложениям голосовую активацию
+pv.mContacts	Запретить приложениям контакты
+pv.mCalendar	Запретить приложениям календарь
+pv.mCallHist	Запретить приложениям журнал вызовов
+pv.mPhone	Запретить приложениям звонки
+pv.mEmail	Запретить приложениям почту
+pv.mTasks	Запретить приложениям задачи
+pv.mMessages	Запретить приложениям сообщения
+pv.mRadios	Запретить приложениям управление радиомодулями
+pv.mNotif	Запретить приложениям уведомления
+pv.mLocation	Запретить приложениям местоположение
+pv.mBackground	Запретить приложениям фоновую работу
+pv.mCamera	Запретить приложениям камеру
+pv.mMic	Запретить приложениям микрофон
+g.priv.mEdge	Microsoft Edge
+pv.eDnt	Просить сайты не отслеживать вас
+pv.ePayment	Сайты не проверяют сохранённые способы оплаты
+pv.ePersonal	Без персонализации рекламы и новостей
+pv.eFeedback	Скрыть отзывы пользователя
+pv.eLocalProv	Без предложений местных поставщиков
+pv.eShopping	Отключить помощника по покупкам
+pv.eBar	Отключить панель Edge
+pv.eNavErr	Не исправлять ошибки навигации онлайн
+pv.ePreload	Не загружать страницы заранее
+pv.eDiag	Без диагностических данных Edge
+pv.eRewards	Скрыть Microsoft Rewards
+pv.eRecomm	Без рекомендаций и рекламных уведомлений
+pv.eIeRedirect	Не открывать в Edge сайты Internet Explorer
+pv.eCcFill	Не сохранять банковские карты
+pv.eAddrFill	Не заполнять адреса автоматически
+pv.eSearchSugg	Без поисковых подсказок
+pv.eBoost	Отключить ускорение запуска
+pv.eBackground	Полностью закрывать Edge при выходе
+pv.eSiteSafety	Без сведений о сайтах от служб Microsoft
+pv.eSpell	Только локальная проверка орфографии
+pv.eNewTab	Новая вкладка без новостей
+pv.ePwd	Не сохранять пароли
+pv.eSmartScreen	Отключить SmartScreen в Edge
+pv.eTypo	Отключить проверку опечаток в адресах
+g.priv.mEdgeAi	Microsoft Edge и ИИ
+pv.eSidebar	Отключить боковую панель и Copilot
+pv.ePageCtx	Copilot не может читать открытые страницы
+pv.eCompose	Без письма с помощью ИИ
+pv.eHistAi	Без поиска ИИ по журналу
+pv.eShareHist	Не передавать журнал Copilot
+pv.eThemes	Без тем, созданных ИИ
+pv.eM365	Скрыть значок Copilot для Microsoft 365
+pv.eBuiltinAi	Без встроенных API ИИ для сайтов
+g.priv.mSearch	Cortana и поиск
+pv.cortana	Отключить Cortana
+pv.cloudSearch	Без облачного поиска
+pv.webSearch	Без веб-поиска из «Пуска»
+pv.searchLoc	Поиск не использует местоположение
+pv.mHighlights	Без основных моментов поиска для всех
+g.priv.mAi	ИИ в Windows
+pv.mCopilot	Отключить Copilot для всех
+pv.mRecall	Отключить Recall и анализ экрана
+pv.mClickToDo	Отключить Click to Do для всех
+pv.agents	Отключить ИИ-агентов
+pv.settingsAgent	Отключить агента «Параметров»
+pv.copilotRt	Отключить среду выполнения Copilot
+pv.genAi	Запретить приложениям генеративный ИИ
+pv.notepadAi	Отключить ИИ в Блокноте
+pv.paintAi	Отключить создание изображений ИИ в Paint
+pv.paintBg	Отключить удаление фона в Paint
+g.priv.mLoc	Службы местоположения
+pv.winLocProv	Отключить поставщика местоположения Windows
+pv.locScript	Без сценариев определения местоположения
+pv.mapsAuto	Без автообновления карт
+pv.locAll	Отключить определение местоположения
+pv.sensors	Отключить датчики
+pv.findDevice	Отключить «Поиск устройства»
+g.priv.mUpd	Центр обновления Windows
+pv.p2p	Не раздавать обновления другим ПК
+pv.speechUpd	Без обновлений речевых моделей
+pv.mrtReport	Не отправлять результаты средства удаления вредоносных программ
+pv.preview	Блокировать предварительные сборки Windows
+pv.noReboot	Без автоперезагрузки при вошедших пользователях
+pv.wuDrivers	Без драйверов из Центра обновления
+pv.storeAuto	Без автообновления приложений Store
+pv.mrtOffer	Не загружать средство удаления вредоносных программ
+g.priv.mDef	Microsoft Defender и SpyNet
+pv.samples	Не отправлять образцы файлов
+pv.spynet	Выйти из Microsoft MAPS (SpyNet)
+pv.defNotif	Без расширенных уведомлений Defender
+g.priv.mExp	Проводник
+pv.openWith	Без поиска в Store в «Открыть с помощью»
+pv.kfm	OneDrive не переносит личные папки
+pv.oneDrive	Отключить OneDrive
+g.priv.mMobile	Мобильные устройства
+pv.phoneLink	Отключить связь телефона и ПК
+pv.cdp	Отключить функции между устройствами
+g.priv.mBar	Панель задач
+pv.widgets	Отключить виджеты
+pv.mMeetNow	Скрыть «Провести собрание» для всех
+pv.chatIcon	Скрыть чат для всех
+g.priv.mSync	Синхронизация параметров
+pv.credSync	Никому не синхронизировать пароли
+pv.allSync	Отключить синхронизацию параметров
+g.priv.mMisc	Разное
+pv.wifiSense	Отключить Wi-Fi Sense
+g.power.cpu	Процессор
+pw.cpuMin	Минимальное состояние процессора
+pw.cpuMax	Максимальное состояние процессора
+pw.cpuMax#99	99% (без турбо)
+pw.boost	Режим турбо
+pw.boost#0	Отключён
+pw.boost#1	Включён
+pw.boost#2	Агрессивный
+pw.boost#3	Эффективный
+pw.boost#4	Эффективный агрессивный
+pw.epp	Приоритет производительности или экономии (EPP)
+pw.epp#0	Максимальная производительность (0)
+pw.epp#25	Производительность (25)
+pw.epp#50	Сбалансированный (50)
+pw.epp#80	Экономия (80)
+pw.parkMin	Всегда активные ядра (парковка)
+pw.parkMin#100	100% (без парковки)
+pw.cooling	Политика охлаждения
+pw.cooling#0	Пассивная (сначала замедление)
+pw.cooling#1	Активная (сначала вентиляторы)
+pw.incPolicy	Повышение производительности
+pw.incPolicy#0	Идеальное
+pw.incPolicy#1	Пошаговое
+pw.incPolicy#2	Мгновенное
+pw.incPolicy#3	Идеальное агрессивное
+pw.decPolicy	Снижение производительности
+pw.decPolicy#0	Идеальное
+pw.decPolicy#1	Пошаговое
+pw.decPolicy#2	Мгновенное
+g.power.dev	Устройства
+pw.pcie	Энергосбережение PCI Express
+pw.pcie#0	Откл.
+pw.pcie#1	Умеренное
+pw.pcie#2	Максимальное
+pw.usbSuspend	Выборочная приостановка USB
+pw.usbSuspend#0	Отключена
+pw.usbSuspend#1	Включена
+pw.usb3Lpm	Управление питанием канала USB 3
+pw.usb3Lpm#0	Откл.
+pw.usb3Lpm#1	Минимальное
+pw.usb3Lpm#2	Умеренное
+pw.usb3Lpm#3	Максимальное
+pw.wifi	Энергосбережение адаптера Wi-Fi
+pw.wifi#0	Максимальная производительность
+pw.wifi#1	Слабая экономия
+pw.wifi#2	Средняя экономия
+pw.wifi#3	Максимальная экономия
+pw.disk	Отключать диски через
+pw.disk#0	Никогда
+pw.disk#300	5 минут
+pw.disk#1200	20 минут
+pw.disk#3600	1 час
+g.power.sleep	Экран и сон
+pw.display	Отключать экран через
+pw.display#0	Никогда
+pw.display#300	5 минут
+pw.display#600	10 минут
+pw.display#900	15 минут
+pw.display#1800	30 минут
+pw.display#3600	1 час
+pw.sleep	Переход в сон через
+pw.sleep#0	Никогда
+pw.sleep#900	15 минут
+pw.sleep#1800	30 минут
+pw.sleep#3600	1 час
+pw.sleep#7200	2 часа
+pw.hibAfter	Гибернация через
+pw.hibAfter#0	Никогда
+pw.hibAfter#3600	1 час
+pw.hibAfter#10800	3 часа
+pw.hibAfter#21600	6 часов
+pw.hybrid	Гибридный спящий режим
+pw.hybrid#0	Откл.
+pw.hybrid#1	Вкл.
+pw.wake	Таймеры пробуждения
+pw.wake#0	Отключены
+pw.wake#1	Включены
+pw.wake#2	Только важные
+g.power.buttons	Кнопки
+pw.powerBtn	Кнопка питания
+pw.powerBtn#0	Ничего не делать
+pw.powerBtn#1	Сон
+pw.powerBtn#2	Гибернация
+pw.powerBtn#3	Завершение работы
+pw.powerBtn#4	Отключить экран
+pw.lid	Закрытие крышки
+pw.lid#0	Ничего не делать
+pw.lid#1	Сон
+pw.lid#2	Гибернация
+pw.lid#3	Завершение работы
+g.power.media	Мультимедиа
+pw.videoBias	Качество воспроизведения видео
+pw.videoBias#0	Энергосбережение
+pw.videoBias#1	Производительность
+pw.videoPlay	При воспроизведении видео
+pw.videoPlay#0	Оптимизировать качество
+pw.videoPlay#1	Сбалансированный
+pw.videoPlay#2	Оптимизировать энергопотребление

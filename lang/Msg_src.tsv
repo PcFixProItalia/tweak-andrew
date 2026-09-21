@@ -1,0 +1,137 @@
+ready	Ready.
+starting	Starting...
+done	Completed
+nothing	Nothing selected.
+activePlan	Active plan:
+detecting	Detecting...
+profileDetected	Detected profile:
+noDisks	Unable to detect drives with Get-PhysicalDisk.
+free	free of
+chooseProfile	Select SSD or HDD before applying the storage profile.
+finished	All operations completed. Restart the computer to apply every change.
+finishedTitle	Tweak Andrew v6.0
+confirmRun	Apply the selected changes?
+confirmTitle	Confirm
+emptyRecycleAsk	Permanently empty the Recycle Bin? This cannot be undone.
+summary	Summary
+winTitle	Tweak Andrew v6.1 - PcFixPro Italia
+planTop	RECOMMENDED
+planWindows	WINDOWS PLANS
+planTest	TO TEST
+planTestHint	Third-party plans bundled with the program. One at a time.
+planApply	Activate
+planActive	Active
+planRemoveAsk	Remove the «To test» plans from the system? The computer goes back to the Balanced plan.
+gpuVendor	Vendor:
+gpuNone	No graphics card detected.
+shaderScanning	Measuring...
+shaderNone	No shader cache found.
+shaderTotal	Total
+shaderAsk	Clear the shader cache?`n`nThe first launch of each game will be slower because shaders get recompiled. No game data is touched.
+featNeedId	Enter the feature id before applying.
+featEmpty	No feature overridden on this computer.
+featStateOn	enabled
+featStateOff	disabled
+bootResetAsk	Restore the default Windows boot settings?
+bootResetDone	Boot configuration restored to its defaults.
+undoPrefix	Default:
+undoAsk	Restore the Windows defaults for the selected entries?
+advWarnTitle	Advanced options
+advWarn	You selected entries from the Advanced section: they strip out parts of Windows and something may stop working. Continue?
+dlgYes	Yes, go ahead
+dlgNo	Cancel
+selCount	Selected entries: {0}
+doneSummary	Done: {0} changes applied, {1} already set, {2} errors.
+doneReboot	Restart the PC to finish.
+psInterval	Quantum
+psQuantum	Length
+psBoost	Foreground
+psShort	short
+psLong	long
+psVariable	variable
+psFixed	fixed
+psAuto	automatic
+psInvalid	Invalid value: use 00 to 3F.
+mmNetOff	Disabled
+mmNetDefault	10 (default)
+mmDefaultWord	default
+mmBadClock	Invalid clock rate: use a number between 1000 and 100000.
+mmBadAffinity	Invalid affinity: use a hex value, 0 for all cores.
+mmReboot	MMCSS values saved. They take effect after the next restart.
+mmDefaultsLoaded	Factory values loaded into the panel: press Save to write them.
+mmNoDefaults	Windows has no known values for this task: only the general ones were loaded.
+catCustom	Custom
+svcAuto	Automatic
+svcAutoDelayed	Automatic (delayed)
+svcManual	Manual
+svcDisabled	Disabled
+recYes	Recommended
+recLimited	Recommended with limits
+recNo	Not recommended: removes a useful feature
+aiTag	AI
+aiRelevant	Concerns artificial intelligence features
+catBulkTitle	Change several settings
+applyRecYes	Apply recommended
+applyRecLimited	Recommended and limited
+applyRecAll	Apply all
+undoAllFactory	Undo all (factory settings)
+makeRestorePoint	Create a restore point
+askRecYes	I'll turn on every recommended protection and leave the rest alone. Go ahead?
+askRecLimited	I'll turn on recommended and limited ones: some features may stop working. Go ahead?
+askRecAll	I'll turn on everything, even the not-recommended ones: camera, microphone and other features will be blocked. Go ahead?
+askFactory	I'll put every item on this page back as on a fresh Windows install. Go ahead?
+privLegend	Switch on = protection active. Green dot recommended, orange with limits, red not recommended. AI = concerns artificial intelligence.
+scopeUser	Current user
+scopeMachine	Local machine
+scopeAll	All
+applyRecommended	Apply recommended
+restoreWindows	Windows defaults
+askRecommended	I'll set this page's items to the recommended values. Items without a recommendation stay as they are. Go ahead?
+askWindowsDefaults	I'll put this page's items back to the values of a fresh Windows install. Go ahead?
+restartExplorer	Restart File Explorer
+catSearch	Search a setting...
+catLoading	Reading the settings state...
+restoreDone	Restore point created.
+restoreFail	Restore point not created: check that System Protection is on.
+diskSystem	System
+diskHealthy	Healthy disk
+diskWarning	The disk reports problems: make a backup
+volFree	{0} free of {1}
+profileSysSsd	Windows is installed on an {0} ({1}): we recommend the SSD / NVMe profile.
+profileSysHdd	Windows is installed on a mechanical drive ({0}): we recommend the HDD profile.
+profileSysUnknown	I can't tell which drive Windows is on: pick the profile yourself.
+recommendedTag	(recommended)
+lic_os	Open source
+lic_fw	Freeware
+lic_fr	Free + paid
+lic_ms	Microsoft
+lic_pd	Paid
+appInstalled	Installed
+appsNone	No app matches the filters.
+appsInstalledTitle	Installed programs ({0})
+appsUninstallSel	Uninstall selected
+appsInstallSel	Install selected
+appsAllCategories	All categories
+appsAllLicenses	All licenses
+appsWorking	{0}... (queued: {1})
+appsDone	Operations completed. Details are in the PowerShell window.
+appsChecking	Checking installed apps...
+appsInstalledCount	{0} packages recognized by winget on this PC.
+appsAskUninstall	I'll uninstall {0} programs. Some may open their own uninstall window. Go ahead?
+appsUninstalling	Uninstalling
+appsAskInstall	I'll install {0} apps with winget, one at a time, silently. Go ahead?
+appsInstalling	Installing
+appsAskUpgrade	I'll update every app with a newer version through winget. It may take several minutes. Go ahead?
+appsUpgradeAll	Updating all apps
+appsNoWinget	winget is not available: install «App Installer» from the Microsoft Store.
+appCat_browser	Browsers
+appCat_chat	Communication
+appCat_docs	Documents and office
+appCat_media	Photo, audio and video
+appCat_games	Games
+appCat_tools	Utilities
+appCat_system	System and diagnostics
+appCat_security	Security and privacy
+appCat_net	Network, cloud and downloads
+appCat_dev	Development
+appCat_runtime	System components

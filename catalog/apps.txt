@@ -1,0 +1,177 @@
+# Catalogo delle app installabili con winget.
+# C|categoria|nome it|nome en
+# A|id winget|nome|licenza|descrizione it|descrizione en
+# Licenze: os open source, fw freeware, fr gratuita con funzioni a pagamento,
+#          ms Microsoft, pd a pagamento o in prova.
+# Un id che inizia con «store:» si installa dal Microsoft Store.
+
+C|browser|Browser|Browsers
+A|Mozilla.Firefox|Firefox|os|Browser indipendente e attento alla privacy.|Independent, privacy-minded browser.
+A|Google.Chrome|Google Chrome|fw|Il browser di Google, sincronizzato con l'account Google.|Google's browser, synced with your Google account.
+A|Brave.Brave|Brave|os|Blocca pubblicità e tracciamento senza estensioni.|Blocks ads and tracking without extensions.
+A|Vivaldi.Vivaldi|Vivaldi|fw|Browser personalizzabile in ogni dettaglio.|Browser you can customize in every detail.
+A|LibreWolf.LibreWolf|LibreWolf|os|Firefox già configurato per la massima privacy.|Firefox preconfigured for maximum privacy.
+A|Opera.Opera|Opera|fw|Browser con VPN e messaggistica integrate.|Browser with built-in VPN and messengers.
+A|Opera.OperaGX|Opera GX|fw|Opera per giocatori, con limiti di CPU e RAM.|Opera for gamers, with CPU and RAM limiters.
+A|Zen-Team.Zen-Browser|Zen Browser|os|Browser basato su Firefox con schede verticali.|Firefox-based browser with vertical tabs.
+A|Waterfox.Waterfox|Waterfox|os|Firefox senza telemetria, veloce e leggero.|Firefox without telemetry, fast and light.
+A|TorProject.TorBrowser|Tor Browser|os|Navigazione anonima attraverso la rete Tor.|Anonymous browsing through the Tor network.
+
+C|chat|Comunicazione|Communication
+A|Discord.Discord|Discord|fr|Chat vocale e testuale per community e giochi.|Voice and text chat for communities and games.
+A|Telegram.TelegramDesktop|Telegram|os|Messaggistica veloce con sincronizzazione su tutti i dispositivi.|Fast messaging synced on every device.
+A|store:9NKSQGP7F2NH|WhatsApp|fw|L'app ufficiale di WhatsApp per Windows.|The official WhatsApp app for Windows.
+A|OpenWhisperSystems.Signal|Signal|os|Messaggi crittografati end-to-end.|End-to-end encrypted messaging.
+A|Zoom.Zoom|Zoom|fr|Videoconferenze e riunioni online.|Video conferences and online meetings.
+A|Microsoft.Teams|Microsoft Teams|ms|Chat e riunioni di Microsoft.|Microsoft's chat and meetings.
+A|Mozilla.Thunderbird|Thunderbird|os|Client di posta completo, con calendario.|Full email client with calendar.
+A|SlackTechnologies.Slack|Slack|fr|Chat di lavoro per team e aziende.|Work chat for teams and companies.
+A|Element.Element|Element|os|Chat decentralizzata sul protocollo Matrix.|Decentralized chat on the Matrix protocol.
+A|TeamSpeakSystems.TeamSpeakClient|TeamSpeak|fw|Chat vocale a bassa latenza per il gioco.|Low-latency voice chat for gaming.
+
+C|docs|Documenti e ufficio|Documents and office
+A|TheDocumentFoundation.LibreOffice|LibreOffice|os|Suite per ufficio completa, compatibile con i file di Office.|Full office suite, compatible with Office files.
+A|ONLYOFFICE.DesktopEditors|ONLYOFFICE|os|Documenti, fogli e presentazioni con l'aspetto di Office.|Documents, sheets and slides with an Office look.
+A|Kingsoft.WPSOffice|WPS Office|fr|Suite per ufficio leggera e compatibile.|Light, compatible office suite.
+A|SumatraPDF.SumatraPDF|Sumatra PDF|os|Lettore PDF, ePub e fumetti leggerissimo.|Very light PDF, ePub and comic reader.
+A|Adobe.Acrobat.Reader.64-bit|Adobe Acrobat Reader|fw|Il lettore PDF di riferimento, con firme e moduli.|The reference PDF reader, with signatures and forms.
+A|Foxit.FoxitReader|Foxit PDF Reader|fw|Lettore PDF veloce con commenti e firme.|Fast PDF reader with comments and signatures.
+A|PDFsam.PDFsam|PDFsam Basic|os|Unisce, divide e ruota i PDF.|Merges, splits and rotates PDFs.
+A|Obsidian.Obsidian|Obsidian|fr|Appunti collegati in file Markdown sul tuo PC.|Linked notes in Markdown files on your PC.
+A|Notion.Notion|Notion|fr|Appunti, attività e database in un unico spazio.|Notes, tasks and databases in one workspace.
+A|Joplin.Joplin|Joplin|os|Appunti crittografati con sincronizzazione.|Encrypted notes with sync.
+A|calibre.calibre|Calibre|os|Gestisce e converte la tua libreria di ebook.|Manages and converts your ebook library.
+
+C|media|Foto, audio e video|Photo, audio and video
+A|VideoLAN.VLC|VLC|os|Riproduce qualsiasi video o audio senza codec aggiuntivi.|Plays any video or audio without extra codecs.
+A|clsid2.mpc-hc|MPC-HC|os|Lettore video leggero e senza fronzoli.|Light, no-frills video player.
+A|Daum.PotPlayer|PotPlayer|fw|Lettore video ricco di funzioni e accelerazione hardware.|Feature-rich video player with hardware acceleration.
+A|OBSProject.OBSStudio|OBS Studio|os|Registra lo schermo e trasmette in diretta.|Records the screen and streams live.
+A|Audacity.Audacity|Audacity|os|Registra e modifica file audio.|Records and edits audio files.
+A|HandBrake.HandBrake|HandBrake|os|Converte e comprime i video.|Converts and compresses videos.
+A|GIMP.GIMP.3|GIMP|os|Fotoritocco avanzato, alternativa gratuita a Photoshop.|Advanced photo editing, a free Photoshop alternative.
+A|KDE.Krita|Krita|os|Pittura digitale e illustrazione.|Digital painting and illustration.
+A|Inkscape.Inkscape|Inkscape|os|Grafica vettoriale, loghi e disegni in SVG.|Vector graphics, logos and SVG drawings.
+A|BlenderFoundation.Blender|Blender|os|Modellazione 3D, animazione e montaggio.|3D modeling, animation and editing.
+A|KDE.Kdenlive|Kdenlive|os|Montaggio video a più tracce.|Multi-track video editing.
+A|Meltytech.Shotcut|Shotcut|os|Montaggio video semplice e multipiattaforma.|Simple cross-platform video editing.
+A|ShareX.ShareX|ShareX|os|Catture dello schermo, GIF e registrazioni con modifiche.|Screenshots, GIFs and recordings with editing.
+A|Greenshot.Greenshot|Greenshot|os|Screenshot rapidi con annotazioni.|Quick screenshots with annotations.
+A|IrfanSkiljan.IrfanView|IrfanView|fw|Visualizzatore di immagini velocissimo.|Very fast image viewer.
+A|DuongDieuPhap.ImageGlass|ImageGlass|os|Visualizzatore di immagini moderno e leggero.|Modern, light image viewer.
+A|XnSoft.XnViewMP|XnView MP|fw|Visualizza, organizza e converte le foto.|Views, organizes and converts photos.
+A|Spotify.Spotify|Spotify|fr|Musica e podcast in streaming.|Streaming music and podcasts.
+A|PeterPawlowski.foobar2000|foobar2000|fw|Lettore audio leggero per chi ama la qualità.|Light audio player for quality lovers.
+A|AIMP.AIMP|AIMP|fw|Lettore musicale con equalizzatore evoluto.|Music player with an advanced equalizer.
+A|CodecGuide.K-LiteCodecPack.Standard|K-Lite Codec Pack|fw|Codec per aprire ogni formato video in Windows.|Codecs to open every video format in Windows.
+A|Gyan.FFmpeg|FFmpeg|os|Strumento a riga di comando per audio e video.|Command-line tool for audio and video.
+A|yt-dlp.yt-dlp|yt-dlp|os|Scarica video da YouTube e molti altri siti.|Downloads videos from YouTube and many other sites.
+
+C|games|Giochi|Games
+A|Valve.Steam|Steam|fr|Il negozio e la libreria di giochi più diffusa.|The most popular game store and library.
+A|EpicGames.EpicGamesLauncher|Epic Games Launcher|fr|Negozio Epic, con giochi gratuiti ogni settimana.|Epic's store, with free games every week.
+A|GOG.Galaxy|GOG Galaxy|fr|Giochi senza DRM e libreria unificata.|DRM-free games and a unified library.
+A|Ubisoft.Connect|Ubisoft Connect|fr|Il launcher dei giochi Ubisoft.|The launcher for Ubisoft games.
+A|ElectronicArts.EADesktop|EA app|fr|Il launcher dei giochi EA.|The launcher for EA games.
+A|Blizzard.BattleNet|Battle.net|fr|Il launcher dei giochi Blizzard.|The launcher for Blizzard games.
+A|Playnite.Playnite|Playnite|os|Tutte le librerie di giochi in un'unica app.|All your game libraries in one app.
+A|HeroicGamesLauncher.HeroicGamesLauncher|Heroic Games Launcher|os|Launcher alternativo per Epic, GOG e Amazon.|Alternative launcher for Epic, GOG and Amazon.
+A|PrismLauncher.PrismLauncher|Prism Launcher|os|Gestisce più installazioni e mod di Minecraft.|Manages multiple Minecraft instances and mods.
+A|Nvidia.GeForceNow|GeForce NOW|fr|Gioca in streaming dal cloud di NVIDIA.|Play streamed from NVIDIA's cloud.
+
+C|tools|Utilità|Utilities
+A|7zip.7zip|7-Zip|os|Comprime ed estrae archivi di ogni formato.|Compresses and extracts every archive format.
+A|RARLab.WinRAR|WinRAR|pd|Archiviatore RAR e ZIP.|RAR and ZIP archiver.
+A|voidtools.Everything|Everything|fw|Trova qualsiasi file sul PC all'istante.|Finds any file on the PC instantly.
+A|Microsoft.PowerToys|PowerToys|os|Strumenti extra di Microsoft: finestre, colori, rinomina.|Extra Microsoft tools: windows, colors, renaming.
+A|AutoHotkey.AutoHotkey|AutoHotkey|os|Automatizza tasti e azioni ripetitive.|Automates keys and repetitive actions.
+A|Flow-Launcher.Flow-Launcher|Flow Launcher|os|Avvia app e cerca file con una scorciatoia.|Launches apps and finds files with a shortcut.
+A|Bitwarden.Bitwarden|Bitwarden|os|Gestore di password sincronizzato e sicuro.|Secure synced password manager.
+A|KeePassXCTeam.KeePassXC|KeePassXC|os|Gestore di password in locale, senza cloud.|Local password manager, no cloud.
+A|AntibodySoftware.WizTree|WizTree|fw|Mostra in pochi secondi cosa occupa il disco.|Shows what fills the disk in seconds.
+A|WinDirStat.WinDirStat|WinDirStat|os|Mappa grafica dello spazio su disco.|Graphical map of disk space.
+A|BleachBit.BleachBit|BleachBit|os|Pulisce file temporanei e tracce delle app.|Cleans temporary files and app traces.
+A|Klocman.BulkCrapUninstaller|Bulk Crap Uninstaller|os|Disinstalla molti programmi insieme, senza residui.|Uninstalls many programs at once, leaving nothing behind.
+A|RevoUninstaller.RevoUninstaller|Revo Uninstaller|fw|Disinstallazione con pulizia dei residui.|Uninstalls with leftover cleanup.
+A|CodeSector.TeraCopy|TeraCopy|fw|Copie di file più veloci e verificate.|Faster, verified file copies.
+A|FilesCommunity.Files|Files|os|Esplora file moderno con schede.|Modern file explorer with tabs.
+A|Nilesoft.Shell|Nilesoft Shell|os|Menu del tasto destro personalizzabile.|Customizable right-click menu.
+A|File-New-Project.EarTrumpet|EarTrumpet|os|Volume separato per ogni app dalla barra.|Per-app volume from the taskbar.
+A|Espanso.Espanso|Espanso|os|Espande abbreviazioni in testi completi.|Expands abbreviations into full text.
+A|Rufus.Rufus|Rufus|os|Crea chiavette USB avviabili di Windows e Linux.|Creates bootable Windows and Linux USB drives.
+A|Ventoy.Ventoy|Ventoy|os|Una chiavetta, tante immagini ISO avviabili.|One stick, many bootable ISO images.
+A|Balena.Etcher|balenaEtcher|os|Scrive immagini su chiavette e schede SD.|Writes images to USB sticks and SD cards.
+A|AnyDesk.AnyDesk|AnyDesk|fr|Controllo remoto rapido del PC.|Fast remote control of the PC.
+A|TeamViewer.TeamViewer|TeamViewer|fr|Assistenza remota e accesso da lontano.|Remote support and access.
+
+C|system|Sistema e diagnostica|System and diagnostics
+A|CPUID.CPU-Z|CPU-Z|fw|Dettagli di processore, scheda madre e RAM.|Processor, motherboard and RAM details.
+A|TechPowerUp.GPU-Z|GPU-Z|fw|Dettagli e sensori della scheda video.|Graphics card details and sensors.
+A|REALiX.HWiNFO|HWiNFO|fw|Tutti i sensori e i componenti del PC.|Every sensor and component in the PC.
+A|CPUID.HWMonitor|HWMonitor|fw|Temperature, tensioni e ventole.|Temperatures, voltages and fans.
+A|LibreHardwareMonitor.LibreHardwareMonitor|Libre Hardware Monitor|os|Sensori del PC in un programma open source.|PC sensors in an open-source program.
+A|CrystalDewWorld.CrystalDiskInfo|CrystalDiskInfo|os|Stato di salute e temperatura dei dischi.|Disk health and temperature.
+A|CrystalDewWorld.CrystalDiskMark|CrystalDiskMark|os|Misura la velocità dei dischi.|Measures disk speed.
+A|Guru3D.Afterburner|MSI Afterburner|fw|Overclock e monitoraggio della scheda video.|Graphics card overclocking and monitoring.
+A|Wagnardsoft.DisplayDriverUninstaller|Display Driver Uninstaller|fw|Rimuove del tutto i driver video prima di reinstallarli.|Fully removes video drivers before reinstalling.
+A|Resplendence.LatencyMon|LatencyMon|fw|Trova i driver che causano scatti e crepitii audio.|Finds drivers causing stutter and audio crackles.
+A|OCBase.OCCT.Personal|OCCT|fr|Test di stabilità per CPU, RAM, GPU e alimentatore.|Stability tests for CPU, RAM, GPU and PSU.
+A|Microsoft.Sysinternals.Autoruns|Autoruns|fw|Tutto ciò che parte con Windows, in un elenco.|Everything that starts with Windows, in one list.
+A|Microsoft.Sysinternals.ProcessExplorer|Process Explorer|fw|Gestione attività avanzata di Microsoft.|Microsoft's advanced task manager.
+A|Microsoft.Sysinternals.ProcessMonitor|Process Monitor|fw|Registra accessi a file e registro in tempo reale.|Logs file and registry access in real time.
+A|BitSum.ProcessLasso|Process Lasso|pd|Priorità e affinità automatiche per i processi.|Automatic priorities and affinity for processes.
+
+C|security|Sicurezza e privacy|Security and privacy
+A|Malwarebytes.Malwarebytes|Malwarebytes|fr|Scansione antimalware da affiancare a Defender.|Anti-malware scanner alongside Defender.
+A|Safing.Portmaster|Portmaster|os|Firewall che mostra e blocca le connessioni delle app.|Firewall that shows and blocks app connections.
+A|Henry++.simplewall|simplewall|os|Firewall leggero basato su Windows Filtering Platform.|Light firewall built on Windows Filtering Platform.
+A|IDRIX.VeraCrypt|VeraCrypt|os|Crittografa dischi e chiavette.|Encrypts drives and USB sticks.
+A|Cryptomator.Cryptomator|Cryptomator|os|Crittografa i file prima di caricarli nel cloud.|Encrypts files before uploading them to the cloud.
+A|Proton.ProtonVPN|Proton VPN|os|VPN svizzera con piano gratuito senza limiti di dati.|Swiss VPN with a free plan and no data cap.
+A|WireGuard.WireGuard|WireGuard|os|Client VPN moderno e veloce.|Modern, fast VPN client.
+A|OpenVPNTechnologies.OpenVPN|OpenVPN|os|Client VPN classico per i file .ovpn.|Classic VPN client for .ovpn files.
+
+C|net|Rete, cloud e download|Network, cloud and downloads
+A|qBittorrent.qBittorrent|qBittorrent|os|Client torrent senza pubblicità.|Ad-free torrent client.
+A|AppWork.JDownloader|JDownloader|fw|Gestore di download da siti di file hosting.|Download manager for file hosting sites.
+A|Tonec.InternetDownloadManager|Internet Download Manager|pd|Accelera e organizza i download.|Speeds up and organizes downloads.
+A|WinSCP.WinSCP|WinSCP|os|Trasferimento file SFTP e SCP con editor integrato.|SFTP and SCP transfers with a built-in editor.
+A|PuTTY.PuTTY|PuTTY|os|Terminale SSH e seriale.|SSH and serial terminal.
+A|WiresharkFoundation.Wireshark|Wireshark|os|Analizza il traffico di rete pacchetto per pacchetto.|Analyzes network traffic packet by packet.
+A|angryziber.AngryIPScanner|Angry IP Scanner|os|Trova i dispositivi collegati alla rete.|Finds devices on the network.
+A|Famatech.AdvancedIPScanner|Advanced IP Scanner|fw|Scansione della rete locale con accesso rapido.|Local network scan with quick access.
+A|LocalSend.LocalSend|LocalSend|os|Invia file ai dispositivi vicini senza Internet.|Sends files to nearby devices without Internet.
+A|Syncthing.Syncthing|Syncthing|os|Sincronizza cartelle tra PC senza cloud.|Syncs folders between PCs without a cloud.
+A|Google.GoogleDrive|Google Drive|fr|I file di Google Drive in Esplora file.|Google Drive files in File Explorer.
+A|Dropbox.Dropbox|Dropbox|fr|Archivio cloud e sincronizzazione.|Cloud storage and sync.
+A|Tailscale.Tailscale|Tailscale|os|Rete privata tra i tuoi dispositivi, senza configurare il router.|Private network between your devices, no router setup.
+A|Parsec.Parsec|Parsec|fr|Desktop remoto a bassa latenza, adatto anche ai giochi.|Low-latency remote desktop, good for games too.
+A|MoonlightGameStreamingProject.Moonlight|Moonlight|os|Riceve i giochi in streaming dal tuo PC.|Receives game streams from your PC.
+A|LizardByte.Sunshine|Sunshine|os|Trasmette i giochi del PC verso Moonlight.|Streams PC games to Moonlight.
+
+C|dev|Sviluppo|Development
+A|Git.Git|Git|os|Controllo di versione.|Version control.
+A|GitHub.GitHubDesktop|GitHub Desktop|os|Git con interfaccia grafica.|Git with a graphical interface.
+A|GitHub.cli|GitHub CLI|os|GitHub dal terminale.|GitHub from the terminal.
+A|Microsoft.VisualStudioCode|Visual Studio Code|fw|Editor di codice leggero con estensioni.|Light code editor with extensions.
+A|VSCodium.VSCodium|VSCodium|os|Visual Studio Code senza telemetria.|Visual Studio Code without telemetry.
+A|Notepad++.Notepad++|Notepad++|os|Editor di testo e codice veloce.|Fast text and code editor.
+A|Python.Python.3.13|Python 3|os|Linguaggio di programmazione Python.|The Python programming language.
+A|OpenJS.NodeJS.LTS|Node.js LTS|os|JavaScript fuori dal browser.|JavaScript outside the browser.
+A|Microsoft.WindowsTerminal|Windows Terminal|os|Terminale moderno con schede.|Modern tabbed terminal.
+A|Microsoft.PowerShell|PowerShell 7|os|La nuova versione multipiattaforma di PowerShell.|The new cross-platform PowerShell.
+A|Docker.DockerDesktop|Docker Desktop|fr|Container e ambienti di sviluppo isolati.|Containers and isolated dev environments.
+A|Postman.Postman|Postman|fr|Prova e documenta le API.|Tests and documents APIs.
+A|JetBrains.Toolbox|JetBrains Toolbox|fr|Installa e aggiorna gli IDE JetBrains.|Installs and updates JetBrains IDEs.
+A|Microsoft.VisualStudio.2022.Community|Visual Studio Community|fr|IDE completo di Microsoft per C#, C++ e altro.|Microsoft's full IDE for C#, C++ and more.
+
+C|runtime|Componenti di sistema|System components
+A|Microsoft.VCRedist.2015+.x64|Visual C++ 2015-2022 (64 bit)|ms|Librerie richieste da molti programmi e giochi.|Libraries many programs and games need.
+A|Microsoft.VCRedist.2015+.x86|Visual C++ 2015-2022 (32 bit)|ms|Le stesse librerie per i programmi a 32 bit.|The same libraries for 32-bit programs.
+A|Microsoft.DirectX|DirectX End-User Runtime|ms|Componenti DirectX 9 richiesti dai giochi meno recenti.|DirectX 9 components older games need.
+A|Microsoft.DotNet.DesktopRuntime.8|.NET Desktop Runtime 8|ms|Serve alle app scritte in .NET 8.|Needed by apps built on .NET 8.
+A|Microsoft.DotNet.DesktopRuntime.9|.NET Desktop Runtime 9|ms|Serve alle app scritte in .NET 9.|Needed by apps built on .NET 9.
+A|Microsoft.XNARedist|XNA Framework|ms|Richiesto da alcuni giochi indipendenti.|Required by some indie games.
+A|Microsoft.EdgeWebView2Runtime|WebView2 Runtime|ms|Motore web usato da molte app moderne.|Web engine used by many modern apps.
+A|EclipseAdoptium.Temurin.21.JRE|Java 21 (Temurin)|os|Java open source per programmi e Minecraft.|Open-source Java for programs and Minecraft.
+A|Oracle.JavaRuntimeEnvironment|Java 8 (Oracle)|fw|Java classico per i programmi più vecchi.|Classic Java for older programs.

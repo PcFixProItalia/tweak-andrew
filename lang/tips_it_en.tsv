@@ -1,0 +1,166 @@
+chkMMCSS	Dà la precedenza a giochi e audio quando il computer è sotto carico. Meno scatti e audio più pulito.	Gives games and audio priority when the computer is under load. Fewer stutters and cleaner audio.
+chkPriority	Riserva più tempo del processore alla finestra che stai usando. Il programma in primo piano risponde più in fretta.	Gives more processor time to the window you are using. The foreground program responds faster.
+chkKernelMem	Tiene in memoria le parti centrali di Windows invece di spostarle su disco. Sistema più reattivo con molta RAM.	Keeps the core of Windows in memory instead of moving it to disk. A snappier system when you have plenty of RAM.
+chkKernelDpc	Riduce i ritardi nella gestione di schede e periferiche. Utile contro micro-scatti e crepitii audio.	Reduces delays in handling cards and devices. Helps against micro-stutter and audio crackles.
+chkTimer	Fa scattare i timer di sistema con più precisione. Tempi di risposta più regolari nei giochi.	Makes system timers fire more precisely. More consistent response times in games.
+chkPowerThrottling	Impedisce a Windows di rallentare i programmi in background per risparmiare energia. Prestazioni costanti, consumi un po' più alti.	Stops Windows from slowing down background programs to save power. Steady performance, slightly higher power draw.
+chkUSBSuspend	Tiene sempre attive le porte USB. Evita mouse, tastiere e schede audio che si scollegano o rispondono in ritardo.	Keeps USB ports always active. Prevents mice, keyboards and audio interfaces from dropping out or lagging.
+chkNtfsPerf	Il disco smette di annotare ogni lettura di file e usa più memoria per i dati di sistema. Meno scritture e accessi più veloci.	The disk stops recording every file read and uses more memory for system data. Fewer writes and faster access.
+chkRamTweak	Raggruppa i servizi di Windows in funzione della RAM installata. Meno processi aperti e memoria usata meglio.	Groups Windows services according to the installed RAM. Fewer running processes and better memory use.
+chkGameMode	Attiva la Modalità gioco: Windows mette in secondo piano aggiornamenti e attività mentre giochi.	Turns on Game Mode: Windows holds back updates and background work while you play.
+chkFSO	Fa girare i giochi a schermo intero in modo esclusivo. Può ridurre la latenza di input in alcuni titoli.	Runs full-screen games in true exclusive mode. Can reduce input latency in some titles.
+chkGameDVR	Spegne la registrazione in background della Xbox Game Bar. Libera risorse e fa guadagnare qualche fotogramma.	Turns off Xbox Game Bar background recording. Frees resources and gains a few frames.
+chkHAGS	Lascia che la scheda video gestisca da sola la propria memoria. Latenza più bassa sulle schede recenti.	Lets the graphics card manage its own memory. Lower latency on recent cards.
+chkVisualFX	Riduce animazioni ed effetti grafici di Windows. Interfaccia più scattante sui PC meno potenti.	Reduces Windows animations and visual effects. A snappier interface on slower PCs.
+chkApplyMPO	Applica la scelta del menu sottostante per gli overlay multipiano. Disattivarli risolve spesso sfarfallii e scatti con più monitor.	Applies the choice in the menu below for multiplane overlays. Turning them off often fixes flicker and stutter with multiple monitors.
+chkVBS	Spegne la virtualizzazione di sicurezza di Windows. Più fotogrammi nei giochi, ma meno protezione contro il malware.	Turns off Windows virtualization-based security. More frames in games, but less protection against malware.
+chkMitigations	Toglie alcune protezioni contro gli exploit. Guadagno di prestazioni, ma il sistema diventa più esposto.	Removes some protections against exploits. A performance gain, but the system becomes more exposed.
+chkTelemetry	Blocca l'invio a Microsoft dei dati di utilizzo. Più privacy e meno attività in background.	Stops usage data from being sent to Microsoft. More privacy and less background activity.
+chkTelemetryTasks	Ferma le attività pianificate che raccolgono dati di utilizzo. Meno lavoro nascosto a computer acceso.	Stops the scheduled tasks that collect usage data. Less hidden work while the computer is on.
+chkActivityHistory	Windows smette di registrare cosa apri e quando. Più privacy.	Windows stops recording what you open and when. More privacy.
+chkLocationTracking	Spegne la localizzazione del dispositivo. Le app non sanno più dove ti trovi.	Turns off device location. Apps no longer know where you are.
+chkAdvertisingID	Toglie il codice che le app usano per mostrarti pubblicità mirata.	Removes the code apps use to show you targeted ads.
+chkTailoredExp	Microsoft smette di usare i tuoi dati per suggerimenti e pubblicità personalizzati.	Microsoft stops using your data for personalized tips and ads.
+chkFeedback	Niente più finestre che chiedono la tua opinione su Windows.	No more pop-ups asking for your opinion on Windows.
+chkErrorReporting	Gli errori dei programmi non vengono più inviati a Microsoft. Meno attività dopo un blocco.	Program errors are no longer sent to Microsoft. Less activity after a crash.
+chkInkingTyping	Windows smette di imparare da quello che scrivi e digiti. Più privacy.	Windows stops learning from what you write and type. More privacy.
+chkWiFiSense	Impedisce la condivisione automatica delle reti Wi-Fi e la connessione a hotspot sconosciuti.	Prevents automatic Wi-Fi network sharing and connecting to unknown hotspots.
+chkConsumerFeatures	Impedisce a Windows di installare da solo app e giochi promozionali.	Stops Windows from installing promotional apps and games on its own.
+chkStoreSearch	Toglie i suggerimenti web e dello Store dalle ricerche. Risultati più puliti e veloci.	Removes web and Store suggestions from searches. Cleaner, faster results.
+chkSuggestedContent	Niente consigli e promozioni dentro Impostazioni e nel sistema.	No tips and promotions inside Settings and around the system.
+chkLockScreenAds	Toglie immagini a rotazione, consigli e pubblicità dalla schermata di blocco.	Removes rotating images, tips and ads from the lock screen.
+chkStartBing	La ricerca nel menu Start cerca solo sul computer, non su internet. Più veloce e più privata.	Start menu search looks only on the computer, not the web. Faster and more private.
+chkStartRecs	Toglie i suggerimenti di app e file dal menu Start.	Removes app and file suggestions from the Start menu.
+chkStartTracking	Windows smette di tenere l'elenco delle app più usate e dei documenti recenti.	Windows stops keeping a list of your most used apps and recent documents.
+chkFolderDiscovery	Esplora file non cerca più di indovinare il tipo di ogni cartella. Le cartelle grandi si aprono prima.	File Explorer no longer tries to guess each folder's type. Large folders open faster.
+chkWindowsAI	Spegne Copilot, Recall e le funzioni di intelligenza artificiale di Windows. Meno risorse usate e più privacy.	Turns off Copilot, Recall and Windows AI features. Fewer resources used and more privacy.
+chkEdgeDebloat	Edge non resta aperto in background e non precarica pagine. Meno memoria occupata.	Edge no longer stays open in the background or preloads pages. Less memory used.
+chkOneDriveRemove	Ferma la sincronizzazione di OneDrive. Utile se non usi il cloud di Microsoft.	Stops OneDrive syncing. Useful if you do not use Microsoft's cloud.
+chkOutlookNew	Impedisce il passaggio automatico al nuovo Outlook. Resti sulla versione che usi.	Prevents the automatic switch to the new Outlook. You stay on the version you use.
+chkServicesManual	I servizi poco usati partono solo quando servono. Avvio più leggero.	Rarely used services start only when needed. A lighter startup.
+chkDeliveryOpt	Il PC smette di condividere gli aggiornamenti con altri computer su internet. Risparmi banda.	The PC stops sharing updates with other computers over the internet. Saves bandwidth.
+chkBitLocker	Evita la cifratura automatica del disco. Disco un po' più veloce e niente chiave di ripristino da conservare.	Avoids automatic drive encryption. A slightly faster disk and no recovery key to keep.
+chkWPBT	Impedisce al firmware del produttore di installare programmi in Windows a tua insaputa.	Prevents the manufacturer's firmware from installing programs into Windows without you knowing.
+chkBackgroundApps	Le app dello Store non lavorano più quando sono chiuse. Meno batteria e memoria consumate.	Store apps stop working while closed. Less battery and memory used.
+chkTeredo	Spegne un vecchio tunnel di rete quasi mai usato. Può migliorare la connessione nei giochi online.	Turns off an old, rarely used network tunnel. Can improve connections in online games.
+chkRDPWarnings	Niente avvisi ripetuti quando apri connessioni Desktop remoto già note.	No repeated warnings when opening known Remote Desktop connections.
+chkRemoteAssistance	Impedisce ad altri di chiedere il controllo del tuo PC. Più sicurezza.	Prevents others from requesting control of your PC. More security.
+chkCompanionApps	Windows non scarica più app accessorie quando colleghi una periferica.	Windows no longer downloads companion apps when you connect a device.
+chkDriverUpdates	Windows Update non sostituisce più i driver che hai installato tu.	Windows Update no longer replaces the drivers you installed yourself.
+chkDarkTheme	Mette Windows e le app in tema scuro. Più riposante per gli occhi.	Switches Windows and apps to dark mode. Easier on the eyes.
+chkFileExt	Mostra .exe, .pdf e le altre estensioni. Riconosci subito i file sospetti.	Shows .exe, .pdf and other extensions. You spot suspicious files right away.
+chkHiddenFiles	Mostra file e cartelle nascosti in Esplora file.	Shows hidden files and folders in File Explorer.
+chkLongPaths	Permette percorsi di file molto lunghi. Evita errori con progetti e archivi profondi.	Allows very long file paths. Avoids errors with deep projects and archives.
+chkClassicMenu	Rimette il menu del tasto destro completo, senza passare da «Mostra altre opzioni».	Brings back the full right-click menu, without going through «Show more options».
+chkExplorerThisPC	Esplora file si apre su Questo PC, con dischi e cartelle in vista.	File Explorer opens on This PC, with drives and folders in view.
+chkRemove3D	Toglie la cartella Oggetti 3D, che quasi nessuno usa.	Removes the 3D Objects folder, which almost nobody uses.
+chkRecycleConfirm	Chiede conferma prima di spostare un file nel Cestino. Meno cancellazioni per sbaglio.	Asks before moving a file to the Recycle Bin. Fewer accidental deletions.
+chkMenuDelay	I menu si aprono all'istante, senza la piccola attesa predefinita.	Menus open instantly, without the small default delay.
+chkStartMorePins	Nel menu Start più spazio alle app fissate e meno ai consigli.	More room for pinned apps in Start, less for recommendations.
+chkStartHideRec	Nasconde la sezione Consigliati del menu Start. Start più pulito.	Hides the Recommended section of the Start menu. A cleaner Start.
+chkStartNoWeb	Toglie i siti web suggeriti dal menu Start.	Removes suggested websites from the Start menu.
+chkStartNoAccount	Niente avvisi sull'account Microsoft nel menu Start.	No Microsoft account prompts in the Start menu.
+chkTaskbarCenter	Tiene le icone della barra delle applicazioni al centro, come in Windows 11.	Keeps taskbar icons centered, as in Windows 11.
+chkTaskbarSearch	Toglie la casella di ricerca dalla barra. La ricerca resta disponibile dal tasto Windows.	Removes the search box from the taskbar. Search is still available from the Windows key.
+chkTaskbarTaskView	Toglie il pulsante Visualizzazione attività dalla barra.	Removes the Task View button from the taskbar.
+chkTaskbarWidgets	Toglie widget e notizie dalla barra. Meno memoria e meno distrazioni.	Removes widgets and news from the taskbar. Less memory and fewer distractions.
+chkTaskbarChat	Toglie l'icona di Chat e Teams dalla barra.	Removes the Chat and Teams icon from the taskbar.
+chkTaskbarEndTask	Aggiunge «Termina attività» al tasto destro sulla barra. Chiudi un programma bloccato senza Gestione attività.	Adds «End task» to the taskbar right-click menu. Close a frozen program without Task Manager.
+chkBatteryPct	Mostra la percentuale di carica accanto all'icona della batteria.	Shows the charge percentage next to the battery icon.
+chkSettingsHome	Impostazioni si apre direttamente sulle voci utili, senza la pagina iniziale promozionale.	Settings opens straight to the useful sections, without the promotional home page.
+chkWindowSnapping	Attiva l'affiancamento delle finestre trascinandole ai bordi dello schermo.	Turns on window snapping when you drag windows to the screen edges.
+chkMouseAccel	Il puntatore si muove sempre della stessa distanza. Mira più precisa e costante nei giochi.	The pointer always moves the same distance. More precise, consistent aim in games.
+chkNumLock	Il tastierino numerico è già attivo quando accendi il PC.	The numeric keypad is already on when you start the PC.
+chkStickyKeys	Niente finestra dei Tasti permanenti premendo più volte Maiusc, anche durante i giochi.	No Sticky Keys prompt when pressing Shift repeatedly, even during games.
+chkScrollbars	Le barre di scorrimento restano sempre visibili invece di comparire solo al passaggio.	Scrollbars stay visible instead of appearing only on hover.
+chkLockScreen	Salta la schermata di blocco e porta subito alla richiesta di accesso.	Skips the lock screen and goes straight to sign-in.
+chkLogonBlur	Toglie la sfocatura dallo sfondo di accesso. Immagine più nitida e accesso un filo più rapido.	Removes the blur from the sign-in background. A sharper image and slightly faster sign-in.
+chkBSODVerbose	La schermata blu mostra i dettagli dell'errore. Più facile capire la causa di un blocco.	The blue screen shows the error details. Easier to find what caused a crash.
+chkLogonVerbose	All'avvio e allo spegnimento vedi cosa sta facendo Windows. Utile per capire cosa lo rallenta.	At startup and shutdown you see what Windows is doing. Helps find what slows it down.
+chkApplyNetwork	Applica le impostazioni della pagina Rete. Senza questa spunta la pagina resta solo informativa.	Applies the settings on the Network page. Without this box the page is informational only.
+chkApplyDns	Usa i server DNS scelti nel menu. Pagine che si aprono più in fretta e, con alcuni servizi, meno pubblicità.	Uses the DNS servers chosen in the menu. Pages open faster and, with some providers, fewer ads.
+chkNetPowerSave	La scheda di rete non va più a risparmio energetico. Connessione più stabile e ping più regolare.	The network card no longer goes into power saving. A steadier connection and more even ping.
+chkDisableIPv6	Spegne il protocollo IPv6. Utile solo se il tuo operatore non lo usa e hai problemi di connessione.	Turns off IPv6. Useful only if your provider does not use it and you have connection issues.
+chkStorageProfile	Applica le ottimizzazioni pensate per il tipo di disco scelto: SSD o disco meccanico.	Applies the optimizations meant for the chosen drive type: SSD or hard disk.
+chkDiskCleanup	Elimina file di sistema superflui e vecchie versioni degli aggiornamenti. Recupera spazio, a volte diversi GB.	Deletes unneeded system files and old update versions. Recovers space, sometimes several GB.
+chkTempCleanup	Svuota le cartelle dei file temporanei. Più spazio libero.	Empties the temporary file folders. More free space.
+chkSmartChkdsk	Controlla il disco al prossimo riavvio nel modo adatto a SSD o disco meccanico. Corregge errori del file system.	Checks the disk at the next restart in the way that suits SSDs or hard disks. Fixes file system errors.
+chkStorageSense	Windows non cancella più file da solo per fare spazio. Decidi tu cosa eliminare.	Windows no longer deletes files on its own to make room. You decide what to remove.
+chkReservedStorage	Libera lo spazio che Windows tiene da parte per gli aggiornamenti, circa 7 GB.	Frees the space Windows keeps aside for updates, about 7 GB.
+chkFastStartup	Ogni spegnimento diventa uno spegnimento completo. Risolve problemi di driver e dual boot.	Every shutdown becomes a full shutdown. Fixes driver and dual-boot problems.
+chkHibernation	Spegne l'ibernazione e libera sul disco C: uno spazio pari a gran parte della RAM.	Turns off hibernation and frees space on C: roughly equal to most of your RAM.
+chkS0Sleep	In sospensione il PC non resta collegato a internet. Consuma meno e non si sveglia da solo.	While asleep the PC stays offline. Uses less power and does not wake by itself.
+chkS3Sleep	Usa la sospensione classica al posto di quella moderna. Il portatile non si scalda nello zaino.	Uses classic sleep instead of modern standby. The laptop does not heat up in your bag.
+chkGpuTdr	Dà alla scheda video più tempo prima che Windows la riavvii. Meno schermi neri durante carichi pesanti.	Gives the graphics card more time before Windows resets it. Fewer black screens under heavy load.
+chkGpuMsi	Cambia il modo in cui la scheda video segnala al processore. Può ridurre la latenza.	Changes how the graphics card signals the processor. Can reduce latency.
+chkNvTelemetry	Ferma l'invio dei dati di utilizzo a NVIDIA. Meno processi in background.	Stops usage data being sent to NVIDIA. Fewer background processes.
+chkNvGfe	GeForce Experience non parte più da solo all'avvio. Avvio più leggero.	GeForce Experience no longer starts by itself. A lighter startup.
+chkNvPerfMode	La scheda NVIDIA resta alla massima frequenza. Prestazioni costanti, consumi più alti.	Keeps the NVIDIA card at full clock speed. Steady performance, higher power draw.
+chkNvUpdates	Il driver NVIDIA non controlla più da solo gli aggiornamenti.	The NVIDIA driver no longer checks for updates on its own.
+chkAmdUx	Ferma l'invio dei dati di utilizzo ad AMD.	Stops usage data being sent to AMD.
+chkAmdBloat	Evita che i programmi accessori AMD partano con Windows. Avvio più leggero.	Keeps AMD companion programs from starting with Windows. A lighter startup.
+chkIntelBloat	I servizi accessori della grafica Intel partono solo quando servono.	Intel graphics companion services start only when needed.
+chkSvcSysMain	Windows smette di precaricare in memoria le app che usi spesso. Utile su SSD veloci, dove non serve.	Windows stops preloading your frequent apps into memory. Useful on fast SSDs, where it is not needed.
+chkSvcDiag	Ferma i servizi che analizzano problemi e prestazioni in background.	Stops the services that analyse problems and performance in the background.
+chkSvcErrors	Ferma il servizio che raccoglie e invia i rapporti di errore.	Stops the service that collects and sends error reports.
+chkSvcPca	Ferma il servizio che controlla la compatibilità dei vecchi programmi.	Stops the service that checks old programs for compatibility.
+chkSvcDiscovery	Il PC smette di cercare dispositivi sulla rete locale. Meno traffico, ma stampanti e TV di rete potrebbero non comparire.	The PC stops searching for devices on the local network. Less traffic, but network printers and TVs may not show up.
+chkSvcSensors	Ferma i servizi di sensori e posizione. Utile sui PC fissi, che non li hanno.	Stops sensor and location services. Useful on desktops, which do not have them.
+chkSvcSmartCard	Ferma i servizi per le smart card. Non servono se non usi lettori di tessere.	Stops smart card services. Not needed if you do not use card readers.
+chkSvcParental	Ferma controllo genitori e programma Insider. Non servono su un PC personale.	Stops parental controls and the Insider program. Not needed on a personal PC.
+chkSvcHyperV	Ferma i servizi delle macchine virtuali. Tienili se usi Hyper-V, WSL o l'emulatore Android.	Stops virtual machine services. Keep them if you use Hyper-V, WSL or the Android emulator.
+chkSvcPrint	Ferma il servizio di stampa. Da usare solo se non stampi mai da questo PC.	Stops the print service. Only if you never print from this PC.
+chkSvcSearch	Ferma l'indicizzazione dei file. Meno lavoro del disco, ma la ricerca diventa lenta.	Stops file indexing. Less disk work, but search becomes slow.
+chkSvcRemote	Ferma Desktop remoto e accesso remoto al registro. Più sicurezza se non ti colleghi da fuori.	Stops Remote Desktop and remote registry access. More security if you never connect from outside.
+chkSvcBiometric	Ferma impronta e riconoscimento del volto. Da evitare se accedi con Windows Hello.	Stops fingerprint and face recognition. Avoid it if you sign in with Windows Hello.
+chkSvcTouch	Ferma penna e tastiera virtuale. Da evitare su tablet e portatili touch.	Stops pen and the on-screen keyboard. Avoid it on tablets and touch laptops.
+chkTaskExtra	Spegne una ventina di attività automatiche di Microsoft che non servono. Meno lavoro nascosto.	Turns off about twenty automatic Microsoft tasks you do not need. Less hidden work.
+chkTaskMaint	Windows non avvia più la manutenzione automatica di notte. Il PC non si sveglia e non rallenta a sorpresa.	Windows no longer runs automatic maintenance at night. The PC does not wake up or slow down unexpectedly.
+chkTaskDefrag	Ferma l'ottimizzazione automatica dei dischi. Sugli SSD va poi fatta a mano dalla pagina Archiviazione.	Stops automatic drive optimization. On SSDs it then has to be run by hand from the Storage page.
+chkPrefetch	Windows smette di preparare in anticipo i file dei programmi. Meno scritture sugli SSD.	Windows stops preparing program files in advance. Fewer writes on SSDs.
+chkFth	Windows smette di applicare correzioni automatiche ai programmi che si bloccano. Comportamento più prevedibile.	Windows stops applying automatic fixes to programs that crash. More predictable behaviour.
+chkAppCompat	Spegne i controlli di compatibilità sui programmi. Avvio dei programmi un po' più rapido.	Turns off compatibility checks on programs. Programs start slightly faster.
+chkSvcHostSplit	Raggruppa i servizi di Windows in meno processi. Meno memoria usata e un Gestione attività più leggibile.	Groups Windows services into fewer processes. Less memory used and a tidier Task Manager.
+chkMemCompression	Windows smette di comprimere la memoria. Meno lavoro del processore, ma serve molta RAM.	Windows stops compressing memory. Less processor work, but you need plenty of RAM.
+chkWuNoReboot	Gli aggiornamenti non riavviano più il PC mentre lo usi.	Updates no longer restart the PC while you are using it.
+chkWuDefer	Le nuove versioni di Windows arrivano dopo un anno, quando sono già stabili. Le patch di sicurezza continuano ad arrivare.	New Windows versions arrive after a year, once they are stable. Security patches keep coming.
+chkWuNoStore	Le app dello Store non si aggiornano più da sole in background.	Store apps no longer update themselves in the background.
+chkBootQuiet	Avvio senza logo animato. Schermata più pulita e avvio un filo più rapido.	Starts without the animated logo. A cleaner screen and a slightly faster boot.
+chkBootMenu	Rimette il menu di avvio classico, che permette di entrare in modalità provvisoria con F8.	Brings back the classic boot menu, which lets you enter Safe Mode with F8.
+chkBootTimeout	Se hai più sistemi installati, il PC parte subito senza aspettare nel menu di scelta.	If several systems are installed, the PC starts right away without waiting in the choice menu.
+chkBootDynTick	Il processore tiene un ritmo di sistema costante. Su alcuni PC abbassa la latenza, su altri no: va provato.	The processor keeps a constant system tick. On some PCs it lowers latency, on others it does not: test it.
+chkBootTsc	Rende più precisa la misura del tempo tra i core del processore. Può migliorare la fluidità: va provato.	Makes timekeeping across processor cores more precise. Can improve smoothness: test it.
+chkAppxBloat	Rimuove app preinstallate come notizie, meteo, mappe e Skype. Più spazio e menu Start più ordinato.	Removes preinstalled apps such as news, weather, maps and Skype. More space and a tidier Start menu.
+chkAppxXbox	Rimuove le app Xbox e l'overlay di gioco. Da evitare se usi Game Pass.	Removes Xbox apps and the game overlay. Avoid it if you use Game Pass.
+chkAppxProvision	Le app rimosse non ricompaiono quando si crea un nuovo utente.	Removed apps do not come back when a new user is created.
+chkSecSmartScreen	Spegne il controllo dei file scaricati. Nessun avviso all'apertura, ma nessuna protezione da file pericolosi.	Turns off the check on downloaded files. No warnings when opening them, but no protection from dangerous files.
+chkSecSpectre	Toglie le protezioni contro alcune falle dei processori. Più prestazioni, soprattutto sulle CPU vecchie, ma meno sicurezza.	Removes protections against some processor flaws. More performance, especially on older CPUs, but less security.
+chkSecDefenderIdle	L'antivirus fa le scansioni solo a computer fermo e senza appesantirlo. La protezione in tempo reale resta attiva.	The antivirus scans only when the computer is idle and without weighing it down. Real-time protection stays on.
+chkRestorePoint	Crea un punto di ripristino prima di applicare. Se qualcosa non va, torni indietro da Ripristino configurazione di sistema.	Creates a restore point before applying. If something goes wrong, you can go back with System Restore.
+chkAmdUlps	Impedisce alla scheda AMD di spegnersi quando è a riposo. Frequenze pronte e niente micro-scatti al risveglio, consumi un po' più alti.	Stops the AMD card from powering down when idle. Clocks stay ready and no micro-stutter on wake-up, slightly higher power draw.
+chkMenuSleep	Mostra o nasconde Sospendi nel menu di spegnimento di Start. Il cambio vale subito.	Shows or hides Sleep in the Start power menu. The change applies immediately.
+chkMenuHibernate	Mostra o nasconde Iberna nel menu di spegnimento di Start. Se l'ibernazione era spenta, viene riattivata.	Shows or hides Hibernate in the Start power menu. If hibernation was off, it is turned back on.
+chkNvP2	Il driver non abbassa più le frequenze della memoria quando parte un programma CUDA. Rendering e calcolo più veloci.	The driver stops lowering memory clocks when a CUDA program starts. Faster rendering and compute.
+chkNvDrsPower	La scheda resta alle frequenze alte invece di rallentare tra un fotogramma e l'altro. Meno cali di FPS.	The card stays at high clocks instead of slowing between frames. Fewer FPS drops.
+chkNvLowLatency	Il processore prepara un solo fotogramma in anticipo. Il gioco risponde prima ai comandi.	The processor prepares just one frame ahead. The game reacts sooner to your input.
+chkNvThreaded	I giochi OpenGL distribuiscono il lavoro del driver su più core.	OpenGL games spread the driver's work over several cores.
+chkNvTexPerf	Il filtro delle texture privilegia la velocità: qualche FPS in più, differenza visiva minima.	Texture filtering favors speed: a few more FPS, minimal visual difference.
+chkNvAniso	Il filtro anisotropico usa meno campioni dove non si vede la differenza.	Anisotropic filtering takes fewer samples where the difference doesn't show.
+chkNvShaderCache	Il driver non cancella gli shader compilati: meno scatti quando un gioco carica aree nuove.	The driver keeps compiled shaders: fewer stutters when a game loads new areas.
+chkNvNoFxaa	Spegne l'antialiasing forzato dal driver e l'overlay fotografico Ansel.	Turns off driver-forced antialiasing and the Ansel photo overlay.
+chkNvDisplayPower	Il driver non abbassa la luminosità dello schermo per risparmiare energia.	The driver doesn't dim the screen to save power.
+chkNvHdcp	Toglie la protezione dei contenuti: meno lavoro per la scheda, ma Netflix e simili non vanno in alta risoluzione.	Removes content protection: less work for the card, but Netflix and similar won't play in high resolution.
+chkNvPreempt	La scheda finisce un lavoro prima di passare al successivo. Può ridurre la latenza, su alcuni PC causa blocchi.	The card finishes a job before switching to the next. It can reduce latency; on some PCs it causes hangs.
+chkNvDynPstate	La scheda non scende mai di frequenza. Massima reattività, più calore e consumo anche a riposo.	The card never lowers its clocks. Maximum responsiveness, more heat and power even at idle.
+chkNvLatency	Riduce le attese interne del driver usate per risparmiare energia. Effetto variabile: provalo e misura.	Cuts the driver's internal waits used to save power. The effect varies: try it and measure.
+chkAmdAntiLag	Il processore non corre avanti rispetto alla scheda video. Comandi più immediati nei giochi.	The processor doesn't run ahead of the graphics card. Snappier controls in games.
+chkAmdShaderCache	Gli shader compilati restano sempre salvati: meno scatti ai caricamenti.	Compiled shaders are always kept: fewer stutters on loading.
+chkAmdTexPerf	Il filtro delle texture privilegia la velocità, con differenze minime a vista.	Texture filtering favors speed, with barely visible differences.
+chkAmdTess	Il driver limita la tassellatura esagerata di alcuni giochi. FPS più alti nelle scene pesanti.	The driver caps some games' excessive tessellation. Higher FPS in heavy scenes.
+chkAmdFlipQueue	Un solo fotogramma in coda verso lo schermo. Meno ritardo tra mouse e immagine.	Only one frame queued to the screen. Less delay between mouse and image.
+chkAmdNoFrtc	Toglie il tetto agli FPS impostato dal driver.	Removes the FPS cap set by the driver.
+chkAmdStutter	La memoria video non entra in risparmio tra un fotogramma e l'altro. Tempi dei fotogrammi più regolari.	Video memory doesn't power down between frames. Steadier frame times.
+chkAmdAspm	Il collegamento PCIe della scheda resta sempre attivo. Niente micro-ritardi al risveglio.	The card's PCIe link stays always active. No micro-delays on wake-up.
+chkAmdPowerGating	Le unità della scheda non vengono spente a riposo. Più reattiva, consuma e scalda di più.	The card's units aren't powered off at idle. More responsive, more power and heat.
+chkAmdDma	Cambia il modo in cui la scheda copia i dati. Su alcune schede riduce gli scatti, su altre li peggiora.	Changes how the card copies data. On some cards it reduces stutter, on others it worsens it.
+chkAmdPreempt	La scheda finisce un calcolo prima di passare al successivo. Da provare: su alcuni PC causa blocchi.	The card finishes a compute job before the next one. Worth testing: on some PCs it causes hangs.

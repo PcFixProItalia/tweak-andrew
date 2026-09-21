@@ -1,0 +1,639 @@
+# Catalogo delle impostazioni a interruttore di Tweak Andrew.
+# Ogni riga e' separata da | e letta da tools/gen_catalog.py.
+#
+# P|pagina
+# G|gruppo|titolo it|titolo en
+# T|id|flag|predefinito 0/1|consigliato 0/1/-|testo it|testo en      interruttore
+# S|id|flag|opzione predefinita|opzione consigliata|testo it|testo en  menu a tendina
+# V|id|flag|servizi,separati|avvio predefinito|consigliato|it|en       servizio (A, AD, M, X)
+# J|id|flag|predefinito|consigliato|it|en                              attivita' pianificate (Q|percorso)
+# N|id|flag|sottogruppo|impostazione|predefinito|consigliato|it|en    impostazione del piano attivo
+# R|percorso|valore|tipo|acceso|spento    per T; per S solo percorso|valore|tipo
+# O|chiave|it|en|valore1|valore2...       opzione di S (un valore per ogni R) o di N
+# H|id|descrizione it|descrizione en
+#
+# Valori: '-' = valore assente. Piu' valori separati da virgola valgono tutti
+# come «acceso» o «spento»; si scrive il primo.
+# Tipi: D S E Q B(esadecimale) Key(chiave presente/assente) Byte:n Bit:n:maschera Kv:nome
+# Flag: X riavvia Esplora risorse, L serve una nuova sessione, R serve un riavvio,
+#       U utente corrente, M macchina locale, A riguarda l'IA
+
+# ==============================================================================
+P|exp
+G|desk|Icone del desktop|Desktop icons
+T|exp.icoPc||0|1|Questo PC sul desktop|This PC on the desktop
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel|{20D04FE0-3AEA-1069-A2D8-08002B30309D}|D|0|1,-
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\ClassicStartMenu|{20D04FE0-3AEA-1069-A2D8-08002B30309D}|D|0|1,-
+H|exp.icoPc|Mette l'icona Questo PC sul desktop: un doppio clic e sei tra dischi e unità.|Puts the This PC icon on the desktop: one double-click to reach your drives.
+T|exp.icoBin||1|1|Cestino sul desktop|Recycle Bin on the desktop
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel|{645FF040-5081-101B-9F08-00AA002F954E}|D|0,-|1
+H|exp.icoBin|Mostra o nasconde il Cestino sul desktop.|Shows or hides the Recycle Bin on the desktop.
+T|exp.icoUser||0|0|Cartella utente sul desktop|User folder on the desktop
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel|{59031A47-3F72-44A7-89C5-5595FE6B30EE}|D|0|1,-
+H|exp.icoUser|Collegamento diretto alla tua cartella personale, con Documenti, Download e il resto.|Direct link to your personal folder, with Documents, Downloads and the rest.
+T|exp.icoCpl||0|0|Pannello di controllo sul desktop|Control Panel on the desktop
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel|{5399E694-6CE5-4D6C-8FCE-1D8870FDCBA0}|D|0|1,-
+H|exp.icoCpl|Il Pannello di controllo classico a portata di doppio clic.|The classic Control Panel one double-click away.
+T|exp.icoNet||0|0|Rete sul desktop|Network on the desktop
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel|{F02C1A0D-BE21-4350-88B0-7367FC96EF3C}|D|0|1,-
+H|exp.icoNet|Accesso rapido ai computer e alle cartelle condivise della rete locale.|Quick access to computers and shared folders on the local network.
+S|exp.lnkSuffix|X|keep|drop|Nome dei nuovi collegamenti|Name of new shortcuts
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer|link|B
+O|keep|Con «- Collegamento»|With «- Shortcut»|-
+O|drop|Senza suffisso|No suffix|00 00 00 00
+H|exp.lnkSuffix|Toglie la coda «- Collegamento» dal nome dei collegamenti che crei.|Drops the «- Shortcut» tail from the name of the shortcuts you create.
+S|exp.lnkArrow|X|show|-|Freccia sulle icone dei collegamenti|Arrow on shortcut icons
+R|HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Shell Icons|29|S
+O|show|Visibile|Visible|-
+O|hide|Nascosta|Hidden|%windir%\System32\shell32.dll,-50
+H|exp.lnkArrow|Nasconde la piccola freccia sulle icone dei collegamenti, per un desktop più pulito.|Hides the small arrow on shortcut icons for a cleaner desktop.
+
+G|ctx|Menu contestuale|Context menu
+T|exp.ctxTerminal|X|1|-|Apri nel Terminale|Open in Terminal
+R|HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Shell Extensions\Blocked|{9F156763-7844-4DC4-B2B1-901F640F5155}|S|-|""
+H|exp.ctxTerminal|La voce che apre il Terminale nella cartella su cui fai clic destro.|The entry that opens Terminal in the folder you right-click.
+T|exp.ctxOwner||0|-|Prendi possesso|Take ownership
+R|HKCR\*\shell\TakeOwnership||S|Prendi possesso|-
+R|HKCR\*\shell\TakeOwnership|HasLUAShield|S|""|-
+R|HKCR\*\shell\TakeOwnership|NoWorkingDirectory|S|""|-
+R|HKCR\*\shell\TakeOwnership\command||S|powershell -WindowStyle Hidden -Command "Start-Process cmd -ArgumentList '/c takeown /f \"%1\" && icacls \"%1\" /grant *S-1-3-4:F /c /l' -Verb RunAs"|-
+R|HKCR\*\shell\TakeOwnership\command|IsolatedCommand|S|powershell -WindowStyle Hidden -Command "Start-Process cmd -ArgumentList '/c takeown /f \"%1\" && icacls \"%1\" /grant *S-1-3-4:F /c /l' -Verb RunAs"|-
+R|HKCR\Directory\shell\TakeOwnership||S|Prendi possesso|-
+R|HKCR\Directory\shell\TakeOwnership|HasLUAShield|S|""|-
+R|HKCR\Directory\shell\TakeOwnership|NoWorkingDirectory|S|""|-
+R|HKCR\Directory\shell\TakeOwnership\command||S|powershell -WindowStyle Hidden -Command "Start-Process cmd -ArgumentList '/c takeown /f \"%1\" /r /d y && icacls \"%1\" /grant *S-1-3-4:F /t /c /l' -Verb RunAs"|-
+R|HKCR\Directory\shell\TakeOwnership\command|IsolatedCommand|S|powershell -WindowStyle Hidden -Command "Start-Process cmd -ArgumentList '/c takeown /f \"%1\" /r /d y && icacls \"%1\" /grant *S-1-3-4:F /t /c /l' -Verb RunAs"|-
+R|HKCR\*\shell\TakeOwnership||Key|+|-
+R|HKCR\Directory\shell\TakeOwnership||Key|+|-
+H|exp.ctxOwner|Aggiunge al clic destro la voce per diventare proprietario di file e cartelle bloccati.|Adds a right-click entry to take ownership of locked files and folders.
+T|exp.ctxSfc||0|-|Controllo file di sistema (SFC)|System file check (SFC)
+R|HKCR\Directory\Background\shell\TweakSfc|MUIVerb|S|Controllo file di sistema (SFC)|-
+R|HKCR\Directory\Background\shell\TweakSfc|HasLUAShield|S|""|-
+R|HKCR\Directory\Background\shell\TweakSfc|Icon|S|imageres.dll,-78|-
+R|HKCR\Directory\Background\shell\TweakSfc\command||S|powershell -WindowStyle Hidden -Command "Start-Process cmd -ArgumentList '/k sfc /scannow' -Verb RunAs"|-
+R|HKCR\Directory\Background\shell\TweakSfc||Key|+|-
+H|exp.ctxSfc|Clic destro sul desktop per avviare subito la verifica dei file di Windows.|Right-click the desktop to start the Windows file check straight away.
+T|exp.ctxDism||0|-|Ripara immagine di Windows (DISM)|Repair Windows image (DISM)
+R|HKCR\Directory\Background\shell\TweakDism|MUIVerb|S|Ripara immagine di Windows (DISM)|-
+R|HKCR\Directory\Background\shell\TweakDism|HasLUAShield|S|""|-
+R|HKCR\Directory\Background\shell\TweakDism|Icon|S|imageres.dll,-5323|-
+R|HKCR\Directory\Background\shell\TweakDism\command||S|powershell -WindowStyle Hidden -Command "Start-Process cmd -ArgumentList '/k DISM /Online /Cleanup-Image /RestoreHealth' -Verb RunAs"|-
+R|HKCR\Directory\Background\shell\TweakDism||Key|+|-
+H|exp.ctxDism|Clic destro sul desktop per riparare l'immagine di Windows con i file di Microsoft.|Right-click the desktop to repair the Windows image with Microsoft's files.
+T|exp.ctxExt||0|-|Mostra o nascondi estensioni|Show or hide extensions
+R|HKCR\AllFilesystemObjects\shell\Windows.ShowFileExtensions|ExplorerCommandHandler|S|{4ac6c205-2853-4bf5-b47c-919a42a48a16}|-
+R|HKCR\AllFilesystemObjects\shell\Windows.ShowFileExtensions||Key|+|-
+H|exp.ctxExt|Una voce del clic destro per mostrare o nascondere al volo le estensioni dei file.|A right-click entry to show or hide file extensions on the fly.
+
+G|gen|Generale|General
+T|exp.recent||1|0|File recenti in Home|Recent files in Home
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer|ShowRecent|D|1,-|0
+H|exp.recent|Elenca in Home gli ultimi file aperti. Spento, chi usa il PC dopo di te non li vede.|Lists your latest files in Home. Off, whoever uses the PC after you won't see them.
+T|exp.frequent||1|0|Cartelle frequenti in Home|Frequent folders in Home
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer|ShowFrequent|D|1,-|0
+H|exp.frequent|Mostra in Home le cartelle che apri più spesso.|Shows the folders you open most often in Home.
+T|exp.office||1|0|File da Office.com in Home|Files from Office.com in Home
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer|ShowCloudFilesInQuickAccess|D|1,-|0
+H|exp.office|Mescola ai tuoi file locali quelli presi dal cloud di Microsoft.|Mixes files from Microsoft's cloud with your local ones.
+T|exp.syncAds||1|0|Avvisi dei servizi cloud in Esplora file|Cloud service notices in File Explorer
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced|ShowSyncProviderNotifications|D|1,-|0
+H|exp.syncAds|Banner promozionali di OneDrive e Microsoft 365 dentro Esplora file.|Promotional OneDrive and Microsoft 365 banners inside File Explorer.
+T|exp.sepProc|X|0|-|Cartelle in un processo separato|Folders in a separate process
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced|SeparateProcess|D|1|0,-
+H|exp.sepProc|Se una finestra di Esplora file si blocca, desktop e barra restano in piedi.|If a File Explorer window freezes, desktop and taskbar keep working.
+T|exp.persist||0|-|Riapri le cartelle all'accesso|Reopen folders at sign-in
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced|PersistBrowsers|D|1|0,-
+H|exp.persist|Ritrovi aperte le cartelle che avevi lasciato prima di spegnere.|Brings back the folders you had open before shutting down.
+T|exp.checkSel||0|-|Caselle per selezionare gli elementi|Check boxes to select items
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced|AutoCheckSelect|D|1|0,-
+H|exp.checkSel|Una casella accanto a ogni file: comoda per selezioni multiple senza tenere premuto Ctrl.|A box next to each file: handy for multi-select without holding Ctrl.
+T|exp.menus||0|-|Mostra sempre la barra dei menu|Always show the menu bar
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced|AlwaysShowMenus|D|1|0,-
+H|exp.menus|Tiene visibile la barra dei menu classica nelle finestre che la usano.|Keeps the classic menu bar visible in windows that use it.
+T|exp.compact||0|-|Vista compatta|Compact view
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced|UseCompactMode|D|1|0,-
+H|exp.compact|Meno spazio tra le righe: più file visibili senza scorrere.|Less space between rows: more files in view without scrolling.
+T|exp.fullPath||0|1|Percorso completo nella barra del titolo|Full path in the title bar
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\CabinetState|FullPath|D|1|0,-
+H|exp.fullPath|Mostra dove ti trovi con il percorso intero, non solo il nome della cartella.|Shows where you are with the whole path, not just the folder name.
+T|exp.statusBar||1|1|Barra di stato|Status bar
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced|ShowStatusBar|D|1,-|0
+H|exp.statusBar|La riga in basso con il numero di elementi e la dimensione della selezione.|The bottom line with item count and selection size.
+T|exp.infoTip||1|1|Descrizione al passaggio del mouse|Pop-up description on hover
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced|ShowInfoTip|D|1,-|0
+H|exp.infoTip|Il riquadro con tipo, dimensione e data quando ti fermi su un file.|The box with type, size and date when you hover a file.
+T|exp.folderSize||1|1|Dimensione delle cartelle nella descrizione|Folder size in the pop-up
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced|FolderContentsInfoTip|D|1,-|0
+H|exp.folderSize|Nel riquadro al passaggio del mouse compare anche quanto pesa la cartella.|The hover box also tells you how big the folder is.
+T|exp.preview||1|-|Anteprime nel riquadro di anteprima|Previews in the preview pane
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced|ShowPreviewHandlers|D|1,-|0
+H|exp.preview|Mostra il contenuto di documenti e immagini nel riquadro laterale.|Shows document and image content in the side pane.
+T|exp.iconsOnly||0|0|Solo icone, niente miniature|Icons only, no thumbnails
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced|IconsOnly|D|1|0,-
+H|exp.iconsOnly|Cartelle piene di foto e video si aprono all'istante, senza generare anteprime.|Folders full of photos and videos open instantly, without building previews.
+T|exp.typeOverlay||1|1|Icona del programma sulle miniature|Program icon on thumbnails
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced|ShowTypeOverlay|D|1,-|0
+H|exp.typeOverlay|Un piccolo simbolo sulla miniatura dice con quale programma si apre il file.|A small badge on the thumbnail tells which program opens the file.
+T|exp.superHidden||0|0|File protetti del sistema operativo|Protected operating system files
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced|ShowSuperHidden|D|1|0,-
+H|exp.superHidden|Mostra i file che Windows protegge. Utile per diagnosi, da spegnere subito dopo.|Shows the files Windows protects. Useful for troubleshooting, turn it off afterwards.
+T|exp.emptyDrives||1|-|Nascondi le unità vuote|Hide empty drives
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced|HideDrivesWithNoMedia|D|1,-|0
+H|exp.emptyDrives|Lettori di schede e masterizzatori senza supporto non ingombrano Questo PC.|Card readers and drives with no media stay out of This PC.
+T|exp.driveLetters||1|1|Lettere delle unità|Drive letters
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced|ShowDriveLettersFirst|D|0,-|2
+H|exp.driveLetters|Mostra C:, D: e le altre lettere accanto al nome dei dischi.|Shows C:, D: and the other letters next to drive names.
+T|exp.ntfsColor||0|-|File compressi e crittografati a colori|Compressed and encrypted files in color
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced|ShowEncryptCompressedColor|D|1|0,-
+H|exp.ntfsColor|Colora in blu i file compressi e in verde quelli crittografati.|Colors compressed files blue and encrypted ones green.
+T|exp.mergeAsk||0|-|Chiedi prima di unire cartelle omonime|Ask before merging same-name folders
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced|HideMergeConflicts|D|0|1,-
+H|exp.mergeAsk|Quando copi una cartella su una con lo stesso nome, ti chiede conferma.|When you copy a folder over one with the same name, you get asked first.
+T|exp.sharingWiz||1|-|Condivisione guidata|Sharing wizard
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced|SharingWizardOn|D|1,-|0
+H|exp.sharingWiz|Spento, le autorizzazioni di condivisione si impostano con la scheda completa.|Off, sharing permissions are set with the full tab.
+T|exp.lnkExt|X|0|0|Estensione .lnk dei collegamenti|.lnk extension of shortcuts
+R|HKCR\lnkfile|NeverShowExt|S|-|""
+H|exp.lnkExt|Mostra .lnk in coda ai collegamenti quando le estensioni sono visibili.|Shows .lnk after shortcut names when extensions are visible.
+S|exp.iconCache|R|def|4096|Cache delle icone|Icon cache
+R|HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer|Max Cached Icons|S
+O|def|Predefinita|Default|-
+O|4096|Grande (4096 icone)|Large (4096 icons)|4096
+O|8192|Molto grande (8192 icone)|Very large (8192 icons)|8192
+H|exp.iconCache|Una cache più grande evita icone vuote o sbagliate su dischi pieni di programmi.|A bigger cache avoids blank or wrong icons on drives full of programs.
+T|exp.thumbClean||1|0|Pulizia automatica delle miniature|Automatic thumbnail cleanup
+R|HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\VolumeCaches\Thumbnail Cache|Autorun|D|1,-|0
+R|HKLM\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Explorer\VolumeCaches\Thumbnail Cache|Autorun|D|1,-|0
+H|exp.thumbClean|Spento, Windows non cancella le miniature e le cartelle di foto non le ricreano ogni volta.|Off, Windows keeps thumbnails so photo folders don't rebuild them every time.
+
+G|thispc|Cartelle in Questo PC|Folders in This PC
+T|exp.pcDesktop|X|0|-|Desktop|Desktop
+R|HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{B4BFCC3A-DB2C-424C-B029-7FE99A87C641}|HiddenByDefault|D|0|1,-
+H|exp.pcDesktop|Mostra la cartella Desktop in cima a Questo PC.|Shows the Desktop folder at the top of This PC.
+T|exp.pcDocs|X|0|-|Documenti|Documents
+R|HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{D3162B92-9365-467A-956B-92703ACA08AF}|HiddenByDefault|D|0|1,-
+H|exp.pcDocs|Mostra la cartella Documenti in cima a Questo PC.|Shows the Documents folder at the top of This PC.
+T|exp.pcDown|X|0|-|Download|Downloads
+R|HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{088E3905-0323-4B02-9826-5D99428E115F}|HiddenByDefault|D|0|1,-
+H|exp.pcDown|Mostra la cartella Download in cima a Questo PC.|Shows the Downloads folder at the top of This PC.
+T|exp.pcMusic|X|0|-|Musica|Music
+R|HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{3DFDF296-DBEC-4FB4-81D1-6A3438BCF4DE}|HiddenByDefault|D|0|1,-
+H|exp.pcMusic|Mostra la cartella Musica in cima a Questo PC.|Shows the Music folder at the top of This PC.
+T|exp.pcPics|X|0|-|Immagini|Pictures
+R|HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{24AD3AD4-A569-4530-98E1-AB02F9417AA8}|HiddenByDefault|D|0|1,-
+H|exp.pcPics|Mostra la cartella Immagini in cima a Questo PC.|Shows the Pictures folder at the top of This PC.
+T|exp.pcVideos|X|0|-|Video|Videos
+R|HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{F86FA3AB-70D2-4FC7-9C99-FCBF05467F3A}|HiddenByDefault|D|0|1,-
+H|exp.pcVideos|Mostra la cartella Video in cima a Questo PC.|Shows the Videos folder at the top of This PC.
+
+G|nav|Riquadro di spostamento|Navigation pane
+T|exp.navHome|X|1|-|Home|Home
+R|HKCU\Software\Classes\CLSID\{f874310e-b6b7-47dc-bc84-b9e6b38f5903}|System.IsPinnedToNameSpaceTree|D|1,-|0
+H|exp.navHome|La voce Home in cima al riquadro di sinistra.|The Home entry at the top of the left pane.
+T|exp.navGallery|X|1|-|Raccolta|Gallery
+R|HKCU\Software\Classes\CLSID\{e88865ea-0e1c-4e20-9aa6-edcd0212c87c}|System.IsPinnedToNameSpaceTree|D|1,-|0
+H|exp.navGallery|La Raccolta di foto nel riquadro di sinistra.|The photo Gallery in the left pane.
+T|exp.navLibs|X|0|-|Raccolte classiche|Libraries
+R|HKCU\Software\Classes\CLSID\{031E4825-7B94-4dc3-B131-E946B44C8DD5}|System.IsPinnedToNameSpaceTree|D|1|0,-
+H|exp.navLibs|Riporta le Raccolte di Windows 7 nel riquadro di sinistra.|Brings the Windows 7 Libraries back to the left pane.
+T|exp.navExpand||0|-|Espandi fino alla cartella aperta|Expand to open folder
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced|NavPaneExpandToCurrentFolder|D|1|0,-
+H|exp.navExpand|Il riquadro di sinistra si apre da solo fino alla cartella in cui sei.|The left pane unfolds by itself down to the folder you're in.
+T|exp.navAll||0|-|Mostra tutte le cartelle|Show all folders
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced|NavPaneShowAllFolders|D|1|0,-
+H|exp.navAll|Mostra nel riquadro anche Desktop, Pannello di controllo e Cestino.|Also shows Desktop, Control Panel and Recycle Bin in the pane.
+T|exp.navCloud||0|-|Stato di sincronizzazione sempre visibile|Sync status always visible
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced|NavPaneShowAllCloudStates|D|1|0,-
+H|exp.navCloud|Mostra sempre se i file di OneDrive sono sul PC o solo online.|Always shows whether OneDrive files are on the PC or online only.
+T|exp.navDupDrives|X|1|0|Unità rimovibili ripetute|Duplicate removable drives
+R|HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace\DelegateFolders\{F5FB2C77-0E2F-4A16-A381-3E560C68BC83}||Key|+|-
+R|HKLM\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace\DelegateFolders\{F5FB2C77-0E2F-4A16-A381-3E560C68BC83}||Key|+|-
+H|exp.navDupDrives|Le chiavette compaiono due volte nel riquadro: spento, restano solo sotto Questo PC.|USB sticks appear twice in the pane: off, they stay only under This PC.
+
+G|dev|Dispositivi|Devices
+T|exp.autoplay||1|0|Riproduzione automatica|AutoPlay
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers|DisableAutoplay|D|0,-|1
+H|exp.autoplay|Chiavette e dischi non avviano nulla da soli: meno sorprese e meno rischi.|USB sticks and discs start nothing by themselves: fewer surprises and risks.
+T|exp.lighting||1|0|Illuminazione dinamica|Dynamic Lighting
+R|HKCU\Software\Microsoft\Lighting|AmbientLightingEnabled|D|1,-|0
+H|exp.lighting|Windows gestisce i LED RGB di tastiere e mouse. Spento, li lascia al software del produttore.|Windows drives keyboard and mouse RGB LEDs. Off, the maker's software keeps control.
+T|exp.lightingApp||1|-|Le app in primo piano controllano i LED|Foreground apps control the LEDs
+R|HKCU\Software\Microsoft\Lighting|ControlledByForegroundApp|D|1,-|0
+H|exp.lightingApp|Un gioco compatibile può cambiare i colori dei LED mentre è aperto.|A compatible game can change LED colors while it's open.
+T|exp.printer||1|0|Windows sceglie la stampante predefinita|Windows picks the default printer
+R|HKCU\Software\Microsoft\Windows NT\CurrentVersion\Windows|LegacyDefaultPrinterMode|D|0,-|1
+H|exp.printer|Spento, la stampante predefinita resta quella che hai scelto tu.|Off, the default printer stays the one you chose.
+T|exp.pwdless||0|-|Accesso automatico in Account utente|Automatic sign-in in User Accounts
+R|HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\PasswordLess\Device|DevicePasswordLessBuildVersion|D|0|2,-
+H|exp.pwdless|Riattiva la casella per entrare in Windows senza password dalla finestra netplwiz.|Brings back the box to sign in without a password from the netplwiz window.
+
+# ==============================================================================
+P|task
+G|start|Menu Start|Start menu
+S|task.allApps||cat|-|Vista di Tutte le app|All apps view
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\Start|AllAppsViewMode|D
+O|cat|Per categoria|By category|0,-
+O|grid|Griglia|Grid|1
+O|list|Elenco|List|2
+H|task.allApps|Come si presenta l'elenco completo delle app nel nuovo menu Start.|How the full app list looks in the new Start menu.
+T|task.recentApps||1|0|App aggiunte di recente|Recently added apps
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\Start|ShowRecentList|D|1,-|0
+H|task.recentApps|Mostra in Start i programmi appena installati.|Shows freshly installed programs in Start.
+T|task.frequentApps||1|0|App più usate|Most used apps
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\Start|ShowFrequentList|D|1,-|0
+H|task.frequentApps|Mostra in Start le app che apri più spesso.|Shows the apps you open most in Start.
+T|task.recentDocs||1|0|File consigliati e aperti di recente|Recommended and recently opened files
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced|Start_TrackDocs|D|1,-|0
+H|task.recentDocs|Elenca in Start e nelle Jump List gli ultimi file aperti.|Lists your latest files in Start and in Jump Lists.
+T|task.startLock||1|-|Blocca nel menu account|Lock in the account menu
+R|HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FlyoutMenuSettings|ShowLockOption|D|1,-|0
+H|task.startLock|La voce Blocca nel menu che si apre dalla tua foto in Start.|The Lock entry in the menu under your picture in Start.
+
+G|bar|Barra delle applicazioni|Taskbar
+T|task.autoHide|X|0|-|Nascondi automaticamente la barra|Automatically hide the taskbar
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\StuckRects3|Settings|Byte:8|3|2
+H|task.autoHide|La barra sparisce e ricompare quando porti il mouse in basso: più spazio per le finestre.|The taskbar hides and comes back when you point at the bottom: more room for windows.
+T|task.badges||1|-|Contatori sulle icone|Badges on icons
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced|TaskbarBadges|D|1,-|0
+H|task.badges|I numerini sulle app, per esempio i messaggi non letti.|The small numbers on apps, such as unread messages.
+T|task.flashing||1|-|Icone lampeggianti|Flashing icons
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced|TaskbarFlashing|D|1,-|0
+H|task.flashing|Le app che chiedono attenzione fanno lampeggiare la loro icona.|Apps that want attention make their icon flash.
+T|task.allDisplays||1|-|Barra su tutti i monitor|Taskbar on all displays
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced|MMTaskbarEnabled|D|1,-|0
+H|task.allDisplays|Con più schermi, la barra compare su ognuno.|With several screens, the taskbar shows on each one.
+S|task.mmMode||all|-|Pulsanti sugli altri monitor|Buttons on other displays
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced|MMTaskbarMode|D
+O|all|Su tutte le barre|On all taskbars|0,-
+O|main|Barra principale e dove è aperta|Main taskbar and where open|1
+O|open|Solo dove è aperta|Only where open|2
+H|task.mmMode|Su quale barra compare il pulsante di una finestra quando hai più schermi.|Which taskbar shows a window's button when you have several screens.
+T|task.share||1|-|Condividi una finestra dalla barra|Share a window from the taskbar
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced|TaskbarSn|D|1,-|0
+H|task.share|Durante una chiamata Teams puoi condividere una finestra passando sulla sua icona.|During a Teams call you can share a window by hovering its icon.
+T|task.cornerDesk||1|-|Angolo per mostrare il desktop|Corner to show the desktop
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced|TaskbarSd|D|1,-|0
+H|task.cornerDesk|Un clic nell'angolo in basso a destra riduce tutte le finestre.|A click in the bottom-right corner minimizes every window.
+S|task.combine||always|-|Raggruppa i pulsanti|Combine buttons
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced|TaskbarGlomLevel|D
+O|always|Sempre, senza etichette|Always, hide labels|0,-
+O|full|Quando la barra è piena|When the taskbar is full|1
+O|never|Mai|Never|2
+H|task.combine|Mai raggruppare mostra ogni finestra con il suo titolo, come in Windows 7.|Never combining shows each window with its title, as in Windows 7.
+S|task.combineMm||always|-|Raggruppa sugli altri monitor|Combine on other displays
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced|MMTaskbarGlomLevel|D
+O|always|Sempre, senza etichette|Always, hide labels|0,-
+O|full|Quando la barra è piena|When the taskbar is full|1
+O|never|Mai|Never|2
+H|task.combineMm|Come sopra, per le barre degli schermi secondari.|As above, for the taskbars of secondary screens.
+S|task.small||full|-|Pulsanti piccoli|Small buttons
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced|IconSizePreference|D
+O|always|Sempre|Always|0
+O|full|Quando la barra è piena|When the taskbar is full|2,-
+O|never|Mai|Never|1
+H|task.small|Icone più piccole lasciano spazio a più app aperte.|Smaller icons leave room for more open apps.
+T|task.copilot||1|0|Pulsante Copilot|Copilot button
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced|TaskbarCompanion|D|1,-|0
+H|task.copilot|Il pulsante di Copilot accanto all'orologio.|The Copilot button next to the clock.
+T|task.bell||1|-|Icona delle notifiche|Notification bell
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced|ShowNotificationIcon|D|1,-|0
+H|task.bell|La campanella accanto all'orologio che segnala notifiche nuove.|The bell next to the clock that flags new notifications.
+S|task.hover||def|100|Ritardo delle anteprime|Preview delay
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced|ExtendedUIHoverTime|D
+O|1|Istantaneo|Instant|1
+O|100|Rapido (100 ms)|Fast (100 ms)|100
+O|200|Medio (200 ms)|Medium (200 ms)|200
+O|def|Predefinito (400 ms)|Default (400 ms)|400,-
+H|task.hover|Quanto aspettare, fermi su un'icona, prima che appaia l'anteprima della finestra.|How long to wait on an icon before the window preview appears.
+
+# ==============================================================================
+P|notif
+G|toast|Notifiche|Notifications
+T|notif.toast||1|-|Notifiche delle app|App notifications
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\PushNotifications|ToastEnabled|D|1,-|0
+H|notif.toast|L'interruttore generale dei fumetti di notifica. Spento, nessuna app ti interrompe.|The master switch for notification pop-ups. Off, no app interrupts you.
+T|notif.sound||1|-|Suono delle notifiche|Notification sound
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\Notifications\Settings|NOC_GLOBAL_SETTING_ALLOW_NOTIFICATION_SOUND|D|1,-|0
+H|notif.sound|Le notifiche arrivano in silenzio, senza il suono di avviso.|Notifications arrive silently, without the chime.
+T|notif.lock||1|0|Notifiche sulla schermata di blocco|Notifications on the lock screen
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\Notifications\Settings|NOC_GLOBAL_SETTING_ALLOW_TOASTS_ABOVE_LOCK|D|1,-|0
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\PushNotifications|LockScreenToastEnabled|D|1,-|0
+H|notif.lock|Spento, chi guarda il PC bloccato non legge le tue notifiche.|Off, whoever looks at the locked PC can't read your notifications.
+T|notif.lockVoip||1|-|Promemoria e chiamate sulla schermata di blocco|Reminders and calls on the lock screen
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\Notifications\Settings|NOC_GLOBAL_SETTING_ALLOW_CRITICAL_TOASTS_ABOVE_LOCK|D|1,-|0
+H|notif.lockVoip|Promemoria e chiamate in arrivo anche a PC bloccato.|Reminders and incoming calls even with the PC locked.
+G|tips|Suggerimenti di Windows|Windows suggestions
+T|notif.welcome||1|0|Presentazione dopo gli aggiornamenti|Welcome tour after updates
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager|SubscribedContent-310093Enabled|D|1,-|0
+H|notif.welcome|La schermata delle novità che compare dopo un aggiornamento importante.|The what's-new screen that appears after a major update.
+T|notif.scoobe||1|0|Inviti a completare la configurazione|Prompts to finish setting up
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\UserProfileEngagement|ScoobeSystemSettingEnabled|D|1,-|0
+H|notif.scoobe|La schermata a tutto schermo che propone OneDrive, Microsoft 365 e Game Pass.|The full-screen page pushing OneDrive, Microsoft 365 and Game Pass.
+T|notif.tipsUse||1|0|Consigli durante l'uso di Windows|Tips while using Windows
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager|SubscribedContent-338389Enabled|D|1,-|0
+H|notif.tipsUse|Fumetti con trucchi e suggerimenti mentre lavori.|Pop-ups with tricks and suggestions while you work.
+G|sys|Avvisi di sistema|System notices
+T|notif.capAccess||1|-|Avviso quando un'app usa microfono o posizione|Notice when an app uses mic or location
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\Notifications\Settings\Windows.SystemToast.CapabilityAccess|Enabled|D|1,-|0
+H|notif.capAccess|Una notifica ti dice quale app ha appena usato microfono, fotocamera o posizione.|A notification tells you which app just used the mic, camera or location.
+T|notif.startupApp||1|0|Avviso sulle nuove app all'avvio|Notice about new startup apps
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\Notifications\Settings\Windows.SystemToast.StartupApp|Enabled|D|1,-|0
+H|notif.startupApp|Windows ti avvisa quando un programma si aggiunge all'avvio automatico.|Windows tells you when a program adds itself to startup.
+T|notif.locPrompt||1|1|Avviso quando le app chiedono la posizione|Notice when apps request location
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\location|ShowGlobalPrompts|D|1,-|0
+H|notif.locPrompt|Ti chiede il permesso la prima volta che un'app vuole sapere dove sei.|Asks your permission the first time an app wants to know where you are.
+T|notif.dst||1|0|Avviso del cambio dell'ora|Clock change notice
+R|HKCU\Control Panel\Desktop|DstNotification|D|1,-|0
+H|notif.dst|La notifica che segnala il passaggio all'ora legale o solare.|The notification about daylight saving time changes.
+T|notif.secMaint||1|1|Sicurezza e manutenzione|Security and maintenance
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\Notifications\Settings\Windows.SystemToast.SecurityAndMaintenance|Enabled|D|1,-|0
+H|notif.secMaint|Avvisi su backup, antivirus e problemi del sistema.|Notices about backup, antivirus and system problems.
+T|notif.defender||1|1|Notifiche di Sicurezza di Windows|Windows Security notifications
+R|HKLM\SOFTWARE\Microsoft\Windows Defender Security Center\Notifications|DisableNotifications|D|0,-|1
+H|notif.defender|I riepiloghi e gli avvisi non critici di Sicurezza di Windows. Le minacce restano segnalate.|Non-critical Windows Security summaries and notices. Threats are still reported.
+G|sound|Suoni|Sounds
+T|notif.bootSound||1|-|Suono di avvio di Windows|Windows startup sound
+R|HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Authentication\LogonUI\BootAnimation|DisableStartupSound|D|0,-|1
+R|HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\EditionOverrides|UserSetting_DisableStartupSound|D|0,-|1
+H|notif.bootSound|Il suono che Windows riproduce all'accensione.|The sound Windows plays when it starts.
+S|notif.ducking||80|none|Durante le chiamate|During calls
+R|HKCU\Software\Microsoft\Multimedia\Audio|UserDuckingPreference|D
+O|mute|Silenzia gli altri suoni|Mute other sounds|0
+O|80|Abbassa gli altri suoni dell'80%|Lower other sounds by 80%|1,-
+O|50|Abbassa gli altri suoni del 50%|Lower other sounds by 50%|2
+O|none|Non fare nulla|Do nothing|3
+H|notif.ducking|Quanto Windows abbassa musica e giochi quando arriva una chiamata vocale.|How much Windows lowers music and games when a voice call comes in.
+T|notif.voiceAct||1|0|Attivazione vocale delle app|Voice activation for apps
+R|HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\SpeechOneCore\Settings|AgentActivationEnabled|D|1,-|0
+H|notif.voiceAct|Le app di assistenza restano in ascolto della parola chiave. Spento, il microfono è libero.|Assistant apps keep listening for their keyword. Off, the microphone is left alone.
+T|notif.accSounds||1|-|Suoni di attivazione dell'accessibilità|Accessibility activation sounds
+R|HKCU\Control Panel\Accessibility|Sound on Activation|D|1,-|0
+H|notif.accSounds|Il segnale acustico quando si attiva una funzione di accessibilità.|The beep when an accessibility feature turns on.
+T|notif.accWarn||1|-|Avvisi sonori dell'accessibilità|Accessibility warning sounds
+R|HKCU\Control Panel\Accessibility|Warning Sounds|D|1,-|0
+H|notif.accWarn|Il suono di avviso prima di attivare una scorciatoia di accessibilità.|The warning sound before an accessibility shortcut turns on.
+G|access|Scorciatoie di accessibilità|Accessibility shortcuts
+T|notif.filterKeys||1|0|Filtro tasti (Maiusc destro per 8 secondi)|Filter Keys (right Shift for 8 seconds)
+R|HKCU\Control Panel\Accessibility\Keyboard Response|Flags|S|126|122
+H|notif.filterKeys|Evita che tenere premuto Maiusc nei giochi apra la finestra del filtro tasti.|Stops a held Shift in games from opening the Filter Keys window.
+T|notif.toggleKeys||1|0|Segnali acustici (Bloc Num per 5 secondi)|Toggle Keys (Num Lock for 5 seconds)
+R|HKCU\Control Panel\Accessibility\ToggleKeys|Flags|S|62|58
+H|notif.toggleKeys|Evita che tenere premuto Bloc Num attivi i segnali acustici.|Stops a held Num Lock from turning on toggle sounds.
+T|notif.mouseKeys||1|0|Tasti del mouse (Alt+Maiusc+Bloc Num)|Mouse Keys (Alt+Shift+Num Lock)
+R|HKCU\Control Panel\Accessibility\MouseKeys|Flags|S|62|58
+H|notif.mouseKeys|Disattiva la scorciatoia che trasforma il tastierino in un mouse.|Turns off the shortcut that turns the keypad into a mouse.
+T|notif.contrast||1|0|Contrasto elevato (Alt+Maiusc+Stamp)|High contrast (Alt+Shift+Print Screen)
+R|HKCU\Control Panel\Accessibility\HighContrast|Flags|S|126|122
+H|notif.contrast|Disattiva la scorciatoia che passa al tema a contrasto elevato.|Turns off the shortcut that switches to the high-contrast theme.
+T|notif.narrator||1|0|Assistente vocale (Win+Ctrl+Invio)|Narrator (Win+Ctrl+Enter)
+R|HKCU\Software\Microsoft\Narrator\NoRoam|WinEnterLaunchEnabled|D|1,-|0
+H|notif.narrator|Evita di avviare per sbaglio l'Assistente vocale con la sua scorciatoia.|Avoids starting Narrator by mistake with its shortcut.
+S|notif.hoverTime||def|100|Tempo di attesa del puntatore|Mouse hover time
+R|HKCU\Control Panel\Mouse|MouseHoverTime|S
+O|10|Istantaneo (10 ms)|Instant (10 ms)|10
+O|100|Rapido (100 ms)|Fast (100 ms)|100
+O|200|Medio (200 ms)|Medium (200 ms)|200
+O|def|Predefinito (400 ms)|Default (400 ms)|400,-
+H|notif.hoverTime|Quanto fermarsi su un elemento prima che si apra la sua descrizione o il sottomenu.|How long to hover an item before its description or submenu opens.
+
+# ==============================================================================
+P|game
+G|gfx|Grafica e giochi|Graphics and games
+T|game.windowed||1|1|Ottimizzazioni per i giochi in finestra|Optimizations for windowed games
+R|HKCU\Software\Microsoft\DirectX\UserGpuPreferences|DirectXUserGlobalSettings|Kv:SwapEffectUpgradeEnable|1,-|0
+H|game.windowed|I giochi in finestra o senza bordi usano il modello di presentazione moderno: meno latenza.|Windowed and borderless games use the modern presentation model: lower latency.
+T|game.vrr||0|-|Frequenza variabile per i giochi non compatibili|Variable refresh rate for unsupported games
+R|HKCU\Software\Microsoft\DirectX\UserGpuPreferences|DirectXUserGlobalSettings|Kv:VRROptimizeEnable|1|0,-
+H|game.vrr|Estende G-Sync e FreeSync anche ai giochi DirectX 10 e 11 che non lo supportano.|Extends G-Sync and FreeSync to DirectX 10 and 11 games that lack it.
+T|game.autoHdr||0|0|HDR automatico|Auto HDR
+R|HKCU\Software\Microsoft\DirectX\UserGpuPreferences|DirectXUserGlobalSettings|Kv:AutoHDREnable|1|0,-
+H|game.autoHdr|Converte in HDR i giochi che non lo prevedono. Utile solo su monitor HDR.|Converts games without HDR to HDR. Only useful on HDR monitors.
+T|game.gbController||1|0|Game Bar dal tasto Xbox del controller|Game Bar from the controller's Xbox button
+R|HKCU\Software\Microsoft\GameBar|UseNexusForGameBarEnabled|D|1,-|0
+H|game.gbController|Spento, il tasto Xbox non apre la Game Bar sopra il gioco.|Off, the Xbox button doesn't open Game Bar over the game.
+T|game.gbTips||1|0|Suggerimenti all'avvio della Game Bar|Game Bar startup tips
+R|HKCU\Software\Microsoft\GameBar|ShowStartupPanel|D|1,-|0
+H|game.gbTips|Il pannello di benvenuto che compare quando la Game Bar parte.|The welcome panel that shows when Game Bar starts.
+T|game.jpegFull||0|1|Sfondo a qualità piena|Full-quality wallpaper
+R|HKCU\Control Panel\Desktop|JPEGImportQuality|D|100|-
+H|game.jpegFull|Windows non ricomprime più lo sfondo: niente artefatti sulle immagini ad alta risoluzione.|Windows stops recompressing the wallpaper: no artifacts on high-res images.
+T|game.startDelay||1|0|Ritardo delle app in avvio automatico|Delay for startup apps
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Serialize|StartupDelayInMSec|D|-|0
+H|game.startDelay|Spento, i programmi in avvio automatico partono subito dopo l'accesso.|Off, startup programs launch right after sign-in.
+S|game.altTab||open|open|Alt+Tab mostra|Alt+Tab shows
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced|MultiTaskingAltTabFilter|D
+O|open|Solo le finestre aperte|Open windows only|3,-
+O|five|Finestre e 5 schede recenti|Windows and 5 recent tabs|1
+O|three|Finestre e 3 schede recenti|Windows and 3 recent tabs|2
+O|all|Finestre e tutte le schede|Windows and all tabs|0
+H|game.altTab|Decide se Alt+Tab mescola le schede di Edge alle finestre dei programmi.|Decides whether Alt+Tab mixes Edge tabs with program windows.
+
+G|vfx|Effetti visivi|Visual effects
+T|game.fxControls|L|1|0|Animazioni dei controlli nelle finestre|Animate controls inside windows
+R|HKCU\Control Panel\Desktop|UserPreferencesMask|Bit:4:0x02|1|0
+H|game.fxControls|Transizioni di pulsanti e barre. Spente, l'interfaccia risponde più secca.|Button and bar transitions. Off, the interface feels snappier.
+T|game.fxMinMax|L|1|0|Animazione di riduzione e ingrandimento|Minimize and maximize animation
+R|HKCU\Control Panel\Desktop\WindowMetrics|MinAnimate|S|1,-|0
+H|game.fxMinMax|Le finestre compaiono e spariscono senza l'effetto di zoom.|Windows appear and disappear without the zoom effect.
+T|game.fxTaskbar|L|1|0|Animazioni della barra delle applicazioni|Taskbar animations
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced|TaskbarAnimations|D|1,-|0
+H|game.fxTaskbar|Le icone della barra non scorrono più quando apri e chiudi le app.|Taskbar icons stop sliding when you open and close apps.
+T|game.fxPeek|L|1|1|Anteprima del desktop (Peek)|Desktop preview (Peek)
+R|HKCU\Software\Microsoft\Windows\DWM|EnableAeroPeek|D|1,-|0
+H|game.fxPeek|Passando sull'angolo della barra vedi il desktop attraverso le finestre.|Hovering the taskbar corner shows the desktop through windows.
+T|game.fxMenuFade|L|1|0|Dissolvenza dei menu|Fade or slide menus
+R|HKCU\Control Panel\Desktop|UserPreferencesMask|Bit:0:0x02|1|0
+H|game.fxMenuFade|I menu si aprono di colpo invece che in dissolvenza.|Menus open at once instead of fading in.
+T|game.fxTipFade|L|1|0|Dissolvenza delle descrizioni|Fade or slide tooltips
+R|HKCU\Control Panel\Desktop|UserPreferencesMask|Bit:1:0x08|1|0
+H|game.fxTipFade|Le descrizioni a comparsa appaiono subito.|Tooltips appear straight away.
+T|game.fxItemFade|L|1|0|Dissolvenza delle voci dopo il clic|Fade out menu items after click
+R|HKCU\Control Panel\Desktop|UserPreferencesMask|Bit:1:0x04|1|0
+H|game.fxItemFade|La voce scelta sparisce subito, senza dissolversi.|The chosen item disappears at once instead of fading.
+T|game.fxCursorShadow|L|1|0|Ombra del puntatore|Mouse pointer shadow
+R|HKCU\Control Panel\Desktop|UserPreferencesMask|Bit:1:0x20|1|0
+H|game.fxCursorShadow|Il puntatore senza ombra è più nitido sugli sfondi chiari.|A pointer without shadow looks sharper on light backgrounds.
+T|game.fxWinShadow|L|1|1|Ombra sotto le finestre|Shadows under windows
+R|HKCU\Control Panel\Desktop|UserPreferencesMask|Bit:2:0x04|1|0
+H|game.fxWinShadow|L'ombra che stacca le finestre dallo sfondo. Leggera, aiuta a distinguerle.|The shadow that lifts windows off the background. Light, it helps tell them apart.
+T|game.fxCombo|L|1|0|Apertura scorrevole degli elenchi|Slide open combo boxes
+R|HKCU\Control Panel\Desktop|UserPreferencesMask|Bit:0:0x04|1|0
+H|game.fxCombo|Gli elenchi a discesa si aprono di colpo.|Drop-down lists open at once.
+T|game.fxSmoothList|L|1|0|Scorrimento morbido degli elenchi|Smooth-scroll list boxes
+R|HKCU\Control Panel\Desktop|UserPreferencesMask|Bit:0:0x08|1|0
+H|game.fxSmoothList|Gli elenchi scorrono a scatti precisi invece che con l'animazione.|Lists scroll in precise steps instead of animating.
+T|game.fxSelRect|L|1|1|Rettangolo di selezione trasparente|Translucent selection rectangle
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced|ListviewAlphaSelect|D|1,-|0
+H|game.fxSelRect|Il rettangolo azzurro semitrasparente quando selezioni col mouse.|The translucent blue rectangle when you drag-select.
+T|game.fxDrag|L|1|1|Contenuto delle finestre durante il trascinamento|Window contents while dragging
+R|HKCU\Control Panel\Desktop|DragFullWindows|S|1,-|0
+H|game.fxDrag|Spento, trascinando vedi solo il contorno: utile sui PC più lenti.|Off, dragging shows only an outline: useful on slower PCs.
+T|game.fxFonts|L|1|1|Caratteri smussati|Smooth screen fonts
+R|HKCU\Control Panel\Desktop|FontSmoothing|S|2,-|0
+H|game.fxFonts|Bordi dei caratteri levigati. Tienilo acceso: senza, il testo è seghettato.|Smoothed font edges. Keep it on: without it text looks jagged.
+T|game.fxIconShadow|L|1|0|Ombra sotto i nomi delle icone|Drop shadows for icon labels
+R|HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced|ListviewShadow|D|1,-|0
+H|game.fxIconShadow|Il testo sotto le icone del desktop senza ombra.|Desktop icon labels without shadow.
+T|game.fxThumbCache|L|0|0|Conserva le anteprime della barra|Save taskbar thumbnail previews
+R|HKCU\Software\Microsoft\Windows\DWM|AlwaysHibernateThumbnails|D|1|0,-
+H|game.fxThumbCache|Tiene in memoria le anteprime delle finestre ridotte a icona.|Keeps previews of minimized windows in memory.
+
+# ==============================================================================
+P|win
+G|sec|Sicurezza|Security
+S|win.uac|W|notify|-|Controllo dell'account utente|User Account Control
+R|HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System|ConsentPromptBehaviorAdmin|D
+R|HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System|PromptOnSecureDesktop|D
+O|always|Avvisa sempre|Always notify|2|1
+O|notify|Avvisa quando le app fanno modifiche|Notify when apps make changes|5|1
+O|nodim|Come sopra, senza oscurare lo schermo|As above, without dimming|5|0
+O|never|Non avvisare mai|Never notify|0|0
+H|win.uac|Quanto spesso Windows chiede conferma prima che un programma ottenga i permessi di amministratore.|How often Windows asks before a program gets administrator rights.
+S|win.psPolicy||restricted|remote|Esecuzione degli script PowerShell|PowerShell script execution
+R|HKLM\SOFTWARE\Microsoft\PowerShell\1\ShellIds\Microsoft.PowerShell|ExecutionPolicy|S
+O|restricted|Bloccati (predefinito)|Blocked (default)|Restricted,-
+O|remote|Locali sì, scaricati solo se firmati|Local yes, downloaded only if signed|RemoteSigned
+O|signed|Solo script firmati|Signed scripts only|AllSigned
+O|all|Tutti, con avviso|All, with warning|Unrestricted
+O|bypass|Tutti, senza avviso|All, no warning|Bypass
+H|win.psPolicy|Consente di lanciare i tuoi script .ps1 con un doppio clic o dal terminale.|Lets you run your own .ps1 scripts with a double-click or from the terminal.
+T|win.devMode||0|-|Modalità sviluppatore|Developer mode
+R|HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\AppModelUnlock|AllowDevelopmentWithoutDevLicense|D|1|0,-
+H|win.devMode|Installa app non firmate e usa strumenti di sviluppo. Tienila spenta se non ti serve.|Install unsigned apps and use developer tools. Keep it off if you don't need it.
+T|win.workplace||1|0|Richieste «Consenti all'organizzazione di gestire il dispositivo»|«Allow my organization to manage my device» prompts
+R|HKLM\SOFTWARE\Policies\Microsoft\Windows\WorkplaceJoin|BlockAADWorkplaceJoin|D|0,-|1
+H|win.workplace|Evita che accedendo a Office con un account di lavoro il PC finisca gestito dall'azienda.|Stops a work account sign-in to Office from enrolling the PC in company management.
+T|win.autoMaint||1|-|Manutenzione automatica|Automatic maintenance
+R|HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\Maintenance|MaintenanceDisabled|D|0,-|1
+H|win.autoMaint|Le pulizie e le ottimizzazioni notturne di Windows. Spenta, niente disco al lavoro mentre giochi.|Windows' nightly cleanups and optimizations. Off, no disk churn while you play.
+
+G|upd|Windows Update|Windows Update
+S|win.wuMode|W|auto|-|Modalità di Windows Update|Windows Update mode
+R|HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU|NoAutoUpdate|D
+R|HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU|AUOptions|D
+O|auto|Automatica (predefinita)|Automatic (default)|-|-
+O|notify|Avvisa prima di scaricare|Notify before download|0|2
+O|ask|Scarica e chiedi prima di installare|Download, ask before install|0|3
+O|off|Disattivata (sconsigliato)|Disabled (not recommended)|1|1
+H|win.wuMode|Scegli tu quando scaricare e installare gli aggiornamenti. Disattivarli lascia il PC senza patch di sicurezza.|You choose when to download and install updates. Disabling them leaves the PC without security patches.
+T|win.wuLatest||0|0|Novità appena disponibili|Latest features as soon as available
+R|HKLM\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings|IsContinuousInnovationOptedIn|D|1|0,-
+H|win.wuLatest|Ricevi in anticipo le funzioni nuove, a costo di qualche problema in più.|Get new features early, at the cost of a few more problems.
+T|win.wuOther||0|-|Aggiornamenti per altri prodotti Microsoft|Updates for other Microsoft products
+R|HKLM\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings|AllowMUUpdateService|D|1|0,-
+H|win.wuOther|Aggiorna anche Office e gli altri programmi Microsoft da Windows Update.|Also updates Office and other Microsoft programs from Windows Update.
+T|win.wuExpedite||0|0|Aggiornami il prima possibile|Get me up to date
+R|HKLM\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings|IsExpedited|D|1|0,-
+H|win.wuExpedite|Windows riavvia appena può per finire gli aggiornamenti, anche fuori orario.|Windows restarts as soon as it can to finish updates, even outside active hours.
+T|win.wuRestartNote||0|1|Avvisa quando serve un riavvio|Notify when a restart is needed
+R|HKLM\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings|RestartNotificationsAllowed2|D|1|0,-
+H|win.wuRestartNote|Una notifica ti avvisa prima del riavvio, così salvi il lavoro.|A notification warns you before the restart so you can save your work.
+T|win.wuMetered||0|0|Scarica anche su connessioni a consumo|Download over metered connections
+R|HKLM\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings|AllowAutoWindowsUpdateDownloadOverMeteredNetwork|D|1|0,-
+H|win.wuMetered|Spento, gli aggiornamenti non consumano i giga dell'hotspot del telefono.|Off, updates don't eat your phone hotspot data.
+T|win.coInstallers||1|0|App dei produttori installate con i driver|Maker apps installed with drivers
+R|HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Device Installer|DisableCoInstallers|D|0,-|1
+H|win.coInstallers|Collegando mouse o cuffie, Windows non installa da solo i programmi di contorno del produttore.|Plugging in a mouse or headset, Windows doesn't install the maker's companion software.
+
+G|svc|Servizi|Services
+V|win.svcSysMain||SysMain|A|-|SysMain (precaricamento app)|SysMain (app preloading)
+H|win.svcSysMain|Tiene in RAM le app che usi spesso. Utile sugli HDD, poco sugli SSD veloci.|Keeps your frequent apps in RAM. Useful on HDDs, less on fast SSDs.
+V|win.svcSearch||WSearch|AD|-|Ricerca di Windows (indicizzazione)|Windows Search (indexing)
+H|win.svcSearch|Indicizza i file per trovarli in un attimo. Fermo, la ricerca in Start rallenta.|Indexes files so you find them instantly. Stopped, Start search gets slower.
+V|win.svcSpooler||Spooler|A|-|Spooler di stampa|Print Spooler
+H|win.svcSpooler|Serve per stampare. Fermo, nessuna stampante funziona.|Needed to print. Stopped, no printer works.
+V|win.svcDiagTrack||DiagTrack|A|X|Esperienze utente connesse e telemetria|Connected User Experiences and Telemetry
+H|win.svcDiagTrack|Il servizio che invia a Microsoft i dati di diagnostica.|The service that sends diagnostic data to Microsoft.
+V|win.svcCdp||CDPSvc|AD|M|Piattaforma dispositivi connessi|Connected Devices Platform
+H|win.svcCdp|Collega il PC a telefono e altri dispositivi. Serve per Collegamento al telefono.|Links the PC to your phone and other devices. Needed for Phone Link.
+V|win.svcPca||PcaSvc|AD|M|Compatibilità programmi|Program Compatibility Assistant
+H|win.svcPca|Controlla i vecchi programmi e propone impostazioni di compatibilità.|Watches old programs and offers compatibility settings.
+V|win.svcWer||WerSvc|M|X|Segnalazione errori|Error Reporting
+H|win.svcWer|Invia a Microsoft i rapporti sui programmi che si bloccano.|Sends Microsoft reports about programs that crash.
+V|win.svcGeo||lfsvc|M|-|Geolocalizzazione|Geolocation
+H|win.svcGeo|Fornisce la posizione alle app. Fermo, meteo e mappe non sanno dove sei.|Provides location to apps. Stopped, weather and maps don't know where you are.
+V|win.svcRetail||RetailDemo|M|X|Modalità demo per negozi|Retail demo
+H|win.svcRetail|La modalità vetrina dei PC esposti nei negozi. A casa non serve.|The showroom mode of PCs on display in shops. Useless at home.
+V|win.svcInsider||wisvc|M|X|Programma Windows Insider|Windows Insider
+H|win.svcInsider|Serve solo per ricevere le versioni di prova di Windows.|Only needed to receive Windows preview builds.
+V|win.svcPhone||PhoneSvc|M|-|Telefonia|Phone Service
+H|win.svcPhone|Gestisce le chiamate dal PC. Serve se chiami dal computer.|Handles calls from the PC. Needed if you make calls from the computer.
+V|win.svcWallet||WalletService|M|X|Portafoglio|Wallet Service
+H|win.svcWallet|Servizio del portafoglio digitale di Windows, quasi mai usato.|Windows digital wallet service, almost never used.
+V|win.svcSmartCard||SCardSvr,ScDeviceEnum,SCPolicySvc|M|X|Smart card|Smart card
+H|win.svcSmartCard|Lettori di smart card: servono per CNS, CIE e firma digitale.|Smart card readers: needed for ID cards and digital signatures.
+V|win.svcMaps||MapsBroker|AD|X|Gestione mappe scaricate|Downloaded Maps Manager
+H|win.svcMaps|Aggiorna le mappe offline dell'app Mappe.|Updates the offline maps of the Maps app.
+V|win.svcFax||Fax|M|X|Fax|Fax
+H|win.svcFax|Invio e ricezione di fax dal PC.|Sending and receiving faxes from the PC.
+V|win.svcWmpShare||WMPNetworkSvc|M|X|Condivisione di Windows Media Player|Windows Media Player sharing
+H|win.svcWmpShare|Condivide la raccolta multimediale con TV e dispositivi della rete.|Shares your media library with TVs and devices on the network.
+V|win.svcMixed||MixedRealityOpenXRSvc|M|X|Realtà mista OpenXR|Mixed Reality OpenXR
+H|win.svcMixed|Serve solo con i visori di realtà mista.|Only needed with mixed reality headsets.
+V|win.svcHotspot||icssvc|M|-|Hotspot mobile|Mobile hotspot
+H|win.svcHotspot|Condivide la connessione del PC via Wi-Fi.|Shares the PC's connection over Wi-Fi.
+V|win.svcSms||SmsRouter|M|X|Router SMS|SMS router
+H|win.svcSms|Instrada gli SMS per le app di messaggistica.|Routes SMS for messaging apps.
+V|win.svcParental||WpcMonSvc|M|X|Controllo genitori|Parental controls
+H|win.svcParental|Applica i limiti di Microsoft Family. Serve solo sugli account dei bambini.|Enforces Microsoft Family limits. Only needed on children's accounts.
+V|win.svcNfc||SEMgrSvc|M|X|Pagamenti e NFC|Payments and NFC
+H|win.svcNfc|Pagamenti contactless dal PC tramite NFC.|Contactless payments from the PC through NFC.
+V|win.svcSpot||svsvc|M|-|Verifica spot|Spot Verifier
+H|win.svcSpot|Controlla i danni al file system segnalati dal disco.|Checks file system damage reported by the disk.
+V|win.svcRas||RasMan,RasAuto|M|-|Connessioni di accesso remoto|Remote access connections
+H|win.svcRas|Serve per le VPN integrate di Windows e le connessioni remote.|Needed for Windows' built-in VPNs and remote connections.
+V|win.svcRdp||TermService,SessionEnv,UmRdpService|M|-|Desktop remoto|Remote Desktop
+H|win.svcRdp|Consente di controllare questo PC da un altro con Desktop remoto.|Lets another PC control this one with Remote Desktop.
+V|win.svcXbox||XblAuthManager,XblGameSave,XboxNetApiSvc|M|-|Servizi Xbox Live|Xbox Live services
+H|win.svcXbox|Accesso, salvataggi in cloud e rete dei giochi Xbox e Game Pass.|Sign-in, cloud saves and networking for Xbox and Game Pass games.
+V|win.svcBio||WbioSrvc|M|-|Biometria|Biometrics
+H|win.svcBio|Serve per l'impronta digitale e il riconoscimento del volto di Windows Hello.|Needed for Windows Hello fingerprint and face sign-in.
+V|win.svcTouch||TabletInputService|M|-|Tastiera virtuale e penna|Touch keyboard and pen
+H|win.svcTouch|Tastiera su schermo, pannello emoji e penna. Serve sui portatili touch.|On-screen keyboard, emoji panel and pen. Needed on touch laptops.
+V|win.svcTapi||TapiSrv|M|-|Telefonia (TAPI)|Telephony (TAPI)
+H|win.svcTapi|Supporto telefonico per vecchi modem e centralini.|Telephony support for old modems and PBXs.
+V|win.svcSensors||SensrSvc,SensorDataService|M|-|Sensori|Sensors
+H|win.svcSensors|Rotazione dello schermo e luminosità automatica sui portatili e tablet.|Screen rotation and auto-brightness on laptops and tablets.
+
+G|tasks|Attività pianificate|Scheduled tasks
+J|win.tAppraiser||1|0|Valutazione compatibilità Microsoft|Microsoft Compatibility Appraiser
+Q|\Microsoft\Windows\Application Experience\Microsoft Compatibility Appraiser
+Q|\Microsoft\Windows\Application Experience\Microsoft Compatibility Appraiser Exp
+H|win.tAppraiser|Analizza i programmi installati e invia l'elenco a Microsoft. Pesante sul disco.|Scans installed programs and sends the list to Microsoft. Heavy on the disk.
+J|win.tPdu||1|0|Aggiornamento dati dei programmi|Program Data Updater
+Q|\Microsoft\Windows\Application Experience\ProgramDataUpdater
+H|win.tPdu|Raccoglie dati sull'uso dei programmi per il programma di miglioramento.|Collects program usage data for the improvement program.
+J|win.tStartupApp||1|-|Analisi delle app all'avvio|Startup app analysis
+Q|\Microsoft\Windows\Application Experience\StartupAppTask
+H|win.tStartupApp|Misura quanto rallentano l'avvio le app che partono con Windows.|Measures how much startup apps slow down sign-in.
+J|win.tCeip||1|0|Programma di miglioramento dell'esperienza|Customer Experience Improvement
+Q|\Microsoft\Windows\Customer Experience Improvement Program\Consolidator
+Q|\Microsoft\Windows\Customer Experience Improvement Program\UsbCeip
+H|win.tCeip|Raccoglie e invia statistiche d'uso a Microsoft.|Collects and sends usage statistics to Microsoft.
+J|win.tDiskDiag||1|0|Raccolta dati diagnostici del disco|Disk diagnostic data collector
+Q|\Microsoft\Windows\DiskDiagnostic\Microsoft-Windows-DiskDiagnosticDataCollector
+H|win.tDiskDiag|Invia a Microsoft i dati SMART dei dischi.|Sends Microsoft the disks' SMART data.
+J|win.tFeedback||1|0|Richieste di feedback|Feedback requests
+Q|\Microsoft\Windows\Feedback\Siuf\DmClient
+Q|\Microsoft\Windows\Feedback\Siuf\DmClientOnScenarioDownload
+H|win.tFeedback|Le attività che preparano i sondaggi di Windows.|The tasks that prepare Windows surveys.
+J|win.tWer||1|0|Coda della segnalazione errori|Error reporting queue
+Q|\Microsoft\Windows\Windows Error Reporting\QueueReporting
+H|win.tWer|Invia i rapporti di errore rimasti in coda.|Sends queued error reports.
+J|win.tMaps||1|0|Aggiornamento e avvisi delle mappe|Maps update and notices
+Q|\Microsoft\Windows\Maps\MapsUpdateTask
+Q|\Microsoft\Windows\Maps\MapsToastTask
+H|win.tMaps|Aggiorna le mappe offline e mostra le relative notifiche.|Updates offline maps and shows related notifications.
+J|win.tAutochk||1|0|Proxy di Autochk|Autochk proxy
+Q|\Microsoft\Windows\Autochk\Proxy
+H|win.tAutochk|Raccoglie dati del controllo disco per il programma di miglioramento.|Collects disk check data for the improvement program.
+J|win.tFamily||1|-|Monitoraggio Family Safety|Family Safety monitor
+Q|\Microsoft\Windows\Shell\FamilySafetyMonitor
+Q|\Microsoft\Windows\Shell\FamilySafetyRefreshTask
+H|win.tFamily|Controlla i limiti di Microsoft Family. Inutile senza account per bambini.|Checks Microsoft Family limits. Useless without child accounts.
+J|win.tPowerDiag||1|0|Diagnostica dell'efficienza energetica|Power efficiency diagnostics
+Q|\Microsoft\Windows\Power Efficiency Diagnostics\AnalyzeSystem
+H|win.tPowerDiag|Analizza periodicamente il consumo del sistema.|Periodically analyzes system power use.
+J|win.tSqm||1|0|Attività SQM|SQM tasks
+Q|\Microsoft\Windows\PI\Sqm-Tasks
+H|win.tSqm|Misurazioni della qualità del software inviate a Microsoft.|Software quality measurements sent to Microsoft.

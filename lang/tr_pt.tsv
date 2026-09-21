@@ -1,0 +1,610 @@
+L:lblSubtitle	Otimização e controle do Windows — PcFixPro Italia
+L:tabPerf	Desempenho
+L:tabPrivacy	Privacidade
+L:tabUi	Interface
+L:tabNet	Rede
+L:tabStorage	Armazenamento
+L:ttlLatency	LATÊNCIA E AGENDAMENTO
+L:chkMMCSS	MMCSS — resposta em jogos e áudio
+L:chkPriority	Agendamento da CPU — prioridade ao primeiro plano (0x26)
+L:chkKernelMem	Memória do kernel — sem paginação do executivo
+L:chkKernelDpc	Kernel e latência DPC
+L:chkTimer	Temporizador do sistema — precisão máxima
+L:chkPowerThrottling	Power Throttling — desativar
+L:chkUSBSuspend	Suspensão seletiva USB — desativar
+L:chkNtfsPerf	NTFS — sem data de último acesso, cache maior
+L:ttlRam	MEMÓRIA
+L:chkRamTweak	Limite de divisão do SvcHost (conforme a RAM)
+L:lblRamInstalled	RAM instalada:
+L:lblRamHint	Detectada automaticamente ao iniciar; pode ser alterada manualmente.
+L:ttlGraphics	GRÁFICOS E JOGOS
+L:chkGameMode	Modo de Jogo — ativar
+L:chkFSO	Otimizações de tela cheia (FSO) — desativar
+L:chkGameDVR	Game DVR e gravação do Xbox — desativar
+L:chkHAGS	Agendamento de GPU acelerado por hardware — ativar
+L:chkVisualFX	Efeitos visuais — ajustar para melhor desempenho
+L:chkApplyMPO	Aplicar a configuração Multiplane Overlay (MPO)
+L:mpoOn	Ativado (padrão do Windows)
+L:mpoOff	Desativado (corrige travadas e cintilação)
+L:mpoCompat	Ativado, compatível (2 planos)
+L:ttlRisky	AVANÇADO — REDUZEM A SEGURANÇA
+L:lblRiskyHint	Excluídos de «Selecionar tudo». Ative só se conhecer as consequências.
+L:chkVBS	VBS / Integridade da memória — desativar
+L:chkMitigations	Mitigações de exploits do sistema — desativar
+L:tabPower	Energia
+L:tabGpu	Placa de vídeo
+L:ttlPlans	PLANOS DE ENERGIA
+L:btnRefreshPlans	Atualizar
+L:btnRemoveTestPlans	Remover planos de teste
+L:ttlSleep	ECONOMIA E SUSPENSÃO
+L:lblSleepHint	Aplicados com o botão Aplicar.
+L:ttlPlanWarn	ANTES DE TESTAR
+L:lblPlanWarn	Os planos de «Para testar» vêm de terceiros. Teste um de cada vez e volte ao Equilibrado se o computador ficar instável.
+L:ttlGpuDetected	PLACA DETECTADA
+L:btnDetectGpu	Atualizar
+L:lblGpuHint	Aqui se enxuga o driver já instalado: telemetria, serviços extras e inicialização automática.
+L:ttlGpuCommon	CONFIGURAÇÕES COMUNS
+L:chkGpuTdr	TDR — tempo limite do driver em 10 s
+L:chkGpuMsi	Interrupções MSI para a placa de vídeo — ativar
+L:lblNvidiaHint	Ignorado se a placa não for NVIDIA.
+L:chkNvTelemetry	Telemetria da NVIDIA — desativar
+L:chkNvGfe	GeForce Experience em segundo plano — desativar
+L:chkNvPerfMode	Gerenciamento de energia da GPU — desempenho máximo
+L:chkNvUpdates	Verificação de atualizações da NVIDIA — desativar
+L:lblAmdHint	Ignorado se a placa não for AMD.
+L:chkAmdUx	Programa de experiência do usuário AMD — desativar
+L:chkAmdBloat	Serviços e inicialização automática AMD — desativar
+L:chkIntelBloat	Serviços extras do Intel Graphics — desativar
+L:lblUiScale	Escala da interface
+L:ttlShader	CACHE DE SHADERS
+L:lblShaderHint	Os shaders já compilados pelos jogos. Limpar libera espaço e corrige artefatos após trocar de driver. A primeira abertura de cada jogo será mais lenta, depois volta ao normal.
+L:btnShaderScan	Calcular espaço ocupado
+L:btnShaderClear	Limpar cache de shaders
+L:ttlStart	MENU INICIAR
+L:chkStartMorePins	Mais espaço para fixados, menos para recomendações
+L:chkStartHideRec	Seção «Recomendados» — ocultar
+L:chkStartNoWeb	Sites recomendados no Iniciar — remover
+L:chkStartNoAccount	Avisos da conta no Iniciar — remover
+L:ttlFeat	RECURSOS OCULTOS
+L:lblFeatHint	Ativa ou desativa um recurso do Windows pelo número, como o ViVeTool. Os números mudam a cada build: use uma fonte que corresponda à sua.
+L:featOn	Ativar
+L:featOff	Desativar
+L:featReset	Voltar ao padrão
+L:lblFeatId	Número do recurso
+L:btnFeatApply	Aplicar
+L:btnFeatList	Listar alterações ativas
+L:chkFastStartup	Inicialização rápida — desativar
+L:chkHibernation	Hibernação — desativar (libera espaço em C:)
+L:chkS0Sleep	Conexão de rede no modo de espera moderno — desativar
+L:chkS3Sleep	Suspensão clássica S3 — forçar
+L:ttlTelemetry	TELEMETRIA E RASTREAMENTO
+L:chkTelemetry	Telemetria e DiagTrack — desativar
+L:chkTelemetryTasks	Tarefas agendadas de telemetria — desativar
+L:chkActivityHistory	Histórico de atividades — desativar
+L:chkLocationTracking	Rastreamento de localização — desativar
+L:chkAdvertisingID	ID de publicidade — desativar
+L:chkTailoredExp	Experiências personalizadas — desativar
+L:chkFeedback	Pedidos de comentários — desativar
+L:chkErrorReporting	Relatório de erros do Windows — desativar
+L:chkInkingTyping	Personalização de escrita e digitação — desativar
+L:chkWiFiSense	Sensor de Wi-Fi — desativar
+L:ttlContent	SUGESTÕES E CONTEÚDO
+L:chkConsumerFeatures	Apps sugeridos e instalação automática — bloquear
+L:chkStoreSearch	Sugestões de pesquisa da Microsoft Store — desativar
+L:chkSuggestedContent	Conteúdo sugerido em Configurações — desativar
+L:chkLockScreenAds	Spotlight e anúncios na tela de bloqueio — desativar
+L:chkStartBing	Pesquisa do Bing no menu Iniciar — desativar
+L:chkStartRecs	Recomendações do menu Iniciar — desativar
+L:chkStartTracking	Apps mais usados e documentos recentes — não registrar
+L:chkFolderDiscovery	Detecção do tipo de pasta no Explorador — desativar
+L:ttlMsApps	APPS DA MICROSOFT
+L:chkWindowsAI	Copilot, Recall e IA do Windows — desativar
+L:chkEdgeDebloat	Microsoft Edge — enxugar
+L:chkOneDriveRemove	OneDrive — desativar sincronização
+L:chkOutlookNew	Mudança automática para o novo Outlook — bloquear
+L:ttlServices	SERVIÇOS E COMPONENTES
+L:chkServicesManual	Serviços não essenciais — em Manual
+L:chkDeliveryOpt	Otimização de Entrega — desativar
+L:chkBitLocker	Criptografia automática BitLocker — desativar
+L:chkWPBT	Tabela binária do fabricante (WPBT) — desativar
+L:chkBackgroundApps	Apps em segundo plano — desativar
+L:chkTeredo	Túnel Teredo — desativar
+L:chkRDPWarnings	Avisos de arquivos RDP não assinados — desativar
+L:chkRemoteAssistance	Assistência Remota — desativar
+L:chkCompanionApps	Apps complementares de dispositivos — bloquear
+L:chkDriverUpdates	Drivers pelo Windows Update — bloquear
+L:ttlSystemUi	SISTEMA E EXPLORADOR DE ARQUIVOS
+L:chkDarkTheme	Tema escuro do Windows — ativar
+L:chkFileExt	Mostrar extensões de arquivo
+L:chkHiddenFiles	Mostrar arquivos ocultos
+L:chkLongPaths	Caminhos longos acima de 260 caracteres — ativar
+L:chkClassicMenu	Menu de contexto clássico (Windows 11)
+L:chkExplorerThisPC	O Explorador abre em «Este Computador»
+L:chkRemove3D	Remover «Objetos 3D» de Este Computador
+L:chkRecycleConfirm	Pedir confirmação antes de excluir
+L:chkMenuDelay	Atraso dos menus — zero
+L:ttlTaskbar	BARRA DE TAREFAS E INICIAR
+L:chkTaskbarCenter	Ícones da barra de tarefas centralizados
+L:chkTaskbarSearch	Ícone de pesquisa — ocultar
+L:chkTaskbarTaskView	Ícone Visão de Tarefas — ocultar
+L:chkTaskbarWidgets	Widgets e notícias — ocultar
+L:chkTaskbarChat	Ícone Chat / Teams — ocultar
+L:chkTaskbarEndTask	«Finalizar tarefa» no menu da barra — ativar
+L:chkBatteryPct	Porcentagem da bateria na bandeja do sistema
+L:chkSettingsHome	Página inicial das Configurações — ocultar
+L:chkWindowSnapping	Ajustar janelas — ativar
+L:ttlInput	ENTRADA E ACESSIBILIDADE
+L:chkMouseAccel	Aceleração do mouse — desativar
+L:chkNumLock	Num Lock ao iniciar — ativar
+L:chkStickyKeys	Aviso de Teclas de Aderência — desativar
+L:chkScrollbars	Barras de rolagem sempre visíveis
+L:ttlLock	ENTRADA NO SISTEMA E DIAGNÓSTICO
+L:chkLockScreen	Tela de bloqueio — desativar
+L:chkLogonBlur	Desfoque na entrada — desativar
+L:chkBSODVerbose	Tela azul detalhada
+L:chkLogonVerbose	Mensagens detalhadas de entrada
+L:chkApplyNetwork	Aplicar as configurações de rede ao clicar em «Aplicar»
+L:lblNetHint	Sem esta caixa a aba Rede é só informativa e nada é alterado.
+L:btnFlushDns	Limpar cache DNS
+L:ttlTcpProfile	PERFIL TCP
+L:radTcpOptimal	Ideal (jogos)
+L:radTcpDefault	Padrão do Windows
+L:radTcpCurrent	Atual (não mexer)
+L:radTcpCustom	Personalizado
+L:lblAutoTuning	Ajuste automático da janela TCP:
+L:lblHeuristics	Heurística de escala:
+L:lblCongestion	Controle de congestionamento:
+L:lblTtl	Tempo de vida (TTL):
+L:lblEcn	Suporte a ECN:
+L:lblTimestamps	Carimbos de data TCP (RFC 1323):
+L:chkApplyDns	Mudar os servidores DNS nos adaptadores ativos
+L:dnsAuto	Automático pelo roteador (DHCP)
+L:ttlNetAdv	REDE AVANÇADA
+L:lblThrottling	Índice de limitação de rede:
+L:lblResponsiveness	Capacidade de resposta do sistema:
+L:lblNagle	Algoritmo de Nagle:
+L:lblHostPriority	Prioridade de resolução de nomes:
+L:lblPortAlloc	Alocação de portas dinâmicas:
+L:lblMaxConn	Máx. de conexões por servidor:
+L:chkNetPowerSave	Economia de energia do adaptador de rede — desativar
+L:chkDisableIPv6	IPv6 — desativar (só se o seu provedor não usar)
+L:ttlDrives	UNIDADES DETECTADAS
+L:lblDrivesHint	Discos instalados e espaço livre de cada volume.
+L:btnDetectStorage	Atualizar
+L:ttlProfile	PERFIL A APLICAR
+L:lblProfileHint	SSD: executa TRIM e nunca desfragmenta. HDD: mantém Prefetch e SysMain e inicia a otimização.
+L:radStorageHDD	Disco rígido mecânico
+L:chkStorageProfile	Perfil do disco
+L:ttlNow	AÇÕES IMEDIATAS
+L:lblNowHint	Executadas na hora, sem passar por «Aplicar».
+L:btnTrimNow	Executar TRIM agora
+L:btnOptimizeNow	Otimizar / desfragmentar C:
+L:btnEmptyRecycle	Esvaziar a Lixeira
+L:btnCleanUpdates	Excluir o cache do Windows Update
+L:ttlMaintenance	MANUTENÇÃO AO APLICAR
+L:chkDiskCleanup	Limpeza de disco e compactação do WinSxS (DISM)
+L:chkTempCleanup	Excluir arquivos temporários
+L:chkSmartChkdsk	CHKDSK inteligente (SSD ou HDD)
+L:ttlSpace	ESPAÇO E POLÍTICAS
+L:chkStorageSense	Sensor de Armazenamento — desativar
+L:chkReservedStorage	Armazenamento reservado do Windows (7 GB) — desativar
+L:lblSelected	Selecionados:
+L:chkRestorePoint	Ponto de restauração
+L:btnSelectAll	Selecionar tudo
+L:btnDeselectAll	Limpar seleção
+L:btnDetectActive	Detectar aplicados
+L:btnRun	Aplicar alterações
+L:btnUndo	Restaurar padrões
+L:tabAdv	Avançado
+L:ttlAdvIntro	ANTES DE COMEÇAR
+L:lblAdvIntro	Estas opções removem partes do Windows que a maioria dos computadores nunca usa. O ganho é real numa máquina dedicada a jogos ou trabalho, mas algumas coisas deixam de funcionar: leia cada item. Crie um ponto de restauração antes de aplicar e reinicie depois.
+L:ttlSvc	SERVIÇOS A PARAR
+L:lblSvcHint	Serviços ausentes são ignorados. Sempre podem ser reativados em services.msc.
+L:chkSvcSysMain	SysMain — pré-carregamento de apps na memória
+L:chkSvcDiag	Diagnóstico e rastreamento de eventos
+L:chkSvcErrors	Relatório de erros do Windows
+L:chkSvcPca	Assistente de Compatibilidade de Programas
+L:chkSvcDiscovery	Descoberta de dispositivos na rede (UPnP, SSDP)
+L:chkSvcSensors	Sensores e geolocalização
+L:chkSvcSmartCard	Cartões inteligentes
+L:chkSvcParental	Controle dos pais e programa Insider
+L:chkSvcHyperV	Serviços do Hyper-V (se não usa máquinas virtuais)
+L:chkSvcPrint	Spooler de impressão — arriscado: sem impressoras
+L:chkSvcSearch	Windows Search — arriscado: sem pesquisa no Iniciar
+L:chkSvcRemote	Área de Trabalho Remota e registro remoto — arriscado se você acessa de fora
+L:chkSvcBiometric	Biometria — arriscado: sem Windows Hello
+L:chkSvcTouch	Caneta e teclado virtual — arriscado em notebooks touch
+L:ttlTasks	TAREFAS AGENDADAS
+L:chkTaskExtra	Tarefas não essenciais da Microsoft
+L:chkTaskMaint	Manutenção automática noturna
+L:chkTaskDefrag	Otimização agendada de unidades — arriscado: em SSD também envia TRIM
+L:ttlMem	MEMÓRIA E PROCESSOS
+L:chkPrefetch	Valores de Prefetch e Superfetch no registro
+L:chkFth	Fault Tolerant Heap — sem correções automáticas
+L:chkAppCompat	Mecanismo de compatibilidade e inventário de programas
+L:chkSvcHostSplit	Menos processos svchost (agrupar serviços)
+L:chkMemCompression	Compressão de memória — arriscado com menos de 16 GB de RAM
+L:ttlWu	ATUALIZAÇÕES
+L:chkWuNoReboot	Sem reinícios automáticos enquanto você usa o computador
+L:chkWuDefer	Adiar as novas versões do Windows por um ano
+L:chkWuNoStore	Atualização automática dos apps da Store
+L:ttlBoot	INICIALIZAÇÃO DO SISTEMA
+L:btnBootReset	Restaurar
+L:lblBootHint	Alterações na configuração de inicialização. Restaurar volta aos valores do Windows.
+L:chkBootQuiet	Inicialização sem logotipo animado
+L:chkBootMenu	Menu de inicialização clássico (F8 disponível)
+L:chkBootTimeout	Sem espera no menu de inicialização
+L:chkBootDynTick	Tick dinâmico do kernel — arriscado: teste e meça
+L:chkBootTsc	Sincronização TSC aprimorada — arriscado: teste e meça
+L:ttlAppx	APPS PRÉ-INSTALADOS
+L:lblAppxHint	Podem ser reinstalados pela Store quando precisar.
+L:chkAppxBloat	Apps não essenciais (notícias, clima, mapas, Skype...)
+L:chkAppxXbox	Apps do Xbox e sobreposição de jogo
+L:chkAppxProvision	Não restaurá-los para novos usuários
+L:ttlSec	SEGURANÇA REDUZIDA
+L:lblSecHint	Todas arriscadas e nunca incluídas em «Selecionar tudo». Reduzem de verdade as defesas: use apenas numa máquina que não navega nem abre anexos.
+L:chkSecSmartScreen	SmartScreen — verificação de arquivos baixados
+L:chkSecSpectre	Mitigações de Spectre e Meltdown
+L:chkSecDefenderIdle	Defender: verificar só em repouso, CPU a 20%
+M:ready	Pronto.
+M:starting	Iniciando...
+M:done	Concluído
+M:nothing	Nada selecionado.
+M:activePlan	Plano ativo:
+M:detecting	Detectando...
+M:profileDetected	Perfil detectado:
+M:noDisks	Não foi possível detectar as unidades com Get-PhysicalDisk.
+M:free	livres de
+M:chooseProfile	Escolha SSD ou HDD antes de aplicar o perfil de armazenamento.
+M:finished	Operações concluídas. Reinicie o computador para aplicar todas as alterações.
+M:confirmRun	Aplicar as alterações selecionadas?
+M:confirmTitle	Confirmar
+M:emptyRecycleAsk	Esvaziar a Lixeira permanentemente? Não é possível desfazer.
+M:summary	Resumo
+M:planTop	RECOMENDADOS
+M:planWindows	PLANOS DO WINDOWS
+M:planTest	PARA TESTAR
+M:planTestHint	Planos de terceiros incluídos no programa. Um de cada vez.
+M:planApply	Ativar
+M:planActive	Ativo
+M:planRemoveAsk	Remover do sistema os planos de «Para testar»? O computador volta ao plano Equilibrado.
+M:gpuVendor	Fabricante:
+M:gpuNone	Nenhuma placa de vídeo detectada.
+M:shaderScanning	Calculando...
+M:shaderNone	Nenhum cache de shaders encontrado.
+M:shaderTotal	Total
+M:shaderAsk	Limpar o cache de shaders?\n\nA primeira abertura de cada jogo será mais lenta porque os shaders são recompilados. Nenhum dado de jogo é alterado.
+M:featNeedId	Digite o número do recurso antes de aplicar.
+M:featEmpty	Nenhum recurso alterado neste computador.
+M:featStateOn	ativado
+M:featStateOff	desativado
+M:bootResetAsk	Restaurar a configuração de inicialização padrão do Windows?
+M:bootResetDone	Configuração de inicialização restaurada.
+M:undoPrefix	Padrão:
+M:undoAsk	Restaurar os valores do Windows nos itens selecionados?
+M:advWarnTitle	Opções avançadas
+M:advWarn	Você selecionou itens da seção Avançado: eles removem partes do Windows e algo pode deixar de funcionar. Continuar?
+H:chkMMCSS	Dá prioridade a jogos e áudio quando o computador está sob carga. Menos travadas e áudio mais limpo.
+H:chkPriority	Reserva mais tempo do processador para a janela que você está usando. O programa em primeiro plano responde mais rápido.
+H:chkKernelMem	Mantém o núcleo do Windows na memória em vez de mandá-lo para o disco. Sistema mais ágil com bastante RAM.
+H:chkKernelDpc	Reduz atrasos no atendimento de placas e dispositivos. Ajuda contra microtravadas e estalos no áudio.
+H:chkTimer	Deixa os temporizadores do sistema mais precisos. Tempos de resposta mais regulares nos jogos.
+H:chkPowerThrottling	Impede que o Windows desacelere programas em segundo plano para economizar energia. Desempenho constante, consumo um pouco maior.
+H:chkUSBSuspend	Mantém as portas USB sempre ativas. Mouses, teclados e placas de som não se desconectam nem respondem com atraso.
+H:chkNtfsPerf	O disco para de anotar cada leitura de arquivo e usa mais memória para dados do sistema. Menos gravações e acessos mais rápidos.
+H:chkRamTweak	Agrupa os serviços do Windows de acordo com a RAM instalada. Menos processos abertos e memória mais bem usada.
+H:chkGameMode	Ativa o Modo de Jogo: o Windows segura atualizações e tarefas enquanto você joga.
+H:chkFSO	Roda os jogos em tela cheia no modo exclusivo. Pode reduzir o atraso de entrada em alguns títulos.
+H:chkGameDVR	Desliga a gravação em segundo plano do Xbox Game Bar. Libera recursos e ganha alguns quadros.
+H:chkHAGS	Deixa a placa de vídeo gerenciar a própria memória. Latência menor em placas recentes.
+H:chkVisualFX	Reduz animações e efeitos visuais do Windows. Interface mais ágil em PCs modestos.
+H:chkApplyMPO	Aplica a escolha do menu abaixo para as sobreposições multiplano. Desativá-las costuma corrigir cintilação e travadas com vários monitores.
+H:chkVBS	Desliga a segurança baseada em virtualização. Mais quadros nos jogos, mas menos proteção contra malware.
+H:chkMitigations	Remove algumas proteções contra exploits. Ganho de desempenho, mas o sistema fica mais exposto.
+H:chkTelemetry	Bloqueia o envio de dados de uso para a Microsoft. Mais privacidade e menos atividade em segundo plano.
+H:chkTelemetryTasks	Para as tarefas agendadas que coletam dados de uso. Menos trabalho escondido.
+H:chkActivityHistory	O Windows para de registrar o que você abre e quando. Mais privacidade.
+H:chkLocationTracking	Desliga a localização do dispositivo. Os apps não sabem mais onde você está.
+H:chkAdvertisingID	Remove o código que os apps usam para mostrar anúncios direcionados.
+H:chkTailoredExp	A Microsoft para de usar seus dados para dicas e anúncios personalizados.
+H:chkFeedback	Chega de janelas pedindo sua opinião sobre o Windows.
+H:chkErrorReporting	Os erros dos programas não são mais enviados à Microsoft. Menos atividade após um travamento.
+H:chkInkingTyping	O Windows para de aprender com o que você escreve e digita. Mais privacidade.
+H:chkWiFiSense	Impede o compartilhamento automático de redes Wi-Fi e a conexão a hotspots desconhecidos.
+H:chkConsumerFeatures	Impede que o Windows instale sozinho apps e jogos promocionais.
+H:chkStoreSearch	Remove sugestões da web e da Store das pesquisas. Resultados mais limpos e rápidos.
+H:chkSuggestedContent	Sem dicas nem promoções nas Configurações e no sistema.
+H:chkLockScreenAds	Remove imagens rotativas, dicas e anúncios da tela de bloqueio.
+H:chkStartBing	A pesquisa do menu Iniciar busca só no computador, não na internet. Mais rápida e mais privada.
+H:chkStartRecs	Remove sugestões de apps e arquivos do menu Iniciar.
+H:chkStartTracking	O Windows para de manter a lista de apps mais usados e documentos recentes.
+H:chkFolderDiscovery	O Explorador para de tentar adivinhar o tipo de cada pasta. Pastas grandes abrem mais rápido.
+H:chkWindowsAI	Desliga o Copilot, o Recall e os recursos de IA do Windows. Menos recursos usados e mais privacidade.
+H:chkEdgeDebloat	O Edge não fica mais aberto em segundo plano nem pré-carrega páginas. Menos memória ocupada.
+H:chkOneDriveRemove	Para a sincronização do OneDrive. Útil se você não usa a nuvem da Microsoft.
+H:chkOutlookNew	Impede a mudança automática para o novo Outlook. Você continua na versão que usa.
+H:chkServicesManual	Serviços pouco usados só iniciam quando necessários. Inicialização mais leve.
+H:chkDeliveryOpt	O PC para de compartilhar atualizações com outros computadores pela internet. Economiza banda.
+H:chkBitLocker	Evita a criptografia automática do disco. Disco um pouco mais rápido e nenhuma chave de recuperação para guardar.
+H:chkWPBT	Impede que o firmware do fabricante instale programas no Windows sem você saber.
+H:chkBackgroundApps	Os apps da Store param de trabalhar quando fechados. Menos bateria e memória consumidas.
+H:chkTeredo	Desliga um túnel de rede antigo e quase nunca usado. Pode melhorar a conexão em jogos online.
+H:chkRDPWarnings	Sem avisos repetidos ao abrir conexões conhecidas da Área de Trabalho Remota.
+H:chkRemoteAssistance	Impede que outras pessoas peçam o controle do seu PC. Mais segurança.
+H:chkCompanionApps	O Windows não baixa mais apps complementares ao conectar um dispositivo.
+H:chkDriverUpdates	O Windows Update não substitui mais os drivers que você mesmo instalou.
+H:chkDarkTheme	Coloca o Windows e os apps no tema escuro. Mais descanso para os olhos.
+H:chkFileExt	Mostra .exe, .pdf e as outras extensões. Você reconhece na hora arquivos suspeitos.
+H:chkHiddenFiles	Mostra arquivos e pastas ocultos no Explorador.
+H:chkLongPaths	Permite caminhos de arquivo muito longos. Evita erros com projetos e arquivos compactados profundos.
+H:chkClassicMenu	Traz de volta o menu completo do botão direito, sem passar por «Mostrar mais opções».
+H:chkExplorerThisPC	O Explorador abre em Este Computador, com discos e pastas à vista.
+H:chkRemove3D	Remove a pasta Objetos 3D, que quase ninguém usa.
+H:chkRecycleConfirm	Pede confirmação antes de mover um arquivo para a Lixeira. Menos exclusões por engano.
+H:chkMenuDelay	Os menus abrem na hora, sem a pequena espera padrão.
+H:chkStartMorePins	No menu Iniciar, mais espaço para os apps fixados e menos para dicas.
+H:chkStartHideRec	Oculta a seção Recomendados do menu Iniciar. Um Iniciar mais limpo.
+H:chkStartNoWeb	Remove os sites sugeridos do menu Iniciar.
+H:chkStartNoAccount	Sem avisos da conta Microsoft no menu Iniciar.
+H:chkTaskbarCenter	Mantém os ícones da barra de tarefas no centro, como no Windows 11.
+H:chkTaskbarSearch	Remove a caixa de pesquisa da barra. A pesquisa continua disponível pela tecla Windows.
+H:chkTaskbarTaskView	Remove o botão Visão de Tarefas da barra.
+H:chkTaskbarWidgets	Remove widgets e notícias da barra. Menos memória e menos distrações.
+H:chkTaskbarChat	Remove o ícone de Chat e Teams da barra.
+H:chkTaskbarEndTask	Adiciona «Finalizar tarefa» ao botão direito da barra. Feche um programa travado sem o Gerenciador de Tarefas.
+H:chkBatteryPct	Mostra a porcentagem de carga ao lado do ícone da bateria.
+H:chkSettingsHome	As Configurações abrem direto nas seções úteis, sem a página inicial promocional.
+H:chkWindowSnapping	Ativa o ajuste das janelas ao arrastá-las para as bordas da tela.
+H:chkMouseAccel	O ponteiro sempre percorre a mesma distância. Mira mais precisa e constante nos jogos.
+H:chkNumLock	O teclado numérico já fica ativo ao ligar o PC.
+H:chkStickyKeys	Sem a janela das Teclas de Aderência ao apertar Shift várias vezes, mesmo nos jogos.
+H:chkScrollbars	As barras de rolagem ficam sempre visíveis em vez de aparecer só ao passar o mouse.
+H:chkLockScreen	Pula a tela de bloqueio e vai direto para a entrada no sistema.
+H:chkLogonBlur	Remove o desfoque do fundo de entrada. Imagem mais nítida e entrada um pouco mais rápida.
+H:chkBSODVerbose	A tela azul mostra os detalhes do erro. Fica mais fácil entender a causa de um travamento.
+H:chkLogonVerbose	Ao ligar e desligar você vê o que o Windows está fazendo. Ajuda a descobrir o que o deixa lento.
+H:chkApplyNetwork	Aplica as configurações da página Rede. Sem esta caixa a página é só informativa.
+H:chkApplyDns	Usa os servidores DNS escolhidos no menu. Páginas abrem mais rápido e, com alguns serviços, há menos anúncios.
+H:chkNetPowerSave	A placa de rede não entra mais em economia de energia. Conexão mais estável e ping mais regular.
+H:chkDisableIPv6	Desliga o IPv6. Útil só se o seu provedor não o usa e você tem problemas de conexão.
+H:chkStorageProfile	Aplica as otimizações pensadas para o tipo de disco escolhido: SSD ou disco mecânico.
+H:chkDiskCleanup	Exclui arquivos de sistema desnecessários e versões antigas de atualizações. Recupera espaço, às vezes vários GB.
+H:chkTempCleanup	Esvazia as pastas de arquivos temporários. Mais espaço livre.
+H:chkSmartChkdsk	Verifica o disco no próximo reinício do jeito certo para SSD ou disco mecânico. Corrige erros do sistema de arquivos.
+H:chkStorageSense	O Windows para de apagar arquivos sozinho para abrir espaço. Você decide o que remover.
+H:chkReservedStorage	Libera o espaço que o Windows reserva para atualizações, cerca de 7 GB.
+H:chkFastStartup	Todo desligamento vira um desligamento completo. Resolve problemas de drivers e dual boot.
+H:chkHibernation	Desliga a hibernação e libera em C: um espaço próximo de boa parte da RAM.
+H:chkS0Sleep	Em suspensão o PC não fica conectado à internet. Consome menos e não acorda sozinho.
+H:chkS3Sleep	Usa a suspensão clássica no lugar da moderna. O notebook não esquenta na mochila.
+H:chkGpuTdr	Dá mais tempo à placa de vídeo antes que o Windows a reinicie. Menos telas pretas sob carga pesada.
+H:chkGpuMsi	Muda o modo como a placa de vídeo sinaliza o processador. Pode reduzir a latência.
+H:chkNvTelemetry	Para o envio de dados de uso para a NVIDIA. Menos processos em segundo plano.
+H:chkNvGfe	O GeForce Experience não inicia mais sozinho. Inicialização mais leve.
+H:chkNvPerfMode	Mantém a placa NVIDIA na frequência máxima. Desempenho constante, consumo maior.
+H:chkNvUpdates	O driver da NVIDIA para de procurar atualizações sozinho.
+H:chkAmdUx	Para o envio de dados de uso para a AMD.
+H:chkAmdBloat	Impede que os programas extras da AMD iniciem com o Windows. Inicialização mais leve.
+H:chkIntelBloat	Os serviços extras da placa Intel só iniciam quando necessários.
+H:chkSvcSysMain	O Windows para de pré-carregar na memória os apps que você usa com frequência. Útil em SSDs rápidos, onde não é necessário.
+H:chkSvcDiag	Para os serviços que analisam problemas e desempenho em segundo plano.
+H:chkSvcErrors	Para o serviço que coleta e envia relatórios de erro.
+H:chkSvcPca	Para o serviço que verifica a compatibilidade de programas antigos.
+H:chkSvcDiscovery	O PC para de procurar dispositivos na rede local. Menos tráfego, mas impressoras e TVs de rede podem não aparecer.
+H:chkSvcSensors	Para os serviços de sensores e localização. Útil em desktops, que não os têm.
+H:chkSvcSmartCard	Para os serviços de cartões inteligentes. Não são necessários se você não usa leitores de cartão.
+H:chkSvcParental	Para o controle dos pais e o programa Insider. Não são necessários num PC pessoal.
+H:chkSvcHyperV	Para os serviços de máquinas virtuais. Mantenha-os se usa Hyper-V, WSL ou o emulador Android.
+H:chkSvcPrint	Para o serviço de impressão. Só se você nunca imprime deste PC.
+H:chkSvcSearch	Para a indexação de arquivos. Menos trabalho do disco, mas a pesquisa fica lenta.
+H:chkSvcRemote	Para a Área de Trabalho Remota e o acesso remoto ao registro. Mais segurança se você nunca acessa de fora.
+H:chkSvcBiometric	Para a digital e o reconhecimento facial. Evite se entra com o Windows Hello.
+H:chkSvcTouch	Para a caneta e o teclado virtual. Evite em tablets e notebooks touch.
+H:chkTaskExtra	Desliga cerca de vinte tarefas automáticas da Microsoft que não são necessárias. Menos trabalho escondido.
+H:chkTaskMaint	O Windows não roda mais a manutenção automática de madrugada. O PC não acorda nem fica lento de surpresa.
+H:chkTaskDefrag	Para a otimização automática das unidades. Em SSD, ela deve ser feita à mão pela página Armazenamento.
+H:chkPrefetch	O Windows para de preparar com antecedência os arquivos dos programas. Menos gravações no SSD.
+H:chkFth	O Windows para de aplicar correções automáticas aos programas que travam. Comportamento mais previsível.
+H:chkAppCompat	Desliga as verificações de compatibilidade dos programas. Os programas abrem um pouco mais rápido.
+H:chkSvcHostSplit	Agrupa os serviços do Windows em menos processos. Menos memória usada e um Gerenciador de Tarefas mais legível.
+H:chkMemCompression	O Windows para de comprimir a memória. Menos trabalho do processador, mas é preciso bastante RAM.
+H:chkWuNoReboot	As atualizações não reiniciam mais o PC enquanto você o usa.
+H:chkWuDefer	As novas versões do Windows chegam um ano depois, já estáveis. As correções de segurança continuam chegando.
+H:chkWuNoStore	Os apps da Store param de se atualizar sozinhos em segundo plano.
+H:chkBootQuiet	Inicia sem o logotipo animado. Tela mais limpa e inicialização um pouco mais rápida.
+H:chkBootMenu	Traz de volta o menu de inicialização clássico, que permite entrar no modo de segurança com F8.
+H:chkBootTimeout	Se houver vários sistemas instalados, o PC inicia na hora sem esperar no menu de escolha.
+H:chkBootDynTick	O processador mantém um ritmo de sistema constante. Em alguns PCs reduz a latência, em outros não: teste.
+H:chkBootTsc	Deixa mais precisa a medição do tempo entre os núcleos do processador. Pode melhorar a fluidez: teste.
+H:chkAppxBloat	Remove apps pré-instalados como notícias, clima, mapas e Skype. Mais espaço e um Iniciar mais organizado.
+H:chkAppxXbox	Remove os apps do Xbox e a sobreposição de jogo. Evite se usa o Game Pass.
+H:chkAppxProvision	Os apps removidos não voltam quando um novo usuário é criado.
+H:chkSecSmartScreen	Desliga a verificação dos arquivos baixados. Sem avisos ao abri-los, mas sem proteção contra arquivos perigosos.
+H:chkSecSpectre	Remove as proteções contra algumas falhas dos processadores. Mais desempenho, sobretudo em CPUs antigas, mas menos segurança.
+H:chkSecDefenderIdle	O antivírus só verifica com o computador em repouso e sem pesar. A proteção em tempo real continua ativa.
+H:chkRestorePoint	Cria um ponto de restauração antes de aplicar. Se algo der errado, você volta atrás com a Restauração do Sistema.
+L:tabSched	Prioridade
+L:ttlPs	PRIORIDADE DO PROCESSADOR
+L:lblPsHint	Decide quanto tempo de processador os programas recebem e quanta vantagem tem a janela em primeiro plano. Vale na hora, sem reiniciar.
+L:lblPsCurrent	Valor atual
+L:lblPsPreset	Perfil
+L:psI02	0x02 · Padrão do Windows
+L:psI26	0x26 · Curto, variável, primeiro plano 3:1 (jogos)
+L:psI28	0x28 · Curto, fixo, sem vantagem
+L:psI2A	0x2A · Curto, fixo, primeiro plano 3:1
+L:psI24	0x24 · Curto, variável, sem vantagem
+L:psI16	0x16 · Longo, variável, primeiro plano 3:1
+L:psI18	0x18 · Longo, fixo (servidor)
+L:psICustom	Personalizado
+L:lblPsCustom	Valor hexadecimal
+L:btnPsDefault	Padrão
+L:btnPsApply	Aplicar
+L:btnMmReload	Reler
+L:lblMmHint	O serviço do Windows que dá prioridade a jogos, áudio e vídeo. As alterações valem após o próximo reinício.
+L:lblMmNet	Limitação de rede
+L:lblMmResp	CPU reservada ao sistema
+L:lblMmTask	Tarefa
+L:lblMmAffinity	Afinidade (hexadecimal, 0 = todos os núcleos)
+L:lblMmClock	Clock rate (unidades de 100 ns)
+L:lblMmGpu	Prioridade da GPU
+L:lblMmPrio	Prioridade
+L:lblMmSched	Categoria de agendamento
+L:lblMmSfio	Prioridade de E/S
+L:lblMmBgOnly	Só em segundo plano
+L:lblMmBgPrio	Prioridade em segundo plano
+L:lblMmLatency	Sensível à latência
+L:btnMmBackup	Salvar backup
+L:btnMmDefault	Padrões
+L:btnMmApply	Salvar
+L:chkAmdUlps	Desempenho máximo — ULPS desligado
+L:ttlShutdownMenu	MENU DE ENERGIA
+L:lblShutdownHint	Valem na hora, sem Aplicar. As configurações do plano de energia não são alteradas.
+L:chkMenuSleep	Suspender no menu de energia
+L:chkMenuHibernate	Hibernar no menu de energia
+M:dlgYes	Sim, continuar
+M:dlgNo	Cancelar
+M:selCount	Itens selecionados: {0}
+M:doneSummary	Pronto: {0} alterações aplicadas, {1} já estavam assim, {2} erros.
+M:doneReboot	Reinicie o PC para concluí-las.
+M:psInterval	Quantum
+M:psQuantum	Duração
+M:psBoost	Primeiro plano
+M:psShort	curto
+M:psLong	longo
+M:psVariable	variável
+M:psFixed	fixo
+M:psAuto	automático
+M:psInvalid	Valor inválido: use de 00 a 3F.
+M:mmNetOff	Desativada
+M:mmNetDefault	10 (padrão)
+M:mmDefaultWord	padrão
+M:mmBadClock	Clock rate inválido: use um número entre 1000 e 100000.
+M:mmBadAffinity	Afinidade inválida: use um valor hexadecimal, 0 para todos os núcleos.
+M:mmReboot	Valores do MMCSS salvos. Valem após o próximo reinício.
+M:mmDefaultsLoaded	Valores de fábrica carregados no painel: clique em Salvar para gravá-los.
+M:mmNoDefaults	O Windows não tem valores conhecidos para esta tarefa: só os gerais foram carregados.
+H:chkAmdUlps	Impede que a placa AMD desligue em repouso. Frequências prontas e sem microtravadas ao acordar, consumo um pouco maior.
+H:chkMenuSleep	Mostra ou oculta Suspender no menu de energia do Iniciar. A mudança vale na hora.
+H:chkMenuHibernate	Mostra ou oculta Hibernar no menu de energia do Iniciar. Se a hibernação estava desligada, é reativada.
+L:tabPriv2	Privacidade avançada
+L:tabExp	Explorador de Arquivos
+L:tabTask	Iniciar e barra
+L:tabNotif	Notificações e sons
+L:tabGame	Jogos e efeitos
+L:tabWin	Windows e serviços
+L:tabApps	Apps e software
+L:navGrpSystem	SISTEMA
+L:navGrpPrivacy	PRIVACIDADE
+L:navGrpCustom	PERSONALIZAR
+L:navGrpWindows	WINDOWS E APPS
+L:ttlNvProfile	NVIDIA: DESEMPENHO DO PERFIL
+L:lblNvProfileHint	Gravadas no perfil global do driver, como no Painel de Controle NVIDIA.
+L:chkNvP2	CUDA: sem estado P2 forçado
+L:chkNvDrsPower	Gerenciamento de energia: desempenho máximo
+L:chkNvLowLatency	Modo de baixa latência: Ultra
+L:chkNvThreaded	Otimização de threads ativada
+L:chkNvTexPerf	Filtragem de texturas: alto desempenho
+L:chkNvAniso	Otimização de amostras anisotrópicas
+L:chkNvShaderCache	Cache de shaders ilimitado
+L:chkNvNoFxaa	FXAA e Ansel desativados
+L:ttlNvReg	NVIDIA: REGISTRO DO DRIVER
+L:chkNvDisplayPower	Economia de energia da tela desativada
+L:chkNvHdcp	HDCP desativado
+L:chkNvPreempt	Preempção de computação desativada
+L:chkNvDynPstate	Frequências sempre no máximo (P0)
+L:chkNvLatency	Pacote de latência do driver
+L:chkAmdAntiLag	Anti-Lag ativado
+L:chkAmdShaderCache	Cache de shaders sempre ativo
+L:chkAmdTexPerf	Filtragem de texturas: desempenho
+L:chkAmdTess	Tesselação limitada pelo driver
+L:chkAmdFlipQueue	Fila de quadros em 1
+L:chkAmdNoFrtc	Limitador de quadros do driver desativado
+L:chkAmdStutter	Modo stutter desativado
+L:chkAmdAspm	Economia PCIe da placa desativada
+L:chkAmdPowerGating	Power gating desativado
+L:chkAmdDma	Cópias DMA e gravação em bloco
+L:chkAmdPreempt	Preempção de computação desativada
+L:ttlPowerAdv	PLANO ATIVO: CONFIGURAÇÕES AVANÇADAS
+L:lblPowerAdvHint	Valem na hora para o plano em uso, na tomada e na bateria. Trocar de plano volta aos valores dele.
+L:radAppsCatalog	Catálogo
+L:radAppsInstalled	Instalados
+L:lblAppSearchHint	Pesquisar...
+L:btnAppsUpgrade	Atualizar todos os apps
+L:btnAppsClear	Desmarcar
+L:btnAppsRefresh	Atualizar lista
+L:lblProfileQueued	Escolha um perfil: ele entra nas alterações a aplicar. Um segundo clique o remove.
+M:catCustom	Personalizado
+M:svcAuto	Automático
+M:svcAutoDelayed	Automático (atrasado)
+M:svcManual	Manual
+M:svcDisabled	Desativado
+M:recYes	Recomendada
+M:recLimited	Recomendada com limitações
+M:recNo	Não recomendada: remove um recurso útil
+M:aiTag	IA
+M:aiRelevant	Afeta os recursos de inteligência artificial
+M:catBulkTitle	Alterar várias configurações
+M:applyRecYes	Aplicar as recomendadas
+M:applyRecLimited	Recomendadas e com limitações
+M:applyRecAll	Aplicar todas
+M:undoAllFactory	Desfazer tudo (padrões de fábrica)
+M:makeRestorePoint	Criar um ponto de restauração
+M:askRecYes	Vou ativar todas as proteções recomendadas sem mexer nas outras. Continuo?
+M:askRecLimited	Vou ativar as recomendadas e as limitadas: alguns recursos podem parar. Continuo?
+M:askRecAll	Vou ativar tudo, até o não recomendado: câmera, microfone e outros recursos serão bloqueados. Continuo?
+M:askFactory	Vou deixar cada item da página como num Windows recém-instalado. Continuo?
+M:privLegend	Chave ligada = proteção ativa. Ponto verde recomendada, laranja com limitações, vermelho não recomendada. IA = afeta a inteligência artificial.
+M:scopeUser	Usuário atual
+M:scopeMachine	Máquina local
+M:scopeAll	Todas
+M:applyRecommended	Aplicar as recomendadas
+M:restoreWindows	Padrões do Windows
+M:askRecommended	Vou colocar os itens desta página nos valores recomendados. Os sem recomendação ficam como estão. Continuo?
+M:askWindowsDefaults	Vou voltar os itens desta página aos valores de um Windows recém-instalado. Continuo?
+M:restartExplorer	Reiniciar o Explorador
+M:catSearch	Pesquisar uma configuração...
+M:catLoading	Lendo o estado das configurações...
+M:restoreDone	Ponto de restauração criado.
+M:restoreFail	Ponto de restauração não criado: verifique se a Proteção do Sistema está ativa.
+M:diskSystem	Sistema
+M:diskHealthy	Disco saudável
+M:diskWarning	O disco relata problemas: faça um backup
+M:volFree	{0} livres de {1}
+M:profileSysSsd	O Windows está instalado em um {0} ({1}): recomendamos o perfil SSD / NVMe.
+M:profileSysHdd	O Windows está instalado em um disco mecânico ({0}): recomendamos o perfil HDD.
+M:profileSysUnknown	Não consigo saber em que disco está o Windows: escolha o perfil você.
+M:recommendedTag	(recomendado)
+M:lic_os	Código aberto
+M:lic_fw	Freeware
+M:lic_fr	Grátis + pago
+M:lic_ms	Microsoft
+M:lic_pd	Pago
+M:appInstalled	Instalado
+M:appsNone	Nenhum app corresponde aos filtros.
+M:appsInstalledTitle	Programas instalados ({0})
+M:appsUninstallSel	Desinstalar selecionados
+M:appsInstallSel	Instalar selecionados
+M:appsAllCategories	Todas as categorias
+M:appsAllLicenses	Todas as licenças
+M:appsWorking	{0}... (na fila: {1})
+M:appsDone	Operações concluídas. Os detalhes estão na janela do PowerShell.
+M:appsChecking	Verificando os apps instalados...
+M:appsInstalledCount	{0} pacotes reconhecidos pelo winget neste PC.
+M:appsAskUninstall	Vou desinstalar {0} programas. Alguns podem abrir a própria janela de desinstalação. Continuo?
+M:appsUninstalling	Desinstalando
+M:appsAskInstall	Vou instalar {0} apps com o winget, um por vez, sem janelas. Continuo?
+M:appsInstalling	Instalando
+M:appsAskUpgrade	Vou atualizar com o winget todos os apps com versão nova. Pode levar vários minutos. Continuo?
+M:appsUpgradeAll	Atualizando todos os apps
+M:appsNoWinget	O winget não está disponível: instale o «Instalador de Aplicativo» pela Microsoft Store.
+M:appCat_browser	Navegadores
+M:appCat_chat	Comunicação
+M:appCat_docs	Documentos e escritório
+M:appCat_media	Foto, áudio e vídeo
+M:appCat_games	Jogos
+M:appCat_tools	Utilitários
+M:appCat_system	Sistema e diagnóstico
+M:appCat_security	Segurança e privacidade
+M:appCat_net	Rede, nuvem e downloads
+M:appCat_dev	Desenvolvimento
+M:appCat_runtime	Componentes do sistema

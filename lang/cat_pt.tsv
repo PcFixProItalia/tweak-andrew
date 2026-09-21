@@ -1,0 +1,577 @@
+g.exp.desk	Ícones da área de trabalho
+exp.icoPc	Este Computador na área de trabalho
+exp.icoBin	Lixeira na área de trabalho
+exp.icoUser	Pasta do usuário na área de trabalho
+exp.icoCpl	Painel de Controle na área de trabalho
+exp.icoNet	Rede na área de trabalho
+exp.lnkSuffix	Nome dos novos atalhos
+exp.lnkSuffix#keep	Com «- Atalho»
+exp.lnkSuffix#drop	Sem sufixo
+exp.lnkArrow	Seta nos ícones de atalho
+exp.lnkArrow#show	Visível
+exp.lnkArrow#hide	Oculta
+g.exp.ctx	Menu de contexto
+exp.ctxTerminal	Abrir no Terminal
+exp.ctxOwner	Tomar posse
+exp.ctxSfc	Verificar arquivos do sistema (SFC)
+exp.ctxDism	Reparar imagem do Windows (DISM)
+exp.ctxExt	Mostrar ou ocultar extensões
+g.exp.gen	Geral
+exp.recent	Arquivos recentes no Início
+exp.frequent	Pastas frequentes no Início
+exp.office	Arquivos do Office.com no Início
+exp.syncAds	Avisos de serviços de nuvem no Explorador
+exp.sepProc	Pastas em processo separado
+exp.persist	Reabrir pastas ao entrar
+exp.checkSel	Caixas de seleção para itens
+exp.menus	Sempre mostrar a barra de menus
+exp.compact	Modo de exibição compacto
+exp.fullPath	Caminho completo na barra de título
+exp.statusBar	Barra de status
+exp.infoTip	Descrição ao passar o mouse
+exp.folderSize	Tamanho da pasta na descrição
+exp.preview	Visualizações no painel de visualização
+exp.iconsOnly	Só ícones, sem miniaturas
+exp.typeOverlay	Ícone do programa nas miniaturas
+exp.superHidden	Arquivos protegidos do sistema operacional
+exp.emptyDrives	Ocultar unidades vazias
+exp.driveLetters	Letras das unidades
+exp.ntfsColor	Arquivos compactados e criptografados em cores
+exp.mergeAsk	Perguntar antes de mesclar pastas com o mesmo nome
+exp.sharingWiz	Assistente de compartilhamento
+exp.lnkExt	Extensão .lnk dos atalhos
+exp.iconCache	Cache de ícones
+exp.iconCache#def	Padrão
+exp.iconCache#4096	Grande (4096 ícones)
+exp.iconCache#8192	Muito grande (8192 ícones)
+exp.thumbClean	Limpeza automática de miniaturas
+g.exp.thispc	Pastas em Este Computador
+exp.pcDesktop	Área de Trabalho
+exp.pcDocs	Documentos
+exp.pcDown	Downloads
+exp.pcMusic	Músicas
+exp.pcPics	Imagens
+exp.pcVideos	Vídeos
+g.exp.nav	Painel de navegação
+exp.navHome	Início
+exp.navGallery	Galeria
+exp.navLibs	Bibliotecas
+exp.navExpand	Expandir até a pasta aberta
+exp.navAll	Mostrar todas as pastas
+exp.navCloud	Status de sincronização sempre visível
+exp.navDupDrives	Unidades removíveis duplicadas
+g.exp.dev	Dispositivos
+exp.autoplay	Reprodução Automática
+exp.lighting	Iluminação dinâmica
+exp.lightingApp	Apps em primeiro plano controlam os LEDs
+exp.printer	O Windows escolhe a impressora padrão
+exp.pwdless	Entrada automática em Contas de Usuário
+g.task.start	Menu Iniciar
+task.allApps	Exibição de Todos os apps
+task.allApps#cat	Por categoria
+task.allApps#grid	Grade
+task.allApps#list	Lista
+task.recentApps	Apps adicionados recentemente
+task.frequentApps	Apps mais usados
+task.recentDocs	Arquivos recomendados e abertos recentemente
+task.startLock	Bloquear no menu da conta
+g.task.bar	Barra de tarefas
+task.autoHide	Ocultar automaticamente a barra de tarefas
+task.badges	Selos nos ícones
+task.flashing	Ícones piscando
+task.allDisplays	Barra em todos os monitores
+task.mmMode	Botões em outros monitores
+task.mmMode#all	Em todas as barras
+task.mmMode#main	Barra principal e onde está aberta
+task.mmMode#open	Só onde está aberta
+task.share	Compartilhar uma janela pela barra
+task.cornerDesk	Canto para mostrar a área de trabalho
+task.combine	Combinar botões
+task.combine#always	Sempre, ocultar rótulos
+task.combine#full	Quando a barra estiver cheia
+task.combine#never	Nunca
+task.combineMm	Combinar em outros monitores
+task.combineMm#always	Sempre, ocultar rótulos
+task.combineMm#full	Quando a barra estiver cheia
+task.combineMm#never	Nunca
+task.small	Botões pequenos
+task.small#always	Sempre
+task.small#full	Quando a barra estiver cheia
+task.small#never	Nunca
+task.copilot	Botão do Copilot
+task.bell	Sino de notificações
+task.hover	Atraso da visualização
+task.hover#1	Instantâneo
+task.hover#100	Rápido (100 ms)
+task.hover#200	Médio (200 ms)
+task.hover#def	Padrão (400 ms)
+g.notif.toast	Notificações
+notif.toast	Notificações dos apps
+notif.sound	Som das notificações
+notif.lock	Notificações na tela de bloqueio
+notif.lockVoip	Lembretes e chamadas na tela de bloqueio
+g.notif.tips	Sugestões do Windows
+notif.welcome	Apresentação após atualizações
+notif.scoobe	Convites para concluir a configuração
+notif.tipsUse	Dicas ao usar o Windows
+g.notif.sys	Avisos do sistema
+notif.capAccess	Aviso quando um app usa microfone ou localização
+notif.startupApp	Aviso sobre novos apps de inicialização
+notif.locPrompt	Aviso quando apps pedem a localização
+notif.dst	Aviso de mudança de horário
+notif.secMaint	Segurança e manutenção
+notif.defender	Notificações da Segurança do Windows
+g.notif.sound	Sons
+notif.bootSound	Som de inicialização do Windows
+notif.ducking	Durante chamadas
+notif.ducking#mute	Silenciar outros sons
+notif.ducking#80	Reduzir outros sons em 80%
+notif.ducking#50	Reduzir outros sons em 50%
+notif.ducking#none	Não fazer nada
+notif.voiceAct	Ativação por voz dos apps
+notif.accSounds	Sons de ativação da acessibilidade
+notif.accWarn	Sons de aviso da acessibilidade
+g.notif.access	Atalhos de acessibilidade
+notif.filterKeys	Teclas de Filtragem (Shift direito por 8 segundos)
+notif.toggleKeys	Teclas de Alternância (Num Lock por 5 segundos)
+notif.mouseKeys	Teclas do Mouse (Alt+Shift+Num Lock)
+notif.contrast	Alto contraste (Alt+Shift+Print Screen)
+notif.narrator	Narrador (Win+Ctrl+Enter)
+notif.hoverTime	Tempo de espera do ponteiro
+notif.hoverTime#10	Instantâneo (10 ms)
+notif.hoverTime#100	Rápido (100 ms)
+notif.hoverTime#200	Médio (200 ms)
+notif.hoverTime#def	Padrão (400 ms)
+g.game.gfx	Gráficos e jogos
+game.windowed	Otimizações para jogos em janela
+game.vrr	Taxa variável para jogos não compatíveis
+game.autoHdr	HDR automático
+game.gbController	Game Bar pelo botão Xbox do controle
+game.gbTips	Dicas ao abrir a Game Bar
+game.jpegFull	Papel de parede em qualidade total
+game.startDelay	Atraso dos apps de inicialização
+game.altTab	Alt+Tab mostra
+game.altTab#open	Só janelas abertas
+game.altTab#five	Janelas e 5 guias recentes
+game.altTab#three	Janelas e 3 guias recentes
+game.altTab#all	Janelas e todas as guias
+g.game.vfx	Efeitos visuais
+game.fxControls	Animar controles dentro das janelas
+game.fxMinMax	Animação ao minimizar e maximizar
+game.fxTaskbar	Animações da barra de tarefas
+game.fxPeek	Espiar a área de trabalho (Peek)
+game.fxMenuFade	Esmaecer ou deslizar menus
+game.fxTipFade	Esmaecer ou deslizar dicas de tela
+game.fxItemFade	Esmaecer itens de menu após o clique
+game.fxCursorShadow	Sombra do ponteiro
+game.fxWinShadow	Sombras sob as janelas
+game.fxCombo	Abrir caixas de combinação deslizando
+game.fxSmoothList	Rolagem suave em listas
+game.fxSelRect	Retângulo de seleção translúcido
+game.fxDrag	Conteúdo da janela ao arrastar
+game.fxFonts	Suavizar fontes da tela
+game.fxIconShadow	Sombras nos nomes dos ícones
+game.fxThumbCache	Salvar visualizações da barra
+g.win.sec	Segurança
+win.uac	Controle de Conta de Usuário
+win.uac#always	Sempre notificar
+win.uac#notify	Notificar quando apps fizerem alterações
+win.uac#nodim	Igual, sem escurecer a tela
+win.uac#never	Nunca notificar
+win.psPolicy	Execução de scripts do PowerShell
+win.psPolicy#restricted	Bloqueados (padrão)
+win.psPolicy#remote	Locais sim, baixados só assinados
+win.psPolicy#signed	Só scripts assinados
+win.psPolicy#all	Todos, com aviso
+win.psPolicy#bypass	Todos, sem aviso
+win.devMode	Modo de desenvolvedor
+win.workplace	Avisos «Permitir que minha organização gerencie o dispositivo»
+win.autoMaint	Manutenção automática
+g.win.upd	Windows Update
+win.wuMode	Modo do Windows Update
+win.wuMode#auto	Automático (padrão)
+win.wuMode#notify	Avisar antes de baixar
+win.wuMode#ask	Baixar e perguntar antes de instalar
+win.wuMode#off	Desativado (não recomendado)
+win.wuLatest	Novidades assim que disponíveis
+win.wuOther	Atualizações de outros produtos Microsoft
+win.wuExpedite	Deixar-me atualizado o quanto antes
+win.wuRestartNote	Avisar quando precisar reiniciar
+win.wuMetered	Baixar em conexões limitadas
+win.coInstallers	Apps do fabricante instalados com os drivers
+g.win.svc	Serviços
+win.svcSysMain	SysMain (pré-carregamento de apps)
+win.svcSearch	Windows Search (indexação)
+win.svcSpooler	Spooler de impressão
+win.svcDiagTrack	Experiências do usuário conectado e telemetria
+win.svcCdp	Plataforma de dispositivos conectados
+win.svcPca	Assistente de compatibilidade de programas
+win.svcWer	Relatório de erros
+win.svcGeo	Geolocalização
+win.svcRetail	Modo demonstração para lojas
+win.svcInsider	Windows Insider
+win.svcPhone	Serviço de telefone
+win.svcWallet	Serviço de carteira
+win.svcSmartCard	Cartão inteligente
+win.svcMaps	Gerenciador de mapas baixados
+win.svcFax	Fax
+win.svcWmpShare	Compartilhamento do Windows Media Player
+win.svcMixed	Realidade misturada OpenXR
+win.svcHotspot	Hotspot móvel
+win.svcSms	Roteador de SMS
+win.svcParental	Controle dos pais
+win.svcNfc	Pagamentos e NFC
+win.svcSpot	Verificador pontual
+win.svcRas	Conexões de acesso remoto
+win.svcRdp	Área de Trabalho Remota
+win.svcXbox	Serviços Xbox Live
+win.svcBio	Biometria
+win.svcTouch	Teclado virtual e caneta
+win.svcTapi	Telefonia (TAPI)
+win.svcSensors	Sensores
+g.win.tasks	Tarefas agendadas
+win.tAppraiser	Avaliador de compatibilidade da Microsoft
+win.tPdu	Atualizador de dados de programas
+win.tStartupApp	Análise dos apps de inicialização
+win.tCeip	Programa de aperfeiçoamento da experiência
+win.tDiskDiag	Coletor de diagnóstico de disco
+win.tFeedback	Pedidos de comentários
+win.tWer	Fila de relatórios de erros
+win.tMaps	Atualização e avisos de mapas
+win.tAutochk	Proxy do Autochk
+win.tFamily	Monitor do Family Safety
+win.tPowerDiag	Diagnóstico de eficiência energética
+win.tSqm	Tarefas SQM
+g.priv.uPriv	Privacidade
+pv.adId	Desativar e redefinir a ID de anúncio
+pv.typing	Não enviar dados de digitação
+pv.timeline	Sem sugestões na linha do tempo
+pv.startSugg	Sem sugestões no Iniciar
+pv.tips	Sem dicas e truques durante o uso
+pv.settingsSugg	Sem conteúdo sugerido em Configurações
+pv.finishSetup	Sem convites para concluir a configuração
+pv.welcome	Sem apresentação após atualizações
+pv.silentApps	Sem apps instalados silenciosamente
+pv.appLaunch	Não rastrear a abertura de apps
+pv.accountNotif	Sem avisos de conta em Configurações
+pv.langList	Não compartilhar a lista de idiomas com sites
+pv.textPred	Sem sugestões de texto no teclado virtual
+pv.appNotif	Desativar as notificações dos apps
+pv.storeUrls	O SmartScreen não verifica o conteúdo web dos apps
+g.priv.uClip	Histórico de atividades e área de transferência
+pv.clipHist	Não manter o histórico da área de transferência
+pv.clipCloud	Não sincronizar a área de transferência na nuvem
+g.priv.uApps	Privacidade dos apps
+pv.uAccount	Bloquear acesso às informações da conta
+pv.uDiag	Bloquear acesso ao diagnóstico de outros apps
+pv.uMotion	Bloquear acesso aos dados de movimento
+pv.uDevices	Bloquear comunicação com dispositivos não emparelhados
+pv.uGaze	Bloquear acesso ao rastreamento ocular
+pv.uContacts	Bloquear acesso aos contatos
+pv.uCalendar	Bloquear acesso ao calendário
+pv.uCallHist	Bloquear acesso ao histórico de chamadas
+pv.uCalls	Bloquear chamadas pelos apps
+pv.uEmail	Bloquear acesso ao email
+pv.uTasks	Bloquear acesso às tarefas
+pv.uMessages	Bloquear acesso às mensagens
+pv.uRadios	Bloquear o controle dos rádios
+pv.uNotifications	Bloquear acesso às notificações
+pv.uLocation	Bloquear acesso à localização
+pv.uCamera	Bloquear acesso à câmera
+pv.uMic	Bloquear acesso ao microfone
+pv.uDocs	Bloquear acesso aos documentos
+pv.uPics	Bloquear acesso às imagens
+pv.uVideos	Bloquear acesso aos vídeos
+pv.uFiles	Bloquear acesso a todo o sistema de arquivos
+pv.uBackground	Impedir apps de rodar em segundo plano
+g.priv.uSync	Sincronização das configurações
+pv.syncPwd	Não sincronizar senhas
+pv.syncTheme	Não sincronizar tema e papel de parede
+pv.syncLang	Não sincronizar idiomas
+pv.syncAccess	Não sincronizar a acessibilidade
+pv.syncOther	Não sincronizar outras configurações do Windows
+g.priv.uSpeech	Fala e entrada
+pv.speech	Desativar o reconhecimento de fala online
+pv.inking	Não coletar escrita à mão e contatos
+pv.voiceAct	Os apps não escutam a palavra de ativação
+g.priv.uAi	IA do Windows
+pv.uCopilot	Desativar o Copilot
+pv.uRecall	Desativar o Recall
+pv.uClickToDo	Desativar o Click to Do
+pv.copilotAvail	Ocultar o Copilot no shell
+pv.bingChat	Desativar o chat integrado do Bing
+pv.insights	Desativar análises de digitação
+pv.nudges	Sem convites para experimentar o Copilot
+pv.copilotBtn	Ocultar o botão do Copilot
+pv.copilotMic	O Copilot não pode usar o microfone
+pv.wordCopilot	Desativar o Copilot no Word
+pv.excelCopilot	Desativar o Copilot no Excel
+pv.officeCloud	Limitar os serviços online do Office
+g.priv.uBehav	Comportamento do usuário
+pv.tailored	Sem experiências personalizadas com dados de diagnóstico
+pv.feedback	O Windows não pede comentários
+pv.thirdParty	Sem sugestões de terceiros
+pv.spotSettings	Sem Spotlight em Configurações
+pv.spotAll	Desativar todos os recursos Spotlight
+pv.wmp	O Windows Media Player não rastreia o uso
+g.priv.uExp	Explorador de Arquivos
+pv.syncAds	Sem anúncios no Explorador
+pv.officeFiles	Sem arquivos do Office.com no Início
+pv.recentFiles	Não mostrar arquivos recentes
+pv.frequent	Não mostrar pastas frequentes
+pv.recentDocs	Não rastrear documentos abertos
+g.priv.uLock	Tela de bloqueio
+pv.lockFacts	Sem curiosidades e dicas na tela de bloqueio
+pv.lockSpot	Sem imagens Spotlight na tela de bloqueio
+pv.lockToast	Sem notificações na tela de bloqueio
+g.priv.uSearch	Pesquisa
+pv.searchHist	Não manter o histórico de pesquisa
+pv.searchHigh	Sem destaques da pesquisa
+pv.searchBing	Sem resultados web do Bing no Iniciar
+pv.searchMsa	Não pesquisar no conteúdo da conta Microsoft
+pv.searchAad	Não pesquisar no conteúdo da conta corporativa
+g.priv.uBar	Barra de tarefas
+pv.meetNow	Ocultar Reunir Agora
+pv.chatBtn	Ocultar o Chat do Teams
+g.priv.uMisc	Diversos
+pv.resume	Não retomar no PC as atividades do celular
+g.priv.mSec	Segurança
+pv.pwdReveal	Ocultar o botão de revelar senha
+pv.stepsRec	Desativar o Gravador de Passos
+pv.inventory	Desativar o inventário de programas
+pv.appTelemetry	Desativar a telemetria de aplicativos
+pv.lockCam	Desativar a câmera na tela de bloqueio
+pv.kms	Sem validação online da ativação KMS
+pv.drm	Sem acesso à Internet para o DRM do Windows Media
+pv.remoteAssist	Desativar a Assistência Remota
+g.priv.mPriv	Privacidade
+pv.telemetry	Reduzir a telemetria ao mínimo
+pv.deviceName	Não enviar o nome do PC com a telemetria
+pv.feedbackNotif	Sem pedidos de comentários
+pv.diagLogs	Limitar a coleta de logs de diagnóstico
+pv.dumps	Limitar o envio de despejos de memória
+pv.oneSettings	Não baixar configurações de telemetria
+pv.diagViewer	Desativar o visualizador de dados de diagnóstico
+pv.mAdId	Desativar a ID de anúncio para todos
+pv.ceip	Sair do Programa de Aperfeiçoamento da Experiência
+pv.handErr	Não enviar erros de reconhecimento de escrita
+pv.handShare	Não compartilhar dados da caneta
+pv.inputPers	Desativar a personalização da entrada
+pv.onlineTips	Sem dicas online em Configurações
+pv.helpFb	Sem avaliações da Ajuda
+pv.wer	Desativar o relatório de erros
+pv.cloudContent	Sem conteúdo otimizado pela nuvem
+pv.softLanding	Sem dicas do Windows
+pv.consumer	Sem apps de consumidor instalados automaticamente
+pv.consumerAcct	Sem conteúdo ligado à conta pessoal
+g.priv.mClip	Histórico de atividades e área de transferência
+pv.actFeed	Desativar o histórico de atividades
+pv.mClip	Desativar o histórico da área de transferência para todos
+pv.crossClip	Sem área de transferência entre dispositivos
+g.priv.mApps	Privacidade dos apps
+pv.mAccount	Negar aos apps as informações da conta
+pv.mDiag	Negar aos apps o diagnóstico de outros apps
+pv.mMotion	Negar aos apps os dados de movimento
+pv.mTrusted	Negar aos apps os dispositivos confiáveis
+pv.mSync	Negar aos apps os dispositivos não emparelhados
+pv.mGaze	Negar aos apps o rastreamento ocular
+pv.mSpatial	Negar aos apps a percepção espacial em segundo plano
+pv.mVoice	Negar aos apps a ativação por voz
+pv.mContacts	Negar aos apps os contatos
+pv.mCalendar	Negar aos apps o calendário
+pv.mCallHist	Negar aos apps o histórico de chamadas
+pv.mPhone	Negar aos apps as chamadas
+pv.mEmail	Negar aos apps o email
+pv.mTasks	Negar aos apps as tarefas
+pv.mMessages	Negar aos apps as mensagens
+pv.mRadios	Negar aos apps o controle dos rádios
+pv.mNotif	Negar aos apps as notificações
+pv.mLocation	Negar aos apps a localização
+pv.mBackground	Negar aos apps o segundo plano
+pv.mCamera	Negar aos apps a câmera
+pv.mMic	Negar aos apps o microfone
+g.priv.mEdge	Microsoft Edge
+pv.eDnt	Pedir aos sites para não rastrear você
+pv.ePayment	Os sites não verificam formas de pagamento salvas
+pv.ePersonal	Sem personalização de anúncios e notícias
+pv.eFeedback	Ocultar comentários do usuário
+pv.eLocalProv	Sem sugestões de provedores locais
+pv.eShopping	Desativar o assistente de compras
+pv.eBar	Desativar a barra do Edge
+pv.eNavErr	Não resolver erros de navegação online
+pv.ePreload	Não pré-carregar páginas
+pv.eDiag	Sem dados de diagnóstico do Edge
+pv.eRewards	Ocultar o Microsoft Rewards
+pv.eRecomm	Sem recomendações e avisos promocionais
+pv.eIeRedirect	Não abrir no Edge os sites do Internet Explorer
+pv.eCcFill	Não salvar cartões de crédito
+pv.eAddrFill	Não preencher endereços automaticamente
+pv.eSearchSugg	Sem sugestões de pesquisa
+pv.eBoost	Desativar o aumento de inicialização
+pv.eBackground	Fechar o Edge por completo ao sair
+pv.eSiteSafety	Sem informações de sites dos serviços Microsoft
+pv.eSpell	Verificação ortográfica só local
+pv.eNewTab	Nova guia sem notícias
+pv.ePwd	Não salvar senhas
+pv.eSmartScreen	Desativar o SmartScreen no Edge
+pv.eTypo	Desativar o verificador de erros de digitação
+g.priv.mEdgeAi	Microsoft Edge e IA
+pv.eSidebar	Desativar a barra lateral e o Copilot
+pv.ePageCtx	O Copilot não pode ler as páginas abertas
+pv.eCompose	Sem escrita assistida por IA
+pv.eHistAi	Sem pesquisa com IA no histórico
+pv.eShareHist	Não compartilhar o histórico com o Copilot
+pv.eThemes	Sem temas gerados por IA
+pv.eM365	Ocultar o ícone do Copilot para Microsoft 365
+pv.eBuiltinAi	Sem APIs de IA integradas para sites
+g.priv.mSearch	Cortana e pesquisa
+pv.cortana	Desativar a Cortana
+pv.cloudSearch	Sem pesquisa na nuvem
+pv.webSearch	Sem pesquisa web pelo Iniciar
+pv.searchLoc	A pesquisa não usa a localização
+pv.mHighlights	Sem destaques da pesquisa para todos
+g.priv.mAi	IA do Windows
+pv.mCopilot	Desativar o Copilot para todos
+pv.mRecall	Desativar o Recall e a análise da tela
+pv.mClickToDo	Desativar o Click to Do para todos
+pv.agents	Desativar os agentes de IA
+pv.settingsAgent	Desativar o agente de Configurações
+pv.copilotRt	Desativar o runtime do Copilot
+pv.genAi	Negar aos apps a IA generativa
+pv.notepadAi	Desativar a IA no Bloco de Notas
+pv.paintAi	Desativar a criação de imagens com IA no Paint
+pv.paintBg	Desativar a remoção de fundo no Paint
+g.priv.mLoc	Serviços de localização
+pv.winLocProv	Desativar o provedor de localização do Windows
+pv.locScript	Sem scripts de localização
+pv.mapsAuto	Sem atualização automática de mapas
+pv.locAll	Desativar a localização
+pv.sensors	Desativar os sensores
+pv.findDevice	Desativar Localizar meu dispositivo
+g.priv.mUpd	Windows Update
+pv.p2p	Não compartilhar atualizações com outros PCs
+pv.speechUpd	Sem atualizações de modelos de fala
+pv.mrtReport	Não enviar resultados da ferramenta de remoção de malware
+pv.preview	Bloquear builds de prévia do Windows
+pv.noReboot	Sem reinícios automáticos com usuários conectados
+pv.wuDrivers	Sem drivers pelo Windows Update
+pv.storeAuto	Sem atualizações automáticas de apps da Store
+pv.mrtOffer	Não baixar a ferramenta de remoção de malware
+g.priv.mDef	Microsoft Defender e SpyNet
+pv.samples	Não enviar amostras de arquivos
+pv.spynet	Sair do Microsoft MAPS (SpyNet)
+pv.defNotif	Sem notificações avançadas do Defender
+g.priv.mExp	Explorador de Arquivos
+pv.openWith	Sem busca na Store em «Abrir com»
+pv.kfm	O OneDrive não move as pastas pessoais
+pv.oneDrive	Desativar o OneDrive
+g.priv.mMobile	Dispositivos móveis
+pv.phoneLink	Desativar a ligação entre celular e PC
+pv.cdp	Desativar experiências entre dispositivos
+g.priv.mBar	Barra de tarefas
+pv.widgets	Desativar os widgets
+pv.mMeetNow	Ocultar Reunir Agora para todos
+pv.chatIcon	Ocultar o Chat para todos
+g.priv.mSync	Sincronização das configurações
+pv.credSync	Não sincronizar senhas para ninguém
+pv.allSync	Desativar a sincronização das configurações
+g.priv.mMisc	Diversos
+pv.wifiSense	Desativar o Wi-Fi Sense
+g.power.cpu	Processador
+pw.cpuMin	Estado mínimo do processador
+pw.cpuMax	Estado máximo do processador
+pw.cpuMax#99	99% (sem turbo)
+pw.boost	Modo turbo
+pw.boost#0	Desativado
+pw.boost#1	Ativado
+pw.boost#2	Agressivo
+pw.boost#3	Eficiente
+pw.boost#4	Eficiente agressivo
+pw.epp	Preferência de desempenho ou eficiência (EPP)
+pw.epp#0	Desempenho máximo (0)
+pw.epp#25	Desempenho (25)
+pw.epp#50	Equilibrado (50)
+pw.epp#80	Eficiência (80)
+pw.parkMin	Núcleos sempre ativos (estacionamento)
+pw.parkMin#100	100% (sem estacionamento)
+pw.cooling	Política de resfriamento
+pw.cooling#0	Passiva (desacelera primeiro)
+pw.cooling#1	Ativa (ventoinhas primeiro)
+pw.incPolicy	Aumento de desempenho
+pw.incPolicy#0	Ideal
+pw.incPolicy#1	Passo a passo
+pw.incPolicy#2	Imediato
+pw.incPolicy#3	Ideal agressivo
+pw.decPolicy	Redução de desempenho
+pw.decPolicy#0	Ideal
+pw.decPolicy#1	Passo a passo
+pw.decPolicy#2	Imediato
+g.power.dev	Dispositivos
+pw.pcie	Economia de energia PCI Express
+pw.pcie#0	Desativada
+pw.pcie#1	Moderada
+pw.pcie#2	Máxima
+pw.usbSuspend	Suspensão seletiva USB
+pw.usbSuspend#0	Desativada
+pw.usbSuspend#1	Ativada
+pw.usb3Lpm	Gerenciamento de energia do link USB 3
+pw.usb3Lpm#0	Desativado
+pw.usb3Lpm#1	Mínimo
+pw.usb3Lpm#2	Moderado
+pw.usb3Lpm#3	Máximo
+pw.wifi	Economia do adaptador Wi-Fi
+pw.wifi#0	Desempenho máximo
+pw.wifi#1	Economia baixa
+pw.wifi#2	Economia média
+pw.wifi#3	Economia máxima
+pw.disk	Desligar os discos após
+pw.disk#0	Nunca
+pw.disk#300	5 minutos
+pw.disk#1200	20 minutos
+pw.disk#3600	1 hora
+g.power.sleep	Tela e suspensão
+pw.display	Desligar a tela após
+pw.display#0	Nunca
+pw.display#300	5 minutos
+pw.display#600	10 minutos
+pw.display#900	15 minutos
+pw.display#1800	30 minutos
+pw.display#3600	1 hora
+pw.sleep	Suspender após
+pw.sleep#0	Nunca
+pw.sleep#900	15 minutos
+pw.sleep#1800	30 minutos
+pw.sleep#3600	1 hora
+pw.sleep#7200	2 horas
+pw.hibAfter	Hibernar após
+pw.hibAfter#0	Nunca
+pw.hibAfter#3600	1 hora
+pw.hibAfter#10800	3 horas
+pw.hibAfter#21600	6 horas
+pw.hybrid	Suspensão híbrida
+pw.hybrid#0	Desativada
+pw.hybrid#1	Ativada
+pw.wake	Temporizadores de ativação
+pw.wake#0	Desativados
+pw.wake#1	Ativados
+pw.wake#2	Só os importantes
+g.power.buttons	Botões
+pw.powerBtn	Botão liga/desliga
+pw.powerBtn#0	Não fazer nada
+pw.powerBtn#1	Suspender
+pw.powerBtn#2	Hibernar
+pw.powerBtn#3	Desligar
+pw.powerBtn#4	Desligar a tela
+pw.lid	Ao fechar a tampa
+pw.lid#0	Não fazer nada
+pw.lid#1	Suspender
+pw.lid#2	Hibernar
+pw.lid#3	Desligar
+g.power.media	Multimídia
+pw.videoBias	Qualidade da reprodução de vídeo
+pw.videoBias#0	Economia de energia
+pw.videoBias#1	Desempenho
+pw.videoPlay	Ao reproduzir vídeo
+pw.videoPlay#0	Otimizar a qualidade
+pw.videoPlay#1	Equilibrado
+pw.videoPlay#2	Otimizar o consumo

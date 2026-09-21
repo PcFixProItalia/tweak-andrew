@@ -1,0 +1,135 @@
+# Impostazioni del piano energetico attivo, stesso formato di catalog.txt.
+# N|id|flag|sottogruppo|impostazione|predefinito|consigliato|it|en
+# O|valore|it|en   il valore si scrive sia a rete (AC) sia a batteria (DC).
+
+P|power
+G|cpu|Processore|Processor
+N|pw.cpuMin||54533251-82be-4824-96c1-47b60b740d00|893dee8e-2bef-41e0-89c6-b55d0929964c|5|-|Stato minimo del processore|Minimum processor state
+O|5|5%|5%
+O|50|50%|50%
+O|100|100%|100%
+H|pw.cpuMin|Sotto questa soglia il processore non scende mai. Al 100% resta sempre alla frequenza piena.|The processor never drops below this level. At 100% it always stays at full speed.
+N|pw.cpuMax||54533251-82be-4824-96c1-47b60b740d00|bc5038f7-23e0-4960-96da-33abaf5935ec|100|100|Stato massimo del processore|Maximum processor state
+O|99|99% (senza turbo)|99% (no turbo)
+O|100|100%|100%
+H|pw.cpuMax|Al 99% il turbo resta spento: portatile più fresco e silenzioso, un po' meno veloce.|At 99% turbo stays off: a cooler, quieter laptop, a bit slower.
+N|pw.boost||54533251-82be-4824-96c1-47b60b740d00|be337238-0d82-4146-a960-4f3749d470c7|2|2|Modalità turbo|Boost mode
+O|0|Disattivato|Disabled
+O|1|Attivo|Enabled
+O|2|Aggressivo|Aggressive
+O|3|Efficiente|Efficient enabled
+O|4|Efficiente aggressivo|Efficient aggressive
+H|pw.boost|Con quanta decisione il processore sale in turbo quando serve potenza.|How eagerly the processor jumps into turbo when power is needed.
+N|pw.epp||54533251-82be-4824-96c1-47b60b740d00|36687f9e-e3a5-4dbf-b1dc-15eb381c6863|50|0|Preferenza prestazioni o risparmio (EPP)|Performance or efficiency preference (EPP)
+O|0|Prestazioni massime (0)|Maximum performance (0)
+O|25|Prestazioni (25)|Performance (25)
+O|50|Bilanciato (50)|Balanced (50)
+O|80|Risparmio (80)|Efficiency (80)
+H|pw.epp|Suggerisce al processore se privilegiare la reattività o i consumi.|Tells the processor whether to favor responsiveness or power draw.
+N|pw.parkMin||54533251-82be-4824-96c1-47b60b740d00|0cc5b647-c1df-4637-891a-dec35c318583|10|100|Core sempre attivi (parcheggio)|Cores kept awake (parking)
+O|10|10%|10%
+O|50|50%|50%
+O|100|100% (niente parcheggio)|100% (no parking)
+H|pw.parkMin|Al 100% nessun core viene messo a riposo: meno scatti quando il carico cambia di colpo.|At 100% no core is put to sleep: fewer stutters when load changes suddenly.
+N|pw.cooling||54533251-82be-4824-96c1-47b60b740d00|94d3a615-a899-4ac5-ae2b-e4d8f634367f|1|1|Raffreddamento|Cooling policy
+O|0|Passivo (rallenta prima)|Passive (slow down first)
+O|1|Attivo (ventole prima)|Active (fans first)
+H|pw.cooling|Quando scalda, Windows alza le ventole oppure rallenta il processore.|When it heats up, Windows spins up the fans or slows the processor.
+N|pw.incPolicy||54533251-82be-4824-96c1-47b60b740d00|465e1f50-b610-473a-ab58-00d1077dc418|0|2|Salita delle prestazioni|Performance increase policy
+O|0|Ideale|Ideal
+O|1|Un passo alla volta|Single step
+O|2|Immediata|Rocket
+O|3|Ideale aggressiva|Ideal aggressive
+H|pw.incPolicy|Con Immediata il processore va subito al massimo quando il carico sale.|With Rocket the processor jumps straight to maximum when load rises.
+N|pw.decPolicy||54533251-82be-4824-96c1-47b60b740d00|40fbefc7-2e9d-4d25-a185-0cfd8574bac6|0|1|Discesa delle prestazioni|Performance decrease policy
+O|0|Ideale|Ideal
+O|1|Un passo alla volta|Single step
+O|2|Immediata|Rocket
+H|pw.decPolicy|Un passo alla volta tiene alta la frequenza più a lungo tra un picco e l'altro.|Single step keeps the frequency high longer between spikes.
+
+G|dev|Dispositivi|Devices
+N|pw.pcie||501a4d13-42af-4429-9fd1-a8218c268e20|ee12f906-d277-404b-b6da-e5fa1a576df5|1|0|Risparmio energia PCI Express|PCI Express power saving
+O|0|Disattivato|Off
+O|1|Moderato|Moderate
+O|2|Massimo|Maximum
+H|pw.pcie|Spento, scheda video e SSD NVMe non entrano in stati a basso consumo: niente micro-ritardi.|Off, graphics card and NVMe SSD skip low-power states: no micro-delays.
+N|pw.usbSuspend||2a737441-1930-4402-8d77-b2bebba308a3|48e6b7a6-50f5-4782-a5d4-53bb8f07e226|1|0|Sospensione selettiva USB|USB selective suspend
+O|0|Disattivata|Disabled
+O|1|Attiva|Enabled
+H|pw.usbSuspend|Spenta, mouse, tastiere e schede audio USB non si addormentano mai.|Off, USB mice, keyboards and audio interfaces never doze off.
+N|pw.usb3Lpm||2a737441-1930-4402-8d77-b2bebba308a3|d4e98f31-5ffe-4ce1-be31-1b38b384c009|3|0|Risparmio del collegamento USB 3|USB 3 link power management
+O|0|Disattivato|Off
+O|1|Minimo|Minimum
+O|2|Moderato|Moderate
+O|3|Massimo|Maximum
+H|pw.usb3Lpm|Spento, i dispositivi USB 3 rispondono senza ritardi di risveglio.|Off, USB 3 devices respond without wake-up delays.
+N|pw.wifi||19cbb8fa-5279-450e-9fac-8a3d5fedd0c1|12bbebe6-58d6-4636-95bb-3217ef867c1a|0|0|Risparmio della scheda Wi-Fi|Wi-Fi adapter power saving
+O|0|Prestazioni massime|Maximum performance
+O|1|Risparmio basso|Low saving
+O|2|Risparmio medio|Medium saving
+O|3|Risparmio massimo|Maximum saving
+H|pw.wifi|Prestazioni massime evita cali di ping dovuti al risparmio della scheda.|Maximum performance avoids ping spikes caused by adapter power saving.
+N|pw.disk||0012ee47-9041-4b5d-9b77-535fba8b1442|6738e2c4-e8a5-4a42-b16a-e040e769756e|1200|0|Spegni i dischi dopo|Turn off disks after
+O|0|Mai|Never
+O|300|5 minuti|5 minutes
+O|1200|20 minuti|20 minutes
+O|3600|1 ora|1 hour
+H|pw.disk|Su Mai i dischi meccanici non si fermano: niente attesa quando li riapri.|On Never, hard drives don't spin down: no wait when you open them again.
+
+G|sleep|Schermo e sospensione|Display and sleep
+N|pw.display||7516b95f-f776-4464-8c53-06167f40cc99|3c0bc021-c8a8-4e07-a973-6b14cbcb2b7e|600|-|Spegni lo schermo dopo|Turn off the display after
+O|0|Mai|Never
+O|300|5 minuti|5 minutes
+O|600|10 minuti|10 minutes
+O|900|15 minuti|15 minutes
+O|1800|30 minuti|30 minutes
+O|3600|1 ora|1 hour
+H|pw.display|Dopo quanto tempo di inattività si spegne il monitor.|How long without activity before the monitor turns off.
+N|pw.sleep||238c9fa8-0aad-41ed-83f4-97be242c8f20|29f6c1db-86da-48c5-9fdb-f2b67b1f44da|1800|-|Sospendi dopo|Sleep after
+O|0|Mai|Never
+O|900|15 minuti|15 minutes
+O|1800|30 minuti|30 minutes
+O|3600|1 ora|1 hour
+O|7200|2 ore|2 hours
+H|pw.sleep|Dopo quanto tempo di inattività il PC va in sospensione.|How long without activity before the PC goes to sleep.
+N|pw.hibAfter||238c9fa8-0aad-41ed-83f4-97be242c8f20|9d7815a6-7ee4-497e-8888-515a05f02364|0|-|Iberna dopo|Hibernate after
+O|0|Mai|Never
+O|3600|1 ora|1 hour
+O|10800|3 ore|3 hours
+O|21600|6 ore|6 hours
+H|pw.hibAfter|Dopo quanto tempo di sospensione il PC salva tutto su disco e si spegne.|How long asleep before the PC saves everything to disk and powers off.
+N|pw.hybrid||238c9fa8-0aad-41ed-83f4-97be242c8f20|94ac6d29-73ce-41a6-809f-6363ba21b47e|1|-|Sospensione ibrida|Hybrid sleep
+O|0|Disattivata|Off
+O|1|Attiva|On
+H|pw.hybrid|Salva la sessione anche su disco: se manca la corrente non perdi il lavoro.|Also saves the session to disk: a power cut doesn't lose your work.
+N|pw.wake||238c9fa8-0aad-41ed-83f4-97be242c8f20|bd3b718a-0680-4d9d-8ab2-e1d2b4ac806d|1|2|Timer di risveglio|Wake timers
+O|0|Disattivati|Disabled
+O|1|Attivi|Enabled
+O|2|Solo quelli importanti|Important only
+H|pw.wake|Decide se le attività pianificate possono accendere il PC di notte.|Decides whether scheduled tasks can wake the PC at night.
+
+G|buttons|Pulsanti|Buttons
+N|pw.powerBtn||4f971e89-eebd-4455-a8de-9e59040e7347|7648efa3-dd9c-4e3e-b566-50f929386280|3|-|Pulsante di accensione|Power button
+O|0|Non fare nulla|Do nothing
+O|1|Sospendi|Sleep
+O|2|Iberna|Hibernate
+O|3|Arresta il sistema|Shut down
+O|4|Spegni lo schermo|Turn off the display
+H|pw.powerBtn|Cosa fa il PC quando premi il pulsante di accensione.|What the PC does when you press the power button.
+N|pw.lid||4f971e89-eebd-4455-a8de-9e59040e7347|5ca83367-6e45-459f-a27b-476b1d01c936|1|-|Chiusura del coperchio|Closing the lid
+O|0|Non fare nulla|Do nothing
+O|1|Sospendi|Sleep
+O|2|Iberna|Hibernate
+O|3|Arresta il sistema|Shut down
+H|pw.lid|Cosa fa il portatile quando chiudi il coperchio.|What the laptop does when you close the lid.
+
+G|media|Multimedia|Multimedia
+N|pw.videoBias||9596fb26-9850-41fd-ac3e-f7c3c00afd4b|10778347-1370-4ee0-8bbd-33bdacaade49|1|1|Qualità della riproduzione video|Video playback quality
+O|0|Risparmio energetico|Power saving
+O|1|Prestazioni|Performance
+H|pw.videoBias|Sui portatili evita che i video scendano di qualità per risparmiare batteria.|On laptops stops videos dropping quality to save battery.
+N|pw.videoPlay||9596fb26-9850-41fd-ac3e-f7c3c00afd4b|34c7b99f-9a6d-4b3c-8dc7-b6693b78cef4|1|0|Durante la riproduzione video|While playing video
+O|0|Ottimizza la qualità|Optimize quality
+O|1|Bilanciato|Balanced
+O|2|Ottimizza il consumo|Optimize power
+H|pw.videoPlay|Ottimizza la qualità mantiene immagini fluide e nitide.|Optimize quality keeps pictures smooth and sharp.

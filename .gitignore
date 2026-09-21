@@ -1,0 +1,5 @@
+old/
+*.png
+__pycache__/
+src/partK_data.ps1
+src/partApps_data.ps1

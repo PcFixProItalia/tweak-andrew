@@ -1,0 +1,610 @@
+L:lblSubtitle	Optimizarea și controlul Windows — PcFixPro Italia
+L:tabPerf	Performanță
+L:tabPrivacy	Confidențialitate
+L:tabUi	Interfață
+L:tabNet	Rețea
+L:tabStorage	Stocare
+L:ttlLatency	LATENȚĂ ȘI PLANIFICARE
+L:chkMMCSS	MMCSS — reacție mai bună în jocuri și audio
+L:chkPriority	Planificare CPU — prioritate pentru prim-plan (0x26)
+L:chkKernelMem	Memoria nucleului — fără paginarea executivului
+L:chkKernelDpc	Nucleu și latență DPC
+L:chkTimer	Temporizator de sistem — precizie maximă
+L:chkPowerThrottling	Power Throttling — dezactivează
+L:chkUSBSuspend	Suspendare selectivă USB — dezactivează
+L:chkNtfsPerf	NTFS — fără data ultimului acces, cache mare
+L:ttlRam	MEMORIE
+L:chkRamTweak	Prag de separare SvcHost (după RAM)
+L:lblRamInstalled	RAM instalată:
+L:lblRamHint	Detectată automat la pornire; se poate schimba manual.
+L:ttlGraphics	GRAFICĂ ȘI JOCURI
+L:chkGameMode	Mod joc — activează
+L:chkFSO	Optimizări pe ecran complet (FSO) — dezactivează
+L:chkGameDVR	Game DVR și înregistrare Xbox — dezactivează
+L:chkHAGS	Planificare GPU accelerată hardware — activează
+L:chkVisualFX	Efecte vizuale — ajustare pentru performanță
+L:chkApplyMPO	Aplică setarea Multiplane Overlay (MPO)
+L:mpoOn	Activat (implicit în Windows)
+L:mpoOff	Dezactivat (rezolvă sacadări și pâlpâiri)
+L:mpoCompat	Activat, compatibil (2 planuri)
+L:ttlRisky	AVANSAT — REDUC SECURITATEA
+L:lblRiskyHint	Excluse din «Selectează tot». Activează-le doar dacă știi urmările.
+L:chkVBS	VBS / Integritatea memoriei — dezactivează
+L:chkMitigations	Protecții de sistem împotriva exploit-urilor — dezactivează
+L:tabPower	Alimentare
+L:tabGpu	Placă video
+L:ttlPlans	SCHEME DE ALIMENTARE
+L:btnRefreshPlans	Reîmprospătează
+L:btnRemoveTestPlans	Elimină schemele de test
+L:ttlSleep	ECONOMIE ȘI REPAUS
+L:lblSleepHint	Se aplică cu butonul Aplică.
+L:ttlPlanWarn	ÎNAINTE DE A ÎNCERCA
+L:lblPlanWarn	Schemele din «De testat» provin de la terți. Încearcă una pe rând și revino la Echilibrat dacă computerul devine instabil.
+L:ttlGpuDetected	PLACĂ DETECTATĂ
+L:btnDetectGpu	Reîmprospătează
+L:lblGpuHint	Aici se curăță driverul deja instalat: telemetrie, servicii suplimentare și porniri automate.
+L:ttlGpuCommon	SETĂRI COMUNE
+L:chkGpuTdr	TDR — timp de așteptare al driverului la 10 s
+L:chkGpuMsi	Întreruperi MSI pentru placa video — activează
+L:lblNvidiaHint	Omis dacă placa nu este NVIDIA.
+L:chkNvTelemetry	Telemetrie NVIDIA — dezactivează
+L:chkNvGfe	GeForce Experience în fundal — dezactivează
+L:chkNvPerfMode	Gestionarea energiei GPU — performanță maximă
+L:chkNvUpdates	Verificarea actualizărilor NVIDIA — dezactivează
+L:lblAmdHint	Omis dacă placa nu este AMD.
+L:chkAmdUx	Programul AMD de experiență a utilizatorului — dezactivează
+L:chkAmdBloat	Servicii și porniri automate AMD — dezactivează
+L:chkIntelBloat	Servicii suplimentare Intel Graphics — dezactivează
+L:lblUiScale	Scara interfeței
+L:ttlShader	CACHE SHADER
+L:lblShaderHint	Shaderele deja compilate de jocuri. Golirea eliberează spațiu și rezolvă artefacte după schimbarea driverului. Prima pornire a fiecărui joc va fi mai lentă, apoi revine la normal.
+L:btnShaderScan	Calculează spațiul ocupat
+L:btnShaderClear	Golește cache-ul de shadere
+L:ttlStart	MENIUL START
+L:chkStartMorePins	Mai mult loc pentru fixate, mai puțin pentru recomandări
+L:chkStartHideRec	Secțiunea «Recomandate» — ascunde
+L:chkStartNoWeb	Site-uri recomandate în Start — elimină
+L:chkStartNoAccount	Notificări de cont în Start — elimină
+L:ttlFeat	FUNCȚII ASCUNSE
+L:lblFeatHint	Activează sau dezactivează o funcție Windows după număr, ca ViVeTool. Numerele se schimbă la fiecare build: ia-le dintr-o sursă potrivită cu al tău.
+L:featOn	Activează
+L:featOff	Dezactivează
+L:featReset	Revino la implicit
+L:lblFeatId	Numărul funcției
+L:btnFeatApply	Aplică
+L:btnFeatList	Afișează modificările active
+L:chkFastStartup	Pornire rapidă — dezactivează
+L:chkHibernation	Hibernare — dezactivează (eliberează spațiu pe C:)
+L:chkS0Sleep	Conexiune la rețea în standby modern — dezactivează
+L:chkS3Sleep	Repaus clasic S3 — forțează
+L:ttlTelemetry	TELEMETRIE ȘI URMĂRIRE
+L:chkTelemetry	Telemetrie și DiagTrack — dezactivează
+L:chkTelemetryTasks	Activități programate de telemetrie — dezactivează
+L:chkActivityHistory	Istoricul activităților — dezactivează
+L:chkLocationTracking	Urmărirea locației — dezactivează
+L:chkAdvertisingID	ID publicitar — dezactivează
+L:chkTailoredExp	Experiențe personalizate — dezactivează
+L:chkFeedback	Solicitări de feedback — dezactivează
+L:chkErrorReporting	Raportarea erorilor Windows — dezactivează
+L:chkInkingTyping	Personalizarea scrisului și tastării — dezactivează
+L:chkWiFiSense	Wi-Fi Sense — dezactivează
+L:ttlContent	SUGESTII ȘI CONȚINUT
+L:chkConsumerFeatures	Aplicații sugerate și instalare automată — blochează
+L:chkStoreSearch	Sugestii de căutare Microsoft Store — dezactivează
+L:chkSuggestedContent	Conținut sugerat în Setări — dezactivează
+L:chkLockScreenAds	Spotlight și reclame pe ecranul de blocare — dezactivează
+L:chkStartBing	Căutare Bing în meniul Start — dezactivează
+L:chkStartRecs	Recomandări în meniul Start — dezactivează
+L:chkStartTracking	Aplicații folosite des și documente recente — nu urmări
+L:chkFolderDiscovery	Detectarea tipului de folder în Explorer — dezactivează
+L:ttlMsApps	APLICAȚII MICROSOFT
+L:chkWindowsAI	Copilot, Recall și AI Windows — dezactivează
+L:chkEdgeDebloat	Microsoft Edge — curățare
+L:chkOneDriveRemove	OneDrive — dezactivează sincronizarea
+L:chkOutlookNew	Trecerea automată la noul Outlook — blochează
+L:ttlServices	SERVICII ȘI COMPONENTE
+L:chkServicesManual	Servicii neesențiale — pe Manual
+L:chkDeliveryOpt	Optimizarea livrării — dezactivează
+L:chkBitLocker	Criptare automată BitLocker — dezactivează
+L:chkWPBT	Tabelul binar al producătorului (WPBT) — dezactivează
+L:chkBackgroundApps	Aplicații în fundal — dezactivează
+L:chkTeredo	Tunel Teredo — dezactivează
+L:chkRDPWarnings	Avertismente pentru fișiere RDP nesemnate — dezactivează
+L:chkRemoteAssistance	Asistență la distanță — dezactivează
+L:chkCompanionApps	Aplicații însoțitoare pentru dispozitive — blochează
+L:chkDriverUpdates	Drivere din Windows Update — blochează
+L:ttlSystemUi	SISTEM ȘI EXPLORER
+L:chkDarkTheme	Tema întunecată Windows — activează
+L:chkFileExt	Afișează extensiile fișierelor
+L:chkHiddenFiles	Afișează fișierele ascunse
+L:chkLongPaths	Căi lungi de peste 260 de caractere — activează
+L:chkClassicMenu	Meniu contextual clasic (Windows 11)
+L:chkExplorerThisPC	Explorer se deschide pe «Acest PC»
+L:chkRemove3D	Elimină «Obiecte 3D» din Acest PC
+L:chkRecycleConfirm	Cere confirmare înainte de ștergere
+L:chkMenuDelay	Întârzierea meniurilor — zero
+L:ttlTaskbar	BARA DE ACTIVITĂȚI ȘI START
+L:chkTaskbarCenter	Pictogramele barei centrate
+L:chkTaskbarSearch	Pictograma Căutare — ascunde
+L:chkTaskbarTaskView	Pictograma Vizualizare activități — ascunde
+L:chkTaskbarWidgets	Widgeturi și știri — ascunde
+L:chkTaskbarChat	Pictograma Chat / Teams — ascunde
+L:chkTaskbarEndTask	«Închide activitatea» în meniul barei — activează
+L:chkBatteryPct	Procentul bateriei în zona de notificare
+L:chkSettingsHome	Pagina de pornire din Setări — ascunde
+L:chkWindowSnapping	Andocarea ferestrelor — activează
+L:ttlInput	INTRARE ȘI ACCESIBILITATE
+L:chkMouseAccel	Accelerarea mouse-ului — dezactivează
+L:chkNumLock	Num Lock la pornire — activează
+L:chkStickyKeys	Fereastra Taste adezive — dezactivează
+L:chkScrollbars	Bare de defilare mereu vizibile
+L:ttlLock	CONECTARE ȘI DIAGNOSTIC
+L:chkLockScreen	Ecranul de blocare — dezactivează
+L:chkLogonBlur	Estompare la conectare — dezactivează
+L:chkBSODVerbose	Ecran albastru detaliat
+L:chkLogonVerbose	Mesaje de conectare detaliate
+L:chkApplyNetwork	Aplică setările de rețea la clic pe «Aplică»
+L:lblNetHint	Fără această casetă, fila Rețea e doar informativă și nu se schimbă nimic.
+L:btnFlushDns	Golește cache-ul DNS
+L:ttlTcpProfile	PROFIL TCP
+L:radTcpOptimal	Optim (jocuri)
+L:radTcpDefault	Implicit Windows
+L:radTcpCurrent	Actual (neatins)
+L:radTcpCustom	Personalizat
+L:lblAutoTuning	Reglarea automată a ferestrei TCP:
+L:lblHeuristics	Euristică de scalare:
+L:lblCongestion	Controlul congestiei:
+L:lblTtl	Durata de viață (TTL):
+L:lblEcn	Suport ECN:
+L:lblTimestamps	Marcaje de timp TCP (RFC 1323):
+L:chkApplyDns	Schimbă serverele DNS pe adaptoarele active
+L:dnsAuto	Automat de la router (DHCP)
+L:ttlNetAdv	REȚEA AVANSATĂ
+L:lblThrottling	Indice de limitare a rețelei:
+L:lblResponsiveness	Reactivitatea sistemului:
+L:lblNagle	Algoritmul Nagle:
+L:lblHostPriority	Prioritatea rezolvării numelor:
+L:lblPortAlloc	Alocarea porturilor dinamice:
+L:lblMaxConn	Conexiuni maxime pe server:
+L:chkNetPowerSave	Economia de energie a plăcii de rețea — dezactivează
+L:chkDisableIPv6	IPv6 — dezactivează (doar dacă furnizorul nu îl folosește)
+L:ttlDrives	UNITĂȚI DETECTATE
+L:lblDrivesHint	Discuri instalate și spațiul liber al fiecărui volum.
+L:btnDetectStorage	Reîmprospătează
+L:ttlProfile	PROFIL DE APLICAT
+L:lblProfileHint	SSD: rulează TRIM și nu defragmentează niciodată. HDD: păstrează Prefetch și SysMain și pornește optimizarea.
+L:radStorageHDD	Hard disk mecanic
+L:chkStorageProfile	Profilul discului
+L:ttlNow	ACȚIUNI IMEDIATE
+L:lblNowHint	Rulează imediat, fără a trece prin «Aplică».
+L:btnTrimNow	Rulează TRIM acum
+L:btnOptimizeNow	Optimizează / defragmentează C:
+L:btnEmptyRecycle	Golește Coșul de reciclare
+L:btnCleanUpdates	Șterge cache-ul Windows Update
+L:ttlMaintenance	ÎNTREȚINERE LA APLICARE
+L:chkDiskCleanup	Curățare disc și compactare WinSxS (DISM)
+L:chkTempCleanup	Șterge fișierele temporare
+L:chkSmartChkdsk	CHKDSK inteligent (SSD sau HDD)
+L:ttlSpace	SPAȚIU ȘI POLITICI
+L:chkStorageSense	Senzor de stocare — dezactivează
+L:chkReservedStorage	Spațiul rezervat de Windows (7 GB) — dezactivează
+L:lblSelected	Selectate:
+L:chkRestorePoint	Punct de restaurare
+L:btnSelectAll	Selectează tot
+L:btnDeselectAll	Deselectează tot
+L:btnDetectActive	Detectează aplicate
+L:btnRun	Aplică modificările
+L:btnUndo	Restabilește implicit
+L:tabAdv	Avansat
+L:ttlAdvIntro	ÎNAINTE DE A ÎNCEPE
+L:lblAdvIntro	Aceste opțiuni elimină părți din Windows pe care majoritatea computerelor nu le folosesc. Câștigul e real pe o mașină dedicată jocurilor sau muncii, dar unele lucruri nu mai funcționează: citește fiecare opțiune. Creează un punct de restaurare înainte și repornește după.
+L:ttlSvc	SERVICII DE OPRIT
+L:lblSvcHint	Serviciile absente sunt omise. Pot fi oricând reactivate din services.msc.
+L:chkSvcSysMain	SysMain — preîncărcarea aplicațiilor în memorie
+L:chkSvcDiag	Diagnosticare și urmărirea evenimentelor
+L:chkSvcErrors	Raportarea erorilor Windows
+L:chkSvcPca	Asistentul de compatibilitate a programelor
+L:chkSvcDiscovery	Descoperirea dispozitivelor din rețea (UPnP, SSDP)
+L:chkSvcSensors	Senzori și geolocalizare
+L:chkSvcSmartCard	Carduri inteligente
+L:chkSvcParental	Control parental și programul Insider
+L:chkSvcHyperV	Servicii Hyper-V (dacă nu folosești mașini virtuale)
+L:chkSvcPrint	Spooler de imprimare — riscant: fără imprimante
+L:chkSvcSearch	Windows Search — riscant: fără căutare în Start
+L:chkSvcRemote	Desktop la distanță și registru la distanță — riscant dacă te conectezi din afară
+L:chkSvcBiometric	Biometrie — riscant: fără Windows Hello
+L:chkSvcTouch	Stilou și tastatură pe ecran — riscant pe laptopuri touch
+L:ttlTasks	ACTIVITĂȚI PROGRAMATE
+L:chkTaskExtra	Activități Microsoft neesențiale
+L:chkTaskMaint	Întreținere automată nocturnă
+L:chkTaskDefrag	Optimizarea programată a unităților — riscant: pe SSD trimite și TRIM
+L:ttlMem	MEMORIE ȘI PROCESE
+L:chkPrefetch	Valorile Prefetch și Superfetch din registru
+L:chkFth	Fault Tolerant Heap — fără corecții automate
+L:chkAppCompat	Motorul de compatibilitate și inventarul programelor
+L:chkSvcHostSplit	Mai puține procese svchost (gruparea serviciilor)
+L:chkMemCompression	Comprimarea memoriei — riscant sub 16 GB RAM
+L:ttlWu	ACTUALIZĂRI
+L:chkWuNoReboot	Fără reporniri automate cât folosești computerul
+L:chkWuDefer	Amână cu un an versiunile noi de Windows
+L:chkWuNoStore	Actualizarea automată a aplicațiilor din Store
+L:ttlBoot	PORNIREA SISTEMULUI
+L:btnBootReset	Restabilește
+L:lblBootHint	Modificări ale configurației de pornire. Restabilește readuce valorile Windows.
+L:chkBootQuiet	Pornire fără logo animat
+L:chkBootMenu	Meniu de pornire clasic (F8 disponibil)
+L:chkBootTimeout	Fără așteptare în meniul de pornire
+L:chkBootDynTick	Tick dinamic al nucleului — riscant: testează și măsoară
+L:chkBootTsc	Sincronizare TSC îmbunătățită — riscant: testează și măsoară
+L:ttlAppx	APLICAȚII PREINSTALATE
+L:lblAppxHint	Se pot reinstala din Store la nevoie.
+L:chkAppxBloat	Aplicații neesențiale (știri, vreme, hărți, Skype...)
+L:chkAppxXbox	Aplicații Xbox și suprapunerea de joc
+L:chkAppxProvision	Nu le restabili pentru utilizatorii noi
+L:ttlSec	SECURITATE REDUSĂ
+L:lblSecHint	Toate riscante și niciodată incluse în «Selectează tot». Scad cu adevărat apărarea computerului: folosește-le doar pe o mașină care nu navighează și nu deschide atașamente.
+L:chkSecSmartScreen	SmartScreen — verificarea fișierelor descărcate
+L:chkSecSpectre	Protecții Spectre și Meltdown
+L:chkSecDefenderIdle	Defender: scanare doar în repaus, CPU la 20%
+M:ready	Gata.
+M:starting	Se pornește...
+M:done	Finalizat
+M:nothing	Nimic selectat.
+M:activePlan	Schema activă:
+M:detecting	Se detectează...
+M:profileDetected	Profil detectat:
+M:noDisks	Unitățile nu pot fi detectate cu Get-PhysicalDisk.
+M:free	libere din
+M:chooseProfile	Alege SSD sau HDD înainte de a aplica profilul de stocare.
+M:finished	Operațiuni finalizate. Repornește computerul pentru ca toate modificările să aibă efect.
+M:confirmRun	Aplici modificările selectate?
+M:confirmTitle	Confirmare
+M:emptyRecycleAsk	Golești definitiv Coșul de reciclare? Operațiunea nu poate fi anulată.
+M:summary	Rezumat
+M:planTop	RECOMANDATE
+M:planWindows	SCHEME WINDOWS
+M:planTest	DE TESTAT
+M:planTestHint	Scheme de la terți incluse în program. Câte una.
+M:planApply	Activează
+M:planActive	Activă
+M:planRemoveAsk	Elimini din sistem schemele «De testat»? Computerul revine la schema Echilibrat.
+M:gpuVendor	Producător:
+M:gpuNone	Nicio placă video detectată.
+M:shaderScanning	Se calculează...
+M:shaderNone	Niciun cache de shadere găsit.
+M:shaderTotal	Total
+M:shaderAsk	Golești cache-ul de shadere?\n\nPrima pornire a fiecărui joc va fi mai lentă, pentru că shaderele se recompilează. Datele jocurilor nu sunt atinse.
+M:featNeedId	Scrie numărul funcției înainte de a aplica.
+M:featEmpty	Nicio funcție modificată pe acest computer.
+M:featStateOn	activată
+M:featStateOff	dezactivată
+M:bootResetAsk	Restabilești configurația de pornire implicită a Windows?
+M:bootResetDone	Configurația de pornire a fost restabilită.
+M:undoPrefix	Implicit:
+M:undoAsk	Restabilești valorile Windows pentru opțiunile selectate?
+M:advWarnTitle	Opțiuni avansate
+M:advWarn	Ai selectat opțiuni din secțiunea Avansat: ele elimină părți din Windows și ceva ar putea să nu mai funcționeze. Continui?
+H:chkMMCSS	Dă prioritate jocurilor și sunetului când computerul e încărcat. Mai puține sacadări și sunet mai curat.
+H:chkPriority	Oferă mai mult timp de procesor ferestrei pe care o folosești. Programul din prim-plan răspunde mai repede.
+H:chkKernelMem	Păstrează nucleul Windows în memorie în loc să-l mute pe disc. Sistem mai vioi cu multă RAM.
+H:chkKernelDpc	Reduce întârzierile în servirea plăcilor și dispozitivelor. Ajută împotriva micro-sacadărilor și pocniturilor audio.
+H:chkTimer	Face temporizatoarele sistemului mai precise. Timpi de răspuns mai constanți în jocuri.
+H:chkPowerThrottling	Împiedică Windows să încetinească programele din fundal pentru a economisi energie. Performanță constantă, consum puțin mai mare.
+H:chkUSBSuspend	Ține porturile USB mereu active. Mouse-urile, tastaturile și plăcile de sunet nu se mai deconectează și nu mai răspund cu întârziere.
+H:chkNtfsPerf	Discul nu mai notează fiecare citire de fișier și folosește mai multă memorie pentru datele de sistem. Mai puține scrieri, acces mai rapid.
+H:chkRamTweak	Grupează serviciile Windows după memoria RAM instalată. Mai puține procese și memorie folosită mai bine.
+H:chkGameMode	Pornește Modul joc: Windows amână actualizările și activitățile cât timp joci.
+H:chkFSO	Rulează jocurile pe ecran complet în mod exclusiv. Poate reduce întârzierea la comenzi în unele titluri.
+H:chkGameDVR	Oprește înregistrarea în fundal a Xbox Game Bar. Eliberează resurse și câștigă câteva cadre.
+H:chkHAGS	Lasă placa video să-și gestioneze singură memoria. Latență mai mică pe plăcile recente.
+H:chkVisualFX	Reduce animațiile și efectele vizuale din Windows. Interfață mai rapidă pe PC-urile modeste.
+H:chkApplyMPO	Aplică alegerea din meniul de dedesubt pentru suprapunerile multiplan. Dezactivarea rezolvă adesea pâlpâiri și sacadări cu mai multe monitoare.
+H:chkVBS	Oprește securitatea bazată pe virtualizare. Mai multe cadre în jocuri, dar mai puțină protecție împotriva programelor malware.
+H:chkMitigations	Elimină unele protecții împotriva exploit-urilor. Câștig de performanță, dar sistemul e mai expus.
+H:chkTelemetry	Blochează trimiterea datelor de utilizare către Microsoft. Mai multă confidențialitate și mai puțină activitate în fundal.
+H:chkTelemetryTasks	Oprește activitățile programate care colectează date de utilizare. Mai puțină muncă ascunsă.
+H:chkActivityHistory	Windows nu mai înregistrează ce deschizi și când. Mai multă confidențialitate.
+H:chkLocationTracking	Oprește localizarea dispozitivului. Aplicațiile nu mai știu unde te afli.
+H:chkAdvertisingID	Elimină codul folosit de aplicații pentru a-ți arăta reclame țintite.
+H:chkTailoredExp	Microsoft nu mai folosește datele tale pentru sfaturi și reclame personalizate.
+H:chkFeedback	Gata cu ferestrele care îți cer părerea despre Windows.
+H:chkErrorReporting	Erorile programelor nu mai sunt trimise către Microsoft. Mai puțină activitate după un blocaj.
+H:chkInkingTyping	Windows nu mai învață din ce scrii și tastezi. Mai multă confidențialitate.
+H:chkWiFiSense	Împiedică partajarea automată a rețelelor Wi-Fi și conectarea la hotspot-uri necunoscute.
+H:chkConsumerFeatures	Împiedică Windows să instaleze singur aplicații și jocuri promoționale.
+H:chkStoreSearch	Elimină sugestiile web și din Store din căutări. Rezultate mai curate și mai rapide.
+H:chkSuggestedContent	Fără sfaturi și promoții în Setări și în sistem.
+H:chkLockScreenAds	Elimină imaginile care se schimbă, sfaturile și reclamele de pe ecranul de blocare.
+H:chkStartBing	Căutarea din meniul Start caută doar pe computer, nu pe internet. Mai rapidă și mai privată.
+H:chkStartRecs	Elimină sugestiile de aplicații și fișiere din meniul Start.
+H:chkStartTracking	Windows nu mai ține lista aplicațiilor folosite des și a documentelor recente.
+H:chkFolderDiscovery	Explorer nu mai încearcă să ghicească tipul fiecărui folder. Folderele mari se deschid mai repede.
+H:chkWindowsAI	Oprește Copilot, Recall și funcțiile AI din Windows. Mai puține resurse folosite și mai multă confidențialitate.
+H:chkEdgeDebloat	Edge nu mai rămâne deschis în fundal și nu mai preîncarcă pagini. Mai puțină memorie ocupată.
+H:chkOneDriveRemove	Oprește sincronizarea OneDrive. Util dacă nu folosești cloudul Microsoft.
+H:chkOutlookNew	Împiedică trecerea automată la noul Outlook. Rămâi la versiunea pe care o folosești.
+H:chkServicesManual	Serviciile rar folosite pornesc doar când e nevoie. Pornire mai ușoară.
+H:chkDeliveryOpt	PC-ul nu mai partajează actualizări cu alte computere pe internet. Economisești lățime de bandă.
+H:chkBitLocker	Evită criptarea automată a discului. Disc puțin mai rapid și nicio cheie de recuperare de păstrat.
+H:chkWPBT	Împiedică firmware-ul producătorului să instaleze programe în Windows fără știrea ta.
+H:chkBackgroundApps	Aplicațiile din Store nu mai lucrează când sunt închise. Mai puțină baterie și memorie consumate.
+H:chkTeredo	Oprește un tunel de rețea vechi, aproape nefolosit. Poate îmbunătăți conexiunea în jocurile online.
+H:chkRDPWarnings	Fără avertismente repetate la deschiderea conexiunilor Desktop la distanță cunoscute.
+H:chkRemoteAssistance	Împiedică pe alții să ceară controlul PC-ului tău. Mai multă siguranță.
+H:chkCompanionApps	Windows nu mai descarcă aplicații însoțitoare când conectezi un dispozitiv.
+H:chkDriverUpdates	Windows Update nu mai înlocuiește driverele instalate de tine.
+H:chkDarkTheme	Trece Windows și aplicațiile pe tema întunecată. Mai odihnitor pentru ochi.
+H:chkFileExt	Afișează .exe, .pdf și celelalte extensii. Recunoști imediat fișierele suspecte.
+H:chkHiddenFiles	Afișează fișierele și folderele ascunse în Explorer.
+H:chkLongPaths	Permite căi de fișier foarte lungi. Evită erorile cu proiecte și arhive adânci.
+H:chkClassicMenu	Readuce meniul complet de clic dreapta, fără a trece prin «Afișați mai multe opțiuni».
+H:chkExplorerThisPC	Explorer se deschide pe Acest PC, cu discurile și folderele la vedere.
+H:chkRemove3D	Elimină folderul Obiecte 3D, pe care aproape nimeni nu-l folosește.
+H:chkRecycleConfirm	Cere confirmare înainte de a muta un fișier în Coș. Mai puține ștergeri din greșeală.
+H:chkMenuDelay	Meniurile se deschid instantaneu, fără mica pauză implicită.
+H:chkStartMorePins	În meniul Start, mai mult loc pentru aplicațiile fixate și mai puțin pentru sfaturi.
+H:chkStartHideRec	Ascunde secțiunea Recomandate din meniul Start. Un Start mai curat.
+H:chkStartNoWeb	Elimină site-urile sugerate din meniul Start.
+H:chkStartNoAccount	Fără mesaje despre contul Microsoft în meniul Start.
+H:chkTaskbarCenter	Păstrează pictogramele barei de activități în centru, ca în Windows 11.
+H:chkTaskbarSearch	Elimină caseta de căutare din bară. Căutarea rămâne disponibilă din tasta Windows.
+H:chkTaskbarTaskView	Elimină butonul Vizualizare activități din bară.
+H:chkTaskbarWidgets	Elimină widgeturile și știrile din bară. Mai puțină memorie și mai puține distrageri.
+H:chkTaskbarChat	Elimină pictograma Chat și Teams din bară.
+H:chkTaskbarEndTask	Adaugă «Închide activitatea» la clic dreapta pe bară. Închizi un program blocat fără Managerul de activități.
+H:chkBatteryPct	Afișează procentul de încărcare lângă pictograma bateriei.
+H:chkSettingsHome	Setările se deschid direct pe secțiunile utile, fără pagina de pornire promoțională.
+H:chkWindowSnapping	Activează andocarea ferestrelor când le tragi spre marginile ecranului.
+H:chkMouseAccel	Cursorul parcurge mereu aceeași distanță. Țintire mai precisă și constantă în jocuri.
+H:chkNumLock	Tastatura numerică e deja activă când pornești PC-ul.
+H:chkStickyKeys	Fără fereastra Taste adezive când apeși de mai multe ori Shift, nici în jocuri.
+H:chkScrollbars	Barele de defilare rămân mereu vizibile, nu apar doar la trecerea mouse-ului.
+H:chkLockScreen	Sare peste ecranul de blocare și duce direct la conectare.
+H:chkLogonBlur	Elimină estomparea fundalului de conectare. Imagine mai clară și conectare puțin mai rapidă.
+H:chkBSODVerbose	Ecranul albastru arată detaliile erorii. E mai ușor de aflat cauza unui blocaj.
+H:chkLogonVerbose	La pornire și oprire vezi ce face Windows. Ajută să afli ce îl încetinește.
+H:chkApplyNetwork	Aplică setările din pagina Rețea. Fără această casetă pagina e doar informativă.
+H:chkApplyDns	Folosește serverele DNS alese în meniu. Paginile se deschid mai repede și, cu unele servicii, apar mai puține reclame.
+H:chkNetPowerSave	Placa de rețea nu mai intră în economie de energie. Conexiune mai stabilă și ping mai constant.
+H:chkDisableIPv6	Oprește IPv6. Util doar dacă furnizorul nu îl folosește și ai probleme de conexiune.
+H:chkStorageProfile	Aplică optimizările gândite pentru tipul de disc ales: SSD sau hard disk.
+H:chkDiskCleanup	Șterge fișierele de sistem inutile și versiunile vechi ale actualizărilor. Recuperează spațiu, uneori câțiva GB.
+H:chkTempCleanup	Golește folderele cu fișiere temporare. Mai mult spațiu liber.
+H:chkSmartChkdsk	Verifică discul la următoarea repornire în modul potrivit pentru SSD sau hard disk. Repară erorile sistemului de fișiere.
+H:chkStorageSense	Windows nu mai șterge singur fișiere ca să facă loc. Tu decizi ce elimini.
+H:chkReservedStorage	Eliberează spațiul pe care Windows îl păstrează pentru actualizări, circa 7 GB.
+H:chkFastStartup	Fiecare oprire devine o oprire completă. Rezolvă probleme cu drivere și dual boot.
+H:chkHibernation	Oprește hibernarea și eliberează pe C: un spațiu apropiat de o mare parte din RAM.
+H:chkS0Sleep	În repaus PC-ul nu rămâne conectat la internet. Consumă mai puțin și nu se trezește singur.
+H:chkS3Sleep	Folosește repausul clasic în locul celui modern. Laptopul nu se încălzește în rucsac.
+H:chkGpuTdr	Oferă plăcii video mai mult timp înainte ca Windows să o repornească. Mai puține ecrane negre la încărcare mare.
+H:chkGpuMsi	Schimbă modul în care placa video semnalează procesorului. Poate reduce latența.
+H:chkNvTelemetry	Oprește trimiterea datelor de utilizare către NVIDIA. Mai puține procese în fundal.
+H:chkNvGfe	GeForce Experience nu mai pornește singur. Pornire mai ușoară.
+H:chkNvPerfMode	Ține placa NVIDIA la frecvența maximă. Performanță constantă, consum mai mare.
+H:chkNvUpdates	Driverul NVIDIA nu mai caută singur actualizări.
+H:chkAmdUx	Oprește trimiterea datelor de utilizare către AMD.
+H:chkAmdBloat	Împiedică programele suplimentare AMD să pornească odată cu Windows. Pornire mai ușoară.
+H:chkIntelBloat	Serviciile suplimentare ale plăcii Intel pornesc doar când e nevoie.
+H:chkSvcSysMain	Windows nu mai preîncarcă în memorie aplicațiile folosite des. Util pe SSD-uri rapide, unde nu e nevoie.
+H:chkSvcDiag	Oprește serviciile care analizează problemele și performanța în fundal.
+H:chkSvcErrors	Oprește serviciul care colectează și trimite rapoartele de erori.
+H:chkSvcPca	Oprește serviciul care verifică compatibilitatea programelor vechi.
+H:chkSvcDiscovery	PC-ul nu mai caută dispozitive în rețeaua locală. Mai puțin trafic, dar imprimantele și televizoarele din rețea pot să nu mai apară.
+H:chkSvcSensors	Oprește serviciile de senzori și locație. Util pe PC-urile desktop, care nu le au.
+H:chkSvcSmartCard	Oprește serviciile pentru carduri inteligente. Nu sunt necesare dacă nu folosești cititoare de carduri.
+H:chkSvcParental	Oprește controlul parental și programul Insider. Nu sunt necesare pe un PC personal.
+H:chkSvcHyperV	Oprește serviciile mașinilor virtuale. Păstrează-le dacă folosești Hyper-V, WSL sau emulatorul Android.
+H:chkSvcPrint	Oprește serviciul de imprimare. Doar dacă nu tipărești niciodată de pe acest PC.
+H:chkSvcSearch	Oprește indexarea fișierelor. Mai puțină muncă pentru disc, dar căutarea devine lentă.
+H:chkSvcRemote	Oprește Desktop la distanță și accesul la distanță la registru. Mai multă siguranță dacă nu te conectezi din afară.
+H:chkSvcBiometric	Oprește amprenta și recunoașterea facială. Evită dacă te conectezi cu Windows Hello.
+H:chkSvcTouch	Oprește stiloul și tastatura pe ecran. Evită pe tablete și laptopuri touch.
+H:chkTaskExtra	Oprește vreo douăzeci de activități automate Microsoft care nu sunt necesare. Mai puțină muncă ascunsă.
+H:chkTaskMaint	Windows nu mai pornește întreținerea automată noaptea. PC-ul nu se trezește și nu încetinește pe neașteptate.
+H:chkTaskDefrag	Oprește optimizarea automată a unităților. Pe SSD va trebui pornită manual din pagina Stocare.
+H:chkPrefetch	Windows nu mai pregătește din timp fișierele programelor. Mai puține scrieri pe SSD.
+H:chkFth	Windows nu mai aplică corecții automate programelor care se blochează. Comportament mai previzibil.
+H:chkAppCompat	Oprește verificările de compatibilitate ale programelor. Programele pornesc puțin mai repede.
+H:chkSvcHostSplit	Grupează serviciile Windows în mai puține procese. Mai puțină memorie folosită și un Manager de activități mai clar.
+H:chkMemCompression	Windows nu mai comprimă memoria. Mai puțină muncă pentru procesor, dar e nevoie de multă RAM.
+H:chkWuNoReboot	Actualizările nu mai repornesc PC-ul cât îl folosești.
+H:chkWuDefer	Versiunile noi de Windows vin după un an, când sunt deja stabile. Actualizările de securitate continuă să vină.
+H:chkWuNoStore	Aplicațiile din Store nu se mai actualizează singure în fundal.
+H:chkBootQuiet	Pornește fără logoul animat. Ecran mai curat și pornire puțin mai rapidă.
+H:chkBootMenu	Readuce meniul de pornire clasic, din care intri în modul de siguranță cu F8.
+H:chkBootTimeout	Dacă ai mai multe sisteme instalate, PC-ul pornește imediat, fără să aștepte în meniul de alegere.
+H:chkBootDynTick	Procesorul păstrează un ritm de sistem constant. Pe unele PC-uri scade latența, pe altele nu: trebuie testat.
+H:chkBootTsc	Face mai precisă măsurarea timpului între nucleele procesorului. Poate îmbunătăți fluiditatea: trebuie testat.
+H:chkAppxBloat	Elimină aplicații preinstalate precum știri, vreme, hărți și Skype. Mai mult spațiu și un Start mai ordonat.
+H:chkAppxXbox	Elimină aplicațiile Xbox și suprapunerea de joc. Evită dacă folosești Game Pass.
+H:chkAppxProvision	Aplicațiile eliminate nu revin când se creează un utilizator nou.
+H:chkSecSmartScreen	Oprește verificarea fișierelor descărcate. Fără avertismente la deschidere, dar și fără protecție împotriva fișierelor periculoase.
+H:chkSecSpectre	Elimină protecțiile împotriva unor defecte ale procesoarelor. Mai multă performanță, mai ales pe procesoarele vechi, dar mai puțină securitate.
+H:chkSecDefenderIdle	Antivirusul scanează doar când computerul e în repaus, fără să-l încarce. Protecția în timp real rămâne activă.
+H:chkRestorePoint	Creează un punct de restaurare înainte de aplicare. Dacă ceva nu merge, revii cu Restaurarea sistemului.
+L:tabSched	Prioritate
+L:ttlPs	PRIORITATEA PROCESORULUI
+L:lblPsHint	Stabilește cât timp de procesor primesc programele și cât avantaj are fereastra din prim-plan. Se aplică imediat, fără repornire.
+L:lblPsCurrent	Valoarea actuală
+L:lblPsPreset	Profil
+L:psI02	0x02 · Implicit Windows
+L:psI26	0x26 · Scurt, variabil, prim-plan 3:1 (jocuri)
+L:psI28	0x28 · Scurt, fix, fără avantaj
+L:psI2A	0x2A · Scurt, fix, prim-plan 3:1
+L:psI24	0x24 · Scurt, variabil, fără avantaj
+L:psI16	0x16 · Lung, variabil, prim-plan 3:1
+L:psI18	0x18 · Lung, fix (server)
+L:psICustom	Personalizat
+L:lblPsCustom	Valoare hexazecimală
+L:btnPsDefault	Implicit
+L:btnPsApply	Aplică
+L:btnMmReload	Recitește
+L:lblMmHint	Serviciul Windows care dă prioritate jocurilor, sunetului și video. Modificările se aplică după următoarea repornire.
+L:lblMmNet	Limitarea rețelei
+L:lblMmResp	CPU rezervat sistemului
+L:lblMmTask	Activitate
+L:lblMmAffinity	Afinitate (hex, 0 = toate nucleele)
+L:lblMmClock	Clock rate (unități de 100 ns)
+L:lblMmGpu	Prioritate GPU
+L:lblMmPrio	Prioritate
+L:lblMmSched	Categorie de planificare
+L:lblMmSfio	Prioritate I/O
+L:lblMmBgOnly	Doar în fundal
+L:lblMmBgPrio	Prioritate în fundal
+L:lblMmLatency	Sensibil la latență
+L:btnMmBackup	Salvează backup
+L:btnMmDefault	Implicite
+L:btnMmApply	Salvează
+L:chkAmdUlps	Performanță maximă — ULPS oprit
+L:ttlShutdownMenu	MENIUL DE OPRIRE
+L:lblShutdownHint	Se aplică imediat, fără Aplică. Setările schemei de alimentare nu sunt atinse.
+L:chkMenuSleep	Repaus în meniul de oprire
+L:chkMenuHibernate	Hibernare în meniul de oprire
+M:dlgYes	Da, continuă
+M:dlgNo	Anulează
+M:selCount	Opțiuni selectate: {0}
+M:doneSummary	Gata: {0} modificări aplicate, {1} deja setate, {2} erori.
+M:doneReboot	Repornește PC-ul pentru a le finaliza.
+M:psInterval	Cuantă
+M:psQuantum	Durată
+M:psBoost	Prim-plan
+M:psShort	scurtă
+M:psLong	lungă
+M:psVariable	variabilă
+M:psFixed	fixă
+M:psAuto	automată
+M:psInvalid	Valoare invalidă: folosește de la 00 la 3F.
+M:mmNetOff	Dezactivată
+M:mmNetDefault	10 (implicit)
+M:mmDefaultWord	implicit
+M:mmBadClock	Clock rate invalid: folosește un număr între 1000 și 100000.
+M:mmBadAffinity	Afinitate invalidă: folosește o valoare hex, 0 pentru toate nucleele.
+M:mmReboot	Valorile MMCSS au fost salvate. Se aplică după următoarea repornire.
+M:mmDefaultsLoaded	Valorile din fabrică au fost încărcate în panou: apasă Salvează pentru a le scrie.
+M:mmNoDefaults	Windows nu are valori cunoscute pentru această activitate: s-au încărcat doar cele generale.
+H:chkAmdUlps	Împiedică placa AMD să se oprească în repaus. Frecvențe pregătite și fără micro-sacadări la trezire, consum puțin mai mare.
+H:chkMenuSleep	Afișează sau ascunde Repaus în meniul de oprire din Start. Schimbarea se aplică imediat.
+H:chkMenuHibernate	Afișează sau ascunde Hibernare în meniul de oprire din Start. Dacă hibernarea era oprită, este reactivată.
+L:tabPriv2	Confidențialitate avansată
+L:tabExp	Explorer fișiere
+L:tabTask	Start și bară
+L:tabNotif	Notificări și sunete
+L:tabGame	Jocuri și efecte
+L:tabWin	Windows și servicii
+L:tabApps	Aplicații și software
+L:navGrpSystem	SISTEM
+L:navGrpPrivacy	CONFIDENȚIALITATE
+L:navGrpCustom	PERSONALIZARE
+L:navGrpWindows	WINDOWS ȘI APLICAȚII
+L:ttlNvProfile	NVIDIA: PERFORMANȚA PROFILULUI
+L:lblNvProfileHint	Scrise în profilul global al driverului, ca în Panoul de control NVIDIA.
+L:chkNvP2	CUDA: fără stare P2 forțată
+L:chkNvDrsPower	Gestionare energie: performanță maximă
+L:chkNvLowLatency	Mod latență redusă: Ultra
+L:chkNvThreaded	Optimizare pe fire activă
+L:chkNvTexPerf	Filtrare texturi: performanță ridicată
+L:chkNvAniso	Optimizare eșantioane anizotrope
+L:chkNvShaderCache	Cache shader nelimitat
+L:chkNvNoFxaa	FXAA și Ansel dezactivate
+L:ttlNvReg	NVIDIA: REGISTRUL DRIVERULUI
+L:chkNvDisplayPower	Economie energie ecran dezactivată
+L:chkNvHdcp	HDCP dezactivat
+L:chkNvPreempt	Preempțiune calcul dezactivată
+L:chkNvDynPstate	Frecvențe mereu la maxim (P0)
+L:chkNvLatency	Pachet latență driver
+L:chkAmdAntiLag	Anti-Lag activ
+L:chkAmdShaderCache	Cache shader mereu activ
+L:chkAmdTexPerf	Filtrare texturi: performanță
+L:chkAmdTess	Teselare limitată de driver
+L:chkAmdFlipQueue	Coadă de cadre la 1
+L:chkAmdNoFrtc	Limitator de cadre al driverului dezactivat
+L:chkAmdStutter	Mod stutter dezactivat
+L:chkAmdAspm	Economie PCIe a plăcii dezactivată
+L:chkAmdPowerGating	Power gating dezactivat
+L:chkAmdDma	Copii DMA și scriere în bloc
+L:chkAmdPreempt	Preempțiune calcul dezactivată
+L:ttlPowerAdv	PLAN ACTIV: SETĂRI AVANSATE
+L:lblPowerAdvHint	Se aplică imediat planului folosit, la rețea și pe baterie. Schimbarea planului pornește de la valorile lui.
+L:radAppsCatalog	Catalog
+L:radAppsInstalled	Instalate
+L:lblAppSearchHint	Caută...
+L:btnAppsUpgrade	Actualizează toate aplicațiile
+L:btnAppsClear	Deselectează
+L:btnAppsRefresh	Reîmprospătează lista
+L:lblProfileQueued	Alege un profil: intră printre modificările de aplicat. Un al doilea clic îl scoate.
+M:catCustom	Personalizat
+M:svcAuto	Automat
+M:svcAutoDelayed	Automat (întârziat)
+M:svcManual	Manual
+M:svcDisabled	Dezactivat
+M:recYes	Recomandată
+M:recLimited	Recomandată cu limitări
+M:recNo	Nerecomandată: elimină o funcție utilă
+M:aiTag	IA
+M:aiRelevant	Privește funcțiile de inteligență artificială
+M:catBulkTitle	Modificarea mai multor setări
+M:applyRecYes	Aplică cele recomandate
+M:applyRecLimited	Recomandate și cu limitări
+M:applyRecAll	Aplică toate
+M:undoAllFactory	Anulează tot (setări din fabrică)
+M:makeRestorePoint	Creează un punct de restaurare
+M:askRecYes	Activez toate protecțiile recomandate, fără să le ating pe celelalte. Continui?
+M:askRecLimited	Activez cele recomandate și cu limitări: unele funcții pot înceta să meargă. Continui?
+M:askRecAll	Activez tot, chiar și cele nerecomandate: camera, microfonul și alte funcții vor fi blocate. Continui?
+M:askFactory	Readuc fiecare element al paginii ca la un Windows proaspăt instalat. Continui?
+M:privLegend	Comutator pornit = protecție activă. Punct verde recomandată, portocaliu cu limitări, roșu nerecomandată. IA = privește inteligența artificială.
+M:scopeUser	Utilizator curent
+M:scopeMachine	Computer local
+M:scopeAll	Toate
+M:applyRecommended	Aplică cele recomandate
+M:restoreWindows	Implicite Windows
+M:askRecommended	Pun elementele acestei pagini pe valorile recomandate. Cele fără recomandare rămân la fel. Continui?
+M:askWindowsDefaults	Readuc elementele acestei pagini la valorile unui Windows proaspăt instalat. Continui?
+M:restartExplorer	Repornește Explorer
+M:catSearch	Caută o setare...
+M:catLoading	Se citește starea setărilor...
+M:restoreDone	Punct de restaurare creat.
+M:restoreFail	Punctul de restaurare nu a fost creat: verifică dacă Protecția sistemului este activă.
+M:diskSystem	Sistem
+M:diskHealthy	Disc sănătos
+M:diskWarning	Discul raportează probleme: fă o copie de rezervă
+M:volFree	{0} libere din {1}
+M:profileSysSsd	Windows este instalat pe un {0} ({1}): îți recomandăm profilul SSD / NVMe.
+M:profileSysHdd	Windows este instalat pe un disc mecanic ({0}): îți recomandăm profilul HDD.
+M:profileSysUnknown	Nu pot afla pe ce disc este Windows: alege tu profilul.
+M:recommendedTag	(recomandat)
+M:lic_os	Open source
+M:lic_fw	Freeware
+M:lic_fr	Gratuit + plătit
+M:lic_ms	Microsoft
+M:lic_pd	Plătit
+M:appInstalled	Instalată
+M:appsNone	Nicio aplicație nu corespunde filtrelor.
+M:appsInstalledTitle	Programe instalate ({0})
+M:appsUninstallSel	Dezinstalează selectate
+M:appsInstallSel	Instalează selectate
+M:appsAllCategories	Toate categoriile
+M:appsAllLicenses	Toate licențele
+M:appsWorking	{0}... (în coadă: {1})
+M:appsDone	Operațiuni finalizate. Detaliile sunt în fereastra PowerShell.
+M:appsChecking	Se verifică aplicațiile instalate...
+M:appsInstalledCount	{0} pachete recunoscute de winget pe acest PC.
+M:appsAskUninstall	Dezinstalez {0} programe. Unele pot deschide propria fereastră de dezinstalare. Continui?
+M:appsUninstalling	Dezinstalare
+M:appsAskInstall	Instalez {0} aplicații cu winget, pe rând, fără ferestre. Continui?
+M:appsInstalling	Instalare
+M:appsAskUpgrade	Actualizez cu winget toate aplicațiile cu versiune nouă. Poate dura câteva minute. Continui?
+M:appsUpgradeAll	Actualizarea tuturor aplicațiilor
+M:appsNoWinget	winget nu este disponibil: instalează «Programul de instalare aplicații» din Microsoft Store.
+M:appCat_browser	Browsere
+M:appCat_chat	Comunicare
+M:appCat_docs	Documente și birou
+M:appCat_media	Foto, audio și video
+M:appCat_games	Jocuri
+M:appCat_tools	Utilitare
+M:appCat_system	Sistem și diagnostic
+M:appCat_security	Securitate și confidențialitate
+M:appCat_net	Rețea, cloud și descărcări
+M:appCat_dev	Dezvoltare
+M:appCat_runtime	Componente de sistem

@@ -1,0 +1,577 @@
+g.exp.desk	Pictogramele desktopului
+exp.icoPc	Acest PC pe desktop
+exp.icoBin	Coș de reciclare pe desktop
+exp.icoUser	Folderul utilizatorului pe desktop
+exp.icoCpl	Panou de control pe desktop
+exp.icoNet	Rețea pe desktop
+exp.lnkSuffix	Numele comenzilor rapide noi
+exp.lnkSuffix#keep	Cu «- Comandă rapidă»
+exp.lnkSuffix#drop	Fără sufix
+exp.lnkArrow	Săgeată pe comenzile rapide
+exp.lnkArrow#show	Vizibilă
+exp.lnkArrow#hide	Ascunsă
+g.exp.ctx	Meniu contextual
+exp.ctxTerminal	Deschide în Terminal
+exp.ctxOwner	Preia proprietatea
+exp.ctxSfc	Verifică fișierele de sistem (SFC)
+exp.ctxDism	Repară imaginea Windows (DISM)
+exp.ctxExt	Afișează sau ascunde extensiile
+g.exp.gen	General
+exp.recent	Fișiere recente în Pornire
+exp.frequent	Foldere frecvente în Pornire
+exp.office	Fișiere de pe Office.com în Pornire
+exp.syncAds	Anunțuri ale serviciilor cloud în Explorer
+exp.sepProc	Foldere într-un proces separat
+exp.persist	Redeschide folderele la conectare
+exp.checkSel	Casete de selectare pentru elemente
+exp.menus	Afișează mereu bara de meniu
+exp.compact	Vizualizare compactă
+exp.fullPath	Calea completă în bara de titlu
+exp.statusBar	Bara de stare
+exp.infoTip	Descriere la trecerea mouse-ului
+exp.folderSize	Dimensiunea folderului în descriere
+exp.preview	Previzualizări în panoul de previzualizare
+exp.iconsOnly	Doar pictograme, fără miniaturi
+exp.typeOverlay	Pictograma programului pe miniaturi
+exp.superHidden	Fișiere protejate ale sistemului de operare
+exp.emptyDrives	Ascunde unitățile goale
+exp.driveLetters	Literele unităților
+exp.ntfsColor	Fișiere comprimate și criptate colorate
+exp.mergeAsk	Întreabă înainte de a uni foldere cu același nume
+exp.sharingWiz	Expertul de partajare
+exp.lnkExt	Extensia .lnk a comenzilor rapide
+exp.iconCache	Memoria cache a pictogramelor
+exp.iconCache#def	Implicită
+exp.iconCache#4096	Mare (4096 pictograme)
+exp.iconCache#8192	Foarte mare (8192 pictograme)
+exp.thumbClean	Curățarea automată a miniaturilor
+g.exp.thispc	Foldere în Acest PC
+exp.pcDesktop	Desktop
+exp.pcDocs	Documente
+exp.pcDown	Descărcări
+exp.pcMusic	Muzică
+exp.pcPics	Imagini
+exp.pcVideos	Videoclipuri
+g.exp.nav	Panoul de navigare
+exp.navHome	Pornire
+exp.navGallery	Galerie
+exp.navLibs	Biblioteci
+exp.navExpand	Extinde până la folderul deschis
+exp.navAll	Afișează toate folderele
+exp.navCloud	Starea sincronizării mereu vizibilă
+exp.navDupDrives	Unități amovibile duplicate
+g.exp.dev	Dispozitive
+exp.autoplay	Redare automată
+exp.lighting	Iluminare dinamică
+exp.lightingApp	Aplicațiile din prim-plan controlează LED-urile
+exp.printer	Windows alege imprimanta implicită
+exp.pwdless	Conectare automată în Conturi utilizator
+g.task.start	Meniul Start
+task.allApps	Vizualizarea Toate aplicațiile
+task.allApps#cat	După categorie
+task.allApps#grid	Grilă
+task.allApps#list	Listă
+task.recentApps	Aplicații adăugate recent
+task.frequentApps	Aplicațiile cele mai folosite
+task.recentDocs	Fișiere recomandate și deschise recent
+task.startLock	Blocare în meniul contului
+g.task.bar	Bara de activități
+task.autoHide	Ascunde automat bara de activități
+task.badges	Insigne pe pictograme
+task.flashing	Pictograme care clipesc
+task.allDisplays	Bara pe toate ecranele
+task.mmMode	Butoane pe alte ecrane
+task.mmMode#all	Pe toate barele
+task.mmMode#main	Bara principală și unde e deschisă
+task.mmMode#open	Doar unde e deschisă
+task.share	Partajează o fereastră din bară
+task.cornerDesk	Colț pentru afișarea desktopului
+task.combine	Combină butoanele
+task.combine#always	Mereu, ascunde etichetele
+task.combine#full	Când bara e plină
+task.combine#never	Niciodată
+task.combineMm	Combină pe alte ecrane
+task.combineMm#always	Mereu, ascunde etichetele
+task.combineMm#full	Când bara e plină
+task.combineMm#never	Niciodată
+task.small	Butoane mici
+task.small#always	Mereu
+task.small#full	Când bara e plină
+task.small#never	Niciodată
+task.copilot	Butonul Copilot
+task.bell	Clopoțelul notificărilor
+task.hover	Întârzierea previzualizării
+task.hover#1	Instantaneu
+task.hover#100	Rapid (100 ms)
+task.hover#200	Mediu (200 ms)
+task.hover#def	Implicit (400 ms)
+g.notif.toast	Notificări
+notif.toast	Notificările aplicațiilor
+notif.sound	Sunetul notificărilor
+notif.lock	Notificări pe ecranul de blocare
+notif.lockVoip	Mementouri și apeluri pe ecranul de blocare
+g.notif.tips	Sugestii Windows
+notif.welcome	Prezentare după actualizări
+notif.scoobe	Invitații de a termina configurarea
+notif.tipsUse	Sfaturi în timpul utilizării Windows
+g.notif.sys	Anunțuri de sistem
+notif.capAccess	Anunț când o aplicație folosește microfonul sau locația
+notif.startupApp	Anunț despre aplicații noi la pornire
+notif.locPrompt	Anunț când aplicațiile cer locația
+notif.dst	Anunț la schimbarea orei
+notif.secMaint	Securitate și întreținere
+notif.defender	Notificări Securitate Windows
+g.notif.sound	Sunete
+notif.bootSound	Sunetul de pornire Windows
+notif.ducking	În timpul apelurilor
+notif.ducking#mute	Oprește celelalte sunete
+notif.ducking#80	Reduce celelalte sunete cu 80%
+notif.ducking#50	Reduce celelalte sunete cu 50%
+notif.ducking#none	Nu face nimic
+notif.voiceAct	Activarea vocală a aplicațiilor
+notif.accSounds	Sunete de activare pentru accesibilitate
+notif.accWarn	Sunete de avertizare pentru accesibilitate
+g.notif.access	Comenzi rapide de accesibilitate
+notif.filterKeys	Taste de filtrare (Shift dreapta 8 secunde)
+notif.toggleKeys	Taste de comutare (Num Lock 5 secunde)
+notif.mouseKeys	Taste mouse (Alt+Shift+Num Lock)
+notif.contrast	Contrast ridicat (Alt+Shift+Print Screen)
+notif.narrator	Narator (Win+Ctrl+Enter)
+notif.hoverTime	Timpul de oprire a indicatorului
+notif.hoverTime#10	Instantaneu (10 ms)
+notif.hoverTime#100	Rapid (100 ms)
+notif.hoverTime#200	Mediu (200 ms)
+notif.hoverTime#def	Implicit (400 ms)
+g.game.gfx	Grafică și jocuri
+game.windowed	Optimizări pentru jocurile în fereastră
+game.vrr	Frecvență variabilă pentru jocuri necompatibile
+game.autoHdr	HDR automat
+game.gbController	Game Bar din butonul Xbox al controlerului
+game.gbTips	Sfaturi la pornirea Game Bar
+game.jpegFull	Imagine de fundal la calitate maximă
+game.startDelay	Întârzierea aplicațiilor la pornire
+game.altTab	Alt+Tab afișează
+game.altTab#open	Doar ferestrele deschise
+game.altTab#five	Ferestre și 5 file recente
+game.altTab#three	Ferestre și 3 file recente
+game.altTab#all	Ferestre și toate filele
+g.game.vfx	Efecte vizuale
+game.fxControls	Animă controalele din ferestre
+game.fxMinMax	Animație la minimizare și maximizare
+game.fxTaskbar	Animații în bara de activități
+game.fxPeek	Previzualizarea desktopului (Peek)
+game.fxMenuFade	Estompare sau glisare a meniurilor
+game.fxTipFade	Estompare sau glisare a sfaturilor
+game.fxItemFade	Estomparea elementelor de meniu după clic
+game.fxCursorShadow	Umbra indicatorului
+game.fxWinShadow	Umbre sub ferestre
+game.fxCombo	Deschiderea prin glisare a listelor
+game.fxSmoothList	Derulare lină în liste
+game.fxSelRect	Dreptunghi de selecție translucid
+game.fxDrag	Conținutul ferestrei la tragere
+game.fxFonts	Netezirea fonturilor
+game.fxIconShadow	Umbre pentru etichetele pictogramelor
+game.fxThumbCache	Salvează previzualizările din bară
+g.win.sec	Securitate
+win.uac	Control cont utilizator
+win.uac#always	Notifică întotdeauna
+win.uac#notify	Notifică atunci când aplicațiile fac modificări
+win.uac#nodim	La fel, fără estomparea ecranului
+win.uac#never	Nu notifica niciodată
+win.psPolicy	Executarea scripturilor PowerShell
+win.psPolicy#restricted	Blocate (implicit)
+win.psPolicy#remote	Locale da, descărcate doar semnate
+win.psPolicy#signed	Doar scripturi semnate
+win.psPolicy#all	Toate, cu avertisment
+win.psPolicy#bypass	Toate, fără avertisment
+win.devMode	Mod dezvoltator
+win.workplace	Solicitări «Permite organizației să gestioneze dispozitivul»
+win.autoMaint	Întreținere automată
+g.win.upd	Windows Update
+win.wuMode	Modul Windows Update
+win.wuMode#auto	Automat (implicit)
+win.wuMode#notify	Anunță înainte de descărcare
+win.wuMode#ask	Descarcă și întreabă înainte de instalare
+win.wuMode#off	Dezactivat (nerecomandat)
+win.wuLatest	Noutăți imediat ce apar
+win.wuOther	Actualizări pentru alte produse Microsoft
+win.wuExpedite	Actualizează-mă cât mai repede
+win.wuRestartNote	Anunță când e nevoie de repornire
+win.wuMetered	Descarcă pe conexiuni contorizate
+win.coInstallers	Aplicațiile producătorului instalate cu driverele
+g.win.svc	Servicii
+win.svcSysMain	SysMain (preîncărcarea aplicațiilor)
+win.svcSearch	Windows Search (indexare)
+win.svcSpooler	Derulator de imprimare
+win.svcDiagTrack	Experiențe conectate și telemetrie
+win.svcCdp	Platforma dispozitivelor conectate
+win.svcPca	Asistentul de compatibilitate a programelor
+win.svcWer	Raportarea erorilor
+win.svcGeo	Geolocalizare
+win.svcRetail	Mod demonstrativ pentru magazine
+win.svcInsider	Windows Insider
+win.svcPhone	Serviciu telefon
+win.svcWallet	Serviciu Portofel
+win.svcSmartCard	Smart card
+win.svcMaps	Managerul hărților descărcate
+win.svcFax	Fax
+win.svcWmpShare	Partajare Windows Media Player
+win.svcMixed	Realitate mixtă OpenXR
+win.svcHotspot	Hotspot mobil
+win.svcSms	Router SMS
+win.svcParental	Control parental
+win.svcNfc	Plăți și NFC
+win.svcSpot	Verificator punctual
+win.svcRas	Conexiuni de acces la distanță
+win.svcRdp	Desktop la distanță
+win.svcXbox	Servicii Xbox Live
+win.svcBio	Biometrie
+win.svcTouch	Tastatură tactilă și creion
+win.svcTapi	Telefonie (TAPI)
+win.svcSensors	Senzori
+g.win.tasks	Activități programate
+win.tAppraiser	Evaluatorul de compatibilitate Microsoft
+win.tPdu	Actualizarea datelor programelor
+win.tStartupApp	Analiza aplicațiilor de pornire
+win.tCeip	Programul de îmbunătățire a experienței
+win.tDiskDiag	Colectorul de diagnostic al discului
+win.tFeedback	Solicitări de feedback
+win.tWer	Coada rapoartelor de erori
+win.tMaps	Actualizarea și anunțurile hărților
+win.tAutochk	Proxy Autochk
+win.tFamily	Monitorizare Family Safety
+win.tPowerDiag	Diagnosticul eficienței energetice
+win.tSqm	Activități SQM
+g.priv.uPriv	Confidențialitate
+pv.adId	Dezactivează și resetează ID-ul de publicitate
+pv.typing	Nu trimite datele de tastare
+pv.timeline	Fără sugestii în cronologie
+pv.startSugg	Fără sugestii în Start
+pv.tips	Fără sfaturi și trucuri în timpul utilizării
+pv.settingsSugg	Fără conținut sugerat în Setări
+pv.finishSetup	Fără invitații de a termina configurarea
+pv.welcome	Fără prezentare după actualizări
+pv.silentApps	Fără aplicații instalate în tăcere
+pv.appLaunch	Nu urmări lansarea aplicațiilor
+pv.accountNotif	Fără anunțuri de cont în Setări
+pv.langList	Nu partaja lista de limbi cu site-urile
+pv.textPred	Fără sugestii de text pe tastatura tactilă
+pv.appNotif	Dezactivează notificările aplicațiilor
+pv.storeUrls	SmartScreen nu verifică conținutul web al aplicațiilor
+g.priv.uClip	Istoric activități și clipboard
+pv.clipHist	Nu păstra istoricul clipboardului
+pv.clipCloud	Nu sincroniza clipboardul în cloud
+g.priv.uApps	Confidențialitatea aplicațiilor
+pv.uAccount	Blochează accesul la informațiile contului
+pv.uDiag	Blochează accesul la diagnosticul altor aplicații
+pv.uMotion	Blochează accesul la datele de mișcare
+pv.uDevices	Blochează comunicarea cu dispozitive neasociate
+pv.uGaze	Blochează accesul la urmărirea privirii
+pv.uContacts	Blochează accesul la persoane de contact
+pv.uCalendar	Blochează accesul la calendar
+pv.uCallHist	Blochează accesul la istoricul apelurilor
+pv.uCalls	Blochează apelurile din aplicații
+pv.uEmail	Blochează accesul la e-mail
+pv.uTasks	Blochează accesul la activități
+pv.uMessages	Blochează accesul la mesaje
+pv.uRadios	Blochează controlul antenelor
+pv.uNotifications	Blochează accesul la notificări
+pv.uLocation	Blochează accesul la locație
+pv.uCamera	Blochează accesul la cameră
+pv.uMic	Blochează accesul la microfon
+pv.uDocs	Blochează accesul la documente
+pv.uPics	Blochează accesul la imagini
+pv.uVideos	Blochează accesul la videoclipuri
+pv.uFiles	Blochează accesul la tot sistemul de fișiere
+pv.uBackground	Oprește aplicațiile din fundal
+g.priv.uSync	Sincronizarea setărilor
+pv.syncPwd	Nu sincroniza parolele
+pv.syncTheme	Nu sincroniza tema și fundalul
+pv.syncLang	Nu sincroniza limbile
+pv.syncAccess	Nu sincroniza accesibilitatea
+pv.syncOther	Nu sincroniza alte setări Windows
+g.priv.uSpeech	Vorbire și introducere
+pv.speech	Dezactivează recunoașterea vocală online
+pv.inking	Nu colecta scrisul de mână și contactele
+pv.voiceAct	Aplicațiile nu ascultă cuvântul de activare
+g.priv.uAi	IA Windows
+pv.uCopilot	Dezactivează Copilot
+pv.uRecall	Dezactivează Recall
+pv.uClickToDo	Dezactivează Click to Do
+pv.copilotAvail	Ascunde Copilot în shell
+pv.bingChat	Dezactivează chatul Bing integrat
+pv.insights	Dezactivează analizele tastării
+pv.nudges	Fără invitații de a încerca Copilot
+pv.copilotBtn	Ascunde butonul Copilot
+pv.copilotMic	Copilot nu poate folosi microfonul
+pv.wordCopilot	Dezactivează Copilot în Word
+pv.excelCopilot	Dezactivează Copilot în Excel
+pv.officeCloud	Limitează serviciile online Office
+g.priv.uBehav	Comportamentul utilizatorului
+pv.tailored	Fără experiențe personalizate din datele de diagnostic
+pv.feedback	Windows nu cere feedback
+pv.thirdParty	Fără sugestii de la terți
+pv.spotSettings	Fără Spotlight în Setări
+pv.spotAll	Dezactivează toate funcțiile Spotlight
+pv.wmp	Windows Media Player nu urmărește utilizarea
+g.priv.uExp	Explorer fișiere
+pv.syncAds	Fără reclame în Explorer
+pv.officeFiles	Fără fișiere Office.com în Pornire
+pv.recentFiles	Nu afișa fișierele recente
+pv.frequent	Nu afișa folderele frecvente
+pv.recentDocs	Nu urmări documentele deschise
+g.priv.uLock	Ecran de blocare
+pv.lockFacts	Fără curiozități și sfaturi pe ecranul de blocare
+pv.lockSpot	Fără imagini Spotlight pe ecranul de blocare
+pv.lockToast	Fără notificări pe ecranul de blocare
+g.priv.uSearch	Căutare
+pv.searchHist	Nu păstra istoricul căutărilor
+pv.searchHigh	Fără evidențieri în căutare
+pv.searchBing	Fără rezultate web Bing în Start
+pv.searchMsa	Nu căuta în conținutul contului Microsoft
+pv.searchAad	Nu căuta în conținutul contului de serviciu
+g.priv.uBar	Bara de activități
+pv.meetNow	Ascunde Întâlnire acum
+pv.chatBtn	Ascunde Chat Teams
+g.priv.uMisc	Diverse
+pv.resume	Nu relua pe PC activitățile de pe telefon
+g.priv.mSec	Securitate
+pv.pwdReveal	Ascunde butonul de afișare a parolei
+pv.stepsRec	Dezactivează Înregistrarea pașilor
+pv.inventory	Dezactivează inventarul programelor
+pv.appTelemetry	Dezactivează telemetria aplicațiilor
+pv.lockCam	Dezactivează camera pe ecranul de blocare
+pv.kms	Fără validare online a activării KMS
+pv.drm	Fără acces la Internet pentru DRM Windows Media
+pv.remoteAssist	Dezactivează Asistența la distanță
+g.priv.mPriv	Confidențialitate
+pv.telemetry	Redu telemetria la minim
+pv.deviceName	Nu trimite numele PC-ului cu telemetria
+pv.feedbackNotif	Fără solicitări de feedback
+pv.diagLogs	Limitează colectarea jurnalelor de diagnostic
+pv.dumps	Limitează trimiterea imaginilor de memorie
+pv.oneSettings	Nu descărca configurări de telemetrie
+pv.diagViewer	Dezactivează vizualizatorul datelor de diagnostic
+pv.mAdId	Dezactivează ID-ul de publicitate pentru toți
+pv.ceip	Ieși din Programul de îmbunătățire a experienței
+pv.handErr	Nu trimite erorile de recunoaștere a scrisului
+pv.handShare	Nu partaja datele creionului
+pv.inputPers	Dezactivează personalizarea introducerii
+pv.onlineTips	Fără sfaturi online în Setări
+pv.helpFb	Fără evaluări ale Ajutorului
+pv.wer	Dezactivează raportarea erorilor
+pv.cloudContent	Fără conținut optimizat din cloud
+pv.softLanding	Fără sfaturi Windows
+pv.consumer	Fără aplicații de consum instalate automat
+pv.consumerAcct	Fără conținut legat de contul personal
+g.priv.mClip	Istoric activități și clipboard
+pv.actFeed	Dezactivează istoricul activităților
+pv.mClip	Dezactivează istoricul clipboardului pentru toți
+pv.crossClip	Fără clipboard partajat între dispozitive
+g.priv.mApps	Confidențialitatea aplicațiilor
+pv.mAccount	Refuză aplicațiilor informațiile contului
+pv.mDiag	Refuză aplicațiilor diagnosticul altor aplicații
+pv.mMotion	Refuză aplicațiilor datele de mișcare
+pv.mTrusted	Refuză aplicațiilor dispozitivele de încredere
+pv.mSync	Refuză aplicațiilor dispozitivele neasociate
+pv.mGaze	Refuză aplicațiilor urmărirea privirii
+pv.mSpatial	Refuză aplicațiilor percepția spațială în fundal
+pv.mVoice	Refuză aplicațiilor activarea vocală
+pv.mContacts	Refuză aplicațiilor persoanele de contact
+pv.mCalendar	Refuză aplicațiilor calendarul
+pv.mCallHist	Refuză aplicațiilor istoricul apelurilor
+pv.mPhone	Refuză aplicațiilor apelurile
+pv.mEmail	Refuză aplicațiilor e-mailul
+pv.mTasks	Refuză aplicațiilor activitățile
+pv.mMessages	Refuză aplicațiilor mesajele
+pv.mRadios	Refuză aplicațiilor controlul antenelor
+pv.mNotif	Refuză aplicațiilor notificările
+pv.mLocation	Refuză aplicațiilor locația
+pv.mBackground	Refuză aplicațiilor rularea în fundal
+pv.mCamera	Refuză aplicațiilor camera
+pv.mMic	Refuză aplicațiilor microfonul
+g.priv.mEdge	Microsoft Edge
+pv.eDnt	Cere site-urilor să nu te urmărească
+pv.ePayment	Site-urile nu verifică metodele de plată salvate
+pv.ePersonal	Fără personalizarea reclamelor și știrilor
+pv.eFeedback	Ascunde feedbackul utilizatorului
+pv.eLocalProv	Fără sugestii de la furnizori locali
+pv.eShopping	Dezactivează asistentul de cumpărături
+pv.eBar	Dezactivează bara Edge
+pv.eNavErr	Nu rezolva online erorile de navigare
+pv.ePreload	Nu preîncărca paginile
+pv.eDiag	Fără date de diagnostic din Edge
+pv.eRewards	Ascunde Microsoft Rewards
+pv.eRecomm	Fără recomandări și anunțuri promoționale
+pv.eIeRedirect	Nu deschide în Edge site-urile Internet Explorer
+pv.eCcFill	Nu salva cardurile de credit
+pv.eAddrFill	Nu completa automat adresele
+pv.eSearchSugg	Fără sugestii de căutare
+pv.eBoost	Dezactivează accelerarea pornirii
+pv.eBackground	Închide Edge complet la ieșire
+pv.eSiteSafety	Fără informații despre site-uri din serviciile Microsoft
+pv.eSpell	Verificare ortografică doar locală
+pv.eNewTab	Filă nouă fără știri
+pv.ePwd	Nu salva parolele
+pv.eSmartScreen	Dezactivează SmartScreen în Edge
+pv.eTypo	Dezactivează verificarea greșelilor de tastare
+g.priv.mEdgeAi	Microsoft Edge și IA
+pv.eSidebar	Dezactivează bara laterală și Copilot
+pv.ePageCtx	Copilot nu poate citi paginile deschise
+pv.eCompose	Fără scriere asistată de IA
+pv.eHistAi	Fără căutare IA în istoric
+pv.eShareHist	Nu partaja istoricul cu Copilot
+pv.eThemes	Fără teme generate de IA
+pv.eM365	Ascunde pictograma Copilot pentru Microsoft 365
+pv.eBuiltinAi	Fără API-uri IA integrate pentru site-uri
+g.priv.mSearch	Cortana și căutare
+pv.cortana	Dezactivează Cortana
+pv.cloudSearch	Fără căutare în cloud
+pv.webSearch	Fără căutare web din Start
+pv.searchLoc	Căutarea nu folosește locația
+pv.mHighlights	Fără evidențieri în căutare pentru toți
+g.priv.mAi	IA Windows
+pv.mCopilot	Dezactivează Copilot pentru toți
+pv.mRecall	Dezactivează Recall și analiza ecranului
+pv.mClickToDo	Dezactivează Click to Do pentru toți
+pv.agents	Dezactivează agenții IA
+pv.settingsAgent	Dezactivează agentul din Setări
+pv.copilotRt	Dezactivează runtime-ul Copilot
+pv.genAi	Refuză aplicațiilor IA generativă
+pv.notepadAi	Dezactivează IA în Notepad
+pv.paintAi	Dezactivează crearea de imagini IA în Paint
+pv.paintBg	Dezactivează eliminarea fundalului în Paint
+g.priv.mLoc	Servicii de localizare
+pv.winLocProv	Dezactivează furnizorul de locație Windows
+pv.locScript	Fără scripturi de localizare
+pv.mapsAuto	Fără actualizarea automată a hărților
+pv.locAll	Dezactivează localizarea
+pv.sensors	Dezactivează senzorii
+pv.findDevice	Dezactivează Găsește dispozitivul meu
+g.priv.mUpd	Windows Update
+pv.p2p	Nu partaja actualizările cu alte PC-uri
+pv.speechUpd	Fără actualizări ale modelelor vocale
+pv.mrtReport	Nu trimite rezultatele instrumentului de eliminare malware
+pv.preview	Blochează versiunile de previzualizare Windows
+pv.noReboot	Fără reporniri automate cu utilizatori conectați
+pv.wuDrivers	Fără drivere din Windows Update
+pv.storeAuto	Fără actualizări automate ale aplicațiilor din Store
+pv.mrtOffer	Nu descărca instrumentul de eliminare malware
+g.priv.mDef	Microsoft Defender și SpyNet
+pv.samples	Nu trimite mostre de fișiere
+pv.spynet	Ieși din Microsoft MAPS (SpyNet)
+pv.defNotif	Fără notificări extinse Defender
+g.priv.mExp	Explorer fișiere
+pv.openWith	Fără căutare în Store la «Deschidere cu»
+pv.kfm	OneDrive nu mută folderele personale
+pv.oneDrive	Dezactivează OneDrive
+g.priv.mMobile	Dispozitive mobile
+pv.phoneLink	Dezactivează legarea telefonului de PC
+pv.cdp	Dezactivează experiențele între dispozitive
+g.priv.mBar	Bara de activități
+pv.widgets	Dezactivează widgeturile
+pv.mMeetNow	Ascunde Întâlnire acum pentru toți
+pv.chatIcon	Ascunde Chat pentru toți
+g.priv.mSync	Sincronizarea setărilor
+pv.credSync	Nu sincroniza parolele pentru nimeni
+pv.allSync	Dezactivează sincronizarea setărilor
+g.priv.mMisc	Diverse
+pv.wifiSense	Dezactivează Wi-Fi Sense
+g.power.cpu	Procesor
+pw.cpuMin	Starea minimă a procesorului
+pw.cpuMax	Starea maximă a procesorului
+pw.cpuMax#99	99% (fără turbo)
+pw.boost	Mod turbo
+pw.boost#0	Dezactivat
+pw.boost#1	Activat
+pw.boost#2	Agresiv
+pw.boost#3	Eficient
+pw.boost#4	Eficient agresiv
+pw.epp	Preferință performanță sau eficiență (EPP)
+pw.epp#0	Performanță maximă (0)
+pw.epp#25	Performanță (25)
+pw.epp#50	Echilibrat (50)
+pw.epp#80	Eficiență (80)
+pw.parkMin	Nuclee mereu active (parcare)
+pw.parkMin#100	100% (fără parcare)
+pw.cooling	Politica de răcire
+pw.cooling#0	Pasivă (încetinește întâi)
+pw.cooling#1	Activă (ventilatoare întâi)
+pw.incPolicy	Creșterea performanței
+pw.incPolicy#0	Ideală
+pw.incPolicy#1	Pas cu pas
+pw.incPolicy#2	Imediată
+pw.incPolicy#3	Ideală agresivă
+pw.decPolicy	Scăderea performanței
+pw.decPolicy#0	Ideală
+pw.decPolicy#1	Pas cu pas
+pw.decPolicy#2	Imediată
+g.power.dev	Dispozitive
+pw.pcie	Economisirea energiei PCI Express
+pw.pcie#0	Dezactivată
+pw.pcie#1	Moderată
+pw.pcie#2	Maximă
+pw.usbSuspend	Suspendare selectivă USB
+pw.usbSuspend#0	Dezactivată
+pw.usbSuspend#1	Activată
+pw.usb3Lpm	Gestionarea energiei legăturii USB 3
+pw.usb3Lpm#0	Dezactivată
+pw.usb3Lpm#1	Minimă
+pw.usb3Lpm#2	Moderată
+pw.usb3Lpm#3	Maximă
+pw.wifi	Economisirea adaptorului Wi-Fi
+pw.wifi#0	Performanță maximă
+pw.wifi#1	Economisire redusă
+pw.wifi#2	Economisire medie
+pw.wifi#3	Economisire maximă
+pw.disk	Oprește discurile după
+pw.disk#0	Niciodată
+pw.disk#300	5 minute
+pw.disk#1200	20 de minute
+pw.disk#3600	1 oră
+g.power.sleep	Ecran și repaus
+pw.display	Oprește ecranul după
+pw.display#0	Niciodată
+pw.display#300	5 minute
+pw.display#600	10 minute
+pw.display#900	15 minute
+pw.display#1800	30 de minute
+pw.display#3600	1 oră
+pw.sleep	Repaus după
+pw.sleep#0	Niciodată
+pw.sleep#900	15 minute
+pw.sleep#1800	30 de minute
+pw.sleep#3600	1 oră
+pw.sleep#7200	2 ore
+pw.hibAfter	Hibernare după
+pw.hibAfter#0	Niciodată
+pw.hibAfter#3600	1 oră
+pw.hibAfter#10800	3 ore
+pw.hibAfter#21600	6 ore
+pw.hybrid	Repaus hibrid
+pw.hybrid#0	Dezactivat
+pw.hybrid#1	Activat
+pw.wake	Temporizatoare de trezire
+pw.wake#0	Dezactivate
+pw.wake#1	Activate
+pw.wake#2	Doar cele importante
+g.power.buttons	Butoane
+pw.powerBtn	Butonul de alimentare
+pw.powerBtn#0	Nu face nimic
+pw.powerBtn#1	Repaus
+pw.powerBtn#2	Hibernare
+pw.powerBtn#3	Închide
+pw.powerBtn#4	Oprește ecranul
+pw.lid	La închiderea capacului
+pw.lid#0	Nu face nimic
+pw.lid#1	Repaus
+pw.lid#2	Hibernare
+pw.lid#3	Închide
+g.power.media	Multimedia
+pw.videoBias	Calitatea redării video
+pw.videoBias#0	Economisire energie
+pw.videoBias#1	Performanță
+pw.videoPlay	La redarea video
+pw.videoPlay#0	Optimizează calitatea
+pw.videoPlay#1	Echilibrat
+pw.videoPlay#2	Optimizează consumul
