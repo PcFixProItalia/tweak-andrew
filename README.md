@@ -21,6 +21,16 @@ o impostazioni del piano energetico tocca, lo stato predefinito di Windows e
 quello consigliato. `tools\gen_catalog.py` controlla il formato e scrive
 `src\partK_data.ps1` e `src\partApps_data.ps1` a ogni build.
 
+## Avvio da qualsiasi PC
+
+```powershell
+irm tweak.pcfixproitalia.it | iex
+```
+
+La pagina, servita da GitHub Pages dalla cartella `docs`, e' una copia di
+`run.ps1`: scarica `Tweak_Andrew.ps1` da questo repository e lo apre come
+amministratore. `build.ps1` aggiorna la copia a ogni build.
+
 ## Compilare
 
 ```powershell

@@ -41,6 +41,8 @@ $t = $t -replace 'v6\.[0-9]', "v$version"
 
 $out = Join-Path $root 'Tweak_Andrew.ps1'
 [System.IO.File]::WriteAllText($out, $t, (New-Object System.Text.UTF8Encoding $true))
+# La pagina di GitHub Pages servita da tweak.pcfixproitalia.it e' il lanciatore.
+Copy-Item (Join-Path $root 'run.ps1') (Join-Path $root 'docs\index.html') -Force
 if ($Desktop) {
     Copy-Item $out (Join-Path ([Environment]::GetFolderPath('Desktop')) "Tweak_Andrew_v$version.ps1") -Force
 }
