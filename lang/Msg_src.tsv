@@ -135,3 +135,7 @@ appCat_security	Security and privacy
 appCat_net	Network, cloud and downloads
 appCat_dev	Development
 appCat_runtime	System components
+selPageNone	This page has no entries to queue.
+recNone	Here entries are picked one by one: read each description.
+recSelected	Selected {0} recommended entries: press Apply changes.
+recSched	Recommended values ready in both panels: press Apply and Save to write them.

@@ -202,7 +202,6 @@ win.coInstallers	Aplicațiile producătorului instalate cu driverele
 g.win.svc	Servicii
 win.svcSysMain	SysMain (preîncărcarea aplicațiilor)
 win.svcSearch	Windows Search (indexare)
-win.svcSpooler	Derulator de imprimare
 win.svcDiagTrack	Experiențe conectate și telemetrie
 win.svcCdp	Platforma dispozitivelor conectate
 win.svcPca	Asistentul de compatibilitate a programelor

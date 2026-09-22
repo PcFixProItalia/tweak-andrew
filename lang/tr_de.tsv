@@ -608,3 +608,9 @@ M:appCat_security	Sicherheit und Datenschutz
 M:appCat_net	Netzwerk, Cloud und Downloads
 M:appCat_dev	Entwicklung
 M:appCat_runtime	Systemkomponenten
+L:btnSelectPage	Diese Seite
+L:btnRecommended	Empfohlene
+M:selPageNone	Auf dieser Seite gibt es nichts für die Warteschlange.
+M:recNone	Hier werden die Einträge einzeln gewählt: Lies jede Beschreibung.
+M:recSelected	{0} empfohlene Einträge ausgewählt: Änderungen übernehmen drücken.
+M:recSched	Empfohlene Werte in beiden Feldern bereit: Übernehmen und Speichern drücken.

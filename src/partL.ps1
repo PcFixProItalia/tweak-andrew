@@ -786,6 +786,12 @@ $script:Tr = @{
         'M:appCat_net' = "Red, nube y descargas"
         'M:appCat_dev' = "Desarrollo"
         'M:appCat_runtime' = "Componentes del sistema"
+        'L:btnSelectPage' = "Esta página"
+        'L:btnRecommended' = "Recomendados"
+        'M:selPageNone' = "En esta página no hay opciones que poner en cola."
+        'M:recNone' = "Aquí las opciones se eligen una a una: lee la descripción de cada una."
+        'M:recSelected' = "Seleccionadas {0} opciones recomendadas: pulsa Aplicar cambios."
+        'M:recSched' = "Valores recomendados listos en los dos paneles: pulsa Aplicar y Guardar."
     }
     de = @{
         'L:lblSubtitle' = "Windows-Optimierung und -Steuerung — PcFixPro Italia"
@@ -1398,6 +1404,12 @@ $script:Tr = @{
         'M:appCat_net' = "Netzwerk, Cloud und Downloads"
         'M:appCat_dev' = "Entwicklung"
         'M:appCat_runtime' = "Systemkomponenten"
+        'L:btnSelectPage' = "Diese Seite"
+        'L:btnRecommended' = "Empfohlene"
+        'M:selPageNone' = "Auf dieser Seite gibt es nichts für die Warteschlange."
+        'M:recNone' = "Hier werden die Einträge einzeln gewählt: Lies jede Beschreibung."
+        'M:recSelected' = "{0} empfohlene Einträge ausgewählt: Änderungen übernehmen drücken."
+        'M:recSched' = "Empfohlene Werte in beiden Feldern bereit: Übernehmen und Speichern drücken."
     }
     fr = @{
         'L:lblSubtitle' = "Optimisation et contrôle de Windows — PcFixPro Italia"
@@ -2013,6 +2025,12 @@ $script:Tr = @{
         'M:appCat_net' = "Réseau, cloud et téléchargements"
         'M:appCat_dev' = "Développement"
         'M:appCat_runtime' = "Composants système"
+        'L:btnSelectPage' = "Cette page"
+        'L:btnRecommended' = "Recommandés"
+        'M:selPageNone' = "Cette page n'a aucun élément à mettre en file."
+        'M:recNone' = "Ici les éléments se choisissent un par un : lis chaque description."
+        'M:recSelected' = "{0} éléments recommandés sélectionnés : appuie sur Appliquer."
+        'M:recSched' = "Valeurs recommandées prêtes dans les deux panneaux : appuie sur Appliquer et Enregistrer."
     }
     pl = @{
         'L:lblSubtitle' = "Optymalizacja i kontrola systemu Windows — PcFixPro Italia"
@@ -2625,6 +2643,12 @@ $script:Tr = @{
         'M:appCat_net' = "Sieć, chmura i pobieranie"
         'M:appCat_dev' = "Programowanie"
         'M:appCat_runtime' = "Składniki systemu"
+        'L:btnSelectPage' = "Ta strona"
+        'L:btnRecommended' = "Zalecane"
+        'M:selPageNone' = "Na tej stronie nie ma pozycji do kolejki."
+        'M:recNone' = "Tutaj pozycje wybiera się pojedynczo: przeczytaj każdy opis."
+        'M:recSelected' = "Zaznaczono {0} zalecanych pozycji: naciśnij Zastosuj zmiany."
+        'M:recSched' = "Zalecane wartości gotowe w obu panelach: naciśnij Zastosuj i Zapisz."
     }
     pt = @{
         'L:lblSubtitle' = "Otimização e controle do Windows — PcFixPro Italia"
@@ -3237,6 +3261,12 @@ $script:Tr = @{
         'M:appCat_net' = "Rede, nuvem e downloads"
         'M:appCat_dev' = "Desenvolvimento"
         'M:appCat_runtime' = "Componentes do sistema"
+        'L:btnSelectPage' = "Esta página"
+        'L:btnRecommended' = "Recomendados"
+        'M:selPageNone' = "Nesta página não há itens para a fila."
+        'M:recNone' = "Aqui os itens são escolhidos um a um: leia cada descrição."
+        'M:recSelected' = "Selecionados {0} itens recomendados: pressione Aplicar alterações."
+        'M:recSched' = "Valores recomendados prontos nos dois painéis: pressione Aplicar e Salvar."
     }
     ro = @{
         'L:lblSubtitle' = "Optimizarea și controlul Windows — PcFixPro Italia"
@@ -3849,6 +3879,12 @@ $script:Tr = @{
         'M:appCat_net' = "Rețea, cloud și descărcări"
         'M:appCat_dev' = "Dezvoltare"
         'M:appCat_runtime' = "Componente de sistem"
+        'L:btnSelectPage' = "Această pagină"
+        'L:btnRecommended' = "Recomandate"
+        'M:selPageNone' = "Pe această pagină nu sunt elemente de pus la coadă."
+        'M:recNone' = "Aici elementele se aleg unul câte unul: citește fiecare descriere."
+        'M:recSelected' = "Au fost selectate {0} elemente recomandate: apasă Aplică modificările."
+        'M:recSched' = "Valorile recomandate sunt pregătite în ambele panouri: apasă Aplică și Salvează."
     }
     ru = @{
         'L:lblSubtitle' = "Оптимизация и управление Windows — PcFixPro Italia"
@@ -4461,6 +4497,12 @@ $script:Tr = @{
         'M:appCat_net' = "Сеть, облако и загрузки"
         'M:appCat_dev' = "Разработка"
         'M:appCat_runtime' = "Системные компоненты"
+        'L:btnSelectPage' = "Эта страница"
+        'L:btnRecommended' = "Рекомендуемые"
+        'M:selPageNone' = "На этой странице нет пунктов для очереди."
+        'M:recNone' = "Здесь пункты выбираются по одному: прочитайте описание каждого."
+        'M:recSelected' = "Выбрано рекомендуемых пунктов: {0}. Нажмите «Применить изменения»."
+        'M:recSched' = "Рекомендуемые значения готовы в обеих панелях: нажмите «Применить» и «Сохранить»."
     }
 }
 

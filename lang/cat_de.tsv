@@ -202,7 +202,6 @@ win.coInstallers	Hersteller-Apps mit Treibern installieren
 g.win.svc	Dienste
 win.svcSysMain	SysMain (App-Vorladen)
 win.svcSearch	Windows Search (Indizierung)
-win.svcSpooler	Druckwarteschlange
 win.svcDiagTrack	Benutzererfahrungen und Telemetrie im verbundenen Modus
 win.svcCdp	Plattform für verbundene Geräte
 win.svcPca	Programmkompatibilitäts-Assistent

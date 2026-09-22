@@ -202,7 +202,6 @@ win.coInstallers	Aplikacje producenta instalowane ze sterownikami
 g.win.svc	Usługi
 win.svcSysMain	SysMain (wstępne ładowanie aplikacji)
 win.svcSearch	Windows Search (indeksowanie)
-win.svcSpooler	Bufor wydruku
 win.svcDiagTrack	Środowisko użytkownika i telemetria
 win.svcCdp	Platforma urządzeń połączonych
 win.svcPca	Asystent zgodności programów

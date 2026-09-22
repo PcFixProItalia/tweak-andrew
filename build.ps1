@@ -6,7 +6,7 @@ $root = $PSScriptRoot
 $src = Join-Path $root 'src'
 $enc = [System.Text.Encoding]::UTF8
 $ErrorActionPreference = 'Stop'
-$version = '7.0'
+$version = '7.1'
 
 # Catalogo delle impostazioni: si rigenera a ogni build.
 & python (Join-Path $root 'tools\gen_catalog.py')

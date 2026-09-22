@@ -202,7 +202,6 @@ win.coInstallers	Apps do fabricante instalados com os drivers
 g.win.svc	Serviços
 win.svcSysMain	SysMain (pré-carregamento de apps)
 win.svcSearch	Windows Search (indexação)
-win.svcSpooler	Spooler de impressão
 win.svcDiagTrack	Experiências do usuário conectado e telemetria
 win.svcCdp	Plataforma de dispositivos conectados
 win.svcPca	Assistente de compatibilidade de programas

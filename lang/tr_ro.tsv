@@ -608,3 +608,9 @@ M:appCat_security	Securitate și confidențialitate
 M:appCat_net	Rețea, cloud și descărcări
 M:appCat_dev	Dezvoltare
 M:appCat_runtime	Componente de sistem
+L:btnSelectPage	Această pagină
+L:btnRecommended	Recomandate
+M:selPageNone	Pe această pagină nu sunt elemente de pus la coadă.
+M:recNone	Aici elementele se aleg unul câte unul: citește fiecare descriere.
+M:recSelected	Au fost selectate {0} elemente recomandate: apasă Aplică modificările.
+M:recSched	Valorile recomandate sunt pregătite în ambele panouri: apasă Aplică și Salvează.

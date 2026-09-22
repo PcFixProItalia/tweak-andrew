@@ -1,5 +1,5 @@
 ﻿# ==============================================================================
-#                  TWEAK ANDREW v7.0 - PcFixPro Italia
+#                  TWEAK ANDREW v7.1 - PcFixPro Italia
 #        Suite offline di ottimizzazione e controllo per Windows 10 / 11
 # ==============================================================================
 # Requisiti: Windows 10 / 11 | Eseguire come AMMINISTRATORE
@@ -26,7 +26,7 @@ if (-not $principal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administra
     } catch {
         [System.Windows.MessageBox]::Show(
             "Tweak Andrew richiede i privilegi di Amministratore.`n`nL'avvio elevato non e' riuscito. Avvia PowerShell come amministratore e riprova.`n`nDettaglio: $($_.Exception.Message)",
-            "Tweak Andrew v7.0",
+            "Tweak Andrew v7.1",
             [System.Windows.MessageBoxButton]::OK,
             [System.Windows.MessageBoxImage]::Error
         ) | Out-Null
@@ -76,8 +76,8 @@ $script:PlanData = @{
 <Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
-        Title="Tweak Andrew v7.0 - PcFixPro Italia" Height="840" Width="1280"
-        MinWidth="1120" MinHeight="700"
+        Title="Tweak Andrew v7.1 - PcFixPro Italia" Height="840" Width="1340"
+        MinWidth="1180" MinHeight="700"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None" AllowsTransparency="False" Background="#FF000000"
         Foreground="#F2F2F5" TextOptions.TextFormattingMode="Ideal" UseLayoutRounding="True"
@@ -847,7 +847,7 @@ $script:PlanData = @{
                         </Border>
                         <TextBlock Text="Tweak Andrew" FontFamily="Raleway, Segoe UI Variable Display, Segoe UI"
                                    FontSize="13.5" FontWeight="SemiBold" Foreground="#FFE4EBF2" VerticalAlignment="Center"/>
-                        <TextBlock Text="v7.0" FontFamily="Roboto, Segoe UI" FontSize="11"
+                        <TextBlock Text="v7.1" FontFamily="Roboto, Segoe UI" FontSize="11"
                                    Foreground="#FF6E7A88" VerticalAlignment="Center" Margin="9,1,0,0"/>
                     </StackPanel>
 
@@ -1139,8 +1139,11 @@ $script:PlanData = @{
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock x:Name="lblSelected" Text="Selezionati:" Foreground="#FF7E7E88" FontSize="12"
                                                VerticalAlignment="Center" Margin="0,0,9,0"/>
+                                    <!-- Con la scala al 130% l'arrotondamento tagliava la cifra: una
+                                         larghezza minima e un filo di margine la tengono dentro. -->
                                     <TextBlock x:Name="txtSelectedCount" Text="0" Foreground="#FF2ED3A7"
-                                               FontFamily="Raleway, Segoe UI" FontWeight="Bold" FontSize="15" VerticalAlignment="Center"/>
+                                               FontFamily="Raleway, Segoe UI" FontWeight="Bold" FontSize="15" VerticalAlignment="Center"
+                                               MinWidth="20" Margin="0,0,3,0" TextAlignment="Right"/>
                                 </StackPanel>
                             </Border>
                         </Grid>
@@ -2357,11 +2360,13 @@ $script:PlanData = @{
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
-                                    <StackPanel Grid.Column="0" Orientation="Horizontal">
-                                        <Button x:Name="btnSelectAll" Style="{StaticResource GhostBtn}" Height="40" Margin="0,0,8,0" Content="Seleziona tutto"/>
-                                        <Button x:Name="btnDeselectAll" Style="{StaticResource GhostBtn}" Height="40" Margin="0,0,8,0" Content="Deseleziona"/>
-                                        <Button x:Name="btnDetectActive" Style="{StaticResource GhostBtn}" Height="40" Margin="0,0,8,0" Content="Rileva gia attivi"/>
-                                    </StackPanel>
+                                    <WrapPanel Grid.Column="0" Orientation="Horizontal">
+                                        <Button x:Name="btnSelectAll" Style="{StaticResource GhostBtn}" Height="40" Margin="0,0,8,4" Content="Seleziona tutto"/>
+                                        <Button x:Name="btnSelectPage" Style="{StaticResource GhostBtn}" Height="40" Margin="0,0,8,4" Content="Questa pagina"/>
+                                        <Button x:Name="btnRecommended" Style="{StaticResource GhostBtn}" Height="40" Margin="0,0,8,4" Content="Consigliati"/>
+                                        <Button x:Name="btnDeselectAll" Style="{StaticResource GhostBtn}" Height="40" Margin="0,0,8,4" Content="Deseleziona"/>
+                                        <Button x:Name="btnDetectActive" Style="{StaticResource GhostBtn}" Height="40" Margin="0,0,8,4" Content="Rileva gia attivi"/>
+                                    </WrapPanel>
                                     <StackPanel Grid.Column="1" Orientation="Horizontal">
                                         <Button x:Name="btnUndo" Style="{StaticResource UndoBtn}" Height="40" MinWidth="150" Margin="0,0,8,0" Content="Reimposta predefiniti"/>
                                         <Button x:Name="btnRun" Style="{StaticResource PrimaryBtn}" Height="40" MinWidth="170" Content="Applica modifiche"/>
@@ -2383,7 +2388,7 @@ $script:PlanData = @{
 # 2. CARICAMENTO DELLA FINESTRA
 # ------------------------------------------------------------------------------
 $script:StartupLog = Join-Path $env:TEMP "TweakAndrew_startup.log"
-try { "$(Get-Date -Format s) - Tweak Andrew v7.0 avvio" | Set-Content -LiteralPath $script:StartupLog -Encoding UTF8 } catch {}
+try { "$(Get-Date -Format s) - Tweak Andrew v7.1 avvio" | Set-Content -LiteralPath $script:StartupLog -Encoding UTF8 } catch {}
 
 try {
     $reader = (New-Object System.Xml.XmlNodeReader $xaml)
@@ -2391,7 +2396,7 @@ try {
 } catch {
     [System.Windows.MessageBox]::Show(
         "Impossibile avviare l'interfaccia di Tweak Andrew.`n`nErrore XAML: $($_.Exception.Message)",
-        "Tweak Andrew v7.0 - Errore di avvio",
+        "Tweak Andrew v7.1 - Errore di avvio",
         [System.Windows.MessageBoxButton]::OK,
         [System.Windows.MessageBoxImage]::Error
     ) | Out-Null
@@ -2790,6 +2795,8 @@ $script:Loc = @{
     btnAppsClear       = @{ it = "Deseleziona"; en = "Clear selection" }
     btnAppsRefresh     = @{ it = "Aggiorna elenco"; en = "Refresh list" }
     lblProfileQueued   = @{ it = "Scegli un profilo: entra tra le modifiche da applicare. Un secondo clic lo toglie."; en = "Pick a profile: it joins the changes to apply. A second click removes it." }
+    btnSelectPage      = @{ it = "Questa pagina"; en = "This page" }
+    btnRecommended     = @{ it = "Consigliati"; en = "Recommended" }
 }
 
 # Messaggi non legati a un controllo: log, finestre di dialogo, etichette dinamiche.
@@ -2805,12 +2812,12 @@ $script:Msg = @{
     free             = @{ it = "liberi su"; en = "free of" }
     chooseProfile    = @{ it = "Seleziona SSD oppure HDD prima di applicare il profilo di archiviazione."; en = "Select SSD or HDD before applying the storage profile." }
     finished         = @{ it = "Operazioni completate. Riavvia il computer per rendere effettive tutte le modifiche."; en = "All operations completed. Restart the computer to apply every change." }
-    finishedTitle    = @{ it = "Tweak Andrew v7.0"; en = "Tweak Andrew v7.0" }
+    finishedTitle    = @{ it = "Tweak Andrew v7.1"; en = "Tweak Andrew v7.1" }
     confirmRun       = @{ it = "Vuoi applicare le modifiche selezionate?"; en = "Apply the selected changes?" }
     confirmTitle     = @{ it = "Conferma"; en = "Confirm" }
     emptyRecycleAsk  = @{ it = "Svuotare definitivamente il Cestino? L'operazione non si può annullare."; en = "Permanently empty the Recycle Bin? This cannot be undone." }
     summary          = @{ it = "Riepilogo"; en = "Summary" }
-    winTitle         = @{ it = "Tweak Andrew v7.0 - PcFixPro Italia"; en = "Tweak Andrew v7.0 - PcFixPro Italia" }
+    winTitle         = @{ it = "Tweak Andrew v7.1 - PcFixPro Italia"; en = "Tweak Andrew v7.1 - PcFixPro Italia" }
     planTop          = @{ it = "CONSIGLIATI"; en = "RECOMMENDED" }
     planWindows      = @{ it = "PIANI DI WINDOWS"; en = "WINDOWS PLANS" }
     planTest         = @{ it = "DA TESTARE"; en = "TO TEST" }
@@ -2931,6 +2938,10 @@ $script:Msg = @{
     appCat_net         = @{ it = "Rete, cloud e download"; en = "Network, cloud and downloads" }
     appCat_dev         = @{ it = "Sviluppo"; en = "Development" }
     appCat_runtime     = @{ it = "Componenti di sistema"; en = "System components" }
+    selPageNone        = @{ it = "Su questa pagina non ci sono voci da mettere in coda."; en = "This page has no entries to queue." }
+    recNone            = @{ it = "Qui le voci si scelgono una per una: leggi la descrizione di ognuna."; en = "Here entries are picked one by one: read each description." }
+    recSelected        = @{ it = "Selezionate {0} voci consigliate: premi Applica modifiche."; en = "Selected {0} recommended entries: press Apply changes." }
+    recSched           = @{ it = "Valori consigliati pronti nei due pannelli: premi Applica e Salva per scriverli."; en = "Recommended values ready in both panels: press Apply and Save to write them." }
 }
 
 $script:LangCode = "it"
@@ -2997,6 +3008,7 @@ $cmbLang = E 'cmbLang'
 $prgTweaks = E 'prgTweaks'; $txtProgressLabel = E 'txtProgressLabel'; $txtProgressCount = E 'txtProgressCount'
 $txtSelectedCount = E 'txtSelectedCount'
 $btnRun = E 'btnRun'; $btnUndo = E 'btnUndo'; $btnSelectAll = E 'btnSelectAll'; $btnDeselectAll = E 'btnDeselectAll'; $btnDetectActive = E 'btnDetectActive'
+$btnSelectPage = E 'btnSelectPage'; $btnRecommended = E 'btnRecommended'
 $chkRestorePoint = E 'chkRestorePoint'
 
 # Prestazioni
@@ -3635,8 +3647,96 @@ foreach ($cb in $script:AllCheckBoxes) {
     $cb.Add_Unchecked({ Update-ApplyButton })
 }
 
+# Voci del produttore sbagliato: su un PC con scheda AMD le caselle NVIDIA
+# restano ferme anche con «Seleziona tutto», perche' non farebbero nulla.
+function Test-CheckVendor($cb) {
+    $vendor = switch -Regex ([string]$cb.Name) {
+        '^chkNv'    { 'NVIDIA' }
+        '^chkAmd'   { 'AMD' }
+        '^chkIntel' { 'Intel' }
+        default     { '' }
+    }
+    if (-not $vendor) { return $true }
+    if (@($script:GpuVendors).Count -eq 0) { return $true }
+    return ($script:GpuVendors -contains $vendor)
+}
+
+function Get-CurrentPage {
+    foreach ($entry in $script:NavPages) {
+        if ($entry.Nav.IsChecked -eq $true) { return $entry.Page }
+    }
+    return $null
+}
+
+function Get-SelectableChecks([switch]$CurrentPageOnly) {
+    $list = @($script:SelectableCheckBoxes | Where-Object { Test-CheckVendor $_ })
+    if (-not $CurrentPageOnly) { return $list }
+    $page = Get-CurrentPage
+    if ($null -eq $page) { return @() }
+    $onPage = @(Get-CheckBoxesFromTree $page)
+    return @($list | Where-Object { $onPage -contains $_ })
+}
+
+# Voci consigliate: quelle sicure e utili su quasi tutti i computer. La pagina
+# Avanzate non ne ha: li' si tolgono pezzi di Windows e la scelta resta una
+# per una.
+$script:RecommendedChecks = @{
+    pagePerf    = @('chkMMCSS','chkPriority','chkKernelMem','chkPowerThrottling','chkUSBSuspend','chkNtfsPerf','chkRamTweak','chkGameMode','chkGameDVR')
+    pagePrivacy = @('chkTelemetry','chkTelemetryTasks','chkActivityHistory','chkAdvertisingID','chkTailoredExp','chkFeedback','chkErrorReporting',
+                    'chkInkingTyping','chkWiFiSense','chkConsumerFeatures','chkStoreSearch','chkSuggestedContent','chkLockScreenAds','chkStartBing',
+                    'chkStartRecs','chkStartTracking','chkWindowsAI','chkEdgeDebloat','chkDeliveryOpt','chkWPBT','chkBackgroundApps',
+                    'chkRemoteAssistance','chkCompanionApps','chkServicesManual','chkTeredo')
+    pageUi      = @('chkDarkTheme','chkFileExt','chkLongPaths','chkExplorerThisPC','chkRemove3D','chkRecycleConfirm','chkMenuDelay','chkStartNoWeb',
+                    'chkStartNoAccount','chkTaskbarWidgets','chkTaskbarChat','chkTaskbarEndTask','chkMouseAccel','chkNumLock','chkStickyKeys')
+    pageNet     = @('chkNetPowerSave')
+    pageStorage = @('chkReservedStorage')
+    pagePower   = @('chkFastStartup')
+    pageGpu     = @('chkGpuTdr','chkNvTelemetry','chkNvGfe','chkNvPerfMode','chkNvUpdates','chkNvP2','chkNvDrsPower','chkNvLowLatency',
+                    'chkNvShaderCache','chkNvDisplayPower','chkAmdUx','chkAmdBloat','chkAmdUlps','chkAmdAntiLag','chkAmdShaderCache','chkIntelBloat')
+}
+
+# La pagina Priorita' non ha caselle: i valori consigliati si preparano nei due
+# pannelli, poi restano da confermare con Applica e Salva.
+function Set-SchedRecommended {
+    Select-ComboValue $cmbPsPreset 38
+    Select-ComboValue $cmbMmNet -1
+    Select-ComboValue $cmbMmResp 10
+    Select-ComboValue $cmbMmTask 'Games'
+    Select-ComboValue $cmbMmPrio 6
+    Select-ComboValue $cmbMmSched 'High'
+    Select-ComboValue $cmbMmGpu 8
+    Select-ComboValue $cmbMmSfio 'High'
+    Select-ComboValue $cmbMmBgOnly 'False'
+}
+
 $btnSelectAll.Add_Click({
-    foreach ($cb in $script:SelectableCheckBoxes) { $cb.IsChecked = $true }
+    foreach ($cb in (Get-SelectableChecks)) { $cb.IsChecked = $true }
+    Update-ApplyButton
+})
+
+$btnSelectPage.Add_Click({
+    $found = @(Get-SelectableChecks -CurrentPageOnly)
+    foreach ($cb in $found) { $cb.IsChecked = $true }
+    if ($found.Count -eq 0) { $txtProgressLabel.Text = T 'selPageNone' }
+    Update-ApplyButton
+})
+
+$btnRecommended.Add_Click({
+    $page = Get-CurrentPage
+    if ($null -eq $page) { return }
+    $name = [string]$page.Name
+    if ($name -eq 'pageSched') {
+        Set-SchedRecommended
+        $txtProgressLabel.Text = T 'recSched'
+        return
+    }
+    $names = $script:RecommendedChecks[$name]
+    if (-not $names) { $txtProgressLabel.Text = T 'recNone'; return }
+    $n = 0
+    foreach ($cb in @(Get-SelectableChecks -CurrentPageOnly)) {
+        if ($names -contains [string]$cb.Name) { $cb.IsChecked = $true; $n++ }
+    }
+    $txtProgressLabel.Text = (T 'recSelected') -f $n
     Update-ApplyButton
 })
 
@@ -4476,6 +4576,12 @@ $script:Tr = @{
         'M:appCat_net' = "Red, nube y descargas"
         'M:appCat_dev' = "Desarrollo"
         'M:appCat_runtime' = "Componentes del sistema"
+        'L:btnSelectPage' = "Esta página"
+        'L:btnRecommended' = "Recomendados"
+        'M:selPageNone' = "En esta página no hay opciones que poner en cola."
+        'M:recNone' = "Aquí las opciones se eligen una a una: lee la descripción de cada una."
+        'M:recSelected' = "Seleccionadas {0} opciones recomendadas: pulsa Aplicar cambios."
+        'M:recSched' = "Valores recomendados listos en los dos paneles: pulsa Aplicar y Guardar."
     }
     de = @{
         'L:lblSubtitle' = "Windows-Optimierung und -Steuerung — PcFixPro Italia"
@@ -5088,6 +5194,12 @@ $script:Tr = @{
         'M:appCat_net' = "Netzwerk, Cloud und Downloads"
         'M:appCat_dev' = "Entwicklung"
         'M:appCat_runtime' = "Systemkomponenten"
+        'L:btnSelectPage' = "Diese Seite"
+        'L:btnRecommended' = "Empfohlene"
+        'M:selPageNone' = "Auf dieser Seite gibt es nichts für die Warteschlange."
+        'M:recNone' = "Hier werden die Einträge einzeln gewählt: Lies jede Beschreibung."
+        'M:recSelected' = "{0} empfohlene Einträge ausgewählt: Änderungen übernehmen drücken."
+        'M:recSched' = "Empfohlene Werte in beiden Feldern bereit: Übernehmen und Speichern drücken."
     }
     fr = @{
         'L:lblSubtitle' = "Optimisation et contrôle de Windows — PcFixPro Italia"
@@ -5703,6 +5815,12 @@ $script:Tr = @{
         'M:appCat_net' = "Réseau, cloud et téléchargements"
         'M:appCat_dev' = "Développement"
         'M:appCat_runtime' = "Composants système"
+        'L:btnSelectPage' = "Cette page"
+        'L:btnRecommended' = "Recommandés"
+        'M:selPageNone' = "Cette page n'a aucun élément à mettre en file."
+        'M:recNone' = "Ici les éléments se choisissent un par un : lis chaque description."
+        'M:recSelected' = "{0} éléments recommandés sélectionnés : appuie sur Appliquer."
+        'M:recSched' = "Valeurs recommandées prêtes dans les deux panneaux : appuie sur Appliquer et Enregistrer."
     }
     pl = @{
         'L:lblSubtitle' = "Optymalizacja i kontrola systemu Windows — PcFixPro Italia"
@@ -6315,6 +6433,12 @@ $script:Tr = @{
         'M:appCat_net' = "Sieć, chmura i pobieranie"
         'M:appCat_dev' = "Programowanie"
         'M:appCat_runtime' = "Składniki systemu"
+        'L:btnSelectPage' = "Ta strona"
+        'L:btnRecommended' = "Zalecane"
+        'M:selPageNone' = "Na tej stronie nie ma pozycji do kolejki."
+        'M:recNone' = "Tutaj pozycje wybiera się pojedynczo: przeczytaj każdy opis."
+        'M:recSelected' = "Zaznaczono {0} zalecanych pozycji: naciśnij Zastosuj zmiany."
+        'M:recSched' = "Zalecane wartości gotowe w obu panelach: naciśnij Zastosuj i Zapisz."
     }
     pt = @{
         'L:lblSubtitle' = "Otimização e controle do Windows — PcFixPro Italia"
@@ -6927,6 +7051,12 @@ $script:Tr = @{
         'M:appCat_net' = "Rede, nuvem e downloads"
         'M:appCat_dev' = "Desenvolvimento"
         'M:appCat_runtime' = "Componentes do sistema"
+        'L:btnSelectPage' = "Esta página"
+        'L:btnRecommended' = "Recomendados"
+        'M:selPageNone' = "Nesta página não há itens para a fila."
+        'M:recNone' = "Aqui os itens são escolhidos um a um: leia cada descrição."
+        'M:recSelected' = "Selecionados {0} itens recomendados: pressione Aplicar alterações."
+        'M:recSched' = "Valores recomendados prontos nos dois painéis: pressione Aplicar e Salvar."
     }
     ro = @{
         'L:lblSubtitle' = "Optimizarea și controlul Windows — PcFixPro Italia"
@@ -7539,6 +7669,12 @@ $script:Tr = @{
         'M:appCat_net' = "Rețea, cloud și descărcări"
         'M:appCat_dev' = "Dezvoltare"
         'M:appCat_runtime' = "Componente de sistem"
+        'L:btnSelectPage' = "Această pagină"
+        'L:btnRecommended' = "Recomandate"
+        'M:selPageNone' = "Pe această pagină nu sunt elemente de pus la coadă."
+        'M:recNone' = "Aici elementele se aleg unul câte unul: citește fiecare descriere."
+        'M:recSelected' = "Au fost selectate {0} elemente recomandate: apasă Aplică modificările."
+        'M:recSched' = "Valorile recomandate sunt pregătite în ambele panouri: apasă Aplică și Salvează."
     }
     ru = @{
         'L:lblSubtitle' = "Оптимизация и управление Windows — PcFixPro Italia"
@@ -8151,6 +8287,12 @@ $script:Tr = @{
         'M:appCat_net' = "Сеть, облако и загрузки"
         'M:appCat_dev' = "Разработка"
         'M:appCat_runtime' = "Системные компоненты"
+        'L:btnSelectPage' = "Эта страница"
+        'L:btnRecommended' = "Рекомендуемые"
+        'M:selPageNone' = "На этой странице нет пунктов для очереди."
+        'M:recNone' = "Здесь пункты выбираются по одному: прочитайте описание каждого."
+        'M:recSelected' = "Выбрано рекомендуемых пунктов: {0}. Нажмите «Применить изменения»."
+        'M:recSched' = "Рекомендуемые значения готовы в обеих панелях: нажмите «Применить» и «Сохранить»."
     }
 }
 
@@ -8301,7 +8443,6 @@ $script:Catalog = @(
     @{ Id = 'win.coInstallers'; Page = 'win'; Group = 'upd'; Kind = 'T'; Flags = ''; Def = '1'; Rec = '0'; Ops = @(,@('HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Device Installer', 'DisableCoInstallers', 'D', '0,-', '1')) },
     @{ Id = 'win.svcSysMain'; Page = 'win'; Group = 'svc'; Kind = 'V'; Flags = ''; Def = 'A'; Rec = '-'; Svcs = @('SysMain') },
     @{ Id = 'win.svcSearch'; Page = 'win'; Group = 'svc'; Kind = 'V'; Flags = ''; Def = 'AD'; Rec = '-'; Svcs = @('WSearch') },
-    @{ Id = 'win.svcSpooler'; Page = 'win'; Group = 'svc'; Kind = 'V'; Flags = ''; Def = 'A'; Rec = '-'; Svcs = @('Spooler') },
     @{ Id = 'win.svcDiagTrack'; Page = 'win'; Group = 'svc'; Kind = 'V'; Flags = ''; Def = 'A'; Rec = 'X'; Svcs = @('DiagTrack') },
     @{ Id = 'win.svcCdp'; Page = 'win'; Group = 'svc'; Kind = 'V'; Flags = ''; Def = 'AD'; Rec = 'M'; Svcs = @('CDPSvc') },
     @{ Id = 'win.svcPca'; Page = 'win'; Group = 'svc'; Kind = 'V'; Flags = ''; Def = 'AD'; Rec = 'M'; Svcs = @('PcaSvc') },
@@ -8776,7 +8917,6 @@ $script:CatText = @{
     'g.win.svc' = @{ it = 'Servizi'; en = 'Services'; es = 'Servicios'; de = 'Dienste'; fr = 'Services'; pl = 'Usługi'; pt = 'Serviços'; ro = 'Servicii'; ru = 'Службы' }
     'win.svcSysMain' = @{ it = 'SysMain (precaricamento app)'; en = 'SysMain (app preloading)'; es = 'SysMain (precarga de apps)'; de = 'SysMain (App-Vorladen)'; fr = 'SysMain (préchargement des apps)'; pl = 'SysMain (wstępne ładowanie aplikacji)'; pt = 'SysMain (pré-carregamento de apps)'; ro = 'SysMain (preîncărcarea aplicațiilor)'; ru = 'SysMain (предзагрузка приложений)' }
     'win.svcSearch' = @{ it = 'Ricerca di Windows (indicizzazione)'; en = 'Windows Search (indexing)'; es = 'Windows Search (indexación)'; de = 'Windows Search (Indizierung)'; fr = 'Windows Search (indexation)'; pl = 'Windows Search (indeksowanie)'; pt = 'Windows Search (indexação)'; ro = 'Windows Search (indexare)'; ru = 'Windows Search (индексирование)' }
-    'win.svcSpooler' = @{ it = 'Spooler di stampa'; en = 'Print Spooler'; es = 'Cola de impresión'; de = 'Druckwarteschlange'; fr = 'Spouleur d''impression'; pl = 'Bufor wydruku'; pt = 'Spooler de impressão'; ro = 'Derulator de imprimare'; ru = 'Диспетчер печати' }
     'win.svcDiagTrack' = @{ it = 'Esperienze utente connesse e telemetria'; en = 'Connected User Experiences and Telemetry'; es = 'Experiencias del usuario y telemetría asociadas'; de = 'Benutzererfahrungen und Telemetrie im verbundenen Modus'; fr = 'Expériences utilisateur connectées et télémétrie'; pl = 'Środowisko użytkownika i telemetria'; pt = 'Experiências do usuário conectado e telemetria'; ro = 'Experiențe conectate și telemetrie'; ru = 'Функциональные возможности и телеметрия' }
     'win.svcCdp' = @{ it = 'Piattaforma dispositivi connessi'; en = 'Connected Devices Platform'; es = 'Plataforma de dispositivos conectados'; de = 'Plattform für verbundene Geräte'; fr = 'Plateforme des appareils connectés'; pl = 'Platforma urządzeń połączonych'; pt = 'Plataforma de dispositivos conectados'; ro = 'Platforma dispozitivelor conectate'; ru = 'Платформа подключённых устройств' }
     'win.svcPca' = @{ it = 'Compatibilità programmi'; en = 'Program Compatibility Assistant'; es = 'Asistente de compatibilidad de programas'; de = 'Programmkompatibilitäts-Assistent'; fr = 'Assistant Compatibilité des programmes'; pl = 'Asystent zgodności programów'; pt = 'Assistente de compatibilidade de programas'; ro = 'Asistentul de compatibilitate a programelor'; ru = 'Помощник по совместимости программ' }
@@ -9293,7 +9433,6 @@ $script:CatTip = @{
     'win.coInstallers' = @{ it = 'Collegando mouse o cuffie, Windows non installa da solo i programmi di contorno del produttore.'; en = 'Plugging in a mouse or headset, Windows doesn''t install the maker''s companion software.' }
     'win.svcSysMain' = @{ it = 'Tiene in RAM le app che usi spesso. Utile sugli HDD, poco sugli SSD veloci.'; en = 'Keeps your frequent apps in RAM. Useful on HDDs, less on fast SSDs.' }
     'win.svcSearch' = @{ it = 'Indicizza i file per trovarli in un attimo. Fermo, la ricerca in Start rallenta.'; en = 'Indexes files so you find them instantly. Stopped, Start search gets slower.' }
-    'win.svcSpooler' = @{ it = 'Serve per stampare. Fermo, nessuna stampante funziona.'; en = 'Needed to print. Stopped, no printer works.' }
     'win.svcDiagTrack' = @{ it = 'Il servizio che invia a Microsoft i dati di diagnostica.'; en = 'The service that sends diagnostic data to Microsoft.' }
     'win.svcCdp' = @{ it = 'Collega il PC a telefono e altri dispositivi. Serve per Collegamento al telefono.'; en = 'Links the PC to your phone and other devices. Needed for Phone Link.' }
     'win.svcPca' = @{ it = 'Controlla i vecchi programmi e propone impostazioni di compatibilità.'; en = 'Watches old programs and offers compatibility settings.' }
@@ -10763,7 +10902,7 @@ $btnRun.Add_Click({
         if (-not (Show-Dialog (T 'advWarnTitle') (T 'advWarn') 'warn')) { return }
     }
 
-    Invoke-ActionQueue "Tweak Andrew v7.0"
+    Invoke-ActionQueue "Tweak Andrew v7.1"
 })
 
 # ------------------------------------------------------------------------------
@@ -10789,7 +10928,7 @@ Show-StorageInventory
 Update-PowerPlanLabel
 Update-ApplyButton
 
-Write-Log "[INFO] Tweak Andrew v7.0 pronto. Il registro dettagliato resta in questa finestra."
+Write-Log "[INFO] Tweak Andrew v7.1 pronto. Il registro dettagliato resta in questa finestra."
 
 
 
@@ -11420,7 +11559,7 @@ $btnUndo.Add_Click({
         return
     }
     if (-not (Show-Dialog (T 'confirmTitle') (T 'undoAsk') 'ask' ((T 'selCount') -f $total))) { return }
-    Invoke-ActionQueue "Tweak Andrew v7.0 - ANNULLA"
+    Invoke-ActionQueue "Tweak Andrew v7.1 - ANNULLA"
 })
 
 
@@ -11580,10 +11719,10 @@ function Set-UiScale {
     $rootScale.LayoutTransform = New-Object System.Windows.Media.ScaleTransform($f, $f)
 
     $area = [System.Windows.SystemParameters]::WorkArea
-    $window.MinWidth  = [math]::Min(1120 * $f, $area.Width)
+    $window.MinWidth  = [math]::Min(1180 * $f, $area.Width)
     $window.MinHeight = [math]::Min(700 * $f, $area.Height)
     if ($window.WindowState -ne [System.Windows.WindowState]::Maximized) {
-        $window.Width  = [math]::Min(1280 * $f, $area.Width)
+        $window.Width  = [math]::Min(1340 * $f, $area.Width)
         $window.Height = [math]::Min(840 * $f, $area.Height)
     }
     Write-Log "[INFO] Scala interfaccia: $pct%."
@@ -11860,6 +11999,9 @@ $btnRemoveTestPlans.Add_Click({
 # 19. SCHEDA VIDEO
 # ------------------------------------------------------------------------------
 $script:GpuVendor = 'Unknown'
+# Tutte le marche presenti nel PC: un portatile ha spesso Intel integrata piu'
+# una scheda dedicata, e le voci dell'una non devono finire sull'altra.
+$script:GpuVendors = @()
 
 function Show-GpuInfo {
     if ($null -eq $txtGpuDetected) { return }
@@ -11871,6 +12013,7 @@ function Show-GpuInfo {
     if ($gpus.Count -eq 0) {
         $txtGpuDetected.Text = T 'gpuNone'
         $script:GpuVendor = 'Unknown'
+        $script:GpuVendors = @()
         return
     }
 
@@ -11879,6 +12022,11 @@ function Show-GpuInfo {
     elseif ($names -match 'Radeon|AMD|ATI')                { $script:GpuVendor = 'AMD' }
     elseif ($names -match 'Intel')                         { $script:GpuVendor = 'Intel' }
     else                                                   { $script:GpuVendor = 'Unknown' }
+
+    $script:GpuVendors = @(
+        @(@{ V = 'NVIDIA'; P = 'NVIDIA|GeForce|RTX|GTX|Quadro' }, @{ V = 'AMD'; P = 'Radeon|AMD|ATI' }, @{ V = 'Intel'; P = 'Intel' }) |
+        Where-Object { $names -match $_.P } | ForEach-Object { $_.V }
+    )
 
     $lines = foreach ($g in $gpus) {
         $data = if ($g.DriverDate) { ([datetime]$g.DriverDate).ToString('dd/MM/yyyy') } else { '?' }
@@ -11893,7 +12041,7 @@ $btnDetectGpu.Add_Click({ Show-GpuInfo; Write-Log "[INFO] Scheda video: $($scrip
 # senza questo controllo scriveva comunque le chiavi.
 function Test-Gpu {
     param([string]$Vendor, [string]$Label)
-    if ($script:GpuVendor -eq $Vendor) { return $true }
+    if ($script:GpuVendors -contains $Vendor) { return $true }
     Write-Log "[SALTATO] $Label - nessuna scheda $Vendor rilevata."
     return $false
 }
@@ -13672,6 +13820,6 @@ Update-PowerPlanLabel
 Show-PlanList
 $script:UiReady = $true
 
-Write-Log "[INFO] Tweak Andrew v7.0 pronto. Il registro dettagliato resta in questa finestra."
+Write-Log "[INFO] Tweak Andrew v7.1 pronto. Il registro dettagliato resta in questa finestra."
 
 [void]$window.ShowDialog()

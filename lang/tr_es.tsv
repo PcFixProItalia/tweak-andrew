@@ -608,3 +608,9 @@ M:appCat_security	Seguridad y privacidad
 M:appCat_net	Red, nube y descargas
 M:appCat_dev	Desarrollo
 M:appCat_runtime	Componentes del sistema
+L:btnSelectPage	Esta página
+L:btnRecommended	Recomendados
+M:selPageNone	En esta página no hay opciones que poner en cola.
+M:recNone	Aquí las opciones se eligen una a una: lee la descripción de cada una.
+M:recSelected	Seleccionadas {0} opciones recomendadas: pulsa Aplicar cambios.
+M:recSched	Valores recomendados listos en los dos paneles: pulsa Aplicar y Guardar.

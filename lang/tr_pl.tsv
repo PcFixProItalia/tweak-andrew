@@ -608,3 +608,9 @@ M:appCat_security	Bezpieczeństwo i prywatność
 M:appCat_net	Sieć, chmura i pobieranie
 M:appCat_dev	Programowanie
 M:appCat_runtime	Składniki systemu
+L:btnSelectPage	Ta strona
+L:btnRecommended	Zalecane
+M:selPageNone	Na tej stronie nie ma pozycji do kolejki.
+M:recNone	Tutaj pozycje wybiera się pojedynczo: przeczytaj każdy opis.
+M:recSelected	Zaznaczono {0} zalecanych pozycji: naciśnij Zastosuj zmiany.
+M:recSched	Zalecane wartości gotowe w obu panelach: naciśnij Zastosuj i Zapisz.

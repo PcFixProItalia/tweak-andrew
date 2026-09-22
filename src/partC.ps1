@@ -410,6 +410,8 @@ $script:Loc = @{
     btnAppsClear       = @{ it = "Deseleziona"; en = "Clear selection" }
     btnAppsRefresh     = @{ it = "Aggiorna elenco"; en = "Refresh list" }
     lblProfileQueued   = @{ it = "Scegli un profilo: entra tra le modifiche da applicare. Un secondo clic lo toglie."; en = "Pick a profile: it joins the changes to apply. A second click removes it." }
+    btnSelectPage      = @{ it = "Questa pagina"; en = "This page" }
+    btnRecommended     = @{ it = "Consigliati"; en = "Recommended" }
 }
 
 # Messaggi non legati a un controllo: log, finestre di dialogo, etichette dinamiche.
@@ -551,6 +553,10 @@ $script:Msg = @{
     appCat_net         = @{ it = "Rete, cloud e download"; en = "Network, cloud and downloads" }
     appCat_dev         = @{ it = "Sviluppo"; en = "Development" }
     appCat_runtime     = @{ it = "Componenti di sistema"; en = "System components" }
+    selPageNone        = @{ it = "Su questa pagina non ci sono voci da mettere in coda."; en = "This page has no entries to queue." }
+    recNone            = @{ it = "Qui le voci si scelgono una per una: leggi la descrizione di ognuna."; en = "Here entries are picked one by one: read each description." }
+    recSelected        = @{ it = "Selezionate {0} voci consigliate: premi Applica modifiche."; en = "Selected {0} recommended entries: press Apply changes." }
+    recSched           = @{ it = "Valori consigliati pronti nei due pannelli: premi Applica e Salva per scriverli."; en = "Recommended values ready in both panels: press Apply and Save to write them." }
 }
 
 $script:LangCode = "it"
@@ -617,6 +623,7 @@ $cmbLang = E 'cmbLang'
 $prgTweaks = E 'prgTweaks'; $txtProgressLabel = E 'txtProgressLabel'; $txtProgressCount = E 'txtProgressCount'
 $txtSelectedCount = E 'txtSelectedCount'
 $btnRun = E 'btnRun'; $btnUndo = E 'btnUndo'; $btnSelectAll = E 'btnSelectAll'; $btnDeselectAll = E 'btnDeselectAll'; $btnDetectActive = E 'btnDetectActive'
+$btnSelectPage = E 'btnSelectPage'; $btnRecommended = E 'btnRecommended'
 $chkRestorePoint = E 'chkRestorePoint'
 
 # Prestazioni
@@ -1255,8 +1262,96 @@ foreach ($cb in $script:AllCheckBoxes) {
     $cb.Add_Unchecked({ Update-ApplyButton })
 }
 
+# Voci del produttore sbagliato: su un PC con scheda AMD le caselle NVIDIA
+# restano ferme anche con «Seleziona tutto», perche' non farebbero nulla.
+function Test-CheckVendor($cb) {
+    $vendor = switch -Regex ([string]$cb.Name) {
+        '^chkNv'    { 'NVIDIA' }
+        '^chkAmd'   { 'AMD' }
+        '^chkIntel' { 'Intel' }
+        default     { '' }
+    }
+    if (-not $vendor) { return $true }
+    if (@($script:GpuVendors).Count -eq 0) { return $true }
+    return ($script:GpuVendors -contains $vendor)
+}
+
+function Get-CurrentPage {
+    foreach ($entry in $script:NavPages) {
+        if ($entry.Nav.IsChecked -eq $true) { return $entry.Page }
+    }
+    return $null
+}
+
+function Get-SelectableChecks([switch]$CurrentPageOnly) {
+    $list = @($script:SelectableCheckBoxes | Where-Object { Test-CheckVendor $_ })
+    if (-not $CurrentPageOnly) { return $list }
+    $page = Get-CurrentPage
+    if ($null -eq $page) { return @() }
+    $onPage = @(Get-CheckBoxesFromTree $page)
+    return @($list | Where-Object { $onPage -contains $_ })
+}
+
+# Voci consigliate: quelle sicure e utili su quasi tutti i computer. La pagina
+# Avanzate non ne ha: li' si tolgono pezzi di Windows e la scelta resta una
+# per una.
+$script:RecommendedChecks = @{
+    pagePerf    = @('chkMMCSS','chkPriority','chkKernelMem','chkPowerThrottling','chkUSBSuspend','chkNtfsPerf','chkRamTweak','chkGameMode','chkGameDVR')
+    pagePrivacy = @('chkTelemetry','chkTelemetryTasks','chkActivityHistory','chkAdvertisingID','chkTailoredExp','chkFeedback','chkErrorReporting',
+                    'chkInkingTyping','chkWiFiSense','chkConsumerFeatures','chkStoreSearch','chkSuggestedContent','chkLockScreenAds','chkStartBing',
+                    'chkStartRecs','chkStartTracking','chkWindowsAI','chkEdgeDebloat','chkDeliveryOpt','chkWPBT','chkBackgroundApps',
+                    'chkRemoteAssistance','chkCompanionApps','chkServicesManual','chkTeredo')
+    pageUi      = @('chkDarkTheme','chkFileExt','chkLongPaths','chkExplorerThisPC','chkRemove3D','chkRecycleConfirm','chkMenuDelay','chkStartNoWeb',
+                    'chkStartNoAccount','chkTaskbarWidgets','chkTaskbarChat','chkTaskbarEndTask','chkMouseAccel','chkNumLock','chkStickyKeys')
+    pageNet     = @('chkNetPowerSave')
+    pageStorage = @('chkReservedStorage')
+    pagePower   = @('chkFastStartup')
+    pageGpu     = @('chkGpuTdr','chkNvTelemetry','chkNvGfe','chkNvPerfMode','chkNvUpdates','chkNvP2','chkNvDrsPower','chkNvLowLatency',
+                    'chkNvShaderCache','chkNvDisplayPower','chkAmdUx','chkAmdBloat','chkAmdUlps','chkAmdAntiLag','chkAmdShaderCache','chkIntelBloat')
+}
+
+# La pagina Priorita' non ha caselle: i valori consigliati si preparano nei due
+# pannelli, poi restano da confermare con Applica e Salva.
+function Set-SchedRecommended {
+    Select-ComboValue $cmbPsPreset 38
+    Select-ComboValue $cmbMmNet -1
+    Select-ComboValue $cmbMmResp 10
+    Select-ComboValue $cmbMmTask 'Games'
+    Select-ComboValue $cmbMmPrio 6
+    Select-ComboValue $cmbMmSched 'High'
+    Select-ComboValue $cmbMmGpu 8
+    Select-ComboValue $cmbMmSfio 'High'
+    Select-ComboValue $cmbMmBgOnly 'False'
+}
+
 $btnSelectAll.Add_Click({
-    foreach ($cb in $script:SelectableCheckBoxes) { $cb.IsChecked = $true }
+    foreach ($cb in (Get-SelectableChecks)) { $cb.IsChecked = $true }
+    Update-ApplyButton
+})
+
+$btnSelectPage.Add_Click({
+    $found = @(Get-SelectableChecks -CurrentPageOnly)
+    foreach ($cb in $found) { $cb.IsChecked = $true }
+    if ($found.Count -eq 0) { $txtProgressLabel.Text = T 'selPageNone' }
+    Update-ApplyButton
+})
+
+$btnRecommended.Add_Click({
+    $page = Get-CurrentPage
+    if ($null -eq $page) { return }
+    $name = [string]$page.Name
+    if ($name -eq 'pageSched') {
+        Set-SchedRecommended
+        $txtProgressLabel.Text = T 'recSched'
+        return
+    }
+    $names = $script:RecommendedChecks[$name]
+    if (-not $names) { $txtProgressLabel.Text = T 'recNone'; return }
+    $n = 0
+    foreach ($cb in @(Get-SelectableChecks -CurrentPageOnly)) {
+        if ($names -contains [string]$cb.Name) { $cb.IsChecked = $true; $n++ }
+    }
+    $txtProgressLabel.Text = (T 'recSelected') -f $n
     Update-ApplyButton
 })
 

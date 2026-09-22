@@ -155,10 +155,10 @@ function Set-UiScale {
     $rootScale.LayoutTransform = New-Object System.Windows.Media.ScaleTransform($f, $f)
 
     $area = [System.Windows.SystemParameters]::WorkArea
-    $window.MinWidth  = [math]::Min(1120 * $f, $area.Width)
+    $window.MinWidth  = [math]::Min(1180 * $f, $area.Width)
     $window.MinHeight = [math]::Min(700 * $f, $area.Height)
     if ($window.WindowState -ne [System.Windows.WindowState]::Maximized) {
-        $window.Width  = [math]::Min(1280 * $f, $area.Width)
+        $window.Width  = [math]::Min(1340 * $f, $area.Width)
         $window.Height = [math]::Min(840 * $f, $area.Height)
     }
     Write-Log "[INFO] Scala interfaccia: $pct%."

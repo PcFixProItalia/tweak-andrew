@@ -540,8 +540,6 @@ V|win.svcSysMain||SysMain|A|-|SysMain (precaricamento app)|SysMain (app preloadi
 H|win.svcSysMain|Tiene in RAM le app che usi spesso. Utile sugli HDD, poco sugli SSD veloci.|Keeps your frequent apps in RAM. Useful on HDDs, less on fast SSDs.
 V|win.svcSearch||WSearch|AD|-|Ricerca di Windows (indicizzazione)|Windows Search (indexing)
 H|win.svcSearch|Indicizza i file per trovarli in un attimo. Fermo, la ricerca in Start rallenta.|Indexes files so you find them instantly. Stopped, Start search gets slower.
-V|win.svcSpooler||Spooler|A|-|Spooler di stampa|Print Spooler
-H|win.svcSpooler|Serve per stampare. Fermo, nessuna stampante funziona.|Needed to print. Stopped, no printer works.
 V|win.svcDiagTrack||DiagTrack|A|X|Esperienze utente connesse e telemetria|Connected User Experiences and Telemetry
 H|win.svcDiagTrack|Il servizio che invia a Microsoft i dati di diagnostica.|The service that sends diagnostic data to Microsoft.
 V|win.svcCdp||CDPSvc|AD|M|Piattaforma dispositivi connessi|Connected Devices Platform

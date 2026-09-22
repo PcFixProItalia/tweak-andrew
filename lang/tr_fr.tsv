@@ -611,3 +611,9 @@ M:appCat_security	Sécurité et confidentialité
 M:appCat_net	Réseau, cloud et téléchargements
 M:appCat_dev	Développement
 M:appCat_runtime	Composants système
+L:btnSelectPage	Cette page
+L:btnRecommended	Recommandés
+M:selPageNone	Cette page n'a aucun élément à mettre en file.
+M:recNone	Ici les éléments se choisissent un par un : lis chaque description.
+M:recSelected	{0} éléments recommandés sélectionnés : appuie sur Appliquer.
+M:recSched	Valeurs recommandées prêtes dans les deux panneaux : appuie sur Appliquer et Enregistrer.

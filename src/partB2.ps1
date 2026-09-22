@@ -9,8 +9,8 @@
 <Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
-        Title="Tweak Andrew v6.0 - PcFixPro Italia" Height="840" Width="1280"
-        MinWidth="1120" MinHeight="700"
+        Title="Tweak Andrew v6.0 - PcFixPro Italia" Height="840" Width="1340"
+        MinWidth="1180" MinHeight="700"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None" AllowsTransparency="False" Background="#FF000000"
         Foreground="#F2F2F5" TextOptions.TextFormattingMode="Ideal" UseLayoutRounding="True"
@@ -1072,8 +1072,11 @@
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock x:Name="lblSelected" Text="Selezionati:" Foreground="#FF7E7E88" FontSize="12"
                                                VerticalAlignment="Center" Margin="0,0,9,0"/>
+                                    <!-- Con la scala al 130% l'arrotondamento tagliava la cifra: una
+                                         larghezza minima e un filo di margine la tengono dentro. -->
                                     <TextBlock x:Name="txtSelectedCount" Text="0" Foreground="#FF2ED3A7"
-                                               FontFamily="Raleway, Segoe UI" FontWeight="Bold" FontSize="15" VerticalAlignment="Center"/>
+                                               FontFamily="Raleway, Segoe UI" FontWeight="Bold" FontSize="15" VerticalAlignment="Center"
+                                               MinWidth="20" Margin="0,0,3,0" TextAlignment="Right"/>
                                 </StackPanel>
                             </Border>
                         </Grid>
@@ -2290,11 +2293,13 @@
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
-                                    <StackPanel Grid.Column="0" Orientation="Horizontal">
-                                        <Button x:Name="btnSelectAll" Style="{StaticResource GhostBtn}" Height="40" Margin="0,0,8,0" Content="Seleziona tutto"/>
-                                        <Button x:Name="btnDeselectAll" Style="{StaticResource GhostBtn}" Height="40" Margin="0,0,8,0" Content="Deseleziona"/>
-                                        <Button x:Name="btnDetectActive" Style="{StaticResource GhostBtn}" Height="40" Margin="0,0,8,0" Content="Rileva gia attivi"/>
-                                    </StackPanel>
+                                    <WrapPanel Grid.Column="0" Orientation="Horizontal">
+                                        <Button x:Name="btnSelectAll" Style="{StaticResource GhostBtn}" Height="40" Margin="0,0,8,4" Content="Seleziona tutto"/>
+                                        <Button x:Name="btnSelectPage" Style="{StaticResource GhostBtn}" Height="40" Margin="0,0,8,4" Content="Questa pagina"/>
+                                        <Button x:Name="btnRecommended" Style="{StaticResource GhostBtn}" Height="40" Margin="0,0,8,4" Content="Consigliati"/>
+                                        <Button x:Name="btnDeselectAll" Style="{StaticResource GhostBtn}" Height="40" Margin="0,0,8,4" Content="Deseleziona"/>
+                                        <Button x:Name="btnDetectActive" Style="{StaticResource GhostBtn}" Height="40" Margin="0,0,8,4" Content="Rileva gia attivi"/>
+                                    </WrapPanel>
                                     <StackPanel Grid.Column="1" Orientation="Horizontal">
                                         <Button x:Name="btnUndo" Style="{StaticResource UndoBtn}" Height="40" MinWidth="150" Margin="0,0,8,0" Content="Reimposta predefiniti"/>
                                         <Button x:Name="btnRun" Style="{StaticResource PrimaryBtn}" Height="40" MinWidth="170" Content="Applica modifiche"/>

@@ -202,7 +202,6 @@ win.coInstallers	Приложения производителя вместе с
 g.win.svc	Службы
 win.svcSysMain	SysMain (предзагрузка приложений)
 win.svcSearch	Windows Search (индексирование)
-win.svcSpooler	Диспетчер печати
 win.svcDiagTrack	Функциональные возможности и телеметрия
 win.svcCdp	Платформа подключённых устройств
 win.svcPca	Помощник по совместимости программ

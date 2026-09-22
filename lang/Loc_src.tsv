@@ -342,3 +342,5 @@ btnAppsUpgrade	Update all apps
 btnAppsClear	Clear selection
 btnAppsRefresh	Refresh list
 lblProfileQueued	Pick a profile: it joins the changes to apply. A second click removes it.
+btnSelectPage	This page
+btnRecommended	Recommended

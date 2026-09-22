@@ -267,6 +267,9 @@ $btnRemoveTestPlans.Add_Click({
 # 19. SCHEDA VIDEO
 # ------------------------------------------------------------------------------
 $script:GpuVendor = 'Unknown'
+# Tutte le marche presenti nel PC: un portatile ha spesso Intel integrata piu'
+# una scheda dedicata, e le voci dell'una non devono finire sull'altra.
+$script:GpuVendors = @()
 
 function Show-GpuInfo {
     if ($null -eq $txtGpuDetected) { return }
@@ -278,6 +281,7 @@ function Show-GpuInfo {
     if ($gpus.Count -eq 0) {
         $txtGpuDetected.Text = T 'gpuNone'
         $script:GpuVendor = 'Unknown'
+        $script:GpuVendors = @()
         return
     }
 
@@ -286,6 +290,11 @@ function Show-GpuInfo {
     elseif ($names -match 'Radeon|AMD|ATI')                { $script:GpuVendor = 'AMD' }
     elseif ($names -match 'Intel')                         { $script:GpuVendor = 'Intel' }
     else                                                   { $script:GpuVendor = 'Unknown' }
+
+    $script:GpuVendors = @(
+        @(@{ V = 'NVIDIA'; P = 'NVIDIA|GeForce|RTX|GTX|Quadro' }, @{ V = 'AMD'; P = 'Radeon|AMD|ATI' }, @{ V = 'Intel'; P = 'Intel' }) |
+        Where-Object { $names -match $_.P } | ForEach-Object { $_.V }
+    )
 
     $lines = foreach ($g in $gpus) {
         $data = if ($g.DriverDate) { ([datetime]$g.DriverDate).ToString('dd/MM/yyyy') } else { '?' }
@@ -300,7 +309,7 @@ $btnDetectGpu.Add_Click({ Show-GpuInfo; Write-Log "[INFO] Scheda video: $($scrip
 # senza questo controllo scriveva comunque le chiavi.
 function Test-Gpu {
     param([string]$Vendor, [string]$Label)
-    if ($script:GpuVendor -eq $Vendor) { return $true }
+    if ($script:GpuVendors -contains $Vendor) { return $true }
     Write-Log "[SALTATO] $Label - nessuna scheda $Vendor rilevata."
     return $false
 }
