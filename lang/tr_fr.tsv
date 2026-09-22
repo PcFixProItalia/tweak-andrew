@@ -617,3 +617,5 @@ M:selPageNone	Cette page n'a aucun élément à mettre en file.
 M:recNone	Ici les éléments se choisissent un par un : lis chaque description.
 M:recSelected	{0} éléments recommandés sélectionnés : appuie sur Appliquer.
 M:recSched	Valeurs recommandées prêtes dans les deux panneaux : appuie sur Appliquer et Enregistrer.
+L:ttlAdvExplorer	EXPLORATEUR DE FICHIERS
+L:lblAdvExplorerHint	Ils montrent des fichiers que Windows cache pour éviter les suppressions par erreur. Hors de «Tout sélectionner».

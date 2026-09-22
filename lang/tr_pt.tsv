@@ -614,3 +614,5 @@ M:selPageNone	Nesta página não há itens para a fila.
 M:recNone	Aqui os itens são escolhidos um a um: leia cada descrição.
 M:recSelected	Selecionados {0} itens recomendados: pressione Aplicar alterações.
 M:recSched	Valores recomendados prontos nos dois painéis: pressione Aplicar e Salvar.
+L:ttlAdvExplorer	EXPLORADOR DE ARQUIVOS
+L:lblAdvExplorerHint	Mostram arquivos que o Windows oculta para não serem apagados por engano. Fora de «Selecionar tudo».

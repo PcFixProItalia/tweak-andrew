@@ -1349,7 +1349,6 @@ $script:PlanData = @{
                                                 <TextBlock x:Name="ttlSystemUi" Text="SISTEMA" Style="{StaticResource CardTitle}" Foreground="#FFE0A25E"/>
                                                 <CheckBox x:Name="chkDarkTheme" Content="Tema scuro"/>
                                                 <CheckBox x:Name="chkFileExt" Content="Estensioni dei file"/>
-                                                <CheckBox x:Name="chkHiddenFiles" Content="File nascosti"/>
                                                 <CheckBox x:Name="chkLongPaths" Content="Percorsi lunghi"/>
                                                 <CheckBox x:Name="chkClassicMenu" Content="Menu classico"/>
                                                 <CheckBox x:Name="chkExplorerThisPC" Content="Questo PC"/>
@@ -2056,6 +2055,15 @@ $script:PlanData = @{
                                                 <CheckBox x:Name="chkAppxBloat" Content="App non essenziali (notizie, meteo, mappe, Skype...)"/>
                                                 <CheckBox x:Name="chkAppxXbox" Content="App Xbox e overlay di gioco"/>
                                                 <CheckBox x:Name="chkAppxProvision" Content="Non ripristinarle per i nuovi utenti"/>
+                                            </StackPanel>
+                                        </Border>
+
+                                        <Border Style="{StaticResource Glass}">
+                                            <StackPanel>
+                                                <TextBlock x:Name="ttlAdvExplorer" Text="ESPLORA FILE" Style="{StaticResource CardTitle}"/>
+                                                <TextBlock x:Name="lblAdvExplorerHint" Style="{StaticResource SubTitle}" Margin="0,0,0,10"
+                                                           Text="Mostrano file che Windows tiene nascosti per non farli cancellare per sbaglio. Fuori da «Seleziona tutto»."/>
+                                                <CheckBox x:Name="chkHiddenFiles" Content="Mostra file nascosti"/>
                                             </StackPanel>
                                         </Border>
 
@@ -2797,6 +2805,8 @@ $script:Loc = @{
     lblProfileQueued   = @{ it = "Scegli un profilo: entra tra le modifiche da applicare. Un secondo clic lo toglie."; en = "Pick a profile: it joins the changes to apply. A second click removes it." }
     btnSelectPage      = @{ it = "Questa pagina"; en = "This page" }
     btnRecommended     = @{ it = "Consigliati"; en = "Recommended" }
+    ttlAdvExplorer     = @{ it = "ESPLORA FILE"; en = "FILE EXPLORER" }
+    lblAdvExplorerHint = @{ it = "Mostrano file che Windows tiene nascosti per non farli cancellare per sbaglio. Fuori da «Seleziona tutto»."; en = "They show files Windows hides so they don't get deleted by mistake. Left out of «Select all»." }
 }
 
 # Messaggi non legati a un controllo: log, finestre di dialogo, etichette dinamiche.
@@ -4582,6 +4592,8 @@ $script:Tr = @{
         'M:recNone' = "Aquí las opciones se eligen una a una: lee la descripción de cada una."
         'M:recSelected' = "Seleccionadas {0} opciones recomendadas: pulsa Aplicar cambios."
         'M:recSched' = "Valores recomendados listos en los dos paneles: pulsa Aplicar y Guardar."
+        'L:ttlAdvExplorer' = "EXPLORADOR DE ARCHIVOS"
+        'L:lblAdvExplorerHint' = "Muestran archivos que Windows oculta para que no se borren por error. Fuera de «Seleccionar todo»."
     }
     de = @{
         'L:lblSubtitle' = "Windows-Optimierung und -Steuerung — PcFixPro Italia"
@@ -5200,6 +5212,8 @@ $script:Tr = @{
         'M:recNone' = "Hier werden die Einträge einzeln gewählt: Lies jede Beschreibung."
         'M:recSelected' = "{0} empfohlene Einträge ausgewählt: Änderungen übernehmen drücken."
         'M:recSched' = "Empfohlene Werte in beiden Feldern bereit: Übernehmen und Speichern drücken."
+        'L:ttlAdvExplorer' = "DATEI-EXPLORER"
+        'L:lblAdvExplorerHint' = "Sie zeigen Dateien, die Windows versteckt, damit sie nicht versehentlich gelöscht werden. Nicht in «Alle auswählen»."
     }
     fr = @{
         'L:lblSubtitle' = "Optimisation et contrôle de Windows — PcFixPro Italia"
@@ -5821,6 +5835,8 @@ $script:Tr = @{
         'M:recNone' = "Ici les éléments se choisissent un par un : lis chaque description."
         'M:recSelected' = "{0} éléments recommandés sélectionnés : appuie sur Appliquer."
         'M:recSched' = "Valeurs recommandées prêtes dans les deux panneaux : appuie sur Appliquer et Enregistrer."
+        'L:ttlAdvExplorer' = "EXPLORATEUR DE FICHIERS"
+        'L:lblAdvExplorerHint' = "Ils montrent des fichiers que Windows cache pour éviter les suppressions par erreur. Hors de «Tout sélectionner»."
     }
     pl = @{
         'L:lblSubtitle' = "Optymalizacja i kontrola systemu Windows — PcFixPro Italia"
@@ -6439,6 +6455,8 @@ $script:Tr = @{
         'M:recNone' = "Tutaj pozycje wybiera się pojedynczo: przeczytaj każdy opis."
         'M:recSelected' = "Zaznaczono {0} zalecanych pozycji: naciśnij Zastosuj zmiany."
         'M:recSched' = "Zalecane wartości gotowe w obu panelach: naciśnij Zastosuj i Zapisz."
+        'L:ttlAdvExplorer' = "EKSPLORATOR PLIKÓW"
+        'L:lblAdvExplorerHint' = "Pokazują pliki, które Windows ukrywa, by nie usunąć ich przez pomyłkę. Poza «Zaznacz wszystko»."
     }
     pt = @{
         'L:lblSubtitle' = "Otimização e controle do Windows — PcFixPro Italia"
@@ -7057,6 +7075,8 @@ $script:Tr = @{
         'M:recNone' = "Aqui os itens são escolhidos um a um: leia cada descrição."
         'M:recSelected' = "Selecionados {0} itens recomendados: pressione Aplicar alterações."
         'M:recSched' = "Valores recomendados prontos nos dois painéis: pressione Aplicar e Salvar."
+        'L:ttlAdvExplorer' = "EXPLORADOR DE ARQUIVOS"
+        'L:lblAdvExplorerHint' = "Mostram arquivos que o Windows oculta para não serem apagados por engano. Fora de «Selecionar tudo»."
     }
     ro = @{
         'L:lblSubtitle' = "Optimizarea și controlul Windows — PcFixPro Italia"
@@ -7675,6 +7695,8 @@ $script:Tr = @{
         'M:recNone' = "Aici elementele se aleg unul câte unul: citește fiecare descriere."
         'M:recSelected' = "Au fost selectate {0} elemente recomandate: apasă Aplică modificările."
         'M:recSched' = "Valorile recomandate sunt pregătite în ambele panouri: apasă Aplică și Salvează."
+        'L:ttlAdvExplorer' = "EXPLORER FIȘIERE"
+        'L:lblAdvExplorerHint' = "Arată fișiere pe care Windows le ascunde ca să nu fie șterse din greșeală. În afara opțiunii «Selectează tot»."
     }
     ru = @{
         'L:lblSubtitle' = "Оптимизация и управление Windows — PcFixPro Italia"
@@ -8293,6 +8315,8 @@ $script:Tr = @{
         'M:recNone' = "Здесь пункты выбираются по одному: прочитайте описание каждого."
         'M:recSelected' = "Выбрано рекомендуемых пунктов: {0}. Нажмите «Применить изменения»."
         'M:recSched' = "Рекомендуемые значения готовы в обеих панелях: нажмите «Применить» и «Сохранить»."
+        'L:ttlAdvExplorer' = "ПРОВОДНИК"
+        'L:lblAdvExplorerHint' = "Показывают файлы, которые Windows скрывает, чтобы их не удалили по ошибке. Вне «Выбрать все»."
     }
 }
 

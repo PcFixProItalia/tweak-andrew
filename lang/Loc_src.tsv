@@ -344,3 +344,5 @@ btnAppsRefresh	Refresh list
 lblProfileQueued	Pick a profile: it joins the changes to apply. A second click removes it.
 btnSelectPage	This page
 btnRecommended	Recommended
+ttlAdvExplorer	FILE EXPLORER
+lblAdvExplorerHint	They show files Windows hides so they don't get deleted by mistake. Left out of «Select all».

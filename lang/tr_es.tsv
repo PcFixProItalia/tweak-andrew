@@ -614,3 +614,5 @@ M:selPageNone	En esta página no hay opciones que poner en cola.
 M:recNone	Aquí las opciones se eligen una a una: lee la descripción de cada una.
 M:recSelected	Seleccionadas {0} opciones recomendadas: pulsa Aplicar cambios.
 M:recSched	Valores recomendados listos en los dos paneles: pulsa Aplicar y Guardar.
+L:ttlAdvExplorer	EXPLORADOR DE ARCHIVOS
+L:lblAdvExplorerHint	Muestran archivos que Windows oculta para que no se borren por error. Fuera de «Seleccionar todo».

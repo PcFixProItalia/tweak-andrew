@@ -1282,7 +1282,6 @@
                                                 <TextBlock x:Name="ttlSystemUi" Text="SISTEMA" Style="{StaticResource CardTitle}" Foreground="#FFE0A25E"/>
                                                 <CheckBox x:Name="chkDarkTheme" Content="Tema scuro"/>
                                                 <CheckBox x:Name="chkFileExt" Content="Estensioni dei file"/>
-                                                <CheckBox x:Name="chkHiddenFiles" Content="File nascosti"/>
                                                 <CheckBox x:Name="chkLongPaths" Content="Percorsi lunghi"/>
                                                 <CheckBox x:Name="chkClassicMenu" Content="Menu classico"/>
                                                 <CheckBox x:Name="chkExplorerThisPC" Content="Questo PC"/>
@@ -1989,6 +1988,15 @@
                                                 <CheckBox x:Name="chkAppxBloat" Content="App non essenziali (notizie, meteo, mappe, Skype...)"/>
                                                 <CheckBox x:Name="chkAppxXbox" Content="App Xbox e overlay di gioco"/>
                                                 <CheckBox x:Name="chkAppxProvision" Content="Non ripristinarle per i nuovi utenti"/>
+                                            </StackPanel>
+                                        </Border>
+
+                                        <Border Style="{StaticResource Glass}">
+                                            <StackPanel>
+                                                <TextBlock x:Name="ttlAdvExplorer" Text="ESPLORA FILE" Style="{StaticResource CardTitle}"/>
+                                                <TextBlock x:Name="lblAdvExplorerHint" Style="{StaticResource SubTitle}" Margin="0,0,0,10"
+                                                           Text="Mostrano file che Windows tiene nascosti per non farli cancellare per sbaglio. Fuori da «Seleziona tutto»."/>
+                                                <CheckBox x:Name="chkHiddenFiles" Content="Mostra file nascosti"/>
                                             </StackPanel>
                                         </Border>
 

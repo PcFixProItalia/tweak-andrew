@@ -614,3 +614,5 @@ M:selPageNone	Auf dieser Seite gibt es nichts für die Warteschlange.
 M:recNone	Hier werden die Einträge einzeln gewählt: Lies jede Beschreibung.
 M:recSelected	{0} empfohlene Einträge ausgewählt: Änderungen übernehmen drücken.
 M:recSched	Empfohlene Werte in beiden Feldern bereit: Übernehmen und Speichern drücken.
+L:ttlAdvExplorer	DATEI-EXPLORER
+L:lblAdvExplorerHint	Sie zeigen Dateien, die Windows versteckt, damit sie nicht versehentlich gelöscht werden. Nicht in «Alle auswählen».

@@ -412,6 +412,8 @@ $script:Loc = @{
     lblProfileQueued   = @{ it = "Scegli un profilo: entra tra le modifiche da applicare. Un secondo clic lo toglie."; en = "Pick a profile: it joins the changes to apply. A second click removes it." }
     btnSelectPage      = @{ it = "Questa pagina"; en = "This page" }
     btnRecommended     = @{ it = "Consigliati"; en = "Recommended" }
+    ttlAdvExplorer     = @{ it = "ESPLORA FILE"; en = "FILE EXPLORER" }
+    lblAdvExplorerHint = @{ it = "Mostrano file che Windows tiene nascosti per non farli cancellare per sbaglio. Fuori da «Seleziona tutto»."; en = "They show files Windows hides so they don't get deleted by mistake. Left out of «Select all»." }
 }
 
 # Messaggi non legati a un controllo: log, finestre di dialogo, etichette dinamiche.

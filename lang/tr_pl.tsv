@@ -614,3 +614,5 @@ M:selPageNone	Na tej stronie nie ma pozycji do kolejki.
 M:recNone	Tutaj pozycje wybiera się pojedynczo: przeczytaj każdy opis.
 M:recSelected	Zaznaczono {0} zalecanych pozycji: naciśnij Zastosuj zmiany.
 M:recSched	Zalecane wartości gotowe w obu panelach: naciśnij Zastosuj i Zapisz.
+L:ttlAdvExplorer	EKSPLORATOR PLIKÓW
+L:lblAdvExplorerHint	Pokazują pliki, które Windows ukrywa, by nie usunąć ich przez pomyłkę. Poza «Zaznacz wszystko».

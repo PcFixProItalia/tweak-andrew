@@ -614,3 +614,5 @@ M:selPageNone	Pe această pagină nu sunt elemente de pus la coadă.
 M:recNone	Aici elementele se aleg unul câte unul: citește fiecare descriere.
 M:recSelected	Au fost selectate {0} elemente recomandate: apasă Aplică modificările.
 M:recSched	Valorile recomandate sunt pregătite în ambele panouri: apasă Aplică și Salvează.
+L:ttlAdvExplorer	EXPLORER FIȘIERE
+L:lblAdvExplorerHint	Arată fișiere pe care Windows le ascunde ca să nu fie șterse din greșeală. În afara opțiunii «Selectează tot».
