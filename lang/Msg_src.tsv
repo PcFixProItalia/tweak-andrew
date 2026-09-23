@@ -165,11 +165,11 @@ homeUptime	Up for {0}
 homeUptimeD	{0} d {1} h {2} min
 homeUptimeH	{0} h {1} min
 homeInstalledOn	Windows installed on {0}
-homePcType	PC TYPE
-homeTypeAuto	Automatic: {0}
-homeTypeDesktop	Desktop
+homePcType	COMPUTER TYPE
+homeTypeAuto	Automatic detection: {0}
+homeTypeDesktop	Desktop computer
 homeTypeLaptop	Laptop
-homeTypeHint	On a laptop «Select all» and «Recommended» skip the entries that drain the battery; on a desktop, those useful only with a battery. You can still pick them by hand.
+homeTypeHint	«Recommended» takes the type into account: on a laptop it leaves out entries that drain the battery, on a desktop those useful only with a battery. They can still be selected manually.
 homeCpu	Processor
 homeRam	Memory
 homeGpu	Graphics card
@@ -217,3 +217,8 @@ wgErr_8A15010A	Restart the PC before installing it
 wgErr_8A15010C	Cancelled
 wgErr_8A15010E	A newer version is already installed
 wgErr_8A15010F	Blocked by a system policy
+cpuDetected	Detected: {0}. Only the entries suited to this processor are enabled.
+cpuUnknown	unrecognized processor
+sectionSelect	Whole section
+laptopSelTitle	Laptop
+laptopSelAsk	On a laptop «Recommended» is the better choice: «Select all» also includes entries that shorten battery life. Select everything anyway?

@@ -574,3 +574,13 @@ pw.videoPlay	Al reproducir vídeo
 pw.videoPlay#0	Optimizar la calidad
 pw.videoPlay#1	Equilibrado
 pw.videoPlay#2	Optimizar el consumo
+pw.nvme1	SSD NVMe: primer reposo tras
+pw.nvme1#0	Nunca (siempre listo)
+pw.nvme1#1000	1 segundo
+H:pw.nvme1	Tiempo de inactividad antes del primer estado de ahorro del SSD NVMe. En Nunca responde siempre al instante, pero consume y calienta algo más.
+pw.nvme2	SSD NVMe: reposo profundo tras
+pw.nvme2#0	Nunca (siempre listo)
+pw.nvme2#1000	1 segundo
+pw.nvme2#2000	2 segundos
+pw.nvme2#5000	5 segundos
+H:pw.nvme2	El segundo estado de ahorro, más profundo: despertar tarda unos milisegundos más. En un portátil conviene dejarlo activo.

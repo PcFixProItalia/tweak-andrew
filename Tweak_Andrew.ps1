@@ -284,6 +284,46 @@ $script:PlanData = @{
             </Setter>
         </Style>
 
+        <!-- Casella piccola accanto al titolo di una scheda: sceglie tutte le voci
+             della sezione. Stessa casella quadrata delle app, in formato ridotto. -->
+        <Style x:Key="SectionPick" TargetType="CheckBox">
+            <Setter Property="Foreground" Value="#FF8E8E98"/>
+            <Setter Property="FontFamily" Value="Roboto, Segoe UI"/>
+            <Setter Property="FontSize" Value="11.5"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="CheckBox">
+                        <Border x:Name="row" Background="Transparent" CornerRadius="8" Padding="6,3">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock x:Name="txt" Text="{TemplateBinding Content}" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                                <Border x:Name="box" Width="16" Height="16" CornerRadius="5" BorderThickness="1.5"
+                                        BorderBrush="#FF4A4A53" Background="#FF101013" VerticalAlignment="Center">
+                                    <Path x:Name="tick" Data="M3,7 L5.8,9.8 L11,4" Stroke="#FF000000" StrokeThickness="2"
+                                          StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeLineJoin="Round"
+                                          Visibility="Collapsed"/>
+                                </Border>
+                            </StackPanel>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="box" Property="BorderBrush" Value="{DynamicResource PA}"/>
+                                <Setter Property="Foreground" Value="#FFE4E4EA"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="box" Property="Background" Value="{DynamicResource PA}"/>
+                                <Setter TargetName="box" Property="BorderBrush" Value="{DynamicResource PA}"/>
+                                <Setter TargetName="tick" Property="Visibility" Value="Visible"/>
+                                <Setter Property="Foreground" Value="#FFFFFFFF"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
         <Style TargetType="RadioButton">
             <Setter Property="Foreground" Value="#FFC4C4CC"/>
             <Setter Property="FontFamily" Value="Roboto, Segoe UI Variable Text, Segoe UI"/>
@@ -1301,6 +1341,16 @@ $script:PlanData = @{
                                             </StackPanel>
                                         </Border>
 
+                                        <Border Style="{StaticResource Glass}">
+                                            <StackPanel>
+                                                <TextBlock x:Name="ttlCpu" Text="PROCESSORE" Style="{StaticResource CardTitle}"/>
+                                                <TextBlock x:Name="txtCpuDetected" Style="{StaticResource SubTitle}" Margin="0,0,0,8"/>
+                                                <CheckBox x:Name="chkCpuIntelBoostPol" Content="Intel: turbo senza freni di politica"/>
+                                                <CheckBox x:Name="chkCpuIntelHybrid" Content="Intel ibridi: app in primo piano sui core P"/>
+                                                <CheckBox x:Name="chkCpuAmdParking" Content="AMD Ryzen: nessun core parcheggiato"/>
+                                            </StackPanel>
+                                        </Border>
+
                                     </StackPanel>
 
                                     <StackPanel Grid.Column="2">
@@ -1317,6 +1367,7 @@ $script:PlanData = @{
                                                            Style="{StaticResource SubTitle}" Foreground="#FFD9A470" Margin="0,0,0,8"/>
                                                 <CheckBox x:Name="chkVBS" Tag="risky" Content="VBS"/>
                                                 <CheckBox x:Name="chkMitigations" Tag="risky" Content="Mitigazioni exploit"/>
+                                                <CheckBox x:Name="chkCpuIdleOff" Tag="risky" Content="Processore sempre sveglio"/>
                                             </StackPanel>
                                         </Border>
                                     </StackPanel>
@@ -1969,12 +2020,12 @@ $script:PlanData = @{
                                                            Text="Scritte nel profilo globale del driver, come nel Pannello di controllo NVIDIA."/>
                                                 <CheckBox x:Name="chkNvP2" Content="CUDA: niente stato P2 forzato"/>
                                                 <CheckBox x:Name="chkNvDrsPower" Content="Gestione energia: prestazioni massime"/>
-                                                <CheckBox x:Name="chkNvLowLatency" Content="Modalita bassa latenza: Ultra"/>
+                                                <CheckBox x:Name="chkNvLowLatency" Content="Modalita bassa latenza: attiva"/>
                                                 <CheckBox x:Name="chkNvThreaded" Content="Ottimizzazione thread attiva"/>
                                                 <CheckBox x:Name="chkNvTexPerf" Content="Filtro texture: prestazioni elevate"/>
                                                 <CheckBox x:Name="chkNvAniso" Content="Ottimizzazione campioni anisotropici"/>
                                                 <CheckBox x:Name="chkNvShaderCache" Content="Cache shader illimitata"/>
-                                                <CheckBox x:Name="chkNvNoFxaa" Content="FXAA e Ansel spenti"/>
+                                                <CheckBox x:Name="chkNvNoAnsel" Content="Ansel spento"/>
                                             </StackPanel>
                                         </Border>
 
@@ -2017,6 +2068,9 @@ $script:PlanData = @{
                                             <StackPanel>
                                                 <TextBlock x:Name="ttlIntelGpu" Text="INTEL GRAPHICS" Style="{StaticResource CardTitle}" Foreground="#FF7FC4E8"/>
                                                 <CheckBox x:Name="chkIntelBloat" Content="Servizi accessori Intel Graphics"/>
+                                                <CheckBox x:Name="chkIntelTelemetry" Content="Telemetria Intel spenta"/>
+                                                <CheckBox x:Name="chkIntelGfxPower" Content="Piano grafico Intel: prestazioni massime"/>
+                                                <CheckBox x:Name="chkIntelDpst" Content="Risparmio energetico del display (DPST) spento"/>
                                             </StackPanel>
                                         </Border>
                                     </StackPanel>
@@ -2867,12 +2921,11 @@ $script:Loc = @{
     lblNvProfileHint   = @{ it = "Scritte nel profilo globale del driver, come nel Pannello di controllo NVIDIA."; en = "Written to the driver's global profile, as in the NVIDIA Control Panel." }
     chkNvP2            = @{ it = "CUDA: niente stato P2 forzato"; en = "CUDA: no forced P2 state" }
     chkNvDrsPower      = @{ it = "Gestione energia: prestazioni massime"; en = "Power management: maximum performance" }
-    chkNvLowLatency    = @{ it = "Modalità bassa latenza: Ultra"; en = "Low latency mode: Ultra" }
+    chkNvLowLatency    = @{ it = "Modalità bassa latenza: attiva"; en = "Low latency mode: On" }
     chkNvThreaded      = @{ it = "Ottimizzazione thread attiva"; en = "Threaded optimization on" }
     chkNvTexPerf       = @{ it = "Filtro texture: prestazioni elevate"; en = "Texture filtering: high performance" }
     chkNvAniso         = @{ it = "Ottimizzazione campioni anisotropici"; en = "Anisotropic sample optimization" }
     chkNvShaderCache   = @{ it = "Cache shader illimitata"; en = "Unlimited shader cache" }
-    chkNvNoFxaa        = @{ it = "FXAA e Ansel spenti"; en = "FXAA and Ansel off" }
     ttlNvReg           = @{ it = "NVIDIA: REGISTRO DEL DRIVER"; en = "NVIDIA: DRIVER REGISTRY" }
     chkNvDisplayPower  = @{ it = "Risparmio energetico del display spento"; en = "Display power saving off" }
     chkNvHdcp          = @{ it = "HDCP spento"; en = "HDCP off" }
@@ -2907,6 +2960,15 @@ $script:Loc = @{
     lblHomeLoading     = @{ it = "Lettura dell'hardware..."; en = "Reading the hardware..." }
     ttlAppJobs         = @{ it = "OPERAZIONI"; en = "OPERATIONS" }
     btnAppJobsClose    = @{ it = "Chiudi"; en = "Close" }
+    chkNvNoAnsel       = @{ it = "Ansel spento"; en = "Ansel off" }
+    chkIntelTelemetry  = @{ it = "Telemetria Intel spenta"; en = "Intel telemetry off" }
+    chkIntelGfxPower   = @{ it = "Piano grafico Intel: prestazioni massime"; en = "Intel graphics power plan: maximum performance" }
+    chkIntelDpst       = @{ it = "Risparmio energetico del display (DPST) spento"; en = "Display power saving (DPST) off" }
+    ttlCpu             = @{ it = "PROCESSORE"; en = "PROCESSOR" }
+    chkCpuIntelBoostPol = @{ it = "Intel: turbo senza freni di politica"; en = "Intel: turbo with no policy limit" }
+    chkCpuIntelHybrid  = @{ it = "Intel ibridi: app in primo piano sui core P"; en = "Intel hybrid: foreground apps on P-cores" }
+    chkCpuAmdParking   = @{ it = "AMD Ryzen: nessun core parcheggiato"; en = "AMD Ryzen: no parked cores" }
+    chkCpuIdleOff      = @{ it = "Processore sempre sveglio (niente stati di riposo)"; en = "Processor always awake (no idle states)" }
 }
 
 # Messaggi non legati a un controllo: log, finestre di dialogo, etichette dinamiche.
@@ -3078,11 +3140,11 @@ $script:Msg = @{
     homeUptimeD        = @{ it = "{0} g {1} h {2} min"; en = "{0} d {1} h {2} min" }
     homeUptimeH        = @{ it = "{0} h {1} min"; en = "{0} h {1} min" }
     homeInstalledOn    = @{ it = "Windows installato il {0}"; en = "Windows installed on {0}" }
-    homePcType         = @{ it = "TIPO DI PC"; en = "PC TYPE" }
-    homeTypeAuto       = @{ it = "Automatico: {0}"; en = "Automatic: {0}" }
-    homeTypeDesktop    = @{ it = "Fisso"; en = "Desktop" }
-    homeTypeLaptop     = @{ it = "Portatile"; en = "Laptop" }
-    homeTypeHint       = @{ it = "Su un portatile «Seleziona tutto» e «Consigliati» lasciano stare le voci che consumano batteria; su un fisso quelle utili solo con la batteria. Restano sempre selezionabili a mano."; en = "On a laptop «Select all» and «Recommended» skip the entries that drain the battery; on a desktop, those useful only with a battery. You can still pick them by hand." }
+    homePcType         = @{ it = "TIPOLOGIA DEL COMPUTER"; en = "COMPUTER TYPE" }
+    homeTypeAuto       = @{ it = "Rilevamento automatico: {0}"; en = "Automatic detection: {0}" }
+    homeTypeDesktop    = @{ it = "Computer fisso"; en = "Desktop computer" }
+    homeTypeLaptop     = @{ it = "Computer portatile"; en = "Laptop" }
+    homeTypeHint       = @{ it = "«Consigliati» tiene conto della tipologia: su un portatile esclude le voci che consumano batteria, su un fisso quelle utili solo con la batteria. Possono comunque essere selezionate manualmente."; en = "«Recommended» takes the type into account: on a laptop it leaves out entries that drain the battery, on a desktop those useful only with a battery. They can still be selected manually." }
     homeCpu            = @{ it = "Processore"; en = "Processor" }
     homeRam            = @{ it = "Memoria"; en = "Memory" }
     homeGpu            = @{ it = "Scheda video"; en = "Graphics card" }
@@ -3130,6 +3192,11 @@ $script:Msg = @{
     wgErr_8A15010C     = @{ it = "Annullata"; en = "Cancelled" }
     wgErr_8A15010E     = @{ it = "È già installata una versione più recente"; en = "A newer version is already installed" }
     wgErr_8A15010F     = @{ it = "Bloccata da un criterio di sistema"; en = "Blocked by a system policy" }
+    cpuDetected        = @{ it = "Rilevato: {0}. Si attivano solo le voci adatte a questo processore."; en = "Detected: {0}. Only the entries suited to this processor are enabled." }
+    cpuUnknown         = @{ it = "processore non riconosciuto"; en = "unrecognized processor" }
+    sectionSelect      = @{ it = "Tutta la sezione"; en = "Whole section" }
+    laptopSelTitle     = @{ it = "Computer portatile"; en = "Laptop" }
+    laptopSelAsk       = @{ it = "Su un portatile è consigliato usare «Consigliati»: «Seleziona tutto» include anche voci che riducono la durata della batteria. Selezionare comunque tutto?"; en = "On a laptop «Recommended» is the better choice: «Select all» also includes entries that shorten battery life. Select everything anyway?" }
 }
 
 $script:LangCode = "it"
@@ -3184,6 +3251,7 @@ function Set-Language([string]$code) {
     # Show-PagIna esiste solo dopo il blocco della barra laterale: alla prima
     # chiamata di Set-Language non c'e' ancora.
     if (Get-Command Show-Page -ErrorAction SilentlyContinue) { Show-Page }
+    if ($script:SectionPicks) { Update-SectionPickText }
     if (Get-Command Show-PlanList -ErrorAction SilentlyContinue) { Show-PlanList }
     # Menu del pannello MMCSS e decodifica della priorita': testi nella nuova lingua.
     if (Get-Command Set-MmGlobalItems -ErrorAction SilentlyContinue) { Set-MmGlobalItems; Read-Mmcss; Update-PsView }
@@ -3217,7 +3285,11 @@ $chkGpuTdr = E 'chkGpuTdr'; $chkGpuMsi = E 'chkGpuMsi'
 $chkNvTelemetry = E 'chkNvTelemetry'; $chkNvGfe = E 'chkNvGfe'; $chkNvPerfMode = E 'chkNvPerfMode'
 $chkNvUpdates = E 'chkNvUpdates'
 $chkAmdUx = E 'chkAmdUx'; $chkAmdBloat = E 'chkAmdBloat'; $chkAmdUlps = E 'chkAmdUlps'
-$chkIntelBloat = E 'chkIntelBloat'
+$chkIntelBloat = E 'chkIntelBloat'; $chkIntelTelemetry = E 'chkIntelTelemetry'
+$chkIntelGfxPower = E 'chkIntelGfxPower'; $chkIntelDpst = E 'chkIntelDpst'
+$txtCpuDetected = E 'txtCpuDetected'
+$chkCpuIntelBoostPol = E 'chkCpuIntelBoostPol'; $chkCpuIntelHybrid = E 'chkCpuIntelHybrid'
+$chkCpuAmdParking = E 'chkCpuAmdParking'; $chkCpuIdleOff = E 'chkCpuIdleOff'
 $chkNvP2 = E 'chkNvP2'
 $chkNvDrsPower = E 'chkNvDrsPower'
 $chkNvLowLatency = E 'chkNvLowLatency'
@@ -3225,7 +3297,7 @@ $chkNvThreaded = E 'chkNvThreaded'
 $chkNvTexPerf = E 'chkNvTexPerf'
 $chkNvAniso = E 'chkNvAniso'
 $chkNvShaderCache = E 'chkNvShaderCache'
-$chkNvNoFxaa = E 'chkNvNoFxaa'
+$chkNvNoAnsel = E 'chkNvNoAnsel'
 $chkNvDisplayPower = E 'chkNvDisplayPower'
 $chkNvHdcp = E 'chkNvHdcp'
 $chkNvPreempt = E 'chkNvPreempt'
@@ -3817,6 +3889,80 @@ $script:SelectableCheckBoxes = @(
     }
 )
 
+# ------------------------------------------------------------------------------
+# 11b. SELEZIONE DI UNA SEZIONE
+# ------------------------------------------------------------------------------
+# Nelle pagine con tante voci, accanto al titolo di ogni scheda con almeno
+# quattro caselle c'e' una casella piccola che le sceglie tutte. Niente sulle
+# pagine a interruttore (hanno «Applica consigliati»), su Rete e su Avanzate,
+# dove le voci si scelgono una per una.
+$script:SectionPicks = New-Object System.Collections.ArrayList
+$script:SectionSync = $false
+
+function Update-SectionPick($sp) {
+    $on = @($sp.Items | Where-Object { $_.IsEnabled })
+    $script:SectionSync = $true
+    $sp.Box.IsChecked = ($on.Count -gt 0) -and (@($on | Where-Object { $_.IsChecked -ne $true }).Count -eq 0)
+    $script:SectionSync = $false
+}
+
+function Add-SectionPicks {
+    $sel = $script:SelectableCheckBoxes
+    foreach ($pageName in @('pagePerf', 'pagePrivacy', 'pageUi', 'pageGpu')) {
+        $page = E $pageName
+        $stack = New-Object System.Collections.Stack
+        $stack.Push($page)
+        while ($stack.Count -gt 0) {
+            $node = $stack.Pop()
+            if ($node -is [System.Windows.Controls.Border] -and $node.Child -is [System.Windows.Controls.StackPanel] -and
+                $node.Child.Children.Count -gt 0 -and $node.Child.Children[0] -is [System.Windows.Controls.TextBlock] -and
+                $node.Child.Children[0].Style -eq $window.FindResource('CardTitle')) {
+                $items = @(Get-CheckBoxesFromTree $node | Where-Object { $sel -contains $_ })
+                if ($items.Count -ge 4) {
+                    $panel = $node.Child; $title = $panel.Children[0]
+                    $panel.Children.RemoveAt(0)
+                    $g = New-Object System.Windows.Controls.Grid
+                    $g.Margin = $title.Margin; $title.Margin = '0'; $title.VerticalAlignment = 'Center'; $title.TextWrapping = 'Wrap'
+                    $c0 = New-Object System.Windows.Controls.ColumnDefinition
+                    $c1 = New-Object System.Windows.Controls.ColumnDefinition; $c1.Width = [System.Windows.GridLength]::Auto
+                    $g.ColumnDefinitions.Add($c0); $g.ColumnDefinitions.Add($c1)
+                    [void]$g.Children.Add($title)
+                    $box = New-Object System.Windows.Controls.CheckBox
+                    $box.Style = $window.FindResource('SectionPick'); $box.Tag = 'section'; $box.Margin = '8,-4,-6,-4'
+                    $box.Content = T 'sectionSelect'
+                    [System.Windows.Controls.Grid]::SetColumn($box, 1); [void]$g.Children.Add($box)
+                    $panel.Children.Insert(0, $g)
+                    $sp = @{ Box = $box; Items = $items }
+                    $box.Add_Click({
+                        $mine = $null
+                        foreach ($s in $script:SectionPicks) { if ($s.Box -eq $this) { $mine = $s } }
+                        if ($null -eq $mine) { return }
+                        $want = ($this.IsChecked -eq $true)
+                        $script:SectionSync = $true
+                        foreach ($cb in $mine.Items) { if ($cb.IsEnabled) { $cb.IsChecked = $want } }
+                        $script:SectionSync = $false
+                        Update-SectionPick $mine
+                        Update-ApplyButton
+                    })
+                    foreach ($cb in $items) {
+                        $cb.Add_Checked({ if (-not $script:SectionSync) { foreach ($s in $script:SectionPicks) { if ($s.Items -contains $this) { Update-SectionPick $s } } } })
+                        $cb.Add_Unchecked({ if (-not $script:SectionSync) { foreach ($s in $script:SectionPicks) { if ($s.Items -contains $this) { Update-SectionPick $s } } } })
+                    }
+                    [void]$script:SectionPicks.Add($sp)
+                    continue
+                }
+            }
+            foreach ($ch in [System.Windows.LogicalTreeHelper]::GetChildren($node)) {
+                if ($ch -is [System.Windows.DependencyObject]) { $stack.Push($ch) }
+            }
+        }
+    }
+}
+
+function Update-SectionPickText {
+    foreach ($s in $script:SectionPicks) { $s.Box.Content = T 'sectionSelect'; Update-SectionPick $s }
+}
+
 # All'avvio nulla e' selezionato.
 foreach ($cb in $script:AllCheckBoxes) { $cb.IsChecked = $false }
 
@@ -3838,6 +3984,11 @@ foreach ($cb in $script:AllCheckBoxes) {
 # Voci del produttore sbagliato: su un PC con scheda AMD le caselle NVIDIA
 # restano ferme anche con «Seleziona tutto», perche' non farebbero nulla.
 function Test-CheckVendor($cb) {
+    # Processore: le voci Intel o AMD valgono solo sul processore di quella marca.
+    if ([string]$cb.Name -match '^chkCpu(Intel|Amd)') {
+        $want = if ($Matches[1] -eq 'Intel') { 'Intel' } else { 'AMD' }
+        return (-not $script:CpuVendor) -or ($script:CpuVendor -eq $want)
+    }
     $vendor = switch -Regex ([string]$cb.Name) {
         '^chkNv'    { 'NVIDIA' }
         '^chkAmd'   { 'AMD' }
@@ -3856,8 +4007,12 @@ function Get-CurrentPage {
     return $null
 }
 
-function Get-SelectableChecks([switch]$CurrentPageOnly) {
-    $list = @($script:SelectableCheckBoxes | Where-Object { (Test-CheckVendor $_) -and (Test-CheckPcType $_) })
+# -ByPcType vale per «Consigliati»: tiene conto di portatile e fisso. «Seleziona
+# tutto» invece prende davvero tutto, e sul portatile chiede conferma.
+function Get-SelectableChecks([switch]$CurrentPageOnly, [switch]$ByPcType) {
+    $list = @($script:SelectableCheckBoxes | Where-Object {
+        $_.IsEnabled -and (Test-CheckVendor $_) -and (-not $ByPcType -or (Test-CheckPcType $_))
+    })
     if (-not $CurrentPageOnly) { return $list }
     $page = Get-CurrentPage
     if ($null -eq $page) { return @() }
@@ -3869,7 +4024,8 @@ function Get-SelectableChecks([switch]$CurrentPageOnly) {
 # Avanzate non ne ha: li' si tolgono pezzi di Windows e la scelta resta una
 # per una.
 $script:RecommendedChecks = @{
-    pagePerf    = @('chkMMCSS','chkPriority','chkKernelMem','chkPowerThrottling','chkUSBSuspend','chkNtfsPerf','chkRamTweak','chkGameMode','chkGameDVR')
+    pagePerf    = @('chkMMCSS','chkPriority','chkKernelMem','chkPowerThrottling','chkUSBSuspend','chkNtfsPerf','chkRamTweak','chkGameMode','chkGameDVR',
+                    'chkCpuIntelBoostPol','chkCpuAmdParking')
     pagePrivacy = @('chkTelemetry','chkTelemetryTasks','chkActivityHistory','chkAdvertisingID','chkTailoredExp','chkFeedback','chkErrorReporting',
                     'chkInkingTyping','chkWiFiSense','chkConsumerFeatures','chkStoreSearch','chkSuggestedContent','chkLockScreenAds','chkStartBing',
                     'chkStartRecs','chkStartTracking','chkWindowsAI','chkEdgeDebloat','chkDeliveryOpt','chkWPBT','chkBackgroundApps',
@@ -3880,7 +4036,8 @@ $script:RecommendedChecks = @{
     pageStorage = @('chkReservedStorage')
     pagePower   = @('chkFastStartup')
     pageGpu     = @('chkGpuTdr','chkNvTelemetry','chkNvGfe','chkNvPerfMode','chkNvUpdates','chkNvP2','chkNvDrsPower','chkNvLowLatency',
-                    'chkNvShaderCache','chkNvDisplayPower','chkAmdUx','chkAmdBloat','chkAmdUlps','chkAmdAntiLag','chkAmdShaderCache','chkIntelBloat')
+                    'chkNvShaderCache','chkNvDisplayPower','chkAmdUx','chkAmdBloat','chkAmdUlps','chkAmdAntiLag','chkAmdShaderCache','chkIntelBloat',
+                    'chkIntelTelemetry','chkIntelGfxPower')
 }
 
 # La pagina Priorita' non ha caselle: i valori consigliati si preparano nei due
@@ -3897,13 +4054,25 @@ function Set-SchedRecommended {
     Select-ComboValue $cmbMmBgOnly 'False'
 }
 
+# Su un portatile «Seleziona tutto» prende anche le voci che consumano batteria:
+# prima un avviso che indica «Consigliati» come scelta migliore.
+function Confirm-LaptopSelection([array]$list) {
+    if ((Get-PcType) -ne 'laptop') { return $true }
+    $hit = @($list | Where-Object { $script:LaptopSkip -contains [string]$_.Name })
+    if ($hit.Count -eq 0) { return $true }
+    return (Show-Dialog (T 'laptopSelTitle') (T 'laptopSelAsk') 'warn')
+}
+
 $btnSelectAll.Add_Click({
-    foreach ($cb in (Get-SelectableChecks)) { $cb.IsChecked = $true }
+    $found = @(Get-SelectableChecks)
+    if (-not (Confirm-LaptopSelection $found)) { return }
+    foreach ($cb in $found) { $cb.IsChecked = $true }
     Update-ApplyButton
 })
 
 $btnSelectPage.Add_Click({
     $found = @(Get-SelectableChecks -CurrentPageOnly)
+    if (-not (Confirm-LaptopSelection $found)) { return }
     foreach ($cb in $found) { $cb.IsChecked = $true }
     if ($found.Count -eq 0) { $txtProgressLabel.Text = T 'selPageNone' }
     Update-ApplyButton
@@ -3921,7 +4090,7 @@ $btnRecommended.Add_Click({
     $names = $script:RecommendedChecks[$name]
     if (-not $names) { $txtProgressLabel.Text = T 'recNone'; return }
     $n = 0
-    foreach ($cb in @(Get-SelectableChecks -CurrentPageOnly)) {
+    foreach ($cb in @(Get-SelectableChecks -CurrentPageOnly -ByPcType)) {
         if ($names -contains [string]$cb.Name) { $cb.IsChecked = $true; $n++ }
     }
     $txtProgressLabel.Text = (T 'recSelected') -f $n
@@ -4128,12 +4297,11 @@ $script:Tips = @{
     chkMenuHibernate = @{ it = "Mostra o nasconde Iberna nel menu di spegnimento di Start. Se l'ibernazione era spenta, viene riattivata."; en = "Shows or hides Hibernate in the Start power menu. If hibernation was off, it is turned back on." }
     chkNvP2 = @{ it = "Il driver non abbassa più le frequenze della memoria quando parte un programma CUDA. Rendering e calcolo più veloci."; en = "The driver stops lowering memory clocks when a CUDA program starts. Faster rendering and compute." }
     chkNvDrsPower = @{ it = "La scheda resta alle frequenze alte invece di rallentare tra un fotogramma e l'altro. Meno cali di FPS."; en = "The card stays at high clocks instead of slowing between frames. Fewer FPS drops." }
-    chkNvLowLatency = @{ it = "Il processore prepara un solo fotogramma in anticipo. Il gioco risponde prima ai comandi."; en = "The processor prepares just one frame ahead. The game reacts sooner to your input." }
+    chkNvLowLatency = @{ it = "Come «Attiva» nel Pannello di controllo NVIDIA: il processore prepara un solo fotogramma in anticipo. Più compatibile di «Ultra», che con alcuni giochi e con G-SYNC crea scatti."; en = "Like «On» in the NVIDIA Control Panel: the processor prepares just one frame ahead. More compatible than «Ultra», which stutters with some games and with G-SYNC." }
     chkNvThreaded = @{ it = "I giochi OpenGL distribuiscono il lavoro del driver su più core."; en = "OpenGL games spread the driver's work over several cores." }
     chkNvTexPerf = @{ it = "Il filtro delle texture privilegia la velocità: qualche FPS in più, differenza visiva minima."; en = "Texture filtering favors speed: a few more FPS, minimal visual difference." }
     chkNvAniso = @{ it = "Il filtro anisotropico usa meno campioni dove non si vede la differenza."; en = "Anisotropic filtering takes fewer samples where the difference doesn't show." }
     chkNvShaderCache = @{ it = "Il driver non cancella gli shader compilati: meno scatti quando un gioco carica aree nuove."; en = "The driver keeps compiled shaders: fewer stutters when a game loads new areas." }
-    chkNvNoFxaa = @{ it = "Spegne l'antialiasing forzato dal driver e l'overlay fotografico Ansel."; en = "Turns off driver-forced antialiasing and the Ansel photo overlay." }
     chkNvDisplayPower = @{ it = "Il driver non abbassa la luminosità dello schermo per risparmiare energia."; en = "The driver doesn't dim the screen to save power." }
     chkNvHdcp = @{ it = "Toglie la protezione dei contenuti: meno lavoro per la scheda, ma Netflix e simili non vanno in alta risoluzione."; en = "Removes content protection: less work for the card, but Netflix and similar won't play in high resolution." }
     chkNvPreempt = @{ it = "La scheda finisce un lavoro prima di passare al successivo. Può ridurre la latenza, su alcuni PC causa blocchi."; en = "The card finishes a job before switching to the next. It can reduce latency; on some PCs it causes hangs." }
@@ -4150,6 +4318,14 @@ $script:Tips = @{
     chkAmdPowerGating = @{ it = "Le unità della scheda non vengono spente a riposo. Più reattiva, consuma e scalda di più."; en = "The card's units aren't powered off at idle. More responsive, more power and heat." }
     chkAmdDma = @{ it = "Cambia il modo in cui la scheda copia i dati. Su alcune schede riduce gli scatti, su altre li peggiora."; en = "Changes how the card copies data. On some cards it reduces stutter, on others it worsens it." }
     chkAmdPreempt = @{ it = "La scheda finisce un calcolo prima di passare al successivo. Da provare: su alcuni PC causa blocchi."; en = "The card finishes a compute job before the next one. Worth testing: on some PCs it causes hangs." }
+    chkNvNoAnsel = @{ it = "Spegne Ansel, l'overlay fotografico di NVIDIA che resta caricato in ogni gioco."; en = "Turns off Ansel, NVIDIA's photo overlay that stays loaded in every game." }
+    chkIntelTelemetry = @{ it = "Disattiva il programma di miglioramento e il resoconto d'uso installati con l'assistente driver Intel. Il driver grafico non ne ha bisogno."; en = "Disables the improvement program and usage report installed with Intel's driver assistant. The graphics driver does not need them." }
+    chkIntelGfxPower = @{ it = "Nel piano energetico, con l'alimentazione collegata, la grafica integrata Intel lavora alla frequenza piena invece di risparmiare. A batteria non cambia nulla."; en = "In the power plan, while plugged in, Intel integrated graphics run at full clock instead of saving power. Nothing changes on battery." }
+    chkIntelDpst = @{ it = "Sui portatili Intel lo schermo abbassa luminosità e contrasto in base a ciò che mostra: spento, i colori restano costanti. Su alcuni modelli il driver lo riaccende al riavvio."; en = "On Intel laptops the screen lowers brightness and contrast based on what it shows: off, colors stay constant. On some models the driver turns it back on at restart." }
+    chkCpuIntelBoostPol = @{ it = "Con l'alimentazione collegata, il turbo dei processori Intel sale senza il limite della politica del piano energetico. A batteria resta com'era."; en = "While plugged in, Intel processor turbo climbs without the power plan's policy limit. On battery it stays as before." }
+    chkCpuIntelHybrid = @{ it = "Solo processori con core P ed E (dalla 12ª generazione): i thread vanno ai core P quando possibile. Utile nei giochi; i core E restano disponibili quando il carico cresce."; en = "Only processors with P and E cores (12th gen onward): threads go to the P-cores when possible. Useful in games; the E-cores stay available as load grows." }
+    chkCpuAmdParking = @{ it = "Con l'alimentazione collegata tutti i core restano pronti invece di essere parcheggiati. Non si attiva sui Ryzen X3D a due chiplet, dove il parcheggio serve ai giochi."; en = "While plugged in, all cores stay ready instead of being parked. Not available on dual-chiplet Ryzen X3D, where parking helps games." }
+    chkCpuIdleOff = @{ it = "Il processore non entra mai negli stati di riposo: latenza minima, ma consumi e temperature sempre alti anche a PC fermo. Solo su un fisso ben raffreddato, con l'alimentazione collegata."; en = "The processor never enters idle states: minimum latency, but power draw and temperatures stay high even at rest. Only on a well-cooled desktop, while plugged in." }
 }
 
 $script:Tr = @{
@@ -4657,12 +4833,11 @@ $script:Tr = @{
         'L:lblNvProfileHint' = "Se escriben en el perfil global del controlador, como en el Panel de control de NVIDIA."
         'L:chkNvP2' = "CUDA: sin estado P2 forzado"
         'L:chkNvDrsPower' = "Administración de energía: máximo rendimiento"
-        'L:chkNvLowLatency' = "Modo de baja latencia: Ultra"
+        'L:chkNvLowLatency' = "Modo de baja latencia: activado"
         'L:chkNvThreaded' = "Optimización de subprocesos activada"
         'L:chkNvTexPerf' = "Filtrado de texturas: alto rendimiento"
         'L:chkNvAniso' = "Optimización de muestras anisotrópicas"
         'L:chkNvShaderCache' = "Caché de sombreadores ilimitada"
-        'L:chkNvNoFxaa' = "FXAA y Ansel desactivados"
         'L:ttlNvReg' = "NVIDIA: REGISTRO DEL CONTROLADOR"
         'L:chkNvDisplayPower' = "Ahorro de energía de pantalla desactivado"
         'L:chkNvHdcp' = "HDCP desactivado"
@@ -4802,11 +4977,11 @@ $script:Tr = @{
         'M:homeUptimeD' = "{0} d {1} h {2} min"
         'M:homeUptimeH' = "{0} h {1} min"
         'M:homeInstalledOn' = "Windows instalado el {0}"
-        'M:homePcType' = "TIPO DE PC"
-        'M:homeTypeAuto' = "Automático: {0}"
-        'M:homeTypeDesktop' = "Sobremesa"
+        'M:homePcType' = "TIPO DE EQUIPO"
+        'M:homeTypeAuto' = "Detección automática: {0}"
+        'M:homeTypeDesktop' = "Ordenador de sobremesa"
         'M:homeTypeLaptop' = "Portátil"
-        'M:homeTypeHint' = "En un portátil «Seleccionar todo» y «Recomendados» omiten las opciones que gastan batería; en un sobremesa, las útiles solo con batería. Siguen disponibles a mano."
+        'M:homeTypeHint' = "«Recomendados» tiene en cuenta el tipo: en un portátil excluye las opciones que gastan batería, en un sobremesa las útiles solo con batería. Aun así pueden seleccionarse manualmente."
         'M:homeCpu' = "Procesador"
         'M:homeRam' = "Memoria"
         'M:homeGpu' = "Tarjeta gráfica"
@@ -4854,6 +5029,20 @@ $script:Tr = @{
         'M:wgErr_8A15010C' = "Cancelada"
         'M:wgErr_8A15010E' = "Ya hay instalada una versión más reciente"
         'M:wgErr_8A15010F' = "Bloqueada por una directiva del sistema"
+        'L:chkNvNoAnsel' = "Ansel desactivado"
+        'L:chkIntelTelemetry' = "Telemetría de Intel desactivada"
+        'L:chkIntelGfxPower' = "Plan gráfico de Intel: máximo rendimiento"
+        'L:chkIntelDpst' = "Ahorro de energía de pantalla (DPST) desactivado"
+        'L:ttlCpu' = "PROCESADOR"
+        'L:chkCpuIntelBoostPol' = "Intel: turbo sin límite de directiva"
+        'L:chkCpuIntelHybrid' = "Intel híbridos: apps en primer plano en núcleos P"
+        'L:chkCpuAmdParking' = "AMD Ryzen: ningún núcleo aparcado"
+        'L:chkCpuIdleOff' = "Procesador siempre despierto (sin estados de reposo)"
+        'M:cpuDetected' = "Detectado: {0}. Solo se activan las opciones adecuadas a este procesador."
+        'M:cpuUnknown' = "procesador no reconocido"
+        'M:sectionSelect' = "Toda la sección"
+        'M:laptopSelTitle' = "Portátil"
+        'M:laptopSelAsk' = "En un portátil se recomienda usar «Recomendados»: «Seleccionar todo» incluye también opciones que reducen la autonomía. ¿Seleccionar todo de todos modos?"
     }
     de = @{
         'L:lblSubtitle' = "Windows-Optimierung und -Steuerung — PcFixPro Italia"
@@ -5359,12 +5548,11 @@ $script:Tr = @{
         'L:lblNvProfileHint' = "Werden ins globale Treiberprofil geschrieben, wie in der NVIDIA-Systemsteuerung."
         'L:chkNvP2' = "CUDA: kein erzwungener P2-Zustand"
         'L:chkNvDrsPower' = "Energieverwaltung: maximale Leistung"
-        'L:chkNvLowLatency' = "Modus für niedrige Latenz: Ultra"
+        'L:chkNvLowLatency' = "Modus für niedrige Latenz: Ein"
         'L:chkNvThreaded' = "Threaded-Optimierung an"
         'L:chkNvTexPerf' = "Texturfilterung: hohe Leistung"
         'L:chkNvAniso' = "Anisotrope Musteroptimierung"
         'L:chkNvShaderCache' = "Unbegrenzter Shader-Cache"
-        'L:chkNvNoFxaa' = "FXAA und Ansel aus"
         'L:ttlNvReg' = "NVIDIA: TREIBER-REGISTRY"
         'L:chkNvDisplayPower' = "Bildschirm-Energiesparen aus"
         'L:chkNvHdcp' = "HDCP aus"
@@ -5504,11 +5692,11 @@ $script:Tr = @{
         'M:homeUptimeD' = "{0} T {1} Std. {2} Min."
         'M:homeUptimeH' = "{0} Std. {1} Min."
         'M:homeInstalledOn' = "Windows installiert am {0}"
-        'M:homePcType' = "PC-TYP"
-        'M:homeTypeAuto' = "Automatisch: {0}"
-        'M:homeTypeDesktop' = "Desktop"
+        'M:homePcType' = "GERÄTETYP"
+        'M:homeTypeAuto' = "Automatische Erkennung: {0}"
+        'M:homeTypeDesktop' = "Desktop-PC"
         'M:homeTypeLaptop' = "Laptop"
-        'M:homeTypeHint' = "Auf einem Laptop überspringen «Alles auswählen» und «Empfohlen» akkufressende Einträge, auf einem Desktop die nur mit Akku nützlichen. Von Hand bleiben sie wählbar."
+        'M:homeTypeHint' = "«Empfohlen» berücksichtigt den Gerätetyp: auf einem Laptop fehlen akkufressende Einträge, auf einem Desktop die nur mit Akku nützlichen. Sie können trotzdem manuell ausgewählt werden."
         'M:homeCpu' = "Prozessor"
         'M:homeRam' = "Arbeitsspeicher"
         'M:homeGpu' = "Grafikkarte"
@@ -5556,6 +5744,20 @@ $script:Tr = @{
         'M:wgErr_8A15010C' = "Abgebrochen"
         'M:wgErr_8A15010E' = "Eine neuere Version ist bereits installiert"
         'M:wgErr_8A15010F' = "Durch eine Systemrichtlinie blockiert"
+        'L:chkNvNoAnsel' = "Ansel aus"
+        'L:chkIntelTelemetry' = "Intel-Telemetrie aus"
+        'L:chkIntelGfxPower' = "Intel-Grafik-Energieplan: maximale Leistung"
+        'L:chkIntelDpst' = "Display-Energiesparen (DPST) aus"
+        'L:ttlCpu' = "PROZESSOR"
+        'L:chkCpuIntelBoostPol' = "Intel: Turbo ohne Richtlinienbremse"
+        'L:chkCpuIntelHybrid' = "Intel Hybrid: Vordergrund-Apps auf P-Kernen"
+        'L:chkCpuAmdParking' = "AMD Ryzen: keine geparkten Kerne"
+        'L:chkCpuIdleOff' = "Prozessor immer wach (keine Ruhezustände)"
+        'M:cpuDetected' = "Erkannt: {0}. Nur die zu diesem Prozessor passenden Einträge sind aktiv."
+        'M:cpuUnknown' = "unbekannter Prozessor"
+        'M:sectionSelect' = "Ganzer Abschnitt"
+        'M:laptopSelTitle' = "Laptop"
+        'M:laptopSelAsk' = "Auf einem Laptop ist «Empfohlen» die bessere Wahl: «Alles auswählen» enthält auch Einträge, die die Akkulaufzeit verkürzen. Trotzdem alles auswählen?"
     }
     fr = @{
         'L:lblSubtitle' = "Optimisation et contrôle de Windows — PcFixPro Italia"
@@ -6064,12 +6266,11 @@ $script:Tr = @{
         'L:lblNvProfileHint' = "Écrits dans le profil global du pilote, comme dans le Panneau de configuration NVIDIA."
         'L:chkNvP2' = "CUDA : pas d'état P2 forcé"
         'L:chkNvDrsPower' = "Gestion de l'alimentation : performances maximales"
-        'L:chkNvLowLatency' = "Mode faible latence : Ultra"
+        'L:chkNvLowLatency' = "Mode faible latence : activé"
         'L:chkNvThreaded' = "Optimisation threadée activée"
         'L:chkNvTexPerf' = "Filtrage des textures : hautes performances"
         'L:chkNvAniso' = "Optimisation des échantillons anisotropes"
         'L:chkNvShaderCache' = "Cache de shaders illimité"
-        'L:chkNvNoFxaa' = "FXAA et Ansel désactivés"
         'L:ttlNvReg' = "NVIDIA : REGISTRE DU PILOTE"
         'L:chkNvDisplayPower' = "Économie d'énergie de l'écran désactivée"
         'L:chkNvHdcp' = "HDCP désactivé"
@@ -6209,11 +6410,11 @@ $script:Tr = @{
         'M:homeUptimeD' = "{0} j {1} h {2} min"
         'M:homeUptimeH' = "{0} h {1} min"
         'M:homeInstalledOn' = "Windows installé le {0}"
-        'M:homePcType' = "TYPE DE PC"
-        'M:homeTypeAuto' = "Automatique : {0}"
-        'M:homeTypeDesktop' = "Fixe"
-        'M:homeTypeLaptop' = "Portable"
-        'M:homeTypeHint' = "Sur un portable, «Tout sélectionner» et «Recommandés» ignorent les options qui vident la batterie ; sur un fixe, celles utiles seulement avec batterie. Elles restent sélectionnables à la main."
+        'M:homePcType' = "TYPE D'ORDINATEUR"
+        'M:homeTypeAuto' = "Détection automatique : {0}"
+        'M:homeTypeDesktop' = "Ordinateur fixe"
+        'M:homeTypeLaptop' = "Ordinateur portable"
+        'M:homeTypeHint' = "«Recommandés» tient compte du type : sur un portable il exclut les options qui vident la batterie, sur un fixe celles utiles seulement avec batterie. Elles peuvent toutefois être sélectionnées manuellement."
         'M:homeCpu' = "Processeur"
         'M:homeRam' = "Mémoire"
         'M:homeGpu' = "Carte graphique"
@@ -6261,6 +6462,20 @@ $script:Tr = @{
         'M:wgErr_8A15010C' = "Annulée"
         'M:wgErr_8A15010E' = "Une version plus récente est déjà installée"
         'M:wgErr_8A15010F' = "Bloquée par une stratégie système"
+        'L:chkNvNoAnsel' = "Ansel désactivé"
+        'L:chkIntelTelemetry' = "Télémétrie Intel désactivée"
+        'L:chkIntelGfxPower' = "Plan graphique Intel : performances maximales"
+        'L:chkIntelDpst' = "Économie d'énergie de l'écran (DPST) désactivée"
+        'L:ttlCpu' = "PROCESSEUR"
+        'L:chkCpuIntelBoostPol' = "Intel : turbo sans frein de stratégie"
+        'L:chkCpuIntelHybrid' = "Intel hybrides : apps au premier plan sur cœurs P"
+        'L:chkCpuAmdParking' = "AMD Ryzen : aucun cœur parqué"
+        'L:chkCpuIdleOff' = "Processeur toujours éveillé (pas d'états de repos)"
+        'M:cpuDetected' = "Détecté : {0}. Seules les options adaptées à ce processeur sont actives."
+        'M:cpuUnknown' = "processeur non reconnu"
+        'M:sectionSelect' = "Toute la section"
+        'M:laptopSelTitle' = "Ordinateur portable"
+        'M:laptopSelAsk' = "Sur un portable, «Recommandés» est conseillé : «Tout sélectionner» inclut aussi des options qui réduisent l'autonomie. Tout sélectionner quand même ?"
     }
     pl = @{
         'L:lblSubtitle' = "Optymalizacja i kontrola systemu Windows — PcFixPro Italia"
@@ -6766,12 +6981,11 @@ $script:Tr = @{
         'L:lblNvProfileHint' = "Zapisywane w globalnym profilu sterownika, jak w Panelu sterowania NVIDIA."
         'L:chkNvP2' = "CUDA: bez wymuszonego stanu P2"
         'L:chkNvDrsPower' = "Zarządzanie energią: maksymalna wydajność"
-        'L:chkNvLowLatency' = "Tryb niskiego opóźnienia: Ultra"
+        'L:chkNvLowLatency' = "Tryb niskiego opóźnienia: włączony"
         'L:chkNvThreaded' = "Optymalizacja wątkowa włączona"
         'L:chkNvTexPerf' = "Filtrowanie tekstur: wysoka wydajność"
         'L:chkNvAniso' = "Optymalizacja próbek anizotropowych"
         'L:chkNvShaderCache' = "Nieograniczona pamięć shaderów"
-        'L:chkNvNoFxaa' = "FXAA i Ansel wyłączone"
         'L:ttlNvReg' = "NVIDIA: REJESTR STEROWNIKA"
         'L:chkNvDisplayPower' = "Oszczędzanie energii wyświetlacza wyłączone"
         'L:chkNvHdcp' = "HDCP wyłączone"
@@ -6911,11 +7125,11 @@ $script:Tr = @{
         'M:homeUptimeD' = "{0} d {1} h {2} min"
         'M:homeUptimeH' = "{0} h {1} min"
         'M:homeInstalledOn' = "Windows zainstalowany {0}"
-        'M:homePcType' = "TYP KOMPUTERA"
-        'M:homeTypeAuto' = "Automatycznie: {0}"
-        'M:homeTypeDesktop' = "Stacjonarny"
+        'M:homePcType' = "RODZAJ KOMPUTERA"
+        'M:homeTypeAuto' = "Wykrywanie automatyczne: {0}"
+        'M:homeTypeDesktop' = "Komputer stacjonarny"
         'M:homeTypeLaptop' = "Laptop"
-        'M:homeTypeHint' = "Na laptopie «Zaznacz wszystko» i «Zalecane» pomijają opcje zużywające baterię; na stacjonarnym te przydatne tylko z baterią. Nadal można je wybrać ręcznie."
+        'M:homeTypeHint' = "«Zalecane» uwzględnia rodzaj komputera: na laptopie pomija opcje zużywające baterię, na stacjonarnym te przydatne tylko z baterią. Nadal można je zaznaczyć ręcznie."
         'M:homeCpu' = "Procesor"
         'M:homeRam' = "Pamięć"
         'M:homeGpu' = "Karta graficzna"
@@ -6963,6 +7177,20 @@ $script:Tr = @{
         'M:wgErr_8A15010C' = "Anulowano"
         'M:wgErr_8A15010E' = "Zainstalowano już nowszą wersję"
         'M:wgErr_8A15010F' = "Zablokowano przez zasady systemu"
+        'L:chkNvNoAnsel' = "Ansel wyłączony"
+        'L:chkIntelTelemetry' = "Telemetria Intel wyłączona"
+        'L:chkIntelGfxPower' = "Plan grafiki Intel: maksymalna wydajność"
+        'L:chkIntelDpst' = "Oszczędzanie energii ekranu (DPST) wyłączone"
+        'L:ttlCpu' = "PROCESOR"
+        'L:chkCpuIntelBoostPol' = "Intel: turbo bez limitu zasad"
+        'L:chkCpuIntelHybrid' = "Intel hybrydowe: aplikacje na pierwszym planie na rdzeniach P"
+        'L:chkCpuAmdParking' = "AMD Ryzen: bez parkowania rdzeni"
+        'L:chkCpuIdleOff' = "Procesor zawsze aktywny (bez stanów spoczynku)"
+        'M:cpuDetected' = "Wykryto: {0}. Aktywne są tylko opcje pasujące do tego procesora."
+        'M:cpuUnknown' = "nierozpoznany procesor"
+        'M:sectionSelect' = "Cała sekcja"
+        'M:laptopSelTitle' = "Laptop"
+        'M:laptopSelAsk' = "Na laptopie zalecane jest «Zalecane»: «Zaznacz wszystko» obejmuje też opcje skracające czas pracy na baterii. Zaznaczyć mimo to wszystko?"
     }
     pt = @{
         'L:lblSubtitle' = "Otimização e controle do Windows — PcFixPro Italia"
@@ -7468,12 +7696,11 @@ $script:Tr = @{
         'L:lblNvProfileHint' = "Gravadas no perfil global do driver, como no Painel de Controle NVIDIA."
         'L:chkNvP2' = "CUDA: sem estado P2 forçado"
         'L:chkNvDrsPower' = "Gerenciamento de energia: desempenho máximo"
-        'L:chkNvLowLatency' = "Modo de baixa latência: Ultra"
+        'L:chkNvLowLatency' = "Modo de baixa latência: ativado"
         'L:chkNvThreaded' = "Otimização de threads ativada"
         'L:chkNvTexPerf' = "Filtragem de texturas: alto desempenho"
         'L:chkNvAniso' = "Otimização de amostras anisotrópicas"
         'L:chkNvShaderCache' = "Cache de shaders ilimitado"
-        'L:chkNvNoFxaa' = "FXAA e Ansel desativados"
         'L:ttlNvReg' = "NVIDIA: REGISTRO DO DRIVER"
         'L:chkNvDisplayPower' = "Economia de energia da tela desativada"
         'L:chkNvHdcp' = "HDCP desativado"
@@ -7613,11 +7840,11 @@ $script:Tr = @{
         'M:homeUptimeD' = "{0} d {1} h {2} min"
         'M:homeUptimeH' = "{0} h {1} min"
         'M:homeInstalledOn' = "Windows instalado em {0}"
-        'M:homePcType' = "TIPO DE PC"
-        'M:homeTypeAuto' = "Automático: {0}"
-        'M:homeTypeDesktop' = "Desktop"
+        'M:homePcType' = "TIPO DE COMPUTADOR"
+        'M:homeTypeAuto' = "Detecção automática: {0}"
+        'M:homeTypeDesktop' = "Computador de mesa"
         'M:homeTypeLaptop' = "Notebook"
-        'M:homeTypeHint' = "No notebook, «Selecionar tudo» e «Recomendados» ignoram as opções que gastam bateria; no desktop, as úteis só com bateria. Continuam selecionáveis manualmente."
+        'M:homeTypeHint' = "«Recomendados» leva em conta o tipo: no notebook exclui as opções que gastam bateria, no desktop as úteis só com bateria. Ainda assim podem ser selecionadas manualmente."
         'M:homeCpu' = "Processador"
         'M:homeRam' = "Memória"
         'M:homeGpu' = "Placa de vídeo"
@@ -7665,6 +7892,20 @@ $script:Tr = @{
         'M:wgErr_8A15010C' = "Cancelada"
         'M:wgErr_8A15010E' = "Uma versão mais recente já está instalada"
         'M:wgErr_8A15010F' = "Bloqueada por uma política do sistema"
+        'L:chkNvNoAnsel' = "Ansel desativado"
+        'L:chkIntelTelemetry' = "Telemetria da Intel desativada"
+        'L:chkIntelGfxPower' = "Plano gráfico Intel: desempenho máximo"
+        'L:chkIntelDpst' = "Economia de energia da tela (DPST) desativada"
+        'L:ttlCpu' = "PROCESSADOR"
+        'L:chkCpuIntelBoostPol' = "Intel: turbo sem limite de política"
+        'L:chkCpuIntelHybrid' = "Intel híbridos: apps em primeiro plano nos núcleos P"
+        'L:chkCpuAmdParking' = "AMD Ryzen: nenhum núcleo estacionado"
+        'L:chkCpuIdleOff' = "Processador sempre acordado (sem estados de repouso)"
+        'M:cpuDetected' = "Detectado: {0}. Só as opções adequadas a este processador ficam ativas."
+        'M:cpuUnknown' = "processador não reconhecido"
+        'M:sectionSelect' = "Seção inteira"
+        'M:laptopSelTitle' = "Notebook"
+        'M:laptopSelAsk' = "No notebook é recomendado usar «Recomendados»: «Selecionar tudo» inclui também opções que reduzem a autonomia. Selecionar tudo mesmo assim?"
     }
     ro = @{
         'L:lblSubtitle' = "Optimizarea și controlul Windows — PcFixPro Italia"
@@ -8170,12 +8411,11 @@ $script:Tr = @{
         'L:lblNvProfileHint' = "Scrise în profilul global al driverului, ca în Panoul de control NVIDIA."
         'L:chkNvP2' = "CUDA: fără stare P2 forțată"
         'L:chkNvDrsPower' = "Gestionare energie: performanță maximă"
-        'L:chkNvLowLatency' = "Mod latență redusă: Ultra"
+        'L:chkNvLowLatency' = "Mod latență redusă: activ"
         'L:chkNvThreaded' = "Optimizare pe fire activă"
         'L:chkNvTexPerf' = "Filtrare texturi: performanță ridicată"
         'L:chkNvAniso' = "Optimizare eșantioane anizotrope"
         'L:chkNvShaderCache' = "Cache shader nelimitat"
-        'L:chkNvNoFxaa' = "FXAA și Ansel dezactivate"
         'L:ttlNvReg' = "NVIDIA: REGISTRUL DRIVERULUI"
         'L:chkNvDisplayPower' = "Economie energie ecran dezactivată"
         'L:chkNvHdcp' = "HDCP dezactivat"
@@ -8315,11 +8555,11 @@ $script:Tr = @{
         'M:homeUptimeD' = "{0} z {1} h {2} min"
         'M:homeUptimeH' = "{0} h {1} min"
         'M:homeInstalledOn' = "Windows instalat pe {0}"
-        'M:homePcType' = "TIP PC"
-        'M:homeTypeAuto' = "Automat: {0}"
-        'M:homeTypeDesktop' = "Desktop"
+        'M:homePcType' = "TIPUL COMPUTERULUI"
+        'M:homeTypeAuto' = "Detectare automată: {0}"
+        'M:homeTypeDesktop' = "Computer desktop"
         'M:homeTypeLaptop' = "Laptop"
-        'M:homeTypeHint' = "Pe laptop «Selectează tot» și «Recomandate» sar peste opțiunile care consumă bateria; pe desktop, peste cele utile doar cu baterie. Rămân selectabile manual."
+        'M:homeTypeHint' = "«Recomandate» ține cont de tip: pe laptop exclude opțiunile care consumă bateria, pe desktop pe cele utile doar cu baterie. Pot fi totuși selectate manual."
         'M:homeCpu' = "Procesor"
         'M:homeRam' = "Memorie"
         'M:homeGpu' = "Placă video"
@@ -8367,6 +8607,20 @@ $script:Tr = @{
         'M:wgErr_8A15010C' = "Anulată"
         'M:wgErr_8A15010E' = "Este deja instalată o versiune mai nouă"
         'M:wgErr_8A15010F' = "Blocată de o politică de sistem"
+        'L:chkNvNoAnsel' = "Ansel dezactivat"
+        'L:chkIntelTelemetry' = "Telemetrie Intel dezactivată"
+        'L:chkIntelGfxPower' = "Plan grafic Intel: performanță maximă"
+        'L:chkIntelDpst' = "Economie energie ecran (DPST) dezactivată"
+        'L:ttlCpu' = "PROCESOR"
+        'L:chkCpuIntelBoostPol' = "Intel: turbo fără limită de politică"
+        'L:chkCpuIntelHybrid' = "Intel hibrid: aplicații în prim-plan pe nuclee P"
+        'L:chkCpuAmdParking' = "AMD Ryzen: niciun nucleu parcat"
+        'L:chkCpuIdleOff' = "Procesor mereu activ (fără stări de repaus)"
+        'M:cpuDetected' = "Detectat: {0}. Sunt active doar opțiunile potrivite acestui procesor."
+        'M:cpuUnknown' = "procesor nerecunoscut"
+        'M:sectionSelect' = "Toată secțiunea"
+        'M:laptopSelTitle' = "Laptop"
+        'M:laptopSelAsk' = "Pe laptop este recomandat «Recomandate»: «Selectează tot» include și opțiuni care reduc autonomia bateriei. Selectezi totuși tot?"
     }
     ru = @{
         'L:lblSubtitle' = "Оптимизация и управление Windows — PcFixPro Italia"
@@ -8872,12 +9126,11 @@ $script:Tr = @{
         'L:lblNvProfileHint' = "Записываются в глобальный профиль драйвера, как в панели управления NVIDIA."
         'L:chkNvP2' = "CUDA: без принудительного P2"
         'L:chkNvDrsPower' = "Управление питанием: максимальная производительность"
-        'L:chkNvLowLatency' = "Режим низкой задержки: Ультра"
+        'L:chkNvLowLatency' = "Режим низкой задержки: вкл."
         'L:chkNvThreaded' = "Потоковая оптимизация включена"
         'L:chkNvTexPerf' = "Фильтрация текстур: высокая производительность"
         'L:chkNvAniso' = "Оптимизация анизотропной выборки"
         'L:chkNvShaderCache' = "Неограниченный кэш шейдеров"
-        'L:chkNvNoFxaa' = "FXAA и Ansel выключены"
         'L:ttlNvReg' = "NVIDIA: РЕЕСТР ДРАЙВЕРА"
         'L:chkNvDisplayPower' = "Энергосбережение дисплея выключено"
         'L:chkNvHdcp' = "HDCP выключен"
@@ -9018,10 +9271,10 @@ $script:Tr = @{
         'M:homeUptimeH' = "{0} ч {1} мин"
         'M:homeInstalledOn' = "Windows установлен {0}"
         'M:homePcType' = "ТИП КОМПЬЮТЕРА"
-        'M:homeTypeAuto' = "Автоматически: {0}"
-        'M:homeTypeDesktop' = "Настольный"
+        'M:homeTypeAuto' = "Автоопределение: {0}"
+        'M:homeTypeDesktop' = "Настольный компьютер"
         'M:homeTypeLaptop' = "Ноутбук"
-        'M:homeTypeHint' = "На ноутбуке «Выбрать всё» и «Рекомендуемые» пропускают пункты, расходующие батарею; на настольном — полезные только с батареей. Вручную их можно выбрать."
+        'M:homeTypeHint' = "«Рекомендуемые» учитывают тип: на ноутбуке исключаются пункты, расходующие батарею, на настольном — полезные только с батареей. Их всё равно можно выбрать вручную."
         'M:homeCpu' = "Процессор"
         'M:homeRam' = "Память"
         'M:homeGpu' = "Видеокарта"
@@ -9069,6 +9322,20 @@ $script:Tr = @{
         'M:wgErr_8A15010C' = "Отменено"
         'M:wgErr_8A15010E' = "Уже установлена более новая версия"
         'M:wgErr_8A15010F' = "Заблокировано политикой системы"
+        'L:chkNvNoAnsel' = "Ansel выключен"
+        'L:chkIntelTelemetry' = "Телеметрия Intel выключена"
+        'L:chkIntelGfxPower' = "План графики Intel: макс. производительность"
+        'L:chkIntelDpst' = "Энергосбережение дисплея (DPST) выключено"
+        'L:ttlCpu' = "ПРОЦЕССОР"
+        'L:chkCpuIntelBoostPol' = "Intel: турбо без ограничений политики"
+        'L:chkCpuIntelHybrid' = "Intel гибридные: активные приложения на P-ядрах"
+        'L:chkCpuAmdParking' = "AMD Ryzen: без парковки ядер"
+        'L:chkCpuIdleOff' = "Процессор всегда активен (без простоя)"
+        'M:cpuDetected' = "Обнаружен: {0}. Доступны только пункты для этого процессора."
+        'M:cpuUnknown' = "неизвестный процессор"
+        'M:sectionSelect' = "Весь раздел"
+        'M:laptopSelTitle' = "Ноутбук"
+        'M:laptopSelAsk' = "На ноутбуке лучше использовать «Рекомендуемые»: «Выбрать всё» включает и пункты, сокращающие время работы от батареи. Всё равно выбрать всё?"
     }
 }
 
@@ -9477,6 +9744,8 @@ $script:Catalog = @(
     @{ Id = 'pw.usb3Lpm'; Page = 'power'; Group = 'dev'; Kind = 'N'; Flags = ''; Def = '3'; Rec = '0'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '1'; Vals = @() }, @{ Key = '2'; Vals = @() }, @{ Key = '3'; Vals = @() }); Sub = '2a737441-1930-4402-8d77-b2bebba308a3'; Set = 'd4e98f31-5ffe-4ce1-be31-1b38b384c009' },
     @{ Id = 'pw.wifi'; Page = 'power'; Group = 'dev'; Kind = 'N'; Flags = ''; Def = '0'; Rec = '0'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '1'; Vals = @() }, @{ Key = '2'; Vals = @() }, @{ Key = '3'; Vals = @() }); Sub = '19cbb8fa-5279-450e-9fac-8a3d5fedd0c1'; Set = '12bbebe6-58d6-4636-95bb-3217ef867c1a' },
     @{ Id = 'pw.disk'; Page = 'power'; Group = 'dev'; Kind = 'N'; Flags = ''; Def = '1200'; Rec = '0'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '300'; Vals = @() }, @{ Key = '1200'; Vals = @() }, @{ Key = '3600'; Vals = @() }); Sub = '0012ee47-9041-4b5d-9b77-535fba8b1442'; Set = '6738e2c4-e8a5-4a42-b16a-e040e769756e' },
+    @{ Id = 'pw.nvme1'; Page = 'power'; Group = 'dev'; Kind = 'N'; Flags = ''; Def = '200'; Rec = '-'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '100'; Vals = @() }, @{ Key = '200'; Vals = @() }, @{ Key = '1000'; Vals = @() }); Sub = '0012ee47-9041-4b5d-9b77-535fba8b1442'; Set = 'd639518a-e56d-4345-8af2-b9f32fb26109' },
+    @{ Id = 'pw.nvme2'; Page = 'power'; Group = 'dev'; Kind = 'N'; Flags = ''; Def = '2000'; Rec = '-'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '1000'; Vals = @() }, @{ Key = '2000'; Vals = @() }, @{ Key = '5000'; Vals = @() }); Sub = '0012ee47-9041-4b5d-9b77-535fba8b1442'; Set = 'd3d55efd-c1ff-424e-9dc3-441be7833010' },
     @{ Id = 'pw.display'; Page = 'power'; Group = 'sleep'; Kind = 'N'; Flags = ''; Def = '600'; Rec = '-'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '300'; Vals = @() }, @{ Key = '600'; Vals = @() }, @{ Key = '900'; Vals = @() }, @{ Key = '1800'; Vals = @() }, @{ Key = '3600'; Vals = @() }); Sub = '7516b95f-f776-4464-8c53-06167f40cc99'; Set = '3c0bc021-c8a8-4e07-a973-6b14cbcb2b7e' },
     @{ Id = 'pw.sleep'; Page = 'power'; Group = 'sleep'; Kind = 'N'; Flags = ''; Def = '1800'; Rec = '-'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '900'; Vals = @() }, @{ Key = '1800'; Vals = @() }, @{ Key = '3600'; Vals = @() }, @{ Key = '7200'; Vals = @() }); Sub = '238c9fa8-0aad-41ed-83f4-97be242c8f20'; Set = '29f6c1db-86da-48c5-9fdb-f2b67b1f44da' },
     @{ Id = 'pw.hibAfter'; Page = 'power'; Group = 'sleep'; Kind = 'N'; Flags = ''; Def = '0'; Rec = '-'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '3600'; Vals = @() }, @{ Key = '10800'; Vals = @() }, @{ Key = '21600'; Vals = @() }); Sub = '238c9fa8-0aad-41ed-83f4-97be242c8f20'; Set = '9d7815a6-7ee4-497e-8888-515a05f02364' },
@@ -10025,6 +10294,16 @@ $script:CatText = @{
     'pw.disk#300' = @{ it = '5 minuti'; en = '5 minutes'; es = '5 minutos'; de = '5 Minuten'; fr = '5 minutes'; pl = '5 minut'; pt = '5 minutos'; ro = '5 minute'; ru = '5 минут' }
     'pw.disk#1200' = @{ it = '20 minuti'; en = '20 minutes'; es = '20 minutos'; de = '20 Minuten'; fr = '20 minutes'; pl = '20 minut'; pt = '20 minutos'; ro = '20 de minute'; ru = '20 минут' }
     'pw.disk#3600' = @{ it = '1 ora'; en = '1 hour'; es = '1 hora'; de = '1 Stunde'; fr = '1 heure'; pl = '1 godzinie'; pt = '1 hora'; ro = '1 oră'; ru = '1 час' }
+    'pw.nvme1' = @{ it = 'SSD NVMe: primo riposo dopo'; en = 'NVMe SSD: first idle state after'; es = 'SSD NVMe: primer reposo tras'; de = 'NVMe-SSD: erster Ruhezustand nach'; fr = 'SSD NVMe : premier repos après'; pl = 'SSD NVMe: pierwszy stan uśpienia po'; pt = 'SSD NVMe: primeiro repouso após'; ro = 'SSD NVMe: prima stare de repaus după'; ru = 'SSD NVMe: первый режим простоя через' }
+    'pw.nvme1#0' = @{ it = 'Mai (sempre pronto)'; en = 'Never (always ready)'; es = 'Nunca (siempre listo)'; de = 'Nie (immer bereit)'; fr = 'Jamais (toujours prêt)'; pl = 'Nigdy (zawsze gotowy)'; pt = 'Nunca (sempre pronto)'; ro = 'Niciodată (mereu gata)'; ru = 'Никогда (всегда готов)' }
+    'pw.nvme1#100' = @{ it = '100 ms'; en = '100 ms' }
+    'pw.nvme1#200' = @{ it = '200 ms'; en = '200 ms' }
+    'pw.nvme1#1000' = @{ it = '1 secondo'; en = '1 second'; es = '1 segundo'; de = '1 Sekunde'; fr = '1 seconde'; pl = '1 sekunda'; pt = '1 segundo'; ro = '1 secundă'; ru = '1 секунда' }
+    'pw.nvme2' = @{ it = 'SSD NVMe: riposo profondo dopo'; en = 'NVMe SSD: deep idle state after'; es = 'SSD NVMe: reposo profundo tras'; de = 'NVMe-SSD: tiefer Ruhezustand nach'; fr = 'SSD NVMe : repos profond après'; pl = 'SSD NVMe: głębokie uśpienie po'; pt = 'SSD NVMe: repouso profundo após'; ro = 'SSD NVMe: repaus profund după'; ru = 'SSD NVMe: глубокий простой через' }
+    'pw.nvme2#0' = @{ it = 'Mai (sempre pronto)'; en = 'Never (always ready)'; es = 'Nunca (siempre listo)'; de = 'Nie (immer bereit)'; fr = 'Jamais (toujours prêt)'; pl = 'Nigdy (zawsze gotowy)'; pt = 'Nunca (sempre pronto)'; ro = 'Niciodată (mereu gata)'; ru = 'Никогда (всегда готов)' }
+    'pw.nvme2#1000' = @{ it = '1 secondo'; en = '1 second'; es = '1 segundo'; de = '1 Sekunde'; fr = '1 seconde'; pl = '1 sekunda'; pt = '1 segundo'; ro = '1 secundă'; ru = '1 секунда' }
+    'pw.nvme2#2000' = @{ it = '2 secondi'; en = '2 seconds'; es = '2 segundos'; de = '2 Sekunden'; fr = '2 secondes'; pl = '2 sekundy'; pt = '2 segundos'; ro = '2 secunde'; ru = '2 секунды' }
+    'pw.nvme2#5000' = @{ it = '5 secondi'; en = '5 seconds'; es = '5 segundos'; de = '5 Sekunden'; fr = '5 secondes'; pl = '5 sekund'; pt = '5 segundos'; ro = '5 secunde'; ru = '5 секунд' }
     'g.power.sleep' = @{ it = 'Schermo e sospensione'; en = 'Display and sleep'; es = 'Pantalla y suspensión'; de = 'Bildschirm und Energiesparmodus'; fr = 'Écran et veille'; pl = 'Ekran i uśpienie'; pt = 'Tela e suspensão'; ro = 'Ecran și repaus'; ru = 'Экран и сон' }
     'pw.display' = @{ it = 'Spegni lo schermo dopo'; en = 'Turn off the display after'; es = 'Apagar la pantalla tras'; de = 'Bildschirm ausschalten nach'; fr = 'Éteindre l''écran après'; pl = 'Wyłącz ekran po'; pt = 'Desligar a tela após'; ro = 'Oprește ecranul după'; ru = 'Отключать экран через' }
     'pw.display#0' = @{ it = 'Mai'; en = 'Never'; es = 'Nunca'; de = 'Nie'; fr = 'Jamais'; pl = 'Nigdy'; pt = 'Nunca'; ro = 'Niciodată'; ru = 'Никогда' }
@@ -10467,6 +10746,8 @@ $script:CatTip = @{
     'pw.usb3Lpm' = @{ it = 'Spento, i dispositivi USB 3 rispondono senza ritardi di risveglio.'; en = 'Off, USB 3 devices respond without wake-up delays.' }
     'pw.wifi' = @{ it = 'Prestazioni massime evita cali di ping dovuti al risparmio della scheda.'; en = 'Maximum performance avoids ping spikes caused by adapter power saving.' }
     'pw.disk' = @{ it = 'Su Mai i dischi meccanici non si fermano: niente attesa quando li riapri.'; en = 'On Never, hard drives don''t spin down: no wait when you open them again.' }
+    'pw.nvme1' = @{ it = 'Dopo quanto tempo di inattività l''SSD NVMe entra nel primo stato di risparmio. Su Mai risponde sempre subito, ma consuma e scalda un po'' di più.'; en = 'How long the NVMe SSD waits idle before its first power-saving state. On Never it always answers at once, but draws and heats a little more.'; es = 'Tiempo de inactividad antes del primer estado de ahorro del SSD NVMe. En Nunca responde siempre al instante, pero consume y calienta algo más.'; de = 'Leerlaufzeit bis zum ersten Energiesparzustand der NVMe-SSD. Bei Nie antwortet sie sofort, verbraucht und erwärmt sich aber etwas mehr.'; fr = 'Délai d''inactivité avant le premier état d''économie du SSD NVMe. Sur Jamais il répond toujours aussitôt, mais consomme et chauffe un peu plus.'; pl = 'Czas bezczynności przed pierwszym stanem oszczędzania SSD NVMe. Przy Nigdy odpowiada od razu, ale zużywa i grzeje się nieco bardziej.'; pt = 'Tempo ocioso antes do primeiro estado de economia do SSD NVMe. Em Nunca responde sempre na hora, mas consome e aquece um pouco mais.'; ro = 'Timpul de inactivitate până la prima stare de economisire a SSD-ului NVMe. Pe Niciodată răspunde imediat, dar consumă și se încălzește puțin mai mult.'; ru = 'Время простоя до первого энергосберегающего режима SSD NVMe. При «Никогда» отвечает сразу, но потребляет и греется чуть больше.' }
+    'pw.nvme2' = @{ it = 'Il secondo stato di risparmio, più profondo: il risveglio richiede qualche millisecondo in più. Su un portatile conviene lasciarlo attivo.'; en = 'The second, deeper power-saving state: waking up takes a few more milliseconds. On a laptop it is best left on.'; es = 'El segundo estado de ahorro, más profundo: despertar tarda unos milisegundos más. En un portátil conviene dejarlo activo.'; de = 'Der zweite, tiefere Energiesparzustand: das Aufwachen dauert ein paar Millisekunden länger. Auf einem Laptop besser eingeschaltet lassen.'; fr = 'Le second état d''économie, plus profond : le réveil prend quelques millisecondes de plus. Sur un portable, mieux vaut le laisser actif.'; pl = 'Drugi, głębszy stan oszczędzania: wybudzenie trwa kilka milisekund dłużej. W laptopie lepiej zostawić włączony.'; pt = 'O segundo estado de economia, mais profundo: acordar leva alguns milissegundos a mais. Em um notebook é melhor deixá-lo ativo.'; ro = 'A doua stare de economisire, mai profundă: trezirea durează câteva milisecunde în plus. Pe laptop e mai bine să rămână activă.'; ru = 'Второй, более глубокий режим: пробуждение занимает на несколько миллисекунд дольше. На ноутбуке лучше оставить включённым.' }
     'pw.display' = @{ it = 'Dopo quanto tempo di inattività si spegne il monitor.'; en = 'How long without activity before the monitor turns off.' }
     'pw.sleep' = @{ it = 'Dopo quanto tempo di inattività il PC va in sospensione.'; en = 'How long without activity before the PC goes to sleep.' }
     'pw.hibAfter' = @{ it = 'Dopo quanto tempo di sospensione il PC salva tutto su disco e si spegne.'; en = 'How long asleep before the PC saves everything to disk and powers off.' }
@@ -11297,12 +11578,12 @@ function Build-Actions {
     # ---------- PRESTAZIONI NVIDIA: PROFILO DEL DRIVER ----------
     Add-IfChecked $chkNvP2 { if (Test-Gpu 'NVIDIA' 'CUDA P2') { Set-NvProfile 'P2' 'CUDA senza stato P2 forzato' } }
     Add-IfChecked $chkNvDrsPower { if (Test-Gpu 'NVIDIA' 'Gestione energia') { Set-NvProfile 'Power' 'Gestione energia: prestazioni massime' } }
-    Add-IfChecked $chkNvLowLatency { if (Test-Gpu 'NVIDIA' 'Bassa latenza') { Set-NvProfile 'LowLatency' 'Modalita bassa latenza Ultra' } }
+    Add-IfChecked $chkNvLowLatency { if (Test-Gpu 'NVIDIA' 'Bassa latenza') { Set-NvProfile 'LowLatency' 'Modalita bassa latenza attiva' } }
     Add-IfChecked $chkNvThreaded { if (Test-Gpu 'NVIDIA' 'Ottimizzazione thread') { Set-NvProfile 'Threaded' 'Ottimizzazione thread' } }
     Add-IfChecked $chkNvTexPerf { if (Test-Gpu 'NVIDIA' 'Filtro texture') { Set-NvProfile 'TexPerf' 'Filtro texture prestazioni elevate' } }
     Add-IfChecked $chkNvAniso { if (Test-Gpu 'NVIDIA' 'Campioni anisotropici') { Set-NvProfile 'Aniso' 'Ottimizzazione campioni anisotropici' } }
     Add-IfChecked $chkNvShaderCache { if (Test-Gpu 'NVIDIA' 'Cache shader') { Set-NvProfile 'Shader' 'Cache shader illimitata' } }
-    Add-IfChecked $chkNvNoFxaa { if (Test-Gpu 'NVIDIA' 'FXAA e Ansel') { Set-NvProfile 'NoFxaa' 'FXAA e Ansel spenti' } }
+    Add-IfChecked $chkNvNoAnsel { if (Test-Gpu 'NVIDIA' 'Ansel') { Set-NvProfile 'NoAnsel' 'Ansel spento' } }
 
     # ---------- PRESTAZIONI NVIDIA: REGISTRO DEL DRIVER ----------
     Add-IfChecked $chkNvDisplayPower {
@@ -11356,6 +11637,39 @@ function Build-Actions {
         foreach ($svc in @('igfxCUIService2.0.0.0','IntelAudioService','Intel(R) TPM Provisioning Service')) {
             Set-Svc $svc 'Manual' $svc
         }
+    }
+
+    # ---------- INTEL GRAPHICS ----------
+    Add-IfChecked $chkIntelTelemetry {
+        # Programma di miglioramento e resoconto d'uso dell'assistente driver Intel.
+        foreach ($svc in @('ESRV_SVC_QUEENCREEK', 'SystemUsageReportSvc_QUEENCREEK')) { Set-Svc $svc 'Disabled' $svc | Out-Null }
+    }
+    Add-IfChecked $chkIntelGfxPower {
+        if (-not (Test-Gpu 'Intel' 'Piano grafico Intel')) { return }
+        Set-PowerAc '44f3beca-a7c0-460e-9df2-bb8b99e0cba6' '3619c3f2-afb2-4afc-b0e9-e7fef372de36' 2 'Piano grafico Intel: prestazioni massime'
+    }
+    Add-IfChecked $chkIntelDpst {
+        if (-not (Test-Gpu 'Intel' 'DPST')) { return }
+        Set-IntelFeatureBit 0x10 $true 'Risparmio energetico del display (DPST) spento'
+        Write-Log "[INFO] Su alcuni portatili il driver Intel riaccende il DPST al riavvio."
+    }
+
+    # ---------- PROCESSORE ----------
+    Add-IfChecked $chkCpuIntelBoostPol {
+        if ($script:CpuVendor -ne 'Intel') { Write-Log "[SALTATO] Politica turbo - processore non Intel."; return }
+        Set-PowerAc '54533251-82be-4824-96c1-47b60b740d00' '45bcc044-d885-43e2-8605-ee0ec6e96b59' 100 'Politica del turbo al 100%'
+    }
+    Add-IfChecked $chkCpuIntelHybrid {
+        if (-not $script:CpuHybrid) { Write-Log "[SALTATO] Core P - processore senza core ibridi."; return }
+        Set-PowerAc '54533251-82be-4824-96c1-47b60b740d00' '93b8b6dc-0698-4d1c-9ee4-0644e900c85d' 2 'Thread sui core P quando possibile'
+        Set-PowerAc '54533251-82be-4824-96c1-47b60b740d00' 'bae08b81-2d5e-4688-ad6a-13243356654b' 2 'Thread brevi sui core P quando possibile'
+    }
+    Add-IfChecked $chkCpuAmdParking {
+        if ($script:CpuVendor -ne 'AMD' -or $script:CpuDualX3D) { Write-Log "[SALTATO] Parcheggio dei core - non adatto a questo processore."; return }
+        Set-PowerAc '54533251-82be-4824-96c1-47b60b740d00' '0cc5b647-c1df-4637-891a-dec35c318583' 100 'Core sempre attivi'
+    }
+    Add-IfChecked $chkCpuIdleOff {
+        Set-PowerAc '54533251-82be-4824-96c1-47b60b740d00' '5d76a2ca-e8c0-402f-a133-2158492d58ad' 1 'Stati di riposo del processore spenti'
     }
 
     Add-IfChecked $chkGpuTdr {
@@ -11764,6 +12078,7 @@ function Remove-RegAllInterfaces {
 
 # Tipo di avvio originale dei servizi toccati dal programma.
 $script:SvcDefault = @{
+    ESRV_SVC_QUEENCREEK='Automatic'; SystemUsageReportSvc_QUEENCREEK='Automatic'
     MapsBroker='Automatic'; Fax='Manual'; XblAuthManager='Manual'; XblGameSave='Manual'; XboxNetApiSvc='Manual'
     XboxGipSvc='Manual'; RetailDemo='Manual'; WalletService='Manual'; PhoneSvc='Manual'
     DiagTrack='Automatic'; dmwappushservice='Manual'; lfsvc='Manual'; WerSvc='Manual'; DoSvc='Automatic'; BDESVC='Manual'
@@ -12151,7 +12466,7 @@ function Build-UndoActions {
     Add-UndoIfChecked $chkNvTexPerf { Reset-NvProfile 'TexPerf' 'Filtro texture' }
     Add-UndoIfChecked $chkNvAniso { Reset-NvProfile 'Aniso' 'Campioni anisotropici' }
     Add-UndoIfChecked $chkNvShaderCache { Reset-NvProfile 'Shader' 'Cache shader' }
-    Add-UndoIfChecked $chkNvNoFxaa { Reset-NvProfile 'NoFxaa' 'FXAA e Ansel' }
+    Add-UndoIfChecked $chkNvNoAnsel { Reset-NvProfile 'NoAnsel' 'Ansel' }
     Add-UndoIfChecked $chkNvDisplayPower { Reset-Reg 'HKLM:\SYSTEM\CurrentControlSet\Services\nvlddmkm\Global\NVTweak' 'DisplayPowerSaving' }
     Add-UndoIfChecked $chkNvHdcp { Remove-GpuClassValue 'RMHdcpKeyglobZero' 'NVIDIA' }
     Add-UndoIfChecked $chkNvPreempt { Remove-GpuClassValue 'DisablePreemption' 'NVIDIA'; Remove-GpuClassValue 'DisableCudaContextPreemption' 'NVIDIA' }
@@ -12168,6 +12483,16 @@ function Build-UndoActions {
     Add-UndoIfChecked $chkAmdPowerGating { foreach ($v in 'DisableDrmdmaPowerGating','DisableUVDPowerGatingDynamic','DisableVCEPowerGating') { Remove-GpuClassValue $v 'AMD' } }
     Add-UndoIfChecked $chkAmdDma { Remove-GpuClassValue 'DisableDMACopy' 'AMD'; Remove-GpuClassValue 'DisableBlockWrite' 'AMD' }
     Add-UndoIfChecked $chkAmdPreempt { Remove-GpuClassValue 'KMD_EnableComputePreemption' 'AMD' }
+    Add-UndoIfChecked $chkIntelTelemetry { Reset-Svc @('ESRV_SVC_QUEENCREEK', 'SystemUsageReportSvc_QUEENCREEK') }
+    Add-UndoIfChecked $chkIntelGfxPower { Reset-PowerAc '3619c3f2-afb2-4afc-b0e9-e7fef372de36' 'Piano grafico Intel' }
+    Add-UndoIfChecked $chkIntelDpst { Set-IntelFeatureBit 0x10 $false 'DPST riacceso' }
+    Add-UndoIfChecked $chkCpuIntelBoostPol { Reset-PowerAc '45bcc044-d885-43e2-8605-ee0ec6e96b59' 'Politica del turbo' }
+    Add-UndoIfChecked $chkCpuIntelHybrid {
+        Reset-PowerAc '93b8b6dc-0698-4d1c-9ee4-0644e900c85d' 'Thread sui core P'
+        Reset-PowerAc 'bae08b81-2d5e-4688-ad6a-13243356654b' 'Thread brevi sui core P'
+    }
+    Add-UndoIfChecked $chkCpuAmdParking { Reset-PowerAc '0cc5b647-c1df-4637-891a-dec35c318583' 'Parcheggio dei core' }
+    Add-UndoIfChecked $chkCpuIdleOff { Reset-PowerAc '5d76a2ca-e8c0-402f-a133-2158492d58ad' 'Stati di riposo del processore' }
     Add-UndoIfChecked $chkIntelBloat { Reset-Svc @('igfxCUIService2.0.0.0','IntelAudioService','Intel(R) TPM Provisioning Service') }
     Add-UndoIfChecked $chkGpuTdr {
         Reset-Reg 'HKLM:\SYSTEM\CurrentControlSet\Control\GraphicsDrivers' 'TdrDelay'
@@ -12813,6 +13138,116 @@ function Show-GpuInfo {
     $txtGpuDetected.Text = "$(T 'gpuVendor') $($script:GpuVendor)`n" + ($lines -join "`n")
 }
 
+# ------------------------------------------------------------------------------
+# 19b. PROCESSORE: marca, architettura ibrida e X3D a due chiplet
+# ------------------------------------------------------------------------------
+Add-Type -ErrorAction SilentlyContinue -TypeDefinition @'
+using System;
+using System.Runtime.InteropServices;
+namespace TweakAndrew {
+public static class CpuInfo {
+    [DllImport("kernel32.dll", SetLastError = true)]
+    static extern bool GetLogicalProcessorInformationEx(int relation, IntPtr buffer, ref int length);
+    // Vero se i core non hanno tutti la stessa classe di efficienza (core P ed E).
+    public static bool IsHybrid() {
+        int len = 0;
+        GetLogicalProcessorInformationEx(0, IntPtr.Zero, ref len);
+        if (len <= 0) return false;
+        IntPtr buf = Marshal.AllocHGlobal(len);
+        try {
+            if (!GetLogicalProcessorInformationEx(0, buf, ref len)) return false;
+            int off = 0; int first = -1;
+            while (off < len) {
+                IntPtr item = new IntPtr(buf.ToInt64() + off);
+                int size = Marshal.ReadInt32(item, 4);
+                int eff = Marshal.ReadByte(item, 9);
+                if (first < 0) first = eff; else if (eff != first) return true;
+                if (size <= 0) break;
+                off += size;
+            }
+            return false;
+        } finally { Marshal.FreeHGlobal(buf); }
+    }
+}
+}
+'@
+
+$script:CpuName = ''
+try { $script:CpuName = ([string](Get-ItemProperty 'HKLM:\HARDWARE\DESCRIPTION\System\CentralProcessor\0' -ErrorAction Stop).ProcessorNameString).Trim() -replace '\s+', ' ' } catch {}
+$script:CpuVendor = if ($env:PROCESSOR_IDENTIFIER -match 'GenuineIntel') { 'Intel' } elseif ($env:PROCESSOR_IDENTIFIER -match 'AuthenticAMD') { 'AMD' } else { '' }
+$script:CpuHybrid = $false
+try { $script:CpuHybrid = [TweakAndrew.CpuInfo]::IsHybrid() } catch {}
+# Ryzen X3D con due chiplet: Windows parcheggia di proposito i core senza cache
+# 3D mentre si gioca. Togliere il parcheggio lì peggiora le prestazioni.
+$script:CpuDualX3D = $script:CpuName -match '(7900|7950|9900|9950)X3D'
+
+function Show-CpuInfo {
+    if ($null -eq $txtCpuDetected) { return }
+    $name = if ($script:CpuName) { $script:CpuName } else { T 'cpuUnknown' }
+    $txtCpuDetected.Text = (T 'cpuDetected') -f $name
+    foreach ($cb in @($chkCpuIntelBoostPol, $chkCpuIntelHybrid)) { $cb.IsEnabled = ($script:CpuVendor -eq 'Intel') }
+    if (-not $script:CpuHybrid) { $chkCpuIntelHybrid.IsEnabled = $false }
+    $chkCpuAmdParking.IsEnabled = ($script:CpuVendor -eq 'AMD') -and -not $script:CpuDualX3D
+    foreach ($cb in @($chkCpuIntelBoostPol, $chkCpuIntelHybrid, $chkCpuAmdParking)) {
+        [System.Windows.Controls.ToolTipService]::SetShowOnDisabled($cb, $true)
+        if (-not $cb.IsEnabled) { $cb.IsChecked = $false }
+    }
+}
+
+# Impostazioni del piano energetico attivo, solo con l'alimentazione collegata:
+# a batteria il portatile resta com'era. Il valore di prima si salva in
+# HKCU\Software\TweakAndrew\PowerBackup e «Reimposta» lo rimette.
+$script:PowerBackupKey = 'HKCU:\Software\TweakAndrew\PowerBackup'
+
+function Set-PowerAc([string]$Sub, [string]$Set, [uint32]$Value, [string]$Label) {
+    $scheme = Get-ActiveSchemeGuid
+    if ($null -eq $scheme) { Write-Log "[SALTATO] $Label - piano energetico non leggibile."; return }
+    $s = [guid]$Sub; $g = [guid]$Set; $old = [uint32]0
+    if ([TweakAndrew.PowerApi]::PowerReadACValueIndex([IntPtr]::Zero, [ref]$scheme, [ref]$s, [ref]$g, [ref]$old) -ne 0) {
+        Write-Log "[SALTATO] $Label - impostazione non presente su questo computer."; return
+    }
+    try {
+        if (-not (Test-Path -LiteralPath $script:PowerBackupKey)) { New-Item -Path $script:PowerBackupKey -Force | Out-Null }
+        $prev = Get-ItemProperty -LiteralPath $script:PowerBackupKey -Name $Set -ErrorAction SilentlyContinue
+        if ($null -eq $prev) { New-ItemProperty -LiteralPath $script:PowerBackupKey -Name $Set -Value "$Sub|$old" -PropertyType String -Force | Out-Null }
+    } catch {}
+    $r = [TweakAndrew.PowerApi]::PowerWriteACValueIndex([IntPtr]::Zero, [ref]$scheme, [ref]$s, [ref]$g, $Value)
+    [TweakAndrew.PowerApi]::PowerSetActiveScheme([IntPtr]::Zero, [ref]$scheme) | Out-Null
+    if ($r -eq 0) { Write-Log "[OK] $Label - $old -> $Value (con alimentazione collegata)." }
+    else { Write-Log "[ERRORE] $Label - powrprof ha restituito $r." }
+}
+
+function Reset-PowerAc([string]$Set, [string]$Label) {
+    $prev = [string](Get-ItemProperty -LiteralPath $script:PowerBackupKey -Name $Set -ErrorAction SilentlyContinue).$Set
+    if (-not $prev) { Write-Log "[SALTATO] $Label - nessun valore salvato da ripristinare."; return }
+    $p = $prev -split '\|'
+    $scheme = Get-ActiveSchemeGuid
+    $s = [guid]$p[0]; $g = [guid]$Set
+    $r = [TweakAndrew.PowerApi]::PowerWriteACValueIndex([IntPtr]::Zero, [ref]$scheme, [ref]$s, [ref]$g, [uint32]$p[1])
+    [TweakAndrew.PowerApi]::PowerSetActiveScheme([IntPtr]::Zero, [ref]$scheme) | Out-Null
+    if ($r -eq 0) {
+        Remove-ItemProperty -LiteralPath $script:PowerBackupKey -Name $Set -ErrorAction SilentlyContinue
+        Write-Log "[OK] $Label - tornato a $($p[1])."
+    } else { Write-Log "[ERRORE] $Label - powrprof ha restituito $r." }
+}
+
+# Un bit di FeatureTestControl nelle chiavi della scheda Intel: gli altri bit restano com'erano.
+function Set-IntelFeatureBit([uint32]$Mask, [bool]$On, [string]$Label) {
+    $n = 0
+    foreach ($k in @(Get-GpuClassKeys 'Intel')) {
+        try {
+            $cur = [uint32]0
+            $v = (Get-ItemProperty -LiteralPath $k.PSPath -Name FeatureTestControl -ErrorAction SilentlyContinue).FeatureTestControl
+            if ($null -ne $v) { $cur = [uint32]([int64]$v -band 0xFFFFFFFFL) }
+            $new = if ($On) { $cur -bor $Mask } else { $cur -band (-bnot $Mask -band 0xFFFFFFFFL) }
+            $dw = [BitConverter]::ToInt32([BitConverter]::GetBytes([uint32]$new), 0)
+            New-ItemProperty -LiteralPath $k.PSPath -Name FeatureTestControl -Value $dw -PropertyType DWord -Force -ErrorAction Stop | Out-Null
+            $n++
+        } catch {}
+    }
+    if ($n -gt 0) { Write-Log "[OK] $Label - schede aggiornate: $n." } else { Write-Log "[SALTATO] $Label - nessuna scheda Intel." }
+}
+
 $btnDetectGpu.Add_Click({ Show-GpuInfo; Write-Log "[INFO] Scheda video: $($script:GpuVendor)." })
 
 # La scheda dichiara che le voci del produttore sbagliato vengono ignorate:
@@ -13131,12 +13566,14 @@ public static class NvDrs {
 $script:NvProfileSets = @{
     P2         = @(,@(0x50166C5E, 0))
     Power      = @(,@(0x1057EB71, 1))
-    LowLatency = @(@(0x0005F543, 2), @(0x10835000, 1), @(0x007BA09E, 1))
+    # Bassa latenza «Attiva» del pannello NVIDIA: un fotogramma pronto in anticipo,
+    # senza la pianificazione Ultra, che con alcuni giochi e con G-SYNC da' problemi.
+    LowLatency = @(@(0x0005F543, 1), @(0x10835000, 0), @(0x007BA09E, 1))
     Threaded   = @(,@(0x20C1221E, 1))
     TexPerf    = @(,@(0x00CE2691, 20))
     Aniso      = @(,@(0x00E73211, 1))
     Shader     = @(,@(0x00AC8497, 4294967295))
-    NoFxaa     = @(@(0x1074C972, 0), @(0x1075543B, 0))
+    NoAnsel    = @(,@(0x1075543B, 0))
 }
 
 function Set-NvProfile([string]$set, [string]$label) {
@@ -15113,7 +15550,8 @@ $script:DesktopChassis = @(3, 4, 5, 6, 7, 13, 15, 16, 35)
 # Voci che su un portatile costano batteria: «Seleziona tutto» e «Consigliati»
 # le lasciano stare. Restano selezionabili a mano.
 $script:LaptopSkip = @('chkPowerThrottling', 'chkUSBSuspend', 'chkNetPowerSave', 'chkHibernation', 'chkS0Sleep',
-                       'chkNvPerfMode', 'chkNvDrsPower', 'chkNvDisplayPower', 'chkAmdUlps', 'chkAmdAspm')
+                       'chkNvPerfMode', 'chkNvDrsPower', 'chkNvDisplayPower', 'chkAmdUlps', 'chkAmdAspm',
+                       'chkIntelGfxPower', 'chkIntelDpst', 'chkCpuIntelBoostPol', 'chkCpuAmdParking', 'chkCpuIdleOff')
 # Voci utili solo con la batteria: su un fisso si saltano.
 $script:DesktopSkip = @('chkBatteryPct')
 $script:SettingsKey = 'HKCU:\Software\TweakAndrew'
@@ -15505,6 +15943,8 @@ if ((E 'tabHome').IsChecked) { Show-HomePageIfNeeded }
 # 20. AVVIO
 # ------------------------------------------------------------------------------
 Show-GpuInfo
+Show-CpuInfo
+Add-SectionPicks
 Update-PowerPlanLabel
 Show-PlanList
 $script:UiReady = $true

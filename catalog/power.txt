@@ -75,6 +75,18 @@ O|300|5 minuti|5 minutes
 O|1200|20 minuti|20 minutes
 O|3600|1 ora|1 hour
 H|pw.disk|Su Mai i dischi meccanici non si fermano: niente attesa quando li riapri.|On Never, hard drives don't spin down: no wait when you open them again.
+N|pw.nvme1||0012ee47-9041-4b5d-9b77-535fba8b1442|d639518a-e56d-4345-8af2-b9f32fb26109|200|-|SSD NVMe: primo riposo dopo|NVMe SSD: first idle state after
+O|0|Mai (sempre pronto)|Never (always ready)
+O|100|100 ms|100 ms
+O|200|200 ms|200 ms
+O|1000|1 secondo|1 second
+H|pw.nvme1|Dopo quanto tempo di inattività l'SSD NVMe entra nel primo stato di risparmio. Su Mai risponde sempre subito, ma consuma e scalda un po' di più.|How long the NVMe SSD waits idle before its first power-saving state. On Never it always answers at once, but draws and heats a little more.
+N|pw.nvme2||0012ee47-9041-4b5d-9b77-535fba8b1442|d3d55efd-c1ff-424e-9dc3-441be7833010|2000|-|SSD NVMe: riposo profondo dopo|NVMe SSD: deep idle state after
+O|0|Mai (sempre pronto)|Never (always ready)
+O|1000|1 secondo|1 second
+O|2000|2 secondi|2 seconds
+O|5000|5 secondi|5 seconds
+H|pw.nvme2|Il secondo stato di risparmio, più profondo: il risveglio richiede qualche millisecondo in più. Su un portatile conviene lasciarlo attivo.|The second, deeper power-saving state: waking up takes a few more milliseconds. On a laptop it is best left on.
 
 G|sleep|Schermo e sospensione|Display and sleep
 N|pw.display||7516b95f-f776-4464-8c53-06167f40cc99|3c0bc021-c8a8-4e07-a973-6b14cbcb2b7e|600|-|Spegni lo schermo dopo|Turn off the display after

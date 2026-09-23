@@ -18,6 +18,31 @@ $window.Add_ContentRendered({
     Write-Host ("  voci NVIDIA selezionate: " + @($sel | Where-Object { $_ -like 'chkNv*' }).Count)
     Write-Host ("  voci Intel selezionate: " + @($sel | Where-Object { $_ -like 'chkIntel*' }).Count)
     Write-Host ("  voci della pagina Avanzate: " + @($sel | Where-Object { $script:AdvancedCheckBoxes.Name -contains $_ }).Count)
+    Write-Host ("  processore: " + $script:CpuName + " [" + $script:CpuVendor + "] ibrido=" + $script:CpuHybrid + " X3D doppio=" + $script:CpuDualX3D)
+    Write-Host ("  voci processore selezionate: " + (@($sel | Where-Object { $_ -like 'chkCpu*' }) -join ' '))
+    Write-Host ("  voci Intel CPU abilitate: " + $chkCpuIntelBoostPol.IsEnabled + "/" + $chkCpuIntelHybrid.IsEnabled + "  AMD: " + $chkCpuAmdParking.IsEnabled)
+    Click $btnDeselectAll
+    # Sezioni: casella accanto al titolo
+    Write-Host ("Caselle di sezione: " + $script:SectionPicks.Count + " -> " + (($script:SectionPicks | ForEach-Object { $_.Items.Count }) -join ','))
+    $sp = $script:SectionPicks[0]
+    $sp.Box.IsChecked = $true; Click $sp.Box
+    Write-Host ("  prima sezione scelta: " + @(Checked).Count + " voci, casella=" + $sp.Box.IsChecked)
+    $sp.Items[0].IsChecked = $false
+    Write-Host ("  tolta una voce, casella=" + $sp.Box.IsChecked)
+    Click $btnDeselectAll
+    Write-Host ("  dopo Deseleziona, casella=" + $sp.Box.IsChecked)
+    # Portatile simulato: avviso su «Seleziona tutto», Consigliati senza voci da batteria
+    $script:DialogCalls = 0
+    function global:Show-Dialog { $script:DialogCalls++; return $true }
+    $keepType = Get-PcType; $script:PcTypeDetected = 'laptop'
+    Click $btnSelectAll
+    Write-Host ("Portatile - Seleziona tutto: " + @(Checked).Count + " voci, avvisi mostrati: " + $script:DialogCalls)
+    Click $btnDeselectAll
+    (E 'tabPerf').IsChecked = $true
+    Click $btnRecommended
+    Write-Host ("Portatile - Consigliati Prestazioni: " + ((Checked) -join ' '))
+    $script:PcTypeDetected = $keepType
+    Write-Host ("Tipo ripristinato: " + (Get-PcType))
     Click $btnDeselectAll
     (E 'tabGpu').IsChecked = $true
     Click $btnSelectPage

@@ -501,12 +501,11 @@ L:ttlNvProfile	NVIDIA: ПРОИЗВОДИТЕЛЬНОСТЬ ПРОФИЛЯ
 L:lblNvProfileHint	Записываются в глобальный профиль драйвера, как в панели управления NVIDIA.
 L:chkNvP2	CUDA: без принудительного P2
 L:chkNvDrsPower	Управление питанием: максимальная производительность
-L:chkNvLowLatency	Режим низкой задержки: Ультра
+L:chkNvLowLatency	Режим низкой задержки: вкл.
 L:chkNvThreaded	Потоковая оптимизация включена
 L:chkNvTexPerf	Фильтрация текстур: высокая производительность
 L:chkNvAniso	Оптимизация анизотропной выборки
 L:chkNvShaderCache	Неограниченный кэш шейдеров
-L:chkNvNoFxaa	FXAA и Ansel выключены
 L:ttlNvReg	NVIDIA: РЕЕСТР ДРАЙВЕРА
 L:chkNvDisplayPower	Энергосбережение дисплея выключено
 L:chkNvHdcp	HDCP выключен
@@ -647,10 +646,10 @@ M:homeUptimeD	{0} д {1} ч {2} мин
 M:homeUptimeH	{0} ч {1} мин
 M:homeInstalledOn	Windows установлен {0}
 M:homePcType	ТИП КОМПЬЮТЕРА
-M:homeTypeAuto	Автоматически: {0}
-M:homeTypeDesktop	Настольный
+M:homeTypeAuto	Автоопределение: {0}
+M:homeTypeDesktop	Настольный компьютер
 M:homeTypeLaptop	Ноутбук
-M:homeTypeHint	На ноутбуке «Выбрать всё» и «Рекомендуемые» пропускают пункты, расходующие батарею; на настольном — полезные только с батареей. Вручную их можно выбрать.
+M:homeTypeHint	«Рекомендуемые» учитывают тип: на ноутбуке исключаются пункты, расходующие батарею, на настольном — полезные только с батареей. Их всё равно можно выбрать вручную.
 M:homeCpu	Процессор
 M:homeRam	Память
 M:homeGpu	Видеокарта
@@ -698,3 +697,17 @@ M:wgErr_8A15010A	Перезагрузите ПК перед установкой
 M:wgErr_8A15010C	Отменено
 M:wgErr_8A15010E	Уже установлена более новая версия
 M:wgErr_8A15010F	Заблокировано политикой системы
+L:chkNvNoAnsel	Ansel выключен
+L:chkIntelTelemetry	Телеметрия Intel выключена
+L:chkIntelGfxPower	План графики Intel: макс. производительность
+L:chkIntelDpst	Энергосбережение дисплея (DPST) выключено
+L:ttlCpu	ПРОЦЕССОР
+L:chkCpuIntelBoostPol	Intel: турбо без ограничений политики
+L:chkCpuIntelHybrid	Intel гибридные: активные приложения на P-ядрах
+L:chkCpuAmdParking	AMD Ryzen: без парковки ядер
+L:chkCpuIdleOff	Процессор всегда активен (без простоя)
+M:cpuDetected	Обнаружен: {0}. Доступны только пункты для этого процессора.
+M:cpuUnknown	неизвестный процессор
+M:sectionSelect	Весь раздел
+M:laptopSelTitle	Ноутбук
+M:laptopSelAsk	На ноутбуке лучше использовать «Рекомендуемые»: «Выбрать всё» включает и пункты, сокращающие время работы от батареи. Всё равно выбрать всё?

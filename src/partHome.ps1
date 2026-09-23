@@ -14,7 +14,8 @@ $script:DesktopChassis = @(3, 4, 5, 6, 7, 13, 15, 16, 35)
 # Voci che su un portatile costano batteria: «Seleziona tutto» e «Consigliati»
 # le lasciano stare. Restano selezionabili a mano.
 $script:LaptopSkip = @('chkPowerThrottling', 'chkUSBSuspend', 'chkNetPowerSave', 'chkHibernation', 'chkS0Sleep',
-                       'chkNvPerfMode', 'chkNvDrsPower', 'chkNvDisplayPower', 'chkAmdUlps', 'chkAmdAspm')
+                       'chkNvPerfMode', 'chkNvDrsPower', 'chkNvDisplayPower', 'chkAmdUlps', 'chkAmdAspm',
+                       'chkIntelGfxPower', 'chkIntelDpst', 'chkCpuIntelBoostPol', 'chkCpuAmdParking', 'chkCpuIdleOff')
 # Voci utili solo con la batteria: su un fisso si saltano.
 $script:DesktopSkip = @('chkBatteryPct')
 $script:SettingsKey = 'HKCU:\Software\TweakAndrew'

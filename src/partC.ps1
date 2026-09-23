@@ -378,12 +378,11 @@ $script:Loc = @{
     lblNvProfileHint   = @{ it = "Scritte nel profilo globale del driver, come nel Pannello di controllo NVIDIA."; en = "Written to the driver's global profile, as in the NVIDIA Control Panel." }
     chkNvP2            = @{ it = "CUDA: niente stato P2 forzato"; en = "CUDA: no forced P2 state" }
     chkNvDrsPower      = @{ it = "Gestione energia: prestazioni massime"; en = "Power management: maximum performance" }
-    chkNvLowLatency    = @{ it = "Modalità bassa latenza: Ultra"; en = "Low latency mode: Ultra" }
+    chkNvLowLatency    = @{ it = "Modalità bassa latenza: attiva"; en = "Low latency mode: On" }
     chkNvThreaded      = @{ it = "Ottimizzazione thread attiva"; en = "Threaded optimization on" }
     chkNvTexPerf       = @{ it = "Filtro texture: prestazioni elevate"; en = "Texture filtering: high performance" }
     chkNvAniso         = @{ it = "Ottimizzazione campioni anisotropici"; en = "Anisotropic sample optimization" }
     chkNvShaderCache   = @{ it = "Cache shader illimitata"; en = "Unlimited shader cache" }
-    chkNvNoFxaa        = @{ it = "FXAA e Ansel spenti"; en = "FXAA and Ansel off" }
     ttlNvReg           = @{ it = "NVIDIA: REGISTRO DEL DRIVER"; en = "NVIDIA: DRIVER REGISTRY" }
     chkNvDisplayPower  = @{ it = "Risparmio energetico del display spento"; en = "Display power saving off" }
     chkNvHdcp          = @{ it = "HDCP spento"; en = "HDCP off" }
@@ -418,6 +417,15 @@ $script:Loc = @{
     lblHomeLoading     = @{ it = "Lettura dell'hardware..."; en = "Reading the hardware..." }
     ttlAppJobs         = @{ it = "OPERAZIONI"; en = "OPERATIONS" }
     btnAppJobsClose    = @{ it = "Chiudi"; en = "Close" }
+    chkNvNoAnsel       = @{ it = "Ansel spento"; en = "Ansel off" }
+    chkIntelTelemetry  = @{ it = "Telemetria Intel spenta"; en = "Intel telemetry off" }
+    chkIntelGfxPower   = @{ it = "Piano grafico Intel: prestazioni massime"; en = "Intel graphics power plan: maximum performance" }
+    chkIntelDpst       = @{ it = "Risparmio energetico del display (DPST) spento"; en = "Display power saving (DPST) off" }
+    ttlCpu             = @{ it = "PROCESSORE"; en = "PROCESSOR" }
+    chkCpuIntelBoostPol = @{ it = "Intel: turbo senza freni di politica"; en = "Intel: turbo with no policy limit" }
+    chkCpuIntelHybrid  = @{ it = "Intel ibridi: app in primo piano sui core P"; en = "Intel hybrid: foreground apps on P-cores" }
+    chkCpuAmdParking   = @{ it = "AMD Ryzen: nessun core parcheggiato"; en = "AMD Ryzen: no parked cores" }
+    chkCpuIdleOff      = @{ it = "Processore sempre sveglio (niente stati di riposo)"; en = "Processor always awake (no idle states)" }
 }
 
 # Messaggi non legati a un controllo: log, finestre di dialogo, etichette dinamiche.
@@ -589,11 +597,11 @@ $script:Msg = @{
     homeUptimeD        = @{ it = "{0} g {1} h {2} min"; en = "{0} d {1} h {2} min" }
     homeUptimeH        = @{ it = "{0} h {1} min"; en = "{0} h {1} min" }
     homeInstalledOn    = @{ it = "Windows installato il {0}"; en = "Windows installed on {0}" }
-    homePcType         = @{ it = "TIPO DI PC"; en = "PC TYPE" }
-    homeTypeAuto       = @{ it = "Automatico: {0}"; en = "Automatic: {0}" }
-    homeTypeDesktop    = @{ it = "Fisso"; en = "Desktop" }
-    homeTypeLaptop     = @{ it = "Portatile"; en = "Laptop" }
-    homeTypeHint       = @{ it = "Su un portatile «Seleziona tutto» e «Consigliati» lasciano stare le voci che consumano batteria; su un fisso quelle utili solo con la batteria. Restano sempre selezionabili a mano."; en = "On a laptop «Select all» and «Recommended» skip the entries that drain the battery; on a desktop, those useful only with a battery. You can still pick them by hand." }
+    homePcType         = @{ it = "TIPOLOGIA DEL COMPUTER"; en = "COMPUTER TYPE" }
+    homeTypeAuto       = @{ it = "Rilevamento automatico: {0}"; en = "Automatic detection: {0}" }
+    homeTypeDesktop    = @{ it = "Computer fisso"; en = "Desktop computer" }
+    homeTypeLaptop     = @{ it = "Computer portatile"; en = "Laptop" }
+    homeTypeHint       = @{ it = "«Consigliati» tiene conto della tipologia: su un portatile esclude le voci che consumano batteria, su un fisso quelle utili solo con la batteria. Possono comunque essere selezionate manualmente."; en = "«Recommended» takes the type into account: on a laptop it leaves out entries that drain the battery, on a desktop those useful only with a battery. They can still be selected manually." }
     homeCpu            = @{ it = "Processore"; en = "Processor" }
     homeRam            = @{ it = "Memoria"; en = "Memory" }
     homeGpu            = @{ it = "Scheda video"; en = "Graphics card" }
@@ -641,6 +649,11 @@ $script:Msg = @{
     wgErr_8A15010C     = @{ it = "Annullata"; en = "Cancelled" }
     wgErr_8A15010E     = @{ it = "È già installata una versione più recente"; en = "A newer version is already installed" }
     wgErr_8A15010F     = @{ it = "Bloccata da un criterio di sistema"; en = "Blocked by a system policy" }
+    cpuDetected        = @{ it = "Rilevato: {0}. Si attivano solo le voci adatte a questo processore."; en = "Detected: {0}. Only the entries suited to this processor are enabled." }
+    cpuUnknown         = @{ it = "processore non riconosciuto"; en = "unrecognized processor" }
+    sectionSelect      = @{ it = "Tutta la sezione"; en = "Whole section" }
+    laptopSelTitle     = @{ it = "Computer portatile"; en = "Laptop" }
+    laptopSelAsk       = @{ it = "Su un portatile è consigliato usare «Consigliati»: «Seleziona tutto» include anche voci che riducono la durata della batteria. Selezionare comunque tutto?"; en = "On a laptop «Recommended» is the better choice: «Select all» also includes entries that shorten battery life. Select everything anyway?" }
 }
 
 $script:LangCode = "it"
@@ -695,6 +708,7 @@ function Set-Language([string]$code) {
     # Show-PagIna esiste solo dopo il blocco della barra laterale: alla prima
     # chiamata di Set-Language non c'e' ancora.
     if (Get-Command Show-Page -ErrorAction SilentlyContinue) { Show-Page }
+    if ($script:SectionPicks) { Update-SectionPickText }
     if (Get-Command Show-PlanList -ErrorAction SilentlyContinue) { Show-PlanList }
     # Menu del pannello MMCSS e decodifica della priorita': testi nella nuova lingua.
     if (Get-Command Set-MmGlobalItems -ErrorAction SilentlyContinue) { Set-MmGlobalItems; Read-Mmcss; Update-PsView }
@@ -728,7 +742,11 @@ $chkGpuTdr = E 'chkGpuTdr'; $chkGpuMsi = E 'chkGpuMsi'
 $chkNvTelemetry = E 'chkNvTelemetry'; $chkNvGfe = E 'chkNvGfe'; $chkNvPerfMode = E 'chkNvPerfMode'
 $chkNvUpdates = E 'chkNvUpdates'
 $chkAmdUx = E 'chkAmdUx'; $chkAmdBloat = E 'chkAmdBloat'; $chkAmdUlps = E 'chkAmdUlps'
-$chkIntelBloat = E 'chkIntelBloat'
+$chkIntelBloat = E 'chkIntelBloat'; $chkIntelTelemetry = E 'chkIntelTelemetry'
+$chkIntelGfxPower = E 'chkIntelGfxPower'; $chkIntelDpst = E 'chkIntelDpst'
+$txtCpuDetected = E 'txtCpuDetected'
+$chkCpuIntelBoostPol = E 'chkCpuIntelBoostPol'; $chkCpuIntelHybrid = E 'chkCpuIntelHybrid'
+$chkCpuAmdParking = E 'chkCpuAmdParking'; $chkCpuIdleOff = E 'chkCpuIdleOff'
 $chkNvP2 = E 'chkNvP2'
 $chkNvDrsPower = E 'chkNvDrsPower'
 $chkNvLowLatency = E 'chkNvLowLatency'
@@ -736,7 +754,7 @@ $chkNvThreaded = E 'chkNvThreaded'
 $chkNvTexPerf = E 'chkNvTexPerf'
 $chkNvAniso = E 'chkNvAniso'
 $chkNvShaderCache = E 'chkNvShaderCache'
-$chkNvNoFxaa = E 'chkNvNoFxaa'
+$chkNvNoAnsel = E 'chkNvNoAnsel'
 $chkNvDisplayPower = E 'chkNvDisplayPower'
 $chkNvHdcp = E 'chkNvHdcp'
 $chkNvPreempt = E 'chkNvPreempt'
@@ -1328,6 +1346,80 @@ $script:SelectableCheckBoxes = @(
     }
 )
 
+# ------------------------------------------------------------------------------
+# 11b. SELEZIONE DI UNA SEZIONE
+# ------------------------------------------------------------------------------
+# Nelle pagine con tante voci, accanto al titolo di ogni scheda con almeno
+# quattro caselle c'e' una casella piccola che le sceglie tutte. Niente sulle
+# pagine a interruttore (hanno «Applica consigliati»), su Rete e su Avanzate,
+# dove le voci si scelgono una per una.
+$script:SectionPicks = New-Object System.Collections.ArrayList
+$script:SectionSync = $false
+
+function Update-SectionPick($sp) {
+    $on = @($sp.Items | Where-Object { $_.IsEnabled })
+    $script:SectionSync = $true
+    $sp.Box.IsChecked = ($on.Count -gt 0) -and (@($on | Where-Object { $_.IsChecked -ne $true }).Count -eq 0)
+    $script:SectionSync = $false
+}
+
+function Add-SectionPicks {
+    $sel = $script:SelectableCheckBoxes
+    foreach ($pageName in @('pagePerf', 'pagePrivacy', 'pageUi', 'pageGpu')) {
+        $page = E $pageName
+        $stack = New-Object System.Collections.Stack
+        $stack.Push($page)
+        while ($stack.Count -gt 0) {
+            $node = $stack.Pop()
+            if ($node -is [System.Windows.Controls.Border] -and $node.Child -is [System.Windows.Controls.StackPanel] -and
+                $node.Child.Children.Count -gt 0 -and $node.Child.Children[0] -is [System.Windows.Controls.TextBlock] -and
+                $node.Child.Children[0].Style -eq $window.FindResource('CardTitle')) {
+                $items = @(Get-CheckBoxesFromTree $node | Where-Object { $sel -contains $_ })
+                if ($items.Count -ge 4) {
+                    $panel = $node.Child; $title = $panel.Children[0]
+                    $panel.Children.RemoveAt(0)
+                    $g = New-Object System.Windows.Controls.Grid
+                    $g.Margin = $title.Margin; $title.Margin = '0'; $title.VerticalAlignment = 'Center'; $title.TextWrapping = 'Wrap'
+                    $c0 = New-Object System.Windows.Controls.ColumnDefinition
+                    $c1 = New-Object System.Windows.Controls.ColumnDefinition; $c1.Width = [System.Windows.GridLength]::Auto
+                    $g.ColumnDefinitions.Add($c0); $g.ColumnDefinitions.Add($c1)
+                    [void]$g.Children.Add($title)
+                    $box = New-Object System.Windows.Controls.CheckBox
+                    $box.Style = $window.FindResource('SectionPick'); $box.Tag = 'section'; $box.Margin = '8,-4,-6,-4'
+                    $box.Content = T 'sectionSelect'
+                    [System.Windows.Controls.Grid]::SetColumn($box, 1); [void]$g.Children.Add($box)
+                    $panel.Children.Insert(0, $g)
+                    $sp = @{ Box = $box; Items = $items }
+                    $box.Add_Click({
+                        $mine = $null
+                        foreach ($s in $script:SectionPicks) { if ($s.Box -eq $this) { $mine = $s } }
+                        if ($null -eq $mine) { return }
+                        $want = ($this.IsChecked -eq $true)
+                        $script:SectionSync = $true
+                        foreach ($cb in $mine.Items) { if ($cb.IsEnabled) { $cb.IsChecked = $want } }
+                        $script:SectionSync = $false
+                        Update-SectionPick $mine
+                        Update-ApplyButton
+                    })
+                    foreach ($cb in $items) {
+                        $cb.Add_Checked({ if (-not $script:SectionSync) { foreach ($s in $script:SectionPicks) { if ($s.Items -contains $this) { Update-SectionPick $s } } } })
+                        $cb.Add_Unchecked({ if (-not $script:SectionSync) { foreach ($s in $script:SectionPicks) { if ($s.Items -contains $this) { Update-SectionPick $s } } } })
+                    }
+                    [void]$script:SectionPicks.Add($sp)
+                    continue
+                }
+            }
+            foreach ($ch in [System.Windows.LogicalTreeHelper]::GetChildren($node)) {
+                if ($ch -is [System.Windows.DependencyObject]) { $stack.Push($ch) }
+            }
+        }
+    }
+}
+
+function Update-SectionPickText {
+    foreach ($s in $script:SectionPicks) { $s.Box.Content = T 'sectionSelect'; Update-SectionPick $s }
+}
+
 # All'avvio nulla e' selezionato.
 foreach ($cb in $script:AllCheckBoxes) { $cb.IsChecked = $false }
 
@@ -1349,6 +1441,11 @@ foreach ($cb in $script:AllCheckBoxes) {
 # Voci del produttore sbagliato: su un PC con scheda AMD le caselle NVIDIA
 # restano ferme anche con «Seleziona tutto», perche' non farebbero nulla.
 function Test-CheckVendor($cb) {
+    # Processore: le voci Intel o AMD valgono solo sul processore di quella marca.
+    if ([string]$cb.Name -match '^chkCpu(Intel|Amd)') {
+        $want = if ($Matches[1] -eq 'Intel') { 'Intel' } else { 'AMD' }
+        return (-not $script:CpuVendor) -or ($script:CpuVendor -eq $want)
+    }
     $vendor = switch -Regex ([string]$cb.Name) {
         '^chkNv'    { 'NVIDIA' }
         '^chkAmd'   { 'AMD' }
@@ -1367,8 +1464,12 @@ function Get-CurrentPage {
     return $null
 }
 
-function Get-SelectableChecks([switch]$CurrentPageOnly) {
-    $list = @($script:SelectableCheckBoxes | Where-Object { (Test-CheckVendor $_) -and (Test-CheckPcType $_) })
+# -ByPcType vale per «Consigliati»: tiene conto di portatile e fisso. «Seleziona
+# tutto» invece prende davvero tutto, e sul portatile chiede conferma.
+function Get-SelectableChecks([switch]$CurrentPageOnly, [switch]$ByPcType) {
+    $list = @($script:SelectableCheckBoxes | Where-Object {
+        $_.IsEnabled -and (Test-CheckVendor $_) -and (-not $ByPcType -or (Test-CheckPcType $_))
+    })
     if (-not $CurrentPageOnly) { return $list }
     $page = Get-CurrentPage
     if ($null -eq $page) { return @() }
@@ -1380,7 +1481,8 @@ function Get-SelectableChecks([switch]$CurrentPageOnly) {
 # Avanzate non ne ha: li' si tolgono pezzi di Windows e la scelta resta una
 # per una.
 $script:RecommendedChecks = @{
-    pagePerf    = @('chkMMCSS','chkPriority','chkKernelMem','chkPowerThrottling','chkUSBSuspend','chkNtfsPerf','chkRamTweak','chkGameMode','chkGameDVR')
+    pagePerf    = @('chkMMCSS','chkPriority','chkKernelMem','chkPowerThrottling','chkUSBSuspend','chkNtfsPerf','chkRamTweak','chkGameMode','chkGameDVR',
+                    'chkCpuIntelBoostPol','chkCpuAmdParking')
     pagePrivacy = @('chkTelemetry','chkTelemetryTasks','chkActivityHistory','chkAdvertisingID','chkTailoredExp','chkFeedback','chkErrorReporting',
                     'chkInkingTyping','chkWiFiSense','chkConsumerFeatures','chkStoreSearch','chkSuggestedContent','chkLockScreenAds','chkStartBing',
                     'chkStartRecs','chkStartTracking','chkWindowsAI','chkEdgeDebloat','chkDeliveryOpt','chkWPBT','chkBackgroundApps',
@@ -1391,7 +1493,8 @@ $script:RecommendedChecks = @{
     pageStorage = @('chkReservedStorage')
     pagePower   = @('chkFastStartup')
     pageGpu     = @('chkGpuTdr','chkNvTelemetry','chkNvGfe','chkNvPerfMode','chkNvUpdates','chkNvP2','chkNvDrsPower','chkNvLowLatency',
-                    'chkNvShaderCache','chkNvDisplayPower','chkAmdUx','chkAmdBloat','chkAmdUlps','chkAmdAntiLag','chkAmdShaderCache','chkIntelBloat')
+                    'chkNvShaderCache','chkNvDisplayPower','chkAmdUx','chkAmdBloat','chkAmdUlps','chkAmdAntiLag','chkAmdShaderCache','chkIntelBloat',
+                    'chkIntelTelemetry','chkIntelGfxPower')
 }
 
 # La pagina Priorita' non ha caselle: i valori consigliati si preparano nei due
@@ -1408,13 +1511,25 @@ function Set-SchedRecommended {
     Select-ComboValue $cmbMmBgOnly 'False'
 }
 
+# Su un portatile «Seleziona tutto» prende anche le voci che consumano batteria:
+# prima un avviso che indica «Consigliati» come scelta migliore.
+function Confirm-LaptopSelection([array]$list) {
+    if ((Get-PcType) -ne 'laptop') { return $true }
+    $hit = @($list | Where-Object { $script:LaptopSkip -contains [string]$_.Name })
+    if ($hit.Count -eq 0) { return $true }
+    return (Show-Dialog (T 'laptopSelTitle') (T 'laptopSelAsk') 'warn')
+}
+
 $btnSelectAll.Add_Click({
-    foreach ($cb in (Get-SelectableChecks)) { $cb.IsChecked = $true }
+    $found = @(Get-SelectableChecks)
+    if (-not (Confirm-LaptopSelection $found)) { return }
+    foreach ($cb in $found) { $cb.IsChecked = $true }
     Update-ApplyButton
 })
 
 $btnSelectPage.Add_Click({
     $found = @(Get-SelectableChecks -CurrentPageOnly)
+    if (-not (Confirm-LaptopSelection $found)) { return }
     foreach ($cb in $found) { $cb.IsChecked = $true }
     if ($found.Count -eq 0) { $txtProgressLabel.Text = T 'selPageNone' }
     Update-ApplyButton
@@ -1432,7 +1547,7 @@ $btnRecommended.Add_Click({
     $names = $script:RecommendedChecks[$name]
     if (-not $names) { $txtProgressLabel.Text = T 'recNone'; return }
     $n = 0
-    foreach ($cb in @(Get-SelectableChecks -CurrentPageOnly)) {
+    foreach ($cb in @(Get-SelectableChecks -CurrentPageOnly -ByPcType)) {
         if ($names -contains [string]$cb.Name) { $cb.IsChecked = $true; $n++ }
     }
     $txtProgressLabel.Text = (T 'recSelected') -f $n

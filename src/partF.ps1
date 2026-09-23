@@ -303,6 +303,116 @@ function Show-GpuInfo {
     $txtGpuDetected.Text = "$(T 'gpuVendor') $($script:GpuVendor)`n" + ($lines -join "`n")
 }
 
+# ------------------------------------------------------------------------------
+# 19b. PROCESSORE: marca, architettura ibrida e X3D a due chiplet
+# ------------------------------------------------------------------------------
+Add-Type -ErrorAction SilentlyContinue -TypeDefinition @'
+using System;
+using System.Runtime.InteropServices;
+namespace TweakAndrew {
+public static class CpuInfo {
+    [DllImport("kernel32.dll", SetLastError = true)]
+    static extern bool GetLogicalProcessorInformationEx(int relation, IntPtr buffer, ref int length);
+    // Vero se i core non hanno tutti la stessa classe di efficienza (core P ed E).
+    public static bool IsHybrid() {
+        int len = 0;
+        GetLogicalProcessorInformationEx(0, IntPtr.Zero, ref len);
+        if (len <= 0) return false;
+        IntPtr buf = Marshal.AllocHGlobal(len);
+        try {
+            if (!GetLogicalProcessorInformationEx(0, buf, ref len)) return false;
+            int off = 0; int first = -1;
+            while (off < len) {
+                IntPtr item = new IntPtr(buf.ToInt64() + off);
+                int size = Marshal.ReadInt32(item, 4);
+                int eff = Marshal.ReadByte(item, 9);
+                if (first < 0) first = eff; else if (eff != first) return true;
+                if (size <= 0) break;
+                off += size;
+            }
+            return false;
+        } finally { Marshal.FreeHGlobal(buf); }
+    }
+}
+}
+'@
+
+$script:CpuName = ''
+try { $script:CpuName = ([string](Get-ItemProperty 'HKLM:\HARDWARE\DESCRIPTION\System\CentralProcessor\0' -ErrorAction Stop).ProcessorNameString).Trim() -replace '\s+', ' ' } catch {}
+$script:CpuVendor = if ($env:PROCESSOR_IDENTIFIER -match 'GenuineIntel') { 'Intel' } elseif ($env:PROCESSOR_IDENTIFIER -match 'AuthenticAMD') { 'AMD' } else { '' }
+$script:CpuHybrid = $false
+try { $script:CpuHybrid = [TweakAndrew.CpuInfo]::IsHybrid() } catch {}
+# Ryzen X3D con due chiplet: Windows parcheggia di proposito i core senza cache
+# 3D mentre si gioca. Togliere il parcheggio lì peggiora le prestazioni.
+$script:CpuDualX3D = $script:CpuName -match '(7900|7950|9900|9950)X3D'
+
+function Show-CpuInfo {
+    if ($null -eq $txtCpuDetected) { return }
+    $name = if ($script:CpuName) { $script:CpuName } else { T 'cpuUnknown' }
+    $txtCpuDetected.Text = (T 'cpuDetected') -f $name
+    foreach ($cb in @($chkCpuIntelBoostPol, $chkCpuIntelHybrid)) { $cb.IsEnabled = ($script:CpuVendor -eq 'Intel') }
+    if (-not $script:CpuHybrid) { $chkCpuIntelHybrid.IsEnabled = $false }
+    $chkCpuAmdParking.IsEnabled = ($script:CpuVendor -eq 'AMD') -and -not $script:CpuDualX3D
+    foreach ($cb in @($chkCpuIntelBoostPol, $chkCpuIntelHybrid, $chkCpuAmdParking)) {
+        [System.Windows.Controls.ToolTipService]::SetShowOnDisabled($cb, $true)
+        if (-not $cb.IsEnabled) { $cb.IsChecked = $false }
+    }
+}
+
+# Impostazioni del piano energetico attivo, solo con l'alimentazione collegata:
+# a batteria il portatile resta com'era. Il valore di prima si salva in
+# HKCU\Software\TweakAndrew\PowerBackup e «Reimposta» lo rimette.
+$script:PowerBackupKey = 'HKCU:\Software\TweakAndrew\PowerBackup'
+
+function Set-PowerAc([string]$Sub, [string]$Set, [uint32]$Value, [string]$Label) {
+    $scheme = Get-ActiveSchemeGuid
+    if ($null -eq $scheme) { Write-Log "[SALTATO] $Label - piano energetico non leggibile."; return }
+    $s = [guid]$Sub; $g = [guid]$Set; $old = [uint32]0
+    if ([TweakAndrew.PowerApi]::PowerReadACValueIndex([IntPtr]::Zero, [ref]$scheme, [ref]$s, [ref]$g, [ref]$old) -ne 0) {
+        Write-Log "[SALTATO] $Label - impostazione non presente su questo computer."; return
+    }
+    try {
+        if (-not (Test-Path -LiteralPath $script:PowerBackupKey)) { New-Item -Path $script:PowerBackupKey -Force | Out-Null }
+        $prev = Get-ItemProperty -LiteralPath $script:PowerBackupKey -Name $Set -ErrorAction SilentlyContinue
+        if ($null -eq $prev) { New-ItemProperty -LiteralPath $script:PowerBackupKey -Name $Set -Value "$Sub|$old" -PropertyType String -Force | Out-Null }
+    } catch {}
+    $r = [TweakAndrew.PowerApi]::PowerWriteACValueIndex([IntPtr]::Zero, [ref]$scheme, [ref]$s, [ref]$g, $Value)
+    [TweakAndrew.PowerApi]::PowerSetActiveScheme([IntPtr]::Zero, [ref]$scheme) | Out-Null
+    if ($r -eq 0) { Write-Log "[OK] $Label - $old -> $Value (con alimentazione collegata)." }
+    else { Write-Log "[ERRORE] $Label - powrprof ha restituito $r." }
+}
+
+function Reset-PowerAc([string]$Set, [string]$Label) {
+    $prev = [string](Get-ItemProperty -LiteralPath $script:PowerBackupKey -Name $Set -ErrorAction SilentlyContinue).$Set
+    if (-not $prev) { Write-Log "[SALTATO] $Label - nessun valore salvato da ripristinare."; return }
+    $p = $prev -split '\|'
+    $scheme = Get-ActiveSchemeGuid
+    $s = [guid]$p[0]; $g = [guid]$Set
+    $r = [TweakAndrew.PowerApi]::PowerWriteACValueIndex([IntPtr]::Zero, [ref]$scheme, [ref]$s, [ref]$g, [uint32]$p[1])
+    [TweakAndrew.PowerApi]::PowerSetActiveScheme([IntPtr]::Zero, [ref]$scheme) | Out-Null
+    if ($r -eq 0) {
+        Remove-ItemProperty -LiteralPath $script:PowerBackupKey -Name $Set -ErrorAction SilentlyContinue
+        Write-Log "[OK] $Label - tornato a $($p[1])."
+    } else { Write-Log "[ERRORE] $Label - powrprof ha restituito $r." }
+}
+
+# Un bit di FeatureTestControl nelle chiavi della scheda Intel: gli altri bit restano com'erano.
+function Set-IntelFeatureBit([uint32]$Mask, [bool]$On, [string]$Label) {
+    $n = 0
+    foreach ($k in @(Get-GpuClassKeys 'Intel')) {
+        try {
+            $cur = [uint32]0
+            $v = (Get-ItemProperty -LiteralPath $k.PSPath -Name FeatureTestControl -ErrorAction SilentlyContinue).FeatureTestControl
+            if ($null -ne $v) { $cur = [uint32]([int64]$v -band 0xFFFFFFFFL) }
+            $new = if ($On) { $cur -bor $Mask } else { $cur -band (-bnot $Mask -band 0xFFFFFFFFL) }
+            $dw = [BitConverter]::ToInt32([BitConverter]::GetBytes([uint32]$new), 0)
+            New-ItemProperty -LiteralPath $k.PSPath -Name FeatureTestControl -Value $dw -PropertyType DWord -Force -ErrorAction Stop | Out-Null
+            $n++
+        } catch {}
+    }
+    if ($n -gt 0) { Write-Log "[OK] $Label - schede aggiornate: $n." } else { Write-Log "[SALTATO] $Label - nessuna scheda Intel." }
+}
+
 $btnDetectGpu.Add_Click({ Show-GpuInfo; Write-Log "[INFO] Scheda video: $($script:GpuVendor)." })
 
 # La scheda dichiara che le voci del produttore sbagliato vengono ignorate:
@@ -621,12 +731,14 @@ public static class NvDrs {
 $script:NvProfileSets = @{
     P2         = @(,@(0x50166C5E, 0))
     Power      = @(,@(0x1057EB71, 1))
-    LowLatency = @(@(0x0005F543, 2), @(0x10835000, 1), @(0x007BA09E, 1))
+    # Bassa latenza «Attiva» del pannello NVIDIA: un fotogramma pronto in anticipo,
+    # senza la pianificazione Ultra, che con alcuni giochi e con G-SYNC da' problemi.
+    LowLatency = @(@(0x0005F543, 1), @(0x10835000, 0), @(0x007BA09E, 1))
     Threaded   = @(,@(0x20C1221E, 1))
     TexPerf    = @(,@(0x00CE2691, 20))
     Aniso      = @(,@(0x00E73211, 1))
     Shader     = @(,@(0x00AC8497, 4294967295))
-    NoFxaa     = @(@(0x1074C972, 0), @(0x1075543B, 0))
+    NoAnsel    = @(,@(0x1075543B, 0))
 }
 
 function Set-NvProfile([string]$set, [string]$label) {

@@ -651,12 +651,12 @@ function Build-Actions {
     # ---------- PRESTAZIONI NVIDIA: PROFILO DEL DRIVER ----------
     Add-IfChecked $chkNvP2 { if (Test-Gpu 'NVIDIA' 'CUDA P2') { Set-NvProfile 'P2' 'CUDA senza stato P2 forzato' } }
     Add-IfChecked $chkNvDrsPower { if (Test-Gpu 'NVIDIA' 'Gestione energia') { Set-NvProfile 'Power' 'Gestione energia: prestazioni massime' } }
-    Add-IfChecked $chkNvLowLatency { if (Test-Gpu 'NVIDIA' 'Bassa latenza') { Set-NvProfile 'LowLatency' 'Modalita bassa latenza Ultra' } }
+    Add-IfChecked $chkNvLowLatency { if (Test-Gpu 'NVIDIA' 'Bassa latenza') { Set-NvProfile 'LowLatency' 'Modalita bassa latenza attiva' } }
     Add-IfChecked $chkNvThreaded { if (Test-Gpu 'NVIDIA' 'Ottimizzazione thread') { Set-NvProfile 'Threaded' 'Ottimizzazione thread' } }
     Add-IfChecked $chkNvTexPerf { if (Test-Gpu 'NVIDIA' 'Filtro texture') { Set-NvProfile 'TexPerf' 'Filtro texture prestazioni elevate' } }
     Add-IfChecked $chkNvAniso { if (Test-Gpu 'NVIDIA' 'Campioni anisotropici') { Set-NvProfile 'Aniso' 'Ottimizzazione campioni anisotropici' } }
     Add-IfChecked $chkNvShaderCache { if (Test-Gpu 'NVIDIA' 'Cache shader') { Set-NvProfile 'Shader' 'Cache shader illimitata' } }
-    Add-IfChecked $chkNvNoFxaa { if (Test-Gpu 'NVIDIA' 'FXAA e Ansel') { Set-NvProfile 'NoFxaa' 'FXAA e Ansel spenti' } }
+    Add-IfChecked $chkNvNoAnsel { if (Test-Gpu 'NVIDIA' 'Ansel') { Set-NvProfile 'NoAnsel' 'Ansel spento' } }
 
     # ---------- PRESTAZIONI NVIDIA: REGISTRO DEL DRIVER ----------
     Add-IfChecked $chkNvDisplayPower {
@@ -710,6 +710,39 @@ function Build-Actions {
         foreach ($svc in @('igfxCUIService2.0.0.0','IntelAudioService','Intel(R) TPM Provisioning Service')) {
             Set-Svc $svc 'Manual' $svc
         }
+    }
+
+    # ---------- INTEL GRAPHICS ----------
+    Add-IfChecked $chkIntelTelemetry {
+        # Programma di miglioramento e resoconto d'uso dell'assistente driver Intel.
+        foreach ($svc in @('ESRV_SVC_QUEENCREEK', 'SystemUsageReportSvc_QUEENCREEK')) { Set-Svc $svc 'Disabled' $svc | Out-Null }
+    }
+    Add-IfChecked $chkIntelGfxPower {
+        if (-not (Test-Gpu 'Intel' 'Piano grafico Intel')) { return }
+        Set-PowerAc '44f3beca-a7c0-460e-9df2-bb8b99e0cba6' '3619c3f2-afb2-4afc-b0e9-e7fef372de36' 2 'Piano grafico Intel: prestazioni massime'
+    }
+    Add-IfChecked $chkIntelDpst {
+        if (-not (Test-Gpu 'Intel' 'DPST')) { return }
+        Set-IntelFeatureBit 0x10 $true 'Risparmio energetico del display (DPST) spento'
+        Write-Log "[INFO] Su alcuni portatili il driver Intel riaccende il DPST al riavvio."
+    }
+
+    # ---------- PROCESSORE ----------
+    Add-IfChecked $chkCpuIntelBoostPol {
+        if ($script:CpuVendor -ne 'Intel') { Write-Log "[SALTATO] Politica turbo - processore non Intel."; return }
+        Set-PowerAc '54533251-82be-4824-96c1-47b60b740d00' '45bcc044-d885-43e2-8605-ee0ec6e96b59' 100 'Politica del turbo al 100%'
+    }
+    Add-IfChecked $chkCpuIntelHybrid {
+        if (-not $script:CpuHybrid) { Write-Log "[SALTATO] Core P - processore senza core ibridi."; return }
+        Set-PowerAc '54533251-82be-4824-96c1-47b60b740d00' '93b8b6dc-0698-4d1c-9ee4-0644e900c85d' 2 'Thread sui core P quando possibile'
+        Set-PowerAc '54533251-82be-4824-96c1-47b60b740d00' 'bae08b81-2d5e-4688-ad6a-13243356654b' 2 'Thread brevi sui core P quando possibile'
+    }
+    Add-IfChecked $chkCpuAmdParking {
+        if ($script:CpuVendor -ne 'AMD' -or $script:CpuDualX3D) { Write-Log "[SALTATO] Parcheggio dei core - non adatto a questo processore."; return }
+        Set-PowerAc '54533251-82be-4824-96c1-47b60b740d00' '0cc5b647-c1df-4637-891a-dec35c318583' 100 'Core sempre attivi'
+    }
+    Add-IfChecked $chkCpuIdleOff {
+        Set-PowerAc '54533251-82be-4824-96c1-47b60b740d00' '5d76a2ca-e8c0-402f-a133-2158492d58ad' 1 'Stati di riposo del processore spenti'
     }
 
     Add-IfChecked $chkGpuTdr {

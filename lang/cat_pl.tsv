@@ -574,3 +574,13 @@ pw.videoPlay	Podczas odtwarzania wideo
 pw.videoPlay#0	Optymalizuj jakość
 pw.videoPlay#1	Zrównoważony
 pw.videoPlay#2	Optymalizuj zużycie energii
+pw.nvme1	SSD NVMe: pierwszy stan uśpienia po
+pw.nvme1#0	Nigdy (zawsze gotowy)
+pw.nvme1#1000	1 sekunda
+H:pw.nvme1	Czas bezczynności przed pierwszym stanem oszczędzania SSD NVMe. Przy Nigdy odpowiada od razu, ale zużywa i grzeje się nieco bardziej.
+pw.nvme2	SSD NVMe: głębokie uśpienie po
+pw.nvme2#0	Nigdy (zawsze gotowy)
+pw.nvme2#1000	1 sekunda
+pw.nvme2#2000	2 sekundy
+pw.nvme2#5000	5 sekund
+H:pw.nvme2	Drugi, głębszy stan oszczędzania: wybudzenie trwa kilka milisekund dłużej. W laptopie lepiej zostawić włączony.

@@ -574,3 +574,13 @@ pw.videoPlay	Bei der Videowiedergabe
 pw.videoPlay#0	Qualität optimieren
 pw.videoPlay#1	Ausgewogen
 pw.videoPlay#2	Energieverbrauch optimieren
+pw.nvme1	NVMe-SSD: erster Ruhezustand nach
+pw.nvme1#0	Nie (immer bereit)
+pw.nvme1#1000	1 Sekunde
+H:pw.nvme1	Leerlaufzeit bis zum ersten Energiesparzustand der NVMe-SSD. Bei Nie antwortet sie sofort, verbraucht und erwärmt sich aber etwas mehr.
+pw.nvme2	NVMe-SSD: tiefer Ruhezustand nach
+pw.nvme2#0	Nie (immer bereit)
+pw.nvme2#1000	1 Sekunde
+pw.nvme2#2000	2 Sekunden
+pw.nvme2#5000	5 Sekunden
+H:pw.nvme2	Der zweite, tiefere Energiesparzustand: das Aufwachen dauert ein paar Millisekunden länger. Auf einem Laptop besser eingeschaltet lassen.

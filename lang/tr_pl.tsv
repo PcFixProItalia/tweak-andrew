@@ -501,12 +501,11 @@ L:ttlNvProfile	NVIDIA: WYDAJNOŚĆ PROFILU
 L:lblNvProfileHint	Zapisywane w globalnym profilu sterownika, jak w Panelu sterowania NVIDIA.
 L:chkNvP2	CUDA: bez wymuszonego stanu P2
 L:chkNvDrsPower	Zarządzanie energią: maksymalna wydajność
-L:chkNvLowLatency	Tryb niskiego opóźnienia: Ultra
+L:chkNvLowLatency	Tryb niskiego opóźnienia: włączony
 L:chkNvThreaded	Optymalizacja wątkowa włączona
 L:chkNvTexPerf	Filtrowanie tekstur: wysoka wydajność
 L:chkNvAniso	Optymalizacja próbek anizotropowych
 L:chkNvShaderCache	Nieograniczona pamięć shaderów
-L:chkNvNoFxaa	FXAA i Ansel wyłączone
 L:ttlNvReg	NVIDIA: REJESTR STEROWNIKA
 L:chkNvDisplayPower	Oszczędzanie energii wyświetlacza wyłączone
 L:chkNvHdcp	HDCP wyłączone
@@ -646,11 +645,11 @@ M:homeUptime	Włączony od {0}
 M:homeUptimeD	{0} d {1} h {2} min
 M:homeUptimeH	{0} h {1} min
 M:homeInstalledOn	Windows zainstalowany {0}
-M:homePcType	TYP KOMPUTERA
-M:homeTypeAuto	Automatycznie: {0}
-M:homeTypeDesktop	Stacjonarny
+M:homePcType	RODZAJ KOMPUTERA
+M:homeTypeAuto	Wykrywanie automatyczne: {0}
+M:homeTypeDesktop	Komputer stacjonarny
 M:homeTypeLaptop	Laptop
-M:homeTypeHint	Na laptopie «Zaznacz wszystko» i «Zalecane» pomijają opcje zużywające baterię; na stacjonarnym te przydatne tylko z baterią. Nadal można je wybrać ręcznie.
+M:homeTypeHint	«Zalecane» uwzględnia rodzaj komputera: na laptopie pomija opcje zużywające baterię, na stacjonarnym te przydatne tylko z baterią. Nadal można je zaznaczyć ręcznie.
 M:homeCpu	Procesor
 M:homeRam	Pamięć
 M:homeGpu	Karta graficzna
@@ -698,3 +697,17 @@ M:wgErr_8A15010A	Uruchom ponownie komputer przed instalacją
 M:wgErr_8A15010C	Anulowano
 M:wgErr_8A15010E	Zainstalowano już nowszą wersję
 M:wgErr_8A15010F	Zablokowano przez zasady systemu
+L:chkNvNoAnsel	Ansel wyłączony
+L:chkIntelTelemetry	Telemetria Intel wyłączona
+L:chkIntelGfxPower	Plan grafiki Intel: maksymalna wydajność
+L:chkIntelDpst	Oszczędzanie energii ekranu (DPST) wyłączone
+L:ttlCpu	PROCESOR
+L:chkCpuIntelBoostPol	Intel: turbo bez limitu zasad
+L:chkCpuIntelHybrid	Intel hybrydowe: aplikacje na pierwszym planie na rdzeniach P
+L:chkCpuAmdParking	AMD Ryzen: bez parkowania rdzeni
+L:chkCpuIdleOff	Procesor zawsze aktywny (bez stanów spoczynku)
+M:cpuDetected	Wykryto: {0}. Aktywne są tylko opcje pasujące do tego procesora.
+M:cpuUnknown	nierozpoznany procesor
+M:sectionSelect	Cała sekcja
+M:laptopSelTitle	Laptop
+M:laptopSelAsk	Na laptopie zalecane jest «Zalecane»: «Zaznacz wszystko» obejmuje też opcje skracające czas pracy na baterii. Zaznaczyć mimo to wszystko?

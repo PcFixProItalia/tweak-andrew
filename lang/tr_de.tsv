@@ -501,12 +501,11 @@ L:ttlNvProfile	NVIDIA: PROFILLEISTUNG
 L:lblNvProfileHint	Werden ins globale Treiberprofil geschrieben, wie in der NVIDIA-Systemsteuerung.
 L:chkNvP2	CUDA: kein erzwungener P2-Zustand
 L:chkNvDrsPower	Energieverwaltung: maximale Leistung
-L:chkNvLowLatency	Modus für niedrige Latenz: Ultra
+L:chkNvLowLatency	Modus für niedrige Latenz: Ein
 L:chkNvThreaded	Threaded-Optimierung an
 L:chkNvTexPerf	Texturfilterung: hohe Leistung
 L:chkNvAniso	Anisotrope Musteroptimierung
 L:chkNvShaderCache	Unbegrenzter Shader-Cache
-L:chkNvNoFxaa	FXAA und Ansel aus
 L:ttlNvReg	NVIDIA: TREIBER-REGISTRY
 L:chkNvDisplayPower	Bildschirm-Energiesparen aus
 L:chkNvHdcp	HDCP aus
@@ -646,11 +645,11 @@ M:homeUptime	Läuft seit {0}
 M:homeUptimeD	{0} T {1} Std. {2} Min.
 M:homeUptimeH	{0} Std. {1} Min.
 M:homeInstalledOn	Windows installiert am {0}
-M:homePcType	PC-TYP
-M:homeTypeAuto	Automatisch: {0}
-M:homeTypeDesktop	Desktop
+M:homePcType	GERÄTETYP
+M:homeTypeAuto	Automatische Erkennung: {0}
+M:homeTypeDesktop	Desktop-PC
 M:homeTypeLaptop	Laptop
-M:homeTypeHint	Auf einem Laptop überspringen «Alles auswählen» und «Empfohlen» akkufressende Einträge, auf einem Desktop die nur mit Akku nützlichen. Von Hand bleiben sie wählbar.
+M:homeTypeHint	«Empfohlen» berücksichtigt den Gerätetyp: auf einem Laptop fehlen akkufressende Einträge, auf einem Desktop die nur mit Akku nützlichen. Sie können trotzdem manuell ausgewählt werden.
 M:homeCpu	Prozessor
 M:homeRam	Arbeitsspeicher
 M:homeGpu	Grafikkarte
@@ -698,3 +697,17 @@ M:wgErr_8A15010A	PC vor der Installation neu starten
 M:wgErr_8A15010C	Abgebrochen
 M:wgErr_8A15010E	Eine neuere Version ist bereits installiert
 M:wgErr_8A15010F	Durch eine Systemrichtlinie blockiert
+L:chkNvNoAnsel	Ansel aus
+L:chkIntelTelemetry	Intel-Telemetrie aus
+L:chkIntelGfxPower	Intel-Grafik-Energieplan: maximale Leistung
+L:chkIntelDpst	Display-Energiesparen (DPST) aus
+L:ttlCpu	PROZESSOR
+L:chkCpuIntelBoostPol	Intel: Turbo ohne Richtlinienbremse
+L:chkCpuIntelHybrid	Intel Hybrid: Vordergrund-Apps auf P-Kernen
+L:chkCpuAmdParking	AMD Ryzen: keine geparkten Kerne
+L:chkCpuIdleOff	Prozessor immer wach (keine Ruhezustände)
+M:cpuDetected	Erkannt: {0}. Nur die zu diesem Prozessor passenden Einträge sind aktiv.
+M:cpuUnknown	unbekannter Prozessor
+M:sectionSelect	Ganzer Abschnitt
+M:laptopSelTitle	Laptop
+M:laptopSelAsk	Auf einem Laptop ist «Empfohlen» die bessere Wahl: «Alles auswählen» enthält auch Einträge, die die Akkulaufzeit verkürzen. Trotzdem alles auswählen?

@@ -574,3 +574,13 @@ pw.videoPlay	La redarea video
 pw.videoPlay#0	Optimizează calitatea
 pw.videoPlay#1	Echilibrat
 pw.videoPlay#2	Optimizează consumul
+pw.nvme1	SSD NVMe: prima stare de repaus după
+pw.nvme1#0	Niciodată (mereu gata)
+pw.nvme1#1000	1 secundă
+H:pw.nvme1	Timpul de inactivitate până la prima stare de economisire a SSD-ului NVMe. Pe Niciodată răspunde imediat, dar consumă și se încălzește puțin mai mult.
+pw.nvme2	SSD NVMe: repaus profund după
+pw.nvme2#0	Niciodată (mereu gata)
+pw.nvme2#1000	1 secundă
+pw.nvme2#2000	2 secunde
+pw.nvme2#5000	5 secunde
+H:pw.nvme2	A doua stare de economisire, mai profundă: trezirea durează câteva milisecunde în plus. Pe laptop e mai bine să rămână activă.

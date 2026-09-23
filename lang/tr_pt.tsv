@@ -501,12 +501,11 @@ L:ttlNvProfile	NVIDIA: DESEMPENHO DO PERFIL
 L:lblNvProfileHint	Gravadas no perfil global do driver, como no Painel de Controle NVIDIA.
 L:chkNvP2	CUDA: sem estado P2 forçado
 L:chkNvDrsPower	Gerenciamento de energia: desempenho máximo
-L:chkNvLowLatency	Modo de baixa latência: Ultra
+L:chkNvLowLatency	Modo de baixa latência: ativado
 L:chkNvThreaded	Otimização de threads ativada
 L:chkNvTexPerf	Filtragem de texturas: alto desempenho
 L:chkNvAniso	Otimização de amostras anisotrópicas
 L:chkNvShaderCache	Cache de shaders ilimitado
-L:chkNvNoFxaa	FXAA e Ansel desativados
 L:ttlNvReg	NVIDIA: REGISTRO DO DRIVER
 L:chkNvDisplayPower	Economia de energia da tela desativada
 L:chkNvHdcp	HDCP desativado
@@ -646,11 +645,11 @@ M:homeUptime	Ligado há {0}
 M:homeUptimeD	{0} d {1} h {2} min
 M:homeUptimeH	{0} h {1} min
 M:homeInstalledOn	Windows instalado em {0}
-M:homePcType	TIPO DE PC
-M:homeTypeAuto	Automático: {0}
-M:homeTypeDesktop	Desktop
+M:homePcType	TIPO DE COMPUTADOR
+M:homeTypeAuto	Detecção automática: {0}
+M:homeTypeDesktop	Computador de mesa
 M:homeTypeLaptop	Notebook
-M:homeTypeHint	No notebook, «Selecionar tudo» e «Recomendados» ignoram as opções que gastam bateria; no desktop, as úteis só com bateria. Continuam selecionáveis manualmente.
+M:homeTypeHint	«Recomendados» leva em conta o tipo: no notebook exclui as opções que gastam bateria, no desktop as úteis só com bateria. Ainda assim podem ser selecionadas manualmente.
 M:homeCpu	Processador
 M:homeRam	Memória
 M:homeGpu	Placa de vídeo
@@ -698,3 +697,17 @@ M:wgErr_8A15010A	Reinicie o PC antes de instalar
 M:wgErr_8A15010C	Cancelada
 M:wgErr_8A15010E	Uma versão mais recente já está instalada
 M:wgErr_8A15010F	Bloqueada por uma política do sistema
+L:chkNvNoAnsel	Ansel desativado
+L:chkIntelTelemetry	Telemetria da Intel desativada
+L:chkIntelGfxPower	Plano gráfico Intel: desempenho máximo
+L:chkIntelDpst	Economia de energia da tela (DPST) desativada
+L:ttlCpu	PROCESSADOR
+L:chkCpuIntelBoostPol	Intel: turbo sem limite de política
+L:chkCpuIntelHybrid	Intel híbridos: apps em primeiro plano nos núcleos P
+L:chkCpuAmdParking	AMD Ryzen: nenhum núcleo estacionado
+L:chkCpuIdleOff	Processador sempre acordado (sem estados de repouso)
+M:cpuDetected	Detectado: {0}. Só as opções adequadas a este processador ficam ativas.
+M:cpuUnknown	processador não reconhecido
+M:sectionSelect	Seção inteira
+M:laptopSelTitle	Notebook
+M:laptopSelAsk	No notebook é recomendado usar «Recomendados»: «Selecionar tudo» inclui também opções que reduzem a autonomia. Selecionar tudo mesmo assim?

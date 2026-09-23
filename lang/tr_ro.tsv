@@ -501,12 +501,11 @@ L:ttlNvProfile	NVIDIA: PERFORMANȚA PROFILULUI
 L:lblNvProfileHint	Scrise în profilul global al driverului, ca în Panoul de control NVIDIA.
 L:chkNvP2	CUDA: fără stare P2 forțată
 L:chkNvDrsPower	Gestionare energie: performanță maximă
-L:chkNvLowLatency	Mod latență redusă: Ultra
+L:chkNvLowLatency	Mod latență redusă: activ
 L:chkNvThreaded	Optimizare pe fire activă
 L:chkNvTexPerf	Filtrare texturi: performanță ridicată
 L:chkNvAniso	Optimizare eșantioane anizotrope
 L:chkNvShaderCache	Cache shader nelimitat
-L:chkNvNoFxaa	FXAA și Ansel dezactivate
 L:ttlNvReg	NVIDIA: REGISTRUL DRIVERULUI
 L:chkNvDisplayPower	Economie energie ecran dezactivată
 L:chkNvHdcp	HDCP dezactivat
@@ -646,11 +645,11 @@ M:homeUptime	Pornit de {0}
 M:homeUptimeD	{0} z {1} h {2} min
 M:homeUptimeH	{0} h {1} min
 M:homeInstalledOn	Windows instalat pe {0}
-M:homePcType	TIP PC
-M:homeTypeAuto	Automat: {0}
-M:homeTypeDesktop	Desktop
+M:homePcType	TIPUL COMPUTERULUI
+M:homeTypeAuto	Detectare automată: {0}
+M:homeTypeDesktop	Computer desktop
 M:homeTypeLaptop	Laptop
-M:homeTypeHint	Pe laptop «Selectează tot» și «Recomandate» sar peste opțiunile care consumă bateria; pe desktop, peste cele utile doar cu baterie. Rămân selectabile manual.
+M:homeTypeHint	«Recomandate» ține cont de tip: pe laptop exclude opțiunile care consumă bateria, pe desktop pe cele utile doar cu baterie. Pot fi totuși selectate manual.
 M:homeCpu	Procesor
 M:homeRam	Memorie
 M:homeGpu	Placă video
@@ -698,3 +697,17 @@ M:wgErr_8A15010A	Repornește PC-ul înainte de instalare
 M:wgErr_8A15010C	Anulată
 M:wgErr_8A15010E	Este deja instalată o versiune mai nouă
 M:wgErr_8A15010F	Blocată de o politică de sistem
+L:chkNvNoAnsel	Ansel dezactivat
+L:chkIntelTelemetry	Telemetrie Intel dezactivată
+L:chkIntelGfxPower	Plan grafic Intel: performanță maximă
+L:chkIntelDpst	Economie energie ecran (DPST) dezactivată
+L:ttlCpu	PROCESOR
+L:chkCpuIntelBoostPol	Intel: turbo fără limită de politică
+L:chkCpuIntelHybrid	Intel hibrid: aplicații în prim-plan pe nuclee P
+L:chkCpuAmdParking	AMD Ryzen: niciun nucleu parcat
+L:chkCpuIdleOff	Procesor mereu activ (fără stări de repaus)
+M:cpuDetected	Detectat: {0}. Sunt active doar opțiunile potrivite acestui procesor.
+M:cpuUnknown	procesor nerecunoscut
+M:sectionSelect	Toată secțiunea
+M:laptopSelTitle	Laptop
+M:laptopSelAsk	Pe laptop este recomandat «Recomandate»: «Selectează tot» include și opțiuni care reduc autonomia bateriei. Selectezi totuși tot?

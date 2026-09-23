@@ -310,12 +310,11 @@ ttlNvProfile	NVIDIA: PROFILE PERFORMANCE
 lblNvProfileHint	Written to the driver's global profile, as in the NVIDIA Control Panel.
 chkNvP2	CUDA: no forced P2 state
 chkNvDrsPower	Power management: maximum performance
-chkNvLowLatency	Low latency mode: Ultra
+chkNvLowLatency	Low latency mode: On
 chkNvThreaded	Threaded optimization on
 chkNvTexPerf	Texture filtering: high performance
 chkNvAniso	Anisotropic sample optimization
 chkNvShaderCache	Unlimited shader cache
-chkNvNoFxaa	FXAA and Ansel off
 ttlNvReg	NVIDIA: DRIVER REGISTRY
 chkNvDisplayPower	Display power saving off
 chkNvHdcp	HDCP off
@@ -350,3 +349,12 @@ tabHome	Home
 lblHomeLoading	Reading the hardware...
 ttlAppJobs	OPERATIONS
 btnAppJobsClose	Close
+chkNvNoAnsel	Ansel off
+chkIntelTelemetry	Intel telemetry off
+chkIntelGfxPower	Intel graphics power plan: maximum performance
+chkIntelDpst	Display power saving (DPST) off
+ttlCpu	PROCESSOR
+chkCpuIntelBoostPol	Intel: turbo with no policy limit
+chkCpuIntelHybrid	Intel hybrid: foreground apps on P-cores
+chkCpuAmdParking	AMD Ryzen: no parked cores
+chkCpuIdleOff	Processor always awake (no idle states)

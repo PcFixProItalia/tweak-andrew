@@ -3,6 +3,8 @@
 # 20. AVVIO
 # ------------------------------------------------------------------------------
 Show-GpuInfo
+Show-CpuInfo
+Add-SectionPicks
 Update-PowerPlanLabel
 Show-PlanList
 $script:UiReady = $true

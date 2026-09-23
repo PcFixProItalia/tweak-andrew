@@ -54,6 +54,7 @@ function Remove-RegAllInterfaces {
 
 # Tipo di avvio originale dei servizi toccati dal programma.
 $script:SvcDefault = @{
+    ESRV_SVC_QUEENCREEK='Automatic'; SystemUsageReportSvc_QUEENCREEK='Automatic'
     MapsBroker='Automatic'; Fax='Manual'; XblAuthManager='Manual'; XblGameSave='Manual'; XboxNetApiSvc='Manual'
     XboxGipSvc='Manual'; RetailDemo='Manual'; WalletService='Manual'; PhoneSvc='Manual'
     DiagTrack='Automatic'; dmwappushservice='Manual'; lfsvc='Manual'; WerSvc='Manual'; DoSvc='Automatic'; BDESVC='Manual'
@@ -441,7 +442,7 @@ function Build-UndoActions {
     Add-UndoIfChecked $chkNvTexPerf { Reset-NvProfile 'TexPerf' 'Filtro texture' }
     Add-UndoIfChecked $chkNvAniso { Reset-NvProfile 'Aniso' 'Campioni anisotropici' }
     Add-UndoIfChecked $chkNvShaderCache { Reset-NvProfile 'Shader' 'Cache shader' }
-    Add-UndoIfChecked $chkNvNoFxaa { Reset-NvProfile 'NoFxaa' 'FXAA e Ansel' }
+    Add-UndoIfChecked $chkNvNoAnsel { Reset-NvProfile 'NoAnsel' 'Ansel' }
     Add-UndoIfChecked $chkNvDisplayPower { Reset-Reg 'HKLM:\SYSTEM\CurrentControlSet\Services\nvlddmkm\Global\NVTweak' 'DisplayPowerSaving' }
     Add-UndoIfChecked $chkNvHdcp { Remove-GpuClassValue 'RMHdcpKeyglobZero' 'NVIDIA' }
     Add-UndoIfChecked $chkNvPreempt { Remove-GpuClassValue 'DisablePreemption' 'NVIDIA'; Remove-GpuClassValue 'DisableCudaContextPreemption' 'NVIDIA' }
@@ -458,6 +459,16 @@ function Build-UndoActions {
     Add-UndoIfChecked $chkAmdPowerGating { foreach ($v in 'DisableDrmdmaPowerGating','DisableUVDPowerGatingDynamic','DisableVCEPowerGating') { Remove-GpuClassValue $v 'AMD' } }
     Add-UndoIfChecked $chkAmdDma { Remove-GpuClassValue 'DisableDMACopy' 'AMD'; Remove-GpuClassValue 'DisableBlockWrite' 'AMD' }
     Add-UndoIfChecked $chkAmdPreempt { Remove-GpuClassValue 'KMD_EnableComputePreemption' 'AMD' }
+    Add-UndoIfChecked $chkIntelTelemetry { Reset-Svc @('ESRV_SVC_QUEENCREEK', 'SystemUsageReportSvc_QUEENCREEK') }
+    Add-UndoIfChecked $chkIntelGfxPower { Reset-PowerAc '3619c3f2-afb2-4afc-b0e9-e7fef372de36' 'Piano grafico Intel' }
+    Add-UndoIfChecked $chkIntelDpst { Set-IntelFeatureBit 0x10 $false 'DPST riacceso' }
+    Add-UndoIfChecked $chkCpuIntelBoostPol { Reset-PowerAc '45bcc044-d885-43e2-8605-ee0ec6e96b59' 'Politica del turbo' }
+    Add-UndoIfChecked $chkCpuIntelHybrid {
+        Reset-PowerAc '93b8b6dc-0698-4d1c-9ee4-0644e900c85d' 'Thread sui core P'
+        Reset-PowerAc 'bae08b81-2d5e-4688-ad6a-13243356654b' 'Thread brevi sui core P'
+    }
+    Add-UndoIfChecked $chkCpuAmdParking { Reset-PowerAc '0cc5b647-c1df-4637-891a-dec35c318583' 'Parcheggio dei core' }
+    Add-UndoIfChecked $chkCpuIdleOff { Reset-PowerAc '5d76a2ca-e8c0-402f-a133-2158492d58ad' 'Stati di riposo del processore' }
     Add-UndoIfChecked $chkIntelBloat { Reset-Svc @('igfxCUIService2.0.0.0','IntelAudioService','Intel(R) TPM Provisioning Service') }
     Add-UndoIfChecked $chkGpuTdr {
         Reset-Reg 'HKLM:\SYSTEM\CurrentControlSet\Control\GraphicsDrivers' 'TdrDelay'

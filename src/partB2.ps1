@@ -217,6 +217,46 @@
             </Setter>
         </Style>
 
+        <!-- Casella piccola accanto al titolo di una scheda: sceglie tutte le voci
+             della sezione. Stessa casella quadrata delle app, in formato ridotto. -->
+        <Style x:Key="SectionPick" TargetType="CheckBox">
+            <Setter Property="Foreground" Value="#FF8E8E98"/>
+            <Setter Property="FontFamily" Value="Roboto, Segoe UI"/>
+            <Setter Property="FontSize" Value="11.5"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="CheckBox">
+                        <Border x:Name="row" Background="Transparent" CornerRadius="8" Padding="6,3">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock x:Name="txt" Text="{TemplateBinding Content}" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                                <Border x:Name="box" Width="16" Height="16" CornerRadius="5" BorderThickness="1.5"
+                                        BorderBrush="#FF4A4A53" Background="#FF101013" VerticalAlignment="Center">
+                                    <Path x:Name="tick" Data="M3,7 L5.8,9.8 L11,4" Stroke="#FF000000" StrokeThickness="2"
+                                          StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeLineJoin="Round"
+                                          Visibility="Collapsed"/>
+                                </Border>
+                            </StackPanel>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="box" Property="BorderBrush" Value="{DynamicResource PA}"/>
+                                <Setter Property="Foreground" Value="#FFE4E4EA"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="box" Property="Background" Value="{DynamicResource PA}"/>
+                                <Setter TargetName="box" Property="BorderBrush" Value="{DynamicResource PA}"/>
+                                <Setter TargetName="tick" Property="Visibility" Value="Visible"/>
+                                <Setter Property="Foreground" Value="#FFFFFFFF"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
         <Style TargetType="RadioButton">
             <Setter Property="Foreground" Value="#FFC4C4CC"/>
             <Setter Property="FontFamily" Value="Roboto, Segoe UI Variable Text, Segoe UI"/>
@@ -1234,6 +1274,16 @@
                                             </StackPanel>
                                         </Border>
 
+                                        <Border Style="{StaticResource Glass}">
+                                            <StackPanel>
+                                                <TextBlock x:Name="ttlCpu" Text="PROCESSORE" Style="{StaticResource CardTitle}"/>
+                                                <TextBlock x:Name="txtCpuDetected" Style="{StaticResource SubTitle}" Margin="0,0,0,8"/>
+                                                <CheckBox x:Name="chkCpuIntelBoostPol" Content="Intel: turbo senza freni di politica"/>
+                                                <CheckBox x:Name="chkCpuIntelHybrid" Content="Intel ibridi: app in primo piano sui core P"/>
+                                                <CheckBox x:Name="chkCpuAmdParking" Content="AMD Ryzen: nessun core parcheggiato"/>
+                                            </StackPanel>
+                                        </Border>
+
                                     </StackPanel>
 
                                     <StackPanel Grid.Column="2">
@@ -1250,6 +1300,7 @@
                                                            Style="{StaticResource SubTitle}" Foreground="#FFD9A470" Margin="0,0,0,8"/>
                                                 <CheckBox x:Name="chkVBS" Tag="risky" Content="VBS"/>
                                                 <CheckBox x:Name="chkMitigations" Tag="risky" Content="Mitigazioni exploit"/>
+                                                <CheckBox x:Name="chkCpuIdleOff" Tag="risky" Content="Processore sempre sveglio"/>
                                             </StackPanel>
                                         </Border>
                                     </StackPanel>
@@ -1902,12 +1953,12 @@
                                                            Text="Scritte nel profilo globale del driver, come nel Pannello di controllo NVIDIA."/>
                                                 <CheckBox x:Name="chkNvP2" Content="CUDA: niente stato P2 forzato"/>
                                                 <CheckBox x:Name="chkNvDrsPower" Content="Gestione energia: prestazioni massime"/>
-                                                <CheckBox x:Name="chkNvLowLatency" Content="Modalita bassa latenza: Ultra"/>
+                                                <CheckBox x:Name="chkNvLowLatency" Content="Modalita bassa latenza: attiva"/>
                                                 <CheckBox x:Name="chkNvThreaded" Content="Ottimizzazione thread attiva"/>
                                                 <CheckBox x:Name="chkNvTexPerf" Content="Filtro texture: prestazioni elevate"/>
                                                 <CheckBox x:Name="chkNvAniso" Content="Ottimizzazione campioni anisotropici"/>
                                                 <CheckBox x:Name="chkNvShaderCache" Content="Cache shader illimitata"/>
-                                                <CheckBox x:Name="chkNvNoFxaa" Content="FXAA e Ansel spenti"/>
+                                                <CheckBox x:Name="chkNvNoAnsel" Content="Ansel spento"/>
                                             </StackPanel>
                                         </Border>
 
@@ -1950,6 +2001,9 @@
                                             <StackPanel>
                                                 <TextBlock x:Name="ttlIntelGpu" Text="INTEL GRAPHICS" Style="{StaticResource CardTitle}" Foreground="#FF7FC4E8"/>
                                                 <CheckBox x:Name="chkIntelBloat" Content="Servizi accessori Intel Graphics"/>
+                                                <CheckBox x:Name="chkIntelTelemetry" Content="Telemetria Intel spenta"/>
+                                                <CheckBox x:Name="chkIntelGfxPower" Content="Piano grafico Intel: prestazioni massime"/>
+                                                <CheckBox x:Name="chkIntelDpst" Content="Risparmio energetico del display (DPST) spento"/>
                                             </StackPanel>
                                         </Border>
                                     </StackPanel>

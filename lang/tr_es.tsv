@@ -501,12 +501,11 @@ L:ttlNvProfile	NVIDIA: RENDIMIENTO DEL PERFIL
 L:lblNvProfileHint	Se escriben en el perfil global del controlador, como en el Panel de control de NVIDIA.
 L:chkNvP2	CUDA: sin estado P2 forzado
 L:chkNvDrsPower	Administración de energía: máximo rendimiento
-L:chkNvLowLatency	Modo de baja latencia: Ultra
+L:chkNvLowLatency	Modo de baja latencia: activado
 L:chkNvThreaded	Optimización de subprocesos activada
 L:chkNvTexPerf	Filtrado de texturas: alto rendimiento
 L:chkNvAniso	Optimización de muestras anisotrópicas
 L:chkNvShaderCache	Caché de sombreadores ilimitada
-L:chkNvNoFxaa	FXAA y Ansel desactivados
 L:ttlNvReg	NVIDIA: REGISTRO DEL CONTROLADOR
 L:chkNvDisplayPower	Ahorro de energía de pantalla desactivado
 L:chkNvHdcp	HDCP desactivado
@@ -646,11 +645,11 @@ M:homeUptime	Encendido hace {0}
 M:homeUptimeD	{0} d {1} h {2} min
 M:homeUptimeH	{0} h {1} min
 M:homeInstalledOn	Windows instalado el {0}
-M:homePcType	TIPO DE PC
-M:homeTypeAuto	Automático: {0}
-M:homeTypeDesktop	Sobremesa
+M:homePcType	TIPO DE EQUIPO
+M:homeTypeAuto	Detección automática: {0}
+M:homeTypeDesktop	Ordenador de sobremesa
 M:homeTypeLaptop	Portátil
-M:homeTypeHint	En un portátil «Seleccionar todo» y «Recomendados» omiten las opciones que gastan batería; en un sobremesa, las útiles solo con batería. Siguen disponibles a mano.
+M:homeTypeHint	«Recomendados» tiene en cuenta el tipo: en un portátil excluye las opciones que gastan batería, en un sobremesa las útiles solo con batería. Aun así pueden seleccionarse manualmente.
 M:homeCpu	Procesador
 M:homeRam	Memoria
 M:homeGpu	Tarjeta gráfica
@@ -698,3 +697,17 @@ M:wgErr_8A15010A	Reinicia el PC antes de instalarla
 M:wgErr_8A15010C	Cancelada
 M:wgErr_8A15010E	Ya hay instalada una versión más reciente
 M:wgErr_8A15010F	Bloqueada por una directiva del sistema
+L:chkNvNoAnsel	Ansel desactivado
+L:chkIntelTelemetry	Telemetría de Intel desactivada
+L:chkIntelGfxPower	Plan gráfico de Intel: máximo rendimiento
+L:chkIntelDpst	Ahorro de energía de pantalla (DPST) desactivado
+L:ttlCpu	PROCESADOR
+L:chkCpuIntelBoostPol	Intel: turbo sin límite de directiva
+L:chkCpuIntelHybrid	Intel híbridos: apps en primer plano en núcleos P
+L:chkCpuAmdParking	AMD Ryzen: ningún núcleo aparcado
+L:chkCpuIdleOff	Procesador siempre despierto (sin estados de reposo)
+M:cpuDetected	Detectado: {0}. Solo se activan las opciones adecuadas a este procesador.
+M:cpuUnknown	procesador no reconocido
+M:sectionSelect	Toda la sección
+M:laptopSelTitle	Portátil
+M:laptopSelAsk	En un portátil se recomienda usar «Recomendados»: «Seleccionar todo» incluye también opciones que reducen la autonomía. ¿Seleccionar todo de todos modos?

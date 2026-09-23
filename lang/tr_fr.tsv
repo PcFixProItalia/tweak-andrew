@@ -504,12 +504,11 @@ L:ttlNvProfile	NVIDIA : PERFORMANCES DU PROFIL
 L:lblNvProfileHint	Écrits dans le profil global du pilote, comme dans le Panneau de configuration NVIDIA.
 L:chkNvP2	CUDA : pas d'état P2 forcé
 L:chkNvDrsPower	Gestion de l'alimentation : performances maximales
-L:chkNvLowLatency	Mode faible latence : Ultra
+L:chkNvLowLatency	Mode faible latence : activé
 L:chkNvThreaded	Optimisation threadée activée
 L:chkNvTexPerf	Filtrage des textures : hautes performances
 L:chkNvAniso	Optimisation des échantillons anisotropes
 L:chkNvShaderCache	Cache de shaders illimité
-L:chkNvNoFxaa	FXAA et Ansel désactivés
 L:ttlNvReg	NVIDIA : REGISTRE DU PILOTE
 L:chkNvDisplayPower	Économie d'énergie de l'écran désactivée
 L:chkNvHdcp	HDCP désactivé
@@ -649,11 +648,11 @@ M:homeUptime	Allumé depuis {0}
 M:homeUptimeD	{0} j {1} h {2} min
 M:homeUptimeH	{0} h {1} min
 M:homeInstalledOn	Windows installé le {0}
-M:homePcType	TYPE DE PC
-M:homeTypeAuto	Automatique : {0}
-M:homeTypeDesktop	Fixe
-M:homeTypeLaptop	Portable
-M:homeTypeHint	Sur un portable, «Tout sélectionner» et «Recommandés» ignorent les options qui vident la batterie ; sur un fixe, celles utiles seulement avec batterie. Elles restent sélectionnables à la main.
+M:homePcType	TYPE D'ORDINATEUR
+M:homeTypeAuto	Détection automatique : {0}
+M:homeTypeDesktop	Ordinateur fixe
+M:homeTypeLaptop	Ordinateur portable
+M:homeTypeHint	«Recommandés» tient compte du type : sur un portable il exclut les options qui vident la batterie, sur un fixe celles utiles seulement avec batterie. Elles peuvent toutefois être sélectionnées manuellement.
 M:homeCpu	Processeur
 M:homeRam	Mémoire
 M:homeGpu	Carte graphique
@@ -701,3 +700,17 @@ M:wgErr_8A15010A	Redémarrez le PC avant de l'installer
 M:wgErr_8A15010C	Annulée
 M:wgErr_8A15010E	Une version plus récente est déjà installée
 M:wgErr_8A15010F	Bloquée par une stratégie système
+L:chkNvNoAnsel	Ansel désactivé
+L:chkIntelTelemetry	Télémétrie Intel désactivée
+L:chkIntelGfxPower	Plan graphique Intel : performances maximales
+L:chkIntelDpst	Économie d'énergie de l'écran (DPST) désactivée
+L:ttlCpu	PROCESSEUR
+L:chkCpuIntelBoostPol	Intel : turbo sans frein de stratégie
+L:chkCpuIntelHybrid	Intel hybrides : apps au premier plan sur cœurs P
+L:chkCpuAmdParking	AMD Ryzen : aucun cœur parqué
+L:chkCpuIdleOff	Processeur toujours éveillé (pas d'états de repos)
+M:cpuDetected	Détecté : {0}. Seules les options adaptées à ce processeur sont actives.
+M:cpuUnknown	processeur non reconnu
+M:sectionSelect	Toute la section
+M:laptopSelTitle	Ordinateur portable
+M:laptopSelAsk	Sur un portable, «Recommandés» est conseillé : «Tout sélectionner» inclut aussi des options qui réduisent l'autonomie. Tout sélectionner quand même ?
