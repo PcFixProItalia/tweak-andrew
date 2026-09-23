@@ -685,3 +685,19 @@ M:valOff	Désactivé
 M:valNone	Absent
 M:valOnAc	Sur secteur
 M:valOnBattery	Sur batterie
+M:jobRetry	Nouvel essai : remplacement de la version installée...
+M:wgErr_8A150008	Échec du téléchargement
+M:wgErr_8A150011	Fichier téléchargé non valide
+M:wgErr_8A150014	Paquet introuvable
+M:wgErr_8A15008E	Type d'installateur modifié : mettez-la à jour depuis son site
+M:wgErr_8A150101	App ouverte : fermez-la et réessayez
+M:wgErr_8A150102	Une autre installation est en cours
+M:wgErr_8A150103	Fichier utilisé : fermez l'app et réessayez
+M:wgErr_8A150104	Un composant requis est manquant
+M:wgErr_8A150105	Disque plein
+M:wgErr_8A150106	Mémoire insuffisante
+M:wgErr_8A150107	Pas de connexion Internet
+M:wgErr_8A15010A	Redémarrez le PC avant de l'installer
+M:wgErr_8A15010C	Annulée
+M:wgErr_8A15010E	Une version plus récente est déjà installée
+M:wgErr_8A15010F	Bloquée par une stratégie système

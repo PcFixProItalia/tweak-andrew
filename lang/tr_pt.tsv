@@ -682,3 +682,19 @@ M:valOff	Desativado
 M:valNone	Ausente
 M:valOnAc	Na tomada
 M:valOnBattery	Na bateria
+M:jobRetry	Nova tentativa: substituindo a versão instalada...
+M:wgErr_8A150008	Falha no download
+M:wgErr_8A150011	Arquivo baixado inválido
+M:wgErr_8A150014	Pacote não encontrado
+M:wgErr_8A15008E	Tipo de instalador mudou: atualize pelo site
+M:wgErr_8A150101	App aberto: feche e tente de novo
+M:wgErr_8A150102	Outra instalação em andamento
+M:wgErr_8A150103	Arquivo em uso: feche o app e tente de novo
+M:wgErr_8A150104	Falta um componente necessário
+M:wgErr_8A150105	Disco cheio
+M:wgErr_8A150106	Memória insuficiente
+M:wgErr_8A150107	Sem conexão com a Internet
+M:wgErr_8A15010A	Reinicie o PC antes de instalar
+M:wgErr_8A15010C	Cancelada
+M:wgErr_8A15010E	Uma versão mais recente já está instalada
+M:wgErr_8A15010F	Bloqueada por uma política do sistema

@@ -682,3 +682,19 @@ M:valOff	Wyłączony
 M:valNone	Brak
 M:valOnAc	Podłączony do zasilania
 M:valOnBattery	Na baterii
+M:jobRetry	Ponowna próba: zastępuję zainstalowaną wersję...
+M:wgErr_8A150008	Pobieranie nie powiodło się
+M:wgErr_8A150011	Pobrany plik jest nieprawidłowy
+M:wgErr_8A150014	Nie znaleziono pakietu
+M:wgErr_8A15008E	Zmieniono typ instalatora: zaktualizuj ze strony producenta
+M:wgErr_8A150101	Aplikacja działa: zamknij i spróbuj ponownie
+M:wgErr_8A150102	Trwa inna instalacja
+M:wgErr_8A150103	Plik w użyciu: zamknij aplikację i spróbuj ponownie
+M:wgErr_8A150104	Brak wymaganego składnika
+M:wgErr_8A150105	Dysk pełny
+M:wgErr_8A150106	Za mało pamięci
+M:wgErr_8A150107	Brak połączenia z Internetem
+M:wgErr_8A15010A	Uruchom ponownie komputer przed instalacją
+M:wgErr_8A15010C	Anulowano
+M:wgErr_8A15010E	Zainstalowano już nowszą wersję
+M:wgErr_8A15010F	Zablokowano przez zasady systemu

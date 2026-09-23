@@ -625,6 +625,22 @@ $script:Msg = @{
     valNone            = @{ it = "Assente"; en = "Not present" }
     valOnAc            = @{ it = "Collegato alla corrente"; en = "Plugged in" }
     valOnBattery       = @{ it = "A batteria"; en = "On battery" }
+    jobRetry           = @{ it = "Nuovo tentativo: sostituisco la versione installata..."; en = "Retrying: replacing the installed version..." }
+    wgErr_8A150008     = @{ it = "Download non riuscito"; en = "Download failed" }
+    wgErr_8A150011     = @{ it = "File scaricato non valido"; en = "Downloaded file not valid" }
+    wgErr_8A150014     = @{ it = "Pacchetto non trovato"; en = "Package not found" }
+    wgErr_8A15008E     = @{ it = "Tipo di installatore cambiato: aggiornala dal suo sito"; en = "Installer type changed: update it from its website" }
+    wgErr_8A150101     = @{ it = "App aperta: chiudila e riprova"; en = "App is running: close it and retry" }
+    wgErr_8A150102     = @{ it = "Un'altra installazione è in corso"; en = "Another installation is running" }
+    wgErr_8A150103     = @{ it = "File in uso: chiudi l'app e riprova"; en = "File in use: close the app and retry" }
+    wgErr_8A150104     = @{ it = "Manca un componente richiesto"; en = "A required component is missing" }
+    wgErr_8A150105     = @{ it = "Disco pieno"; en = "Disk full" }
+    wgErr_8A150106     = @{ it = "Memoria insufficiente"; en = "Not enough memory" }
+    wgErr_8A150107     = @{ it = "Nessuna connessione a Internet"; en = "No Internet connection" }
+    wgErr_8A15010A     = @{ it = "Riavvia il PC prima di installarla"; en = "Restart the PC before installing it" }
+    wgErr_8A15010C     = @{ it = "Annullata"; en = "Cancelled" }
+    wgErr_8A15010E     = @{ it = "È già installata una versione più recente"; en = "A newer version is already installed" }
+    wgErr_8A15010F     = @{ it = "Bloccata da un criterio di sistema"; en = "Blocked by a system policy" }
 }
 
 $script:LangCode = "it"

@@ -588,19 +588,43 @@ function Update-AppJobProgress($job) {
     }
 }
 
+# Codici di uscita di winget, in esadecimale come li stampa «winget error».
+# Quelli con un testo in wgErr_ si mostrano spiegati, gli altri con il codice.
+$script:WingetOkCodes = @('8A15002B', '8A150061', '8A15010D')   # nessun aggiornamento, gia' installato
+$script:WingetRebootCodes = @('8A150109')                       # installato, il riavvio completa il lavoro
+$script:WingetKnownErrors = @('8A150008', '8A150011', '8A150014', '8A15008E', '8A150101', '8A150102', '8A150103',
+                              '8A150104', '8A150105', '8A150106', '8A150107', '8A15010A', '8A15010C', '8A15010E', '8A15010F')
+
 function Complete-AppJob($job, [int]$code) {
+    $hex = '{0:X8}' -f $code
+    # 0x8A15008E: la versione nuova usa un altro tipo di installatore (per esempio
+    # MSI al posto di EXE) e winget non la mette sopra alla vecchia. Con
+    # --uninstall-previous toglie prima quella installata; le impostazioni
+    # dell'utente restano nella sua cartella.
+    if ($hex -eq '8A15008E' -and -not $job.Retried -and $job.File -eq $script:Winget) {
+        $job.Retried = $true
+        $job.Args += ' --uninstall-previous'
+        $job.SawDl = $false; $job.DlDone = $false; $job.Frac = 0.0
+        Write-Log "[AVVISO] $($job.Label) - tipo di installatore cambiato, nuovo tentativo sostituendo la versione installata"
+        Start-AppJob $job
+        if ($job.Proc) { Set-AppJobView $job (T 'jobRetry') -1 '#FFFDBA74' }
+        return
+    }
     $job.Done = $true; $job.Frac = 1.0
-    # -1978335189 e -1978335135: nessun aggiornamento o gia' installato, non sono errori.
+    # I codici di winget si leggono in esadecimale, quelli degli installatori in decimale.
+    $codeText = if ($hex -like '8A15*') { "0x$hex" } else { "$code" }
+    $job.StateText.ToolTip = $codeText
     # 3010 e 1641: riuscito, ma Windows vuole un riavvio.
-    if ($code -in @(3010, 1641)) {
+    if ($code -in @(3010, 1641) -or $script:WingetRebootCodes -contains $hex) {
         $job.Ok = $true; Write-Log "[OK] $($job.Label) - serve un riavvio"
         Set-AppJobView $job (T 'jobOkReboot') 100 '#FFFDBA74'
-    } elseif ($code -eq 0 -or $code -eq -1978335189 -or $code -eq -1978335135) {
+    } elseif ($code -eq 0 -or $script:WingetOkCodes -contains $hex) {
         $job.Ok = $true; Write-Log "[OK] $($job.Label)"
         Set-AppJobView $job (T 'jobOk') 100 '#FF2ED3A7'
     } else {
-        Write-Log "[ERRORE] $($job.Label) - codice $code"
-        Set-AppJobView $job ((T 'jobErr') -f $code) 0 '#FFF87171'
+        $msg = if ($script:WingetKnownErrors -contains $hex) { T "wgErr_$hex" } else { (T 'jobErr') -f $codeText }
+        Write-Log "[ERRORE] $($job.Label) - $codeText $msg"
+        Set-AppJobView $job $msg 0 '#FFF87171'
     }
     if ($script:AppJob -eq $job) { $script:AppJob = $null }
 }

@@ -682,3 +682,19 @@ M:valOff	Desactivado
 M:valNone	No presente
 M:valOnAc	Conectado a la corriente
 M:valOnBattery	Con batería
+M:jobRetry	Reintentando: reemplazo la versión instalada...
+M:wgErr_8A150008	Descarga fallida
+M:wgErr_8A150011	Archivio descargado no válido
+M:wgErr_8A150014	Paquete no encontrado
+M:wgErr_8A15008E	Cambió el tipo de instalador: actualízala desde su web
+M:wgErr_8A150101	App abierta: ciérrala y reintenta
+M:wgErr_8A150102	Otra instalación en curso
+M:wgErr_8A150103	Archivo en uso: cierra la app y reintenta
+M:wgErr_8A150104	Falta un componente necesario
+M:wgErr_8A150105	Disco lleno
+M:wgErr_8A150106	Memoria insuficiente
+M:wgErr_8A150107	Sin conexión a Internet
+M:wgErr_8A15010A	Reinicia el PC antes de instalarla
+M:wgErr_8A15010C	Cancelada
+M:wgErr_8A15010E	Ya hay instalada una versión más reciente
+M:wgErr_8A15010F	Bloqueada por una directiva del sistema

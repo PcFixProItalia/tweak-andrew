@@ -682,3 +682,19 @@ M:valOff	Dezactivat
 M:valNone	Absent
 M:valOnAc	Conectat la priză
 M:valOnBattery	Pe baterie
+M:jobRetry	Reîncercare: înlocuiesc versiunea instalată...
+M:wgErr_8A150008	Descărcare eșuată
+M:wgErr_8A150011	Fișier descărcat invalid
+M:wgErr_8A150014	Pachet negăsit
+M:wgErr_8A15008E	Tip de instalator schimbat: actualizați de pe site
+M:wgErr_8A150101	Aplicația rulează: închide-o și reîncearcă
+M:wgErr_8A150102	Altă instalare în curs
+M:wgErr_8A150103	Fișier în uz: închide aplicația și reîncearcă
+M:wgErr_8A150104	Lipsește o componentă necesară
+M:wgErr_8A150105	Disc plin
+M:wgErr_8A150106	Memorie insuficientă
+M:wgErr_8A150107	Fără conexiune la Internet
+M:wgErr_8A15010A	Repornește PC-ul înainte de instalare
+M:wgErr_8A15010C	Anulată
+M:wgErr_8A15010E	Este deja instalată o versiune mai nouă
+M:wgErr_8A15010F	Blocată de o politică de sistem

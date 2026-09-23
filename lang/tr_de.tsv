@@ -682,3 +682,19 @@ M:valOff	Aus
 M:valNone	Nicht vorhanden
 M:valOnAc	Am Netz
 M:valOnBattery	Akkubetrieb
+M:jobRetry	Neuer Versuch: installierte Version wird ersetzt...
+M:wgErr_8A150008	Download fehlgeschlagen
+M:wgErr_8A150011	Heruntergeladene Datei ungültig
+M:wgErr_8A150014	Paket nicht gefunden
+M:wgErr_8A15008E	Installertyp geändert: über die Website aktualisieren
+M:wgErr_8A150101	App läuft: schließen und erneut versuchen
+M:wgErr_8A150102	Eine andere Installation läuft
+M:wgErr_8A150103	Datei in Verwendung: App schließen und erneut versuchen
+M:wgErr_8A150104	Eine benötigte Komponente fehlt
+M:wgErr_8A150105	Datenträger voll
+M:wgErr_8A150106	Nicht genug Speicher
+M:wgErr_8A150107	Keine Internetverbindung
+M:wgErr_8A15010A	PC vor der Installation neu starten
+M:wgErr_8A15010C	Abgebrochen
+M:wgErr_8A15010E	Eine neuere Version ist bereits installiert
+M:wgErr_8A15010F	Durch eine Systemrichtlinie blockiert

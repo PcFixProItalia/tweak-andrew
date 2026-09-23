@@ -3114,6 +3114,22 @@ $script:Msg = @{
     valNone            = @{ it = "Assente"; en = "Not present" }
     valOnAc            = @{ it = "Collegato alla corrente"; en = "Plugged in" }
     valOnBattery       = @{ it = "A batteria"; en = "On battery" }
+    jobRetry           = @{ it = "Nuovo tentativo: sostituisco la versione installata..."; en = "Retrying: replacing the installed version..." }
+    wgErr_8A150008     = @{ it = "Download non riuscito"; en = "Download failed" }
+    wgErr_8A150011     = @{ it = "File scaricato non valido"; en = "Downloaded file not valid" }
+    wgErr_8A150014     = @{ it = "Pacchetto non trovato"; en = "Package not found" }
+    wgErr_8A15008E     = @{ it = "Tipo di installatore cambiato: aggiornala dal suo sito"; en = "Installer type changed: update it from its website" }
+    wgErr_8A150101     = @{ it = "App aperta: chiudila e riprova"; en = "App is running: close it and retry" }
+    wgErr_8A150102     = @{ it = "Un'altra installazione è in corso"; en = "Another installation is running" }
+    wgErr_8A150103     = @{ it = "File in uso: chiudi l'app e riprova"; en = "File in use: close the app and retry" }
+    wgErr_8A150104     = @{ it = "Manca un componente richiesto"; en = "A required component is missing" }
+    wgErr_8A150105     = @{ it = "Disco pieno"; en = "Disk full" }
+    wgErr_8A150106     = @{ it = "Memoria insufficiente"; en = "Not enough memory" }
+    wgErr_8A150107     = @{ it = "Nessuna connessione a Internet"; en = "No Internet connection" }
+    wgErr_8A15010A     = @{ it = "Riavvia il PC prima di installarla"; en = "Restart the PC before installing it" }
+    wgErr_8A15010C     = @{ it = "Annullata"; en = "Cancelled" }
+    wgErr_8A15010E     = @{ it = "È già installata una versione più recente"; en = "A newer version is already installed" }
+    wgErr_8A15010F     = @{ it = "Bloccata da un criterio di sistema"; en = "Blocked by a system policy" }
 }
 
 $script:LangCode = "it"
@@ -4822,6 +4838,22 @@ $script:Tr = @{
         'M:valNone' = "No presente"
         'M:valOnAc' = "Conectado a la corriente"
         'M:valOnBattery' = "Con batería"
+        'M:jobRetry' = "Reintentando: reemplazo la versión instalada..."
+        'M:wgErr_8A150008' = "Descarga fallida"
+        'M:wgErr_8A150011' = "Archivio descargado no válido"
+        'M:wgErr_8A150014' = "Paquete no encontrado"
+        'M:wgErr_8A15008E' = "Cambió el tipo de instalador: actualízala desde su web"
+        'M:wgErr_8A150101' = "App abierta: ciérrala y reintenta"
+        'M:wgErr_8A150102' = "Otra instalación en curso"
+        'M:wgErr_8A150103' = "Archivo en uso: cierra la app y reintenta"
+        'M:wgErr_8A150104' = "Falta un componente necesario"
+        'M:wgErr_8A150105' = "Disco lleno"
+        'M:wgErr_8A150106' = "Memoria insuficiente"
+        'M:wgErr_8A150107' = "Sin conexión a Internet"
+        'M:wgErr_8A15010A' = "Reinicia el PC antes de instalarla"
+        'M:wgErr_8A15010C' = "Cancelada"
+        'M:wgErr_8A15010E' = "Ya hay instalada una versión más reciente"
+        'M:wgErr_8A15010F' = "Bloqueada por una directiva del sistema"
     }
     de = @{
         'L:lblSubtitle' = "Windows-Optimierung und -Steuerung — PcFixPro Italia"
@@ -5508,6 +5540,22 @@ $script:Tr = @{
         'M:valNone' = "Nicht vorhanden"
         'M:valOnAc' = "Am Netz"
         'M:valOnBattery' = "Akkubetrieb"
+        'M:jobRetry' = "Neuer Versuch: installierte Version wird ersetzt..."
+        'M:wgErr_8A150008' = "Download fehlgeschlagen"
+        'M:wgErr_8A150011' = "Heruntergeladene Datei ungültig"
+        'M:wgErr_8A150014' = "Paket nicht gefunden"
+        'M:wgErr_8A15008E' = "Installertyp geändert: über die Website aktualisieren"
+        'M:wgErr_8A150101' = "App läuft: schließen und erneut versuchen"
+        'M:wgErr_8A150102' = "Eine andere Installation läuft"
+        'M:wgErr_8A150103' = "Datei in Verwendung: App schließen und erneut versuchen"
+        'M:wgErr_8A150104' = "Eine benötigte Komponente fehlt"
+        'M:wgErr_8A150105' = "Datenträger voll"
+        'M:wgErr_8A150106' = "Nicht genug Speicher"
+        'M:wgErr_8A150107' = "Keine Internetverbindung"
+        'M:wgErr_8A15010A' = "PC vor der Installation neu starten"
+        'M:wgErr_8A15010C' = "Abgebrochen"
+        'M:wgErr_8A15010E' = "Eine neuere Version ist bereits installiert"
+        'M:wgErr_8A15010F' = "Durch eine Systemrichtlinie blockiert"
     }
     fr = @{
         'L:lblSubtitle' = "Optimisation et contrôle de Windows — PcFixPro Italia"
@@ -6197,6 +6245,22 @@ $script:Tr = @{
         'M:valNone' = "Absent"
         'M:valOnAc' = "Sur secteur"
         'M:valOnBattery' = "Sur batterie"
+        'M:jobRetry' = "Nouvel essai : remplacement de la version installée..."
+        'M:wgErr_8A150008' = "Échec du téléchargement"
+        'M:wgErr_8A150011' = "Fichier téléchargé non valide"
+        'M:wgErr_8A150014' = "Paquet introuvable"
+        'M:wgErr_8A15008E' = "Type d'installateur modifié : mettez-la à jour depuis son site"
+        'M:wgErr_8A150101' = "App ouverte : fermez-la et réessayez"
+        'M:wgErr_8A150102' = "Une autre installation est en cours"
+        'M:wgErr_8A150103' = "Fichier utilisé : fermez l'app et réessayez"
+        'M:wgErr_8A150104' = "Un composant requis est manquant"
+        'M:wgErr_8A150105' = "Disque plein"
+        'M:wgErr_8A150106' = "Mémoire insuffisante"
+        'M:wgErr_8A150107' = "Pas de connexion Internet"
+        'M:wgErr_8A15010A' = "Redémarrez le PC avant de l'installer"
+        'M:wgErr_8A15010C' = "Annulée"
+        'M:wgErr_8A15010E' = "Une version plus récente est déjà installée"
+        'M:wgErr_8A15010F' = "Bloquée par une stratégie système"
     }
     pl = @{
         'L:lblSubtitle' = "Optymalizacja i kontrola systemu Windows — PcFixPro Italia"
@@ -6883,6 +6947,22 @@ $script:Tr = @{
         'M:valNone' = "Brak"
         'M:valOnAc' = "Podłączony do zasilania"
         'M:valOnBattery' = "Na baterii"
+        'M:jobRetry' = "Ponowna próba: zastępuję zainstalowaną wersję..."
+        'M:wgErr_8A150008' = "Pobieranie nie powiodło się"
+        'M:wgErr_8A150011' = "Pobrany plik jest nieprawidłowy"
+        'M:wgErr_8A150014' = "Nie znaleziono pakietu"
+        'M:wgErr_8A15008E' = "Zmieniono typ instalatora: zaktualizuj ze strony producenta"
+        'M:wgErr_8A150101' = "Aplikacja działa: zamknij i spróbuj ponownie"
+        'M:wgErr_8A150102' = "Trwa inna instalacja"
+        'M:wgErr_8A150103' = "Plik w użyciu: zamknij aplikację i spróbuj ponownie"
+        'M:wgErr_8A150104' = "Brak wymaganego składnika"
+        'M:wgErr_8A150105' = "Dysk pełny"
+        'M:wgErr_8A150106' = "Za mało pamięci"
+        'M:wgErr_8A150107' = "Brak połączenia z Internetem"
+        'M:wgErr_8A15010A' = "Uruchom ponownie komputer przed instalacją"
+        'M:wgErr_8A15010C' = "Anulowano"
+        'M:wgErr_8A15010E' = "Zainstalowano już nowszą wersję"
+        'M:wgErr_8A15010F' = "Zablokowano przez zasady systemu"
     }
     pt = @{
         'L:lblSubtitle' = "Otimização e controle do Windows — PcFixPro Italia"
@@ -7569,6 +7649,22 @@ $script:Tr = @{
         'M:valNone' = "Ausente"
         'M:valOnAc' = "Na tomada"
         'M:valOnBattery' = "Na bateria"
+        'M:jobRetry' = "Nova tentativa: substituindo a versão instalada..."
+        'M:wgErr_8A150008' = "Falha no download"
+        'M:wgErr_8A150011' = "Arquivo baixado inválido"
+        'M:wgErr_8A150014' = "Pacote não encontrado"
+        'M:wgErr_8A15008E' = "Tipo de instalador mudou: atualize pelo site"
+        'M:wgErr_8A150101' = "App aberto: feche e tente de novo"
+        'M:wgErr_8A150102' = "Outra instalação em andamento"
+        'M:wgErr_8A150103' = "Arquivo em uso: feche o app e tente de novo"
+        'M:wgErr_8A150104' = "Falta um componente necessário"
+        'M:wgErr_8A150105' = "Disco cheio"
+        'M:wgErr_8A150106' = "Memória insuficiente"
+        'M:wgErr_8A150107' = "Sem conexão com a Internet"
+        'M:wgErr_8A15010A' = "Reinicie o PC antes de instalar"
+        'M:wgErr_8A15010C' = "Cancelada"
+        'M:wgErr_8A15010E' = "Uma versão mais recente já está instalada"
+        'M:wgErr_8A15010F' = "Bloqueada por uma política do sistema"
     }
     ro = @{
         'L:lblSubtitle' = "Optimizarea și controlul Windows — PcFixPro Italia"
@@ -8255,6 +8351,22 @@ $script:Tr = @{
         'M:valNone' = "Absent"
         'M:valOnAc' = "Conectat la priză"
         'M:valOnBattery' = "Pe baterie"
+        'M:jobRetry' = "Reîncercare: înlocuiesc versiunea instalată..."
+        'M:wgErr_8A150008' = "Descărcare eșuată"
+        'M:wgErr_8A150011' = "Fișier descărcat invalid"
+        'M:wgErr_8A150014' = "Pachet negăsit"
+        'M:wgErr_8A15008E' = "Tip de instalator schimbat: actualizați de pe site"
+        'M:wgErr_8A150101' = "Aplicația rulează: închide-o și reîncearcă"
+        'M:wgErr_8A150102' = "Altă instalare în curs"
+        'M:wgErr_8A150103' = "Fișier în uz: închide aplicația și reîncearcă"
+        'M:wgErr_8A150104' = "Lipsește o componentă necesară"
+        'M:wgErr_8A150105' = "Disc plin"
+        'M:wgErr_8A150106' = "Memorie insuficientă"
+        'M:wgErr_8A150107' = "Fără conexiune la Internet"
+        'M:wgErr_8A15010A' = "Repornește PC-ul înainte de instalare"
+        'M:wgErr_8A15010C' = "Anulată"
+        'M:wgErr_8A15010E' = "Este deja instalată o versiune mai nouă"
+        'M:wgErr_8A15010F' = "Blocată de o politică de sistem"
     }
     ru = @{
         'L:lblSubtitle' = "Оптимизация и управление Windows — PcFixPro Italia"
@@ -8941,6 +9053,22 @@ $script:Tr = @{
         'M:valNone' = "Отсутствует"
         'M:valOnAc' = "От сети"
         'M:valOnBattery' = "От батареи"
+        'M:jobRetry' = "Повтор: заменяю установленную версию..."
+        'M:wgErr_8A150008' = "Ошибка загрузки"
+        'M:wgErr_8A150011' = "Загруженный файл повреждён"
+        'M:wgErr_8A150014' = "Пакет не найден"
+        'M:wgErr_8A15008E' = "Сменился тип установщика: обновите с сайта"
+        'M:wgErr_8A150101' = "Приложение открыто: закройте и повторите"
+        'M:wgErr_8A150102' = "Идёт другая установка"
+        'M:wgErr_8A150103' = "Файл занят: закройте приложение и повторите"
+        'M:wgErr_8A150104' = "Отсутствует нужный компонент"
+        'M:wgErr_8A150105' = "Диск заполнен"
+        'M:wgErr_8A150106' = "Недостаточно памяти"
+        'M:wgErr_8A150107' = "Нет подключения к Интернету"
+        'M:wgErr_8A15010A' = "Перезагрузите ПК перед установкой"
+        'M:wgErr_8A15010C' = "Отменено"
+        'M:wgErr_8A15010E' = "Уже установлена более новая версия"
+        'M:wgErr_8A15010F' = "Заблокировано политикой системы"
     }
 }
 
@@ -14695,19 +14823,43 @@ function Update-AppJobProgress($job) {
     }
 }
 
+# Codici di uscita di winget, in esadecimale come li stampa «winget error».
+# Quelli con un testo in wgErr_ si mostrano spiegati, gli altri con il codice.
+$script:WingetOkCodes = @('8A15002B', '8A150061', '8A15010D')   # nessun aggiornamento, gia' installato
+$script:WingetRebootCodes = @('8A150109')                       # installato, il riavvio completa il lavoro
+$script:WingetKnownErrors = @('8A150008', '8A150011', '8A150014', '8A15008E', '8A150101', '8A150102', '8A150103',
+                              '8A150104', '8A150105', '8A150106', '8A150107', '8A15010A', '8A15010C', '8A15010E', '8A15010F')
+
 function Complete-AppJob($job, [int]$code) {
+    $hex = '{0:X8}' -f $code
+    # 0x8A15008E: la versione nuova usa un altro tipo di installatore (per esempio
+    # MSI al posto di EXE) e winget non la mette sopra alla vecchia. Con
+    # --uninstall-previous toglie prima quella installata; le impostazioni
+    # dell'utente restano nella sua cartella.
+    if ($hex -eq '8A15008E' -and -not $job.Retried -and $job.File -eq $script:Winget) {
+        $job.Retried = $true
+        $job.Args += ' --uninstall-previous'
+        $job.SawDl = $false; $job.DlDone = $false; $job.Frac = 0.0
+        Write-Log "[AVVISO] $($job.Label) - tipo di installatore cambiato, nuovo tentativo sostituendo la versione installata"
+        Start-AppJob $job
+        if ($job.Proc) { Set-AppJobView $job (T 'jobRetry') -1 '#FFFDBA74' }
+        return
+    }
     $job.Done = $true; $job.Frac = 1.0
-    # -1978335189 e -1978335135: nessun aggiornamento o gia' installato, non sono errori.
+    # I codici di winget si leggono in esadecimale, quelli degli installatori in decimale.
+    $codeText = if ($hex -like '8A15*') { "0x$hex" } else { "$code" }
+    $job.StateText.ToolTip = $codeText
     # 3010 e 1641: riuscito, ma Windows vuole un riavvio.
-    if ($code -in @(3010, 1641)) {
+    if ($code -in @(3010, 1641) -or $script:WingetRebootCodes -contains $hex) {
         $job.Ok = $true; Write-Log "[OK] $($job.Label) - serve un riavvio"
         Set-AppJobView $job (T 'jobOkReboot') 100 '#FFFDBA74'
-    } elseif ($code -eq 0 -or $code -eq -1978335189 -or $code -eq -1978335135) {
+    } elseif ($code -eq 0 -or $script:WingetOkCodes -contains $hex) {
         $job.Ok = $true; Write-Log "[OK] $($job.Label)"
         Set-AppJobView $job (T 'jobOk') 100 '#FF2ED3A7'
     } else {
-        Write-Log "[ERRORE] $($job.Label) - codice $code"
-        Set-AppJobView $job ((T 'jobErr') -f $code) 0 '#FFF87171'
+        $msg = if ($script:WingetKnownErrors -contains $hex) { T "wgErr_$hex" } else { (T 'jobErr') -f $codeText }
+        Write-Log "[ERRORE] $($job.Label) - $codeText $msg"
+        Set-AppJobView $job $msg 0 '#FFF87171'
     }
     if ($script:AppJob -eq $job) { $script:AppJob = $null }
 }

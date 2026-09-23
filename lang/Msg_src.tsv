@@ -201,3 +201,19 @@ valOff	Off
 valNone	Not present
 valOnAc	Plugged in
 valOnBattery	On battery
+jobRetry	Retrying: replacing the installed version...
+wgErr_8A150008	Download failed
+wgErr_8A150011	Downloaded file not valid
+wgErr_8A150014	Package not found
+wgErr_8A15008E	Installer type changed: update it from its website
+wgErr_8A150101	App is running: close it and retry
+wgErr_8A150102	Another installation is running
+wgErr_8A150103	File in use: close the app and retry
+wgErr_8A150104	A required component is missing
+wgErr_8A150105	Disk full
+wgErr_8A150106	Not enough memory
+wgErr_8A150107	No Internet connection
+wgErr_8A15010A	Restart the PC before installing it
+wgErr_8A15010C	Cancelled
+wgErr_8A15010E	A newer version is already installed
+wgErr_8A15010F	Blocked by a system policy
