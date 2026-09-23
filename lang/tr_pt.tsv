@@ -649,7 +649,7 @@ M:homePcType	TIPO DE COMPUTADOR
 M:homeTypeAuto	Detecção automática: {0}
 M:homeTypeDesktop	Computador de mesa
 M:homeTypeLaptop	Notebook
-M:homeTypeHint	«Recomendados» leva em conta o tipo: no notebook exclui as opções que gastam bateria, no desktop as úteis só com bateria. Ainda assim podem ser selecionadas manualmente.
+M:homeTypeHint	No notebook, «Recomendados» deixa de fora as opções que mais gastam bateria. Você ainda pode selecioná-las manualmente.
 M:homeCpu	Processador
 M:homeRam	Memória
 M:homeGpu	Placa de vídeo

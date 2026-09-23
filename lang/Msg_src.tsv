@@ -169,7 +169,7 @@ homePcType	COMPUTER TYPE
 homeTypeAuto	Automatic detection: {0}
 homeTypeDesktop	Desktop computer
 homeTypeLaptop	Laptop
-homeTypeHint	«Recommended» takes the type into account: on a laptop it leaves out entries that drain the battery, on a desktop those useful only with a battery. They can still be selected manually.
+homeTypeHint	On a laptop «Recommended» leaves out the entries that drain the battery most. You can still select them manually.
 homeCpu	Processor
 homeRam	Memory
 homeGpu	Graphics card

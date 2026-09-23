@@ -649,7 +649,7 @@ M:homePcType	GERÄTETYP
 M:homeTypeAuto	Automatische Erkennung: {0}
 M:homeTypeDesktop	Desktop-PC
 M:homeTypeLaptop	Laptop
-M:homeTypeHint	«Empfohlen» berücksichtigt den Gerätetyp: auf einem Laptop fehlen akkufressende Einträge, auf einem Desktop die nur mit Akku nützlichen. Sie können trotzdem manuell ausgewählt werden.
+M:homeTypeHint	Auf einem Laptop lässt «Empfohlen» die Einträge weg, die den Akku am stärksten belasten. Manuell kannst du sie trotzdem auswählen.
 M:homeCpu	Prozessor
 M:homeRam	Arbeitsspeicher
 M:homeGpu	Grafikkarte

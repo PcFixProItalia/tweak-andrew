@@ -649,7 +649,7 @@ M:homePcType	TIPUL COMPUTERULUI
 M:homeTypeAuto	Detectare automată: {0}
 M:homeTypeDesktop	Computer desktop
 M:homeTypeLaptop	Laptop
-M:homeTypeHint	«Recomandate» ține cont de tip: pe laptop exclude opțiunile care consumă bateria, pe desktop pe cele utile doar cu baterie. Pot fi totuși selectate manual.
+M:homeTypeHint	Pe laptop, «Recomandate» exclude opțiunile care consumă cel mai mult bateria. Le poți selecta totuși manual.
 M:homeCpu	Procesor
 M:homeRam	Memorie
 M:homeGpu	Placă video

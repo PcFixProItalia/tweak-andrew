@@ -649,7 +649,7 @@ M:homePcType	RODZAJ KOMPUTERA
 M:homeTypeAuto	Wykrywanie automatyczne: {0}
 M:homeTypeDesktop	Komputer stacjonarny
 M:homeTypeLaptop	Laptop
-M:homeTypeHint	«Zalecane» uwzględnia rodzaj komputera: na laptopie pomija opcje zużywające baterię, na stacjonarnym te przydatne tylko z baterią. Nadal można je zaznaczyć ręcznie.
+M:homeTypeHint	Na laptopie «Zalecane» pomija opcje najbardziej zużywające baterię. Nadal można je zaznaczyć ręcznie.
 M:homeCpu	Procesor
 M:homeRam	Pamięć
 M:homeGpu	Karta graficzna

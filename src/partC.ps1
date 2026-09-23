@@ -601,7 +601,7 @@ $script:Msg = @{
     homeTypeAuto       = @{ it = "Rilevamento automatico: {0}"; en = "Automatic detection: {0}" }
     homeTypeDesktop    = @{ it = "Computer fisso"; en = "Desktop computer" }
     homeTypeLaptop     = @{ it = "Computer portatile"; en = "Laptop" }
-    homeTypeHint       = @{ it = "«Consigliati» tiene conto della tipologia: su un portatile esclude le voci che consumano batteria, su un fisso quelle utili solo con la batteria. Possono comunque essere selezionate manualmente."; en = "«Recommended» takes the type into account: on a laptop it leaves out entries that drain the battery, on a desktop those useful only with a battery. They can still be selected manually." }
+    homeTypeHint       = @{ it = "Su un portatile «Consigliati» esclude le voci che consumano più batteria. Si possono comunque selezionare manualmente."; en = "On a laptop «Recommended» leaves out the entries that drain the battery most. You can still select them manually." }
     homeCpu            = @{ it = "Processore"; en = "Processor" }
     homeRam            = @{ it = "Memoria"; en = "Memory" }
     homeGpu            = @{ it = "Scheda video"; en = "Graphics card" }

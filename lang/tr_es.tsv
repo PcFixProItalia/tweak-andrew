@@ -649,7 +649,7 @@ M:homePcType	TIPO DE EQUIPO
 M:homeTypeAuto	Detección automática: {0}
 M:homeTypeDesktop	Ordenador de sobremesa
 M:homeTypeLaptop	Portátil
-M:homeTypeHint	«Recomendados» tiene en cuenta el tipo: en un portátil excluye las opciones que gastan batería, en un sobremesa las útiles solo con batería. Aun así pueden seleccionarse manualmente.
+M:homeTypeHint	En un portátil «Recomendados» excluye las opciones que más batería gastan. Aun así puedes seleccionarlas manualmente.
 M:homeCpu	Procesador
 M:homeRam	Memoria
 M:homeGpu	Tarjeta gráfica
