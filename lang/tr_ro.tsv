@@ -149,7 +149,7 @@ L:btnFlushDns	Golește cache-ul DNS
 L:ttlTcpProfile	PROFIL TCP
 L:radTcpOptimal	Optim (jocuri)
 L:radTcpDefault	Implicit Windows
-L:radTcpCurrent	Actual (neatins)
+L:radTcpCurrent	Profil actual
 L:radTcpCustom	Personalizat
 L:lblAutoTuning	Reglarea automată a ferestrei TCP:
 L:lblHeuristics	Euristică de scalare:
@@ -529,7 +529,7 @@ L:lblPowerAdvHint	Se aplică imediat planului folosit, la rețea și pe baterie.
 L:radAppsCatalog	Catalog
 L:radAppsInstalled	Instalate
 L:lblAppSearchHint	Caută...
-L:btnAppsUpgrade	Actualizează toate aplicațiile
+L:btnAppsUpgrade	Actualizează selectate
 L:btnAppsClear	Deselectează
 L:btnAppsRefresh	Reîmprospătează lista
 L:lblProfileQueued	Alege un profil: intră printre modificările de aplicat. Un al doilea clic îl scoate.
@@ -616,3 +616,69 @@ M:recSelected	Au fost selectate {0} elemente recomandate: apasă Aplică modific
 M:recSched	Valorile recomandate sunt pregătite în ambele panouri: apasă Aplică și Salvează.
 L:ttlAdvExplorer	EXPLORER FIȘIERE
 L:lblAdvExplorerHint	Arată fișiere pe care Windows le ascunde ca să nu fie șterse din greșeală. În afara opțiunii «Selectează tot».
+L:tabHome	Acasă
+L:lblHomeLoading	Se citește hardware-ul...
+L:ttlAppJobs	OPERAȚIUNI
+L:btnAppJobsClose	Închide
+M:appUpdatable	Actualizabilă
+M:appsUpgradeSel	Actualizează selectate
+M:appsSelectUpdates	Selectează tot
+M:appsUpdatesTitle	Actualizări disponibile ({0})
+M:appsNoUpdates	Toate aplicațiile gestionate de winget sunt la zi.
+M:appsScanning	Se caută actualizări...
+M:appsAskUpgradeSel	Actualizez {0} aplicații cu winget, pe rând, fără ferestre. Continui?
+M:appsUpgrading	Actualizare
+M:jobWait	În așteptare
+M:jobPrep	Pregătire...
+M:jobDownload	Descărcare {0}%
+M:jobInstall	Instalare...
+M:jobInstallPct	Instalare {0}%
+M:jobUninstall	Dezinstalare...
+M:jobOk	Finalizat
+M:jobOkReboot	Finalizat, necesită repornire
+M:jobErr	Eroare (cod {0})
+M:jobsProgress	{0} din {1}
+M:appsDoneSum	Operațiuni finalizate: {0} reușite, {1} cu erori.
+M:homeThisPc	ACEST PC
+M:homeDomain	Domeniu
+M:homeWorkgroup	Grup de lucru
+M:homeUptime	Pornit de {0}
+M:homeUptimeD	{0} z {1} h {2} min
+M:homeUptimeH	{0} h {1} min
+M:homeInstalledOn	Windows instalat pe {0}
+M:homePcType	TIP PC
+M:homeTypeAuto	Automat: {0}
+M:homeTypeDesktop	Desktop
+M:homeTypeLaptop	Laptop
+M:homeTypeHint	Pe laptop «Selectează tot» și «Recomandate» sar peste opțiunile care consumă bateria; pe desktop, peste cele utile doar cu baterie. Rămân selectabile manual.
+M:homeCpu	Procesor
+M:homeRam	Memorie
+M:homeGpu	Placă video
+M:homeDisks	Stocare
+M:homeVolumes	Unități
+M:homeFreeFmt	{0} libere din {1}
+M:homeBoard	Placă de bază și firmware
+M:homeNet	Rețea
+M:homeNoNet	Nicio conexiune activă.
+M:homeBattery	Baterie
+M:homeSlotsFmt	{0} din {1} sloturi
+M:hkCores	Nuclee / fire
+M:hkClock	Frecvență max
+M:hkTotal	Total
+M:hkRamType	Tip și viteză
+M:hkSlots	Module
+M:hkVram	Memorie video
+M:hkDriver	Driver
+M:hkRes	Ecran
+M:hkType	Tip
+M:hkModel	Model
+M:hkAdapter	Adaptor
+M:hkSpeed	Viteză
+M:hkCharge	Încărcare
+M:hkPower	Alimentare
+M:hkHealth	Sănătate
+M:valOn	Activ
+M:valOff	Dezactivat
+M:valNone	Absent
+M:valOnAc	Conectat la priză
+M:valOnBattery	Pe baterie

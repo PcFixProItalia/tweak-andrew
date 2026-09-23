@@ -149,7 +149,7 @@ L:btnFlushDns	Limpar cache DNS
 L:ttlTcpProfile	PERFIL TCP
 L:radTcpOptimal	Ideal (jogos)
 L:radTcpDefault	Padrão do Windows
-L:radTcpCurrent	Atual (não mexer)
+L:radTcpCurrent	Perfil atual
 L:radTcpCustom	Personalizado
 L:lblAutoTuning	Ajuste automático da janela TCP:
 L:lblHeuristics	Heurística de escala:
@@ -529,7 +529,7 @@ L:lblPowerAdvHint	Valem na hora para o plano em uso, na tomada e na bateria. Tro
 L:radAppsCatalog	Catálogo
 L:radAppsInstalled	Instalados
 L:lblAppSearchHint	Pesquisar...
-L:btnAppsUpgrade	Atualizar todos os apps
+L:btnAppsUpgrade	Atualizar selecionados
 L:btnAppsClear	Desmarcar
 L:btnAppsRefresh	Atualizar lista
 L:lblProfileQueued	Escolha um perfil: ele entra nas alterações a aplicar. Um segundo clique o remove.
@@ -616,3 +616,69 @@ M:recSelected	Selecionados {0} itens recomendados: pressione Aplicar alteraçõe
 M:recSched	Valores recomendados prontos nos dois painéis: pressione Aplicar e Salvar.
 L:ttlAdvExplorer	EXPLORADOR DE ARQUIVOS
 L:lblAdvExplorerHint	Mostram arquivos que o Windows oculta para não serem apagados por engano. Fora de «Selecionar tudo».
+L:tabHome	Início
+L:lblHomeLoading	Lendo o hardware...
+L:ttlAppJobs	OPERAÇÕES
+L:btnAppJobsClose	Fechar
+M:appUpdatable	Atualizável
+M:appsUpgradeSel	Atualizar selecionados
+M:appsSelectUpdates	Selecionar todos
+M:appsUpdatesTitle	Atualizações disponíveis ({0})
+M:appsNoUpdates	Todos os apps gerenciados pelo winget estão atualizados.
+M:appsScanning	Procurando atualizações...
+M:appsAskUpgradeSel	Vou atualizar {0} apps com o winget, um de cada vez, sem janelas. Continuo?
+M:appsUpgrading	Atualizando
+M:jobWait	Aguardando
+M:jobPrep	Preparando...
+M:jobDownload	Download {0}%
+M:jobInstall	Instalando...
+M:jobInstallPct	Instalando {0}%
+M:jobUninstall	Desinstalando...
+M:jobOk	Concluído
+M:jobOkReboot	Concluído, reinício necessário
+M:jobErr	Erro (código {0})
+M:jobsProgress	{0} de {1}
+M:appsDoneSum	Operações concluídas: {0} com sucesso, {1} com erros.
+M:homeThisPc	ESTE PC
+M:homeDomain	Domínio
+M:homeWorkgroup	Grupo de trabalho
+M:homeUptime	Ligado há {0}
+M:homeUptimeD	{0} d {1} h {2} min
+M:homeUptimeH	{0} h {1} min
+M:homeInstalledOn	Windows instalado em {0}
+M:homePcType	TIPO DE PC
+M:homeTypeAuto	Automático: {0}
+M:homeTypeDesktop	Desktop
+M:homeTypeLaptop	Notebook
+M:homeTypeHint	No notebook, «Selecionar tudo» e «Recomendados» ignoram as opções que gastam bateria; no desktop, as úteis só com bateria. Continuam selecionáveis manualmente.
+M:homeCpu	Processador
+M:homeRam	Memória
+M:homeGpu	Placa de vídeo
+M:homeDisks	Armazenamento
+M:homeVolumes	Unidades
+M:homeFreeFmt	{0} livres de {1}
+M:homeBoard	Placa-mãe e firmware
+M:homeNet	Rede
+M:homeNoNet	Nenhuma conexão ativa.
+M:homeBattery	Bateria
+M:homeSlotsFmt	{0} de {1} slots
+M:hkCores	Núcleos / threads
+M:hkClock	Frequência máx.
+M:hkTotal	Total
+M:hkRamType	Tipo e velocidade
+M:hkSlots	Módulos
+M:hkVram	Memória de vídeo
+M:hkDriver	Driver
+M:hkRes	Tela
+M:hkType	Tipo
+M:hkModel	Modelo
+M:hkAdapter	Adaptador
+M:hkSpeed	Velocidade
+M:hkCharge	Carga
+M:hkPower	Alimentação
+M:hkHealth	Saúde
+M:valOn	Ativado
+M:valOff	Desativado
+M:valNone	Ausente
+M:valOnAc	Na tomada
+M:valOnBattery	Na bateria

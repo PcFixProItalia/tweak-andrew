@@ -207,7 +207,7 @@ $script:Loc = @{
     ttlTcpProfile      = @{ it = "PROFILO TCP"; en = "TCP PROFILE" }
     radTcpOptimal      = @{ it = "Ottimale (gioco)"; en = "Optimal (gaming)" }
     radTcpDefault      = @{ it = "Predefinito Windows"; en = "Windows default" }
-    radTcpCurrent      = @{ it = "Corrente (non modificare)"; en = "Current (leave untouched)" }
+    radTcpCurrent      = @{ it = "Profilo attuale"; en = "Current profile" }
     radTcpCustom       = @{ it = "Personalizzato"; en = "Custom" }
     ttlTcpIp           = @{ it = "TCP / IP"; en = "TCP / IP" }
     lblAutoTuning      = @{ it = "Auto-Tuning finestra TCP:"; en = "TCP window auto-tuning:" }
@@ -406,7 +406,7 @@ $script:Loc = @{
     radAppsCatalog     = @{ it = "Catalogo"; en = "Catalog" }
     radAppsInstalled   = @{ it = "Installate"; en = "Installed" }
     lblAppSearchHint   = @{ it = "Cerca..."; en = "Search..." }
-    btnAppsUpgrade     = @{ it = "Aggiorna tutte le app"; en = "Update all apps" }
+    btnAppsUpgrade     = @{ it = "Aggiorna selezionate"; en = "Update selected" }
     btnAppsClear       = @{ it = "Deseleziona"; en = "Clear selection" }
     btnAppsRefresh     = @{ it = "Aggiorna elenco"; en = "Refresh list" }
     lblProfileQueued   = @{ it = "Scegli un profilo: entra tra le modifiche da applicare. Un secondo clic lo toglie."; en = "Pick a profile: it joins the changes to apply. A second click removes it." }
@@ -414,6 +414,10 @@ $script:Loc = @{
     btnRecommended     = @{ it = "Consigliati"; en = "Recommended" }
     ttlAdvExplorer     = @{ it = "ESPLORA FILE"; en = "FILE EXPLORER" }
     lblAdvExplorerHint = @{ it = "Mostrano file che Windows tiene nascosti per non farli cancellare per sbaglio. Fuori da «Seleziona tutto»."; en = "They show files Windows hides so they don't get deleted by mistake. Left out of «Select all»." }
+    tabHome            = @{ it = "Home"; en = "Home" }
+    lblHomeLoading     = @{ it = "Lettura dell'hardware..."; en = "Reading the hardware..." }
+    ttlAppJobs         = @{ it = "OPERAZIONI"; en = "OPERATIONS" }
+    btnAppJobsClose    = @{ it = "Chiudi"; en = "Close" }
 }
 
 # Messaggi non legati a un controllo: log, finestre di dialogo, etichette dinamiche.
@@ -559,6 +563,68 @@ $script:Msg = @{
     recNone            = @{ it = "Qui le voci si scelgono una per una: leggi la descrizione di ognuna."; en = "Here entries are picked one by one: read each description." }
     recSelected        = @{ it = "Selezionate {0} voci consigliate: premi Applica modifiche."; en = "Selected {0} recommended entries: press Apply changes." }
     recSched           = @{ it = "Valori consigliati pronti nei due pannelli: premi Applica e Salva per scriverli."; en = "Recommended values ready in both panels: press Apply and Save to write them." }
+    appUpdatable       = @{ it = "Aggiornabile"; en = "Update available" }
+    appsUpgradeSel     = @{ it = "Aggiorna selezionate"; en = "Update selected" }
+    appsSelectUpdates  = @{ it = "Seleziona tutti"; en = "Select all" }
+    appsUpdatesTitle   = @{ it = "Aggiornamenti disponibili ({0})"; en = "Available updates ({0})" }
+    appsNoUpdates      = @{ it = "Tutte le app gestite da winget sono aggiornate."; en = "Every app managed by winget is up to date." }
+    appsScanning       = @{ it = "Controllo degli aggiornamenti in corso..."; en = "Checking for updates..." }
+    appsAskUpgradeSel  = @{ it = "Aggiorno {0} app con winget, una alla volta, senza finestre. Procedo?"; en = "I'll update {0} apps with winget, one at a time, without windows. Go ahead?" }
+    appsUpgrading      = @{ it = "Aggiornamento di"; en = "Updating" }
+    jobWait            = @{ it = "In attesa"; en = "Waiting" }
+    jobPrep            = @{ it = "Preparazione..."; en = "Preparing..." }
+    jobDownload        = @{ it = "Download {0}%"; en = "Download {0}%" }
+    jobInstall         = @{ it = "Installazione..."; en = "Installing..." }
+    jobInstallPct      = @{ it = "Installazione {0}%"; en = "Installing {0}%" }
+    jobUninstall       = @{ it = "Disinstallazione..."; en = "Uninstalling..." }
+    jobOk              = @{ it = "Completata"; en = "Done" }
+    jobOkReboot        = @{ it = "Completata, serve un riavvio"; en = "Done, restart needed" }
+    jobErr             = @{ it = "Errore (codice {0})"; en = "Error (code {0})" }
+    jobsProgress       = @{ it = "{0} di {1}"; en = "{0} of {1}" }
+    appsDoneSum        = @{ it = "Operazioni completate: {0} riuscite, {1} con errori."; en = "Operations completed: {0} succeeded, {1} with errors." }
+    homeThisPc         = @{ it = "QUESTO PC"; en = "THIS PC" }
+    homeDomain         = @{ it = "Dominio"; en = "Domain" }
+    homeWorkgroup      = @{ it = "Gruppo di lavoro"; en = "Workgroup" }
+    homeUptime         = @{ it = "Acceso da {0}"; en = "Up for {0}" }
+    homeUptimeD        = @{ it = "{0} g {1} h {2} min"; en = "{0} d {1} h {2} min" }
+    homeUptimeH        = @{ it = "{0} h {1} min"; en = "{0} h {1} min" }
+    homeInstalledOn    = @{ it = "Windows installato il {0}"; en = "Windows installed on {0}" }
+    homePcType         = @{ it = "TIPO DI PC"; en = "PC TYPE" }
+    homeTypeAuto       = @{ it = "Automatico: {0}"; en = "Automatic: {0}" }
+    homeTypeDesktop    = @{ it = "Fisso"; en = "Desktop" }
+    homeTypeLaptop     = @{ it = "Portatile"; en = "Laptop" }
+    homeTypeHint       = @{ it = "Su un portatile «Seleziona tutto» e «Consigliati» lasciano stare le voci che consumano batteria; su un fisso quelle utili solo con la batteria. Restano sempre selezionabili a mano."; en = "On a laptop «Select all» and «Recommended» skip the entries that drain the battery; on a desktop, those useful only with a battery. You can still pick them by hand." }
+    homeCpu            = @{ it = "Processore"; en = "Processor" }
+    homeRam            = @{ it = "Memoria"; en = "Memory" }
+    homeGpu            = @{ it = "Scheda video"; en = "Graphics card" }
+    homeDisks          = @{ it = "Archiviazione"; en = "Storage" }
+    homeVolumes        = @{ it = "Unità"; en = "Drives" }
+    homeFreeFmt        = @{ it = "{0} liberi su {1}"; en = "{0} free of {1}" }
+    homeBoard          = @{ it = "Scheda madre e firmware"; en = "Motherboard and firmware" }
+    homeNet            = @{ it = "Rete"; en = "Network" }
+    homeNoNet          = @{ it = "Nessuna connessione attiva."; en = "No active connection." }
+    homeBattery        = @{ it = "Batteria"; en = "Battery" }
+    homeSlotsFmt       = @{ it = "{0} su {1} slot"; en = "{0} of {1} slots" }
+    hkCores            = @{ it = "Core / thread"; en = "Cores / threads" }
+    hkClock            = @{ it = "Frequenza max"; en = "Max clock" }
+    hkTotal            = @{ it = "Totale"; en = "Total" }
+    hkRamType          = @{ it = "Tipo e velocità"; en = "Type and speed" }
+    hkSlots            = @{ it = "Moduli"; en = "Modules" }
+    hkVram             = @{ it = "Memoria video"; en = "Video memory" }
+    hkDriver           = @{ it = "Driver"; en = "Driver" }
+    hkRes              = @{ it = "Schermo"; en = "Display" }
+    hkType             = @{ it = "Tipo"; en = "Type" }
+    hkModel            = @{ it = "Modello"; en = "Model" }
+    hkAdapter          = @{ it = "Scheda"; en = "Adapter" }
+    hkSpeed            = @{ it = "Velocità"; en = "Speed" }
+    hkCharge           = @{ it = "Carica"; en = "Charge" }
+    hkPower            = @{ it = "Alimentazione"; en = "Power" }
+    hkHealth           = @{ it = "Salute"; en = "Health" }
+    valOn              = @{ it = "Attivo"; en = "On" }
+    valOff             = @{ it = "Spento"; en = "Off" }
+    valNone            = @{ it = "Assente"; en = "Not present" }
+    valOnAc            = @{ it = "Collegato alla corrente"; en = "Plugged in" }
+    valOnBattery       = @{ it = "A batteria"; en = "On battery" }
 }
 
 $script:LangCode = "it"
@@ -1286,7 +1352,7 @@ function Get-CurrentPage {
 }
 
 function Get-SelectableChecks([switch]$CurrentPageOnly) {
-    $list = @($script:SelectableCheckBoxes | Where-Object { Test-CheckVendor $_ })
+    $list = @($script:SelectableCheckBoxes | Where-Object { (Test-CheckVendor $_) -and (Test-CheckPcType $_) })
     if (-not $CurrentPageOnly) { return $list }
     $page = Get-CurrentPage
     if ($null -eq $page) { return @() }

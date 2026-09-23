@@ -153,7 +153,7 @@ btnFlushDns	Flush DNS cache
 ttlTcpProfile	TCP PROFILE
 radTcpOptimal	Optimal (gaming)
 radTcpDefault	Windows default
-radTcpCurrent	Current (leave untouched)
+radTcpCurrent	Current profile
 radTcpCustom	Custom
 ttlTcpIp	TCP / IP
 lblAutoTuning	TCP window auto-tuning:
@@ -338,7 +338,7 @@ lblPowerAdvHint	They apply at once to the plan in use, on AC and battery. Switch
 radAppsCatalog	Catalog
 radAppsInstalled	Installed
 lblAppSearchHint	Search...
-btnAppsUpgrade	Update all apps
+btnAppsUpgrade	Update selected
 btnAppsClear	Clear selection
 btnAppsRefresh	Refresh list
 lblProfileQueued	Pick a profile: it joins the changes to apply. A second click removes it.
@@ -346,3 +346,7 @@ btnSelectPage	This page
 btnRecommended	Recommended
 ttlAdvExplorer	FILE EXPLORER
 lblAdvExplorerHint	They show files Windows hides so they don't get deleted by mistake. Left out of «Select all».
+tabHome	Home
+lblHomeLoading	Reading the hardware...
+ttlAppJobs	OPERATIONS
+btnAppJobsClose	Close

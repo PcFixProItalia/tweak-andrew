@@ -149,7 +149,7 @@ L:btnFlushDns	DNS-Cache leeren
 L:ttlTcpProfile	TCP-PROFIL
 L:radTcpOptimal	Optimal (Spiele)
 L:radTcpDefault	Windows-Standard
-L:radTcpCurrent	Aktuell (unverändert lassen)
+L:radTcpCurrent	Aktuelles Profil
 L:radTcpCustom	Benutzerdefiniert
 L:lblAutoTuning	Automatische TCP-Fensteroptimierung:
 L:lblHeuristics	Skalierungsheuristik:
@@ -529,7 +529,7 @@ L:lblPowerAdvHint	Gelten sofort für den aktiven Plan, am Netz und im Akkubetrie
 L:radAppsCatalog	Katalog
 L:radAppsInstalled	Installiert
 L:lblAppSearchHint	Suchen...
-L:btnAppsUpgrade	Alle Apps aktualisieren
+L:btnAppsUpgrade	Ausgewählte aktualisieren
 L:btnAppsClear	Auswahl aufheben
 L:btnAppsRefresh	Liste aktualisieren
 L:lblProfileQueued	Wähle ein Profil: Es kommt zu den anzuwendenden Änderungen. Ein zweiter Klick entfernt es.
@@ -616,3 +616,69 @@ M:recSelected	{0} empfohlene Einträge ausgewählt: Änderungen übernehmen drü
 M:recSched	Empfohlene Werte in beiden Feldern bereit: Übernehmen und Speichern drücken.
 L:ttlAdvExplorer	DATEI-EXPLORER
 L:lblAdvExplorerHint	Sie zeigen Dateien, die Windows versteckt, damit sie nicht versehentlich gelöscht werden. Nicht in «Alle auswählen».
+L:tabHome	Start
+L:lblHomeLoading	Hardware wird gelesen...
+L:ttlAppJobs	VORGÄNGE
+L:btnAppJobsClose	Schließen
+M:appUpdatable	Update verfügbar
+M:appsUpgradeSel	Ausgewählte aktualisieren
+M:appsSelectUpdates	Alle auswählen
+M:appsUpdatesTitle	Verfügbare Updates ({0})
+M:appsNoUpdates	Alle von winget verwalteten Apps sind aktuell.
+M:appsScanning	Suche nach Updates...
+M:appsAskUpgradeSel	Ich aktualisiere {0} Apps mit winget, eine nach der anderen, ohne Fenster. Fortfahren?
+M:appsUpgrading	Aktualisierung von
+M:jobWait	Wartet
+M:jobPrep	Vorbereitung...
+M:jobDownload	Download {0}%
+M:jobInstall	Installation...
+M:jobInstallPct	Installation {0}%
+M:jobUninstall	Deinstallation...
+M:jobOk	Fertig
+M:jobOkReboot	Fertig, Neustart nötig
+M:jobErr	Fehler (Code {0})
+M:jobsProgress	{0} von {1}
+M:appsDoneSum	Vorgänge abgeschlossen: {0} erfolgreich, {1} mit Fehlern.
+M:homeThisPc	DIESER PC
+M:homeDomain	Domäne
+M:homeWorkgroup	Arbeitsgruppe
+M:homeUptime	Läuft seit {0}
+M:homeUptimeD	{0} T {1} Std. {2} Min.
+M:homeUptimeH	{0} Std. {1} Min.
+M:homeInstalledOn	Windows installiert am {0}
+M:homePcType	PC-TYP
+M:homeTypeAuto	Automatisch: {0}
+M:homeTypeDesktop	Desktop
+M:homeTypeLaptop	Laptop
+M:homeTypeHint	Auf einem Laptop überspringen «Alles auswählen» und «Empfohlen» akkufressende Einträge, auf einem Desktop die nur mit Akku nützlichen. Von Hand bleiben sie wählbar.
+M:homeCpu	Prozessor
+M:homeRam	Arbeitsspeicher
+M:homeGpu	Grafikkarte
+M:homeDisks	Speicher
+M:homeVolumes	Laufwerke
+M:homeFreeFmt	{0} frei von {1}
+M:homeBoard	Mainboard und Firmware
+M:homeNet	Netzwerk
+M:homeNoNet	Keine aktive Verbindung.
+M:homeBattery	Akku
+M:homeSlotsFmt	{0} von {1} Steckplätzen
+M:hkCores	Kerne / Threads
+M:hkClock	Max. Takt
+M:hkTotal	Gesamt
+M:hkRamType	Typ und Takt
+M:hkSlots	Module
+M:hkVram	Grafikspeicher
+M:hkDriver	Treiber
+M:hkRes	Anzeige
+M:hkType	Typ
+M:hkModel	Modell
+M:hkAdapter	Adapter
+M:hkSpeed	Geschwindigkeit
+M:hkCharge	Ladung
+M:hkPower	Stromversorgung
+M:hkHealth	Zustand
+M:valOn	An
+M:valOff	Aus
+M:valNone	Nicht vorhanden
+M:valOnAc	Am Netz
+M:valOnBattery	Akkubetrieb

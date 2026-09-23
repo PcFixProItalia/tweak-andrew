@@ -149,7 +149,7 @@ L:btnFlushDns	Wyczyść pamięć DNS
 L:ttlTcpProfile	PROFIL TCP
 L:radTcpOptimal	Optymalny (gry)
 L:radTcpDefault	Domyślny Windows
-L:radTcpCurrent	Bieżący (bez zmian)
+L:radTcpCurrent	Bieżący profil
 L:radTcpCustom	Własny
 L:lblAutoTuning	Automatyczne dostrajanie okna TCP:
 L:lblHeuristics	Heurystyka skalowania:
@@ -529,7 +529,7 @@ L:lblPowerAdvHint	Działają od razu na używany plan, na zasilaniu i baterii. Z
 L:radAppsCatalog	Katalog
 L:radAppsInstalled	Zainstalowane
 L:lblAppSearchHint	Szukaj...
-L:btnAppsUpgrade	Zaktualizuj wszystkie aplikacje
+L:btnAppsUpgrade	Zaktualizuj zaznaczone
 L:btnAppsClear	Odznacz
 L:btnAppsRefresh	Odśwież listę
 L:lblProfileQueued	Wybierz profil: dołączy do zmian do zastosowania. Drugie kliknięcie go usuwa.
@@ -616,3 +616,69 @@ M:recSelected	Zaznaczono {0} zalecanych pozycji: naciśnij Zastosuj zmiany.
 M:recSched	Zalecane wartości gotowe w obu panelach: naciśnij Zastosuj i Zapisz.
 L:ttlAdvExplorer	EKSPLORATOR PLIKÓW
 L:lblAdvExplorerHint	Pokazują pliki, które Windows ukrywa, by nie usunąć ich przez pomyłkę. Poza «Zaznacz wszystko».
+L:tabHome	Start
+L:lblHomeLoading	Odczyt sprzętu...
+L:ttlAppJobs	OPERACJE
+L:btnAppJobsClose	Zamknij
+M:appUpdatable	Aktualizacja
+M:appsUpgradeSel	Zaktualizuj zaznaczone
+M:appsSelectUpdates	Zaznacz wszystkie
+M:appsUpdatesTitle	Dostępne aktualizacje ({0})
+M:appsNoUpdates	Wszystkie aplikacje zarządzane przez winget są aktualne.
+M:appsScanning	Sprawdzanie aktualizacji...
+M:appsAskUpgradeSel	Zaktualizuję {0} aplikacji przez winget, po kolei, bez okien. Kontynuować?
+M:appsUpgrading	Aktualizowanie
+M:jobWait	Oczekuje
+M:jobPrep	Przygotowanie...
+M:jobDownload	Pobieranie {0}%
+M:jobInstall	Instalowanie...
+M:jobInstallPct	Instalowanie {0}%
+M:jobUninstall	Odinstalowywanie...
+M:jobOk	Gotowe
+M:jobOkReboot	Gotowe, wymagany restart
+M:jobErr	Błąd (kod {0})
+M:jobsProgress	{0} z {1}
+M:appsDoneSum	Operacje zakończone: {0} udane, {1} z błędami.
+M:homeThisPc	TEN KOMPUTER
+M:homeDomain	Domena
+M:homeWorkgroup	Grupa robocza
+M:homeUptime	Włączony od {0}
+M:homeUptimeD	{0} d {1} h {2} min
+M:homeUptimeH	{0} h {1} min
+M:homeInstalledOn	Windows zainstalowany {0}
+M:homePcType	TYP KOMPUTERA
+M:homeTypeAuto	Automatycznie: {0}
+M:homeTypeDesktop	Stacjonarny
+M:homeTypeLaptop	Laptop
+M:homeTypeHint	Na laptopie «Zaznacz wszystko» i «Zalecane» pomijają opcje zużywające baterię; na stacjonarnym te przydatne tylko z baterią. Nadal można je wybrać ręcznie.
+M:homeCpu	Procesor
+M:homeRam	Pamięć
+M:homeGpu	Karta graficzna
+M:homeDisks	Pamięć masowa
+M:homeVolumes	Dyski
+M:homeFreeFmt	{0} wolne z {1}
+M:homeBoard	Płyta główna i firmware
+M:homeNet	Sieć
+M:homeNoNet	Brak aktywnego połączenia.
+M:homeBattery	Bateria
+M:homeSlotsFmt	{0} z {1} gniazd
+M:hkCores	Rdzenie / wątki
+M:hkClock	Maks. taktowanie
+M:hkTotal	Łącznie
+M:hkRamType	Typ i szybkość
+M:hkSlots	Moduły
+M:hkVram	Pamięć wideo
+M:hkDriver	Sterownik
+M:hkRes	Ekran
+M:hkType	Typ
+M:hkModel	Model
+M:hkAdapter	Karta
+M:hkSpeed	Szybkość
+M:hkCharge	Naładowanie
+M:hkPower	Zasilanie
+M:hkHealth	Kondycja
+M:valOn	Włączony
+M:valOff	Wyłączony
+M:valNone	Brak
+M:valOnAc	Podłączony do zasilania
+M:valOnBattery	Na baterii

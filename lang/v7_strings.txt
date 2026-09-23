@@ -43,7 +43,6 @@ L|lblPowerAdvHint|Valgono subito sul piano in uso, a rete e a batteria. Cambiand
 L|radAppsCatalog|Catalogo|Catalog|Catálogo|Katalog|Catalogue|Katalog|Catálogo|Catalog|Каталог
 L|radAppsInstalled|Installate|Installed|Instaladas|Installiert|Installées|Zainstalowane|Instalados|Instalate|Установленные
 L|lblAppSearchHint|Cerca...|Search...|Buscar...|Suchen...|Rechercher...|Szukaj...|Pesquisar...|Caută...|Поиск...
-L|btnAppsUpgrade|Aggiorna tutte le app|Update all apps|Actualizar todas las apps|Alle Apps aktualisieren|Mettre à jour toutes les apps|Zaktualizuj wszystkie aplikacje|Atualizar todos os apps|Actualizează toate aplicațiile|Обновить все приложения
 L|btnAppsClear|Deseleziona|Clear selection|Deseleccionar|Auswahl aufheben|Désélectionner|Odznacz|Desmarcar|Deselectează|Снять выбор
 L|btnAppsRefresh|Aggiorna elenco|Refresh list|Actualizar lista|Liste aktualisieren|Actualiser la liste|Odśwież listę|Atualizar lista|Reîmprospătează lista|Обновить список
 L|lblProfileQueued|Scegli un profilo: entra tra le modifiche da applicare. Un secondo clic lo toglie.|Pick a profile: it joins the changes to apply. A second click removes it.|Elige un perfil: se suma a los cambios por aplicar. Un segundo clic lo quita.|Wähle ein Profil: Es kommt zu den anzuwendenden Änderungen. Ein zweiter Klick entfernt es.|Choisis un profil : il rejoint les modifications à appliquer. Un second clic le retire.|Wybierz profil: dołączy do zmian do zastosowania. Drugie kliknięcie go usuwa.|Escolha um perfil: ele entra nas alterações a aplicar. Um segundo clique o remove.|Alege un profil: intră printre modificările de aplicat. Un al doilea clic îl scoate.|Выберите профиль: он добавится к изменениям. Повторный щелчок убирает его.
@@ -157,3 +156,71 @@ M|recSelected|Selezionate {0} voci consigliate: premi Applica modifiche.|Selecte
 M|recSched|Valori consigliati pronti nei due pannelli: premi Applica e Salva per scriverli.|Recommended values ready in both panels: press Apply and Save to write them.|Valores recomendados listos en los dos paneles: pulsa Aplicar y Guardar.|Empfohlene Werte in beiden Feldern bereit: Übernehmen und Speichern drücken.|Valeurs recommandées prêtes dans les deux panneaux : appuie sur Appliquer et Enregistrer.|Zalecane wartości gotowe w obu panelach: naciśnij Zastosuj i Zapisz.|Valores recomendados prontos nos dois painéis: pressione Aplicar e Salvar.|Valorile recomandate sunt pregătite în ambele panouri: apasă Aplică și Salvează.|Рекомендуемые значения готовы в обеих панелях: нажмите «Применить» и «Сохранить».
 L|ttlAdvExplorer|ESPLORA FILE|FILE EXPLORER|EXPLORADOR DE ARCHIVOS|DATEI-EXPLORER|EXPLORATEUR DE FICHIERS|EKSPLORATOR PLIKÓW|EXPLORADOR DE ARQUIVOS|EXPLORER FIȘIERE|ПРОВОДНИК
 L|lblAdvExplorerHint|Mostrano file che Windows tiene nascosti per non farli cancellare per sbaglio. Fuori da «Seleziona tutto».|They show files Windows hides so they don't get deleted by mistake. Left out of «Select all».|Muestran archivos que Windows oculta para que no se borren por error. Fuera de «Seleccionar todo».|Sie zeigen Dateien, die Windows versteckt, damit sie nicht versehentlich gelöscht werden. Nicht in «Alle auswählen».|Ils montrent des fichiers que Windows cache pour éviter les suppressions par erreur. Hors de «Tout sélectionner».|Pokazują pliki, które Windows ukrywa, by nie usunąć ich przez pomyłkę. Poza «Zaznacz wszystko».|Mostram arquivos que o Windows oculta para não serem apagados por engano. Fora de «Selecionar tudo».|Arată fișiere pe care Windows le ascunde ca să nu fie șterse din greșeală. În afara opțiunii «Selectează tot».|Показывают файлы, которые Windows скрывает, чтобы их не удалили по ошибке. Вне «Выбрать все».
+L|btnAppsUpgrade|Aggiorna selezionate|Update selected|Actualizar seleccionadas|Ausgewählte aktualisieren|Mettre à jour la sélection|Zaktualizuj zaznaczone|Atualizar selecionados|Actualizează selectate|Обновить выбранные
+L|radTcpCurrent|Profilo attuale|Current profile|Perfil actual|Aktuelles Profil|Profil actuel|Bieżący profil|Perfil atual|Profil actual|Текущий профиль
+L|tabHome|Home|Home|Inicio|Start|Accueil|Start|Início|Acasă|Главная
+L|lblHomeLoading|Lettura dell'hardware...|Reading the hardware...|Leyendo el hardware...|Hardware wird gelesen...|Lecture du matériel...|Odczyt sprzętu...|Lendo o hardware...|Se citește hardware-ul...|Чтение оборудования...
+L|ttlAppJobs|OPERAZIONI|OPERATIONS|OPERACIONES|VORGÄNGE|OPÉRATIONS|OPERACJE|OPERAÇÕES|OPERAȚIUNI|ОПЕРАЦИИ
+L|btnAppJobsClose|Chiudi|Close|Cerrar|Schließen|Fermer|Zamknij|Fechar|Închide|Закрыть
+M|appUpdatable|Aggiornabile|Update available|Actualizable|Update verfügbar|Mise à jour dispo|Aktualizacja|Atualizável|Actualizabilă|Есть обновление
+M|appsUpgradeSel|Aggiorna selezionate|Update selected|Actualizar seleccionadas|Ausgewählte aktualisieren|Mettre à jour la sélection|Zaktualizuj zaznaczone|Atualizar selecionados|Actualizează selectate|Обновить выбранные
+M|appsSelectUpdates|Seleziona tutti|Select all|Seleccionar todas|Alle auswählen|Tout sélectionner|Zaznacz wszystkie|Selecionar todos|Selectează tot|Выбрать все
+M|appsUpdatesTitle|Aggiornamenti disponibili ({0})|Available updates ({0})|Actualizaciones disponibles ({0})|Verfügbare Updates ({0})|Mises à jour disponibles ({0})|Dostępne aktualizacje ({0})|Atualizações disponíveis ({0})|Actualizări disponibile ({0})|Доступные обновления ({0})
+M|appsNoUpdates|Tutte le app gestite da winget sono aggiornate.|Every app managed by winget is up to date.|Todas las apps gestionadas por winget están al día.|Alle von winget verwalteten Apps sind aktuell.|Toutes les apps gérées par winget sont à jour.|Wszystkie aplikacje zarządzane przez winget są aktualne.|Todos os apps gerenciados pelo winget estão atualizados.|Toate aplicațiile gestionate de winget sunt la zi.|Все приложения, которыми управляет winget, обновлены.
+M|appsScanning|Controllo degli aggiornamenti in corso...|Checking for updates...|Buscando actualizaciones...|Suche nach Updates...|Recherche de mises à jour...|Sprawdzanie aktualizacji...|Procurando atualizações...|Se caută actualizări...|Поиск обновлений...
+M|appsAskUpgradeSel|Aggiorno {0} app con winget, una alla volta, senza finestre. Procedo?|I'll update {0} apps with winget, one at a time, without windows. Go ahead?|Actualizo {0} apps con winget, una a una, sin ventanas. ¿Sigo?|Ich aktualisiere {0} Apps mit winget, eine nach der anderen, ohne Fenster. Fortfahren?|Je mets à jour {0} apps avec winget, une par une, sans fenêtres. Je continue ?|Zaktualizuję {0} aplikacji przez winget, po kolei, bez okien. Kontynuować?|Vou atualizar {0} apps com o winget, um de cada vez, sem janelas. Continuo?|Actualizez {0} aplicații cu winget, pe rând, fără ferestre. Continui?|Обновлю {0} приложений через winget по одному, без окон. Продолжить?
+M|appsUpgrading|Aggiornamento di|Updating|Actualizando|Aktualisierung von|Mise à jour de|Aktualizowanie|Atualizando|Actualizare|Обновление
+M|jobWait|In attesa|Waiting|En espera|Wartet|En attente|Oczekuje|Aguardando|În așteptare|Ожидание
+M|jobPrep|Preparazione...|Preparing...|Preparando...|Vorbereitung...|Préparation...|Przygotowanie...|Preparando...|Pregătire...|Подготовка...
+M|jobDownload|Download {0}%|Download {0}%|Descarga {0}%|Download {0}%|Téléchargement {0}%|Pobieranie {0}%|Download {0}%|Descărcare {0}%|Загрузка {0}%
+M|jobInstall|Installazione...|Installing...|Instalando...|Installation...|Installation...|Instalowanie...|Instalando...|Instalare...|Установка...
+M|jobInstallPct|Installazione {0}%|Installing {0}%|Instalando {0}%|Installation {0}%|Installation {0}%|Instalowanie {0}%|Instalando {0}%|Instalare {0}%|Установка {0}%
+M|jobUninstall|Disinstallazione...|Uninstalling...|Desinstalando...|Deinstallation...|Désinstallation...|Odinstalowywanie...|Desinstalando...|Dezinstalare...|Удаление...
+M|jobOk|Completata|Done|Completada|Fertig|Terminée|Gotowe|Concluído|Finalizat|Готово
+M|jobOkReboot|Completata, serve un riavvio|Done, restart needed|Completada, requiere reinicio|Fertig, Neustart nötig|Terminée, redémarrage requis|Gotowe, wymagany restart|Concluído, reinício necessário|Finalizat, necesită repornire|Готово, нужна перезагрузка
+M|jobErr|Errore (codice {0})|Error (code {0})|Error (código {0})|Fehler (Code {0})|Erreur (code {0})|Błąd (kod {0})|Erro (código {0})|Eroare (cod {0})|Ошибка (код {0})
+M|jobsProgress|{0} di {1}|{0} of {1}|{0} de {1}|{0} von {1}|{0} sur {1}|{0} z {1}|{0} de {1}|{0} din {1}|{0} из {1}
+M|appsDoneSum|Operazioni completate: {0} riuscite, {1} con errori.|Operations completed: {0} succeeded, {1} with errors.|Operaciones completadas: {0} correctas, {1} con errores.|Vorgänge abgeschlossen: {0} erfolgreich, {1} mit Fehlern.|Opérations terminées : {0} réussies, {1} en erreur.|Operacje zakończone: {0} udane, {1} z błędami.|Operações concluídas: {0} com sucesso, {1} com erros.|Operațiuni finalizate: {0} reușite, {1} cu erori.|Операции завершены: успешно {0}, с ошибками {1}.
+M|homeThisPc|QUESTO PC|THIS PC|ESTE EQUIPO|DIESER PC|CE PC|TEN KOMPUTER|ESTE PC|ACEST PC|ЭТОТ КОМПЬЮТЕР
+M|homeDomain|Dominio|Domain|Dominio|Domäne|Domaine|Domena|Domínio|Domeniu|Домен
+M|homeWorkgroup|Gruppo di lavoro|Workgroup|Grupo de trabajo|Arbeitsgruppe|Groupe de travail|Grupa robocza|Grupo de trabalho|Grup de lucru|Рабочая группа
+M|homeUptime|Acceso da {0}|Up for {0}|Encendido hace {0}|Läuft seit {0}|Allumé depuis {0}|Włączony od {0}|Ligado há {0}|Pornit de {0}|Работает {0}
+M|homeUptimeD|{0} g {1} h {2} min|{0} d {1} h {2} min|{0} d {1} h {2} min|{0} T {1} Std. {2} Min.|{0} j {1} h {2} min|{0} d {1} h {2} min|{0} d {1} h {2} min|{0} z {1} h {2} min|{0} д {1} ч {2} мин
+M|homeUptimeH|{0} h {1} min|{0} h {1} min|{0} h {1} min|{0} Std. {1} Min.|{0} h {1} min|{0} h {1} min|{0} h {1} min|{0} h {1} min|{0} ч {1} мин
+M|homeInstalledOn|Windows installato il {0}|Windows installed on {0}|Windows instalado el {0}|Windows installiert am {0}|Windows installé le {0}|Windows zainstalowany {0}|Windows instalado em {0}|Windows instalat pe {0}|Windows установлен {0}
+M|homePcType|TIPO DI PC|PC TYPE|TIPO DE PC|PC-TYP|TYPE DE PC|TYP KOMPUTERA|TIPO DE PC|TIP PC|ТИП КОМПЬЮТЕРА
+M|homeTypeAuto|Automatico: {0}|Automatic: {0}|Automático: {0}|Automatisch: {0}|Automatique : {0}|Automatycznie: {0}|Automático: {0}|Automat: {0}|Автоматически: {0}
+M|homeTypeDesktop|Fisso|Desktop|Sobremesa|Desktop|Fixe|Stacjonarny|Desktop|Desktop|Настольный
+M|homeTypeLaptop|Portatile|Laptop|Portátil|Laptop|Portable|Laptop|Notebook|Laptop|Ноутбук
+M|homeTypeHint|Su un portatile «Seleziona tutto» e «Consigliati» lasciano stare le voci che consumano batteria; su un fisso quelle utili solo con la batteria. Restano sempre selezionabili a mano.|On a laptop «Select all» and «Recommended» skip the entries that drain the battery; on a desktop, those useful only with a battery. You can still pick them by hand.|En un portátil «Seleccionar todo» y «Recomendados» omiten las opciones que gastan batería; en un sobremesa, las útiles solo con batería. Siguen disponibles a mano.|Auf einem Laptop überspringen «Alles auswählen» und «Empfohlen» akkufressende Einträge, auf einem Desktop die nur mit Akku nützlichen. Von Hand bleiben sie wählbar.|Sur un portable, «Tout sélectionner» et «Recommandés» ignorent les options qui vident la batterie ; sur un fixe, celles utiles seulement avec batterie. Elles restent sélectionnables à la main.|Na laptopie «Zaznacz wszystko» i «Zalecane» pomijają opcje zużywające baterię; na stacjonarnym te przydatne tylko z baterią. Nadal można je wybrać ręcznie.|No notebook, «Selecionar tudo» e «Recomendados» ignoram as opções que gastam bateria; no desktop, as úteis só com bateria. Continuam selecionáveis manualmente.|Pe laptop «Selectează tot» și «Recomandate» sar peste opțiunile care consumă bateria; pe desktop, peste cele utile doar cu baterie. Rămân selectabile manual.|На ноутбуке «Выбрать всё» и «Рекомендуемые» пропускают пункты, расходующие батарею; на настольном — полезные только с батареей. Вручную их можно выбрать.
+M|homeCpu|Processore|Processor|Procesador|Prozessor|Processeur|Procesor|Processador|Procesor|Процессор
+M|homeRam|Memoria|Memory|Memoria|Arbeitsspeicher|Mémoire|Pamięć|Memória|Memorie|Память
+M|homeGpu|Scheda video|Graphics card|Tarjeta gráfica|Grafikkarte|Carte graphique|Karta graficzna|Placa de vídeo|Placă video|Видеокарта
+M|homeDisks|Archiviazione|Storage|Almacenamiento|Speicher|Stockage|Pamięć masowa|Armazenamento|Stocare|Накопители
+M|homeVolumes|Unità|Drives|Unidades|Laufwerke|Lecteurs|Dyski|Unidades|Unități|Разделы
+M|homeFreeFmt|{0} liberi su {1}|{0} free of {1}|{0} libres de {1}|{0} frei von {1}|{0} libres sur {1}|{0} wolne z {1}|{0} livres de {1}|{0} libere din {1}|свободно {0} из {1}
+M|homeBoard|Scheda madre e firmware|Motherboard and firmware|Placa base y firmware|Mainboard und Firmware|Carte mère et micrologiciel|Płyta główna i firmware|Placa-mãe e firmware|Placă de bază și firmware|Материнская плата и прошивка
+M|homeNet|Rete|Network|Red|Netzwerk|Réseau|Sieć|Rede|Rețea|Сеть
+M|homeNoNet|Nessuna connessione attiva.|No active connection.|Ninguna conexión activa.|Keine aktive Verbindung.|Aucune connexion active.|Brak aktywnego połączenia.|Nenhuma conexão ativa.|Nicio conexiune activă.|Нет активных подключений.
+M|homeBattery|Batteria|Battery|Batería|Akku|Batterie|Bateria|Bateria|Baterie|Батарея
+M|homeSlotsFmt|{0} su {1} slot|{0} of {1} slots|{0} de {1} ranuras|{0} von {1} Steckplätzen|{0} sur {1} emplacements|{0} z {1} gniazd|{0} de {1} slots|{0} din {1} sloturi|{0} из {1} слотов
+M|hkCores|Core / thread|Cores / threads|Núcleos / hilos|Kerne / Threads|Cœurs / threads|Rdzenie / wątki|Núcleos / threads|Nuclee / fire|Ядра / потоки
+M|hkClock|Frequenza max|Max clock|Frecuencia máx.|Max. Takt|Fréquence max|Maks. taktowanie|Frequência máx.|Frecvență max|Макс. частота
+M|hkTotal|Totale|Total|Total|Gesamt|Total|Łącznie|Total|Total|Всего
+M|hkRamType|Tipo e velocità|Type and speed|Tipo y velocidad|Typ und Takt|Type et vitesse|Typ i szybkość|Tipo e velocidade|Tip și viteză|Тип и частота
+M|hkSlots|Moduli|Modules|Módulos|Module|Barrettes|Moduły|Módulos|Module|Модули
+M|hkVram|Memoria video|Video memory|Memoria de vídeo|Grafikspeicher|Mémoire vidéo|Pamięć wideo|Memória de vídeo|Memorie video|Видеопамять
+M|hkDriver|Driver|Driver|Controlador|Treiber|Pilote|Sterownik|Driver|Driver|Драйвер
+M|hkRes|Schermo|Display|Pantalla|Anzeige|Affichage|Ekran|Tela|Ecran|Экран
+M|hkType|Tipo|Type|Tipo|Typ|Type|Typ|Tipo|Tip|Тип
+M|hkModel|Modello|Model|Modelo|Modell|Modèle|Model|Modelo|Model|Модель
+M|hkAdapter|Scheda|Adapter|Adaptador|Adapter|Carte|Karta|Adaptador|Adaptor|Адаптер
+M|hkSpeed|Velocità|Speed|Velocidad|Geschwindigkeit|Vitesse|Szybkość|Velocidade|Viteză|Скорость
+M|hkCharge|Carica|Charge|Carga|Ladung|Charge|Naładowanie|Carga|Încărcare|Заряд
+M|hkPower|Alimentazione|Power|Alimentación|Stromversorgung|Alimentation|Zasilanie|Alimentação|Alimentare|Питание
+M|hkHealth|Salute|Health|Estado|Zustand|Santé|Kondycja|Saúde|Sănătate|Износ (остаток)
+M|valOn|Attivo|On|Activado|An|Activé|Włączony|Ativado|Activ|Включено
+M|valOff|Spento|Off|Desactivado|Aus|Désactivé|Wyłączony|Desativado|Dezactivat|Выключено
+M|valNone|Assente|Not present|No presente|Nicht vorhanden|Absent|Brak|Ausente|Absent|Отсутствует
+M|valOnAc|Collegato alla corrente|Plugged in|Conectado a la corriente|Am Netz|Sur secteur|Podłączony do zasilania|Na tomada|Conectat la priză|От сети
+M|valOnBattery|A batteria|On battery|Con batería|Akkubetrieb|Sur batterie|Na baterii|Na bateria|Pe baterie|От батареи

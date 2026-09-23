@@ -149,7 +149,7 @@ L:btnFlushDns	Очистить кэш DNS
 L:ttlTcpProfile	ПРОФИЛЬ TCP
 L:radTcpOptimal	Оптимальный (игры)
 L:radTcpDefault	По умолчанию Windows
-L:radTcpCurrent	Текущий (не трогать)
+L:radTcpCurrent	Текущий профиль
 L:radTcpCustom	Свой
 L:lblAutoTuning	Автонастройка окна TCP:
 L:lblHeuristics	Эвристика масштабирования:
@@ -529,7 +529,7 @@ L:lblPowerAdvHint	Применяются сразу к текущей схеме
 L:radAppsCatalog	Каталог
 L:radAppsInstalled	Установленные
 L:lblAppSearchHint	Поиск...
-L:btnAppsUpgrade	Обновить все приложения
+L:btnAppsUpgrade	Обновить выбранные
 L:btnAppsClear	Снять выбор
 L:btnAppsRefresh	Обновить список
 L:lblProfileQueued	Выберите профиль: он добавится к изменениям. Повторный щелчок убирает его.
@@ -616,3 +616,69 @@ M:recSelected	Выбрано рекомендуемых пунктов: {0}. Н�
 M:recSched	Рекомендуемые значения готовы в обеих панелях: нажмите «Применить» и «Сохранить».
 L:ttlAdvExplorer	ПРОВОДНИК
 L:lblAdvExplorerHint	Показывают файлы, которые Windows скрывает, чтобы их не удалили по ошибке. Вне «Выбрать все».
+L:tabHome	Главная
+L:lblHomeLoading	Чтение оборудования...
+L:ttlAppJobs	ОПЕРАЦИИ
+L:btnAppJobsClose	Закрыть
+M:appUpdatable	Есть обновление
+M:appsUpgradeSel	Обновить выбранные
+M:appsSelectUpdates	Выбрать все
+M:appsUpdatesTitle	Доступные обновления ({0})
+M:appsNoUpdates	Все приложения, которыми управляет winget, обновлены.
+M:appsScanning	Поиск обновлений...
+M:appsAskUpgradeSel	Обновлю {0} приложений через winget по одному, без окон. Продолжить?
+M:appsUpgrading	Обновление
+M:jobWait	Ожидание
+M:jobPrep	Подготовка...
+M:jobDownload	Загрузка {0}%
+M:jobInstall	Установка...
+M:jobInstallPct	Установка {0}%
+M:jobUninstall	Удаление...
+M:jobOk	Готово
+M:jobOkReboot	Готово, нужна перезагрузка
+M:jobErr	Ошибка (код {0})
+M:jobsProgress	{0} из {1}
+M:appsDoneSum	Операции завершены: успешно {0}, с ошибками {1}.
+M:homeThisPc	ЭТОТ КОМПЬЮТЕР
+M:homeDomain	Домен
+M:homeWorkgroup	Рабочая группа
+M:homeUptime	Работает {0}
+M:homeUptimeD	{0} д {1} ч {2} мин
+M:homeUptimeH	{0} ч {1} мин
+M:homeInstalledOn	Windows установлен {0}
+M:homePcType	ТИП КОМПЬЮТЕРА
+M:homeTypeAuto	Автоматически: {0}
+M:homeTypeDesktop	Настольный
+M:homeTypeLaptop	Ноутбук
+M:homeTypeHint	На ноутбуке «Выбрать всё» и «Рекомендуемые» пропускают пункты, расходующие батарею; на настольном — полезные только с батареей. Вручную их можно выбрать.
+M:homeCpu	Процессор
+M:homeRam	Память
+M:homeGpu	Видеокарта
+M:homeDisks	Накопители
+M:homeVolumes	Разделы
+M:homeFreeFmt	свободно {0} из {1}
+M:homeBoard	Материнская плата и прошивка
+M:homeNet	Сеть
+M:homeNoNet	Нет активных подключений.
+M:homeBattery	Батарея
+M:homeSlotsFmt	{0} из {1} слотов
+M:hkCores	Ядра / потоки
+M:hkClock	Макс. частота
+M:hkTotal	Всего
+M:hkRamType	Тип и частота
+M:hkSlots	Модули
+M:hkVram	Видеопамять
+M:hkDriver	Драйвер
+M:hkRes	Экран
+M:hkType	Тип
+M:hkModel	Модель
+M:hkAdapter	Адаптер
+M:hkSpeed	Скорость
+M:hkCharge	Заряд
+M:hkPower	Питание
+M:hkHealth	Износ (остаток)
+M:valOn	Включено
+M:valOff	Выключено
+M:valNone	Отсутствует
+M:valOnAc	От сети
+M:valOnBattery	От батареи

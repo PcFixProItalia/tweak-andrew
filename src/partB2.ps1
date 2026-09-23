@@ -168,6 +168,55 @@
             </Setter>
         </Style>
 
+        <!-- Riga selezionabile delle app: casella quadrata a sinistra, tutta la
+             riga cliccabile, colore della pagina quando e' scelta. -->
+        <Style x:Key="PickRow" TargetType="CheckBox">
+            <Setter Property="Foreground" Value="#FFC4C4CC"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Margin" Value="0,2"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="CheckBox">
+                        <Border x:Name="row" Background="#FF0C0C0F" BorderBrush="#FF1A1A1F" BorderThickness="1"
+                                CornerRadius="12" Padding="11,8" SnapsToDevicePixels="True">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Border x:Name="box" Width="20" Height="20" CornerRadius="6" BorderThickness="1.6"
+                                        BorderBrush="#FF4A4A53" Background="#FF101013" VerticalAlignment="Center" Margin="0,0,12,0">
+                                    <Path x:Name="tick" Data="M3.6,8.6 L7,12 L13.4,4.8" Stroke="#FF000000" StrokeThickness="2.2"
+                                          StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeLineJoin="Round"
+                                          Visibility="Collapsed"/>
+                                </Border>
+                                <ContentPresenter Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="row" Property="Background" Value="#FF121215"/>
+                                <Setter TargetName="box" Property="BorderBrush" Value="{DynamicResource PA}"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="row" Property="Background" Value="{DynamicResource PASoft}"/>
+                                <Setter TargetName="row" Property="BorderBrush" Value="{DynamicResource PA}"/>
+                                <Setter TargetName="box" Property="Background" Value="{DynamicResource PA}"/>
+                                <Setter TargetName="box" Property="BorderBrush" Value="{DynamicResource PA}"/>
+                                <Setter TargetName="tick" Property="Visibility" Value="Visible"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" Value="0.45"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
         <Style TargetType="RadioButton">
             <Setter Property="Foreground" Value="#FFC4C4CC"/>
             <Setter Property="FontFamily" Value="Roboto, Segoe UI Variable Text, Segoe UI"/>
@@ -834,8 +883,20 @@
 
                             <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Padding="0,0,4,0">
                             <StackPanel>
+                                <RadioButton x:Name="tabHome" GroupName="Nav" Style="{StaticResource NavItem}" IsChecked="True"
+                                             Content="Home" Margin="0,0,0,10"
+                                             Tag="M3.5,11 L12,4 L20.5,11 M6,9.2 L6,20 L10,20 L10,14.5 L14,14.5 L14,20 L18,20 L18,9.2">
+                                    <RadioButton.Resources>
+                                        <SolidColorBrush x:Key="PA" Color="#FF1E90FF"/>
+                                        <SolidColorBrush x:Key="PASoft" Color="#261E90FF"/>
+                                        <LinearGradientBrush x:Key="PACard" StartPoint="0,0" EndPoint="0.7,1">
+                                            <GradientStop Color="#161E90FF" Offset="0"/>
+                                            <GradientStop Color="#0CFFFFFF" Offset="0.5"/>
+                                        </LinearGradientBrush>
+                                    </RadioButton.Resources>
+                                </RadioButton>
                                 <TextBlock x:Name="navGrpSystem" Text="SISTEMA" Style="{StaticResource NavHeader}" Margin="14,0,0,4"/>
-                                <RadioButton x:Name="tabPerf" GroupName="Nav" Style="{StaticResource NavItem}" IsChecked="True"
+                                <RadioButton x:Name="tabPerf" GroupName="Nav" Style="{StaticResource NavItem}"
                                              Content="Prestazioni"
                                              Tag="M13,2 L4,13.5 L10.5,13.5 L10,22 L19,10.5 L12.5,10.5 Z">
                                     <RadioButton.Resources>
@@ -1083,7 +1144,21 @@
 
                         <Grid Grid.Row="1">
 
-                            <ScrollViewer x:Name="pagePerf" VerticalScrollBarVisibility="Auto" Padding="0,0,6,0">
+                            <ScrollViewer x:Name="pageHome" VerticalScrollBarVisibility="Auto" Padding="0,0,6,0">
+                                <ScrollViewer.Resources>
+                                    <SolidColorBrush x:Key="PA" Color="#FF1E90FF"/>
+                                    <SolidColorBrush x:Key="PASoft" Color="#261E90FF"/>
+                                    <LinearGradientBrush x:Key="PACard" StartPoint="0,0" EndPoint="0.7,1">
+                                        <GradientStop Color="#161E90FF" Offset="0"/>
+                                        <GradientStop Color="#0CFFFFFF" Offset="0.5"/>
+                                    </LinearGradientBrush>
+                                </ScrollViewer.Resources>
+                                <StackPanel x:Name="panHome">
+                                    <TextBlock x:Name="lblHomeLoading" Text="Lettura dell'hardware..." Style="{StaticResource SubTitle}" Margin="10"/>
+                                </StackPanel>
+                            </ScrollViewer>
+
+                            <ScrollViewer x:Name="pagePerf" Visibility="Collapsed" VerticalScrollBarVisibility="Auto" Padding="0,0,6,0">
                                 <ScrollViewer.Resources>
                                     <SolidColorBrush x:Key="PA" Color="#FFFF7A45"/>
                                     <SolidColorBrush x:Key="PASoft" Color="#24FF7A45"/>
@@ -1410,7 +1485,7 @@
                                                 <WrapPanel Margin="0,0,0,4">
                                                     <RadioButton x:Name="radTcpOptimal" Content="Ottimale" IsChecked="True" GroupName="TcpPreset"/>
                                                     <RadioButton x:Name="radTcpDefault" Content="Predefinito" GroupName="TcpPreset"/>
-                                                    <RadioButton x:Name="radTcpCurrent" Content="Corrente" GroupName="TcpPreset"/>
+                                                    <RadioButton x:Name="radTcpCurrent" Content="Profilo attuale" GroupName="TcpPreset"/>
                                                     <RadioButton x:Name="radTcpCustom" Content="Personalizzato" GroupName="TcpPreset"/>
                                                 </WrapPanel>
                                                 <Separator Style="{StaticResource SoftSep}"/>
@@ -2235,6 +2310,7 @@
                                 </Grid.Resources>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
                                 <StackPanel Grid.Row="0" Margin="7,0,7,6">
@@ -2251,13 +2327,33 @@
                                     </WrapPanel>
                                     <WrapPanel>
                                         <Button x:Name="btnAppsAction" Style="{StaticResource DotBtn}" Content="Installa selezionate" Margin="0,0,8,8"/>
-                                        <Button x:Name="btnAppsUpgrade" Style="{StaticResource DotBtn}" Content="Aggiorna tutte le app" Margin="0,0,8,8"/>
+                                        <Button x:Name="btnAppsUpgrade" Style="{StaticResource DotBtn}" Content="Aggiorna selezionate" Margin="0,0,8,8"/>
                                         <Button x:Name="btnAppsClear" Style="{StaticResource DotBtn}" Content="Deseleziona" Margin="0,0,8,8"/>
                                         <Button x:Name="btnAppsRefresh" Style="{StaticResource DotBtn}" Content="Aggiorna elenco" Margin="0,0,14,8"/>
                                         <TextBlock x:Name="txtAppsStatus" Style="{StaticResource SubTitle}" VerticalAlignment="Center" Margin="0,0,0,8" TextWrapping="Wrap"/>
                                     </WrapPanel>
                                 </StackPanel>
-                                <ScrollViewer Grid.Row="1" x:Name="svApps" VerticalScrollBarVisibility="Auto" Padding="0,0,6,0">
+                                <!-- Operazioni in corso: una riga per app, con barra di download e di installazione. -->
+                                <Border x:Name="bdAppJobs" Grid.Row="1" Style="{StaticResource Glass}" Padding="18,14,18,12" Visibility="Collapsed">
+                                    <StackPanel>
+                                        <Grid Margin="0,0,0,8">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock x:Name="ttlAppJobs" Text="OPERAZIONI" Style="{StaticResource CardTitle}" Margin="0" VerticalAlignment="Center"/>
+                                            <TextBlock x:Name="txtAppJobsCount" Grid.Column="1" Foreground="{DynamicResource PA}" FontFamily="Roboto, Segoe UI"
+                                                       FontSize="12" Margin="12,0,0,0" VerticalAlignment="Center"/>
+                                            <Button x:Name="btnAppJobsClose" Grid.Column="2" Style="{StaticResource DotBtn}" Content="Chiudi" Visibility="Collapsed"/>
+                                        </Grid>
+                                        <ProgressBar x:Name="prgAppJobs" Height="5" Minimum="0" Maximum="1" Value="0" Margin="0,0,0,10"/>
+                                        <ScrollViewer MaxHeight="200" VerticalScrollBarVisibility="Auto">
+                                            <StackPanel x:Name="panAppJobs"/>
+                                        </ScrollViewer>
+                                    </StackPanel>
+                                </Border>
+                                <ScrollViewer Grid.Row="2" x:Name="svApps" VerticalScrollBarVisibility="Auto" Padding="0,0,6,0">
                                     <Grid x:Name="panApps"/>
                                 </ScrollViewer>
                             </Grid>

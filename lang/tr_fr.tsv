@@ -149,7 +149,7 @@ L:btnFlushDns	Vider le cache DNS
 L:ttlTcpProfile	PROFIL TCP
 L:radTcpOptimal	Optimal (jeux)
 L:radTcpDefault	Par défaut de Windows
-L:radTcpCurrent	Actuel (ne rien toucher)
+L:radTcpCurrent	Profil actuel
 L:radTcpCustom	Personnalisé
 L:lblAutoTuning	Réglage automatique de la fenêtre TCP :
 L:lblHeuristics	Heuristique de mise à l'échelle :
@@ -532,7 +532,7 @@ L:lblPowerAdvHint	S'appliquent aussitôt au plan utilisé, sur secteur et sur ba
 L:radAppsCatalog	Catalogue
 L:radAppsInstalled	Installées
 L:lblAppSearchHint	Rechercher...
-L:btnAppsUpgrade	Mettre à jour toutes les apps
+L:btnAppsUpgrade	Mettre à jour la sélection
 L:btnAppsClear	Désélectionner
 L:btnAppsRefresh	Actualiser la liste
 L:lblProfileQueued	Choisis un profil : il rejoint les modifications à appliquer. Un second clic le retire.
@@ -619,3 +619,69 @@ M:recSelected	{0} éléments recommandés sélectionnés : appuie sur Appliquer.
 M:recSched	Valeurs recommandées prêtes dans les deux panneaux : appuie sur Appliquer et Enregistrer.
 L:ttlAdvExplorer	EXPLORATEUR DE FICHIERS
 L:lblAdvExplorerHint	Ils montrent des fichiers que Windows cache pour éviter les suppressions par erreur. Hors de «Tout sélectionner».
+L:tabHome	Accueil
+L:lblHomeLoading	Lecture du matériel...
+L:ttlAppJobs	OPÉRATIONS
+L:btnAppJobsClose	Fermer
+M:appUpdatable	Mise à jour dispo
+M:appsUpgradeSel	Mettre à jour la sélection
+M:appsSelectUpdates	Tout sélectionner
+M:appsUpdatesTitle	Mises à jour disponibles ({0})
+M:appsNoUpdates	Toutes les apps gérées par winget sont à jour.
+M:appsScanning	Recherche de mises à jour...
+M:appsAskUpgradeSel	Je mets à jour {0} apps avec winget, une par une, sans fenêtres. Je continue ?
+M:appsUpgrading	Mise à jour de
+M:jobWait	En attente
+M:jobPrep	Préparation...
+M:jobDownload	Téléchargement {0}%
+M:jobInstall	Installation...
+M:jobInstallPct	Installation {0}%
+M:jobUninstall	Désinstallation...
+M:jobOk	Terminée
+M:jobOkReboot	Terminée, redémarrage requis
+M:jobErr	Erreur (code {0})
+M:jobsProgress	{0} sur {1}
+M:appsDoneSum	Opérations terminées : {0} réussies, {1} en erreur.
+M:homeThisPc	CE PC
+M:homeDomain	Domaine
+M:homeWorkgroup	Groupe de travail
+M:homeUptime	Allumé depuis {0}
+M:homeUptimeD	{0} j {1} h {2} min
+M:homeUptimeH	{0} h {1} min
+M:homeInstalledOn	Windows installé le {0}
+M:homePcType	TYPE DE PC
+M:homeTypeAuto	Automatique : {0}
+M:homeTypeDesktop	Fixe
+M:homeTypeLaptop	Portable
+M:homeTypeHint	Sur un portable, «Tout sélectionner» et «Recommandés» ignorent les options qui vident la batterie ; sur un fixe, celles utiles seulement avec batterie. Elles restent sélectionnables à la main.
+M:homeCpu	Processeur
+M:homeRam	Mémoire
+M:homeGpu	Carte graphique
+M:homeDisks	Stockage
+M:homeVolumes	Lecteurs
+M:homeFreeFmt	{0} libres sur {1}
+M:homeBoard	Carte mère et micrologiciel
+M:homeNet	Réseau
+M:homeNoNet	Aucune connexion active.
+M:homeBattery	Batterie
+M:homeSlotsFmt	{0} sur {1} emplacements
+M:hkCores	Cœurs / threads
+M:hkClock	Fréquence max
+M:hkTotal	Total
+M:hkRamType	Type et vitesse
+M:hkSlots	Barrettes
+M:hkVram	Mémoire vidéo
+M:hkDriver	Pilote
+M:hkRes	Affichage
+M:hkType	Type
+M:hkModel	Modèle
+M:hkAdapter	Carte
+M:hkSpeed	Vitesse
+M:hkCharge	Charge
+M:hkPower	Alimentation
+M:hkHealth	Santé
+M:valOn	Activé
+M:valOff	Désactivé
+M:valNone	Absent
+M:valOnAc	Sur secteur
+M:valOnBattery	Sur batterie

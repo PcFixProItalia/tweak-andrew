@@ -66,6 +66,7 @@ $window.Add_StateChanged({
 
 # Voci del menu laterale e pagine corrispondenti.
 $script:NavPages = @(
+    @{ Nav = (E 'tabHome');    Page = (E 'pageHome');   Home = $true },
     @{ Nav = (E 'tabPerf');    Page = (E 'pagePerf') },
     @{ Nav = (E 'tabSched');   Page = (E 'pageSched') },
     @{ Nav = (E 'tabPower');   Page = (E 'pagePower');  Cat = 'power' },
@@ -95,7 +96,7 @@ function Show-Page {
             if ($null -ne $pa -and $null -ne $script:PageAccent) { $script:PageAccent.Background = $pa }
             if ($null -ne $pa -and $null -ne $script:GlowPage) { Set-PageGlow $pa.Color }
             # Sulle pagine a effetto immediato la coda di «Applica» non serve: si nasconde.
-            $live = ($entry.Cat -and $entry.Cat -ne 'power') -or $entry.Apps
+            $live = ($entry.Cat -and $entry.Cat -ne 'power') -or $entry.Apps -or $entry.Home
             foreach ($n in @('barQueue', 'pillSelected', 'chkRestorePoint')) {
                 $el = $window.FindName($n)
                 if ($el) { $el.Visibility = if ($live) { 'Collapsed' } else { 'Visible' } }
@@ -103,6 +104,7 @@ function Show-Page {
             # Le pagine a interruttore e quella delle app si costruiscono alla prima apertura.
             if ($entry.Cat -and (Get-Command Show-CatPageIfNeeded -ErrorAction SilentlyContinue)) { Show-CatPageIfNeeded $entry.Cat }
             if ($entry.Apps -and (Get-Command Show-AppsPageIfNeeded -ErrorAction SilentlyContinue)) { Show-AppsPageIfNeeded }
+            if ($entry.Home -and (Get-Command Show-HomePageIfNeeded -ErrorAction SilentlyContinue)) { Show-HomePageIfNeeded }
         } else {
             $entry.Page.Visibility = [System.Windows.Visibility]::Collapsed
         }

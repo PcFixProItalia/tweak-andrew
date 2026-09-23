@@ -21,6 +21,23 @@ o impostazioni del piano energetico tocca, lo stato predefinito di Windows e
 quello consigliato. `tools\gen_catalog.py` controlla il formato e scrive
 `src\partK_data.ps1` e `src\partApps_data.ps1` a ogni build.
 
+## Home e tipo di PC
+
+La Home riassume hardware e sistema, letti in un runspace a parte per non
+bloccare la finestra. Il tipo di PC (fisso o portatile) si rileva dal telaio e
+dalla batteria e si puo' correggere a mano: la scelta resta in
+`HKCU\Software\TweakAndrew`. Su un portatile «Seleziona tutto» e «Consigliati»
+saltano le voci che consumano batteria, su un fisso quelle utili solo con la
+batteria.
+
+## App e software
+
+Installazioni, aggiornamenti e disinstallazioni passano da winget, una alla
+volta. winget scrive l'avanzamento solo verso una console: per questo gira in
+una console virtuale (ConPTY) e il programma ne legge la percentuale di
+download. Gli aggiornamenti disponibili vengono da `winget upgrade`, le app
+gia' presenti da `winget export` e dall'elenco dei programmi installati.
+
 ## Avvio da qualsiasi PC
 
 ```powershell
@@ -37,7 +54,7 @@ amministratore. `build.ps1` aggiorna la copia a ogni build.
 powershell -NoProfile -ExecutionPolicy Bypass -File build.ps1
 ```
 
-Con `-Desktop` copia anche `Tweak_Andrew_v7.0.ps1` sul desktop. Servono
+Con `-Desktop` copia anche `Tweak_Andrew_v7.1.ps1` sul desktop. Servono
 Python 3 per i generatori e PowerShell 5.1.
 
 ## Prove
@@ -47,6 +64,9 @@ Python 3 per i generatori e PowerShell 5.1.
 powershell -NoProfile -ExecutionPolicy Bypass -File tools\unit_catalog.ps1
 # XAML, nomi dei controlli, testi e giro di tutte le pagine con screenshot
 powershell -NoProfile -ExecutionPolicy Bypass -File tools\test.ps1 -Lang it
+# Home e pagina delle app: letture in background, aggiornamenti disponibili e
+# barra di avanzamento con un «winget download» (scarica, non installa)
+powershell -NoProfile -ExecutionPolicy Bypass -File tools\test_home_apps.ps1
 ```
 
 Il giro delle pagine legge soltanto lo stato del sistema: nessun interruttore

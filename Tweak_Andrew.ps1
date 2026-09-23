@@ -235,6 +235,55 @@ $script:PlanData = @{
             </Setter>
         </Style>
 
+        <!-- Riga selezionabile delle app: casella quadrata a sinistra, tutta la
+             riga cliccabile, colore della pagina quando e' scelta. -->
+        <Style x:Key="PickRow" TargetType="CheckBox">
+            <Setter Property="Foreground" Value="#FFC4C4CC"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Margin" Value="0,2"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="CheckBox">
+                        <Border x:Name="row" Background="#FF0C0C0F" BorderBrush="#FF1A1A1F" BorderThickness="1"
+                                CornerRadius="12" Padding="11,8" SnapsToDevicePixels="True">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Border x:Name="box" Width="20" Height="20" CornerRadius="6" BorderThickness="1.6"
+                                        BorderBrush="#FF4A4A53" Background="#FF101013" VerticalAlignment="Center" Margin="0,0,12,0">
+                                    <Path x:Name="tick" Data="M3.6,8.6 L7,12 L13.4,4.8" Stroke="#FF000000" StrokeThickness="2.2"
+                                          StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeLineJoin="Round"
+                                          Visibility="Collapsed"/>
+                                </Border>
+                                <ContentPresenter Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="row" Property="Background" Value="#FF121215"/>
+                                <Setter TargetName="box" Property="BorderBrush" Value="{DynamicResource PA}"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="row" Property="Background" Value="{DynamicResource PASoft}"/>
+                                <Setter TargetName="row" Property="BorderBrush" Value="{DynamicResource PA}"/>
+                                <Setter TargetName="box" Property="Background" Value="{DynamicResource PA}"/>
+                                <Setter TargetName="box" Property="BorderBrush" Value="{DynamicResource PA}"/>
+                                <Setter TargetName="tick" Property="Visibility" Value="Visible"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" Value="0.45"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
         <Style TargetType="RadioButton">
             <Setter Property="Foreground" Value="#FFC4C4CC"/>
             <Setter Property="FontFamily" Value="Roboto, Segoe UI Variable Text, Segoe UI"/>
@@ -901,8 +950,20 @@ $script:PlanData = @{
 
                             <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Padding="0,0,4,0">
                             <StackPanel>
+                                <RadioButton x:Name="tabHome" GroupName="Nav" Style="{StaticResource NavItem}" IsChecked="True"
+                                             Content="Home" Margin="0,0,0,10"
+                                             Tag="M3.5,11 L12,4 L20.5,11 M6,9.2 L6,20 L10,20 L10,14.5 L14,14.5 L14,20 L18,20 L18,9.2">
+                                    <RadioButton.Resources>
+                                        <SolidColorBrush x:Key="PA" Color="#FF1E90FF"/>
+                                        <SolidColorBrush x:Key="PASoft" Color="#261E90FF"/>
+                                        <LinearGradientBrush x:Key="PACard" StartPoint="0,0" EndPoint="0.7,1">
+                                            <GradientStop Color="#161E90FF" Offset="0"/>
+                                            <GradientStop Color="#0CFFFFFF" Offset="0.5"/>
+                                        </LinearGradientBrush>
+                                    </RadioButton.Resources>
+                                </RadioButton>
                                 <TextBlock x:Name="navGrpSystem" Text="SISTEMA" Style="{StaticResource NavHeader}" Margin="14,0,0,4"/>
-                                <RadioButton x:Name="tabPerf" GroupName="Nav" Style="{StaticResource NavItem}" IsChecked="True"
+                                <RadioButton x:Name="tabPerf" GroupName="Nav" Style="{StaticResource NavItem}"
                                              Content="Prestazioni"
                                              Tag="M13,2 L4,13.5 L10.5,13.5 L10,22 L19,10.5 L12.5,10.5 Z">
                                     <RadioButton.Resources>
@@ -1150,7 +1211,21 @@ $script:PlanData = @{
 
                         <Grid Grid.Row="1">
 
-                            <ScrollViewer x:Name="pagePerf" VerticalScrollBarVisibility="Auto" Padding="0,0,6,0">
+                            <ScrollViewer x:Name="pageHome" VerticalScrollBarVisibility="Auto" Padding="0,0,6,0">
+                                <ScrollViewer.Resources>
+                                    <SolidColorBrush x:Key="PA" Color="#FF1E90FF"/>
+                                    <SolidColorBrush x:Key="PASoft" Color="#261E90FF"/>
+                                    <LinearGradientBrush x:Key="PACard" StartPoint="0,0" EndPoint="0.7,1">
+                                        <GradientStop Color="#161E90FF" Offset="0"/>
+                                        <GradientStop Color="#0CFFFFFF" Offset="0.5"/>
+                                    </LinearGradientBrush>
+                                </ScrollViewer.Resources>
+                                <StackPanel x:Name="panHome">
+                                    <TextBlock x:Name="lblHomeLoading" Text="Lettura dell'hardware..." Style="{StaticResource SubTitle}" Margin="10"/>
+                                </StackPanel>
+                            </ScrollViewer>
+
+                            <ScrollViewer x:Name="pagePerf" Visibility="Collapsed" VerticalScrollBarVisibility="Auto" Padding="0,0,6,0">
                                 <ScrollViewer.Resources>
                                     <SolidColorBrush x:Key="PA" Color="#FFFF7A45"/>
                                     <SolidColorBrush x:Key="PASoft" Color="#24FF7A45"/>
@@ -1477,7 +1552,7 @@ $script:PlanData = @{
                                                 <WrapPanel Margin="0,0,0,4">
                                                     <RadioButton x:Name="radTcpOptimal" Content="Ottimale" IsChecked="True" GroupName="TcpPreset"/>
                                                     <RadioButton x:Name="radTcpDefault" Content="Predefinito" GroupName="TcpPreset"/>
-                                                    <RadioButton x:Name="radTcpCurrent" Content="Corrente" GroupName="TcpPreset"/>
+                                                    <RadioButton x:Name="radTcpCurrent" Content="Profilo attuale" GroupName="TcpPreset"/>
                                                     <RadioButton x:Name="radTcpCustom" Content="Personalizzato" GroupName="TcpPreset"/>
                                                 </WrapPanel>
                                                 <Separator Style="{StaticResource SoftSep}"/>
@@ -2302,6 +2377,7 @@ $script:PlanData = @{
                                 </Grid.Resources>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
                                 <StackPanel Grid.Row="0" Margin="7,0,7,6">
@@ -2318,13 +2394,33 @@ $script:PlanData = @{
                                     </WrapPanel>
                                     <WrapPanel>
                                         <Button x:Name="btnAppsAction" Style="{StaticResource DotBtn}" Content="Installa selezionate" Margin="0,0,8,8"/>
-                                        <Button x:Name="btnAppsUpgrade" Style="{StaticResource DotBtn}" Content="Aggiorna tutte le app" Margin="0,0,8,8"/>
+                                        <Button x:Name="btnAppsUpgrade" Style="{StaticResource DotBtn}" Content="Aggiorna selezionate" Margin="0,0,8,8"/>
                                         <Button x:Name="btnAppsClear" Style="{StaticResource DotBtn}" Content="Deseleziona" Margin="0,0,8,8"/>
                                         <Button x:Name="btnAppsRefresh" Style="{StaticResource DotBtn}" Content="Aggiorna elenco" Margin="0,0,14,8"/>
                                         <TextBlock x:Name="txtAppsStatus" Style="{StaticResource SubTitle}" VerticalAlignment="Center" Margin="0,0,0,8" TextWrapping="Wrap"/>
                                     </WrapPanel>
                                 </StackPanel>
-                                <ScrollViewer Grid.Row="1" x:Name="svApps" VerticalScrollBarVisibility="Auto" Padding="0,0,6,0">
+                                <!-- Operazioni in corso: una riga per app, con barra di download e di installazione. -->
+                                <Border x:Name="bdAppJobs" Grid.Row="1" Style="{StaticResource Glass}" Padding="18,14,18,12" Visibility="Collapsed">
+                                    <StackPanel>
+                                        <Grid Margin="0,0,0,8">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock x:Name="ttlAppJobs" Text="OPERAZIONI" Style="{StaticResource CardTitle}" Margin="0" VerticalAlignment="Center"/>
+                                            <TextBlock x:Name="txtAppJobsCount" Grid.Column="1" Foreground="{DynamicResource PA}" FontFamily="Roboto, Segoe UI"
+                                                       FontSize="12" Margin="12,0,0,0" VerticalAlignment="Center"/>
+                                            <Button x:Name="btnAppJobsClose" Grid.Column="2" Style="{StaticResource DotBtn}" Content="Chiudi" Visibility="Collapsed"/>
+                                        </Grid>
+                                        <ProgressBar x:Name="prgAppJobs" Height="5" Minimum="0" Maximum="1" Value="0" Margin="0,0,0,10"/>
+                                        <ScrollViewer MaxHeight="200" VerticalScrollBarVisibility="Auto">
+                                            <StackPanel x:Name="panAppJobs"/>
+                                        </ScrollViewer>
+                                    </StackPanel>
+                                </Border>
+                                <ScrollViewer Grid.Row="2" x:Name="svApps" VerticalScrollBarVisibility="Auto" Padding="0,0,6,0">
                                     <Grid x:Name="panApps"/>
                                 </ScrollViewer>
                             </Grid>
@@ -2600,7 +2696,7 @@ $script:Loc = @{
     ttlTcpProfile      = @{ it = "PROFILO TCP"; en = "TCP PROFILE" }
     radTcpOptimal      = @{ it = "Ottimale (gioco)"; en = "Optimal (gaming)" }
     radTcpDefault      = @{ it = "Predefinito Windows"; en = "Windows default" }
-    radTcpCurrent      = @{ it = "Corrente (non modificare)"; en = "Current (leave untouched)" }
+    radTcpCurrent      = @{ it = "Profilo attuale"; en = "Current profile" }
     radTcpCustom       = @{ it = "Personalizzato"; en = "Custom" }
     ttlTcpIp           = @{ it = "TCP / IP"; en = "TCP / IP" }
     lblAutoTuning      = @{ it = "Auto-Tuning finestra TCP:"; en = "TCP window auto-tuning:" }
@@ -2799,7 +2895,7 @@ $script:Loc = @{
     radAppsCatalog     = @{ it = "Catalogo"; en = "Catalog" }
     radAppsInstalled   = @{ it = "Installate"; en = "Installed" }
     lblAppSearchHint   = @{ it = "Cerca..."; en = "Search..." }
-    btnAppsUpgrade     = @{ it = "Aggiorna tutte le app"; en = "Update all apps" }
+    btnAppsUpgrade     = @{ it = "Aggiorna selezionate"; en = "Update selected" }
     btnAppsClear       = @{ it = "Deseleziona"; en = "Clear selection" }
     btnAppsRefresh     = @{ it = "Aggiorna elenco"; en = "Refresh list" }
     lblProfileQueued   = @{ it = "Scegli un profilo: entra tra le modifiche da applicare. Un secondo clic lo toglie."; en = "Pick a profile: it joins the changes to apply. A second click removes it." }
@@ -2807,6 +2903,10 @@ $script:Loc = @{
     btnRecommended     = @{ it = "Consigliati"; en = "Recommended" }
     ttlAdvExplorer     = @{ it = "ESPLORA FILE"; en = "FILE EXPLORER" }
     lblAdvExplorerHint = @{ it = "Mostrano file che Windows tiene nascosti per non farli cancellare per sbaglio. Fuori da «Seleziona tutto»."; en = "They show files Windows hides so they don't get deleted by mistake. Left out of «Select all»." }
+    tabHome            = @{ it = "Home"; en = "Home" }
+    lblHomeLoading     = @{ it = "Lettura dell'hardware..."; en = "Reading the hardware..." }
+    ttlAppJobs         = @{ it = "OPERAZIONI"; en = "OPERATIONS" }
+    btnAppJobsClose    = @{ it = "Chiudi"; en = "Close" }
 }
 
 # Messaggi non legati a un controllo: log, finestre di dialogo, etichette dinamiche.
@@ -2952,6 +3052,68 @@ $script:Msg = @{
     recNone            = @{ it = "Qui le voci si scelgono una per una: leggi la descrizione di ognuna."; en = "Here entries are picked one by one: read each description." }
     recSelected        = @{ it = "Selezionate {0} voci consigliate: premi Applica modifiche."; en = "Selected {0} recommended entries: press Apply changes." }
     recSched           = @{ it = "Valori consigliati pronti nei due pannelli: premi Applica e Salva per scriverli."; en = "Recommended values ready in both panels: press Apply and Save to write them." }
+    appUpdatable       = @{ it = "Aggiornabile"; en = "Update available" }
+    appsUpgradeSel     = @{ it = "Aggiorna selezionate"; en = "Update selected" }
+    appsSelectUpdates  = @{ it = "Seleziona tutti"; en = "Select all" }
+    appsUpdatesTitle   = @{ it = "Aggiornamenti disponibili ({0})"; en = "Available updates ({0})" }
+    appsNoUpdates      = @{ it = "Tutte le app gestite da winget sono aggiornate."; en = "Every app managed by winget is up to date." }
+    appsScanning       = @{ it = "Controllo degli aggiornamenti in corso..."; en = "Checking for updates..." }
+    appsAskUpgradeSel  = @{ it = "Aggiorno {0} app con winget, una alla volta, senza finestre. Procedo?"; en = "I'll update {0} apps with winget, one at a time, without windows. Go ahead?" }
+    appsUpgrading      = @{ it = "Aggiornamento di"; en = "Updating" }
+    jobWait            = @{ it = "In attesa"; en = "Waiting" }
+    jobPrep            = @{ it = "Preparazione..."; en = "Preparing..." }
+    jobDownload        = @{ it = "Download {0}%"; en = "Download {0}%" }
+    jobInstall         = @{ it = "Installazione..."; en = "Installing..." }
+    jobInstallPct      = @{ it = "Installazione {0}%"; en = "Installing {0}%" }
+    jobUninstall       = @{ it = "Disinstallazione..."; en = "Uninstalling..." }
+    jobOk              = @{ it = "Completata"; en = "Done" }
+    jobOkReboot        = @{ it = "Completata, serve un riavvio"; en = "Done, restart needed" }
+    jobErr             = @{ it = "Errore (codice {0})"; en = "Error (code {0})" }
+    jobsProgress       = @{ it = "{0} di {1}"; en = "{0} of {1}" }
+    appsDoneSum        = @{ it = "Operazioni completate: {0} riuscite, {1} con errori."; en = "Operations completed: {0} succeeded, {1} with errors." }
+    homeThisPc         = @{ it = "QUESTO PC"; en = "THIS PC" }
+    homeDomain         = @{ it = "Dominio"; en = "Domain" }
+    homeWorkgroup      = @{ it = "Gruppo di lavoro"; en = "Workgroup" }
+    homeUptime         = @{ it = "Acceso da {0}"; en = "Up for {0}" }
+    homeUptimeD        = @{ it = "{0} g {1} h {2} min"; en = "{0} d {1} h {2} min" }
+    homeUptimeH        = @{ it = "{0} h {1} min"; en = "{0} h {1} min" }
+    homeInstalledOn    = @{ it = "Windows installato il {0}"; en = "Windows installed on {0}" }
+    homePcType         = @{ it = "TIPO DI PC"; en = "PC TYPE" }
+    homeTypeAuto       = @{ it = "Automatico: {0}"; en = "Automatic: {0}" }
+    homeTypeDesktop    = @{ it = "Fisso"; en = "Desktop" }
+    homeTypeLaptop     = @{ it = "Portatile"; en = "Laptop" }
+    homeTypeHint       = @{ it = "Su un portatile «Seleziona tutto» e «Consigliati» lasciano stare le voci che consumano batteria; su un fisso quelle utili solo con la batteria. Restano sempre selezionabili a mano."; en = "On a laptop «Select all» and «Recommended» skip the entries that drain the battery; on a desktop, those useful only with a battery. You can still pick them by hand." }
+    homeCpu            = @{ it = "Processore"; en = "Processor" }
+    homeRam            = @{ it = "Memoria"; en = "Memory" }
+    homeGpu            = @{ it = "Scheda video"; en = "Graphics card" }
+    homeDisks          = @{ it = "Archiviazione"; en = "Storage" }
+    homeVolumes        = @{ it = "Unità"; en = "Drives" }
+    homeFreeFmt        = @{ it = "{0} liberi su {1}"; en = "{0} free of {1}" }
+    homeBoard          = @{ it = "Scheda madre e firmware"; en = "Motherboard and firmware" }
+    homeNet            = @{ it = "Rete"; en = "Network" }
+    homeNoNet          = @{ it = "Nessuna connessione attiva."; en = "No active connection." }
+    homeBattery        = @{ it = "Batteria"; en = "Battery" }
+    homeSlotsFmt       = @{ it = "{0} su {1} slot"; en = "{0} of {1} slots" }
+    hkCores            = @{ it = "Core / thread"; en = "Cores / threads" }
+    hkClock            = @{ it = "Frequenza max"; en = "Max clock" }
+    hkTotal            = @{ it = "Totale"; en = "Total" }
+    hkRamType          = @{ it = "Tipo e velocità"; en = "Type and speed" }
+    hkSlots            = @{ it = "Moduli"; en = "Modules" }
+    hkVram             = @{ it = "Memoria video"; en = "Video memory" }
+    hkDriver           = @{ it = "Driver"; en = "Driver" }
+    hkRes              = @{ it = "Schermo"; en = "Display" }
+    hkType             = @{ it = "Tipo"; en = "Type" }
+    hkModel            = @{ it = "Modello"; en = "Model" }
+    hkAdapter          = @{ it = "Scheda"; en = "Adapter" }
+    hkSpeed            = @{ it = "Velocità"; en = "Speed" }
+    hkCharge           = @{ it = "Carica"; en = "Charge" }
+    hkPower            = @{ it = "Alimentazione"; en = "Power" }
+    hkHealth           = @{ it = "Salute"; en = "Health" }
+    valOn              = @{ it = "Attivo"; en = "On" }
+    valOff             = @{ it = "Spento"; en = "Off" }
+    valNone            = @{ it = "Assente"; en = "Not present" }
+    valOnAc            = @{ it = "Collegato alla corrente"; en = "Plugged in" }
+    valOnBattery       = @{ it = "A batteria"; en = "On battery" }
 }
 
 $script:LangCode = "it"
@@ -3679,7 +3841,7 @@ function Get-CurrentPage {
 }
 
 function Get-SelectableChecks([switch]$CurrentPageOnly) {
-    $list = @($script:SelectableCheckBoxes | Where-Object { Test-CheckVendor $_ })
+    $list = @($script:SelectableCheckBoxes | Where-Object { (Test-CheckVendor $_) -and (Test-CheckPcType $_) })
     if (-not $CurrentPageOnly) { return $list }
     $page = Get-CurrentPage
     if ($null -eq $page) { return @() }
@@ -4127,7 +4289,7 @@ $script:Tr = @{
         'L:ttlTcpProfile' = "PERFIL TCP"
         'L:radTcpOptimal' = "Óptimo (juegos)"
         'L:radTcpDefault' = "Predeterminado de Windows"
-        'L:radTcpCurrent' = "Actual (no tocar)"
+        'L:radTcpCurrent' = "Perfil actual"
         'L:radTcpCustom' = "Personalizado"
         'L:lblAutoTuning' = "Ajuste automático de la ventana TCP:"
         'L:lblHeuristics' = "Heurística de escalado:"
@@ -4507,7 +4669,7 @@ $script:Tr = @{
         'L:radAppsCatalog' = "Catálogo"
         'L:radAppsInstalled' = "Instaladas"
         'L:lblAppSearchHint' = "Buscar..."
-        'L:btnAppsUpgrade' = "Actualizar todas las apps"
+        'L:btnAppsUpgrade' = "Actualizar seleccionadas"
         'L:btnAppsClear' = "Deseleccionar"
         'L:btnAppsRefresh' = "Actualizar lista"
         'L:lblProfileQueued' = "Elige un perfil: se suma a los cambios por aplicar. Un segundo clic lo quita."
@@ -4594,6 +4756,72 @@ $script:Tr = @{
         'M:recSched' = "Valores recomendados listos en los dos paneles: pulsa Aplicar y Guardar."
         'L:ttlAdvExplorer' = "EXPLORADOR DE ARCHIVOS"
         'L:lblAdvExplorerHint' = "Muestran archivos que Windows oculta para que no se borren por error. Fuera de «Seleccionar todo»."
+        'L:tabHome' = "Inicio"
+        'L:lblHomeLoading' = "Leyendo el hardware..."
+        'L:ttlAppJobs' = "OPERACIONES"
+        'L:btnAppJobsClose' = "Cerrar"
+        'M:appUpdatable' = "Actualizable"
+        'M:appsUpgradeSel' = "Actualizar seleccionadas"
+        'M:appsSelectUpdates' = "Seleccionar todas"
+        'M:appsUpdatesTitle' = "Actualizaciones disponibles ({0})"
+        'M:appsNoUpdates' = "Todas las apps gestionadas por winget están al día."
+        'M:appsScanning' = "Buscando actualizaciones..."
+        'M:appsAskUpgradeSel' = "Actualizo {0} apps con winget, una a una, sin ventanas. ¿Sigo?"
+        'M:appsUpgrading' = "Actualizando"
+        'M:jobWait' = "En espera"
+        'M:jobPrep' = "Preparando..."
+        'M:jobDownload' = "Descarga {0}%"
+        'M:jobInstall' = "Instalando..."
+        'M:jobInstallPct' = "Instalando {0}%"
+        'M:jobUninstall' = "Desinstalando..."
+        'M:jobOk' = "Completada"
+        'M:jobOkReboot' = "Completada, requiere reinicio"
+        'M:jobErr' = "Error (código {0})"
+        'M:jobsProgress' = "{0} de {1}"
+        'M:appsDoneSum' = "Operaciones completadas: {0} correctas, {1} con errores."
+        'M:homeThisPc' = "ESTE EQUIPO"
+        'M:homeDomain' = "Dominio"
+        'M:homeWorkgroup' = "Grupo de trabajo"
+        'M:homeUptime' = "Encendido hace {0}"
+        'M:homeUptimeD' = "{0} d {1} h {2} min"
+        'M:homeUptimeH' = "{0} h {1} min"
+        'M:homeInstalledOn' = "Windows instalado el {0}"
+        'M:homePcType' = "TIPO DE PC"
+        'M:homeTypeAuto' = "Automático: {0}"
+        'M:homeTypeDesktop' = "Sobremesa"
+        'M:homeTypeLaptop' = "Portátil"
+        'M:homeTypeHint' = "En un portátil «Seleccionar todo» y «Recomendados» omiten las opciones que gastan batería; en un sobremesa, las útiles solo con batería. Siguen disponibles a mano."
+        'M:homeCpu' = "Procesador"
+        'M:homeRam' = "Memoria"
+        'M:homeGpu' = "Tarjeta gráfica"
+        'M:homeDisks' = "Almacenamiento"
+        'M:homeVolumes' = "Unidades"
+        'M:homeFreeFmt' = "{0} libres de {1}"
+        'M:homeBoard' = "Placa base y firmware"
+        'M:homeNet' = "Red"
+        'M:homeNoNet' = "Ninguna conexión activa."
+        'M:homeBattery' = "Batería"
+        'M:homeSlotsFmt' = "{0} de {1} ranuras"
+        'M:hkCores' = "Núcleos / hilos"
+        'M:hkClock' = "Frecuencia máx."
+        'M:hkTotal' = "Total"
+        'M:hkRamType' = "Tipo y velocidad"
+        'M:hkSlots' = "Módulos"
+        'M:hkVram' = "Memoria de vídeo"
+        'M:hkDriver' = "Controlador"
+        'M:hkRes' = "Pantalla"
+        'M:hkType' = "Tipo"
+        'M:hkModel' = "Modelo"
+        'M:hkAdapter' = "Adaptador"
+        'M:hkSpeed' = "Velocidad"
+        'M:hkCharge' = "Carga"
+        'M:hkPower' = "Alimentación"
+        'M:hkHealth' = "Estado"
+        'M:valOn' = "Activado"
+        'M:valOff' = "Desactivado"
+        'M:valNone' = "No presente"
+        'M:valOnAc' = "Conectado a la corriente"
+        'M:valOnBattery' = "Con batería"
     }
     de = @{
         'L:lblSubtitle' = "Windows-Optimierung und -Steuerung — PcFixPro Italia"
@@ -4747,7 +4975,7 @@ $script:Tr = @{
         'L:ttlTcpProfile' = "TCP-PROFIL"
         'L:radTcpOptimal' = "Optimal (Spiele)"
         'L:radTcpDefault' = "Windows-Standard"
-        'L:radTcpCurrent' = "Aktuell (unverändert lassen)"
+        'L:radTcpCurrent' = "Aktuelles Profil"
         'L:radTcpCustom' = "Benutzerdefiniert"
         'L:lblAutoTuning' = "Automatische TCP-Fensteroptimierung:"
         'L:lblHeuristics' = "Skalierungsheuristik:"
@@ -5127,7 +5355,7 @@ $script:Tr = @{
         'L:radAppsCatalog' = "Katalog"
         'L:radAppsInstalled' = "Installiert"
         'L:lblAppSearchHint' = "Suchen..."
-        'L:btnAppsUpgrade' = "Alle Apps aktualisieren"
+        'L:btnAppsUpgrade' = "Ausgewählte aktualisieren"
         'L:btnAppsClear' = "Auswahl aufheben"
         'L:btnAppsRefresh' = "Liste aktualisieren"
         'L:lblProfileQueued' = "Wähle ein Profil: Es kommt zu den anzuwendenden Änderungen. Ein zweiter Klick entfernt es."
@@ -5214,6 +5442,72 @@ $script:Tr = @{
         'M:recSched' = "Empfohlene Werte in beiden Feldern bereit: Übernehmen und Speichern drücken."
         'L:ttlAdvExplorer' = "DATEI-EXPLORER"
         'L:lblAdvExplorerHint' = "Sie zeigen Dateien, die Windows versteckt, damit sie nicht versehentlich gelöscht werden. Nicht in «Alle auswählen»."
+        'L:tabHome' = "Start"
+        'L:lblHomeLoading' = "Hardware wird gelesen..."
+        'L:ttlAppJobs' = "VORGÄNGE"
+        'L:btnAppJobsClose' = "Schließen"
+        'M:appUpdatable' = "Update verfügbar"
+        'M:appsUpgradeSel' = "Ausgewählte aktualisieren"
+        'M:appsSelectUpdates' = "Alle auswählen"
+        'M:appsUpdatesTitle' = "Verfügbare Updates ({0})"
+        'M:appsNoUpdates' = "Alle von winget verwalteten Apps sind aktuell."
+        'M:appsScanning' = "Suche nach Updates..."
+        'M:appsAskUpgradeSel' = "Ich aktualisiere {0} Apps mit winget, eine nach der anderen, ohne Fenster. Fortfahren?"
+        'M:appsUpgrading' = "Aktualisierung von"
+        'M:jobWait' = "Wartet"
+        'M:jobPrep' = "Vorbereitung..."
+        'M:jobDownload' = "Download {0}%"
+        'M:jobInstall' = "Installation..."
+        'M:jobInstallPct' = "Installation {0}%"
+        'M:jobUninstall' = "Deinstallation..."
+        'M:jobOk' = "Fertig"
+        'M:jobOkReboot' = "Fertig, Neustart nötig"
+        'M:jobErr' = "Fehler (Code {0})"
+        'M:jobsProgress' = "{0} von {1}"
+        'M:appsDoneSum' = "Vorgänge abgeschlossen: {0} erfolgreich, {1} mit Fehlern."
+        'M:homeThisPc' = "DIESER PC"
+        'M:homeDomain' = "Domäne"
+        'M:homeWorkgroup' = "Arbeitsgruppe"
+        'M:homeUptime' = "Läuft seit {0}"
+        'M:homeUptimeD' = "{0} T {1} Std. {2} Min."
+        'M:homeUptimeH' = "{0} Std. {1} Min."
+        'M:homeInstalledOn' = "Windows installiert am {0}"
+        'M:homePcType' = "PC-TYP"
+        'M:homeTypeAuto' = "Automatisch: {0}"
+        'M:homeTypeDesktop' = "Desktop"
+        'M:homeTypeLaptop' = "Laptop"
+        'M:homeTypeHint' = "Auf einem Laptop überspringen «Alles auswählen» und «Empfohlen» akkufressende Einträge, auf einem Desktop die nur mit Akku nützlichen. Von Hand bleiben sie wählbar."
+        'M:homeCpu' = "Prozessor"
+        'M:homeRam' = "Arbeitsspeicher"
+        'M:homeGpu' = "Grafikkarte"
+        'M:homeDisks' = "Speicher"
+        'M:homeVolumes' = "Laufwerke"
+        'M:homeFreeFmt' = "{0} frei von {1}"
+        'M:homeBoard' = "Mainboard und Firmware"
+        'M:homeNet' = "Netzwerk"
+        'M:homeNoNet' = "Keine aktive Verbindung."
+        'M:homeBattery' = "Akku"
+        'M:homeSlotsFmt' = "{0} von {1} Steckplätzen"
+        'M:hkCores' = "Kerne / Threads"
+        'M:hkClock' = "Max. Takt"
+        'M:hkTotal' = "Gesamt"
+        'M:hkRamType' = "Typ und Takt"
+        'M:hkSlots' = "Module"
+        'M:hkVram' = "Grafikspeicher"
+        'M:hkDriver' = "Treiber"
+        'M:hkRes' = "Anzeige"
+        'M:hkType' = "Typ"
+        'M:hkModel' = "Modell"
+        'M:hkAdapter' = "Adapter"
+        'M:hkSpeed' = "Geschwindigkeit"
+        'M:hkCharge' = "Ladung"
+        'M:hkPower' = "Stromversorgung"
+        'M:hkHealth' = "Zustand"
+        'M:valOn' = "An"
+        'M:valOff' = "Aus"
+        'M:valNone' = "Nicht vorhanden"
+        'M:valOnAc' = "Am Netz"
+        'M:valOnBattery' = "Akkubetrieb"
     }
     fr = @{
         'L:lblSubtitle' = "Optimisation et contrôle de Windows — PcFixPro Italia"
@@ -5367,7 +5661,7 @@ $script:Tr = @{
         'L:ttlTcpProfile' = "PROFIL TCP"
         'L:radTcpOptimal' = "Optimal (jeux)"
         'L:radTcpDefault' = "Par défaut de Windows"
-        'L:radTcpCurrent' = "Actuel (ne rien toucher)"
+        'L:radTcpCurrent' = "Profil actuel"
         'L:radTcpCustom' = "Personnalisé"
         'L:lblAutoTuning' = "Réglage automatique de la fenêtre TCP :"
         'L:lblHeuristics' = "Heuristique de mise à l'échelle :"
@@ -5750,7 +6044,7 @@ $script:Tr = @{
         'L:radAppsCatalog' = "Catalogue"
         'L:radAppsInstalled' = "Installées"
         'L:lblAppSearchHint' = "Rechercher..."
-        'L:btnAppsUpgrade' = "Mettre à jour toutes les apps"
+        'L:btnAppsUpgrade' = "Mettre à jour la sélection"
         'L:btnAppsClear' = "Désélectionner"
         'L:btnAppsRefresh' = "Actualiser la liste"
         'L:lblProfileQueued' = "Choisis un profil : il rejoint les modifications à appliquer. Un second clic le retire."
@@ -5837,6 +6131,72 @@ $script:Tr = @{
         'M:recSched' = "Valeurs recommandées prêtes dans les deux panneaux : appuie sur Appliquer et Enregistrer."
         'L:ttlAdvExplorer' = "EXPLORATEUR DE FICHIERS"
         'L:lblAdvExplorerHint' = "Ils montrent des fichiers que Windows cache pour éviter les suppressions par erreur. Hors de «Tout sélectionner»."
+        'L:tabHome' = "Accueil"
+        'L:lblHomeLoading' = "Lecture du matériel..."
+        'L:ttlAppJobs' = "OPÉRATIONS"
+        'L:btnAppJobsClose' = "Fermer"
+        'M:appUpdatable' = "Mise à jour dispo"
+        'M:appsUpgradeSel' = "Mettre à jour la sélection"
+        'M:appsSelectUpdates' = "Tout sélectionner"
+        'M:appsUpdatesTitle' = "Mises à jour disponibles ({0})"
+        'M:appsNoUpdates' = "Toutes les apps gérées par winget sont à jour."
+        'M:appsScanning' = "Recherche de mises à jour..."
+        'M:appsAskUpgradeSel' = "Je mets à jour {0} apps avec winget, une par une, sans fenêtres. Je continue ?"
+        'M:appsUpgrading' = "Mise à jour de"
+        'M:jobWait' = "En attente"
+        'M:jobPrep' = "Préparation..."
+        'M:jobDownload' = "Téléchargement {0}%"
+        'M:jobInstall' = "Installation..."
+        'M:jobInstallPct' = "Installation {0}%"
+        'M:jobUninstall' = "Désinstallation..."
+        'M:jobOk' = "Terminée"
+        'M:jobOkReboot' = "Terminée, redémarrage requis"
+        'M:jobErr' = "Erreur (code {0})"
+        'M:jobsProgress' = "{0} sur {1}"
+        'M:appsDoneSum' = "Opérations terminées : {0} réussies, {1} en erreur."
+        'M:homeThisPc' = "CE PC"
+        'M:homeDomain' = "Domaine"
+        'M:homeWorkgroup' = "Groupe de travail"
+        'M:homeUptime' = "Allumé depuis {0}"
+        'M:homeUptimeD' = "{0} j {1} h {2} min"
+        'M:homeUptimeH' = "{0} h {1} min"
+        'M:homeInstalledOn' = "Windows installé le {0}"
+        'M:homePcType' = "TYPE DE PC"
+        'M:homeTypeAuto' = "Automatique : {0}"
+        'M:homeTypeDesktop' = "Fixe"
+        'M:homeTypeLaptop' = "Portable"
+        'M:homeTypeHint' = "Sur un portable, «Tout sélectionner» et «Recommandés» ignorent les options qui vident la batterie ; sur un fixe, celles utiles seulement avec batterie. Elles restent sélectionnables à la main."
+        'M:homeCpu' = "Processeur"
+        'M:homeRam' = "Mémoire"
+        'M:homeGpu' = "Carte graphique"
+        'M:homeDisks' = "Stockage"
+        'M:homeVolumes' = "Lecteurs"
+        'M:homeFreeFmt' = "{0} libres sur {1}"
+        'M:homeBoard' = "Carte mère et micrologiciel"
+        'M:homeNet' = "Réseau"
+        'M:homeNoNet' = "Aucune connexion active."
+        'M:homeBattery' = "Batterie"
+        'M:homeSlotsFmt' = "{0} sur {1} emplacements"
+        'M:hkCores' = "Cœurs / threads"
+        'M:hkClock' = "Fréquence max"
+        'M:hkTotal' = "Total"
+        'M:hkRamType' = "Type et vitesse"
+        'M:hkSlots' = "Barrettes"
+        'M:hkVram' = "Mémoire vidéo"
+        'M:hkDriver' = "Pilote"
+        'M:hkRes' = "Affichage"
+        'M:hkType' = "Type"
+        'M:hkModel' = "Modèle"
+        'M:hkAdapter' = "Carte"
+        'M:hkSpeed' = "Vitesse"
+        'M:hkCharge' = "Charge"
+        'M:hkPower' = "Alimentation"
+        'M:hkHealth' = "Santé"
+        'M:valOn' = "Activé"
+        'M:valOff' = "Désactivé"
+        'M:valNone' = "Absent"
+        'M:valOnAc' = "Sur secteur"
+        'M:valOnBattery' = "Sur batterie"
     }
     pl = @{
         'L:lblSubtitle' = "Optymalizacja i kontrola systemu Windows — PcFixPro Italia"
@@ -5990,7 +6350,7 @@ $script:Tr = @{
         'L:ttlTcpProfile' = "PROFIL TCP"
         'L:radTcpOptimal' = "Optymalny (gry)"
         'L:radTcpDefault' = "Domyślny Windows"
-        'L:radTcpCurrent' = "Bieżący (bez zmian)"
+        'L:radTcpCurrent' = "Bieżący profil"
         'L:radTcpCustom' = "Własny"
         'L:lblAutoTuning' = "Automatyczne dostrajanie okna TCP:"
         'L:lblHeuristics' = "Heurystyka skalowania:"
@@ -6370,7 +6730,7 @@ $script:Tr = @{
         'L:radAppsCatalog' = "Katalog"
         'L:radAppsInstalled' = "Zainstalowane"
         'L:lblAppSearchHint' = "Szukaj..."
-        'L:btnAppsUpgrade' = "Zaktualizuj wszystkie aplikacje"
+        'L:btnAppsUpgrade' = "Zaktualizuj zaznaczone"
         'L:btnAppsClear' = "Odznacz"
         'L:btnAppsRefresh' = "Odśwież listę"
         'L:lblProfileQueued' = "Wybierz profil: dołączy do zmian do zastosowania. Drugie kliknięcie go usuwa."
@@ -6457,6 +6817,72 @@ $script:Tr = @{
         'M:recSched' = "Zalecane wartości gotowe w obu panelach: naciśnij Zastosuj i Zapisz."
         'L:ttlAdvExplorer' = "EKSPLORATOR PLIKÓW"
         'L:lblAdvExplorerHint' = "Pokazują pliki, które Windows ukrywa, by nie usunąć ich przez pomyłkę. Poza «Zaznacz wszystko»."
+        'L:tabHome' = "Start"
+        'L:lblHomeLoading' = "Odczyt sprzętu..."
+        'L:ttlAppJobs' = "OPERACJE"
+        'L:btnAppJobsClose' = "Zamknij"
+        'M:appUpdatable' = "Aktualizacja"
+        'M:appsUpgradeSel' = "Zaktualizuj zaznaczone"
+        'M:appsSelectUpdates' = "Zaznacz wszystkie"
+        'M:appsUpdatesTitle' = "Dostępne aktualizacje ({0})"
+        'M:appsNoUpdates' = "Wszystkie aplikacje zarządzane przez winget są aktualne."
+        'M:appsScanning' = "Sprawdzanie aktualizacji..."
+        'M:appsAskUpgradeSel' = "Zaktualizuję {0} aplikacji przez winget, po kolei, bez okien. Kontynuować?"
+        'M:appsUpgrading' = "Aktualizowanie"
+        'M:jobWait' = "Oczekuje"
+        'M:jobPrep' = "Przygotowanie..."
+        'M:jobDownload' = "Pobieranie {0}%"
+        'M:jobInstall' = "Instalowanie..."
+        'M:jobInstallPct' = "Instalowanie {0}%"
+        'M:jobUninstall' = "Odinstalowywanie..."
+        'M:jobOk' = "Gotowe"
+        'M:jobOkReboot' = "Gotowe, wymagany restart"
+        'M:jobErr' = "Błąd (kod {0})"
+        'M:jobsProgress' = "{0} z {1}"
+        'M:appsDoneSum' = "Operacje zakończone: {0} udane, {1} z błędami."
+        'M:homeThisPc' = "TEN KOMPUTER"
+        'M:homeDomain' = "Domena"
+        'M:homeWorkgroup' = "Grupa robocza"
+        'M:homeUptime' = "Włączony od {0}"
+        'M:homeUptimeD' = "{0} d {1} h {2} min"
+        'M:homeUptimeH' = "{0} h {1} min"
+        'M:homeInstalledOn' = "Windows zainstalowany {0}"
+        'M:homePcType' = "TYP KOMPUTERA"
+        'M:homeTypeAuto' = "Automatycznie: {0}"
+        'M:homeTypeDesktop' = "Stacjonarny"
+        'M:homeTypeLaptop' = "Laptop"
+        'M:homeTypeHint' = "Na laptopie «Zaznacz wszystko» i «Zalecane» pomijają opcje zużywające baterię; na stacjonarnym te przydatne tylko z baterią. Nadal można je wybrać ręcznie."
+        'M:homeCpu' = "Procesor"
+        'M:homeRam' = "Pamięć"
+        'M:homeGpu' = "Karta graficzna"
+        'M:homeDisks' = "Pamięć masowa"
+        'M:homeVolumes' = "Dyski"
+        'M:homeFreeFmt' = "{0} wolne z {1}"
+        'M:homeBoard' = "Płyta główna i firmware"
+        'M:homeNet' = "Sieć"
+        'M:homeNoNet' = "Brak aktywnego połączenia."
+        'M:homeBattery' = "Bateria"
+        'M:homeSlotsFmt' = "{0} z {1} gniazd"
+        'M:hkCores' = "Rdzenie / wątki"
+        'M:hkClock' = "Maks. taktowanie"
+        'M:hkTotal' = "Łącznie"
+        'M:hkRamType' = "Typ i szybkość"
+        'M:hkSlots' = "Moduły"
+        'M:hkVram' = "Pamięć wideo"
+        'M:hkDriver' = "Sterownik"
+        'M:hkRes' = "Ekran"
+        'M:hkType' = "Typ"
+        'M:hkModel' = "Model"
+        'M:hkAdapter' = "Karta"
+        'M:hkSpeed' = "Szybkość"
+        'M:hkCharge' = "Naładowanie"
+        'M:hkPower' = "Zasilanie"
+        'M:hkHealth' = "Kondycja"
+        'M:valOn' = "Włączony"
+        'M:valOff' = "Wyłączony"
+        'M:valNone' = "Brak"
+        'M:valOnAc' = "Podłączony do zasilania"
+        'M:valOnBattery' = "Na baterii"
     }
     pt = @{
         'L:lblSubtitle' = "Otimização e controle do Windows — PcFixPro Italia"
@@ -6610,7 +7036,7 @@ $script:Tr = @{
         'L:ttlTcpProfile' = "PERFIL TCP"
         'L:radTcpOptimal' = "Ideal (jogos)"
         'L:radTcpDefault' = "Padrão do Windows"
-        'L:radTcpCurrent' = "Atual (não mexer)"
+        'L:radTcpCurrent' = "Perfil atual"
         'L:radTcpCustom' = "Personalizado"
         'L:lblAutoTuning' = "Ajuste automático da janela TCP:"
         'L:lblHeuristics' = "Heurística de escala:"
@@ -6990,7 +7416,7 @@ $script:Tr = @{
         'L:radAppsCatalog' = "Catálogo"
         'L:radAppsInstalled' = "Instalados"
         'L:lblAppSearchHint' = "Pesquisar..."
-        'L:btnAppsUpgrade' = "Atualizar todos os apps"
+        'L:btnAppsUpgrade' = "Atualizar selecionados"
         'L:btnAppsClear' = "Desmarcar"
         'L:btnAppsRefresh' = "Atualizar lista"
         'L:lblProfileQueued' = "Escolha um perfil: ele entra nas alterações a aplicar. Um segundo clique o remove."
@@ -7077,6 +7503,72 @@ $script:Tr = @{
         'M:recSched' = "Valores recomendados prontos nos dois painéis: pressione Aplicar e Salvar."
         'L:ttlAdvExplorer' = "EXPLORADOR DE ARQUIVOS"
         'L:lblAdvExplorerHint' = "Mostram arquivos que o Windows oculta para não serem apagados por engano. Fora de «Selecionar tudo»."
+        'L:tabHome' = "Início"
+        'L:lblHomeLoading' = "Lendo o hardware..."
+        'L:ttlAppJobs' = "OPERAÇÕES"
+        'L:btnAppJobsClose' = "Fechar"
+        'M:appUpdatable' = "Atualizável"
+        'M:appsUpgradeSel' = "Atualizar selecionados"
+        'M:appsSelectUpdates' = "Selecionar todos"
+        'M:appsUpdatesTitle' = "Atualizações disponíveis ({0})"
+        'M:appsNoUpdates' = "Todos os apps gerenciados pelo winget estão atualizados."
+        'M:appsScanning' = "Procurando atualizações..."
+        'M:appsAskUpgradeSel' = "Vou atualizar {0} apps com o winget, um de cada vez, sem janelas. Continuo?"
+        'M:appsUpgrading' = "Atualizando"
+        'M:jobWait' = "Aguardando"
+        'M:jobPrep' = "Preparando..."
+        'M:jobDownload' = "Download {0}%"
+        'M:jobInstall' = "Instalando..."
+        'M:jobInstallPct' = "Instalando {0}%"
+        'M:jobUninstall' = "Desinstalando..."
+        'M:jobOk' = "Concluído"
+        'M:jobOkReboot' = "Concluído, reinício necessário"
+        'M:jobErr' = "Erro (código {0})"
+        'M:jobsProgress' = "{0} de {1}"
+        'M:appsDoneSum' = "Operações concluídas: {0} com sucesso, {1} com erros."
+        'M:homeThisPc' = "ESTE PC"
+        'M:homeDomain' = "Domínio"
+        'M:homeWorkgroup' = "Grupo de trabalho"
+        'M:homeUptime' = "Ligado há {0}"
+        'M:homeUptimeD' = "{0} d {1} h {2} min"
+        'M:homeUptimeH' = "{0} h {1} min"
+        'M:homeInstalledOn' = "Windows instalado em {0}"
+        'M:homePcType' = "TIPO DE PC"
+        'M:homeTypeAuto' = "Automático: {0}"
+        'M:homeTypeDesktop' = "Desktop"
+        'M:homeTypeLaptop' = "Notebook"
+        'M:homeTypeHint' = "No notebook, «Selecionar tudo» e «Recomendados» ignoram as opções que gastam bateria; no desktop, as úteis só com bateria. Continuam selecionáveis manualmente."
+        'M:homeCpu' = "Processador"
+        'M:homeRam' = "Memória"
+        'M:homeGpu' = "Placa de vídeo"
+        'M:homeDisks' = "Armazenamento"
+        'M:homeVolumes' = "Unidades"
+        'M:homeFreeFmt' = "{0} livres de {1}"
+        'M:homeBoard' = "Placa-mãe e firmware"
+        'M:homeNet' = "Rede"
+        'M:homeNoNet' = "Nenhuma conexão ativa."
+        'M:homeBattery' = "Bateria"
+        'M:homeSlotsFmt' = "{0} de {1} slots"
+        'M:hkCores' = "Núcleos / threads"
+        'M:hkClock' = "Frequência máx."
+        'M:hkTotal' = "Total"
+        'M:hkRamType' = "Tipo e velocidade"
+        'M:hkSlots' = "Módulos"
+        'M:hkVram' = "Memória de vídeo"
+        'M:hkDriver' = "Driver"
+        'M:hkRes' = "Tela"
+        'M:hkType' = "Tipo"
+        'M:hkModel' = "Modelo"
+        'M:hkAdapter' = "Adaptador"
+        'M:hkSpeed' = "Velocidade"
+        'M:hkCharge' = "Carga"
+        'M:hkPower' = "Alimentação"
+        'M:hkHealth' = "Saúde"
+        'M:valOn' = "Ativado"
+        'M:valOff' = "Desativado"
+        'M:valNone' = "Ausente"
+        'M:valOnAc' = "Na tomada"
+        'M:valOnBattery' = "Na bateria"
     }
     ro = @{
         'L:lblSubtitle' = "Optimizarea și controlul Windows — PcFixPro Italia"
@@ -7230,7 +7722,7 @@ $script:Tr = @{
         'L:ttlTcpProfile' = "PROFIL TCP"
         'L:radTcpOptimal' = "Optim (jocuri)"
         'L:radTcpDefault' = "Implicit Windows"
-        'L:radTcpCurrent' = "Actual (neatins)"
+        'L:radTcpCurrent' = "Profil actual"
         'L:radTcpCustom' = "Personalizat"
         'L:lblAutoTuning' = "Reglarea automată a ferestrei TCP:"
         'L:lblHeuristics' = "Euristică de scalare:"
@@ -7610,7 +8102,7 @@ $script:Tr = @{
         'L:radAppsCatalog' = "Catalog"
         'L:radAppsInstalled' = "Instalate"
         'L:lblAppSearchHint' = "Caută..."
-        'L:btnAppsUpgrade' = "Actualizează toate aplicațiile"
+        'L:btnAppsUpgrade' = "Actualizează selectate"
         'L:btnAppsClear' = "Deselectează"
         'L:btnAppsRefresh' = "Reîmprospătează lista"
         'L:lblProfileQueued' = "Alege un profil: intră printre modificările de aplicat. Un al doilea clic îl scoate."
@@ -7697,6 +8189,72 @@ $script:Tr = @{
         'M:recSched' = "Valorile recomandate sunt pregătite în ambele panouri: apasă Aplică și Salvează."
         'L:ttlAdvExplorer' = "EXPLORER FIȘIERE"
         'L:lblAdvExplorerHint' = "Arată fișiere pe care Windows le ascunde ca să nu fie șterse din greșeală. În afara opțiunii «Selectează tot»."
+        'L:tabHome' = "Acasă"
+        'L:lblHomeLoading' = "Se citește hardware-ul..."
+        'L:ttlAppJobs' = "OPERAȚIUNI"
+        'L:btnAppJobsClose' = "Închide"
+        'M:appUpdatable' = "Actualizabilă"
+        'M:appsUpgradeSel' = "Actualizează selectate"
+        'M:appsSelectUpdates' = "Selectează tot"
+        'M:appsUpdatesTitle' = "Actualizări disponibile ({0})"
+        'M:appsNoUpdates' = "Toate aplicațiile gestionate de winget sunt la zi."
+        'M:appsScanning' = "Se caută actualizări..."
+        'M:appsAskUpgradeSel' = "Actualizez {0} aplicații cu winget, pe rând, fără ferestre. Continui?"
+        'M:appsUpgrading' = "Actualizare"
+        'M:jobWait' = "În așteptare"
+        'M:jobPrep' = "Pregătire..."
+        'M:jobDownload' = "Descărcare {0}%"
+        'M:jobInstall' = "Instalare..."
+        'M:jobInstallPct' = "Instalare {0}%"
+        'M:jobUninstall' = "Dezinstalare..."
+        'M:jobOk' = "Finalizat"
+        'M:jobOkReboot' = "Finalizat, necesită repornire"
+        'M:jobErr' = "Eroare (cod {0})"
+        'M:jobsProgress' = "{0} din {1}"
+        'M:appsDoneSum' = "Operațiuni finalizate: {0} reușite, {1} cu erori."
+        'M:homeThisPc' = "ACEST PC"
+        'M:homeDomain' = "Domeniu"
+        'M:homeWorkgroup' = "Grup de lucru"
+        'M:homeUptime' = "Pornit de {0}"
+        'M:homeUptimeD' = "{0} z {1} h {2} min"
+        'M:homeUptimeH' = "{0} h {1} min"
+        'M:homeInstalledOn' = "Windows instalat pe {0}"
+        'M:homePcType' = "TIP PC"
+        'M:homeTypeAuto' = "Automat: {0}"
+        'M:homeTypeDesktop' = "Desktop"
+        'M:homeTypeLaptop' = "Laptop"
+        'M:homeTypeHint' = "Pe laptop «Selectează tot» și «Recomandate» sar peste opțiunile care consumă bateria; pe desktop, peste cele utile doar cu baterie. Rămân selectabile manual."
+        'M:homeCpu' = "Procesor"
+        'M:homeRam' = "Memorie"
+        'M:homeGpu' = "Placă video"
+        'M:homeDisks' = "Stocare"
+        'M:homeVolumes' = "Unități"
+        'M:homeFreeFmt' = "{0} libere din {1}"
+        'M:homeBoard' = "Placă de bază și firmware"
+        'M:homeNet' = "Rețea"
+        'M:homeNoNet' = "Nicio conexiune activă."
+        'M:homeBattery' = "Baterie"
+        'M:homeSlotsFmt' = "{0} din {1} sloturi"
+        'M:hkCores' = "Nuclee / fire"
+        'M:hkClock' = "Frecvență max"
+        'M:hkTotal' = "Total"
+        'M:hkRamType' = "Tip și viteză"
+        'M:hkSlots' = "Module"
+        'M:hkVram' = "Memorie video"
+        'M:hkDriver' = "Driver"
+        'M:hkRes' = "Ecran"
+        'M:hkType' = "Tip"
+        'M:hkModel' = "Model"
+        'M:hkAdapter' = "Adaptor"
+        'M:hkSpeed' = "Viteză"
+        'M:hkCharge' = "Încărcare"
+        'M:hkPower' = "Alimentare"
+        'M:hkHealth' = "Sănătate"
+        'M:valOn' = "Activ"
+        'M:valOff' = "Dezactivat"
+        'M:valNone' = "Absent"
+        'M:valOnAc' = "Conectat la priză"
+        'M:valOnBattery' = "Pe baterie"
     }
     ru = @{
         'L:lblSubtitle' = "Оптимизация и управление Windows — PcFixPro Italia"
@@ -7850,7 +8408,7 @@ $script:Tr = @{
         'L:ttlTcpProfile' = "ПРОФИЛЬ TCP"
         'L:radTcpOptimal' = "Оптимальный (игры)"
         'L:radTcpDefault' = "По умолчанию Windows"
-        'L:radTcpCurrent' = "Текущий (не трогать)"
+        'L:radTcpCurrent' = "Текущий профиль"
         'L:radTcpCustom' = "Свой"
         'L:lblAutoTuning' = "Автонастройка окна TCP:"
         'L:lblHeuristics' = "Эвристика масштабирования:"
@@ -8230,7 +8788,7 @@ $script:Tr = @{
         'L:radAppsCatalog' = "Каталог"
         'L:radAppsInstalled' = "Установленные"
         'L:lblAppSearchHint' = "Поиск..."
-        'L:btnAppsUpgrade' = "Обновить все приложения"
+        'L:btnAppsUpgrade' = "Обновить выбранные"
         'L:btnAppsClear' = "Снять выбор"
         'L:btnAppsRefresh' = "Обновить список"
         'L:lblProfileQueued' = "Выберите профиль: он добавится к изменениям. Повторный щелчок убирает его."
@@ -8317,6 +8875,72 @@ $script:Tr = @{
         'M:recSched' = "Рекомендуемые значения готовы в обеих панелях: нажмите «Применить» и «Сохранить»."
         'L:ttlAdvExplorer' = "ПРОВОДНИК"
         'L:lblAdvExplorerHint' = "Показывают файлы, которые Windows скрывает, чтобы их не удалили по ошибке. Вне «Выбрать все»."
+        'L:tabHome' = "Главная"
+        'L:lblHomeLoading' = "Чтение оборудования..."
+        'L:ttlAppJobs' = "ОПЕРАЦИИ"
+        'L:btnAppJobsClose' = "Закрыть"
+        'M:appUpdatable' = "Есть обновление"
+        'M:appsUpgradeSel' = "Обновить выбранные"
+        'M:appsSelectUpdates' = "Выбрать все"
+        'M:appsUpdatesTitle' = "Доступные обновления ({0})"
+        'M:appsNoUpdates' = "Все приложения, которыми управляет winget, обновлены."
+        'M:appsScanning' = "Поиск обновлений..."
+        'M:appsAskUpgradeSel' = "Обновлю {0} приложений через winget по одному, без окон. Продолжить?"
+        'M:appsUpgrading' = "Обновление"
+        'M:jobWait' = "Ожидание"
+        'M:jobPrep' = "Подготовка..."
+        'M:jobDownload' = "Загрузка {0}%"
+        'M:jobInstall' = "Установка..."
+        'M:jobInstallPct' = "Установка {0}%"
+        'M:jobUninstall' = "Удаление..."
+        'M:jobOk' = "Готово"
+        'M:jobOkReboot' = "Готово, нужна перезагрузка"
+        'M:jobErr' = "Ошибка (код {0})"
+        'M:jobsProgress' = "{0} из {1}"
+        'M:appsDoneSum' = "Операции завершены: успешно {0}, с ошибками {1}."
+        'M:homeThisPc' = "ЭТОТ КОМПЬЮТЕР"
+        'M:homeDomain' = "Домен"
+        'M:homeWorkgroup' = "Рабочая группа"
+        'M:homeUptime' = "Работает {0}"
+        'M:homeUptimeD' = "{0} д {1} ч {2} мин"
+        'M:homeUptimeH' = "{0} ч {1} мин"
+        'M:homeInstalledOn' = "Windows установлен {0}"
+        'M:homePcType' = "ТИП КОМПЬЮТЕРА"
+        'M:homeTypeAuto' = "Автоматически: {0}"
+        'M:homeTypeDesktop' = "Настольный"
+        'M:homeTypeLaptop' = "Ноутбук"
+        'M:homeTypeHint' = "На ноутбуке «Выбрать всё» и «Рекомендуемые» пропускают пункты, расходующие батарею; на настольном — полезные только с батареей. Вручную их можно выбрать."
+        'M:homeCpu' = "Процессор"
+        'M:homeRam' = "Память"
+        'M:homeGpu' = "Видеокарта"
+        'M:homeDisks' = "Накопители"
+        'M:homeVolumes' = "Разделы"
+        'M:homeFreeFmt' = "свободно {0} из {1}"
+        'M:homeBoard' = "Материнская плата и прошивка"
+        'M:homeNet' = "Сеть"
+        'M:homeNoNet' = "Нет активных подключений."
+        'M:homeBattery' = "Батарея"
+        'M:homeSlotsFmt' = "{0} из {1} слотов"
+        'M:hkCores' = "Ядра / потоки"
+        'M:hkClock' = "Макс. частота"
+        'M:hkTotal' = "Всего"
+        'M:hkRamType' = "Тип и частота"
+        'M:hkSlots' = "Модули"
+        'M:hkVram' = "Видеопамять"
+        'M:hkDriver' = "Драйвер"
+        'M:hkRes' = "Экран"
+        'M:hkType' = "Тип"
+        'M:hkModel' = "Модель"
+        'M:hkAdapter' = "Адаптер"
+        'M:hkSpeed' = "Скорость"
+        'M:hkCharge' = "Заряд"
+        'M:hkPower' = "Питание"
+        'M:hkHealth' = "Износ (остаток)"
+        'M:valOn' = "Включено"
+        'M:valOff' = "Выключено"
+        'M:valNone' = "Отсутствует"
+        'M:valOnAc' = "От сети"
+        'M:valOnBattery' = "От батареи"
     }
 }
 
@@ -11654,6 +12278,7 @@ $window.Add_StateChanged({
 
 # Voci del menu laterale e pagine corrispondenti.
 $script:NavPages = @(
+    @{ Nav = (E 'tabHome');    Page = (E 'pageHome');   Home = $true },
     @{ Nav = (E 'tabPerf');    Page = (E 'pagePerf') },
     @{ Nav = (E 'tabSched');   Page = (E 'pageSched') },
     @{ Nav = (E 'tabPower');   Page = (E 'pagePower');  Cat = 'power' },
@@ -11683,7 +12308,7 @@ function Show-Page {
             if ($null -ne $pa -and $null -ne $script:PageAccent) { $script:PageAccent.Background = $pa }
             if ($null -ne $pa -and $null -ne $script:GlowPage) { Set-PageGlow $pa.Color }
             # Sulle pagine a effetto immediato la coda di «Applica» non serve: si nasconde.
-            $live = ($entry.Cat -and $entry.Cat -ne 'power') -or $entry.Apps
+            $live = ($entry.Cat -and $entry.Cat -ne 'power') -or $entry.Apps -or $entry.Home
             foreach ($n in @('barQueue', 'pillSelected', 'chkRestorePoint')) {
                 $el = $window.FindName($n)
                 if ($el) { $el.Visibility = if ($live) { 'Collapsed' } else { 'Visible' } }
@@ -11691,6 +12316,7 @@ function Show-Page {
             # Le pagine a interruttore e quella delle app si costruiscono alla prima apertura.
             if ($entry.Cat -and (Get-Command Show-CatPageIfNeeded -ErrorAction SilentlyContinue)) { Show-CatPageIfNeeded $entry.Cat }
             if ($entry.Apps -and (Get-Command Show-AppsPageIfNeeded -ErrorAction SilentlyContinue)) { Show-AppsPageIfNeeded }
+            if ($entry.Home -and (Get-Command Show-HomePageIfNeeded -ErrorAction SilentlyContinue)) { Show-HomePageIfNeeded }
         } else {
             $entry.Page.Visibility = [System.Windows.Visibility]::Collapsed
         }
@@ -13492,40 +14118,156 @@ $cmbAppCategory = E 'cmbAppCategory'; $cmbAppLicense = E 'cmbAppLicense'
 $btnAppsAction = E 'btnAppsAction'; $btnAppsUpgrade = E 'btnAppsUpgrade'
 $btnAppsClear = E 'btnAppsClear'; $btnAppsRefresh = E 'btnAppsRefresh'
 $txtAppsStatus = E 'txtAppsStatus'; $panApps = E 'panApps'
+$bdAppJobs = E 'bdAppJobs'; $panAppJobs = E 'panAppJobs'; $prgAppJobs = E 'prgAppJobs'
+$txtAppJobsCount = E 'txtAppJobsCount'; $btnAppJobsClose = E 'btnAppJobsClose'
 
 $script:AppSel = New-Object 'System.Collections.Generic.HashSet[string]'
 $script:AppInstalledIds = New-Object 'System.Collections.Generic.HashSet[string]' ([System.StringComparer]::OrdinalIgnoreCase)
 $script:AppInstalledList = @()
+$script:AppUpdates = @{}
 $script:AppJobs = New-Object System.Collections.Queue
-$script:AppProc = $null
+$script:AppJobList = New-Object System.Collections.ArrayList
 $script:AppJob = $null
 $script:AppExport = $null
+$script:AppScan = $null
+$script:AppScanDone = $false
 $script:AppsReady = $false
 $script:Winget = $null
 try { $script:Winget = (Get-Command winget.exe -ErrorAction Stop).Source } catch {}
+
+# winget scrive l'avanzamento del download solo se crede di parlare con una
+# console: con l'uscita rediretta tace fino alla fine. Una console virtuale
+# (ConPTY, da Windows 10 1809) gli fa credere di averne una e ci lascia
+# leggere tutto quello che scrive.
+Add-Type -ErrorAction SilentlyContinue -TypeDefinition @'
+using System;
+using System.IO;
+using System.Text;
+using System.Threading;
+using System.Runtime.InteropServices;
+using Microsoft.Win32.SafeHandles;
+
+namespace TweakAndrew {
+public class PtyProcess {
+    [StructLayout(LayoutKind.Sequential)] struct COORD { public short X; public short Y; }
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
+    struct STARTUPINFO {
+        public int cb; public string lpReserved; public string lpDesktop; public string lpTitle;
+        public int dwX; public int dwY; public int dwXSize; public int dwYSize; public int dwXCountChars; public int dwYCountChars;
+        public int dwFillAttribute; public int dwFlags; public short wShowWindow; public short cbReserved2;
+        public IntPtr lpReserved2; public IntPtr hStdInput; public IntPtr hStdOutput; public IntPtr hStdError;
+    }
+    [StructLayout(LayoutKind.Sequential)] struct STARTUPINFOEX { public STARTUPINFO StartupInfo; public IntPtr lpAttributeList; }
+    [StructLayout(LayoutKind.Sequential)] struct PROCESS_INFORMATION { public IntPtr hProcess; public IntPtr hThread; public int dwProcessId; public int dwThreadId; }
+
+    [DllImport("kernel32.dll", SetLastError = true)] static extern bool CreatePipe(out SafeFileHandle r, out SafeFileHandle w, IntPtr sa, int size);
+    [DllImport("kernel32.dll", SetLastError = true)] static extern int CreatePseudoConsole(COORD size, SafeFileHandle hIn, SafeFileHandle hOut, uint flags, out IntPtr hPC);
+    [DllImport("kernel32.dll", SetLastError = true)] static extern void ClosePseudoConsole(IntPtr hPC);
+    [DllImport("kernel32.dll", SetLastError = true)] static extern bool InitializeProcThreadAttributeList(IntPtr list, int count, int flags, ref IntPtr size);
+    [DllImport("kernel32.dll", SetLastError = true)] static extern bool UpdateProcThreadAttribute(IntPtr list, uint flags, IntPtr attr, IntPtr value, IntPtr size, IntPtr prev, IntPtr retSize);
+    [DllImport("kernel32.dll", SetLastError = true)] static extern void DeleteProcThreadAttributeList(IntPtr list);
+    [DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
+    static extern bool CreateProcessW(string app, StringBuilder cmd, IntPtr pa, IntPtr ta, bool inherit, uint flags, IntPtr env, string dir, ref STARTUPINFOEX si, out PROCESS_INFORMATION pi);
+    [DllImport("kernel32.dll", SetLastError = true)] static extern uint WaitForSingleObject(IntPtr h, uint ms);
+    [DllImport("kernel32.dll", SetLastError = true)] static extern bool GetExitCodeProcess(IntPtr h, out int code);
+    [DllImport("kernel32.dll", SetLastError = true)] static extern bool CloseHandle(IntPtr h);
+
+    readonly StringBuilder buf = new StringBuilder();
+    volatile bool exited;
+    public int ExitCode;
+    public bool HasExited { get { return exited; } }
+    public string Text { get { lock (buf) { return buf.ToString(); } } }
+
+    public static PtyProcess Start(string commandLine) {
+        var p = new PtyProcess();
+        SafeFileHandle inR, inW, outR, outW;
+        if (!CreatePipe(out inR, out inW, IntPtr.Zero, 0) || !CreatePipe(out outR, out outW, IntPtr.Zero, 0))
+            throw new Exception("CreatePipe");
+        IntPtr hPC;
+        int hr = CreatePseudoConsole(new COORD { X = 220, Y = 50 }, inR, outW, 0, out hPC);
+        if (hr != 0) throw new Exception("CreatePseudoConsole " + hr);
+        IntPtr size = IntPtr.Zero;
+        InitializeProcThreadAttributeList(IntPtr.Zero, 1, 0, ref size);
+        var si = new STARTUPINFOEX();
+        si.StartupInfo.cb = Marshal.SizeOf(typeof(STARTUPINFOEX));
+        // Senza STARTF_USESTDHANDLES il figlio erediterebbe la console di PowerShell.
+        si.StartupInfo.dwFlags = 0x100;
+        si.lpAttributeList = Marshal.AllocHGlobal(size);
+        if (!InitializeProcThreadAttributeList(si.lpAttributeList, 1, 0, ref size)) throw new Exception("InitializeProcThreadAttributeList");
+        if (!UpdateProcThreadAttribute(si.lpAttributeList, 0, (IntPtr)0x00020016, hPC, (IntPtr)IntPtr.Size, IntPtr.Zero, IntPtr.Zero))
+            throw new Exception("UpdateProcThreadAttribute");
+        PROCESS_INFORMATION pi;
+        if (!CreateProcessW(null, new StringBuilder(commandLine), IntPtr.Zero, IntPtr.Zero, false, 0x00080000, IntPtr.Zero, null, ref si, out pi)) {
+            ClosePseudoConsole(hPC);
+            throw new Exception("CreateProcess " + Marshal.GetLastWin32Error());
+        }
+        inR.Dispose(); outW.Dispose();
+        var reader = new Thread(() => {
+            try {
+                using (var fs = new FileStream(outR, FileAccess.Read)) {
+                    var dec = Encoding.UTF8.GetDecoder();
+                    var b = new byte[4096]; var c = new char[8192];
+                    int n;
+                    while ((n = fs.Read(b, 0, b.Length)) > 0) {
+                        int k = dec.GetChars(b, 0, n, c, 0);
+                        lock (p.buf) { p.buf.Append(c, 0, k); if (p.buf.Length > 200000) p.buf.Remove(0, 100000); }
+                    }
+                }
+            } catch { }
+        });
+        reader.IsBackground = true; reader.Start();
+        var waiter = new Thread(() => {
+            WaitForSingleObject(pi.hProcess, 0xFFFFFFFF);
+            int code; GetExitCodeProcess(pi.hProcess, out code);
+            p.ExitCode = code;
+            ClosePseudoConsole(hPC);
+            reader.Join(3000);
+            inW.Dispose();
+            CloseHandle(pi.hThread); CloseHandle(pi.hProcess);
+            DeleteProcThreadAttributeList(si.lpAttributeList); Marshal.FreeHGlobal(si.lpAttributeList);
+            p.exited = true;
+        });
+        waiter.IsBackground = true; waiter.Start();
+        return p;
+    }
+}
+}
+'@
 
 $script:AppLicColors = @{
     os = @('#FF2ED3A7', '#262ED3A7'); fw = @('#FF7DD3FC', '#2638BDF8'); fr = @('#FFFDBA74', '#26FDBA74')
     ms = @('#FFA5B4FC', '#26818CF8'); pd = @('#FFF87171', '#26F87171')
 }
+$script:AppTickGeometry = 'M3.6,8.6 L7,12 L13.4,4.8'
 
 function New-AppBrush([string]$hex) { New-Object System.Windows.Media.SolidColorBrush ([System.Windows.Media.ColorConverter]::ConvertFromString($hex)) }
 
-function New-AppPill([string]$text, [string]$fg, [string]$bg) {
+function New-AppTick([string]$color, [double]$size) {
+    $p = New-Object System.Windows.Shapes.Path
+    $p.Data = [System.Windows.Media.Geometry]::Parse($script:AppTickGeometry)
+    $p.Stroke = New-AppBrush $color; $p.StrokeThickness = 2.2
+    $p.StrokeStartLineCap = 'Round'; $p.StrokeEndLineCap = 'Round'; $p.StrokeLineJoin = 'Round'
+    $p.Stretch = 'Uniform'; $p.Width = $size; $p.Height = $size
+    return $p
+}
+
+function New-AppPill([string]$text, [string]$fg, [string]$bg, [switch]$Tick) {
     $b = New-Object System.Windows.Controls.Border
     $b.CornerRadius = 6; $b.Padding = '7,2,7,2'; $b.Margin = '8,0,0,0'; $b.VerticalAlignment = 'Center'
     $b.Background = New-AppBrush $bg
+    $sp = New-Object System.Windows.Controls.StackPanel; $sp.Orientation = 'Horizontal'
+    if ($Tick) { $i = New-AppTick $fg 9; $i.Margin = '0,0,5,0'; $i.VerticalAlignment = 'Center'; [void]$sp.Children.Add($i) }
     $t = New-Object System.Windows.Controls.TextBlock
     $t.Text = $text; $t.FontSize = 10.5; $t.FontWeight = 'SemiBold'; $t.Foreground = New-AppBrush $fg
-    $b.Child = $t
+    [void]$sp.Children.Add($t)
+    $b.Child = $sp
     return $b
 }
 
-# Riga di un'app: nome e descrizione a sinistra, etichette e interruttore a destra.
-function New-AppRow([string]$key, [string]$title, [string]$sub, [array]$pills) {
+# Contenuto di una riga: nome e descrizione a sinistra, etichette a destra.
+function New-AppContent([string]$title, [string]$sub, [array]$pills) {
     $g = New-Object System.Windows.Controls.Grid
-    $g.Margin = '10,5,0,5'
-    foreach ($w in @('*', 'Auto', 'Auto')) {
+    foreach ($w in @('*', 'Auto')) {
         $cd = New-Object System.Windows.Controls.ColumnDefinition
         $cd.Width = if ($w -eq '*') { New-Object System.Windows.GridLength(1, [System.Windows.GridUnitType]::Star) } else { [System.Windows.GridLength]::Auto }
         $g.ColumnDefinitions.Add($cd)
@@ -13533,34 +14275,85 @@ function New-AppRow([string]$key, [string]$title, [string]$sub, [array]$pills) {
     $sp = New-Object System.Windows.Controls.StackPanel; $sp.VerticalAlignment = 'Center'
     $t1 = New-Object System.Windows.Controls.TextBlock
     $t1.Text = $title; $t1.FontSize = 13; $t1.FontWeight = 'SemiBold'; $t1.Foreground = New-AppBrush '#FFE8E8EE'; $t1.TextTrimming = 'CharacterEllipsis'
-    $t2 = New-Object System.Windows.Controls.TextBlock
-    $t2.Text = $sub; $t2.FontSize = 11.5; $t2.Foreground = New-AppBrush '#FF8E8E98'; $t2.TextWrapping = 'Wrap'; $t2.Margin = '0,2,0,0'
-    [void]$sp.Children.Add($t1); if ($sub) { [void]$sp.Children.Add($t2) }
+    [void]$sp.Children.Add($t1)
+    if ($sub) {
+        $t2 = New-Object System.Windows.Controls.TextBlock
+        $t2.Text = $sub; $t2.FontSize = 11.5; $t2.Foreground = New-AppBrush '#FF8E8E98'; $t2.TextWrapping = 'Wrap'; $t2.Margin = '0,2,0,0'
+        [void]$sp.Children.Add($t2)
+    }
     [void]$g.Children.Add($sp)
     $pp = New-Object System.Windows.Controls.StackPanel; $pp.Orientation = 'Horizontal'; $pp.VerticalAlignment = 'Center'
     foreach ($p in $pills) { [void]$pp.Children.Add($p) }
     [System.Windows.Controls.Grid]::SetColumn($pp, 1); [void]$g.Children.Add($pp)
-    $cb = New-Object System.Windows.Controls.CheckBox
-    $cb.Content = ''; $cb.Tag = $key; $cb.Margin = '4,0,0,0'; $cb.HorizontalAlignment = 'Right'; $cb.Width = 64
-    $cb.IsChecked = $script:AppSel.Contains($key)
-    $cb.Add_Checked({ [void]$script:AppSel.Add([string]$this.Tag); Update-AppButtons })
-    $cb.Add_Unchecked({ [void]$script:AppSel.Remove([string]$this.Tag); Update-AppButtons })
-    [System.Windows.Controls.Grid]::SetColumn($cb, 2); [void]$g.Children.Add($cb)
     return $g
 }
 
-function New-AppCard([string]$title) {
+# Riga selezionabile: tutta la riga e' la casella.
+function New-AppPick([string]$key, $content) {
+    $cb = New-Object System.Windows.Controls.CheckBox
+    $cb.Style = $window.FindResource('PickRow')
+    $cb.Content = $content; $cb.Tag = $key
+    $cb.IsChecked = $script:AppSel.Contains($key)
+    $cb.Add_Checked({ [void]$script:AppSel.Add([string]$this.Tag); Update-AppButtons })
+    $cb.Add_Unchecked({ [void]$script:AppSel.Remove([string]$this.Tag); Update-AppButtons })
+    return $cb
+}
+
+# Riga di un'app gia' installata e aggiornata: niente da scegliere, al posto
+# della casella un segno di spunta verde.
+function New-AppStatic($content) {
+    $b = New-Object System.Windows.Controls.Border
+    $b.Background = New-AppBrush '#FF0A0A0C'; $b.BorderBrush = New-AppBrush '#FF16161A'; $b.BorderThickness = 1
+    $b.CornerRadius = 12; $b.Padding = '11,8,11,8'; $b.Margin = '0,2,0,2'
+    $g = New-Object System.Windows.Controls.Grid
+    $c0 = New-Object System.Windows.Controls.ColumnDefinition; $c0.Width = [System.Windows.GridLength]::Auto
+    $c1 = New-Object System.Windows.Controls.ColumnDefinition
+    $g.ColumnDefinitions.Add($c0); $g.ColumnDefinitions.Add($c1)
+    $dot = New-Object System.Windows.Controls.Border
+    $dot.Width = 20; $dot.Height = 20; $dot.CornerRadius = 10; $dot.Margin = '0,0,12,0'; $dot.VerticalAlignment = 'Center'
+    $dot.Background = New-AppBrush '#262ED3A7'
+    $dot.Child = New-AppTick '#FF2ED3A7' 10
+    [void]$g.Children.Add($dot)
+    [System.Windows.Controls.Grid]::SetColumn($content, 1); [void]$g.Children.Add($content)
+    $b.Child = $g
+    return $b
+}
+
+function New-AppCard([string]$title, $button) {
     $card = New-Object System.Windows.Controls.Border
     $card.Style = $window.FindResource('Glass')
     $sp = New-Object System.Windows.Controls.StackPanel
+    $hg = New-Object System.Windows.Controls.Grid; $hg.Margin = '0,0,0,10'
+    $c0 = New-Object System.Windows.Controls.ColumnDefinition
+    $c1 = New-Object System.Windows.Controls.ColumnDefinition; $c1.Width = [System.Windows.GridLength]::Auto
+    $hg.ColumnDefinitions.Add($c0); $hg.ColumnDefinitions.Add($c1)
     $h = New-Object System.Windows.Controls.TextBlock
-    $h.Text = $title.ToUpper(); $h.Style = $window.FindResource('CardTitle')
-    [void]$sp.Children.Add($h)
+    $h.Text = $title.ToUpper(); $h.Style = $window.FindResource('CardTitle'); $h.Margin = '0'; $h.VerticalAlignment = 'Center'
+    [void]$hg.Children.Add($h)
+    if ($button) { [System.Windows.Controls.Grid]::SetColumn($button, 1); [void]$hg.Children.Add($button) }
+    [void]$sp.Children.Add($hg)
     $card.Child = $sp
     return @{ Card = $card; Panel = $sp }
 }
 
+function New-AppNote([string]$text) {
+    $t = New-Object System.Windows.Controls.TextBlock
+    $t.Text = $text; $t.Style = $window.FindResource('SubTitle'); $t.Margin = '4,0,0,4'
+    return $t
+}
+
 function Get-AppFilterText { return $txtAppSearch.Text.Trim() }
+
+# Un'app del catalogo e' installata se winget la riconosce per id, oppure se
+# nell'elenco dei programmi c'e' un nome che comincia esattamente con il suo.
+function Test-AppInstalled($a) {
+    $wid = $a.Id -replace '^store:', ''
+    if ($script:AppInstalledIds.Contains($wid)) { return $true }
+    if ($a.Name.Length -lt 3) { return $false }
+    $rx = '^' + [regex]::Escape($a.Name) + '(\s|$|\()'
+    foreach ($i in $script:AppInstalledList) { if ($i.Name -match $rx) { return $true } }
+    return $false
+}
 
 function Show-AppCatalog {
     $panApps.Children.Clear()
@@ -13585,8 +14378,19 @@ function Show-AppCatalog {
             $col = $script:AppLicColors[$a.Lic]
             $pills = @(New-AppPill (T "lic_$($a.Lic)") $col[0] $col[1])
             $wid = $a.Id -replace '^store:', ''
-            if ($script:AppInstalledIds.Contains($wid)) { $pills += New-AppPill (T 'appInstalled') '#FF2ED3A7' '#1A2ED3A7' }
-            [void]$card.Panel.Children.Add((New-AppRow $a.Id $a.Name (Get-Text $a.Desc) $pills))
+            $upd = $script:AppUpdates[$wid]
+            if (Test-AppInstalled $a) {
+                if ($upd) {
+                    $pills += New-AppPill ((T 'appUpdatable') + " $($upd.Available)") '#FFFDBA74' '#26FDBA74'
+                    $row = New-AppPick "u:$wid" (New-AppContent $a.Name (Get-Text $a.Desc) $pills)
+                } else {
+                    $pills += New-AppPill (T 'appInstalled') '#FF2ED3A7' '#262ED3A7' -Tick
+                    $row = New-AppStatic (New-AppContent $a.Name (Get-Text $a.Desc) $pills)
+                }
+            } else {
+                $row = New-AppPick $a.Id (New-AppContent $a.Name (Get-Text $a.Desc) $pills)
+            }
+            [void]$card.Panel.Children.Add($row)
             $shown++
         }
         $k = if ($h[0] -le $h[1]) { 0 } else { 1 }
@@ -13647,24 +14451,59 @@ function Get-InstalledApps {
 function Show-AppInstalled {
     $panApps.Children.Clear()
     $q = Get-AppFilterText
+    $stack = New-Object System.Windows.Controls.StackPanel
+
+    # Aggiornamenti: quelli che winget sa aggiornare, da scegliere uno per uno.
+    $updates = @($script:AppUpdates.Values | Sort-Object Name | Where-Object { -not $q -or $_.Name -like "*$q*" -or $_.Id -like "*$q*" })
+    $btnAll = $null
+    if ($updates.Count -gt 0) {
+        $btnAll = New-Object System.Windows.Controls.Button
+        $btnAll.Style = $window.FindResource('DotBtn'); $btnAll.Content = T 'appsSelectUpdates'
+        $btnAll.Add_Click({
+            foreach ($u in $script:AppUpdates.Values) { [void]$script:AppSel.Add("u:$($u.Id)") }
+            Show-AppView
+        })
+    }
+    $uc = New-AppCard ((T 'appsUpdatesTitle') -f $script:AppUpdates.Count) $btnAll
+    if (-not $script:Winget) {
+        [void]$uc.Panel.Children.Add((New-AppNote (T 'appsNoWinget')))
+    } elseif (-not $script:AppScanDone) {
+        [void]$uc.Panel.Children.Add((New-AppNote (T 'appsScanning')))
+    } elseif ($script:AppUpdates.Count -eq 0) {
+        [void]$uc.Panel.Children.Add((New-AppNote (T 'appsNoUpdates')))
+    }
+    foreach ($u in $updates) {
+        $sub = "$($u.Version)  $([char]0x2192)  $($u.Available)    $($u.Id)"
+        $pill = New-AppPill (T 'appUpdatable') '#FFFDBA74' '#26FDBA74'
+        [void]$uc.Panel.Children.Add((New-AppPick "u:$($u.Id)" (New-AppContent $u.Name $sub @($pill))))
+    }
+    [void]$stack.Children.Add($uc.Card)
+
+    $updNames = @{}
+    foreach ($u in $script:AppUpdates.Values) { $updNames[$u.Name] = $true }
     $card = New-AppCard ((T 'appsInstalledTitle') -f $script:AppInstalledList.Count)
     foreach ($a in $script:AppInstalledList) {
         if ($q -and $a.Name -notlike "*$q*" -and $a.Publisher -notlike "*$q*") { continue }
         $sub = (@($a.Version, $a.Publisher) | Where-Object { $_ }) -join '  ·  '
-        $pill = if ($a.Kind -eq 'Store') { New-AppPill 'Store' '#FFA5B4FC' '#26818CF8' } else { New-AppPill 'Win32' '#FFC4C4CC' '#1FFFFFFF' }
-        [void]$card.Panel.Children.Add((New-AppRow $a.Key $a.Name $sub @($pill)))
+        $pills = @(if ($a.Kind -eq 'Store') { New-AppPill 'Store' '#FFA5B4FC' '#26818CF8' } else { New-AppPill 'Win32' '#FFC4C4CC' '#1FFFFFFF' })
+        if ($updNames.ContainsKey($a.Name)) { $pills = @(New-AppPill (T 'appUpdatable') '#FFFDBA74' '#26FDBA74') + $pills }
+        [void]$card.Panel.Children.Add((New-AppPick $a.Key (New-AppContent $a.Name $sub $pills)))
     }
-    [void]$panApps.Children.Add($card.Card)
+    [void]$stack.Children.Add($card.Card)
+    [void]$panApps.Children.Add($stack)
 }
 
 function Update-AppButtons {
-    $n = $script:AppSel.Count
+    $upd = @($script:AppSel | Where-Object { $_ -like 'u:*' }).Count
+    $n = $script:AppSel.Count - $upd
     $label = if ($radAppsInstalled.IsChecked) { T 'appsUninstallSel' } else { T 'appsInstallSel' }
     $btnAppsAction.Content = if ($n -gt 0) { "$label ($n)" } else { $label }
-    $busy = ($null -ne $script:AppProc) -or ($script:AppJobs.Count -gt 0)
-    $btnAppsAction.IsEnabled = ($n -gt 0) -and -not $busy -and ($radAppsInstalled.IsChecked -or $script:Winget)
-    $btnAppsUpgrade.IsEnabled = ($null -ne $script:Winget) -and -not $busy
+    $btnAppsAction.IsEnabled = ($n -gt 0) -and ($radAppsInstalled.IsChecked -or $script:Winget)
     $btnAppsAction.Tag = if ($radAppsInstalled.IsChecked) { New-AppBrush '#FFF87171' } else { New-AppBrush '#FF2ED3A7' }
+    $label = T 'appsUpgradeSel'
+    $btnAppsUpgrade.Content = if ($upd -gt 0) { "$label ($upd)" } else { $label }
+    $btnAppsUpgrade.IsEnabled = ($upd -gt 0) -and ($null -ne $script:Winget)
+    $btnAppsUpgrade.Tag = New-AppBrush '#FFFDBA74'
 }
 
 function Show-AppView {
@@ -13700,50 +14539,234 @@ function Initialize-AppFilters {
     $script:AppFiltersLoading = $false
 }
 
-# --- esecuzione in background, un processo alla volta ---
-function Add-AppJob([string]$label, [string]$file, [string]$arguments) {
-    $script:AppJobs.Enqueue(@{ Label = $label; File = $file; Args = $arguments })
+# ------------------------------------------------------------------------------
+# Operazioni: coda, righe di avanzamento e lettura dell'uscita di winget
+# ------------------------------------------------------------------------------
+function Test-AppBusy { return ($null -ne $script:AppJob) -or ($script:AppJobs.Count -gt 0) }
+
+# Riga di un'operazione: nome e stato sopra, barra sotto. La barra ha due modi:
+# a percentuale (download) e a scorrimento, quando winget non dice quanto manca.
+function New-AppJobRow($job) {
+    $g = New-Object System.Windows.Controls.Grid; $g.Margin = '0,0,0,9'
+    $r0 = New-Object System.Windows.Controls.RowDefinition; $r0.Height = [System.Windows.GridLength]::Auto
+    $r1 = New-Object System.Windows.Controls.RowDefinition; $r1.Height = [System.Windows.GridLength]::Auto
+    $g.RowDefinitions.Add($r0); $g.RowDefinitions.Add($r1)
+    $c0 = New-Object System.Windows.Controls.ColumnDefinition
+    $c1 = New-Object System.Windows.Controls.ColumnDefinition; $c1.Width = [System.Windows.GridLength]::Auto
+    $g.ColumnDefinitions.Add($c0); $g.ColumnDefinitions.Add($c1)
+    $name = New-Object System.Windows.Controls.TextBlock
+    $name.Text = $job.Name; $name.FontSize = 12.5; $name.FontWeight = 'SemiBold'; $name.Foreground = New-AppBrush '#FFE8E8EE'
+    $name.TextTrimming = 'CharacterEllipsis'
+    [void]$g.Children.Add($name)
+    $state = New-Object System.Windows.Controls.TextBlock
+    $state.FontSize = 11.5; $state.Margin = '12,0,0,0'; $state.Foreground = New-AppBrush '#FF8E8E98'
+    [System.Windows.Controls.Grid]::SetColumn($state, 1); [void]$g.Children.Add($state)
+    $track = New-Object System.Windows.Controls.Grid
+    $track.Height = 4; $track.Margin = '0,6,0,0'; $track.ClipToBounds = $true
+    [System.Windows.Controls.Grid]::SetRow($track, 1); [System.Windows.Controls.Grid]::SetColumnSpan($track, 2)
+    $bar = New-Object System.Windows.Controls.ProgressBar
+    $bar.Minimum = 0; $bar.Maximum = 100; $bar.Value = 0; $bar.Height = 4
+    [void]$track.Children.Add($bar)
+    $run = New-Object System.Windows.Controls.Border
+    $run.Width = 110; $run.HorizontalAlignment = 'Left'; $run.CornerRadius = 2; $run.Visibility = 'Collapsed'
+    $lg = New-Object System.Windows.Media.LinearGradientBrush
+    $lg.StartPoint = '0,0'; $lg.EndPoint = '1,0'
+    $lg.GradientStops.Add((New-Object System.Windows.Media.GradientStop ([System.Windows.Media.Color]::FromArgb(0, 0x1E, 0x90, 0xFF)), 0))
+    $lg.GradientStops.Add((New-Object System.Windows.Media.GradientStop ([System.Windows.Media.ColorConverter]::ConvertFromString('#FFA78BFA')), 0.6))
+    $lg.GradientStops.Add((New-Object System.Windows.Media.GradientStop ([System.Windows.Media.Color]::FromArgb(0, 0xF4, 0x72, 0xB6)), 1))
+    $run.Background = $lg
+    $run.RenderTransform = New-Object System.Windows.Media.TranslateTransform
+    [void]$track.Children.Add($run)
+    [void]$g.Children.Add($track)
+    $job.Row = $g; $job.StateText = $state; $job.Bar = $bar; $job.Runner = $run; $job.Track = $track
+    $job.Moving = $false
+    [void]$panAppJobs.Children.Add($g)
+}
+
+function Set-AppJobView($job, [string]$text, [double]$pct = -1, [string]$color = '#FF8E8E98') {
+    $job.StateText.Text = $text
+    $job.StateText.Foreground = New-AppBrush $color
+    if ($pct -ge 0) {
+        $job.Bar.Value = [Math]::Min(100, $pct); $job.Bar.Visibility = 'Visible'
+        if ($job.Moving) { $job.Runner.RenderTransform.BeginAnimation([System.Windows.Media.TranslateTransform]::XProperty, $null); $job.Moving = $false }
+        $job.Runner.Visibility = 'Collapsed'
+    } else {
+        $job.Bar.Value = 0
+        $job.Runner.Visibility = 'Visible'
+        if (-not $job.Moving) {
+            $w = [Math]::Max(300, $job.Track.ActualWidth)
+            $an = New-Object System.Windows.Media.Animation.DoubleAnimation(-110, $w, [TimeSpan]::FromSeconds(1.4))
+            $an.RepeatBehavior = [System.Windows.Media.Animation.RepeatBehavior]::Forever
+            $job.Runner.RenderTransform.BeginAnimation([System.Windows.Media.TranslateTransform]::XProperty, $an)
+            $job.Moving = $true
+        }
+    }
+}
+
+function Add-AppJob([string]$kind, [string]$name, [string]$file, [string]$arguments, [bool]$pty) {
+    # Un nuovo giro dopo uno finito riparte da un pannello pulito.
+    if (-not (Test-AppBusy)) {
+        foreach ($j in $script:AppJobList) { if ($j.Moving) { $j.Runner.RenderTransform.BeginAnimation([System.Windows.Media.TranslateTransform]::XProperty, $null) } }
+        $script:AppJobList.Clear(); $panAppJobs.Children.Clear()
+    }
+    $prefix = switch ($kind) { 'install' { T 'appsInstalling' } 'upgrade' { T 'appsUpgrading' } default { T 'appsUninstalling' } }
+    $job = @{ Kind = $kind; Name = $name; Label = "$prefix $name"; File = $file; Args = $arguments; Pty = $pty
+              Proc = $null; Done = $false; Ok = $false; Frac = 0.0; SawDl = $false; DlDone = $false }
+    New-AppJobRow $job
+    Set-AppJobView $job (T 'jobWait') 0 '#FF6E6E78'
+    [void]$script:AppJobList.Add($job)
+    $script:AppJobs.Enqueue($job)
+    $bdAppJobs.Visibility = 'Visible'; $btnAppJobsClose.Visibility = 'Collapsed'
+}
+
+function Start-AppJob($job) {
+    $script:AppJob = $job
+    $job.Proc = $null
+    if ($job.Pty) {
+        try { $job.Proc = [TweakAndrew.PtyProcess]::Start("`"$($job.File)`" $($job.Args)") } catch { $job.Proc = $null }
+    }
+    if ($null -eq $job.Proc) {
+        try {
+            $psi = New-Object System.Diagnostics.ProcessStartInfo
+            $psi.FileName = $job.File; $psi.Arguments = $job.Args
+            $psi.UseShellExecute = $false; $psi.CreateNoWindow = $true
+            $job.Proc = [System.Diagnostics.Process]::Start($psi)
+        } catch {
+            Write-Log "[ERRORE] $($job.Label) - $($_.Exception.Message)"
+            Complete-AppJob $job -1
+            return
+        }
+    }
+    $first = if ($job.Kind -eq 'uninstall') { T 'jobUninstall' } else { T 'jobPrep' }
+    Set-AppJobView $job $first -1 '#FFC4C4CC'
+}
+
+function ConvertTo-AppBytes([string]$num, [string]$unit) {
+    $v = 0.0
+    [void][double]::TryParse(($num -replace ',', '.'), [System.Globalization.NumberStyles]::Float, [System.Globalization.CultureInfo]::InvariantCulture, [ref]$v)
+    $m = switch -Regex ($unit) { '^K' { 1KB } '^M' { 1MB } '^G' { 1GB } '^T' { 1TB } default { 1 } }
+    return $v * $m
+}
+
+# Legge quello che winget ha scritto finora. Due fonti: il testo «12.3 MB / 45.0 MB»
+# della barra e la sequenza ESC ] 9;4;stato;percento che winget manda alla
+# barra delle applicazioni (stato 1 = percentuale, 3 = attesa senza stima).
+function Update-AppJobProgress($job) {
+    if ($job.Proc.GetType().Name -ne 'PtyProcess') { return }
+    $raw = $job.Proc.Text
+    if ($raw.Length -gt 6000) { $raw = $raw.Substring($raw.Length - 6000) }
+    $osc = [regex]::Matches($raw, "\x1b\]9;4;(\d);(\d+)")
+    $clean = $raw -replace "\x1b\][^\x07\x1b]*(\x07|\x1b\\)?", '' -replace "\x1b\[[0-9;?]*[ -/]*[@-~]", ''
+    $sizes = [regex]::Matches($clean, '([\d.,]+)\s*([KMGT]i?B)\s*/\s*([\d.,]+)\s*([KMGT]i?B)')
+    $oState = -1; $oPct = 0
+    if ($osc.Count -gt 0) { $o = $osc[$osc.Count - 1]; $oState = [int]$o.Groups[1].Value; $oPct = [int]$o.Groups[2].Value }
+    $sizeText = ''; $sPct = -1
+    if ($sizes.Count -gt 0) {
+        $s = $sizes[$sizes.Count - 1]
+        $cur = ConvertTo-AppBytes $s.Groups[1].Value $s.Groups[2].Value
+        $tot = ConvertTo-AppBytes $s.Groups[3].Value $s.Groups[4].Value
+        if ($tot -gt 0) { $sPct = [Math]::Floor(100 * $cur / $tot) }
+        $sizeText = "$($s.Groups[1].Value) $($s.Groups[2].Value) / $($s.Groups[3].Value) $($s.Groups[4].Value)"
+        $job.SawDl = $true
+        # Download finito: barra piena, oppure dopo la barra winget ha gia' scritto
+        # altro (la verifica dell'hash, l'avvio dell'installazione).
+        $after = $clean.Substring($s.Index + $s.Length)
+        if ($sPct -ge 100 -or $after -match '\n[^\n]*\p{L}{3,}') { $job.DlDone = $true }
+    }
+
+    if (-not $job.DlDone -and ($sPct -ge 0 -or $oState -eq 1)) {
+        $pct = if ($sPct -ge 0) { $sPct } else { $oPct }
+        $text = (T 'jobDownload') -f $pct
+        if ($sizeText) { $text += "  ·  $sizeText" }
+        Set-AppJobView $job $text $pct '#FFE8E8EE'
+        $job.Frac = 0.7 * $pct / 100
+    } elseif ($job.DlDone -or $job.SawDl) {
+        if ($oState -eq 1 -and $oPct -gt 0 -and $oPct -lt 100) {
+            Set-AppJobView $job ((T 'jobInstallPct') -f $oPct) $oPct '#FFE8E8EE'
+            $job.Frac = 0.7 + 0.3 * $oPct / 100
+        } else {
+            Set-AppJobView $job (T 'jobInstall') -1 '#FFE8E8EE'
+            $job.Frac = 0.8
+        }
+    } elseif ($oState -eq 1 -and $oPct -gt 0) {
+        # Pacchetti dello Store: una sola percentuale per tutto il lavoro.
+        Set-AppJobView $job ((T 'jobDownload') -f $oPct) $oPct '#FFE8E8EE'
+        $job.Frac = $oPct / 100
+    }
+}
+
+function Complete-AppJob($job, [int]$code) {
+    $job.Done = $true; $job.Frac = 1.0
+    # -1978335189 e -1978335135: nessun aggiornamento o gia' installato, non sono errori.
+    # 3010 e 1641: riuscito, ma Windows vuole un riavvio.
+    if ($code -in @(3010, 1641)) {
+        $job.Ok = $true; Write-Log "[OK] $($job.Label) - serve un riavvio"
+        Set-AppJobView $job (T 'jobOkReboot') 100 '#FFFDBA74'
+    } elseif ($code -eq 0 -or $code -eq -1978335189 -or $code -eq -1978335135) {
+        $job.Ok = $true; Write-Log "[OK] $($job.Label)"
+        Set-AppJobView $job (T 'jobOk') 100 '#FF2ED3A7'
+    } else {
+        Write-Log "[ERRORE] $($job.Label) - codice $code"
+        Set-AppJobView $job ((T 'jobErr') -f $code) 0 '#FFF87171'
+    }
+    if ($script:AppJob -eq $job) { $script:AppJob = $null }
+}
+
+function Update-AppJobsHeader {
+    $total = $script:AppJobList.Count
+    if ($total -eq 0) { return }
+    $done = @($script:AppJobList | Where-Object { $_.Done }).Count
+    $sum = 0.0; foreach ($j in $script:AppJobList) { $sum += $j.Frac }
+    $prgAppJobs.Value = $sum / $total
+    $txtAppJobsCount.Text = (T 'jobsProgress') -f $done, $total
+    # Anche dalle altre pagine si vede che le app stanno lavorando.
+    if ($script:AppJob) {
+        $txtProgressLabel.Text = "$($script:AppJob.Label): $($script:AppJob.StateText.Text)"
+        $prgTweaks.Value = $sum / $total
+    }
 }
 
 $script:AppTimer = New-Object System.Windows.Threading.DispatcherTimer
-$script:AppTimer.Interval = [TimeSpan]::FromMilliseconds(600)
+$script:AppTimer.Interval = [TimeSpan]::FromMilliseconds(250)
 $script:AppTimer.Add_Tick({
     if ($null -ne $script:AppExport -and $script:AppExport.HasExited) { Complete-AppExport }
-    if ($null -ne $script:AppProc) {
-        if (-not $script:AppProc.HasExited) { return }
-        $code = $script:AppProc.ExitCode
-        # -1978335189 e -1978335135: gia' installato o nessun aggiornamento, non sono errori.
-        if ($code -eq 0 -or $code -eq -1978335189 -or $code -eq -1978335135) { Write-Log "[OK] $($script:AppJob.Label)" }
-        else { Write-Log "[ERRORE] $($script:AppJob.Label) - codice $code" }
-        $script:AppProc = $null
+    if ($null -ne $script:AppScan -and $script:AppScan.HasExited) { Complete-AppUpgradeScan }
+    $job = $script:AppJob
+    if ($null -ne $job) {
+        if ($job.Proc.HasExited) { Complete-AppJob $job $job.Proc.ExitCode }
+        else { Update-AppJobProgress $job }
     }
-    if ($script:AppJobs.Count -gt 0) {
-        $script:AppJob = $script:AppJobs.Dequeue()
+    if ($null -eq $script:AppJob -and $script:AppJobs.Count -gt 0) {
+        Start-AppJob ($script:AppJobs.Dequeue())
         $txtAppsStatus.Text = (T 'appsWorking') -f $script:AppJob.Label, $script:AppJobs.Count
-        try {
-            $psi = New-Object System.Diagnostics.ProcessStartInfo
-            $psi.FileName = $script:AppJob.File; $psi.Arguments = $script:AppJob.Args
-            $psi.UseShellExecute = $false; $psi.CreateNoWindow = $true
-            $script:AppProc = [System.Diagnostics.Process]::Start($psi)
-        } catch {
-            Write-Log "[ERRORE] $($script:AppJob.Label) - $($_.Exception.Message)"
-            $script:AppProc = $null
-        }
-        Update-AppButtons
+    }
+    Update-AppJobsHeader
+    if (Test-AppBusy) { return }
+    if ($script:AppBatch) {
+        # Giro finito: riepilogo e rilettura di cio' che e' installato.
+        $script:AppBatch = $false
+        $ok = @($script:AppJobList | Where-Object { $_.Ok }).Count
+        $txtAppsStatus.Text = (T 'appsDoneSum') -f $ok, ($script:AppJobList.Count - $ok)
+        $txtProgressLabel.Text = $txtAppsStatus.Text
+        $prgTweaks.Value = 1
+        $btnAppJobsClose.Visibility = 'Visible'
+        $script:AppInstalledList = @()
+        Start-AppExport
+        Start-AppUpgradeScan
+        Show-AppView
         return
     }
-    if ($null -eq $script:AppExport) {
-        $script:AppTimer.Stop()
-        if ($script:AppJob) {
-            $script:AppJob = $null
-            $txtAppsStatus.Text = T 'appsDone'
-            $script:AppInstalledList = @()
-            Start-AppExport
-            Show-AppView
-        }
-    }
-    Update-AppButtons
+    if ($null -eq $script:AppExport -and $null -eq $script:AppScan) { $script:AppTimer.Stop() }
 })
+
+function Start-AppBatch { $script:AppBatch = $true; $script:AppSel.Clear(); Show-AppView; $script:AppTimer.Start() }
+
+function Start-AppHidden([string]$file, [string]$arguments) {
+    $psi = New-Object System.Diagnostics.ProcessStartInfo
+    $psi.FileName = $file; $psi.Arguments = $arguments
+    $psi.UseShellExecute = $false; $psi.CreateNoWindow = $true
+    return [System.Diagnostics.Process]::Start($psi)
+}
 
 # Elenco degli id winget installati: winget export scrive un file JSON.
 function Start-AppExport {
@@ -13751,12 +14774,8 @@ function Start-AppExport {
     $script:AppExportFile = Join-Path $env:TEMP 'TweakAndrew_winget.json'
     Remove-Item -LiteralPath $script:AppExportFile -ErrorAction SilentlyContinue
     try {
-        $psi = New-Object System.Diagnostics.ProcessStartInfo
-        $psi.FileName = $script:Winget
-        $psi.Arguments = "export -o `"$($script:AppExportFile)`" --accept-source-agreements --disable-interactivity"
-        $psi.UseShellExecute = $false; $psi.CreateNoWindow = $true
-        $script:AppExport = [System.Diagnostics.Process]::Start($psi)
-        $txtAppsStatus.Text = T 'appsChecking'
+        $script:AppExport = Start-AppHidden $script:Winget "export -o `"$($script:AppExportFile)`" --accept-source-agreements --disable-interactivity"
+        if ($script:AppJobList.Count -eq 0) { $txtAppsStatus.Text = T 'appsChecking' }
         $script:AppTimer.Start()
     } catch { $script:AppExport = $null }
 }
@@ -13768,8 +14787,78 @@ function Complete-AppExport {
         $j = Get-Content -LiteralPath $script:AppExportFile -Raw -ErrorAction Stop | ConvertFrom-Json
         foreach ($s in $j.Sources) { foreach ($p in $s.Packages) { [void]$script:AppInstalledIds.Add([string]$p.PackageIdentifier) } }
     } catch {}
-    if (-not $script:AppJob) { $txtAppsStatus.Text = (T 'appsInstalledCount') -f $script:AppInstalledIds.Count }
+    if ($txtAppsStatus.Text -eq (T 'appsChecking')) { $txtAppsStatus.Text = (T 'appsInstalledCount') -f $script:AppInstalledIds.Count }
     if (-not $radAppsInstalled.IsChecked) { Show-AppCatalog }
+}
+
+# Aggiornamenti disponibili: winget upgrade stampa una tabella. Con l'uscita
+# rediretta le colonne restano intere; le intestazioni cambiano con la lingua
+# di Windows, quindi le colonne si ricavano dalle posizioni e non dai nomi.
+function Start-AppUpgradeScan {
+    if (-not $script:Winget -or $null -ne $script:AppScan) { return }
+    $script:AppScanFile = Join-Path $env:TEMP 'TweakAndrew_upgrade.txt'
+    Remove-Item -LiteralPath $script:AppScanFile -ErrorAction SilentlyContinue
+    try {
+        $script:AppScan = Start-AppHidden 'cmd.exe' "/d /s /c `"`"$($script:Winget)`" upgrade --accept-source-agreements --disable-interactivity > `"$($script:AppScanFile)`" 2>&1`""
+        $script:AppTimer.Start()
+    } catch { $script:AppScan = $null }
+}
+
+function ConvertFrom-WingetTable([string]$text) {
+    $out = @()
+    $lines = @($text -split "`n" | ForEach-Object {
+        # I ritorni a capo in mezzo alla riga sono le rotelline di attesa: conta l'ultimo pezzo.
+        $l = ($_.TrimEnd("`r") -split "`r")[-1]
+        $l -replace "\x1b\[[0-9;?]*[ -/]*[@-~]", ''
+    })
+    for ($i = 1; $i -lt $lines.Count; $i++) {
+        if ($lines[$i] -notmatch '^-{10,}\s*$') { continue }
+        $head = $lines[$i - 1]
+        $rows = @()
+        for ($k = $i + 1; $k -lt $lines.Count; $k++) {
+            if ($lines[$k] -match '^\s*$') { break }
+            # Sotto la tabella winget scrive il riepilogo: non e' una riga di dati.
+            if ($lines[$k] -match '\s(winget|msstore)\s*$') { $rows += $lines[$k].TrimEnd() }
+        }
+        # Una colonna comincia dove l'intestazione riprende dopo uno spazio e
+        # in tutte le righe il carattere prima e' uno spazio.
+        $starts = @(0)
+        for ($p = 1; $p -lt $head.Length; $p++) {
+            if ($head[$p] -ne ' ' -and $head[$p - 1] -eq ' ') {
+                $okCol = $true
+                foreach ($r in $rows) { if ($r.Length -gt $p -and $r[$p - 1] -ne ' ') { $okCol = $false; break } }
+                if ($okCol) { $starts += $p }
+            }
+        }
+        if ($starts.Count -lt 5) { continue }
+        foreach ($r in $rows) {
+            $cells = @()
+            for ($c = 0; $c -lt $starts.Count; $c++) {
+                $a = $starts[$c]
+                $b = if ($c + 1 -lt $starts.Count) { $starts[$c + 1] } else { $r.Length }
+                $cells += if ($r.Length -gt $a) { $r.Substring($a, [Math]::Min($b, $r.Length) - $a).Trim() } else { '' }
+            }
+            $src = $cells[$cells.Count - 1]
+            if ($src -notin @('winget', 'msstore') -or -not $cells[1] -or $cells[1] -match '\s') { continue }
+            $out += [pscustomobject]@{ Name = $cells[0]; Id = $cells[1]; Version = $cells[2]; Available = $cells[3]; Source = $src }
+        }
+    }
+    return $out
+}
+
+function Complete-AppUpgradeScan {
+    $script:AppScan = $null
+    $script:AppScanDone = $true
+    $script:AppUpdates = @{}
+    try {
+        $text = [IO.File]::ReadAllText($script:AppScanFile, [Text.Encoding]::UTF8)
+        foreach ($u in @(ConvertFrom-WingetTable $text)) { $script:AppUpdates[$u.Id] = $u }
+    } catch {}
+    # Le scelte di aggiornamento non piu' valide spariscono.
+    foreach ($k in @($script:AppSel | Where-Object { $_ -like 'u:*' })) {
+        if (-not $script:AppUpdates.ContainsKey($k.Substring(2))) { [void]$script:AppSel.Remove($k) }
+    }
+    if ($script:AppsReady) { Show-AppView }
 }
 
 function Get-UninstallCommand($a) {
@@ -13784,36 +14873,46 @@ function Get-UninstallCommand($a) {
 }
 
 $btnAppsAction.Add_Click({
-    $n = $script:AppSel.Count
-    if ($n -eq 0) { return }
+    $keys = @($script:AppSel | Where-Object { $_ -notlike 'u:*' })
+    if ($keys.Count -eq 0) { return }
     if ($radAppsInstalled.IsChecked) {
-        if (-not (Show-Dialog (T 'confirmTitle') ((T 'appsAskUninstall') -f $n) 'danger')) { return }
-        foreach ($a in @($script:AppInstalledList | Where-Object { $script:AppSel.Contains($_.Key) })) {
+        if (-not (Show-Dialog (T 'confirmTitle') ((T 'appsAskUninstall') -f $keys.Count) 'danger')) { return }
+        foreach ($a in @($script:AppInstalledList | Where-Object { $keys -contains $_.Key })) {
             $c = Get-UninstallCommand $a
-            Add-AppJob "$(T 'appsUninstalling') $($a.Name)" $c[0] $c[1]
+            Add-AppJob 'uninstall' $a.Name $c[0] $c[1] $false
         }
     } else {
-        if (-not (Show-Dialog (T 'confirmTitle') ((T 'appsAskInstall') -f $n) 'ask')) { return }
-        foreach ($a in @($script:AppCatalog | Where-Object { $script:AppSel.Contains($_.Id) })) {
+        if (-not (Show-Dialog (T 'confirmTitle') ((T 'appsAskInstall') -f $keys.Count) 'ask')) { return }
+        foreach ($a in @($script:AppCatalog | Where-Object { $keys -contains $_.Id })) {
             $src = if ($a.Id -like 'store:*') { 'msstore' } else { 'winget' }
             $id = $a.Id -replace '^store:', ''
-            Add-AppJob "$(T 'appsInstalling') $($a.Name)" $script:Winget "install --id $id -e --source $src --silent --accept-package-agreements --accept-source-agreements --disable-interactivity"
+            Add-AppJob 'install' $a.Name $script:Winget "install --id $id -e --source $src --silent --accept-package-agreements --accept-source-agreements --disable-interactivity" $true
         }
     }
-    $script:AppSel.Clear()
-    Show-AppView
-    $script:AppTimer.Start()
+    Start-AppBatch
 })
 
 $btnAppsUpgrade.Add_Click({
-    if (-not (Show-Dialog (T 'confirmTitle') (T 'appsAskUpgrade') 'ask')) { return }
-    Add-AppJob (T 'appsUpgradeAll') $script:Winget 'upgrade --all --silent --accept-package-agreements --accept-source-agreements --disable-interactivity'
-    $script:AppTimer.Start()
-    Update-AppButtons
+    $ids = @($script:AppSel | Where-Object { $_ -like 'u:*' } | ForEach-Object { $_.Substring(2) })
+    if ($ids.Count -eq 0) { return }
+    if (-not (Show-Dialog (T 'confirmTitle') ((T 'appsAskUpgradeSel') -f $ids.Count) 'ask')) { return }
+    foreach ($id in $ids) {
+        $u = $script:AppUpdates[$id]
+        $name = if ($u) { $u.Name } else { $id }
+        $src = if ($u -and $u.Source -eq 'msstore') { 'msstore' } else { 'winget' }
+        Add-AppJob 'upgrade' $name $script:Winget "upgrade --id $id -e --source $src --silent --accept-package-agreements --accept-source-agreements --disable-interactivity" $true
+    }
+    Start-AppBatch
+})
+
+$btnAppJobsClose.Add_Click({
+    if (Test-AppBusy) { return }
+    $script:AppJobList.Clear(); $panAppJobs.Children.Clear()
+    $bdAppJobs.Visibility = 'Collapsed'
 })
 
 $btnAppsClear.Add_Click({ $script:AppSel.Clear(); Show-AppView })
-$btnAppsRefresh.Add_Click({ $script:AppInstalledList = @(); Start-AppExport; Show-AppView })
+$btnAppsRefresh.Add_Click({ $script:AppInstalledList = @(); Start-AppExport; Start-AppUpgradeScan; Show-AppView })
 $radAppsCatalog.Add_Checked({ if ($script:AppsReady) { $script:AppSel.Clear(); Show-AppView } })
 $radAppsInstalled.Add_Checked({ if ($script:AppsReady) { $script:AppSel.Clear(); Show-AppView } })
 $cmbAppCategory.Add_SelectionChanged({ if ($script:AppsReady -and -not $script:AppFiltersLoading) { Show-AppCatalog } })
@@ -13832,8 +14931,422 @@ function Show-AppsPageIfNeeded {
     Show-AppView
     if (-not $script:Winget) {
         $txtAppsStatus.Text = T 'appsNoWinget'
-    } elseif ($script:AppInstalledIds.Count -eq 0) { Start-AppExport }
+    } else {
+        if ($script:AppInstalledIds.Count -eq 0) { Start-AppExport }
+        if (-not $script:AppScanDone) { Start-AppUpgradeScan }
+    }
+    # L'elenco dei programmi serve anche al catalogo, per riconoscere le app
+    # installate senza winget: si legge appena la pagina e' disegnata.
+    if ($script:AppInstalledList.Count -eq 0) {
+        [void]$window.Dispatcher.BeginInvoke([Action]{
+            $script:AppInstalledList = Get-InstalledApps
+            Show-AppView
+        }, [System.Windows.Threading.DispatcherPriority]::ApplicationIdle)
+    }
 }
+
+# ------------------------------------------------------------------------------
+# 30. HOME: riepilogo del computer e tipo di PC
+# ------------------------------------------------------------------------------
+# Le letture WMI costano qualche secondo: si fanno in un runspace a parte e la
+# pagina si disegna quando arrivano, senza bloccare la finestra.
+
+$panHome = E 'panHome'
+$script:HomeInfo = $null
+$script:HomeJob = $null
+
+# Portatile o fisso. La scelta manuale vale piu' del rilevamento e resta salvata.
+$script:LaptopChassis = @(8, 9, 10, 11, 12, 14, 18, 21, 30, 31, 32)
+$script:DesktopChassis = @(3, 4, 5, 6, 7, 13, 15, 16, 35)
+# Voci che su un portatile costano batteria: «Seleziona tutto» e «Consigliati»
+# le lasciano stare. Restano selezionabili a mano.
+$script:LaptopSkip = @('chkPowerThrottling', 'chkUSBSuspend', 'chkNetPowerSave', 'chkHibernation', 'chkS0Sleep',
+                       'chkNvPerfMode', 'chkNvDrsPower', 'chkNvDisplayPower', 'chkAmdUlps', 'chkAmdAspm')
+# Voci utili solo con la batteria: su un fisso si saltano.
+$script:DesktopSkip = @('chkBatteryPct')
+$script:SettingsKey = 'HKCU:\Software\TweakAndrew'
+
+function Get-PcTypeSetting {
+    try { $v = [string](Get-ItemProperty -LiteralPath $script:SettingsKey -Name PcType -ErrorAction Stop).PcType } catch { $v = '' }
+    if ($v -in @('desktop', 'laptop')) { return $v }
+    return 'auto'
+}
+
+function Get-DetectedPcType([array]$chassis, $systemType, [bool]$battery) {
+    if (@($chassis | Where-Object { $script:LaptopChassis -contains [int]$_ }).Count -gt 0) { return 'laptop' }
+    if ($systemType -eq 2) { return 'laptop' }
+    if (@($chassis | Where-Object { $script:DesktopChassis -contains [int]$_ }).Count -gt 0) { return 'desktop' }
+    if ($battery) { return 'laptop' }
+    return 'desktop'
+}
+
+# Tipo in uso. Se la Home non ha ancora letto l'hardware basta una lettura veloce.
+function Get-PcType {
+    $set = Get-PcTypeSetting
+    if ($set -ne 'auto') { return $set }
+    if (-not $script:PcTypeDetected) {
+        if ($script:HomeInfo) {
+            $script:PcTypeDetected = $script:HomeInfo.PcType
+        } else {
+            try {
+                $ch = @((Get-CimInstance Win32_SystemEnclosure -ErrorAction Stop).ChassisTypes)
+                $st = (Get-CimInstance Win32_ComputerSystem -ErrorAction Stop).PCSystemType
+                $bat = @(Get-CimInstance Win32_Battery -ErrorAction SilentlyContinue).Count -gt 0
+                $script:PcTypeDetected = Get-DetectedPcType $ch $st $bat
+            } catch { $script:PcTypeDetected = 'desktop' }
+        }
+    }
+    return $script:PcTypeDetected
+}
+
+function Test-CheckPcType($cb) {
+    $n = [string]$cb.Name
+    if ($script:LaptopSkip -notcontains $n -and $script:DesktopSkip -notcontains $n) { return $true }
+    $type = Get-PcType
+    if ($type -eq 'laptop') { return ($script:LaptopSkip -notcontains $n) }
+    return ($script:DesktopSkip -notcontains $n)
+}
+
+function Set-PcTypeSetting([string]$value) {
+    try {
+        if (-not (Test-Path -LiteralPath $script:SettingsKey)) { New-Item -Path $script:SettingsKey -Force | Out-Null }
+        Set-ItemProperty -LiteralPath $script:SettingsKey -Name PcType -Value $value
+    } catch { Write-Log "[AVVISO] Tipo di PC non salvato: $($_.Exception.Message)" }
+    Write-Log "[OK] Tipo di PC: $value (in uso: $(Get-PcType))"
+}
+
+# Letture dell'hardware: gira nel runspace, quindi niente T e niente controlli.
+$script:HomeInfoScript = @'
+function Q([string]$c, [string]$ns = 'root\cimv2') { try { @(Get-CimInstance -Namespace $ns -ClassName $c -ErrorAction Stop) } catch { @() } }
+$i = @{}
+$cs = Q Win32_ComputerSystem | Select-Object -First 1
+$os = Q Win32_OperatingSystem | Select-Object -First 1
+$cv = Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion' -ErrorAction SilentlyContinue
+$i.Pc = $env:COMPUTERNAME
+$i.User = [Security.Principal.WindowsIdentity]::GetCurrent().Name
+$i.Domain = [string]$cs.Domain; $i.PartOfDomain = [bool]$cs.PartOfDomain
+$i.Maker = [string]$cs.Manufacturer; $i.Model = [string]$cs.Model
+$build = 0; [void][int]::TryParse([string]$cv.CurrentBuild, [ref]$build)
+$prod = [string]$cv.ProductName
+if ($build -ge 22000) { $prod = $prod -replace 'Windows 10', 'Windows 11' }
+$i.Os = $prod; $i.OsVersion = [string]$cv.DisplayVersion; $i.OsBuild = "$($cv.CurrentBuild).$($cv.UBR)"
+$i.OsArch = [string]$os.OSArchitecture; $i.InstallDate = $os.InstallDate; $i.Boot = $os.LastBootUpTime
+
+$i.Cpu = @(Q Win32_Processor | ForEach-Object {
+    @{ Name = (([string]$_.Name).Trim() -replace '\s+', ' '); Cores = $_.NumberOfCores; Threads = $_.NumberOfLogicalProcessors; Mhz = $_.MaxClockSpeed }
+})
+
+$mods = Q Win32_PhysicalMemory
+$i.RamTotal = [double](($mods | Measure-Object -Property Capacity -Sum).Sum)
+if (-not $i.RamTotal) { $i.RamTotal = [double]$cs.TotalPhysicalMemory }
+$i.RamMods = $mods.Count
+$i.RamSlots = [int]((Q Win32_PhysicalMemoryArray | Measure-Object -Property MemoryDevices -Sum).Sum)
+$types = @{ 20 = 'DDR'; 21 = 'DDR2'; 24 = 'DDR3'; 26 = 'DDR4'; 29 = 'LPDDR3'; 30 = 'LPDDR4'; 34 = 'DDR5'; 35 = 'LPDDR5' }
+$m0 = $mods | Select-Object -First 1
+$i.RamType = if ($m0 -and $types.ContainsKey([int]$m0.SMBIOSMemoryType)) { $types[[int]$m0.SMBIOSMemoryType] } else { '' }
+$i.RamSpeed = if ($m0.ConfiguredClockSpeed) { $m0.ConfiguredClockSpeed } else { $m0.Speed }
+
+# La memoria video di Win32_VideoController si ferma a 4 GB: quella vera sta nel registro del driver.
+$vram = @{}
+foreach ($k in @(Get-ChildItem 'HKLM:\SYSTEM\CurrentControlSet\Control\Class\{4d36e968-e325-11ce-bfc1-08002be10318}' -ErrorAction SilentlyContinue)) {
+    $p = Get-ItemProperty -LiteralPath $k.PSPath -ErrorAction SilentlyContinue
+    if (-not $p.DriverDesc) { continue }
+    $q = $p.'HardwareInformation.qwMemorySize'
+    if (-not $q) { $q = $p.'HardwareInformation.MemorySize'; if ($q -is [byte[]]) { $q = [BitConverter]::ToUInt32($q, 0) } }
+    if ($q) { $vram[[string]$p.DriverDesc] = [double]$q }
+}
+$i.Gpu = @(Q Win32_VideoController | Where-Object { $_.Name -and $_.PNPDeviceID -notmatch '^ROOT\\' } | ForEach-Object {
+    $v = if ($vram.ContainsKey([string]$_.Name)) { $vram[[string]$_.Name] } else { [double]$_.AdapterRAM }
+    @{ Name = [string]$_.Name; Vram = $v; Driver = [string]$_.DriverVersion; DriverDate = $_.DriverDate
+       W = $_.CurrentHorizontalResolution; H = $_.CurrentVerticalResolution; Hz = $_.CurrentRefreshRate }
+})
+
+$i.Disks = @()
+try {
+    $i.Disks = @(Get-PhysicalDisk -ErrorAction Stop | Where-Object { $_.Size -gt 0 } | Sort-Object { [int]$_.DeviceId } | ForEach-Object {
+        @{ Name = ([string]$_.FriendlyName).Trim(); Size = [double]$_.Size; Media = [string]$_.MediaType; Bus = [string]$_.BusType }
+    })
+} catch {}
+$i.Volumes = @()
+try {
+    $i.Volumes = @(Get-Volume -ErrorAction Stop | Where-Object { $_.DriveLetter -and $_.DriveType -eq 'Fixed' -and $_.Size -gt 0 } | Sort-Object DriveLetter | ForEach-Object {
+        @{ Letter = [string]$_.DriveLetter; Label = [string]$_.FileSystemLabel; Size = [double]$_.Size; Free = [double]$_.SizeRemaining }
+    })
+} catch {}
+
+$bb = Q Win32_BaseBoard | Select-Object -First 1
+$bios = Q Win32_BIOS | Select-Object -First 1
+$i.Board = (@([string]$bb.Manufacturer, [string]$bb.Product) | Where-Object { $_ }) -join ' '
+$i.Bios = [string]$bios.SMBIOSBIOSVersion; $i.BiosDate = $bios.ReleaseDate
+try {
+    Add-Type -Namespace TweakAndrewHome -Name Fw -MemberDefinition '[System.Runtime.InteropServices.DllImport("kernel32.dll")] public static extern bool GetFirmwareType(out int t);' -ErrorAction Stop
+    $fw = 0; [void][TweakAndrewHome.Fw]::GetFirmwareType([ref]$fw)
+    $i.Firmware = switch ($fw) { 1 { 'BIOS' } 2 { 'UEFI' } default { '' } }
+} catch { $i.Firmware = '' }
+try { $i.SecureBoot = [bool](Confirm-SecureBootUEFI -ErrorAction Stop) } catch { $i.SecureBoot = $null }
+$tpm = Q Win32_Tpm 'root\cimv2\security\microsofttpm' | Select-Object -First 1
+$i.Tpm = if ($tpm) { ([string]$tpm.SpecVersion -split ',')[0].Trim() } else { '' }
+
+$i.Net = @()
+try {
+    $i.Net = @(Get-NetAdapter -Physical -ErrorAction Stop | Where-Object { $_.Status -eq 'Up' } | ForEach-Object {
+        $ip = @(Get-NetIPAddress -InterfaceIndex $_.ifIndex -AddressFamily IPv4 -ErrorAction SilentlyContinue | ForEach-Object { $_.IPAddress }) -join ', '
+        @{ Name = [string]$_.Name; Desc = [string]$_.InterfaceDescription; Speed = [string]$_.LinkSpeed; Ip = $ip; Mac = [string]$_.MacAddress }
+    })
+} catch {}
+
+$bat = Q Win32_Battery
+$i.HasBattery = $bat.Count -gt 0
+if ($i.HasBattery) {
+    $i.Charge = $bat[0].EstimatedChargeRemaining
+    $i.OnAc = @(1, 4, 5) -notcontains [int]$bat[0].BatteryStatus
+    $design = (Q BatteryStaticData 'root\wmi' | Select-Object -First 1).DesignedCapacity
+    $full = (Q BatteryFullChargedCapacity 'root\wmi' | Select-Object -First 1).FullChargedCapacity
+    $i.Health = if ($design -and $full) { [Math]::Min(100, [Math]::Round(100 * $full / $design)) } else { $null }
+}
+$i.Chassis = @((Q Win32_SystemEnclosure | Select-Object -First 1).ChassisTypes)
+$i.SystemType = $cs.PCSystemType
+$i
+'@
+
+function Start-HomeInfo {
+    if ($null -ne $script:HomeJob) { return }
+    $ps = [powershell]::Create()
+    [void]$ps.AddScript($script:HomeInfoScript)
+    $script:HomeJob = @{ Ps = $ps; Handle = $ps.BeginInvoke() }
+    $script:HomeTimer = New-Object System.Windows.Threading.DispatcherTimer
+    $script:HomeTimer.Interval = [TimeSpan]::FromMilliseconds(150)
+    $script:HomeTimer.Add_Tick({
+        if (-not $script:HomeJob.Handle.IsCompleted) { return }
+        $script:HomeTimer.Stop()
+        try { $res = $script:HomeJob.Ps.EndInvoke($script:HomeJob.Handle) } catch { $res = @() }
+        $script:HomeJob.Ps.Dispose()
+        $info = @($res | Where-Object { $_ -is [hashtable] }) | Select-Object -First 1
+        if ($null -eq $info) { $info = @{ Pc = $env:COMPUTERNAME } }
+        $info.PcType = Get-DetectedPcType $info.Chassis $info.SystemType ([bool]$info.HasBattery)
+        $script:HomeInfo = $info
+        $script:PcTypeDetected = $info.PcType
+        Show-HomeInfo
+    })
+    $script:HomeTimer.Start()
+}
+
+# --- disegno ---
+function New-HomeText([string]$text, [double]$size, [string]$color, [string]$weight = 'Normal') {
+    $t = New-Object System.Windows.Controls.TextBlock
+    $t.Text = $text; $t.FontSize = $size; $t.Foreground = New-AppBrush $color; $t.FontWeight = $weight
+    $t.TextWrapping = 'Wrap'; $t.FontFamily = 'Roboto, Segoe UI'
+    return $t
+}
+
+function Add-HomeRow($panel, [string]$label, [string]$value) {
+    if (-not $value) { return }
+    $g = New-Object System.Windows.Controls.Grid; $g.Margin = '0,3,0,3'
+    $c0 = New-Object System.Windows.Controls.ColumnDefinition; $c0.Width = New-Object System.Windows.GridLength(118)
+    $c1 = New-Object System.Windows.Controls.ColumnDefinition
+    $g.ColumnDefinitions.Add($c0); $g.ColumnDefinitions.Add($c1)
+    $l = New-HomeText $label 12 '#FF7E7E88'
+    $v = New-HomeText $value 12.5 '#FFE8E8EE'
+    $v.Margin = '8,0,0,0'
+    [System.Windows.Controls.Grid]::SetColumn($v, 1)
+    [void]$g.Children.Add($l); [void]$g.Children.Add($v)
+    [void]$panel.Children.Add($g)
+}
+
+function Add-HomeItem($panel, [string]$title) {
+    $t = New-HomeText $title 13 '#FFF2F2F5' 'SemiBold'
+    $t.Margin = if ($panel.Children.Count -gt 1) { '0,12,0,3' } else { '0,0,0,3' }
+    [void]$panel.Children.Add($t)
+}
+
+function Format-HomeSize([double]$b, [switch]$Binary) {
+    $u = if ($Binary) { 1GB } else { 1e9 }
+    $g = $b / $u
+    if ($g -ge 1000) { return ('{0:0.0} TB' -f ($g / 1000)) }
+    if ($g -ge 10) { return ('{0:0} GB' -f $g) }
+    return ('{0:0.#} GB' -f $g)
+}
+
+function Format-HomeDate($d) {
+    if (-not $d) { return '' }
+    try { return ([datetime]$d).ToString('dd/MM/yyyy') } catch { return '' }
+}
+
+function Get-PcTypeName([string]$t) { if ($t -eq 'laptop') { T 'homeTypeLaptop' } else { T 'homeTypeDesktop' } }
+
+function New-HomeHero($i) {
+    $card = New-Object System.Windows.Controls.Border
+    $card.Style = $window.FindResource('Glass')
+    $g = New-Object System.Windows.Controls.Grid
+    $c0 = New-Object System.Windows.Controls.ColumnDefinition
+    $c1 = New-Object System.Windows.Controls.ColumnDefinition; $c1.Width = [System.Windows.GridLength]::Auto
+    $g.ColumnDefinitions.Add($c0); $g.ColumnDefinitions.Add($c1)
+
+    $left = New-Object System.Windows.Controls.StackPanel; $left.VerticalAlignment = 'Center'
+    $cap = New-Object System.Windows.Controls.TextBlock; $cap.Text = T 'homeThisPc'; $cap.Style = $window.FindResource('CardTitle'); $cap.Margin = '0,0,0,4'
+    [void]$left.Children.Add($cap)
+    $name = New-HomeText $i.Pc 28 '#FFFFFFFF' 'Bold'; $name.FontFamily = 'Raleway, Segoe UI Variable Display, Segoe UI'
+    [void]$left.Children.Add($name)
+    $grp = if ($i.PartOfDomain) { T 'homeDomain' } else { T 'homeWorkgroup' }
+    $l1 = New-HomeText "$($i.User)   ·   $grp $($i.Domain)" 12.5 '#FFA1A1AA'; $l1.Margin = '0,4,0,0'
+    [void]$left.Children.Add($l1)
+    $osLine = (@($i.Os, $i.OsVersion) | Where-Object { $_ }) -join ' '
+    $l2 = New-HomeText "$osLine   ·   build $($i.OsBuild)   ·   $($i.OsArch)" 12.5 '#FFA1A1AA'; $l2.Margin = '0,2,0,0'
+    [void]$left.Children.Add($l2)
+
+    $chips = New-Object System.Windows.Controls.WrapPanel; $chips.Margin = '0,12,0,0'
+    $up = ''
+    if ($i.Boot) {
+        $s = (Get-Date) - [datetime]$i.Boot
+        $up = if ($s.Days -gt 0) { (T 'homeUptimeD') -f $s.Days, $s.Hours, $s.Minutes } else { (T 'homeUptimeH') -f $s.Hours, $s.Minutes }
+    }
+    $model = (@($i.Maker, $i.Model) | Where-Object { $_ -and $_ -notmatch 'System manufacturer|System Product Name|To be filled|Default string' }) -join ' '
+    foreach ($c in @(
+        $(if ($up) { (T 'homeUptime') -f $up }),
+        $(if ($i.InstallDate) { (T 'homeInstalledOn') -f (Format-HomeDate $i.InstallDate) }),
+        $model)) {
+        if (-not $c) { continue }
+        $p = New-AppPill $c '#FFC4C4CC' '#FF141417'; $p.Margin = '0,0,8,6'; $p.Padding = '10,4,10,4'
+        [void]$chips.Children.Add($p)
+    }
+    [void]$left.Children.Add($chips)
+    [void]$g.Children.Add($left)
+
+    # Tipo di PC: rilevato da solo, correggibile a mano.
+    $box = New-Object System.Windows.Controls.Border
+    $box.Style = $window.FindResource('GlassInner'); $box.Width = 330; $box.Margin = '18,0,0,0'; $box.Padding = '16,14,16,14'
+    [System.Windows.Controls.Grid]::SetColumn($box, 1)
+    $bs = New-Object System.Windows.Controls.StackPanel
+    $bt = New-Object System.Windows.Controls.TextBlock; $bt.Text = T 'homePcType'; $bt.Style = $window.FindResource('CardTitle'); $bt.Margin = '0,0,0,8'
+    [void]$bs.Children.Add($bt)
+    $set = Get-PcTypeSetting
+    foreach ($o in @(
+        @{ V = 'auto'; L = ((T 'homeTypeAuto') -f (Get-PcTypeName $i.PcType)) },
+        @{ V = 'desktop'; L = (T 'homeTypeDesktop') },
+        @{ V = 'laptop'; L = (T 'homeTypeLaptop') })) {
+        $rb = New-Object System.Windows.Controls.RadioButton
+        $rb.GroupName = 'PcType'; $rb.Content = $o.L; $rb.Tag = $o.V; $rb.Margin = '0,0,0,6'
+        $rb.IsChecked = ($set -eq $o.V)
+        $rb.Add_Checked({ Set-PcTypeSetting ([string]$this.Tag) })
+        [void]$bs.Children.Add($rb)
+    }
+    $hint = New-Object System.Windows.Controls.TextBlock; $hint.Text = T 'homeTypeHint'; $hint.Style = $window.FindResource('SubTitle'); $hint.Margin = '2,4,0,0'
+    [void]$bs.Children.Add($hint)
+    $box.Child = $bs
+    [void]$g.Children.Add($box)
+    $card.Child = $g
+    return $card
+}
+
+function Show-HomeInfo {
+    $i = $script:HomeInfo
+    if ($null -eq $i) { return }
+    $panHome.Children.Clear()
+    [void]$panHome.Children.Add((New-HomeHero $i))
+
+    $cards = New-Object System.Collections.ArrayList
+    $on = T 'valOn'; $off = T 'valOff'
+
+    $c = New-AppCard (T 'homeCpu')
+    foreach ($p in $i.Cpu) {
+        Add-HomeItem $c.Panel $p.Name
+        Add-HomeRow $c.Panel (T 'hkCores') "$($p.Cores) / $($p.Threads)"
+        if ($p.Mhz) { Add-HomeRow $c.Panel (T 'hkClock') ('{0:0.00} GHz' -f ($p.Mhz / 1000)) }
+    }
+    [void]$cards.Add($c)
+
+    $c = New-AppCard (T 'homeRam')
+    Add-HomeRow $c.Panel (T 'hkTotal') (Format-HomeSize $i.RamTotal -Binary)
+    $rt = (@($i.RamType, $(if ($i.RamSpeed) { "$($i.RamSpeed) MT/s" })) | Where-Object { $_ }) -join '  ·  '
+    Add-HomeRow $c.Panel (T 'hkRamType') $rt
+    if ($i.RamMods) {
+        $slots = if ($i.RamSlots -ge $i.RamMods) { (T 'homeSlotsFmt') -f $i.RamMods, $i.RamSlots } else { "$($i.RamMods)" }
+        Add-HomeRow $c.Panel (T 'hkSlots') $slots
+    }
+    [void]$cards.Add($c)
+
+    $c = New-AppCard (T 'homeGpu')
+    foreach ($p in $i.Gpu) {
+        Add-HomeItem $c.Panel $p.Name
+        if ($p.Vram -gt 0) { Add-HomeRow $c.Panel (T 'hkVram') (Format-HomeSize $p.Vram -Binary) }
+        $d = Format-HomeDate $p.DriverDate
+        Add-HomeRow $c.Panel (T 'hkDriver') ($(if ($d) { "$($p.Driver)  ($d)" } else { $p.Driver }))
+        if ($p.W) { Add-HomeRow $c.Panel (T 'hkRes') ("$($p.W) × $($p.H)" + $(if ($p.Hz) { "  ·  $($p.Hz) Hz" })) }
+    }
+    [void]$cards.Add($c)
+
+    $c = New-AppCard (T 'homeDisks')
+    foreach ($p in $i.Disks) {
+        Add-HomeItem $c.Panel $p.Name
+        $kind = (@($(if ($p.Media -in @('SSD', 'HDD')) { $p.Media }), $p.Bus, (Format-HomeSize $p.Size)) | Where-Object { $_ -and $_ -ne 'Unspecified' }) -join '  ·  '
+        Add-HomeRow $c.Panel (T 'hkType') $kind
+    }
+    if ($i.Volumes.Count -gt 0) { Add-HomeItem $c.Panel (T 'homeVolumes') }
+    foreach ($v in $i.Volumes) {
+        $lbl = if ($v.Label) { "$($v.Letter):  $($v.Label)" } else { "$($v.Letter):" }
+        Add-HomeRow $c.Panel $lbl ((T 'homeFreeFmt') -f (Format-HomeSize $v.Free), (Format-HomeSize $v.Size))
+    }
+    [void]$cards.Add($c)
+
+    $c = New-AppCard (T 'homeBoard')
+    Add-HomeRow $c.Panel (T 'hkModel') $i.Board
+    $bd = Format-HomeDate $i.BiosDate
+    Add-HomeRow $c.Panel 'BIOS' ($(if ($bd) { "$($i.Bios)  ($bd)" } else { $i.Bios }))
+    Add-HomeRow $c.Panel 'Firmware' $i.Firmware
+    if ($null -ne $i.SecureBoot) { Add-HomeRow $c.Panel 'Secure Boot' ($(if ($i.SecureBoot) { $on } else { $off })) }
+    Add-HomeRow $c.Panel 'TPM' ($(if ($i.Tpm) { $i.Tpm } else { T 'valNone' }))
+    [void]$cards.Add($c)
+
+    $c = New-AppCard (T 'homeNet')
+    if ($i.Net.Count -eq 0) { [void]$c.Panel.Children.Add((New-AppNote (T 'homeNoNet'))) }
+    foreach ($p in $i.Net) {
+        Add-HomeItem $c.Panel $p.Name
+        Add-HomeRow $c.Panel (T 'hkAdapter') $p.Desc
+        Add-HomeRow $c.Panel (T 'hkSpeed') $p.Speed
+        Add-HomeRow $c.Panel 'IPv4' $p.Ip
+    }
+    [void]$cards.Add($c)
+
+    if ($i.HasBattery) {
+        $c = New-AppCard (T 'homeBattery')
+        if ($null -ne $i.Charge) { Add-HomeRow $c.Panel (T 'hkCharge') "$($i.Charge)%" }
+        Add-HomeRow $c.Panel (T 'hkPower') ($(if ($i.OnAc) { T 'valOnAc' } else { T 'valOnBattery' }))
+        if ($i.Health) { Add-HomeRow $c.Panel (T 'hkHealth') "$($i.Health)%" }
+        [void]$cards.Add($c)
+    }
+
+    # Tre colonne riempite a turno verso la piu' corta.
+    $grid = New-Object System.Windows.Controls.Grid
+    $cols = @()
+    for ($k = 0; $k -lt 3; $k++) {
+        $cd = New-Object System.Windows.Controls.ColumnDefinition
+        $cd.Width = New-Object System.Windows.GridLength(1, [System.Windows.GridUnitType]::Star)
+        $grid.ColumnDefinitions.Add($cd)
+        $sp = New-Object System.Windows.Controls.StackPanel
+        [System.Windows.Controls.Grid]::SetColumn($sp, $k); [void]$grid.Children.Add($sp)
+        $cols += $sp
+    }
+    $h = @(0, 0, 0)
+    foreach ($cd in $cards) {
+        $k = 0; for ($j = 1; $j -lt 3; $j++) { if ($h[$j] -lt $h[$k]) { $k = $j } }
+        [void]$cols[$k].Children.Add($cd.Card)
+        $h[$k] += $cd.Panel.Children.Count + 2
+    }
+    [void]$panHome.Children.Add($grid)
+}
+
+function Show-HomePageIfNeeded {
+    if ($script:HomeInfo) {
+        if ($script:HomeBuiltLang -ne $script:LangCode) { $script:HomeBuiltLang = $script:LangCode; Show-HomeInfo }
+        return
+    }
+    $script:HomeBuiltLang = $script:LangCode
+    Start-HomeInfo
+}
+
+# All'avvio la Home e' la pagina aperta, ma Show-Page e' gia' passato quando
+# queste funzioni non esistevano ancora.
+if ((E 'tabHome').IsChecked) { Show-HomePageIfNeeded }
 
 
 # ------------------------------------------------------------------------------

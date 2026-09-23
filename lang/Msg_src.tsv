@@ -139,3 +139,65 @@ selPageNone	This page has no entries to queue.
 recNone	Here entries are picked one by one: read each description.
 recSelected	Selected {0} recommended entries: press Apply changes.
 recSched	Recommended values ready in both panels: press Apply and Save to write them.
+appUpdatable	Update available
+appsUpgradeSel	Update selected
+appsSelectUpdates	Select all
+appsUpdatesTitle	Available updates ({0})
+appsNoUpdates	Every app managed by winget is up to date.
+appsScanning	Checking for updates...
+appsAskUpgradeSel	I'll update {0} apps with winget, one at a time, without windows. Go ahead?
+appsUpgrading	Updating
+jobWait	Waiting
+jobPrep	Preparing...
+jobDownload	Download {0}%
+jobInstall	Installing...
+jobInstallPct	Installing {0}%
+jobUninstall	Uninstalling...
+jobOk	Done
+jobOkReboot	Done, restart needed
+jobErr	Error (code {0})
+jobsProgress	{0} of {1}
+appsDoneSum	Operations completed: {0} succeeded, {1} with errors.
+homeThisPc	THIS PC
+homeDomain	Domain
+homeWorkgroup	Workgroup
+homeUptime	Up for {0}
+homeUptimeD	{0} d {1} h {2} min
+homeUptimeH	{0} h {1} min
+homeInstalledOn	Windows installed on {0}
+homePcType	PC TYPE
+homeTypeAuto	Automatic: {0}
+homeTypeDesktop	Desktop
+homeTypeLaptop	Laptop
+homeTypeHint	On a laptop «Select all» and «Recommended» skip the entries that drain the battery; on a desktop, those useful only with a battery. You can still pick them by hand.
+homeCpu	Processor
+homeRam	Memory
+homeGpu	Graphics card
+homeDisks	Storage
+homeVolumes	Drives
+homeFreeFmt	{0} free of {1}
+homeBoard	Motherboard and firmware
+homeNet	Network
+homeNoNet	No active connection.
+homeBattery	Battery
+homeSlotsFmt	{0} of {1} slots
+hkCores	Cores / threads
+hkClock	Max clock
+hkTotal	Total
+hkRamType	Type and speed
+hkSlots	Modules
+hkVram	Video memory
+hkDriver	Driver
+hkRes	Display
+hkType	Type
+hkModel	Model
+hkAdapter	Adapter
+hkSpeed	Speed
+hkCharge	Charge
+hkPower	Power
+hkHealth	Health
+valOn	On
+valOff	Off
+valNone	Not present
+valOnAc	Plugged in
+valOnBattery	On battery
