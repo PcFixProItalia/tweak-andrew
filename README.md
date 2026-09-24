@@ -26,9 +26,8 @@ quello consigliato. `tools\gen_catalog.py` controlla il formato e scrive
 La Home riassume hardware e sistema, letti in un runspace a parte per non
 bloccare la finestra. Il tipo di PC (fisso o portatile) si rileva dal telaio e
 dalla batteria e si puo' correggere a mano: la scelta resta in
-`HKCU\Software\TweakAndrew`. Su un portatile «Seleziona tutto» e «Consigliati»
-saltano le voci che consumano batteria, su un fisso quelle utili solo con la
-batteria.
+`HKCU\Software\TweakAndrew`. Su un portatile «Consigliati» salta le voci che
+consumano batteria; «Seleziona tutto» le prende dopo un avviso.
 
 ## App e software
 
@@ -37,6 +36,23 @@ volta. winget scrive l'avanzamento solo verso una console: per questo gira in
 una console virtuale (ConPTY) e il programma ne legge la percentuale di
 download. Gli aggiornamenti disponibili vengono da `winget upgrade`, le app
 gia' presenti da `winget export` e dall'elenco dei programmi installati.
+
+## Strumenti
+
+Pulizia selettiva, riparazioni (rete, Windows Update, DISM e SFC, orologio,
+winget, Store, icone), funzionalità di Windows, pannelli classici e O&O
+ShutUp10++, scaricato dal sito ufficiale in `%LOCALAPPDATA%\TweakAndrew` e
+aperto solo se la firma digitale è valida. Gli strumenti girano uno alla volta
+in una console virtuale, così la percentuale di DISM e SFC arriva al pannello.
+
+## Operazioni in corso e stato attuale
+
+L'indicatore in alto mostra da ogni pagina cosa sta lavorando e a che punto è.
+Durante «Applica» e durante gli strumenti le pagine delle impostazioni si
+bloccano; Home e App restano libere. All'avvio il programma legge le azioni di
+«Applica» (senza eseguirle) e confronta i valori con il sistema: le voci già
+attive portano l'etichetta «Attivo». La stellina segna le voci consigliate e le
+seleziona con un clic.
 
 ## Avvio da qualsiasi PC
 
@@ -67,6 +83,8 @@ powershell -NoProfile -ExecutionPolicy Bypass -File tools\test.ps1 -Lang it
 # Home e pagina delle app: letture in background, aggiornamenti disponibili e
 # barra di avanzamento con un «winget download» (scarica, non installa)
 powershell -NoProfile -ExecutionPolicy Bypass -File tools\test_home_apps.ps1
+# Strumenti, blocco delle pagine, indicatore, stelline e profili WU (operazioni finte)
+powershell -NoProfile -ExecutionPolicy Bypass -File tools\test_tools.ps1
 ```
 
 Il giro delle pagine legge soltanto lo stato del sistema: nessun interruttore

@@ -222,3 +222,118 @@ cpuUnknown	unrecognized processor
 sectionSelect	Whole section
 laptopSelTitle	Laptop
 laptopSelAsk	On a laptop «Recommended» is the better choice: «Select all» also includes entries that shorten battery life. Select everything anyway?
+actRun	Changes: {0}
+jobWorking	Working...
+badgeActive	Active
+starTip	Recommended: one click selects it, then press «Apply changes».
+scanRunning	Checking entries already active...
+scanDone	Entries already active on this PC: {0}. They are marked «Active».
+currentSetting	Current setting: {0}
+ttlClean	PC cleanup
+cleanHint	Choose what to clean. The unchecked entries are useful data: delete them only if you know you don't need them.
+cleanScan	Measure space
+cleanRun	Clean selected
+cleanAsk	I'll clean {0} entries. Deleted files do not go to the Recycle Bin. Go ahead?
+cleanMeasuring	measuring...
+cleanFreed	{0} freed
+clean_winTemp	Windows temporary files
+clean_userTemp	User temporary files
+clean_wuCache	Already downloaded Windows updates
+clean_doCache	Delivery Optimization cache
+clean_recycle	Recycle Bin
+clean_errors	Error reports and dumps
+clean_thumbs	Thumbnail cache
+clean_recent	Recent files and jump lists
+clean_runHist	Run and typed path history
+clean_prefetch	Prefetch
+cleanTip_winTemp	Files left behind by installers and the system.
+cleanTip_userTemp	Temporary files of the programs you use. Files in use are skipped.
+cleanTip_wuCache	Packages already installed. Windows Update pauses for a few seconds.
+cleanTip_doCache	Update copies shared with other PCs.
+cleanTip_recycle	Empties the Recycle Bin on every drive.
+cleanTip_errors	Reports already sent and crash files.
+cleanTip_thumbs	Windows rebuilds them when you open folders: the first opening will be slower.
+cleanTip_recent	Removes recent files from File Explorer, Start and the taskbar.
+cleanTip_runHist	Commands typed in Run (Win+R) and paths typed in File Explorer.
+cleanTip_prefetch	Windows uses it to open programs faster: after cleaning the first launches will be slower.
+ttlFix	Repairs
+fixHint	They start right away, one at a time. Progress stays visible at the top from the other pages too.
+toolRun	Run
+tool_netQuick	Network: quick reset
+toolDesc_netQuick	Flushes the DNS cache and renews the IP address. The connection drops for a few seconds.
+tool_netFull	Network: full reset
+toolDesc_netFull	Winsock, IP stack, system proxy and Windows TCP settings go back to factory state. Needs a restart.
+toolAsk_netQuick	The connection drops for a few seconds. Go ahead?
+toolAsk_netFull	I'll reset networking to a fresh state. VPNs and programs that change Winsock may need reinstalling. Go ahead?
+tool_firewall	Firewall: default settings
+toolDesc_firewall	Deletes every rule added by you and by programs. Use it only if the firewall blocks connections that should work.
+toolAsk_firewall	All custom firewall rules will be deleted and cannot be recovered. Go ahead?
+tool_wuReset	Windows Update: reset
+toolDesc_wuReset	For stuck or failing updates: stops the services, renames SoftwareDistribution and catroot2, restores the components and restarts. Needs a restart.
+toolAsk_wuReset	The update history Windows shows will be cleared; installed updates stay. Go ahead?
+tool_repair	System files: check and repair
+toolDesc_repair	DISM repairs the Windows image, then SFC fixes damaged files. It can take 15-30 minutes.
+toolAsk_repair	The check takes a while and uses the disk heavily. You can keep using the PC. Go ahead?
+tool_ntp	Clock: sync the time
+toolDesc_ntp	Uses pool.ntp.org and time.windows.com and syncs right away.
+tool_winget	winget: repair
+toolDesc_winget	Re-registers App Installer and resets the package sources.
+tool_regBackup	Registry: daily backup
+toolDesc_regBackup	Re-enables the automatic registry copy in System32\config\RegBack and makes one now.
+tool_store	Microsoft Store: clear cache
+toolDesc_store	For stuck Store downloads. The Store opens by itself when done.
+tool_explorer	File Explorer: restart
+toolDesc_explorer	Closes and reopens the taskbar, Start and folders. Useful when something is stuck.
+tool_icons	Icons and thumbnails: rebuild
+toolDesc_icons	For blank or wrong icons. File Explorer restarts.
+toolAsk_icons	Open File Explorer windows will be closed. Go ahead?
+ttlFeatures	Windows features
+featHint	The ones already active are marked «Active». Enabling downloads files from Windows Update and usually needs a restart.
+featRun	Enable selected
+featAsk	I'll enable {0} features with DISM. Go ahead?
+featMissing	Not available in this edition of Windows.
+feat_netfx	.NET Framework 3.5 and 4.x advanced services
+feat_hyperv	Hyper-V
+feat_sandbox	Windows Sandbox
+feat_wsl	Windows Subsystem for Linux (WSL)
+feat_media	Legacy media components (Windows Media Player, DirectPlay)
+feat_nfs	NFS client
+featTip_netfx	Needed by older programs and games.
+featTip_hyperv	Virtual machines with Hyper-V. Pro, Enterprise and Education only.
+featTip_sandbox	A disposable Windows to try suspicious programs. Pro and Enterprise only.
+featTip_wsl	Linux distributions inside Windows.
+featTip_media	For old games and programs that need DirectPlay or Windows Media Player.
+featTip_nfs	Access to NFS shares on NAS and Linux servers.
+oosuHint	O&O's free privacy tool, no install needed. It is downloaded from the official site into a program folder, its digital signature is checked and it opens.
+oosuRun	Download and open
+oosuAsk	I'll download O&O ShutUp10++ from oo-software.com (about 3 MB) and open it. Go ahead?
+ttlPanels	Windows panels
+panelsHint	The classic settings windows, one click away.
+panel_control	Control Panel
+panel_compmgmt	Computer Management
+panel_devmgmt	Device Manager
+panel_diskmgmt	Disk Management
+panel_services	Services
+panel_eventvwr	Event Viewer
+panel_appwiz	Programs and Features
+panel_ncpa	Network Connections
+panel_powercfg	Power Options
+panel_printers	Printers
+panel_mouse	Mouse
+panel_sound	Sound
+panel_sysdm	System Properties
+panel_region	Region
+panel_time	Date and Time
+panel_security	Security and Maintenance
+panel_firewall	Windows Defender Firewall
+panel_restore	System Restore
+wu_recommended	Recommended
+wu_default	Windows default
+wu_disable	Updates off
+wu_custom	Custom
+wuSub_recommended	Security and stability together
+wuSub_default	Control goes back to Windows
+wuSub_disable	For special uses only: no security updates
+wuList_recommended	New Windows versions deferred by 365 days;Monthly updates deferred by 4 days;Drivers excluded from Windows Update;No automatic restart while a user is signed in
+wuList_default	Removes the Windows Update policies that were set;Restores the update services to their original state;Re-enables the scheduled update tasks
+wuList_disable	Automatic updates off;Update services and tasks stopped;Downloaded updates deleted

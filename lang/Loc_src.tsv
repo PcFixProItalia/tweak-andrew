@@ -234,7 +234,7 @@ chkFth	Fault Tolerant Heap — no automatic patching
 chkAppCompat	Compatibility engine and program inventory
 chkSvcHostSplit	Fewer svchost processes (group the services)
 chkMemCompression	Memory compression — risky below 16 GB of RAM
-ttlWu	UPDATES
+ttlWu	WINDOWS UPDATE
 chkWuNoReboot	No automatic reboots while you are using the computer
 chkWuDefer	Defer new Windows releases by one year
 chkWuNoStore	Automatic Store app updates
@@ -358,3 +358,14 @@ chkCpuIntelBoostPol	Intel: turbo with no policy limit
 chkCpuIntelHybrid	Intel hybrid: foreground apps on P-cores
 chkCpuAmdParking	AMD Ryzen: no parked cores
 chkCpuIdleOff	Processor always awake (no idle states)
+tabTools	Tools
+ttlToolJobs	OPERATIONS
+btnToolJobsClose	Close
+lblWuHint	Pick a profile: it joins the changes to apply. A second click removes it.
+chkWuProfile	Windows Update profile
+ttlAdvCompat	CLOCK AND PERIPHERALS
+chkAdvUtc	BIOS clock in UTC (dual boot with Linux)
+chkAdvRazer	No automatic Razer software install
+chkAdvLogi	No Logitech download assistant
+chkIPv4Pref	IPv4 before IPv6
+chkDiskNoSleep	Disks and SSDs always on (while plugged in)

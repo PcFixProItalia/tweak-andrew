@@ -584,3 +584,10 @@ pw.nvme2#1000	1 Sekunde
 pw.nvme2#2000	2 Sekunden
 pw.nvme2#5000	5 Sekunden
 H:pw.nvme2	Der zweite, tiefere Energiesparzustand: das Aufwachen dauert ein paar Millisekunden länger. Auf einem Laptop besser eingeschaltet lassen.
+task.oldStart	Vorheriges Startmenü (Windows 11 25H2)
+H:task.oldStart	Holt das Startmenü mit angehefteten Apps oben zurück, wie vor dem Update 25H2. Neustart erforderlich.
+notif.center	Infocenter und Kalender
+H:notif.center	Das Fenster, das sich per Klick auf Datum und Uhrzeit öffnet. Aus öffnet der Klick auf die Uhr nichts mehr.
+g.win.browser	Browser
+win.brave	Brave ohne Rewards, Wallet, VPN, KI und Statistiken
+H:win.brave	Brave-Richtlinien: schaltet Zusatzfunktionen und das Senden von Statistiken ab. Gilt auch, wenn Brave später installiert wird.

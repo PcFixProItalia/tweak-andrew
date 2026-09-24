@@ -13,7 +13,7 @@ $script:LaptopChassis = @(8, 9, 10, 11, 12, 14, 18, 21, 30, 31, 32)
 $script:DesktopChassis = @(3, 4, 5, 6, 7, 13, 15, 16, 35)
 # Voci che su un portatile costano batteria: «Consigliati» le lascia stare,
 # «Seleziona tutto» le prende dopo un avviso.
-$script:LaptopSkip = @('chkPowerThrottling', 'chkUSBSuspend', 'chkNetPowerSave', 'chkHibernation', 'chkS0Sleep',
+$script:LaptopSkip = @('chkPowerThrottling', 'chkUSBSuspend', 'chkNetPowerSave', 'chkHibernation', 'chkS3Sleep', 'chkDiskNoSleep',
                        'chkNvPerfMode', 'chkNvDrsPower', 'chkNvDisplayPower', 'chkAmdUlps', 'chkAmdAspm',
                        'chkIntelGfxPower', 'chkIntelDpst', 'chkCpuIntelBoostPol', 'chkCpuAmdParking', 'chkCpuIdleOff')
 # Voci utili solo con la batteria: su un fisso si saltano.
@@ -67,6 +67,7 @@ function Set-PcTypeSetting([string]$value) {
         Set-ItemProperty -LiteralPath $script:SettingsKey -Name PcType -Value $value
     } catch { Write-Log "[AVVISO] Tipo di PC non salvato: $($_.Exception.Message)" }
     Write-Log "[OK] Tipo di PC: $value (in uso: $(Get-PcType))"
+    if (Get-Command Update-RecStars -ErrorAction SilentlyContinue) { Update-RecStars }
 }
 
 # Letture dell'hardware: gira nel runspace, quindi niente T e niente controlli.

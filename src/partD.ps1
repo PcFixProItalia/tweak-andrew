@@ -88,6 +88,23 @@ function Remove-AppxList {
     else { Write-Log "[OK] $Label - $removed app rimosse." }
 }
 
+# Svuota una cartella e ne vieta la scrittura a tutti: il programma che la usa
+# per installarsi non riesce piu' a copiarci nulla.
+function Lock-Folder([string]$Path, [string]$Label) {
+    try {
+        if (Test-Path -LiteralPath $Path) { Remove-Item -Path (Join-Path $Path '*') -Recurse -Force -ErrorAction SilentlyContinue }
+        else { New-Item -ItemType Directory -Path $Path -Force | Out-Null }
+        & icacls.exe $Path /deny '*S-1-1-0:(W)' | Out-Null
+        if ($LASTEXITCODE -eq 0) { Write-Log "[OK] $Label - scrittura bloccata." } else { Write-Log "[ERRORE] $Label - icacls $LASTEXITCODE." }
+    } catch { Write-Log "[ERRORE] $Label - $($_.Exception.Message)" }
+}
+
+function Unlock-Folder([string]$Path, [string]$Label) {
+    if (-not (Test-Path -LiteralPath $Path)) { Write-Log "[SALTATO] $Label - cartella assente."; return }
+    & icacls.exe $Path /remove:d '*S-1-1-0' | Out-Null
+    if ($LASTEXITCODE -eq 0) { Write-Log "[OK] $Label - scrittura di nuovo permessa." } else { Write-Log "[ERRORE] $Label - icacls $LASTEXITCODE." }
+}
+
 function Build-Actions {
     $script:Actions = @()
 
@@ -200,11 +217,13 @@ function Build-Actions {
     }
 
     Add-IfChecked $chkApplyMPO {
-        $mpo = [string]$cmbMPO.Text
+        # Per posizione e non per testo: le voci cambiano con la lingua.
         $dwm = "HKLM:\SOFTWARE\Microsoft\Windows\DWM"
-        if     ($mpo -match 'Disatt|Disabled') { Set-Reg $dwm 'OverlayTestMode' 5 'DWord' 'MPO disattivato' }
-        elseif ($mpo -match '2 pian|2 plan')   { Set-Reg $dwm 'OverlayTestMode' 2 'DWord' 'MPO compatibile (2 piani)' }
-        else                                   { Remove-Reg $dwm 'OverlayTestMode' 'MPO predefinito' }
+        switch ($cmbMPO.SelectedIndex) {
+            1       { Set-Reg $dwm 'OverlayTestMode' 5 'DWord' 'MPO disattivato' }
+            2       { Set-Reg $dwm 'OverlayTestMode' 2 'DWord' 'MPO compatibile (2 piani)' }
+            default { Remove-Reg $dwm 'OverlayTestMode' 'MPO predefinito' }
+        }
     }
 
     # ---------- AVANZATE RISCHIOSE ----------
@@ -228,11 +247,23 @@ function Build-Actions {
         powercfg /h off | Out-Null
         Write-Log "[OK] Ibernazione disattivata."
     }
+    # Criterio «Consenti la connettività di rete durante lo standby connesso»:
+    # 0 = niente rete mentre il PC dorme, niente download e risvegli in borsa.
     Add-IfChecked $chkS0Sleep {
-        Set-Reg 'HKLM:\SYSTEM\CurrentControlSet\Control\Power' 'EnforceConnectivityInStandby' 0 'DWord' 'Connettivita in standby'
+        $p = 'HKLM:\SOFTWARE\Policies\Microsoft\Power\PowerSettings\f15576e8-98b7-4186-b944-eafa664402d9'
+        Set-Reg $p 'ACSettingIndex' 0 'DWord' 'Rete in standby (alimentazione)'
+        Set-Reg $p 'DCSettingIndex' 0 'DWord' 'Rete in standby (batteria)'
     }
     Add-IfChecked $chkS3Sleep {
         Set-Reg 'HKLM:\SYSTEM\CurrentControlSet\Control\Power' 'PlatformAoAcOverride' 0 'DWord' 'Sospensione S3'
+    }
+    # Dischi, SSD SATA e NVMe senza stati di risparmio, solo con l'alimentazione collegata.
+    Add-IfChecked $chkDiskNoSleep {
+        $d = '0012ee47-9041-4b5d-9b77-535fba8b1442'
+        Set-PowerAc $d '6738e2c4-e8a5-4a42-b16a-e040e769756e' 0 'Spegni i dischi: mai'
+        Set-PowerAc $d '0b2d69d7-a2a1-449c-9680-f91c70521c60' 0 'Collegamento SATA sempre attivo'
+        Set-PowerAc $d 'd639518a-e56d-4345-8af2-b9f32fb26109' 0 'NVMe: nessun riposo'
+        Set-PowerAc $d 'd3d55efd-c1ff-424e-9dc3-441be7833010' 0 'NVMe: nessun riposo profondo'
     }
 
     # ---------- PRIVACY ----------
@@ -405,6 +436,7 @@ function Build-Actions {
     }
     Add-IfChecked $chkCompanionApps {
         Set-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\DeviceInstall\Settings' 'DisableDeviceCompanionApp' 1 'DWord' 'App companion'
+        Set-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\Device Metadata' 'PreventDeviceMetadataFromNetwork' 1 'DWord' 'Metadati dei dispositivi dalla rete'
     }
     Add-IfChecked $chkDriverUpdates {
         Set-Reg 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\DriverSearching' 'SearchOrderConfig' 0 'DWord' 'Driver da Windows Update'
@@ -492,6 +524,12 @@ function Build-Actions {
         Write-Log "[OK] Risparmio energetico disattivato su $n schede di rete."
     }
 
+    # IPv4 prima di IPv6: IPv6 resta attivo, cambia solo la preferenza (0x20).
+    # Se e' scelto anche «IPv6» vince la disattivazione completa.
+    Add-IfChecked $chkIPv4Pref {
+        if ($chkDisableIPv6.IsChecked -eq $true) { Write-Log "[SALTATO] IPv4 preferito - IPv6 viene disattivato del tutto."; return }
+        Set-Reg 'HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip6\Parameters' 'DisabledComponents' 32 'DWord' 'IPv4 preferito a IPv6'
+    }
     Add-IfChecked $chkDisableIPv6 {
         Set-Reg 'HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip6\Parameters' 'DisabledComponents' 255 'DWord' 'IPv6'
     }
@@ -961,19 +999,21 @@ function Build-Actions {
     }
 
     # ---------- AVANZATE: aggiornamenti ----------
-    Add-IfChecked $chkWuNoReboot {
-        $au = 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU'
-        Set-Reg $au 'NoAutoRebootWithLoggedOnUsers' 1 'DWord' 'Niente riavvii automatici'
-        Set-Reg $au 'AUOptions' 2 'DWord' 'Avvisa prima di scaricare'
-        Set-Reg $au 'AUPowerManagement' 0 'DWord' 'Niente risveglio per aggiornare'
+    Add-IfChecked $chkWuProfile { Set-WuProfile $script:WuProfileChoice }
+    # ---------- AVANZATE: orologio e periferiche ----------
+    Add-IfChecked $chkAdvUtc {
+        Set-Reg 'HKLM:\SYSTEM\CurrentControlSet\Control\TimeZoneInformation' 'RealTimeIsUniversal' 1 'QWord' 'Orologio del BIOS in UTC'
     }
-    Add-IfChecked $chkWuDefer {
-        $wu = 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate'
-        Set-Reg $wu 'DeferFeatureUpdates' 1 'DWord' 'Rinvio nuove versioni'
-        Set-Reg $wu 'DeferFeatureUpdatesPeriodInDays' 365 'DWord' 'Rinvio nuove versioni (giorni)'
-        Set-Reg $wu 'DeferQualityUpdates' 1 'DWord' 'Rinvio aggiornamenti qualitativi'
-        Set-Reg $wu 'DeferQualityUpdatesPeriodInDays' 7 'DWord' 'Rinvio aggiornamenti qualitativi (giorni)'
-        Write-Log "[INFO] Gli aggiornamenti di sicurezza arrivano comunque, con una settimana di ritardo."
+    # Le periferiche Razer installano Synapse da sole tramite un co-installer: si
+    # bloccano i co-installer e si rende non scrivibile la cartella che lo riceve.
+    Add-IfChecked $chkAdvRazer {
+        Set-Reg 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Device Installer' 'DisableCoInstallers' 1 'DWord' 'Co-installer dei driver'
+        Lock-Folder "$env:SystemRoot\Installer\Razer" 'Cartella di installazione Razer'
+    }
+    Add-IfChecked $chkAdvLogi {
+        Stop-Process -Name 'logi_download_assistant' -Force -ErrorAction SilentlyContinue
+        $pf = if ($env:ProgramW6432) { $env:ProgramW6432 } else { $env:ProgramFiles }
+        Lock-Folder "$pf\LogiDownloadAssistant" 'Assistente download Logitech'
     }
     Add-IfChecked $chkWuNoStore {
         Set-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\WindowsStore' 'AutoDownload' 2 'DWord' 'Aggiornamento automatico app Store'
@@ -1091,6 +1131,5 @@ Show-StorageInventory
 Update-PowerPlanLabel
 Update-ApplyButton
 
-Write-Log "[INFO] Tweak Andrew v6.0 pronto. Il registro dettagliato resta in questa finestra."
 
 [void]$window.ShowDialog()

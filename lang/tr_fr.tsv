@@ -227,7 +227,7 @@ L:chkFth	Fault Tolerant Heap — pas de corrections automatiques
 L:chkAppCompat	Moteur de compatibilité et inventaire des programmes
 L:chkSvcHostSplit	Moins de processus svchost (regrouper les services)
 L:chkMemCompression	Compression de la mémoire — risqué sous 16 Go de RAM
-L:ttlWu	MISES À JOUR
+L:ttlWu	WINDOWS UPDATE
 L:chkWuNoReboot	Pas de redémarrage automatique pendant l'utilisation
 L:chkWuDefer	Reporter d'un an les nouvelles versions de Windows
 L:chkWuNoStore	Mise à jour automatique des applications du Store
@@ -714,3 +714,129 @@ M:cpuUnknown	processeur non reconnu
 M:sectionSelect	Toute la section
 M:laptopSelTitle	Ordinateur portable
 M:laptopSelAsk	Sur un portable, «Recommandés» est conseillé : «Tout sélectionner» inclut aussi des options qui réduisent l'autonomie. Tout sélectionner quand même ?
+L:tabTools	Outils
+L:ttlToolJobs	OPÉRATIONS
+L:btnToolJobsClose	Fermer
+L:lblWuHint	Choisissez un profil : il rejoint les modifications à appliquer. Un second clic le retire.
+L:chkWuProfile	Profil Windows Update
+L:ttlAdvCompat	HORLOGE ET PÉRIPHÉRIQUES
+L:chkAdvUtc	Horloge du BIOS en UTC (double démarrage avec Linux)
+L:chkAdvRazer	Pas d'installation automatique du logiciel Razer
+L:chkAdvLogi	Pas d'assistant de téléchargement Logitech
+L:chkIPv4Pref	IPv4 avant IPv6
+L:chkDiskNoSleep	Disques et SSD toujours actifs (sur secteur)
+M:actRun	Modifications : {0}
+M:jobWorking	En cours...
+M:badgeActive	Actif
+M:starTip	Recommandé : un clic le sélectionne, puis appuyez sur «Appliquer».
+M:scanRunning	Vérification des options déjà actives...
+M:scanDone	Options déjà actives sur ce PC : {0}. Elles sont marquées «Actif».
+M:currentSetting	Réglage actuel : {0}
+M:ttlClean	Nettoyage du PC
+M:cleanHint	Choisissez quoi nettoyer. Les options décochées sont des données utiles : supprimez-les seulement si vous n'en avez pas besoin.
+M:cleanScan	Calculer l'espace
+M:cleanRun	Nettoyer la sélection
+M:cleanAsk	Je nettoie {0} options. Les fichiers supprimés ne vont pas dans la Corbeille. Je continue ?
+M:cleanMeasuring	calcul...
+M:cleanFreed	{0} libérés
+M:clean_winTemp	Fichiers temporaires de Windows
+M:clean_userTemp	Fichiers temporaires de l'utilisateur
+M:clean_wuCache	Mises à jour Windows déjà téléchargées
+M:clean_doCache	Cache de l'optimisation de distribution
+M:clean_recycle	Corbeille
+M:clean_errors	Rapports d'erreurs et vidages
+M:clean_thumbs	Cache des miniatures
+M:clean_recent	Fichiers récents et listes de raccourcis
+M:clean_runHist	Historique Exécuter et chemins saisis
+M:clean_prefetch	Prefetch
+M:cleanTip_winTemp	Fichiers laissés par les installateurs et le système.
+M:cleanTip_userTemp	Fichiers temporaires de vos programmes. Ceux utilisés sont ignorés.
+M:cleanTip_wuCache	Paquets déjà installés. Windows Update s'arrête quelques secondes.
+M:cleanTip_doCache	Copies de mises à jour partagées avec d'autres PC.
+M:cleanTip_recycle	Vide la Corbeille sur tous les disques.
+M:cleanTip_errors	Rapports déjà envoyés et fichiers de plantage.
+M:cleanTip_thumbs	Windows les recrée à l'ouverture des dossiers : la première ouverture sera plus lente.
+M:cleanTip_recent	Retire les fichiers récents de l'Explorateur, de Démarrer et de la barre.
+M:cleanTip_runHist	Commandes tapées dans Exécuter (Win+R) et chemins saisis dans l'Explorateur.
+M:cleanTip_prefetch	Windows l'utilise pour ouvrir les programmes plus vite : après nettoyage les premiers lancements seront plus lents.
+M:ttlFix	Réparations
+M:fixHint	Elles démarrent aussitôt, une par une. La progression reste visible en haut depuis les autres pages.
+M:toolRun	Exécuter
+M:tool_netQuick	Réseau : réinitialisation rapide
+M:toolDesc_netQuick	Vide le cache DNS et renouvelle l'IP. La connexion coupe quelques secondes.
+M:tool_netFull	Réseau : réinitialisation complète
+M:toolDesc_netFull	Winsock, pile IP, proxy et paramètres TCP reviennent à l'origine. Redémarrage nécessaire.
+M:toolAsk_netQuick	La connexion coupe quelques secondes. Je continue ?
+M:toolAsk_netFull	Je remets le réseau à neuf. Les VPN et programmes qui modifient Winsock pourraient devoir être réinstallés. Je continue ?
+M:tool_firewall	Pare-feu : paramètres par défaut
+M:toolDesc_firewall	Supprime toutes les règles ajoutées par vous et les programmes. À utiliser seulement si le pare-feu bloque des connexions légitimes.
+M:toolAsk_firewall	Toutes les règles personnalisées seront supprimées définitivement. Je continue ?
+M:tool_wuReset	Windows Update : réinitialiser
+M:toolDesc_wuReset	Pour les mises à jour bloquées : arrête les services, renomme SoftwareDistribution et catroot2, restaure les composants. Redémarrage nécessaire.
+M:toolAsk_wuReset	L'historique des mises à jour sera vidé ; celles installées restent. Je continue ?
+M:tool_repair	Fichiers système : vérifier et réparer
+M:toolDesc_repair	DISM répare l'image Windows, puis SFC corrige les fichiers endommagés. 15 à 30 minutes.
+M:toolAsk_repair	La vérification est longue et sollicite le disque. Vous pouvez continuer à utiliser le PC. Je continue ?
+M:tool_ntp	Horloge : synchroniser l'heure
+M:toolDesc_ntp	Utilise pool.ntp.org et time.windows.com et synchronise aussitôt.
+M:tool_winget	winget : réparer
+M:toolDesc_winget	Réenregistre le Programme d'installation d'application et réinitialise les sources.
+M:tool_regBackup	Registre : sauvegarde quotidienne
+M:toolDesc_regBackup	Réactive la copie automatique du registre dans System32\config\RegBack et en crée une.
+M:tool_store	Microsoft Store : vider le cache
+M:toolDesc_store	Pour les téléchargements bloqués. Le Store s'ouvre à la fin.
+M:tool_explorer	Explorateur : redémarrer
+M:toolDesc_explorer	Ferme et rouvre la barre, Démarrer et les dossiers. Utile si quelque chose bloque.
+M:tool_icons	Icônes et miniatures : reconstruire
+M:toolDesc_icons	Pour les icônes vides ou erronées. L'Explorateur redémarre.
+M:toolAsk_icons	Les fenêtres de l'Explorateur ouvertes seront fermées. Je continue ?
+M:ttlFeatures	Fonctionnalités de Windows
+M:featHint	Celles déjà actives sont marquées «Actif». L'activation télécharge depuis Windows Update et demande souvent un redémarrage.
+M:featRun	Activer la sélection
+M:featAsk	J'active {0} fonctionnalités avec DISM. Je continue ?
+M:featMissing	Non disponible dans cette édition de Windows.
+M:feat_netfx	.NET Framework 3.5 et services avancés 4.x
+M:feat_hyperv	Hyper-V
+M:feat_sandbox	Bac à sable Windows
+M:feat_wsl	Sous-système Windows pour Linux (WSL)
+M:feat_media	Composants multimédias hérités (Windows Media Player, DirectPlay)
+M:feat_nfs	Client NFS
+M:featTip_netfx	Requis par les anciens programmes et jeux.
+M:featTip_hyperv	Machines virtuelles Hyper-V. Pro, Enterprise et Education uniquement.
+M:featTip_sandbox	Un Windows jetable pour tester des programmes suspects. Pro et Enterprise uniquement.
+M:featTip_wsl	Distributions Linux dans Windows.
+M:featTip_media	Pour les anciens jeux et programmes qui exigent DirectPlay ou Windows Media Player.
+M:featTip_nfs	Accès aux partages NFS des NAS et serveurs Linux.
+M:oosuHint	L'outil de confidentialité gratuit d'O&O, sans installation. Il est téléchargé depuis le site officiel dans un dossier du programme, sa signature est vérifiée puis il s'ouvre.
+M:oosuRun	Télécharger et ouvrir
+M:oosuAsk	Je télécharge O&O ShutUp10++ depuis oo-software.com (environ 3 Mo) et je l'ouvre. Je continue ?
+M:ttlPanels	Panneaux Windows
+M:panelsHint	Les fenêtres de réglages classiques, en un clic.
+M:panel_control	Panneau de configuration
+M:panel_compmgmt	Gestion de l'ordinateur
+M:panel_devmgmt	Gestionnaire de périphériques
+M:panel_diskmgmt	Gestion des disques
+M:panel_services	Services
+M:panel_eventvwr	Observateur d'événements
+M:panel_appwiz	Programmes et fonctionnalités
+M:panel_ncpa	Connexions réseau
+M:panel_powercfg	Options d'alimentation
+M:panel_printers	Imprimantes
+M:panel_mouse	Souris
+M:panel_sound	Son
+M:panel_sysdm	Propriétés système
+M:panel_region	Région
+M:panel_time	Date et heure
+M:panel_security	Sécurité et maintenance
+M:panel_firewall	Pare-feu Windows Defender
+M:panel_restore	Restauration du système
+M:wu_recommended	Recommandé
+M:wu_default	Par défaut de Windows
+M:wu_disable	Mises à jour désactivées
+M:wu_custom	Personnalisé
+M:wuSub_recommended	Sécurité et stabilité ensemble
+M:wuSub_default	Le contrôle revient à Windows
+M:wuSub_disable	Pour usages particuliers : pas de mises à jour de sécurité
+M:wuList_recommended	Nouvelles versions de Windows reportées de 365 jours;Mises à jour mensuelles reportées de 4 jours;Pilotes exclus de Windows Update;Aucun redémarrage automatique avec un utilisateur connecté
+M:wuList_default	Retire les stratégies Windows Update définies;Rétablit les services de mise à jour d'origine;Réactive les tâches planifiées de mise à jour
+M:wuList_disable	Mises à jour automatiques désactivées;Services et tâches de mise à jour arrêtés;Mises à jour téléchargées supprimées

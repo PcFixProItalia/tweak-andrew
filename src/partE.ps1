@@ -82,6 +82,7 @@ $script:NavPages = @(
     @{ Nav = (E 'tabGame');    Page = (E 'pageGame');   Cat = 'game' },
     @{ Nav = (E 'tabWin');     Page = (E 'pageWin');    Cat = 'win' },
     @{ Nav = (E 'tabApps');    Page = (E 'pageApps');   Apps = $true },
+    @{ Nav = (E 'tabTools');   Page = (E 'pageTools');  Tools = $true },
     @{ Nav = (E 'tabAdv');     Page = (E 'pageAdv') }
 )
 
@@ -96,7 +97,7 @@ function Show-Page {
             if ($null -ne $pa -and $null -ne $script:PageAccent) { $script:PageAccent.Background = $pa }
             if ($null -ne $pa -and $null -ne $script:GlowPage) { Set-PageGlow $pa.Color }
             # Sulle pagine a effetto immediato la coda di «Applica» non serve: si nasconde.
-            $live = ($entry.Cat -and $entry.Cat -ne 'power') -or $entry.Apps -or $entry.Home
+            $live = ($entry.Cat -and $entry.Cat -ne 'power') -or $entry.Apps -or $entry.Home -or $entry.Tools
             foreach ($n in @('barQueue', 'pillSelected', 'chkRestorePoint')) {
                 $el = $window.FindName($n)
                 if ($el) { $el.Visibility = if ($live) { 'Collapsed' } else { 'Visible' } }
@@ -105,6 +106,7 @@ function Show-Page {
             if ($entry.Cat -and (Get-Command Show-CatPageIfNeeded -ErrorAction SilentlyContinue)) { Show-CatPageIfNeeded $entry.Cat }
             if ($entry.Apps -and (Get-Command Show-AppsPageIfNeeded -ErrorAction SilentlyContinue)) { Show-AppsPageIfNeeded }
             if ($entry.Home -and (Get-Command Show-HomePageIfNeeded -ErrorAction SilentlyContinue)) { Show-HomePageIfNeeded }
+            if ($entry.Tools -and (Get-Command Show-ToolsPageIfNeeded -ErrorAction SilentlyContinue)) { Show-ToolsPageIfNeeded }
         } else {
             $entry.Page.Visibility = [System.Windows.Visibility]::Collapsed
         }

@@ -224,7 +224,7 @@ L:chkFth	Fault Tolerant Heap — fără corecții automate
 L:chkAppCompat	Motorul de compatibilitate și inventarul programelor
 L:chkSvcHostSplit	Mai puține procese svchost (gruparea serviciilor)
 L:chkMemCompression	Comprimarea memoriei — riscant sub 16 GB RAM
-L:ttlWu	ACTUALIZĂRI
+L:ttlWu	WINDOWS UPDATE
 L:chkWuNoReboot	Fără reporniri automate cât folosești computerul
 L:chkWuDefer	Amână cu un an versiunile noi de Windows
 L:chkWuNoStore	Actualizarea automată a aplicațiilor din Store
@@ -711,3 +711,129 @@ M:cpuUnknown	procesor nerecunoscut
 M:sectionSelect	Toată secțiunea
 M:laptopSelTitle	Laptop
 M:laptopSelAsk	Pe laptop este recomandat «Recomandate»: «Selectează tot» include și opțiuni care reduc autonomia bateriei. Selectezi totuși tot?
+L:tabTools	Instrumente
+L:ttlToolJobs	OPERAȚIUNI
+L:btnToolJobsClose	Închide
+L:lblWuHint	Alege un profil: intră în modificările de aplicat. Al doilea clic îl scoate.
+L:chkWuProfile	Profil Windows Update
+L:ttlAdvCompat	CEAS ȘI PERIFERICE
+L:chkAdvUtc	Ceasul BIOS în UTC (dual boot cu Linux)
+L:chkAdvRazer	Fără instalare automată a software-ului Razer
+L:chkAdvLogi	Fără asistentul de descărcare Logitech
+L:chkIPv4Pref	IPv4 înaintea IPv6
+L:chkDiskNoSleep	Discuri și SSD mereu active (la priză)
+M:actRun	Modificări: {0}
+M:jobWorking	În curs...
+M:badgeActive	Activ
+M:starTip	Recomandat: un clic îl selectează, apoi apasă «Aplică modificările».
+M:scanRunning	Se verifică opțiunile deja active...
+M:scanDone	Opțiuni deja active pe acest PC: {0}. Sunt marcate «Activ».
+M:currentSetting	Setare actuală: {0}
+M:ttlClean	Curățare PC
+M:cleanHint	Alege ce cureți. Opțiunile nebifate sunt date utile: șterge-le doar dacă știi că nu îți trebuie.
+M:cleanScan	Calculează spațiul
+M:cleanRun	Curăță selectate
+M:cleanAsk	Curăț {0} opțiuni. Fișierele șterse nu ajung în Coșul de reciclare. Continui?
+M:cleanMeasuring	se calculează...
+M:cleanFreed	{0} eliberați
+M:clean_winTemp	Fișiere temporare Windows
+M:clean_userTemp	Fișiere temporare ale utilizatorului
+M:clean_wuCache	Actualizări Windows deja descărcate
+M:clean_doCache	Cache Optimizare livrare
+M:clean_recycle	Coș de reciclare
+M:clean_errors	Rapoarte de erori și dumpuri
+M:clean_thumbs	Cache miniaturi
+M:clean_recent	Fișiere recente și liste de salt
+M:clean_runHist	Istoric Executare și căi tastate
+M:clean_prefetch	Prefetch
+M:cleanTip_winTemp	Fișiere lăsate de instalatoare și sistem.
+M:cleanTip_userTemp	Fișierele temporare ale programelor. Cele în uz sunt sărite.
+M:cleanTip_wuCache	Pachete deja instalate. Windows Update se oprește câteva secunde.
+M:cleanTip_doCache	Copii ale actualizărilor partajate cu alte PC-uri.
+M:cleanTip_recycle	Golește Coșul pe toate unitățile.
+M:cleanTip_errors	Rapoarte deja trimise și fișiere de blocare.
+M:cleanTip_thumbs	Windows le recreează la deschiderea folderelor: prima deschidere va fi mai lentă.
+M:cleanTip_recent	Elimină fișierele recente din Explorer, Start și bară.
+M:cleanTip_runHist	Comenzi din Executare (Win+R) și căi tastate în Explorer.
+M:cleanTip_prefetch	Windows îl folosește pentru pornire rapidă: după curățare primele porniri vor fi mai lente.
+M:ttlFix	Reparații
+M:fixHint	Pornesc imediat, pe rând. Progresul rămâne vizibil sus și din alte pagini.
+M:toolRun	Rulează
+M:tool_netQuick	Rețea: resetare rapidă
+M:toolDesc_netQuick	Golește cache-ul DNS și reînnoiește IP-ul. Conexiunea cade câteva secunde.
+M:tool_netFull	Rețea: resetare completă
+M:toolDesc_netFull	Winsock, stiva IP, proxy și setările TCP revin la fabrică. Necesită repornire.
+M:toolAsk_netQuick	Conexiunea se întrerupe câteva secunde. Continui?
+M:toolAsk_netFull	Readuc rețeaua la starea inițială. VPN-urile și programele care modifică Winsock pot necesita reinstalare. Continui?
+M:tool_firewall	Firewall: setări implicite
+M:toolDesc_firewall	Șterge toate regulile adăugate de tine și de programe. Folosește doar dacă firewall-ul blochează conexiuni.
+M:toolAsk_firewall	Toate regulile personalizate vor fi șterse definitiv. Continui?
+M:tool_wuReset	Windows Update: resetare
+M:toolDesc_wuReset	Pentru actualizări blocate: oprește serviciile, redenumește SoftwareDistribution și catroot2, restaurează componentele. Necesită repornire.
+M:toolAsk_wuReset	Istoricul actualizărilor va fi golit; cele instalate rămân. Continui?
+M:tool_repair	Fișiere de sistem: verificare și reparare
+M:toolDesc_repair	DISM repară imaginea Windows, apoi SFC repară fișierele deteriorate. Poate dura 15-30 minute.
+M:toolAsk_repair	Verificarea durează și solicită discul. Poți folosi PC-ul în continuare. Continui?
+M:tool_ntp	Ceas: sincronizează ora
+M:toolDesc_ntp	Folosește pool.ntp.org și time.windows.com și sincronizează imediat.
+M:tool_winget	winget: reparare
+M:toolDesc_winget	Reînregistrează App Installer și resetează sursele.
+M:tool_regBackup	Registru: copie zilnică
+M:toolDesc_regBackup	Reactivează copia automată a registrului în System32\config\RegBack și face una acum.
+M:tool_store	Microsoft Store: golește cache-ul
+M:toolDesc_store	Pentru descărcări blocate. La final Store se deschide singur.
+M:tool_explorer	Explorer: repornire
+M:toolDesc_explorer	Închide și redeschide bara, Start și folderele. Util la blocări.
+M:tool_icons	Pictograme și miniaturi: reconstruiește
+M:toolDesc_icons	Pentru pictograme goale sau greșite. Explorer repornește.
+M:toolAsk_icons	Ferestrele Explorer deschise vor fi închise. Continui?
+M:ttlFeatures	Caracteristici Windows
+M:featHint	Cele active sunt marcate «Activ». Activarea descarcă fișiere din Windows Update și de obicei cere repornire.
+M:featRun	Activează selectate
+M:featAsk	Activez {0} caracteristici cu DISM. Continui?
+M:featMissing	Indisponibil în această ediție Windows.
+M:feat_netfx	.NET Framework 3.5 și servicii avansate 4.x
+M:feat_hyperv	Hyper-V
+M:feat_sandbox	Sandbox Windows
+M:feat_wsl	Subsistem Windows pentru Linux (WSL)
+M:feat_media	Componente media vechi (Windows Media Player, DirectPlay)
+M:feat_nfs	Client NFS
+M:featTip_netfx	Necesar programelor și jocurilor mai vechi.
+M:featTip_hyperv	Mașini virtuale Hyper-V. Doar Pro, Enterprise și Education.
+M:featTip_sandbox	Un Windows de unică folosință pentru programe suspecte. Doar Pro și Enterprise.
+M:featTip_wsl	Distribuții Linux în Windows.
+M:featTip_media	Pentru jocuri și programe vechi care cer DirectPlay sau Windows Media Player.
+M:featTip_nfs	Acces la partajări NFS de pe NAS și servere Linux.
+M:oosuHint	Instrumentul gratuit de confidențialitate O&O, fără instalare. Se descarcă de pe site-ul oficial într-un folder al programului, se verifică semnătura și se deschide.
+M:oosuRun	Descarcă și deschide
+M:oosuAsk	Descarc O&O ShutUp10++ de pe oo-software.com (circa 3 MB) și îl deschid. Continui?
+M:ttlPanels	Panouri Windows
+M:panelsHint	Ferestrele clasice de setări, la un clic.
+M:panel_control	Panou de control
+M:panel_compmgmt	Gestionare computer
+M:panel_devmgmt	Manager dispozitive
+M:panel_diskmgmt	Gestionare disc
+M:panel_services	Servicii
+M:panel_eventvwr	Vizualizator evenimente
+M:panel_appwiz	Programe și caracteristici
+M:panel_ncpa	Conexiuni de rețea
+M:panel_powercfg	Opțiuni de alimentare
+M:panel_printers	Imprimante
+M:panel_mouse	Mouse
+M:panel_sound	Sunet
+M:panel_sysdm	Proprietăți sistem
+M:panel_region	Regiune
+M:panel_time	Dată și oră
+M:panel_security	Securitate și întreținere
+M:panel_firewall	Paravan Windows Defender
+M:panel_restore	Restaurare sistem
+M:wu_recommended	Recomandat
+M:wu_default	Implicit Windows
+M:wu_disable	Actualizări oprite
+M:wu_custom	Personalizat
+M:wuSub_recommended	Securitate și stabilitate împreună
+M:wuSub_default	Controlul revine la Windows
+M:wuSub_disable	Doar pentru utilizări speciale: fără actualizări de securitate
+M:wuList_recommended	Versiuni noi Windows amânate 365 de zile;Actualizări lunare amânate 4 zile;Drivere excluse din Windows Update;Fără repornire automată cu utilizator conectat
+M:wuList_default	Elimină politicile Windows Update setate;Readuce serviciile de actualizare la original;Reactivează sarcinile programate de actualizare
+M:wuList_disable	Actualizări automate oprite;Servicii și sarcini de actualizare oprite;Actualizări descărcate șterse

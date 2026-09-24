@@ -584,3 +584,10 @@ pw.nvme2#1000	1 sekunda
 pw.nvme2#2000	2 sekundy
 pw.nvme2#5000	5 sekund
 H:pw.nvme2	Drugi, głębszy stan oszczędzania: wybudzenie trwa kilka milisekund dłużej. W laptopie lepiej zostawić włączony.
+task.oldStart	Poprzednie menu Start (Windows 11 25H2)
+H:task.oldStart	Przywraca menu Start z przypiętymi aplikacjami u góry, jak przed aktualizacją 25H2. Wymaga ponownego uruchomienia.
+notif.center	Centrum powiadomień i kalendarz
+H:notif.center	Panel otwierany kliknięciem daty i godziny. Wyłączony, kliknięcie zegara nic nie otwiera.
+g.win.browser	Przeglądarki
+win.brave	Brave bez Rewards, Wallet, VPN, AI i statystyk
+H:win.brave	Zasady Brave: wyłącza funkcje dodatkowe i wysyłanie statystyk. Działa też, jeśli Brave zostanie zainstalowany później.

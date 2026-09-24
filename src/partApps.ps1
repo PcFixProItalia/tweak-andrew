@@ -439,7 +439,7 @@ function Test-AppBusy { return ($null -ne $script:AppJob) -or ($script:AppJobs.C
 
 # Riga di un'operazione: nome e stato sopra, barra sotto. La barra ha due modi:
 # a percentuale (download) e a scorrimento, quando winget non dice quanto manca.
-function New-AppJobRow($job) {
+function New-AppJobRow($job, $Panel = $panAppJobs) {
     $g = New-Object System.Windows.Controls.Grid; $g.Margin = '0,0,0,9'
     $r0 = New-Object System.Windows.Controls.RowDefinition; $r0.Height = [System.Windows.GridLength]::Auto
     $r1 = New-Object System.Windows.Controls.RowDefinition; $r1.Height = [System.Windows.GridLength]::Auto
@@ -473,7 +473,7 @@ function New-AppJobRow($job) {
     [void]$g.Children.Add($track)
     $job.Row = $g; $job.StateText = $state; $job.Bar = $bar; $job.Runner = $run; $job.Track = $track
     $job.Moving = $false
-    [void]$panAppJobs.Children.Add($g)
+    [void]$Panel.Children.Add($g)
 }
 
 function Set-AppJobView($job, [string]$text, [double]$pct = -1, [string]$color = '#FF8E8E98') {
@@ -638,8 +638,8 @@ function Update-AppJobsHeader {
     $txtAppJobsCount.Text = (T 'jobsProgress') -f $done, $total
     # Anche dalle altre pagine si vede che le app stanno lavorando.
     if ($script:AppJob) {
-        $txtProgressLabel.Text = "$($script:AppJob.Label): $($script:AppJob.StateText.Text)"
-        $prgTweaks.Value = $sum / $total
+        $st = [string]$script:AppJob.StateText.Text
+        Set-Activity 'apps' ("$($script:AppJob.Label) · $st  ($done/$total)") ([Math]::Round(100 * $sum / $total)) 'tabApps'
     }
 }
 
@@ -662,6 +662,7 @@ $script:AppTimer.Add_Tick({
     if ($script:AppBatch) {
         # Giro finito: riepilogo e rilettura di cio' che e' installato.
         $script:AppBatch = $false
+        Clear-Activity 'apps'
         $ok = @($script:AppJobList | Where-Object { $_.Ok }).Count
         $txtAppsStatus.Text = (T 'appsDoneSum') -f $ok, ($script:AppJobList.Count - $ok)
         $txtProgressLabel.Text = $txtAppsStatus.Text

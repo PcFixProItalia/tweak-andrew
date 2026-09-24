@@ -224,7 +224,7 @@ L:chkFth	Fault Tolerant Heap — sem correções automáticas
 L:chkAppCompat	Mecanismo de compatibilidade e inventário de programas
 L:chkSvcHostSplit	Menos processos svchost (agrupar serviços)
 L:chkMemCompression	Compressão de memória — arriscado com menos de 16 GB de RAM
-L:ttlWu	ATUALIZAÇÕES
+L:ttlWu	WINDOWS UPDATE
 L:chkWuNoReboot	Sem reinícios automáticos enquanto você usa o computador
 L:chkWuDefer	Adiar as novas versões do Windows por um ano
 L:chkWuNoStore	Atualização automática dos apps da Store
@@ -711,3 +711,129 @@ M:cpuUnknown	processador não reconhecido
 M:sectionSelect	Seção inteira
 M:laptopSelTitle	Notebook
 M:laptopSelAsk	No notebook é recomendado usar «Recomendados»: «Selecionar tudo» inclui também opções que reduzem a autonomia. Selecionar tudo mesmo assim?
+L:tabTools	Ferramentas
+L:ttlToolJobs	OPERAÇÕES
+L:btnToolJobsClose	Fechar
+L:lblWuHint	Escolha um perfil: entra nas alterações a aplicar. Um segundo clique o remove.
+L:chkWuProfile	Perfil do Windows Update
+L:ttlAdvCompat	RELÓGIO E PERIFÉRICOS
+L:chkAdvUtc	Relógio do BIOS em UTC (dual boot com Linux)
+L:chkAdvRazer	Sem instalação automática do software Razer
+L:chkAdvLogi	Sem assistente de download da Logitech
+L:chkIPv4Pref	IPv4 antes do IPv6
+L:chkDiskNoSleep	Discos e SSDs sempre ativos (na tomada)
+M:actRun	Alterações: {0}
+M:jobWorking	Em andamento...
+M:badgeActive	Ativo
+M:starTip	Recomendado: um clique seleciona, depois pressione «Aplicar alterações».
+M:scanRunning	Verificando opções já ativas...
+M:scanDone	Opções já ativas neste PC: {0}. Estão marcadas como «Ativo».
+M:currentSetting	Configuração atual: {0}
+M:ttlClean	Limpeza do PC
+M:cleanHint	Escolha o que limpar. As opções desligadas são dados úteis: apague-as só se souber que não precisa.
+M:cleanScan	Calcular espaço
+M:cleanRun	Limpar selecionados
+M:cleanAsk	Vou limpar {0} opções. Os arquivos apagados não vão para a Lixeira. Continuo?
+M:cleanMeasuring	calculando...
+M:cleanFreed	{0} liberados
+M:clean_winTemp	Arquivos temporários do Windows
+M:clean_userTemp	Arquivos temporários do usuário
+M:clean_wuCache	Atualizações do Windows já baixadas
+M:clean_doCache	Cache da Otimização de Entrega
+M:clean_recycle	Lixeira
+M:clean_errors	Relatórios de erro e despejos
+M:clean_thumbs	Cache de miniaturas
+M:clean_recent	Arquivos recentes e listas de atalhos
+M:clean_runHist	Histórico do Executar e caminhos digitados
+M:clean_prefetch	Prefetch
+M:cleanTip_winTemp	Arquivos deixados por instaladores e pelo sistema.
+M:cleanTip_userTemp	Arquivos temporários dos programas. Os em uso são ignorados.
+M:cleanTip_wuCache	Pacotes já instalados. O Windows Update para por alguns segundos.
+M:cleanTip_doCache	Cópias de atualizações compartilhadas com outros PCs.
+M:cleanTip_recycle	Esvazia a Lixeira em todas as unidades.
+M:cleanTip_errors	Relatórios já enviados e arquivos de falha.
+M:cleanTip_thumbs	O Windows as recria ao abrir pastas: a primeira abertura será mais lenta.
+M:cleanTip_recent	Remove arquivos recentes do Explorador, Iniciar e barra.
+M:cleanTip_runHist	Comandos do Executar (Win+R) e caminhos digitados no Explorador.
+M:cleanTip_prefetch	O Windows o usa para abrir programas mais rápido: depois os primeiros inícios serão mais lentos.
+M:ttlFix	Reparos
+M:fixHint	Começam na hora, uma de cada vez. O progresso fica visível no topo nas outras páginas.
+M:toolRun	Executar
+M:tool_netQuick	Rede: redefinição rápida
+M:toolDesc_netQuick	Limpa o cache DNS e renova o IP. A conexão cai por alguns segundos.
+M:tool_netFull	Rede: redefinição completa
+M:toolDesc_netFull	Winsock, pilha IP, proxy e ajustes TCP voltam ao padrão. Requer reinício.
+M:toolAsk_netQuick	A conexão cai por alguns segundos. Continuo?
+M:toolAsk_netFull	Vou deixar a rede como nova. VPNs e programas que alteram o Winsock podem precisar ser reinstalados. Continuo?
+M:tool_firewall	Firewall: configurações padrão
+M:toolDesc_firewall	Apaga todas as regras adicionadas por você e por programas. Use só se o firewall bloquear conexões que deveriam funcionar.
+M:toolAsk_firewall	Todas as regras personalizadas do firewall serão apagadas sem volta. Continuo?
+M:tool_wuReset	Windows Update: redefinir
+M:toolDesc_wuReset	Para atualizações travadas: para serviços, renomeia SoftwareDistribution e catroot2, restaura componentes. Requer reinício.
+M:toolAsk_wuReset	O histórico de atualizações será limpo; as instaladas continuam. Continuo?
+M:tool_repair	Arquivos do sistema: verificar e reparar
+M:toolDesc_repair	O DISM repara a imagem do Windows e o SFC corrige arquivos danificados. Pode levar 15-30 minutos.
+M:toolAsk_repair	A verificação demora e usa bastante o disco. Você pode continuar usando o PC. Continuo?
+M:tool_ntp	Relógio: sincronizar a hora
+M:toolDesc_ntp	Usa pool.ntp.org e time.windows.com e sincroniza na hora.
+M:tool_winget	winget: reparar
+M:toolDesc_winget	Registra de novo o Instalador de Aplicativo e redefine as fontes.
+M:tool_regBackup	Registro: backup diário
+M:toolDesc_regBackup	Reativa a cópia automática do registro em System32\config\RegBack e cria uma agora.
+M:tool_store	Microsoft Store: limpar cache
+M:toolDesc_store	Para downloads travados da Store. Ao final ela abre sozinha.
+M:tool_explorer	Explorador: reiniciar
+M:toolDesc_explorer	Fecha e reabre a barra, Iniciar e pastas. Útil se algo travar.
+M:tool_icons	Ícones e miniaturas: reconstruir
+M:toolDesc_icons	Para ícones vazios ou errados. O Explorador reinicia.
+M:toolAsk_icons	As janelas abertas do Explorador serão fechadas. Continuo?
+M:ttlFeatures	Recursos do Windows
+M:featHint	As já ativas estão marcadas como «Ativo». Ativar baixa arquivos do Windows Update e costuma pedir reinício.
+M:featRun	Ativar selecionados
+M:featAsk	Vou ativar {0} recursos com o DISM. Continuo?
+M:featMissing	Indisponível nesta edição do Windows.
+M:feat_netfx	.NET Framework 3.5 e serviços avançados 4.x
+M:feat_hyperv	Hyper-V
+M:feat_sandbox	Área Restrita do Windows
+M:feat_wsl	Subsistema do Windows para Linux (WSL)
+M:feat_media	Componentes de mídia herdados (Windows Media Player, DirectPlay)
+M:feat_nfs	Cliente NFS
+M:featTip_netfx	Necessário para programas e jogos antigos.
+M:featTip_hyperv	Máquinas virtuais com Hyper-V. Só Pro, Enterprise e Education.
+M:featTip_sandbox	Um Windows descartável para testar programas suspeitos. Só Pro e Enterprise.
+M:featTip_wsl	Distribuições Linux dentro do Windows.
+M:featTip_media	Para jogos e programas antigos que exigem DirectPlay ou Windows Media Player.
+M:featTip_nfs	Acesso a compartilhamentos NFS de NAS e servidores Linux.
+M:oosuHint	A ferramenta de privacidade gratuita da O&O, sem instalação. É baixada do site oficial para uma pasta do programa, a assinatura é verificada e ela abre.
+M:oosuRun	Baixar e abrir
+M:oosuAsk	Vou baixar o O&O ShutUp10++ de oo-software.com (cerca de 3 MB) e abri-lo. Continuo?
+M:ttlPanels	Painéis do Windows
+M:panelsHint	As janelas clássicas de configuração, a um clique.
+M:panel_control	Painel de Controle
+M:panel_compmgmt	Gerenciamento do Computador
+M:panel_devmgmt	Gerenciador de Dispositivos
+M:panel_diskmgmt	Gerenciamento de Disco
+M:panel_services	Serviços
+M:panel_eventvwr	Visualizador de Eventos
+M:panel_appwiz	Programas e Recursos
+M:panel_ncpa	Conexões de Rede
+M:panel_powercfg	Opções de Energia
+M:panel_printers	Impressoras
+M:panel_mouse	Mouse
+M:panel_sound	Som
+M:panel_sysdm	Propriedades do Sistema
+M:panel_region	Região
+M:panel_time	Data e Hora
+M:panel_security	Segurança e Manutenção
+M:panel_firewall	Firewall do Windows Defender
+M:panel_restore	Restauração do Sistema
+M:wu_recommended	Recomendado
+M:wu_default	Padrão do Windows
+M:wu_disable	Atualizações desligadas
+M:wu_custom	Personalizado
+M:wuSub_recommended	Segurança e estabilidade juntas
+M:wuSub_default	O controle volta ao Windows
+M:wuSub_disable	Só para usos especiais: sem atualizações de segurança
+M:wuList_recommended	Novas versões do Windows adiadas em 365 dias;Atualizações mensais adiadas em 4 dias;Drivers excluídos do Windows Update;Sem reinício automático com usuário conectado
+M:wuList_default	Remove as políticas do Windows Update definidas;Restaura os serviços de atualização originais;Reativa as tarefas agendadas de atualização
+M:wuList_disable	Atualizações automáticas desligadas;Serviços e tarefas de atualização parados;Atualizações baixadas apagadas

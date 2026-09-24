@@ -584,3 +584,10 @@ pw.nvme2#1000	1 segundo
 pw.nvme2#2000	2 segundos
 pw.nvme2#5000	5 segundos
 H:pw.nvme2	O segundo estado de economia, mais profundo: acordar leva alguns milissegundos a mais. Em um notebook é melhor deixá-lo ativo.
+task.oldStart	Menu Iniciar anterior (Windows 11 25H2)
+H:task.oldStart	Traz de volta o menu Iniciar com os apps fixados no topo, como antes da atualização 25H2. Requer reinício.
+notif.center	Central de notificações e calendário
+H:notif.center	O painel que abre ao clicar na data e hora. Desativado, o clique no relógio não abre nada.
+g.win.browser	Navegadores
+win.brave	Brave sem Rewards, Wallet, VPN, IA e estatísticas
+H:win.brave	Políticas do Brave: desliga as funções acessórias e o envio de estatísticas. Vale também se o Brave for instalado depois.

@@ -299,9 +299,7 @@ $script:Loc = @{
     chkSvcHostSplit    = @{ it = "Meno processi svchost (accorpa i servizi)"; en = "Fewer svchost processes (group the services)" }
     chkMemCompression  = @{ it = "Compressione della memoria — rischioso sotto 16 GB di RAM"; en = "Memory compression — risky below 16 GB of RAM" }
 
-    ttlWu              = @{ it = "AGGIORNAMENTI"; en = "UPDATES" }
-    chkWuNoReboot      = @{ it = "Niente riavvii automatici mentre usi il computer"; en = "No automatic reboots while you are using the computer" }
-    chkWuDefer         = @{ it = "Rinvia le nuove versioni di Windows di un anno"; en = "Defer new Windows releases by one year" }
+    ttlWu              = @{ it = "WINDOWS UPDATE"; en = "WINDOWS UPDATE" }
     chkWuNoStore       = @{ it = "Aggiornamento automatico delle app dello Store"; en = "Automatic Store app updates" }
 
     ttlBoot            = @{ it = "AVVIO DEL SISTEMA"; en = "SYSTEM STARTUP" }
@@ -426,6 +424,17 @@ $script:Loc = @{
     chkCpuIntelHybrid  = @{ it = "Intel ibridi: app in primo piano sui core P"; en = "Intel hybrid: foreground apps on P-cores" }
     chkCpuAmdParking   = @{ it = "AMD Ryzen: nessun core parcheggiato"; en = "AMD Ryzen: no parked cores" }
     chkCpuIdleOff      = @{ it = "Processore sempre sveglio (niente stati di riposo)"; en = "Processor always awake (no idle states)" }
+    tabTools           = @{ it = "Strumenti"; en = "Tools" }
+    ttlToolJobs        = @{ it = "OPERAZIONI"; en = "OPERATIONS" }
+    btnToolJobsClose   = @{ it = "Chiudi"; en = "Close" }
+    lblWuHint          = @{ it = "Scegli un profilo: entra tra le modifiche da applicare. Un secondo clic lo toglie."; en = "Pick a profile: it joins the changes to apply. A second click removes it." }
+    chkWuProfile       = @{ it = "Profilo di Windows Update"; en = "Windows Update profile" }
+    ttlAdvCompat       = @{ it = "OROLOGIO E PERIFERICHE"; en = "CLOCK AND PERIPHERALS" }
+    chkAdvUtc          = @{ it = "Orologio del BIOS in UTC (doppio avvio con Linux)"; en = "BIOS clock in UTC (dual boot with Linux)" }
+    chkAdvRazer        = @{ it = "Niente installazione automatica del software Razer"; en = "No automatic Razer software install" }
+    chkAdvLogi         = @{ it = "Niente assistente download Logitech"; en = "No Logitech download assistant" }
+    chkIPv4Pref        = @{ it = "IPv4 prima di IPv6"; en = "IPv4 before IPv6" }
+    chkDiskNoSleep     = @{ it = "Dischi e SSD sempre attivi (con alimentazione collegata)"; en = "Disks and SSDs always on (while plugged in)" }
 }
 
 # Messaggi non legati a un controllo: log, finestre di dialogo, etichette dinamiche.
@@ -654,6 +663,121 @@ $script:Msg = @{
     sectionSelect      = @{ it = "Tutta la sezione"; en = "Whole section" }
     laptopSelTitle     = @{ it = "Computer portatile"; en = "Laptop" }
     laptopSelAsk       = @{ it = "Su un portatile è consigliato usare «Consigliati»: «Seleziona tutto» include anche voci che riducono la durata della batteria. Selezionare comunque tutto?"; en = "On a laptop «Recommended» is the better choice: «Select all» also includes entries that shorten battery life. Select everything anyway?" }
+    actRun             = @{ it = "Modifiche: {0}"; en = "Changes: {0}" }
+    jobWorking         = @{ it = "In corso..."; en = "Working..." }
+    badgeActive        = @{ it = "Attivo"; en = "Active" }
+    starTip            = @{ it = "Consigliato: un clic lo seleziona, poi premi «Applica modifiche»."; en = "Recommended: one click selects it, then press «Apply changes»." }
+    scanRunning        = @{ it = "Controllo delle voci già attive..."; en = "Checking entries already active..." }
+    scanDone           = @{ it = "Voci già attive su questo PC: {0}. Sono segnate con «Attivo»."; en = "Entries already active on this PC: {0}. They are marked «Active»." }
+    currentSetting     = @{ it = "Impostazione attuale: {0}"; en = "Current setting: {0}" }
+    ttlClean           = @{ it = "Pulizia del PC"; en = "PC cleanup" }
+    cleanHint          = @{ it = "Scegli cosa pulire. Le voci spente sono dati utili: cancellale solo se sai che non ti servono."; en = "Choose what to clean. The unchecked entries are useful data: delete them only if you know you don't need them." }
+    cleanScan          = @{ it = "Calcola spazio"; en = "Measure space" }
+    cleanRun           = @{ it = "Pulisci selezionati"; en = "Clean selected" }
+    cleanAsk           = @{ it = "Pulisco {0} voci. I file eliminati non finiscono nel Cestino. Procedo?"; en = "I'll clean {0} entries. Deleted files do not go to the Recycle Bin. Go ahead?" }
+    cleanMeasuring     = @{ it = "calcolo..."; en = "measuring..." }
+    cleanFreed         = @{ it = "Liberati {0}"; en = "{0} freed" }
+    clean_winTemp      = @{ it = "File temporanei di Windows"; en = "Windows temporary files" }
+    clean_userTemp     = @{ it = "File temporanei dell'utente"; en = "User temporary files" }
+    clean_wuCache      = @{ it = "Aggiornamenti di Windows già scaricati"; en = "Already downloaded Windows updates" }
+    clean_doCache      = @{ it = "Cache di Ottimizzazione recapito"; en = "Delivery Optimization cache" }
+    clean_recycle      = @{ it = "Cestino"; en = "Recycle Bin" }
+    clean_errors       = @{ it = "Segnalazioni errori e dump"; en = "Error reports and dumps" }
+    clean_thumbs       = @{ it = "Cache delle miniature"; en = "Thumbnail cache" }
+    clean_recent       = @{ it = "File recenti ed elenchi di salto"; en = "Recent files and jump lists" }
+    clean_runHist      = @{ it = "Cronologia di Esegui e dei percorsi digitati"; en = "Run and typed path history" }
+    clean_prefetch     = @{ it = "Prefetch"; en = "Prefetch" }
+    cleanTip_winTemp   = @{ it = "File lasciati dai programmi di installazione e dal sistema."; en = "Files left behind by installers and the system." }
+    cleanTip_userTemp  = @{ it = "File temporanei dei programmi che usi. Quelli in uso vengono saltati."; en = "Temporary files of the programs you use. Files in use are skipped." }
+    cleanTip_wuCache   = @{ it = "Pacchetti già installati. Windows Update si ferma per pochi secondi."; en = "Packages already installed. Windows Update pauses for a few seconds." }
+    cleanTip_doCache   = @{ it = "Copie degli aggiornamenti condivise con altri PC."; en = "Update copies shared with other PCs." }
+    cleanTip_recycle   = @{ it = "Svuota il Cestino su tutti i dischi."; en = "Empties the Recycle Bin on every drive." }
+    cleanTip_errors    = @{ it = "Rapporti già inviati e file di arresto anomalo."; en = "Reports already sent and crash files." }
+    cleanTip_thumbs    = @{ it = "Windows le ricrea aprendo le cartelle: la prima apertura sarà più lenta."; en = "Windows rebuilds them when you open folders: the first opening will be slower." }
+    cleanTip_recent    = @{ it = "Toglie i file recenti da Esplora file, Start e barra delle applicazioni."; en = "Removes recent files from File Explorer, Start and the taskbar." }
+    cleanTip_runHist   = @{ it = "Comandi scritti in Esegui (Win+R) e percorsi digitati in Esplora file."; en = "Commands typed in Run (Win+R) and paths typed in File Explorer." }
+    cleanTip_prefetch  = @{ it = "Windows lo usa per aprire prima i programmi: dopo la pulizia i primi avvii saranno più lenti."; en = "Windows uses it to open programs faster: after cleaning the first launches will be slower." }
+    ttlFix             = @{ it = "Riparazioni"; en = "Repairs" }
+    fixHint            = @{ it = "Partono subito, una alla volta. L'avanzamento resta visibile in alto anche dalle altre pagine."; en = "They start right away, one at a time. Progress stays visible at the top from the other pages too." }
+    toolRun            = @{ it = "Esegui"; en = "Run" }
+    tool_netQuick      = @{ it = "Rete: ripristino rapido"; en = "Network: quick reset" }
+    toolDesc_netQuick  = @{ it = "Svuota la cache DNS e rinnova l'indirizzo IP. La connessione cade per qualche secondo."; en = "Flushes the DNS cache and renews the IP address. The connection drops for a few seconds." }
+    tool_netFull       = @{ it = "Rete: ripristino completo"; en = "Network: full reset" }
+    toolDesc_netFull   = @{ it = "Winsock, stack IP, proxy di sistema e parametri TCP di Windows tornano come nuovi. Serve un riavvio."; en = "Winsock, IP stack, system proxy and Windows TCP settings go back to factory state. Needs a restart." }
+    toolAsk_netQuick   = @{ it = "La connessione si interrompe per qualche secondo. Procedo?"; en = "The connection drops for a few seconds. Go ahead?" }
+    toolAsk_netFull    = @{ it = "Rimetto la rete come appena installata. VPN e programmi che modificano Winsock potrebbero dover essere reinstallati. Procedo?"; en = "I'll reset networking to a fresh state. VPNs and programs that change Winsock may need reinstalling. Go ahead?" }
+    tool_firewall      = @{ it = "Firewall: impostazioni predefinite"; en = "Firewall: default settings" }
+    toolDesc_firewall  = @{ it = "Cancella tutte le regole aggiunte da te e dai programmi. Usalo solo se il firewall blocca connessioni che dovrebbero funzionare."; en = "Deletes every rule added by you and by programs. Use it only if the firewall blocks connections that should work." }
+    toolAsk_firewall   = @{ it = "Tutte le regole personalizzate del firewall verranno cancellate e non si possono recuperare. Procedo?"; en = "All custom firewall rules will be deleted and cannot be recovered. Go ahead?" }
+    tool_wuReset       = @{ it = "Windows Update: ripristino"; en = "Windows Update: reset" }
+    toolDesc_wuReset   = @{ it = "Per aggiornamenti bloccati o in errore: ferma i servizi, rinomina SoftwareDistribution e catroot2, ripristina i componenti e riparte. Serve un riavvio."; en = "For stuck or failing updates: stops the services, renames SoftwareDistribution and catroot2, restores the components and restarts. Needs a restart." }
+    toolAsk_wuReset    = @{ it = "La cronologia degli aggiornamenti mostrata da Windows verrà azzerata; gli aggiornamenti installati restano. Procedo?"; en = "The update history Windows shows will be cleared; installed updates stay. Go ahead?" }
+    tool_repair        = @{ it = "File di sistema: controllo e riparazione"; en = "System files: check and repair" }
+    toolDesc_repair    = @{ it = "DISM ripara l'immagine di Windows, poi SFC sistema i file danneggiati. Può richiedere 15-30 minuti."; en = "DISM repairs the Windows image, then SFC fixes damaged files. It can take 15-30 minutes." }
+    toolAsk_repair     = @{ it = "Il controllo dura a lungo e usa molto il disco. Puoi continuare a usare il PC. Procedo?"; en = "The check takes a while and uses the disk heavily. You can keep using the PC. Go ahead?" }
+    tool_ntp           = @{ it = "Orologio: sincronizza l'ora"; en = "Clock: sync the time" }
+    toolDesc_ntp       = @{ it = "Usa pool.ntp.org e time.windows.com e sincronizza subito."; en = "Uses pool.ntp.org and time.windows.com and syncs right away." }
+    tool_winget        = @{ it = "winget: riparazione"; en = "winget: repair" }
+    toolDesc_winget    = @{ it = "Registra di nuovo il Programma di installazione app e ripristina le origini dei pacchetti."; en = "Re-registers App Installer and resets the package sources." }
+    tool_regBackup     = @{ it = "Registro: copia di sicurezza giornaliera"; en = "Registry: daily backup" }
+    toolDesc_regBackup = @{ it = "Riattiva la copia automatica del registro in System32\config\RegBack e ne crea subito una."; en = "Re-enables the automatic registry copy in System32\config\RegBack and makes one now." }
+    tool_store         = @{ it = "Microsoft Store: svuota la cache"; en = "Microsoft Store: clear cache" }
+    toolDesc_store     = @{ it = "Per download dello Store bloccati. Al termine lo Store si apre da solo."; en = "For stuck Store downloads. The Store opens by itself when done." }
+    tool_explorer      = @{ it = "Esplora risorse: riavvia"; en = "File Explorer: restart" }
+    toolDesc_explorer  = @{ it = "Chiude e riapre barra delle applicazioni, Start e cartelle. Utile se qualcosa è bloccato."; en = "Closes and reopens the taskbar, Start and folders. Useful when something is stuck." }
+    tool_icons         = @{ it = "Icone e miniature: ricostruisci"; en = "Icons and thumbnails: rebuild" }
+    toolDesc_icons     = @{ it = "Per icone vuote o sbagliate. Esplora risorse si riavvia."; en = "For blank or wrong icons. File Explorer restarts." }
+    toolAsk_icons      = @{ it = "Le finestre di Esplora file aperte verranno chiuse. Procedo?"; en = "Open File Explorer windows will be closed. Go ahead?" }
+    ttlFeatures        = @{ it = "Funzionalità di Windows"; en = "Windows features" }
+    featHint           = @{ it = "Quelle già attive sono segnate con «Attivo». L'attivazione scarica i file da Windows Update e di solito chiede un riavvio."; en = "The ones already active are marked «Active». Enabling downloads files from Windows Update and usually needs a restart." }
+    featRun            = @{ it = "Attiva selezionate"; en = "Enable selected" }
+    featAsk            = @{ it = "Attivo {0} funzionalità con DISM. Procedo?"; en = "I'll enable {0} features with DISM. Go ahead?" }
+    featMissing        = @{ it = "Non disponibile in questa edizione di Windows."; en = "Not available in this edition of Windows." }
+    feat_netfx         = @{ it = ".NET Framework 3.5 e servizi avanzati 4.x"; en = ".NET Framework 3.5 and 4.x advanced services" }
+    feat_hyperv        = @{ it = "Hyper-V"; en = "Hyper-V" }
+    feat_sandbox       = @{ it = "Sandbox di Windows"; en = "Windows Sandbox" }
+    feat_wsl           = @{ it = "Sottosistema Windows per Linux (WSL)"; en = "Windows Subsystem for Linux (WSL)" }
+    feat_media         = @{ it = "Componenti multimediali legacy (Windows Media Player, DirectPlay)"; en = "Legacy media components (Windows Media Player, DirectPlay)" }
+    feat_nfs           = @{ it = "Client NFS"; en = "NFS client" }
+    featTip_netfx      = @{ it = "Serve a programmi e giochi meno recenti."; en = "Needed by older programs and games." }
+    featTip_hyperv     = @{ it = "Macchine virtuali con Hyper-V. Solo edizioni Pro, Enterprise ed Education."; en = "Virtual machines with Hyper-V. Pro, Enterprise and Education only." }
+    featTip_sandbox    = @{ it = "Un Windows usa e getta per provare programmi sospetti. Solo edizioni Pro ed Enterprise."; en = "A disposable Windows to try suspicious programs. Pro and Enterprise only." }
+    featTip_wsl        = @{ it = "Distribuzioni Linux dentro Windows."; en = "Linux distributions inside Windows." }
+    featTip_media      = @{ it = "Per giochi e programmi vecchi che richiedono DirectPlay o Windows Media Player."; en = "For old games and programs that need DirectPlay or Windows Media Player." }
+    featTip_nfs        = @{ it = "Accesso alle cartelle condivise NFS di NAS e server Linux."; en = "Access to NFS shares on NAS and Linux servers." }
+    oosuHint           = @{ it = "Lo strumento di privacy di O&O, gratuito e senza installazione. Si scarica dal sito ufficiale in una cartella del programma, se ne controlla la firma digitale e si apre."; en = "O&O's free privacy tool, no install needed. It is downloaded from the official site into a program folder, its digital signature is checked and it opens." }
+    oosuRun            = @{ it = "Scarica e apri"; en = "Download and open" }
+    oosuAsk            = @{ it = "Scarico O&O ShutUp10++ da oo-software.com (circa 3 MB) e lo apro. Procedo?"; en = "I'll download O&O ShutUp10++ from oo-software.com (about 3 MB) and open it. Go ahead?" }
+    ttlPanels          = @{ it = "Pannelli di Windows"; en = "Windows panels" }
+    panelsHint         = @{ it = "Le finestre classiche delle impostazioni, a un clic."; en = "The classic settings windows, one click away." }
+    panel_control      = @{ it = "Pannello di controllo"; en = "Control Panel" }
+    panel_compmgmt     = @{ it = "Gestione computer"; en = "Computer Management" }
+    panel_devmgmt      = @{ it = "Gestione dispositivi"; en = "Device Manager" }
+    panel_diskmgmt     = @{ it = "Gestione disco"; en = "Disk Management" }
+    panel_services     = @{ it = "Servizi"; en = "Services" }
+    panel_eventvwr     = @{ it = "Visualizzatore eventi"; en = "Event Viewer" }
+    panel_appwiz       = @{ it = "Programmi e funzionalità"; en = "Programs and Features" }
+    panel_ncpa         = @{ it = "Connessioni di rete"; en = "Network Connections" }
+    panel_powercfg     = @{ it = "Opzioni risparmio energia"; en = "Power Options" }
+    panel_printers     = @{ it = "Stampanti"; en = "Printers" }
+    panel_mouse        = @{ it = "Mouse"; en = "Mouse" }
+    panel_sound        = @{ it = "Audio"; en = "Sound" }
+    panel_sysdm        = @{ it = "Proprietà del sistema"; en = "System Properties" }
+    panel_region       = @{ it = "Area geografica"; en = "Region" }
+    panel_time         = @{ it = "Data e ora"; en = "Date and Time" }
+    panel_security     = @{ it = "Sicurezza e manutenzione"; en = "Security and Maintenance" }
+    panel_firewall     = @{ it = "Windows Defender Firewall"; en = "Windows Defender Firewall" }
+    panel_restore      = @{ it = "Ripristino configurazione di sistema"; en = "System Restore" }
+    wu_recommended     = @{ it = "Consigliato"; en = "Recommended" }
+    wu_default         = @{ it = "Predefinito di Windows"; en = "Windows default" }
+    wu_disable         = @{ it = "Aggiornamenti spenti"; en = "Updates off" }
+    wu_custom          = @{ it = "Personalizzato"; en = "Custom" }
+    wuSub_recommended  = @{ it = "Sicurezza e stabilità insieme"; en = "Security and stability together" }
+    wuSub_default      = @{ it = "Il controllo torna a Windows"; en = "Control goes back to Windows" }
+    wuSub_disable      = @{ it = "Solo per usi particolari: niente aggiornamenti di sicurezza"; en = "For special uses only: no security updates" }
+    wuList_recommended = @{ it = "Nuove versioni di Windows rinviate di 365 giorni;Aggiornamenti mensili rinviati di 4 giorni;Driver esclusi da Windows Update;Nessun riavvio automatico con un utente collegato"; en = "New Windows versions deferred by 365 days;Monthly updates deferred by 4 days;Drivers excluded from Windows Update;No automatic restart while a user is signed in" }
+    wuList_default     = @{ it = "Toglie i criteri di Windows Update impostati;Rimette i servizi di aggiornamento come in origine;Riattiva le attività pianificate degli aggiornamenti"; en = "Removes the Windows Update policies that were set;Restores the update services to their original state;Re-enables the scheduled update tasks" }
+    wuList_disable     = @{ it = "Aggiornamenti automatici spenti;Servizi e attività di aggiornamento fermi;Aggiornamenti già scaricati eliminati"; en = "Automatic updates off;Update services and tasks stopped;Downloaded updates deleted" }
 }
 
 $script:LangCode = "it"
@@ -709,6 +833,9 @@ function Set-Language([string]$code) {
     # chiamata di Set-Language non c'e' ancora.
     if (Get-Command Show-Page -ErrorAction SilentlyContinue) { Show-Page }
     if ($script:SectionPicks) { Update-SectionPickText }
+    $window.Resources['BadgeActive'] = [string](T 'badgeActive')
+    if (Get-Command Show-WuProfiles -ErrorAction SilentlyContinue) { Show-WuProfiles; Update-CurrentValues }
+    if (Get-Command Update-RecStars -ErrorAction SilentlyContinue) { Update-RecStars }
     if (Get-Command Show-PlanList -ErrorAction SilentlyContinue) { Show-PlanList }
     # Menu del pannello MMCSS e decodifica della priorita': testi nella nuova lingua.
     if (Get-Command Set-MmGlobalItems -ErrorAction SilentlyContinue) { Set-MmGlobalItems; Read-Mmcss; Update-PsView }
@@ -779,7 +906,7 @@ $chkStartNoWeb = E 'chkStartNoWeb'; $chkStartNoAccount = E 'chkStartNoAccount'
 $txtFeatId = E 'txtFeatId'; $cmbFeatState = E 'cmbFeatState'
 $btnFeatApply = E 'btnFeatApply'; $btnFeatList = E 'btnFeatList'; $txtFeatList = E 'txtFeatList'
 $chkFastStartup = E 'chkFastStartup'; $chkHibernation = E 'chkHibernation'
-$chkS0Sleep = E 'chkS0Sleep'; $chkS3Sleep = E 'chkS3Sleep'
+$chkS0Sleep = E 'chkS0Sleep'; $chkS3Sleep = E 'chkS3Sleep'; $chkDiskNoSleep = E 'chkDiskNoSleep'
 
 # Privacy
 $chkTelemetry = E 'chkTelemetry'; $chkTelemetryTasks = E 'chkTelemetryTasks'
@@ -844,7 +971,8 @@ $chkSvcBiometric = E 'chkSvcBiometric'; $chkSvcTouch = E 'chkSvcTouch'
 $chkTaskExtra = E 'chkTaskExtra'; $chkTaskMaint = E 'chkTaskMaint'; $chkTaskDefrag = E 'chkTaskDefrag'
 $chkPrefetch = E 'chkPrefetch'; $chkFth = E 'chkFth'; $chkAppCompat = E 'chkAppCompat'
 $chkSvcHostSplit = E 'chkSvcHostSplit'; $chkMemCompression = E 'chkMemCompression'
-$chkWuNoReboot = E 'chkWuNoReboot'; $chkWuDefer = E 'chkWuDefer'; $chkWuNoStore = E 'chkWuNoStore'
+$chkWuNoStore = E 'chkWuNoStore'; $chkWuProfile = E 'chkWuProfile'
+$chkAdvUtc = E 'chkAdvUtc'; $chkAdvRazer = E 'chkAdvRazer'; $chkAdvLogi = E 'chkAdvLogi'; $chkIPv4Pref = E 'chkIPv4Pref'
 $chkBootQuiet = E 'chkBootQuiet'; $chkBootMenu = E 'chkBootMenu'; $chkBootTimeout = E 'chkBootTimeout'
 $chkBootDynTick = E 'chkBootDynTick'; $chkBootTsc = E 'chkBootTsc'; $btnBootReset = E 'btnBootReset'
 $chkAppxBloat = E 'chkAppxBloat'; $chkAppxXbox = E 'chkAppxXbox'; $chkAppxProvision = E 'chkAppxProvision'
@@ -882,6 +1010,9 @@ function Update-Progress {
     $prgTweaks.Value = $Current
     if ($null -ne $txtProgressLabel) { $txtProgressLabel.Text = $Label }
     if ($null -ne $txtProgressCount) { $txtProgressCount.Text = "$Current / $Total" }
+    if ($script:Running -and (Get-Command Set-Activity -ErrorAction SilentlyContinue)) {
+        Set-Activity 'run' ((T 'actRun') -f $Label) ([Math]::Round(100 * $Current / $Total))
+    }
     # Forza il ridisegno della finestra durante l'esecuzione sincrona.
     [System.Windows.Threading.Dispatcher]::CurrentDispatcher.Invoke([Action]{}, [System.Windows.Threading.DispatcherPriority]::Background)
 }
@@ -1337,7 +1468,7 @@ $script:AdvancedCheckBoxes = @(Get-CheckBoxesFromTree (E 'pageAdv'))
 # tutta la pagina Avanzate.
 $script:ExcludedFromSelectAll = @(@(
     $chkRestorePoint, $chkDiskCleanup, $chkTempCleanup, $chkSmartChkdsk,
-    $chkStorageProfile, $chkApplyNetwork, $chkApplyDns, $chkApplyMPO
+    $chkStorageProfile, $chkWuProfile, $chkApplyNetwork, $chkApplyDns, $chkApplyMPO
 ) + $script:AdvancedCheckBoxes | Where-Object { $null -ne $_ })
 
 $script:SelectableCheckBoxes = @(
@@ -1491,7 +1622,7 @@ $script:RecommendedChecks = @{
                     'chkStartNoAccount','chkTaskbarWidgets','chkTaskbarChat','chkTaskbarEndTask','chkMouseAccel','chkNumLock','chkStickyKeys')
     pageNet     = @('chkNetPowerSave')
     pageStorage = @('chkReservedStorage')
-    pagePower   = @('chkFastStartup')
+    pagePower   = @('chkFastStartup','chkHibernation','chkS0Sleep','chkS3Sleep','chkDiskNoSleep')
     pageGpu     = @('chkGpuTdr','chkNvTelemetry','chkNvGfe','chkNvPerfMode','chkNvUpdates','chkNvP2','chkNvDrsPower','chkNvLowLatency',
                     'chkNvShaderCache','chkNvDisplayPower','chkAmdUx','chkAmdBloat','chkAmdUlps','chkAmdAntiLag','chkAmdShaderCache','chkIntelBloat',
                     'chkIntelTelemetry','chkIntelGfxPower')
@@ -1562,42 +1693,4 @@ $btnDeselectAll.Add_Click({
 # ------------------------------------------------------------------------------
 # 12. RILEVAMENTO DEI TWEAK GIA' ATTIVI
 # ------------------------------------------------------------------------------
-$btnDetectActive.Add_Click({
-    Write-Log "[INFO] Verifica dello stato attuale del sistema..."
-    $active = 0; $inactive = 0
-
-    $sysProfile = 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile'
-    $checks = @(
-        @{ Box = $chkMMCSS;            On = ((Test-Reg $sysProfile 'SystemResponsiveness' 10) -and (Test-Reg $sysProfile 'AlwaysOn' 1)) },
-        @{ Box = $chkPriority;         On = (Test-Reg 'HKLM:\SYSTEM\CurrentControlSet\Control\PriorityControl' 'Win32PrioritySeparation' 38) },
-        @{ Box = $chkKernelMem;        On = (Test-Reg 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management' 'DisablePagingExecutive' 1) },
-        @{ Box = $chkUSBSuspend;       On = (Test-Reg 'HKLM:\SYSTEM\CurrentControlSet\Services\USB' 'DisableSelectiveSuspend' 1) },
-        @{ Box = $chkPowerThrottling;  On = (Test-Reg 'HKLM:\SYSTEM\CurrentControlSet\Control\Power\PowerThrottling' 'PowerThrottlingOff' 1) },
-        @{ Box = $chkTelemetry;        On = (Test-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\DataCollection' 'AllowTelemetry' 0) },
-        @{ Box = $chkActivityHistory;  On = (Test-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\System' 'PublishUserActivities' 0) },
-        @{ Box = $chkAdvertisingID;    On = (Test-Reg 'HKCU:\Software\Microsoft\Windows\CurrentVersion\AdvertisingInfo' 'Enabled' 0) },
-        @{ Box = $chkLocationTracking; On = (Test-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\LocationAndSensors' 'DisableLocation' 1) },
-        @{ Box = $chkDarkTheme;        On = (Test-Reg 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize' 'AppsUseLightTheme' 0) },
-        @{ Box = $chkFileExt;          On = (Test-Reg 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced' 'HideFileExt' 0) },
-        @{ Box = $chkHiddenFiles;      On = (Test-Reg 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced' 'Hidden' 1) },
-        @{ Box = $chkLongPaths;        On = (Test-Reg 'HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem' 'LongPathsEnabled' 1) },
-        @{ Box = $chkTaskbarCenter;    On = (Test-Reg 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced' 'TaskbarAl' 1) },
-        @{ Box = $chkTaskbarWidgets;   On = (Test-Reg 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced' 'TaskbarDa' 0) },
-        @{ Box = $chkClassicMenu;      On = (Test-Path 'HKCU:\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32') },
-        @{ Box = $chkMouseAccel;       On = (Test-Reg 'HKCU:\Control Panel\Mouse' 'MouseSpeed' '0') },
-        @{ Box = $chkHibernation;      On = (-not (Test-Path -LiteralPath "$env:SystemDrive\hiberfil.sys")) },
-        @{ Box = $chkFastStartup;      On = (Test-Reg 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Power' 'HiberbootEnabled' 0) }
-    )
-
-    foreach ($c in $checks) {
-        if ($null -eq $c.Box) { continue }
-        $c.Box.IsChecked = [bool]$c.On
-        if ($c.On) { $active++ } else { $inactive++ }
-    }
-
-    $doSvc = Get-CimInstance Win32_Service -Filter "Name='DoSvc'" -ErrorAction SilentlyContinue
-    if ($doSvc) { $chkDeliveryOpt.IsChecked = ($doSvc.StartMode -eq 'Disabled') }
-
-    Write-Log "[INFO] Rilevamento completato: $active gia' attivi, $inactive non attivi."
-    Update-ApplyButton
-})
+# Il pulsante «Rileva gia' attivi» e' in partTools: segna le voci con l'etichetta «Attivo».

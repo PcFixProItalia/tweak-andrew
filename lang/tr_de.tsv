@@ -224,7 +224,7 @@ L:chkFth	Fault Tolerant Heap — keine automatischen Korrekturen
 L:chkAppCompat	Kompatibilitäts-Engine und Programminventar
 L:chkSvcHostSplit	Weniger svchost-Prozesse (Dienste bündeln)
 L:chkMemCompression	Speicherkomprimierung — riskant unter 16 GB RAM
-L:ttlWu	UPDATES
+L:ttlWu	WINDOWS UPDATE
 L:chkWuNoReboot	Keine automatischen Neustarts, während du den Computer nutzt
 L:chkWuDefer	Neue Windows-Versionen um ein Jahr zurückstellen
 L:chkWuNoStore	Automatische Updates für Store-Apps
@@ -711,3 +711,129 @@ M:cpuUnknown	unbekannter Prozessor
 M:sectionSelect	Ganzer Abschnitt
 M:laptopSelTitle	Laptop
 M:laptopSelAsk	Auf einem Laptop ist «Empfohlen» die bessere Wahl: «Alles auswählen» enthält auch Einträge, die die Akkulaufzeit verkürzen. Trotzdem alles auswählen?
+L:tabTools	Werkzeuge
+L:ttlToolJobs	VORGÄNGE
+L:btnToolJobsClose	Schließen
+L:lblWuHint	Profil wählen: es kommt zu den anzuwendenden Änderungen. Ein zweiter Klick entfernt es.
+L:chkWuProfile	Windows-Update-Profil
+L:ttlAdvCompat	UHR UND PERIPHERIE
+L:chkAdvUtc	BIOS-Uhr in UTC (Dual-Boot mit Linux)
+L:chkAdvRazer	Keine automatische Razer-Softwareinstallation
+L:chkAdvLogi	Kein Logitech-Download-Assistent
+L:chkIPv4Pref	IPv4 vor IPv6
+L:chkDiskNoSleep	Festplatten und SSDs immer aktiv (am Netz)
+M:actRun	Änderungen: {0}
+M:jobWorking	Läuft...
+M:badgeActive	Aktiv
+M:starTip	Empfohlen: ein Klick wählt es aus, dann «Änderungen anwenden» drücken.
+M:scanRunning	Bereits aktive Einträge werden geprüft...
+M:scanDone	Bereits aktive Einträge auf diesem PC: {0}. Sie sind mit «Aktiv» markiert.
+M:currentSetting	Aktuelle Einstellung: {0}
+M:ttlClean	PC-Bereinigung
+M:cleanHint	Wähle, was bereinigt wird. Nicht gewählte Einträge sind nützliche Daten: nur löschen, wenn du sie nicht brauchst.
+M:cleanScan	Platz berechnen
+M:cleanRun	Ausgewählte bereinigen
+M:cleanAsk	Ich bereinige {0} Einträge. Gelöschte Dateien landen nicht im Papierkorb. Fortfahren?
+M:cleanMeasuring	wird berechnet...
+M:cleanFreed	{0} freigegeben
+M:clean_winTemp	Temporäre Windows-Dateien
+M:clean_userTemp	Temporäre Benutzerdateien
+M:clean_wuCache	Bereits geladene Windows-Updates
+M:clean_doCache	Übermittlungsoptimierungs-Cache
+M:clean_recycle	Papierkorb
+M:clean_errors	Fehlerberichte und Speicherabbilder
+M:clean_thumbs	Miniaturansicht-Cache
+M:clean_recent	Zuletzt verwendete Dateien und Sprunglisten
+M:clean_runHist	Verlauf von Ausführen und eingegebenen Pfaden
+M:clean_prefetch	Prefetch
+M:cleanTip_winTemp	Von Installationsprogrammen und System hinterlassene Dateien.
+M:cleanTip_userTemp	Temporäre Dateien deiner Programme. Dateien in Verwendung werden übersprungen.
+M:cleanTip_wuCache	Bereits installierte Pakete. Windows Update pausiert kurz.
+M:cleanTip_doCache	Mit anderen PCs geteilte Update-Kopien.
+M:cleanTip_recycle	Leert den Papierkorb auf allen Laufwerken.
+M:cleanTip_errors	Bereits gesendete Berichte und Absturzdateien.
+M:cleanTip_thumbs	Windows erstellt sie beim Öffnen neu: das erste Öffnen ist langsamer.
+M:cleanTip_recent	Entfernt zuletzt verwendete Dateien aus Explorer, Start und Taskleiste.
+M:cleanTip_runHist	In Ausführen (Win+R) eingegebene Befehle und im Explorer eingegebene Pfade.
+M:cleanTip_prefetch	Windows startet Programme damit schneller: danach sind die ersten Starts langsamer.
+M:ttlFix	Reparaturen
+M:fixHint	Sie starten sofort, einzeln. Der Fortschritt bleibt oben auch auf anderen Seiten sichtbar.
+M:toolRun	Ausführen
+M:tool_netQuick	Netzwerk: schnelles Zurücksetzen
+M:toolDesc_netQuick	Leert den DNS-Cache und erneuert die IP. Die Verbindung bricht kurz ab.
+M:tool_netFull	Netzwerk: vollständiges Zurücksetzen
+M:toolDesc_netFull	Winsock, IP-Stack, Systemproxy und TCP-Einstellungen werden zurückgesetzt. Neustart nötig.
+M:toolAsk_netQuick	Die Verbindung bricht kurz ab. Fortfahren?
+M:toolAsk_netFull	Ich setze das Netzwerk wie frisch installiert zurück. VPNs und Winsock-Programme müssen evtl. neu installiert werden. Fortfahren?
+M:tool_firewall	Firewall: Standardeinstellungen
+M:toolDesc_firewall	Löscht alle von dir und Programmen hinzugefügten Regeln. Nur verwenden, wenn die Firewall Verbindungen blockiert.
+M:toolAsk_firewall	Alle eigenen Firewall-Regeln werden unwiderruflich gelöscht. Fortfahren?
+M:tool_wuReset	Windows Update: zurücksetzen
+M:toolDesc_wuReset	Für hängende Updates: stoppt Dienste, benennt SoftwareDistribution und catroot2 um, stellt Komponenten wieder her. Neustart nötig.
+M:toolAsk_wuReset	Der Update-Verlauf wird geleert; installierte Updates bleiben. Fortfahren?
+M:tool_repair	Systemdateien: prüfen und reparieren
+M:toolDesc_repair	DISM repariert das Windows-Abbild, danach behebt SFC beschädigte Dateien. Dauert 15-30 Minuten.
+M:toolAsk_repair	Die Prüfung dauert und belastet die Festplatte. Du kannst weiterarbeiten. Fortfahren?
+M:tool_ntp	Uhr: Zeit synchronisieren
+M:toolDesc_ntp	Nutzt pool.ntp.org und time.windows.com und synchronisiert sofort.
+M:tool_winget	winget: reparieren
+M:toolDesc_winget	Registriert den App-Installer neu und setzt die Paketquellen zurück.
+M:tool_regBackup	Registry: tägliche Sicherung
+M:toolDesc_regBackup	Aktiviert die automatische Registry-Kopie in System32\config\RegBack und erstellt sofort eine.
+M:tool_store	Microsoft Store: Cache leeren
+M:toolDesc_store	Für hängende Store-Downloads. Der Store öffnet sich danach selbst.
+M:tool_explorer	Explorer: neu starten
+M:toolDesc_explorer	Schließt und öffnet Taskleiste, Start und Ordner neu. Hilft bei Hängern.
+M:tool_icons	Symbole und Miniaturen: neu aufbauen
+M:toolDesc_icons	Für leere oder falsche Symbole. Explorer startet neu.
+M:toolAsk_icons	Offene Explorer-Fenster werden geschlossen. Fortfahren?
+M:ttlFeatures	Windows-Features
+M:featHint	Bereits aktive sind mit «Aktiv» markiert. Das Aktivieren lädt Dateien von Windows Update und erfordert meist einen Neustart.
+M:featRun	Ausgewählte aktivieren
+M:featAsk	Ich aktiviere {0} Features mit DISM. Fortfahren?
+M:featMissing	In dieser Windows-Edition nicht verfügbar.
+M:feat_netfx	.NET Framework 3.5 und erweiterte 4.x-Dienste
+M:feat_hyperv	Hyper-V
+M:feat_sandbox	Windows-Sandbox
+M:feat_wsl	Windows-Subsystem für Linux (WSL)
+M:feat_media	Ältere Medienkomponenten (Windows Media Player, DirectPlay)
+M:feat_nfs	NFS-Client
+M:featTip_netfx	Für ältere Programme und Spiele.
+M:featTip_hyperv	Virtuelle Maschinen mit Hyper-V. Nur Pro, Enterprise und Education.
+M:featTip_sandbox	Ein Wegwerf-Windows zum Testen verdächtiger Programme. Nur Pro und Enterprise.
+M:featTip_wsl	Linux-Distributionen in Windows.
+M:featTip_media	Für alte Spiele und Programme mit DirectPlay oder Windows Media Player.
+M:featTip_nfs	Zugriff auf NFS-Freigaben von NAS und Linux-Servern.
+M:oosuHint	Das kostenlose Datenschutz-Tool von O&O, ohne Installation. Es wird von der offiziellen Seite in einen Programmordner geladen, die Signatur geprüft und geöffnet.
+M:oosuRun	Herunterladen und öffnen
+M:oosuAsk	Ich lade O&O ShutUp10++ von oo-software.com (ca. 3 MB) und öffne es. Fortfahren?
+M:ttlPanels	Windows-Systemsteuerungen
+M:panelsHint	Die klassischen Einstellungsfenster mit einem Klick.
+M:panel_control	Systemsteuerung
+M:panel_compmgmt	Computerverwaltung
+M:panel_devmgmt	Geräte-Manager
+M:panel_diskmgmt	Datenträgerverwaltung
+M:panel_services	Dienste
+M:panel_eventvwr	Ereignisanzeige
+M:panel_appwiz	Programme und Features
+M:panel_ncpa	Netzwerkverbindungen
+M:panel_powercfg	Energieoptionen
+M:panel_printers	Drucker
+M:panel_mouse	Maus
+M:panel_sound	Sound
+M:panel_sysdm	Systemeigenschaften
+M:panel_region	Region
+M:panel_time	Datum und Uhrzeit
+M:panel_security	Sicherheit und Wartung
+M:panel_firewall	Windows Defender Firewall
+M:panel_restore	Systemwiederherstellung
+M:wu_recommended	Empfohlen
+M:wu_default	Windows-Standard
+M:wu_disable	Updates aus
+M:wu_custom	Benutzerdefiniert
+M:wuSub_recommended	Sicherheit und Stabilität zusammen
+M:wuSub_default	Die Kontrolle geht an Windows zurück
+M:wuSub_disable	Nur für Sonderfälle: keine Sicherheitsupdates
+M:wuList_recommended	Neue Windows-Versionen um 365 Tage verschoben;Monatliche Updates um 4 Tage verschoben;Treiber von Windows Update ausgeschlossen;Kein automatischer Neustart bei angemeldetem Benutzer
+M:wuList_default	Entfernt gesetzte Windows-Update-Richtlinien;Stellt die Update-Dienste wieder her;Aktiviert die geplanten Update-Aufgaben wieder
+M:wuList_disable	Automatische Updates aus;Update-Dienste und -Aufgaben gestoppt;Heruntergeladene Updates gelöscht

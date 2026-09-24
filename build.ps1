@@ -33,6 +33,7 @@ $parts = @(
     (Read-Part 'partK.ps1'),
     (Read-Part 'partApps.ps1'),
     (Read-Part 'partHome.ps1'),
+    (Read-Part 'partTools.ps1'),
     (Read-Part 'partTail.ps1')
 )
 

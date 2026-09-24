@@ -584,3 +584,10 @@ pw.nvme2#1000	1 secundă
 pw.nvme2#2000	2 secunde
 pw.nvme2#5000	5 secunde
 H:pw.nvme2	A doua stare de economisire, mai profundă: trezirea durează câteva milisecunde în plus. Pe laptop e mai bine să rămână activă.
+task.oldStart	Meniul Start anterior (Windows 11 25H2)
+H:task.oldStart	Aduce înapoi meniul Start cu aplicațiile fixate sus, ca înainte de actualizarea 25H2. Necesită repornire.
+notif.center	Centrul de notificări și calendarul
+H:notif.center	Panoul care se deschide la clic pe dată și oră. Dezactivat, clicul pe ceas nu mai deschide nimic.
+g.win.browser	Browsere
+win.brave	Brave fără Rewards, Wallet, VPN, AI și statistici
+H:win.brave	Politici Brave: oprește funcțiile auxiliare și trimiterea de statistici. Se aplică și dacă Brave e instalat mai târziu.

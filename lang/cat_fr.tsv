@@ -584,3 +584,10 @@ pw.nvme2#1000	1 seconde
 pw.nvme2#2000	2 secondes
 pw.nvme2#5000	5 secondes
 H:pw.nvme2	Le second état d'économie, plus profond : le réveil prend quelques millisecondes de plus. Sur un portable, mieux vaut le laisser actif.
+task.oldStart	Ancien menu Démarrer (Windows 11 25H2)
+H:task.oldStart	Ramène le menu Démarrer avec les apps épinglées en haut, comme avant la mise à jour 25H2. Redémarrage nécessaire.
+notif.center	Centre de notifications et calendrier
+H:notif.center	Le panneau qui s'ouvre en cliquant sur la date et l'heure. Désactivé, le clic sur l'horloge n'ouvre plus rien.
+g.win.browser	Navigateurs
+win.brave	Brave sans Rewards, Wallet, VPN, IA ni statistiques
+H:win.brave	Stratégies de Brave : désactive les fonctions annexes et l'envoi de statistiques. S'applique aussi si Brave est installé plus tard.

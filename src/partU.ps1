@@ -186,7 +186,15 @@ function Build-UndoActions {
     # ---------- ALIMENTAZIONE ----------
     Add-UndoIfChecked $chkFastStartup { Reset-Reg 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Power' 'HiberbootEnabled' 1 }
     Add-UndoIfChecked $chkHibernation { powercfg /h on | Out-Null; Write-Log "[OK] Ibernazione riattivata." }
-    Add-UndoIfChecked $chkS0Sleep { Reset-Reg 'HKLM:\SYSTEM\CurrentControlSet\Control\Power' 'EnforceConnectivityInStandby' }
+    Add-UndoIfChecked $chkS0Sleep {
+        $p = 'HKLM:\SOFTWARE\Policies\Microsoft\Power\PowerSettings\f15576e8-98b7-4186-b944-eafa664402d9'
+        Reset-Reg $p 'ACSettingIndex'; Reset-Reg $p 'DCSettingIndex'
+    }
+    Add-UndoIfChecked $chkDiskNoSleep {
+        foreach ($s in '6738e2c4-e8a5-4a42-b16a-e040e769756e','0b2d69d7-a2a1-449c-9680-f91c70521c60','d639518a-e56d-4345-8af2-b9f32fb26109','d3d55efd-c1ff-424e-9dc3-441be7833010') {
+            Reset-PowerAc $s 'Risparmio dei dischi'
+        }
+    }
     Add-UndoIfChecked $chkS3Sleep { Reset-Reg 'HKLM:\SYSTEM\CurrentControlSet\Control\Power' 'PlatformAoAcOverride' }
 
     # ---------- PRIVACY ----------
@@ -291,7 +299,10 @@ function Build-UndoActions {
     Add-UndoIfChecked $chkTeredo { netsh interface teredo set state default | Out-Null; Write-Log "[OK] Teredo su valore predefinito." }
     Add-UndoIfChecked $chkRDPWarnings { Reset-Reg 'HKCU:\Software\Microsoft\Terminal Server Client' 'AuthenticationLevelOverride' }
     Add-UndoIfChecked $chkRemoteAssistance { Reset-Reg 'HKLM:\SYSTEM\CurrentControlSet\Control\Remote Assistance' 'fAllowToGetHelp' 1 }
-    Add-UndoIfChecked $chkCompanionApps { Reset-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\DeviceInstall\Settings' 'DisableDeviceCompanionApp' }
+    Add-UndoIfChecked $chkCompanionApps {
+        Reset-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\Device Metadata' 'PreventDeviceMetadataFromNetwork'
+        Reset-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\DeviceInstall\Settings' 'DisableDeviceCompanionApp'
+    }
     Add-UndoIfChecked $chkDriverUpdates {
         Reset-Reg 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\DriverSearching' 'SearchOrderConfig' 1
         Reset-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate' 'ExcludeWUDriversInQualityUpdate'
@@ -556,14 +567,17 @@ function Build-UndoActions {
         catch { Write-Log "[ERRORE] Compressione della memoria: $($_.Exception.Message)" }
     }
 
-    Add-UndoIfChecked $chkWuNoReboot {
-        $au = 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU'
-        foreach ($v in @('NoAutoRebootWithLoggedOnUsers','AUOptions','AUPowerManagement')) { Reset-Reg $au $v }
+    Add-UndoIfChecked $chkWuProfile { Set-WuProfile 'default' }
+    Add-UndoIfChecked $chkAdvUtc { Reset-Reg 'HKLM:\SYSTEM\CurrentControlSet\Control\TimeZoneInformation' 'RealTimeIsUniversal' }
+    Add-UndoIfChecked $chkAdvRazer {
+        Reset-Reg 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Device Installer' 'DisableCoInstallers'
+        Unlock-Folder "$env:SystemRoot\Installer\Razer" 'Cartella di installazione Razer'
     }
-    Add-UndoIfChecked $chkWuDefer {
-        $wu = 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate'
-        foreach ($v in @('DeferFeatureUpdates','DeferFeatureUpdatesPeriodInDays','DeferQualityUpdates','DeferQualityUpdatesPeriodInDays')) { Reset-Reg $wu $v }
+    Add-UndoIfChecked $chkAdvLogi {
+        $pf = if ($env:ProgramW6432) { $env:ProgramW6432 } else { $env:ProgramFiles }
+        Unlock-Folder "$pf\LogiDownloadAssistant" 'Assistente download Logitech'
     }
+    Add-UndoIfChecked $chkIPv4Pref { Reset-Reg 'HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip6\Parameters' 'DisabledComponents' }
     Add-UndoIfChecked $chkWuNoStore { Reset-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\WindowsStore' 'AutoDownload' }
 
     Add-UndoIfChecked $chkBootQuiet {
@@ -601,6 +615,9 @@ function Invoke-ActionQueue {
     param([string]$Header)
     $total = $script:Actions.Count
     $script:Running = $true
+    $script:RunHeader = $Header
+    # Durante l'esecuzione le pagine delle impostazioni restano ferme.
+    Set-UiLock 'run' $true
     $btnRun.IsEnabled = $false; $btnUndo.IsEnabled = $false
     $script:OkCount = 0; $script:WarnCount = 0; $script:SkipCount = 0
     $txtProgressLabel.Foreground = New-Object System.Windows.Media.SolidColorBrush ([System.Windows.Media.ColorConverter]::ConvertFromString('#FFF2F2F5'))
@@ -609,11 +626,16 @@ function Invoke-ActionQueue {
     Write-Log "[AVVIO] $Header - $total operazioni in coda."
 
     $i = 0
-    foreach ($action in $script:Actions) {
-        $i++
-        Update-Progress $i $total $action.Name
-        Write-Log "[$i/$total] $($action.Name)"
-        try { & $action.Do } catch { Write-Log "[ERRORE] $($action.Name): $($_.Exception.Message)" }
+    try {
+        foreach ($action in $script:Actions) {
+            $i++
+            Update-Progress $i $total $action.Name
+            Write-Log "[$i/$total] $($action.Name)"
+            try { & $action.Do } catch { Write-Log "[ERRORE] $($action.Name): $($_.Exception.Message)" }
+        }
+    } finally {
+        Clear-Activity 'run'
+        Set-UiLock 'run' $false
     }
 
     Update-Progress $total $total (T 'done')
@@ -626,6 +648,8 @@ function Invoke-ActionQueue {
     Show-StorageInventory
     Update-PowerPlanLabel
     Update-ApplyButton
+    # Lo stato «Attivo» delle voci cambia dopo ogni giro.
+    if (Get-Command Update-ActiveBadges -ErrorAction SilentlyContinue) { Update-ActiveBadges | Out-Null }
 }
 
 $btnUndo.Add_Click({

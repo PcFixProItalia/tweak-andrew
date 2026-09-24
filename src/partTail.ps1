@@ -5,6 +5,8 @@
 Show-GpuInfo
 Show-CpuInfo
 Add-SectionPicks
+Show-WuProfiles
+Update-RecStars
 Update-PowerPlanLabel
 Show-PlanList
 $script:UiReady = $true

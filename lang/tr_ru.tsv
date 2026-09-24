@@ -224,7 +224,7 @@ L:chkFth	Fault Tolerant Heap — без автоисправлений
 L:chkAppCompat	Механизм совместимости и учёт программ
 L:chkSvcHostSplit	Меньше процессов svchost (группировка служб)
 L:chkMemCompression	Сжатие памяти — рискованно при ОЗУ меньше 16 ГБ
-L:ttlWu	ОБНОВЛЕНИЯ
+L:ttlWu	WINDOWS UPDATE
 L:chkWuNoReboot	Без автоматических перезагрузок во время работы
 L:chkWuDefer	Отложить новые версии Windows на год
 L:chkWuNoStore	Автообновление приложений из Store
@@ -711,3 +711,129 @@ M:cpuUnknown	неизвестный процессор
 M:sectionSelect	Весь раздел
 M:laptopSelTitle	Ноутбук
 M:laptopSelAsk	На ноутбуке лучше использовать «Рекомендуемые»: «Выбрать всё» включает и пункты, сокращающие время работы от батареи. Всё равно выбрать всё?
+L:tabTools	Инструменты
+L:ttlToolJobs	ОПЕРАЦИИ
+L:btnToolJobsClose	Закрыть
+L:lblWuHint	Выберите профиль: он попадёт в изменения. Повторный щелчок убирает его.
+L:chkWuProfile	Профиль Windows Update
+L:ttlAdvCompat	ЧАСЫ И ПЕРИФЕРИЯ
+L:chkAdvUtc	Часы BIOS в UTC (двойная загрузка с Linux)
+L:chkAdvRazer	Без автоустановки ПО Razer
+L:chkAdvLogi	Без помощника загрузки Logitech
+L:chkIPv4Pref	IPv4 раньше IPv6
+L:chkDiskNoSleep	Диски и SSD всегда активны (от сети)
+M:actRun	Изменения: {0}
+M:jobWorking	Выполняется...
+M:badgeActive	Активно
+M:starTip	Рекомендуется: щелчок выбирает, затем нажмите «Применить».
+M:scanRunning	Проверка уже активных пунктов...
+M:scanDone	Уже активных пунктов на этом ПК: {0}. Они отмечены «Активно».
+M:currentSetting	Текущая настройка: {0}
+M:ttlClean	Очистка ПК
+M:cleanHint	Выберите, что очистить. Невыбранные пункты — полезные данные: удаляйте, только если они не нужны.
+M:cleanScan	Подсчитать место
+M:cleanRun	Очистить выбранное
+M:cleanAsk	Очищу {0} пунктов. Удалённые файлы не попадают в корзину. Продолжить?
+M:cleanMeasuring	подсчёт...
+M:cleanFreed	Освобождено {0}
+M:clean_winTemp	Временные файлы Windows
+M:clean_userTemp	Временные файлы пользователя
+M:clean_wuCache	Уже загруженные обновления Windows
+M:clean_doCache	Кэш оптимизации доставки
+M:clean_recycle	Корзина
+M:clean_errors	Отчёты об ошибках и дампы
+M:clean_thumbs	Кэш эскизов
+M:clean_recent	Недавние файлы и списки переходов
+M:clean_runHist	История «Выполнить» и введённых путей
+M:clean_prefetch	Prefetch
+M:cleanTip_winTemp	Файлы, оставленные установщиками и системой.
+M:cleanTip_userTemp	Временные файлы программ. Используемые пропускаются.
+M:cleanTip_wuCache	Уже установленные пакеты. Windows Update ненадолго остановится.
+M:cleanTip_doCache	Копии обновлений для других ПК.
+M:cleanTip_recycle	Очищает корзину на всех дисках.
+M:cleanTip_errors	Отправленные отчёты и файлы сбоев.
+M:cleanTip_thumbs	Windows создаст их заново: первое открытие будет медленнее.
+M:cleanTip_recent	Убирает недавние файлы из Проводника, «Пуск» и панели.
+M:cleanTip_runHist	Команды «Выполнить» (Win+R) и пути в Проводнике.
+M:cleanTip_prefetch	Windows ускоряет им запуск программ: после очистки первые запуски будут медленнее.
+M:ttlFix	Исправления
+M:fixHint	Запускаются сразу, по очереди. Ход виден вверху и на других страницах.
+M:toolRun	Запустить
+M:tool_netQuick	Сеть: быстрый сброс
+M:toolDesc_netQuick	Очищает кэш DNS и обновляет IP. Связь пропадёт на несколько секунд.
+M:tool_netFull	Сеть: полный сброс
+M:toolDesc_netFull	Winsock, стек IP, прокси и TCP возвращаются к заводским. Нужна перезагрузка.
+M:toolAsk_netQuick	Связь прервётся на несколько секунд. Продолжить?
+M:toolAsk_netFull	Сброшу сеть к исходному состоянию. VPN и программы, меняющие Winsock, может понадобиться переустановить. Продолжить?
+M:tool_firewall	Брандмауэр: настройки по умолчанию
+M:toolDesc_firewall	Удаляет все правила, добавленные вами и программами. Только если брандмауэр блокирует нужные соединения.
+M:toolAsk_firewall	Все пользовательские правила будут удалены без возможности восстановления. Продолжить?
+M:tool_wuReset	Windows Update: сброс
+M:toolDesc_wuReset	Для зависших обновлений: останавливает службы, переименовывает SoftwareDistribution и catroot2, восстанавливает компоненты. Нужна перезагрузка.
+M:toolAsk_wuReset	История обновлений будет очищена; установленные останутся. Продолжить?
+M:tool_repair	Системные файлы: проверка и восстановление
+M:toolDesc_repair	DISM восстанавливает образ Windows, затем SFC исправляет файлы. 15-30 минут.
+M:toolAsk_repair	Проверка долгая и нагружает диск. Можно продолжать работать. Продолжить?
+M:tool_ntp	Часы: синхронизировать время
+M:toolDesc_ntp	Использует pool.ntp.org и time.windows.com и сразу синхронизирует.
+M:tool_winget	winget: восстановление
+M:toolDesc_winget	Перерегистрирует App Installer и сбрасывает источники.
+M:tool_regBackup	Реестр: ежедневная копия
+M:toolDesc_regBackup	Включает автокопию реестра в System32\config\RegBack и создаёт её сейчас.
+M:tool_store	Microsoft Store: очистить кэш
+M:toolDesc_store	Для зависших загрузок. Магазин откроется сам.
+M:tool_explorer	Проводник: перезапуск
+M:toolDesc_explorer	Закрывает и открывает панель, «Пуск» и папки. Помогает при зависаниях.
+M:tool_icons	Значки и эскизы: перестроить
+M:toolDesc_icons	Для пустых или неверных значков. Проводник перезапустится.
+M:toolAsk_icons	Открытые окна Проводника будут закрыты. Продолжить?
+M:ttlFeatures	Компоненты Windows
+M:featHint	Уже включённые отмечены «Активно». Включение загружает файлы из Windows Update и обычно требует перезагрузки.
+M:featRun	Включить выбранные
+M:featAsk	Включу {0} компонентов через DISM. Продолжить?
+M:featMissing	Недоступно в этой редакции Windows.
+M:feat_netfx	.NET Framework 3.5 и расширенные службы 4.x
+M:feat_hyperv	Hyper-V
+M:feat_sandbox	Песочница Windows
+M:feat_wsl	Подсистема Windows для Linux (WSL)
+M:feat_media	Устаревшие мультимедиа (Windows Media Player, DirectPlay)
+M:feat_nfs	Клиент NFS
+M:featTip_netfx	Нужен старым программам и играм.
+M:featTip_hyperv	Виртуальные машины Hyper-V. Только Pro, Enterprise, Education.
+M:featTip_sandbox	Одноразовая Windows для проверки программ. Только Pro и Enterprise.
+M:featTip_wsl	Дистрибутивы Linux внутри Windows.
+M:featTip_media	Для старых игр и программ с DirectPlay или Windows Media Player.
+M:featTip_nfs	Доступ к ресурсам NFS на NAS и серверах Linux.
+M:oosuHint	Бесплатный инструмент приватности O&O без установки. Скачивается с официального сайта в папку программы, подпись проверяется, затем он открывается.
+M:oosuRun	Скачать и открыть
+M:oosuAsk	Скачаю O&O ShutUp10++ с oo-software.com (около 3 МБ) и открою. Продолжить?
+M:ttlPanels	Панели Windows
+M:panelsHint	Классические окна настроек в один щелчок.
+M:panel_control	Панель управления
+M:panel_compmgmt	Управление компьютером
+M:panel_devmgmt	Диспетчер устройств
+M:panel_diskmgmt	Управление дисками
+M:panel_services	Службы
+M:panel_eventvwr	Просмотр событий
+M:panel_appwiz	Программы и компоненты
+M:panel_ncpa	Сетевые подключения
+M:panel_powercfg	Электропитание
+M:panel_printers	Принтеры
+M:panel_mouse	Мышь
+M:panel_sound	Звук
+M:panel_sysdm	Свойства системы
+M:panel_region	Регион
+M:panel_time	Дата и время
+M:panel_security	Безопасность и обслуживание
+M:panel_firewall	Брандмауэр Защитника Windows
+M:panel_restore	Восстановление системы
+M:wu_recommended	Рекомендуемый
+M:wu_default	По умолчанию Windows
+M:wu_disable	Обновления отключены
+M:wu_custom	Пользовательский
+M:wuSub_recommended	Безопасность и стабильность вместе
+M:wuSub_default	Управление возвращается Windows
+M:wuSub_disable	Только для особых случаев: без обновлений безопасности
+M:wuList_recommended	Новые версии Windows откладываются на 365 дней;Ежемесячные обновления на 4 дня;Драйверы исключены из Windows Update;Без автоперезагрузки при вошедшем пользователе
+M:wuList_default	Удаляет заданные политики Windows Update;Возвращает исходные службы обновления;Снова включает задания обновления
+M:wuList_disable	Автообновления отключены;Службы и задания обновления остановлены;Загруженные обновления удалены

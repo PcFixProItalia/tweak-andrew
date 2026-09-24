@@ -236,6 +236,9 @@ O|cat|Per categoria|By category|0,-
 O|grid|Griglia|Grid|1
 O|list|Elenco|List|2
 H|task.allApps|Come si presenta l'elenco completo delle app nel nuovo menu Start.|How the full app list looks in the new Start menu.
+T|task.oldStart|RM|0|-|Menu Start precedente (Windows 11 25H2)|Previous Start menu (Windows 11 25H2)
+R|HKLM\SYSTEM\ControlSet001\Control\FeatureManagement\Overrides\8\3036241548|EnabledState|D|1|-
+H|task.oldStart|Riporta il menu Start con le app aggiunte in alto, come prima dell'aggiornamento 25H2. Serve un riavvio.|Brings back the Start menu with pinned apps on top, as before the 25H2 update. Needs a restart.
 T|task.recentApps||1|0|App aggiunte di recente|Recently added apps
 R|HKCU\Software\Microsoft\Windows\CurrentVersion\Start|ShowRecentList|D|1,-|0
 H|task.recentApps|Mostra in Start i programmi appena installati.|Shows freshly installed programs in Start.
@@ -312,6 +315,9 @@ G|toast|Notifiche|Notifications
 T|notif.toast||1|-|Notifiche delle app|App notifications
 R|HKCU\Software\Microsoft\Windows\CurrentVersion\PushNotifications|ToastEnabled|D|1,-|0
 H|notif.toast|L'interruttore generale dei fumetti di notifica. Spento, nessuna app ti interrompe.|The master switch for notification pop-ups. Off, no app interrupts you.
+T|notif.center|X|1|-|Centro notifiche e calendario|Notification center and calendar
+R|HKCU\Software\Policies\Microsoft\Windows\Explorer|DisableNotificationCenter|D|0,-|1
+H|notif.center|Il pannello che si apre cliccando su data e ora. Spento, il clic sull'orologio non apre più nulla.|The panel that opens when you click the date and time. Off, clicking the clock opens nothing.
 T|notif.sound||1|-|Suono delle notifiche|Notification sound
 R|HKCU\Software\Microsoft\Windows\CurrentVersion\Notifications\Settings|NOC_GLOBAL_SETTING_ALLOW_NOTIFICATION_SOUND|D|1,-|0
 H|notif.sound|Le notifiche arrivano in silenzio, senza il suono di avviso.|Notifications arrive silently, without the chime.
@@ -506,6 +512,22 @@ H|win.workplace|Evita che accedendo a Office con un account di lavoro il PC fini
 T|win.autoMaint||1|-|Manutenzione automatica|Automatic maintenance
 R|HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\Maintenance|MaintenanceDisabled|D|0,-|1
 H|win.autoMaint|Le pulizie e le ottimizzazioni notturne di Windows. Spenta, niente disco al lavoro mentre giochi.|Windows' nightly cleanups and optimizations. Off, no disk churn while you play.
+
+G|browser|Browser|Browsers
+T|win.brave|M|0|-|Brave senza Rewards, Wallet, VPN, IA e statistiche|Brave without Rewards, Wallet, VPN, AI and statistics
+R|HKLM\SOFTWARE\Policies\BraveSoftware\Brave|BraveRewardsDisabled|D|1|-
+R|HKLM\SOFTWARE\Policies\BraveSoftware\Brave|BraveWalletDisabled|D|1|-
+R|HKLM\SOFTWARE\Policies\BraveSoftware\Brave|BraveVPNDisabled|D|1|-
+R|HKLM\SOFTWARE\Policies\BraveSoftware\Brave|BraveAIChatEnabled|D|0|-
+R|HKLM\SOFTWARE\Policies\BraveSoftware\Brave|BraveStatsPingEnabled|D|0|-
+R|HKLM\SOFTWARE\Policies\BraveSoftware\Brave|BraveNewsDisabled|D|1|-
+R|HKLM\SOFTWARE\Policies\BraveSoftware\Brave|BraveTalkDisabled|D|1|-
+R|HKLM\SOFTWARE\Policies\BraveSoftware\Brave|TorDisabled|D|1|-
+R|HKLM\SOFTWARE\Policies\BraveSoftware\Brave|BraveP3AEnabled|D|0|-
+R|HKLM\SOFTWARE\Policies\BraveSoftware\Brave|UrlKeyedAnonymizedDataCollectionEnabled|D|0|-
+R|HKLM\SOFTWARE\Policies\BraveSoftware\Brave|SafeBrowsingExtendedReportingEnabled|D|0|-
+R|HKLM\SOFTWARE\Policies\BraveSoftware\Brave|MetricsReportingEnabled|D|0|-
+H|win.brave|Criteri di Brave: spegne le funzioni di contorno e l'invio di statistiche. Si applica anche se Brave verrà installato dopo.|Brave policies: turns off the side features and statistics reporting. Also applies if Brave is installed later.
 
 G|upd|Windows Update|Windows Update
 S|win.wuMode|W|auto|-|Modalità di Windows Update|Windows Update mode
