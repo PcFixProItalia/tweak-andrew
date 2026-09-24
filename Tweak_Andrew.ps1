@@ -1989,14 +1989,15 @@ $script:PlanData = @{
                                     </LinearGradientBrush>
                                 </ScrollViewer.Resources>
                                 <StackPanel>
-                                <!-- Altezza libera: la colonna destra cresce con le voci, la lista dei piani scorre da sola. -->
+                                <!-- A sinistra i piani, alti quanto serve, con il loro avviso; a destra le altre schede una sotto l'altra. -->
                                 <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="1.45*"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
 
-                                <Border Grid.Column="0" Style="{StaticResource Glass}">
+                                <StackPanel Grid.Column="0">
+                                <Border Style="{StaticResource Glass}">
                                     <Grid>
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto"/>
@@ -2020,11 +2021,25 @@ $script:PlanData = @{
                                             </StackPanel>
                                         </Grid>
 
-                                        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Padding="0,0,8,0" MaxHeight="360" VerticalAlignment="Top">
+                                        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Disabled" Padding="0,0,8,0">
                                             <StackPanel x:Name="panPlans"/>
                                         </ScrollViewer>
                                     </Grid>
                                 </Border>
+                                <Border Style="{StaticResource Glass}">
+                                    <Border.Background>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="0.7,1">
+                                            <GradientStop Color="#22E0A25E" Offset="0"/>
+                                            <GradientStop Color="#0AE0A25E" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                    <StackPanel>
+                                        <TextBlock x:Name="ttlPlanWarn" Text="PRIMA DI PROVARE" Style="{StaticResource CardTitle}" Foreground="#FFE0A25E"/>
+                                        <TextBlock x:Name="lblPlanWarn" Style="{StaticResource SubTitle}" Foreground="#FFD9A470"
+                                                   Text="I piani della sezione Da testare arrivano da terze parti. Provane uno alla volta e torna su Bilanciato se il computer diventa instabile."/>
+                                    </StackPanel>
+                                </Border>
+                                </StackPanel>
 
                                 <StackPanel Grid.Column="1">
                                     <Border Style="{StaticResource Glass}">
@@ -2050,19 +2065,6 @@ $script:PlanData = @{
                                         </StackPanel>
                                     </Border>
 
-                                    <Border Style="{StaticResource Glass}">
-                                        <Border.Background>
-                                            <LinearGradientBrush StartPoint="0,0" EndPoint="0.7,1">
-                                                <GradientStop Color="#22E0A25E" Offset="0"/>
-                                                <GradientStop Color="#0AE0A25E" Offset="1"/>
-                                            </LinearGradientBrush>
-                                        </Border.Background>
-                                        <StackPanel>
-                                            <TextBlock x:Name="ttlPlanWarn" Text="PRIMA DI PROVARE" Style="{StaticResource CardTitle}" Foreground="#FFE0A25E"/>
-                                            <TextBlock x:Name="lblPlanWarn" Style="{StaticResource SubTitle}" Foreground="#FFD9A470"
-                                                       Text="I piani della sezione Da testare arrivano da terze parti. Provane uno alla volta e torna su Bilanciato se il computer diventa instabile."/>
-                                        </StackPanel>
-                                    </Border>
                                 </StackPanel>
                                                             </Grid>
                                 <StackPanel Margin="7,6,7,4">
