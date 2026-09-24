@@ -906,3 +906,4 @@ M:pwRecBtn	Empfohlene Werte verwenden
 M:pwDefBtn	Zurück zu den Windows-Werten
 M:pwAskRec	Ich setze die empfohlenen Werte im aktiven Plan. Die Änderungen gelten sofort. Fortfahren?
 M:pwAskDef	Ich setze den aktiven Plan auf die Windows-Standardwerte zurück. Die Änderungen gelten sofort. Fortfahren?
+M:svcMissing	Auf diesem PC nicht vorhanden

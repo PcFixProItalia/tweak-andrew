@@ -370,3 +370,4 @@ pwRecBtn	Use recommended values
 pwDefBtn	Back to Windows values
 pwAskRec	I'll set the recommended values on the plan in use. The changes apply right away. Go ahead?
 pwAskDef	I'll put the plan in use back to the Windows default values. The changes apply right away. Go ahead?
+svcMissing	Not on this PC

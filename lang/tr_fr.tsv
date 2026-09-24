@@ -909,3 +909,4 @@ M:pwRecBtn	Utiliser les valeurs recommandées
 M:pwDefBtn	Revenir aux valeurs de Windows
 M:pwAskRec	Je règle les valeurs recommandées sur le mode utilisé. Les changements s'appliquent tout de suite. Je continue ?
 M:pwAskDef	Je remets le mode utilisé aux valeurs par défaut de Windows. Les changements s'appliquent tout de suite. Je continue ?
+M:svcMissing	Absent sur ce PC

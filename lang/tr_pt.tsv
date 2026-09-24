@@ -906,3 +906,4 @@ M:pwRecBtn	Usar os valores recomendados
 M:pwDefBtn	Voltar aos valores do Windows
 M:pwAskRec	Vou definir os valores recomendados no plano em uso. As mudanças valem na hora. Continuo?
 M:pwAskDef	Vou voltar o plano em uso aos valores padrão do Windows. As mudanças valem na hora. Continuo?
+M:svcMissing	Não presente neste PC

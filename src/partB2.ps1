@@ -548,6 +548,24 @@
             <Setter Property="Margin" Value="7"/>
         </Style>
 
+        <!-- Avvisi in cima alle pagine: fascia centrata con icona, diversa dalle schede delle impostazioni. -->
+        <Style x:Key="NoticeBar" TargetType="Border">
+            <Setter Property="BorderBrush" Value="#55E0A25E"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="14"/>
+            <Setter Property="Padding" Value="24,12"/>
+            <Setter Property="Margin" Value="7,0,7,8"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                        <GradientStop Color="#08E0A25E" Offset="0"/>
+                        <GradientStop Color="#1EE0A25E" Offset="0.5"/>
+                        <GradientStop Color="#08E0A25E" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
         <Style x:Key="Bar" TargetType="Border">
             <Setter Property="Background" Value="#FF0A0A0C"/>
             <Setter Property="BorderBrush" Value="#FF1A1A1F"/>
@@ -1921,7 +1939,7 @@
                                 </ScrollViewer>
                             </Grid>
 
-                            <!-- A sinistra i piani in una colonna che scorre da sola, con il loro avviso; a destra il resto, una scheda sotto l'altra. -->
+                            <!-- In cima l'avviso; a sinistra i piani in una colonna che scorre da sola, a destra il resto, una scheda sotto l'altra. -->
                             <Grid x:Name="pagePower" Visibility="Collapsed">
                                 <Grid.Resources>
                                     <SolidColorBrush x:Key="PA" Color="#FFFFC53D"/>
@@ -1935,11 +1953,27 @@
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="1.3*"/>
                                 </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
 
-                                <Grid Grid.Column="0">
+                                <Border Grid.ColumnSpan="2" Style="{StaticResource NoticeBar}">
+                                    <StackPanel HorizontalAlignment="Center" MaxWidth="980">
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,4">
+                                            <Border Width="18" Height="18" CornerRadius="9" Background="#FFE0A25E" Margin="0,0,8,0" VerticalAlignment="Center">
+                                                <TextBlock Text="!" FontWeight="Bold" FontSize="12" Foreground="#FF1A1208" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                            <TextBlock x:Name="ttlPlanWarn" Text="PRIMA DI PROVARE" Style="{StaticResource CardTitle}" Foreground="#FFE0A25E" Margin="0" VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                        <TextBlock x:Name="lblPlanWarn" Style="{StaticResource SubTitle}" Foreground="#FFD9B48A" TextAlignment="Center"
+                                                   Text="I piani della sezione Da testare arrivano da terze parti. Provane uno alla volta e torna su Bilanciato se il computer diventa instabile."/>
+                                    </StackPanel>
+                                </Border>
+
+                                <Grid Grid.Row="1" Grid.Column="0">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="*"/>
-                                        <RowDefinition Height="Auto"/>
                                     </Grid.RowDefinitions>
                                     <Border Grid.Row="0" Style="{StaticResource Glass}">
                                         <Grid>
@@ -1968,22 +2002,9 @@
                                             </ScrollViewer>
                                         </Grid>
                                     </Border>
-                                    <Border Grid.Row="1" Style="{StaticResource Glass}">
-                                        <Border.Background>
-                                            <LinearGradientBrush StartPoint="0,0" EndPoint="0.7,1">
-                                                <GradientStop Color="#22E0A25E" Offset="0"/>
-                                                <GradientStop Color="#0AE0A25E" Offset="1"/>
-                                            </LinearGradientBrush>
-                                        </Border.Background>
-                                        <StackPanel>
-                                            <TextBlock x:Name="ttlPlanWarn" Text="PRIMA DI PROVARE" Style="{StaticResource CardTitle}" Foreground="#FFE0A25E"/>
-                                            <TextBlock x:Name="lblPlanWarn" Style="{StaticResource SubTitle}" Foreground="#FFD9A470"
-                                                       Text="I piani della sezione Da testare arrivano da terze parti. Provane uno alla volta e torna su Bilanciato se il computer diventa instabile."/>
-                                        </StackPanel>
-                                    </Border>
                                 </Grid>
 
-                                <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto" Padding="0,0,6,0">
+                                <ScrollViewer Grid.Row="1" Grid.Column="1" VerticalScrollBarVisibility="Auto" Padding="0,0,6,0">
                                     <StackPanel>
                                     <StackPanel Margin="7,0,7,4">
                                         <TextBlock x:Name="ttlPowerAdv" Text="IMPOSTAZIONI DEL PIANO IN USO" Style="{StaticResource CardTitle}" Margin="0,0,0,4"/>
@@ -2163,6 +2184,20 @@
                                         <GradientStop Color="#0CFFFFFF" Offset="0.5"/>
                                     </LinearGradientBrush>
                                 </ScrollViewer.Resources>
+                                <StackPanel>
+                                <Border Style="{StaticResource NoticeBar}">
+                                    <StackPanel HorizontalAlignment="Center" MaxWidth="980">
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,4">
+                                            <Border Width="18" Height="18" CornerRadius="9" Background="#FFE0A25E" Margin="0,0,8,0" VerticalAlignment="Center">
+                                                <TextBlock Text="!" FontWeight="Bold" FontSize="12" Foreground="#FF1A1208" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                            <TextBlock x:Name="ttlAdvIntro" Text="PRIMA DI PROCEDERE" Style="{StaticResource CardTitle}" Foreground="#FFE0A25E" Margin="0" VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                        <TextBlock x:Name="lblAdvIntro" Style="{StaticResource SubTitle}" Foreground="#FFD9B48A" TextAlignment="Center"
+                                                   Text="Queste voci tolgono parti di Windows che la maggior parte dei computer non usa. Guadagno reale su macchine dedicate a giochi o lavoro, ma qualcosa smette di funzionare: leggi la descrizione di ogni voce. Crea un punto di ripristino prima di applicare, e riavvia dopo."/>
+                                    </StackPanel>
+                                </Border>
+                                <!-- Colonne per argomento: aggiornamenti e manutenzione, servizi e memoria, avvio, periferiche, app e sicurezza. -->
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
@@ -2173,12 +2208,36 @@
                                     <StackPanel Grid.Column="0">
                                         <Border Style="{StaticResource Glass}">
                                             <StackPanel>
-                                                <TextBlock x:Name="ttlAdvIntro" Text="PRIMA DI PROCEDERE" Style="{StaticResource CardTitle}" Foreground="#FFE0A25E"/>
-                                                <TextBlock x:Name="lblAdvIntro" Style="{StaticResource SubTitle}"
-                                                           Text="Queste voci tolgono parti di Windows che la maggior parte dei computer non usa. Guadagno reale su macchine dedicate a giochi o lavoro, ma qualcosa smette di funzionare: leggi la descrizione di ogni voce. Crea un punto di ripristino prima di applicare, e riavvia dopo."/>
+                                                <TextBlock x:Name="ttlWu" Text="WINDOWS UPDATE" Style="{StaticResource CardTitle}"/>
+                                                <TextBlock x:Name="lblWuHint" Style="{StaticResource SubTitle}" Margin="0,0,0,10"
+                                                           Text="Scegli un profilo: entra tra le modifiche da applicare. Un secondo clic lo toglie."/>
+                                                <StackPanel x:Name="panWuProfiles"/>
+                                                <TextBlock x:Name="txtWuCurrent" Style="{StaticResource SubTitle}" Margin="2,0,0,8"/>
+                                                <CheckBox x:Name="chkWuProfile" Content="Profilo di Windows Update" Visibility="Collapsed"/>
+                                                <CheckBox x:Name="chkWuNoStore" Content="Aggiornamento automatico delle app dello Store"/>
                                             </StackPanel>
                                         </Border>
 
+                                        <Border Style="{StaticResource Glass}">
+                                            <StackPanel>
+                                                <TextBlock x:Name="ttlTasks" Text="ATTIVITA PIANIFICATE" Style="{StaticResource CardTitle}"/>
+                                                <CheckBox x:Name="chkTaskExtra" Content="Attivita non essenziali di Microsoft"/>
+                                                <CheckBox x:Name="chkTaskMaint" Content="Manutenzione automatica notturna"/>
+                                                <CheckBox x:Name="chkTaskDefrag" Tag="risky" Content="Ottimizzazione unita pianificata — rischioso: su SSD manda anche il TRIM"/>
+                                            </StackPanel>
+                                        </Border>
+
+                                        <Border Style="{StaticResource Glass}">
+                                            <StackPanel>
+                                                <TextBlock x:Name="ttlAdvExplorer" Text="ESPLORA FILE" Style="{StaticResource CardTitle}"/>
+                                                <TextBlock x:Name="lblAdvExplorerHint" Style="{StaticResource SubTitle}" Margin="0,0,0,10"
+                                                           Text="Mostrano file che Windows tiene nascosti per non farli cancellare per sbaglio. Fuori da «Seleziona tutto»."/>
+                                                <CheckBox x:Name="chkHiddenFiles" Content="Mostra file nascosti"/>
+                                            </StackPanel>
+                                        </Border>
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Column="1">
                                         <Border Style="{StaticResource Glass}">
                                             <StackPanel>
                                                 <TextBlock x:Name="ttlSvc" Text="SERVIZI DA FERMARE" Style="{StaticResource CardTitle}"/>
@@ -2200,17 +2259,6 @@
                                                 <CheckBox x:Name="chkSvcTouch" Tag="risky" Content="Penna e tastiera su schermo — rischioso sui portatili touch"/>
                                             </StackPanel>
                                         </Border>
-                                    </StackPanel>
-
-                                    <StackPanel Grid.Column="1">
-                                        <Border Style="{StaticResource Glass}">
-                                            <StackPanel>
-                                                <TextBlock x:Name="ttlTasks" Text="ATTIVITA PIANIFICATE" Style="{StaticResource CardTitle}"/>
-                                                <CheckBox x:Name="chkTaskExtra" Content="Attivita non essenziali di Microsoft"/>
-                                                <CheckBox x:Name="chkTaskMaint" Content="Manutenzione automatica notturna"/>
-                                                <CheckBox x:Name="chkTaskDefrag" Tag="risky" Content="Ottimizzazione unita pianificata — rischioso: su SSD manda anche il TRIM"/>
-                                            </StackPanel>
-                                        </Border>
 
                                         <Border Style="{StaticResource Glass}">
                                             <StackPanel>
@@ -2220,18 +2268,6 @@
                                                 <CheckBox x:Name="chkAppCompat" Content="Motore di compatibilità e inventario programmi"/>
                                                 <CheckBox x:Name="chkSvcHostSplit" Content="Meno processi svchost (accorpa i servizi)"/>
                                                 <CheckBox x:Name="chkMemCompression" Tag="risky" Content="Compressione della memoria — rischioso sotto 16 GB di RAM"/>
-                                            </StackPanel>
-                                        </Border>
-
-                                        <Border Style="{StaticResource Glass}">
-                                            <StackPanel>
-                                                <TextBlock x:Name="ttlWu" Text="WINDOWS UPDATE" Style="{StaticResource CardTitle}"/>
-                                                <TextBlock x:Name="lblWuHint" Style="{StaticResource SubTitle}" Margin="0,0,0,10"
-                                                           Text="Scegli un profilo: entra tra le modifiche da applicare. Un secondo clic lo toglie."/>
-                                                <StackPanel x:Name="panWuProfiles"/>
-                                                <TextBlock x:Name="txtWuCurrent" Style="{StaticResource SubTitle}" Margin="2,0,0,8"/>
-                                                <CheckBox x:Name="chkWuProfile" Content="Profilo di Windows Update" Visibility="Collapsed"/>
-                                                <CheckBox x:Name="chkWuNoStore" Content="Aggiornamento automatico delle app dello Store"/>
                                             </StackPanel>
                                         </Border>
                                     </StackPanel>
@@ -2279,15 +2315,6 @@
 
                                         <Border Style="{StaticResource Glass}">
                                             <StackPanel>
-                                                <TextBlock x:Name="ttlAdvExplorer" Text="ESPLORA FILE" Style="{StaticResource CardTitle}"/>
-                                                <TextBlock x:Name="lblAdvExplorerHint" Style="{StaticResource SubTitle}" Margin="0,0,0,10"
-                                                           Text="Mostrano file che Windows tiene nascosti per non farli cancellare per sbaglio. Fuori da «Seleziona tutto»."/>
-                                                <CheckBox x:Name="chkHiddenFiles" Content="Mostra file nascosti"/>
-                                            </StackPanel>
-                                        </Border>
-
-                                        <Border Style="{StaticResource Glass}">
-                                            <StackPanel>
                                                 <TextBlock x:Name="ttlSec" Text="SICUREZZA RIDOTTA" Style="{StaticResource CardTitle}" Foreground="#FFFF6B6B"/>
                                                 <TextBlock x:Name="lblSecHint" Style="{StaticResource SubTitle}" Margin="0,0,0,10"
                                                            Text="Tutte rischiose e mai incluse in «Seleziona tutto». Abbassano davvero le difese del computer: usale solo su una macchina che non naviga e non apre allegati."/>
@@ -2298,6 +2325,7 @@
                                         </Border>
                                     </StackPanel>
                                 </Grid>
+                                </StackPanel>
                             </ScrollViewer>
                             <ScrollViewer x:Name="pageSched" Visibility="Collapsed" VerticalScrollBarVisibility="Auto" Padding="0,0,6,0">
                                 <ScrollViewer.Resources>

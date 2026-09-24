@@ -1096,6 +1096,7 @@ $script:Tr = @{
         'M:pwDefBtn' = "Volver a los valores de Windows"
         'M:pwAskRec' = "Pongo los valores recomendados en el plan en uso. Los cambios se aplican al instante. ¿Continúo?"
         'M:pwAskDef' = "Devuelvo el plan en uso a los valores predeterminados de Windows. Los cambios se aplican al instante. ¿Continúo?"
+        'M:svcMissing' = "No presente en este PC"
     }
     de = @{
         'L:lblSubtitle' = "Windows-Optimierung und -Steuerung — PcFixPro Italia"
@@ -2006,6 +2007,7 @@ $script:Tr = @{
         'M:pwDefBtn' = "Zurück zu den Windows-Werten"
         'M:pwAskRec' = "Ich setze die empfohlenen Werte im aktiven Plan. Die Änderungen gelten sofort. Fortfahren?"
         'M:pwAskDef' = "Ich setze den aktiven Plan auf die Windows-Standardwerte zurück. Die Änderungen gelten sofort. Fortfahren?"
+        'M:svcMissing' = "Auf diesem PC nicht vorhanden"
     }
     fr = @{
         'L:lblSubtitle' = "Optimisation et contrôle de Windows — PcFixPro Italia"
@@ -2919,6 +2921,7 @@ $script:Tr = @{
         'M:pwDefBtn' = "Revenir aux valeurs de Windows"
         'M:pwAskRec' = "Je règle les valeurs recommandées sur le mode utilisé. Les changements s'appliquent tout de suite. Je continue ?"
         'M:pwAskDef' = "Je remets le mode utilisé aux valeurs par défaut de Windows. Les changements s'appliquent tout de suite. Je continue ?"
+        'M:svcMissing' = "Absent sur ce PC"
     }
     pl = @{
         'L:lblSubtitle' = "Optymalizacja i kontrola systemu Windows — PcFixPro Italia"
@@ -3829,6 +3832,7 @@ $script:Tr = @{
         'M:pwDefBtn' = "Wróć do wartości Windows"
         'M:pwAskRec' = "Ustawię zalecane wartości w używanym planie. Zmiany działają od razu. Kontynuować?"
         'M:pwAskDef' = "Przywrócę w używanym planie domyślne wartości Windows. Zmiany działają od razu. Kontynuować?"
+        'M:svcMissing' = "Brak na tym komputerze"
     }
     pt = @{
         'L:lblSubtitle' = "Otimização e controle do Windows — PcFixPro Italia"
@@ -4739,6 +4743,7 @@ $script:Tr = @{
         'M:pwDefBtn' = "Voltar aos valores do Windows"
         'M:pwAskRec' = "Vou definir os valores recomendados no plano em uso. As mudanças valem na hora. Continuo?"
         'M:pwAskDef' = "Vou voltar o plano em uso aos valores padrão do Windows. As mudanças valem na hora. Continuo?"
+        'M:svcMissing' = "Não presente neste PC"
     }
     ro = @{
         'L:lblSubtitle' = "Optimizarea și controlul Windows — PcFixPro Italia"
@@ -5649,6 +5654,7 @@ $script:Tr = @{
         'M:pwDefBtn' = "Revino la valorile Windows"
         'M:pwAskRec' = "Setez valorile recomandate pe planul folosit. Modificările se aplică imediat. Continui?"
         'M:pwAskDef' = "Readuc planul folosit la valorile implicite Windows. Modificările se aplică imediat. Continui?"
+        'M:svcMissing' = "Nu există pe acest PC"
     }
     ru = @{
         'L:lblSubtitle' = "Оптимизация и управление Windows — PcFixPro Italia"
@@ -6559,6 +6565,7 @@ $script:Tr = @{
         'M:pwDefBtn' = "Вернуть значения Windows"
         'M:pwAskRec' = "Установить рекомендуемые значения в текущей схеме? Изменения вступят в силу сразу."
         'M:pwAskDef' = "Вернуть в текущей схеме значения Windows по умолчанию? Изменения вступят в силу сразу."
+        'M:svcMissing' = "Нет на этом ПК"
     }
 }
 

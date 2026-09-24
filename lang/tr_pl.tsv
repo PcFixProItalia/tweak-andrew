@@ -906,3 +906,4 @@ M:pwRecBtn	Użyj zalecanych wartości
 M:pwDefBtn	Wróć do wartości Windows
 M:pwAskRec	Ustawię zalecane wartości w używanym planie. Zmiany działają od razu. Kontynuować?
 M:pwAskDef	Przywrócę w używanym planie domyślne wartości Windows. Zmiany działają od razu. Kontynuować?
+M:svcMissing	Brak na tym komputerze

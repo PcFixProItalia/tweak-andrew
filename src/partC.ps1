@@ -811,6 +811,7 @@ $script:Msg = @{
     pwDefBtn           = @{ it = "Torna ai valori di Windows"; en = "Back to Windows values" }
     pwAskRec           = @{ it = "Imposto i valori consigliati sul piano in uso. Le modifiche valgono subito. Procedo?"; en = "I'll set the recommended values on the plan in use. The changes apply right away. Go ahead?" }
     pwAskDef           = @{ it = "Riporto il piano in uso ai valori predefiniti di Windows. Le modifiche valgono subito. Procedo?"; en = "I'll put the plan in use back to the Windows default values. The changes apply right away. Go ahead?" }
+    svcMissing         = @{ it = "Non presente su questo PC"; en = "Not on this PC" }
 }
 
 $script:LangCode = "it"

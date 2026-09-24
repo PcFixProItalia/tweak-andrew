@@ -906,3 +906,4 @@ M:pwRecBtn	Folosește valorile recomandate
 M:pwDefBtn	Revino la valorile Windows
 M:pwAskRec	Setez valorile recomandate pe planul folosit. Modificările se aplică imediat. Continui?
 M:pwAskDef	Readuc planul folosit la valorile implicite Windows. Modificările se aplică imediat. Continui?
+M:svcMissing	Nu există pe acest PC

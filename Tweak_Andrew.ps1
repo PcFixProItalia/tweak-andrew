@@ -615,6 +615,24 @@ $script:PlanData = @{
             <Setter Property="Margin" Value="7"/>
         </Style>
 
+        <!-- Avvisi in cima alle pagine: fascia centrata con icona, diversa dalle schede delle impostazioni. -->
+        <Style x:Key="NoticeBar" TargetType="Border">
+            <Setter Property="BorderBrush" Value="#55E0A25E"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="14"/>
+            <Setter Property="Padding" Value="24,12"/>
+            <Setter Property="Margin" Value="7,0,7,8"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                        <GradientStop Color="#08E0A25E" Offset="0"/>
+                        <GradientStop Color="#1EE0A25E" Offset="0.5"/>
+                        <GradientStop Color="#08E0A25E" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
         <Style x:Key="Bar" TargetType="Border">
             <Setter Property="Background" Value="#FF0A0A0C"/>
             <Setter Property="BorderBrush" Value="#FF1A1A1F"/>
@@ -1988,7 +2006,7 @@ $script:PlanData = @{
                                 </ScrollViewer>
                             </Grid>
 
-                            <!-- A sinistra i piani in una colonna che scorre da sola, con il loro avviso; a destra il resto, una scheda sotto l'altra. -->
+                            <!-- In cima l'avviso; a sinistra i piani in una colonna che scorre da sola, a destra il resto, una scheda sotto l'altra. -->
                             <Grid x:Name="pagePower" Visibility="Collapsed">
                                 <Grid.Resources>
                                     <SolidColorBrush x:Key="PA" Color="#FFFFC53D"/>
@@ -2002,11 +2020,27 @@ $script:PlanData = @{
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="1.3*"/>
                                 </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
 
-                                <Grid Grid.Column="0">
+                                <Border Grid.ColumnSpan="2" Style="{StaticResource NoticeBar}">
+                                    <StackPanel HorizontalAlignment="Center" MaxWidth="980">
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,4">
+                                            <Border Width="18" Height="18" CornerRadius="9" Background="#FFE0A25E" Margin="0,0,8,0" VerticalAlignment="Center">
+                                                <TextBlock Text="!" FontWeight="Bold" FontSize="12" Foreground="#FF1A1208" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                            <TextBlock x:Name="ttlPlanWarn" Text="PRIMA DI PROVARE" Style="{StaticResource CardTitle}" Foreground="#FFE0A25E" Margin="0" VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                        <TextBlock x:Name="lblPlanWarn" Style="{StaticResource SubTitle}" Foreground="#FFD9B48A" TextAlignment="Center"
+                                                   Text="I piani della sezione Da testare arrivano da terze parti. Provane uno alla volta e torna su Bilanciato se il computer diventa instabile."/>
+                                    </StackPanel>
+                                </Border>
+
+                                <Grid Grid.Row="1" Grid.Column="0">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="*"/>
-                                        <RowDefinition Height="Auto"/>
                                     </Grid.RowDefinitions>
                                     <Border Grid.Row="0" Style="{StaticResource Glass}">
                                         <Grid>
@@ -2035,22 +2069,9 @@ $script:PlanData = @{
                                             </ScrollViewer>
                                         </Grid>
                                     </Border>
-                                    <Border Grid.Row="1" Style="{StaticResource Glass}">
-                                        <Border.Background>
-                                            <LinearGradientBrush StartPoint="0,0" EndPoint="0.7,1">
-                                                <GradientStop Color="#22E0A25E" Offset="0"/>
-                                                <GradientStop Color="#0AE0A25E" Offset="1"/>
-                                            </LinearGradientBrush>
-                                        </Border.Background>
-                                        <StackPanel>
-                                            <TextBlock x:Name="ttlPlanWarn" Text="PRIMA DI PROVARE" Style="{StaticResource CardTitle}" Foreground="#FFE0A25E"/>
-                                            <TextBlock x:Name="lblPlanWarn" Style="{StaticResource SubTitle}" Foreground="#FFD9A470"
-                                                       Text="I piani della sezione Da testare arrivano da terze parti. Provane uno alla volta e torna su Bilanciato se il computer diventa instabile."/>
-                                        </StackPanel>
-                                    </Border>
                                 </Grid>
 
-                                <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto" Padding="0,0,6,0">
+                                <ScrollViewer Grid.Row="1" Grid.Column="1" VerticalScrollBarVisibility="Auto" Padding="0,0,6,0">
                                     <StackPanel>
                                     <StackPanel Margin="7,0,7,4">
                                         <TextBlock x:Name="ttlPowerAdv" Text="IMPOSTAZIONI DEL PIANO IN USO" Style="{StaticResource CardTitle}" Margin="0,0,0,4"/>
@@ -2230,6 +2251,20 @@ $script:PlanData = @{
                                         <GradientStop Color="#0CFFFFFF" Offset="0.5"/>
                                     </LinearGradientBrush>
                                 </ScrollViewer.Resources>
+                                <StackPanel>
+                                <Border Style="{StaticResource NoticeBar}">
+                                    <StackPanel HorizontalAlignment="Center" MaxWidth="980">
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,4">
+                                            <Border Width="18" Height="18" CornerRadius="9" Background="#FFE0A25E" Margin="0,0,8,0" VerticalAlignment="Center">
+                                                <TextBlock Text="!" FontWeight="Bold" FontSize="12" Foreground="#FF1A1208" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                            <TextBlock x:Name="ttlAdvIntro" Text="PRIMA DI PROCEDERE" Style="{StaticResource CardTitle}" Foreground="#FFE0A25E" Margin="0" VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                        <TextBlock x:Name="lblAdvIntro" Style="{StaticResource SubTitle}" Foreground="#FFD9B48A" TextAlignment="Center"
+                                                   Text="Queste voci tolgono parti di Windows che la maggior parte dei computer non usa. Guadagno reale su macchine dedicate a giochi o lavoro, ma qualcosa smette di funzionare: leggi la descrizione di ogni voce. Crea un punto di ripristino prima di applicare, e riavvia dopo."/>
+                                    </StackPanel>
+                                </Border>
+                                <!-- Colonne per argomento: aggiornamenti e manutenzione, servizi e memoria, avvio, periferiche, app e sicurezza. -->
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
@@ -2240,12 +2275,36 @@ $script:PlanData = @{
                                     <StackPanel Grid.Column="0">
                                         <Border Style="{StaticResource Glass}">
                                             <StackPanel>
-                                                <TextBlock x:Name="ttlAdvIntro" Text="PRIMA DI PROCEDERE" Style="{StaticResource CardTitle}" Foreground="#FFE0A25E"/>
-                                                <TextBlock x:Name="lblAdvIntro" Style="{StaticResource SubTitle}"
-                                                           Text="Queste voci tolgono parti di Windows che la maggior parte dei computer non usa. Guadagno reale su macchine dedicate a giochi o lavoro, ma qualcosa smette di funzionare: leggi la descrizione di ogni voce. Crea un punto di ripristino prima di applicare, e riavvia dopo."/>
+                                                <TextBlock x:Name="ttlWu" Text="WINDOWS UPDATE" Style="{StaticResource CardTitle}"/>
+                                                <TextBlock x:Name="lblWuHint" Style="{StaticResource SubTitle}" Margin="0,0,0,10"
+                                                           Text="Scegli un profilo: entra tra le modifiche da applicare. Un secondo clic lo toglie."/>
+                                                <StackPanel x:Name="panWuProfiles"/>
+                                                <TextBlock x:Name="txtWuCurrent" Style="{StaticResource SubTitle}" Margin="2,0,0,8"/>
+                                                <CheckBox x:Name="chkWuProfile" Content="Profilo di Windows Update" Visibility="Collapsed"/>
+                                                <CheckBox x:Name="chkWuNoStore" Content="Aggiornamento automatico delle app dello Store"/>
                                             </StackPanel>
                                         </Border>
 
+                                        <Border Style="{StaticResource Glass}">
+                                            <StackPanel>
+                                                <TextBlock x:Name="ttlTasks" Text="ATTIVITA PIANIFICATE" Style="{StaticResource CardTitle}"/>
+                                                <CheckBox x:Name="chkTaskExtra" Content="Attivita non essenziali di Microsoft"/>
+                                                <CheckBox x:Name="chkTaskMaint" Content="Manutenzione automatica notturna"/>
+                                                <CheckBox x:Name="chkTaskDefrag" Tag="risky" Content="Ottimizzazione unita pianificata — rischioso: su SSD manda anche il TRIM"/>
+                                            </StackPanel>
+                                        </Border>
+
+                                        <Border Style="{StaticResource Glass}">
+                                            <StackPanel>
+                                                <TextBlock x:Name="ttlAdvExplorer" Text="ESPLORA FILE" Style="{StaticResource CardTitle}"/>
+                                                <TextBlock x:Name="lblAdvExplorerHint" Style="{StaticResource SubTitle}" Margin="0,0,0,10"
+                                                           Text="Mostrano file che Windows tiene nascosti per non farli cancellare per sbaglio. Fuori da «Seleziona tutto»."/>
+                                                <CheckBox x:Name="chkHiddenFiles" Content="Mostra file nascosti"/>
+                                            </StackPanel>
+                                        </Border>
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Column="1">
                                         <Border Style="{StaticResource Glass}">
                                             <StackPanel>
                                                 <TextBlock x:Name="ttlSvc" Text="SERVIZI DA FERMARE" Style="{StaticResource CardTitle}"/>
@@ -2267,17 +2326,6 @@ $script:PlanData = @{
                                                 <CheckBox x:Name="chkSvcTouch" Tag="risky" Content="Penna e tastiera su schermo — rischioso sui portatili touch"/>
                                             </StackPanel>
                                         </Border>
-                                    </StackPanel>
-
-                                    <StackPanel Grid.Column="1">
-                                        <Border Style="{StaticResource Glass}">
-                                            <StackPanel>
-                                                <TextBlock x:Name="ttlTasks" Text="ATTIVITA PIANIFICATE" Style="{StaticResource CardTitle}"/>
-                                                <CheckBox x:Name="chkTaskExtra" Content="Attivita non essenziali di Microsoft"/>
-                                                <CheckBox x:Name="chkTaskMaint" Content="Manutenzione automatica notturna"/>
-                                                <CheckBox x:Name="chkTaskDefrag" Tag="risky" Content="Ottimizzazione unita pianificata — rischioso: su SSD manda anche il TRIM"/>
-                                            </StackPanel>
-                                        </Border>
 
                                         <Border Style="{StaticResource Glass}">
                                             <StackPanel>
@@ -2287,18 +2335,6 @@ $script:PlanData = @{
                                                 <CheckBox x:Name="chkAppCompat" Content="Motore di compatibilità e inventario programmi"/>
                                                 <CheckBox x:Name="chkSvcHostSplit" Content="Meno processi svchost (accorpa i servizi)"/>
                                                 <CheckBox x:Name="chkMemCompression" Tag="risky" Content="Compressione della memoria — rischioso sotto 16 GB di RAM"/>
-                                            </StackPanel>
-                                        </Border>
-
-                                        <Border Style="{StaticResource Glass}">
-                                            <StackPanel>
-                                                <TextBlock x:Name="ttlWu" Text="WINDOWS UPDATE" Style="{StaticResource CardTitle}"/>
-                                                <TextBlock x:Name="lblWuHint" Style="{StaticResource SubTitle}" Margin="0,0,0,10"
-                                                           Text="Scegli un profilo: entra tra le modifiche da applicare. Un secondo clic lo toglie."/>
-                                                <StackPanel x:Name="panWuProfiles"/>
-                                                <TextBlock x:Name="txtWuCurrent" Style="{StaticResource SubTitle}" Margin="2,0,0,8"/>
-                                                <CheckBox x:Name="chkWuProfile" Content="Profilo di Windows Update" Visibility="Collapsed"/>
-                                                <CheckBox x:Name="chkWuNoStore" Content="Aggiornamento automatico delle app dello Store"/>
                                             </StackPanel>
                                         </Border>
                                     </StackPanel>
@@ -2346,15 +2382,6 @@ $script:PlanData = @{
 
                                         <Border Style="{StaticResource Glass}">
                                             <StackPanel>
-                                                <TextBlock x:Name="ttlAdvExplorer" Text="ESPLORA FILE" Style="{StaticResource CardTitle}"/>
-                                                <TextBlock x:Name="lblAdvExplorerHint" Style="{StaticResource SubTitle}" Margin="0,0,0,10"
-                                                           Text="Mostrano file che Windows tiene nascosti per non farli cancellare per sbaglio. Fuori da «Seleziona tutto»."/>
-                                                <CheckBox x:Name="chkHiddenFiles" Content="Mostra file nascosti"/>
-                                            </StackPanel>
-                                        </Border>
-
-                                        <Border Style="{StaticResource Glass}">
-                                            <StackPanel>
                                                 <TextBlock x:Name="ttlSec" Text="SICUREZZA RIDOTTA" Style="{StaticResource CardTitle}" Foreground="#FFFF6B6B"/>
                                                 <TextBlock x:Name="lblSecHint" Style="{StaticResource SubTitle}" Margin="0,0,0,10"
                                                            Text="Tutte rischiose e mai incluse in «Seleziona tutto». Abbassano davvero le difese del computer: usale solo su una macchina che non naviga e non apre allegati."/>
@@ -2365,6 +2392,7 @@ $script:PlanData = @{
                                         </Border>
                                     </StackPanel>
                                 </Grid>
+                                </StackPanel>
                             </ScrollViewer>
                             <ScrollViewer x:Name="pageSched" Visibility="Collapsed" VerticalScrollBarVisibility="Auto" Padding="0,0,6,0">
                                 <ScrollViewer.Resources>
@@ -3547,6 +3575,7 @@ $script:Msg = @{
     pwDefBtn           = @{ it = "Torna ai valori di Windows"; en = "Back to Windows values" }
     pwAskRec           = @{ it = "Imposto i valori consigliati sul piano in uso. Le modifiche valgono subito. Procedo?"; en = "I'll set the recommended values on the plan in use. The changes apply right away. Go ahead?" }
     pwAskDef           = @{ it = "Riporto il piano in uso ai valori predefiniti di Windows. Le modifiche valgono subito. Procedo?"; en = "I'll put the plan in use back to the Windows default values. The changes apply right away. Go ahead?" }
+    svcMissing         = @{ it = "Non presente su questo PC"; en = "Not on this PC" }
 }
 
 $script:LangCode = "it"
@@ -5562,6 +5591,7 @@ $script:Tr = @{
         'M:pwDefBtn' = "Volver a los valores de Windows"
         'M:pwAskRec' = "Pongo los valores recomendados en el plan en uso. Los cambios se aplican al instante. ¿Continúo?"
         'M:pwAskDef' = "Devuelvo el plan en uso a los valores predeterminados de Windows. Los cambios se aplican al instante. ¿Continúo?"
+        'M:svcMissing' = "No presente en este PC"
     }
     de = @{
         'L:lblSubtitle' = "Windows-Optimierung und -Steuerung — PcFixPro Italia"
@@ -6472,6 +6502,7 @@ $script:Tr = @{
         'M:pwDefBtn' = "Zurück zu den Windows-Werten"
         'M:pwAskRec' = "Ich setze die empfohlenen Werte im aktiven Plan. Die Änderungen gelten sofort. Fortfahren?"
         'M:pwAskDef' = "Ich setze den aktiven Plan auf die Windows-Standardwerte zurück. Die Änderungen gelten sofort. Fortfahren?"
+        'M:svcMissing' = "Auf diesem PC nicht vorhanden"
     }
     fr = @{
         'L:lblSubtitle' = "Optimisation et contrôle de Windows — PcFixPro Italia"
@@ -7385,6 +7416,7 @@ $script:Tr = @{
         'M:pwDefBtn' = "Revenir aux valeurs de Windows"
         'M:pwAskRec' = "Je règle les valeurs recommandées sur le mode utilisé. Les changements s'appliquent tout de suite. Je continue ?"
         'M:pwAskDef' = "Je remets le mode utilisé aux valeurs par défaut de Windows. Les changements s'appliquent tout de suite. Je continue ?"
+        'M:svcMissing' = "Absent sur ce PC"
     }
     pl = @{
         'L:lblSubtitle' = "Optymalizacja i kontrola systemu Windows — PcFixPro Italia"
@@ -8295,6 +8327,7 @@ $script:Tr = @{
         'M:pwDefBtn' = "Wróć do wartości Windows"
         'M:pwAskRec' = "Ustawię zalecane wartości w używanym planie. Zmiany działają od razu. Kontynuować?"
         'M:pwAskDef' = "Przywrócę w używanym planie domyślne wartości Windows. Zmiany działają od razu. Kontynuować?"
+        'M:svcMissing' = "Brak na tym komputerze"
     }
     pt = @{
         'L:lblSubtitle' = "Otimização e controle do Windows — PcFixPro Italia"
@@ -9205,6 +9238,7 @@ $script:Tr = @{
         'M:pwDefBtn' = "Voltar aos valores do Windows"
         'M:pwAskRec' = "Vou definir os valores recomendados no plano em uso. As mudanças valem na hora. Continuo?"
         'M:pwAskDef' = "Vou voltar o plano em uso aos valores padrão do Windows. As mudanças valem na hora. Continuo?"
+        'M:svcMissing' = "Não presente neste PC"
     }
     ro = @{
         'L:lblSubtitle' = "Optimizarea și controlul Windows — PcFixPro Italia"
@@ -10115,6 +10149,7 @@ $script:Tr = @{
         'M:pwDefBtn' = "Revino la valorile Windows"
         'M:pwAskRec' = "Setez valorile recomandate pe planul folosit. Modificările se aplică imediat. Continui?"
         'M:pwAskDef' = "Readuc planul folosit la valorile implicite Windows. Modificările se aplică imediat. Continui?"
+        'M:svcMissing' = "Nu există pe acest PC"
     }
     ru = @{
         'L:lblSubtitle' = "Оптимизация и управление Windows — PcFixPro Italia"
@@ -11025,6 +11060,7 @@ $script:Tr = @{
         'M:pwDefBtn' = "Вернуть значения Windows"
         'M:pwAskRec' = "Установить рекомендуемые значения в текущей схеме? Изменения вступят в силу сразу."
         'M:pwAskDef' = "Вернуть в текущей схеме значения Windows по умолчанию? Изменения вступят в силу сразу."
+        'M:svcMissing' = "Нет на этом ПК"
     }
 }
 
@@ -16069,7 +16105,12 @@ function Update-CatRow($row) {
         } else {
             $combo = $row.Control
             if ($null -eq $state) {
-                if ($row.Item.Kind -eq 'V') { $combo.IsEnabled = $false; $combo.SelectedIndex = -1; return }
+                if ($row.Item.Kind -eq 'V') {
+                    # Servizio assente su questo PC: lo si dice invece di lasciare la casella vuota.
+                    $na = @($combo.Items | Where-Object { [string]$_.Tag -eq '_na' }) | Select-Object -First 1
+                    if ($null -eq $na) { $na = New-Object System.Windows.Controls.ComboBoxItem; $na.Tag = '_na'; $na.Content = T 'svcMissing'; [void]$combo.Items.Add($na) }
+                    $combo.IsEnabled = $false; $combo.SelectedItem = $na; return
+                }
                 # Nessuna opzione corrisponde ai valori attuali: si mostra «Personalizzato».
                 $state = 'custom'
             }
@@ -16172,7 +16213,7 @@ function New-CatRow($it, $page) {
         $combo.Add_SelectionChanged({
             if ($script:CatLoading) { return }
             $sel = $this.SelectedItem
-            if ($null -eq $sel -or [string]$sel.Content -like "$(T 'catCustom')*") { return }
+            if ($null -eq $sel -or [string]$sel.Tag -eq '_na' -or [string]$sel.Content -like "$(T 'catCustom')*") { return }
             $item = $script:CatById[[string]$this.Tag]
             [void](Set-CatState $item ([string]$sel.Tag))
             $r = $script:CatRows | Where-Object { $_.Control -eq $this } | Select-Object -First 1
@@ -16374,6 +16415,13 @@ function Initialize-CatPage([string]$page, $hostEl, [bool]$embedded = $false) {
 
     $items = @($script:Catalog | Where-Object { $_.Page -eq $page })
     $groups = @($items | ForEach-Object { $_.Group } | Select-Object -Unique)
+    # Dove c'e' una disposizione fissa, le schede seguono l'argomento e non l'altezza.
+    $layout = $script:CatLayout[$page]
+    $fixed = @{}
+    if ($layout) {
+        for ($ci = 0; $ci -lt $layout.Count; $ci++) { foreach ($lg in $layout[$ci]) { $fixed[$lg] = [Math]::Min($ci, $nCols - 1) } }
+        $groups = @(@($layout | ForEach-Object { $_ } | Where-Object { $groups -contains $_ }) + @($groups | Where-Object { -not $fixed.ContainsKey($_) }))
+    }
     foreach ($g in $groups) {
         $gi = @($items | Where-Object { $_.Group -eq $g })
         $c = New-CatCard (Get-CatText "g.$page.$g")
@@ -16383,7 +16431,7 @@ function Initialize-CatPage([string]$page, $hostEl, [bool]$embedded = $false) {
             [void]$c.Panel.Children.Add($row.Element)
             $rows += $row
         }
-        $col = if ($nCols -eq 1 -or $heights[0] -le $heights[1]) { 0 } else { 1 }
+        $col = if ($fixed.ContainsKey($g)) { $fixed[$g] } elseif ($nCols -eq 1 -or $heights[0] -le $heights[1]) { 0 } else { 1 }
         [void]$stacks[$col].Children.Add($c.Card)
         $heights[$col] += $gi.Count + 2
         $script:CatCards[$page] += @{ Card = $c.Card; Rows = $rows }
@@ -16416,6 +16464,17 @@ function New-TweakRestorePoint {
         Write-Log "[ERRORE] Punto di ripristino - $($_.Exception.Message)"
         $txtProgressLabel.Text = T 'restoreFail'
     }
+}
+
+# Disposizione delle schede: colonna sinistra, colonna destra. Le pagine che
+# non compaiono qui riempiono le colonne pareggiando le altezze.
+$script:CatLayout = @{
+    exp   = @(@('gen'), @('ctx', 'nav', 'thispc', 'dev', 'desk'))
+    task  = @(@('start'), @('bar'))
+    notif = @(@('toast', 'tips', 'sys'), @('sound', 'access'))
+    game  = @(@('gfx'), @('vfx'))
+    win   = @(@('sec', 'upd', 'browser', 'tasks'), @('svc'))
+    power = @(,@('cpu', 'sleep', 'dev', 'buttons', 'media'))
 }
 
 # Pagine del catalogo e contenitori: la pagina si costruisce quando la apri.

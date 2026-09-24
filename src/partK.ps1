@@ -308,7 +308,12 @@ function Update-CatRow($row) {
         } else {
             $combo = $row.Control
             if ($null -eq $state) {
-                if ($row.Item.Kind -eq 'V') { $combo.IsEnabled = $false; $combo.SelectedIndex = -1; return }
+                if ($row.Item.Kind -eq 'V') {
+                    # Servizio assente su questo PC: lo si dice invece di lasciare la casella vuota.
+                    $na = @($combo.Items | Where-Object { [string]$_.Tag -eq '_na' }) | Select-Object -First 1
+                    if ($null -eq $na) { $na = New-Object System.Windows.Controls.ComboBoxItem; $na.Tag = '_na'; $na.Content = T 'svcMissing'; [void]$combo.Items.Add($na) }
+                    $combo.IsEnabled = $false; $combo.SelectedItem = $na; return
+                }
                 # Nessuna opzione corrisponde ai valori attuali: si mostra «Personalizzato».
                 $state = 'custom'
             }
@@ -411,7 +416,7 @@ function New-CatRow($it, $page) {
         $combo.Add_SelectionChanged({
             if ($script:CatLoading) { return }
             $sel = $this.SelectedItem
-            if ($null -eq $sel -or [string]$sel.Content -like "$(T 'catCustom')*") { return }
+            if ($null -eq $sel -or [string]$sel.Tag -eq '_na' -or [string]$sel.Content -like "$(T 'catCustom')*") { return }
             $item = $script:CatById[[string]$this.Tag]
             [void](Set-CatState $item ([string]$sel.Tag))
             $r = $script:CatRows | Where-Object { $_.Control -eq $this } | Select-Object -First 1
@@ -613,6 +618,13 @@ function Initialize-CatPage([string]$page, $hostEl, [bool]$embedded = $false) {
 
     $items = @($script:Catalog | Where-Object { $_.Page -eq $page })
     $groups = @($items | ForEach-Object { $_.Group } | Select-Object -Unique)
+    # Dove c'e' una disposizione fissa, le schede seguono l'argomento e non l'altezza.
+    $layout = $script:CatLayout[$page]
+    $fixed = @{}
+    if ($layout) {
+        for ($ci = 0; $ci -lt $layout.Count; $ci++) { foreach ($lg in $layout[$ci]) { $fixed[$lg] = [Math]::Min($ci, $nCols - 1) } }
+        $groups = @(@($layout | ForEach-Object { $_ } | Where-Object { $groups -contains $_ }) + @($groups | Where-Object { -not $fixed.ContainsKey($_) }))
+    }
     foreach ($g in $groups) {
         $gi = @($items | Where-Object { $_.Group -eq $g })
         $c = New-CatCard (Get-CatText "g.$page.$g")
@@ -622,7 +634,7 @@ function Initialize-CatPage([string]$page, $hostEl, [bool]$embedded = $false) {
             [void]$c.Panel.Children.Add($row.Element)
             $rows += $row
         }
-        $col = if ($nCols -eq 1 -or $heights[0] -le $heights[1]) { 0 } else { 1 }
+        $col = if ($fixed.ContainsKey($g)) { $fixed[$g] } elseif ($nCols -eq 1 -or $heights[0] -le $heights[1]) { 0 } else { 1 }
         [void]$stacks[$col].Children.Add($c.Card)
         $heights[$col] += $gi.Count + 2
         $script:CatCards[$page] += @{ Card = $c.Card; Rows = $rows }
@@ -655,6 +667,17 @@ function New-TweakRestorePoint {
         Write-Log "[ERRORE] Punto di ripristino - $($_.Exception.Message)"
         $txtProgressLabel.Text = T 'restoreFail'
     }
+}
+
+# Disposizione delle schede: colonna sinistra, colonna destra. Le pagine che
+# non compaiono qui riempiono le colonne pareggiando le altezze.
+$script:CatLayout = @{
+    exp   = @(@('gen'), @('ctx', 'nav', 'thispc', 'dev', 'desk'))
+    task  = @(@('start'), @('bar'))
+    notif = @(@('toast', 'tips', 'sys'), @('sound', 'access'))
+    game  = @(@('gfx'), @('vfx'))
+    win   = @(@('sec', 'upd', 'browser', 'tasks'), @('svc'))
+    power = @(,@('cpu', 'sleep', 'dev', 'buttons', 'media'))
 }
 
 # Pagine del catalogo e contenitori: la pagina si costruisce quando la apri.
