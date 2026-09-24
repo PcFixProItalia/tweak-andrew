@@ -70,7 +70,7 @@ for lang in LANGS:
     miss_h = [k for k in tip_keys if "H:" + k not in seen]
     report.append("%s: %d voci, mancano L=%d M=%d H=%d  %s" % (
         lang, len(seen), len(miss_l), len(miss_m), len(miss_h),
-        " ".join(miss_m + miss_h)))
+        " ".join(miss_l + miss_m + miss_h)))
 out.append("}")
 out.append("")
 out.append("foreach ($lang in $script:Tr.Keys) {")

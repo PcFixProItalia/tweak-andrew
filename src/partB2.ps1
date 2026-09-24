@@ -354,19 +354,24 @@
                     <ControlTemplate TargetType="RadioButton">
                         <Border x:Name="row" Background="#FF0E0E11" BorderBrush="#FF232329" BorderThickness="1"
                                 CornerRadius="12" Padding="12,8" SnapsToDevicePixels="True">
-                            <StackPanel Orientation="Horizontal">
+                            <!-- Griglia e non StackPanel orizzontale: con larghezza infinita il testo lungo non andava a capo e veniva tagliato. -->
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
                                 <Grid Width="16" Height="16" Margin="0,0,10,0" VerticalAlignment="Center">
                                     <Ellipse x:Name="ring" Stroke="#FF4A4A53" StrokeThickness="1.6"/>
                                     <Ellipse x:Name="dot" Width="8" Height="8" Fill="{DynamicResource PA}" Visibility="Collapsed"/>
                                 </Grid>
-                                <ContentPresenter VerticalAlignment="Center">
+                                <ContentPresenter Grid.Column="1" VerticalAlignment="Center">
                                     <ContentPresenter.ContentTemplate>
                                         <DataTemplate>
                                             <TextBlock Text="{Binding}" TextWrapping="Wrap"/>
                                         </DataTemplate>
                                     </ContentPresenter.ContentTemplate>
                                 </ContentPresenter>
-                            </StackPanel>
+                            </Grid>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
@@ -1260,6 +1265,7 @@
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
                             <Border x:Name="pillActivity" Grid.Column="1" Visibility="Collapsed" Cursor="Hand"
                                     Background="#FF0A0A0C" BorderBrush="#FF26262C" BorderThickness="1" CornerRadius="14"
@@ -1289,7 +1295,10 @@
                                            FontFamily="Raleway, Segoe UI Variable Display, Segoe UI"
                                            FontSize="26" FontWeight="Bold" Foreground="#FFF2F2F5" VerticalAlignment="Center"/>
                             </StackPanel>
-                            <Border x:Name="pillSelected" Grid.Column="2" Background="#FF0A0A0C" BorderBrush="#FF1A1A1F" BorderThickness="1"
+                            <!-- «Rileva già attivi» sta qui e non nella barra in basso: con le lingue lunghe la barra andava su due righe. -->
+                            <Button x:Name="btnDetectActive" Grid.Column="2" Style="{StaticResource GhostBtn}" Height="36" Margin="0,0,10,0"
+                                    VerticalAlignment="Center" Content="Rileva già attivi"/>
+                            <Border x:Name="pillSelected" Grid.Column="3" Background="#FF0A0A0C" BorderBrush="#FF1A1A1F" BorderThickness="1"
                                     CornerRadius="14" Padding="14,8" VerticalAlignment="Center">
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock x:Name="lblSelected" Text="Selezionati:" Foreground="#FF7E7E88" FontSize="12"
@@ -1912,102 +1921,101 @@
                                 </ScrollViewer>
                             </Grid>
 
-                            <ScrollViewer x:Name="pagePower" Visibility="Collapsed" VerticalScrollBarVisibility="Auto" Padding="0,0,6,0">
-                                <ScrollViewer.Resources>
+                            <!-- A sinistra i piani in una colonna che scorre da sola, con il loro avviso; a destra il resto, una scheda sotto l'altra. -->
+                            <Grid x:Name="pagePower" Visibility="Collapsed">
+                                <Grid.Resources>
                                     <SolidColorBrush x:Key="PA" Color="#FFFFC53D"/>
                                     <SolidColorBrush x:Key="PASoft" Color="#24FFC53D"/>
                                     <LinearGradientBrush x:Key="PACard" StartPoint="0,0" EndPoint="0.7,1">
                                         <GradientStop Color="#16FFC53D" Offset="0"/>
                                         <GradientStop Color="#0CFFFFFF" Offset="0.5"/>
                                     </LinearGradientBrush>
-                                </ScrollViewer.Resources>
-                                <StackPanel>
-                                <!-- A sinistra i piani, alti quanto serve, con il loro avviso; a destra le altre schede una sotto l'altra. -->
-                                <Grid>
+                                </Grid.Resources>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1.45*"/>
                                     <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="1.3*"/>
                                 </Grid.ColumnDefinitions>
 
-                                <StackPanel Grid.Column="0">
-                                <Border Style="{StaticResource Glass}">
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="*"/>
-                                        </Grid.RowDefinitions>
-
-                                        <Grid Grid.Row="0" Margin="0,0,0,14">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="*"/>
-                                                <ColumnDefinition Width="Auto"/>
-                                            </Grid.ColumnDefinitions>
-                                            <StackPanel Grid.Column="0" Margin="0,0,12,0">
-                                                <TextBlock x:Name="ttlPlans" Text="PIANI DI ALIMENTAZIONE" Style="{StaticResource CardTitle}" Margin="0,0,0,6"/>
-                                                <Border Style="{StaticResource GlassInner}" Padding="12,9">
-                                                    <TextBlock x:Name="lblPowerActive" Text="Piano attivo:" Style="{StaticResource SubTitle}" Foreground="{DynamicResource PA}"/>
-                                                </Border>
-                                            </StackPanel>
-                                            <StackPanel Grid.Column="1" VerticalAlignment="Bottom">
-                                                <Button x:Name="btnRefreshPlans" Content="Aggiorna" Style="{StaticResource GhostBtn}" Margin="0,0,0,7"/>
-                                                <Button x:Name="btnRemoveTestPlans" Content="Rimuovi piani di prova" Style="{StaticResource GhostBtn}"/>
-                                            </StackPanel>
+                                <Grid Grid.Column="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Border Grid.Row="0" Style="{StaticResource Glass}">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+                                                <Grid Grid.Row="0" Margin="0,0,0,14">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*"/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <StackPanel Grid.Column="0" Margin="0,0,12,0">
+                                                        <TextBlock x:Name="ttlPlans" Text="PIANI DI ALIMENTAZIONE" Style="{StaticResource CardTitle}" Margin="0,0,0,6"/>
+                                                        <Border Style="{StaticResource GlassInner}" Padding="12,9">
+                                                            <TextBlock x:Name="lblPowerActive" Text="Piano attivo:" Style="{StaticResource SubTitle}" Foreground="{DynamicResource PA}"/>
+                                                        </Border>
+                                                    </StackPanel>
+                                                    <StackPanel Grid.Column="1" VerticalAlignment="Bottom">
+                                                        <Button x:Name="btnRefreshPlans" Content="Aggiorna" Style="{StaticResource GhostBtn}" Margin="0,0,0,7"/>
+                                                        <Button x:Name="btnRemoveTestPlans" Content="Rimuovi piani di prova" Style="{StaticResource GhostBtn}"/>
+                                                    </StackPanel>
+                                                </Grid>
+                                            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Padding="0,0,8,0">
+                                                <StackPanel x:Name="panPlans"/>
+                                            </ScrollViewer>
                                         </Grid>
+                                    </Border>
+                                    <Border Grid.Row="1" Style="{StaticResource Glass}">
+                                        <Border.Background>
+                                            <LinearGradientBrush StartPoint="0,0" EndPoint="0.7,1">
+                                                <GradientStop Color="#22E0A25E" Offset="0"/>
+                                                <GradientStop Color="#0AE0A25E" Offset="1"/>
+                                            </LinearGradientBrush>
+                                        </Border.Background>
+                                        <StackPanel>
+                                            <TextBlock x:Name="ttlPlanWarn" Text="PRIMA DI PROVARE" Style="{StaticResource CardTitle}" Foreground="#FFE0A25E"/>
+                                            <TextBlock x:Name="lblPlanWarn" Style="{StaticResource SubTitle}" Foreground="#FFD9A470"
+                                                       Text="I piani della sezione Da testare arrivano da terze parti. Provane uno alla volta e torna su Bilanciato se il computer diventa instabile."/>
+                                        </StackPanel>
+                                    </Border>
+                                </Grid>
 
-                                        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Disabled" Padding="0,0,8,0">
-                                            <StackPanel x:Name="panPlans"/>
-                                        </ScrollViewer>
-                                    </Grid>
-                                </Border>
-                                <Border Style="{StaticResource Glass}">
-                                    <Border.Background>
-                                        <LinearGradientBrush StartPoint="0,0" EndPoint="0.7,1">
-                                            <GradientStop Color="#22E0A25E" Offset="0"/>
-                                            <GradientStop Color="#0AE0A25E" Offset="1"/>
-                                        </LinearGradientBrush>
-                                    </Border.Background>
+                                <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto" Padding="0,0,6,0">
                                     <StackPanel>
-                                        <TextBlock x:Name="ttlPlanWarn" Text="PRIMA DI PROVARE" Style="{StaticResource CardTitle}" Foreground="#FFE0A25E"/>
-                                        <TextBlock x:Name="lblPlanWarn" Style="{StaticResource SubTitle}" Foreground="#FFD9A470"
-                                                   Text="I piani della sezione Da testare arrivano da terze parti. Provane uno alla volta e torna su Bilanciato se il computer diventa instabile."/>
+                                        <Border Style="{StaticResource Glass}">
+                                            <StackPanel>
+                                                <TextBlock x:Name="ttlSleep" Text="RISPARMIO E SOSPENSIONE" Style="{StaticResource CardTitle}"/>
+                                                <TextBlock x:Name="lblSleepHint" Text="Si applicano con il pulsante Applica."
+                                                           Style="{StaticResource SubTitle}" Margin="0,0,0,10"/>
+                                                <CheckBox x:Name="chkFastStartup" Content="Avvio rapido"/>
+                                                <CheckBox x:Name="chkHibernation" Content="Ibernazione"/>
+                                                <CheckBox x:Name="chkS0Sleep" Content="Standby moderno"/>
+                                                <CheckBox x:Name="chkS3Sleep" Content="Sospensione S3"/>
+                                                <CheckBox x:Name="chkDiskNoSleep" Content="Dischi e SSD sempre attivi"/>
+                                            </StackPanel>
+                                        </Border>
+
+                                        <Border Style="{StaticResource Glass}">
+                                            <StackPanel>
+                                                <TextBlock x:Name="ttlShutdownMenu" Text="MENU ARRESTA" Style="{StaticResource CardTitle}"/>
+                                                <TextBlock x:Name="lblShutdownHint" Style="{StaticResource SubTitle}" Margin="0,0,0,10"
+                                                           Text="Valgono subito, senza Applica. Le impostazioni del piano energetico non vengono toccate."/>
+                                                <CheckBox x:Name="chkMenuSleep" Tag="live" Content="Sospendi nel menu Arresta"/>
+                                                <CheckBox x:Name="chkMenuHibernate" Tag="live" Content="Iberna nel menu Arresta"/>
+                                            </StackPanel>
+                                        </Border>
+                                    <StackPanel Margin="7,6,7,4">
+                                        <TextBlock x:Name="ttlPowerAdv" Text="PIANO ATTIVO: IMPOSTAZIONI AVANZATE" Style="{StaticResource CardTitle}" Margin="0,0,0,4"/>
+                                        <TextBlock x:Name="lblPowerAdvHint" Style="{StaticResource SubTitle}" TextWrapping="Wrap"
+                                                   Text="Valgono subito sul piano in uso, a rete e a batteria. Cambiando piano si ripartira dai suoi valori."/>
                                     </StackPanel>
-                                </Border>
-                                </StackPanel>
-
-                                <StackPanel Grid.Column="1">
-                                    <Border Style="{StaticResource Glass}">
-                                        <StackPanel>
-                                            <TextBlock x:Name="ttlSleep" Text="RISPARMIO E SOSPENSIONE" Style="{StaticResource CardTitle}"/>
-                                            <TextBlock x:Name="lblSleepHint" Text="Si applicano con il pulsante Applica."
-                                                       Style="{StaticResource SubTitle}" Margin="0,0,0,10"/>
-                                            <CheckBox x:Name="chkFastStartup" Content="Avvio rapido"/>
-                                            <CheckBox x:Name="chkHibernation" Content="Ibernazione"/>
-                                            <CheckBox x:Name="chkS0Sleep" Content="Standby moderno"/>
-                                            <CheckBox x:Name="chkS3Sleep" Content="Sospensione S3"/>
-                                            <CheckBox x:Name="chkDiskNoSleep" Content="Dischi e SSD sempre attivi"/>
-                                        </StackPanel>
-                                    </Border>
-
-                                    <Border Style="{StaticResource Glass}">
-                                        <StackPanel>
-                                            <TextBlock x:Name="ttlShutdownMenu" Text="MENU ARRESTA" Style="{StaticResource CardTitle}"/>
-                                            <TextBlock x:Name="lblShutdownHint" Style="{StaticResource SubTitle}" Margin="0,0,0,10"
-                                                       Text="Valgono subito, senza Applica. Le impostazioni del piano energetico non vengono toccate."/>
-                                            <CheckBox x:Name="chkMenuSleep" Tag="live" Content="Sospendi nel menu Arresta"/>
-                                            <CheckBox x:Name="chkMenuHibernate" Tag="live" Content="Iberna nel menu Arresta"/>
-                                        </StackPanel>
-                                    </Border>
-
-                                </StackPanel>
-                                                            </Grid>
-                                <StackPanel Margin="7,6,7,4">
-                                    <TextBlock x:Name="ttlPowerAdv" Text="PIANO ATTIVO: IMPOSTAZIONI AVANZATE" Style="{StaticResource CardTitle}" Margin="0,0,0,4"/>
-                                    <TextBlock x:Name="lblPowerAdvHint" Style="{StaticResource SubTitle}" TextWrapping="Wrap"
-                                               Text="Valgono subito sul piano in uso, a rete e a batteria. Cambiando piano si ripartira dai suoi valori."/>
-                                </StackPanel>
-                                <Grid x:Name="catPower"/>
-                                </StackPanel>
-                            </ScrollViewer>
+                                    <Grid x:Name="catPower"/>
+                                    </StackPanel>
+                                </ScrollViewer>
+                            </Grid>
 
                             <ScrollViewer x:Name="pageGpu" Visibility="Collapsed" VerticalScrollBarVisibility="Auto" Padding="0,0,6,0">
                                 <ScrollViewer.Resources>
@@ -2042,14 +2050,14 @@
                                                                FontSize="11.5" TextWrapping="Wrap" LineHeight="17"/>
                                                 </Border>
                                                 <TextBlock x:Name="lblGpuHint" Style="{StaticResource SubTitle}" Margin="0,12,0,0"
-                                                           Text="Qui si alleggerisce il driver gia installato: telemetria, servizi accessori e avvii automatici."/>
+                                                           Text="Qui si alleggerisce il driver già installato: telemetria, servizi accessori e avvii automatici."/>
                                             </StackPanel>
                                         </Border>
 
                                         <Border Style="{StaticResource Glass}">
                                             <StackPanel>
                                                 <TextBlock x:Name="ttlGpuCommon" Text="IMPOSTAZIONI COMUNI" Style="{StaticResource CardTitle}"/>
-                                                <CheckBox x:Name="chkGpuTdr" Content="TDR - timeout piu lungo"/>
+                                                <CheckBox x:Name="chkGpuTdr" Content="TDR - timeout più lungo"/>
                                                 <CheckBox x:Name="chkGpuMsi" Tag="risky" Content="Interrupt MSI per la GPU"/>
                                             </StackPanel>
                                         </Border>
@@ -2058,7 +2066,7 @@
                                             <StackPanel>
                                                 <TextBlock x:Name="ttlShader" Text="CACHE SHADER" Style="{StaticResource CardTitle}"/>
                                                 <TextBlock x:Name="lblShaderHint" Style="{StaticResource SubTitle}" Margin="0,0,0,10"
-                                                           Text="Gli shader gia compilati dai giochi. Svuotarla libera spazio e risolve artefatti dopo un cambio driver. Il primo avvio di ogni gioco sara piu lento, poi torna normale."/>
+                                                           Text="Gli shader già compilati dai giochi. Svuotarla libera spazio e risolve artefatti dopo un cambio driver. Il primo avvio di ogni gioco sarà più lento, poi torna normale."/>
                                                 <Border Style="{StaticResource GlassInner}" Padding="11,9" Margin="0,0,0,10">
                                                     <TextBlock x:Name="txtShaderSize" Text="Spazio non ancora calcolato."
                                                                FontFamily="Consolas, Courier New" FontSize="11.5"
@@ -2075,7 +2083,7 @@
                                             <StackPanel>
                                                 <TextBlock x:Name="ttlNvidia" Text="NVIDIA" Style="{StaticResource CardTitle}" Foreground="#FF7ED957"/>
                                                 <TextBlock x:Name="lblNvidiaHint" Style="{StaticResource SubTitle}" Margin="0,0,0,10"
-                                                           Text="Voci ignorate se la scheda non e NVIDIA."/>
+                                                           Text="Voci ignorate se la scheda non è NVIDIA."/>
                                                 <CheckBox x:Name="chkNvTelemetry" Content="Telemetria NVIDIA"/>
                                                 <CheckBox x:Name="chkNvGfe" Content="GeForce Experience in background"/>
                                                 <CheckBox x:Name="chkNvPerfMode" Content="Gestione energia su prestazioni massime"/>
@@ -2116,7 +2124,7 @@
                                             <StackPanel>
                                                 <TextBlock x:Name="ttlAmd" Text="AMD RADEON" Style="{StaticResource CardTitle}" Foreground="#FFFF6B6B"/>
                                                 <TextBlock x:Name="lblAmdHint" Style="{StaticResource SubTitle}" Margin="0,0,0,10"
-                                                           Text="Voci ignorate se la scheda non e AMD."/>
+                                                           Text="Voci ignorate se la scheda non è AMD."/>
                                                 <CheckBox x:Name="chkAmdUx" Content="Programma esperienza utente AMD"/>
                                                 <CheckBox x:Name="chkAmdBloat" Content="Servizi e avvii automatici AMD"/>
                                                 <CheckBox x:Name="chkAmdUlps" Content="Prestazioni massime (ULPS spento)"/>
@@ -2179,7 +2187,7 @@
                                                 <CheckBox x:Name="chkSvcSysMain" Content="SysMain — precaricamento delle app in memoria"/>
                                                 <CheckBox x:Name="chkSvcDiag" Content="Diagnostica e tracciamento eventi"/>
                                                 <CheckBox x:Name="chkSvcErrors" Content="Segnalazione errori Windows"/>
-                                                <CheckBox x:Name="chkSvcPca" Content="Assistente compatibilita programmi"/>
+                                                <CheckBox x:Name="chkSvcPca" Content="Assistente compatibilità programmi"/>
                                                 <CheckBox x:Name="chkSvcDiscovery" Content="Rilevamento dispositivi in rete (UPnP, SSDP)"/>
                                                 <CheckBox x:Name="chkSvcSensors" Content="Sensori e geolocalizzazione"/>
                                                 <CheckBox x:Name="chkSvcSmartCard" Content="Smart card"/>
@@ -2209,7 +2217,7 @@
                                                 <TextBlock x:Name="ttlMem" Text="MEMORIA E PROCESSI" Style="{StaticResource CardTitle}"/>
                                                 <CheckBox x:Name="chkPrefetch" Content="Prefetch e Superfetch nel registro"/>
                                                 <CheckBox x:Name="chkFth" Content="Fault Tolerant Heap — niente correzioni automatiche"/>
-                                                <CheckBox x:Name="chkAppCompat" Content="Motore di compatibilita e inventario programmi"/>
+                                                <CheckBox x:Name="chkAppCompat" Content="Motore di compatibilità e inventario programmi"/>
                                                 <CheckBox x:Name="chkSvcHostSplit" Content="Meno processi svchost (accorpa i servizi)"/>
                                                 <CheckBox x:Name="chkMemCompression" Tag="risky" Content="Compressione della memoria — rischioso sotto 16 GB di RAM"/>
                                             </StackPanel>
@@ -2642,7 +2650,6 @@
                                         <Button x:Name="btnSelectPage" Style="{StaticResource GhostBtn}" Height="40" Margin="0,0,8,4" Content="Questa pagina"/>
                                         <Button x:Name="btnRecommended" Style="{StaticResource GhostBtn}" Height="40" Margin="0,0,8,4" Content="Consigliati"/>
                                         <Button x:Name="btnDeselectAll" Style="{StaticResource GhostBtn}" Height="40" Margin="0,0,8,4" Content="Deseleziona"/>
-                                        <Button x:Name="btnDetectActive" Style="{StaticResource GhostBtn}" Height="40" Margin="0,0,8,4" Content="Rileva gia attivi"/>
                                     </WrapPanel>
                                     <StackPanel Grid.Column="1" Orientation="Horizontal">
                                         <Button x:Name="btnUndo" Style="{StaticResource UndoBtn}" Height="40" MinWidth="150" Margin="0,0,8,0" Content="Reimposta predefiniti"/>

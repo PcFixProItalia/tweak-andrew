@@ -837,3 +837,68 @@ M:wuSub_disable	Nur für Sonderfälle: keine Sicherheitsupdates
 M:wuList_recommended	Neue Windows-Versionen um 365 Tage verschoben;Monatliche Updates um 4 Tage verschoben;Treiber von Windows Update ausgeschlossen;Kein automatischer Neustart bei angemeldetem Benutzer
 M:wuList_default	Entfernt gesetzte Windows-Update-Richtlinien;Stellt die Update-Dienste wieder her;Aktiviert die geplanten Update-Aufgaben wieder
 M:wuList_disable	Automatische Updates aus;Update-Dienste und -Aufgaben gestoppt;Heruntergeladene Updates gelöscht
+M:pn_ultimate	Ultimative Leistung (Ultimate Performance)
+M:pn_high	Höchstleistung
+M:pn_balanced	Ausbalanciert
+M:pn_saver	Energiesparmodus
+M:pd_ultimate	Versteckter Windows-Plan: kein Energiesparen, minimale Latenz.
+M:pd_bitsum	Plan von Bitsum (Process Lasso): konstante CPU-Leistung.
+M:pd_high	Standardplan von Windows für hohe Leistung.
+M:pd_balanced	Standardplan von Windows. Damit kehrst du zurück.
+M:pd_saver	Minimaler Verbrauch, reduzierte Leistung.
+M:pd_adamx	Bevorzugt Leistung vor Energiesparen.
+M:pd_ancel	Maximale Leistung, basiert auf Ultimate Performance.
+M:pd_atlas	Auf maximale Leistung optimiert (v0.4.2).
+M:pd_calypto	Schaltet das Energiesparen ab, um die Latenz zu senken.
+M:pd_core	Schlanker Plan, wenige gezielte Änderungen.
+M:pd_exmfree	Mehr Leistung, weniger Latenz; kann die Temperaturen erhöhen.
+M:pd_framesyncboost	Maximale Leistung und minimale Latenz, Leerlauf bleibt aktiv.
+M:pd_hybred	Geringere Latenz und höhere Leistung.
+M:pd_kaisen	Plan für Desktop-PCs.
+M:pd_khorvie	Leistungsorientiert, viele Einstellungen geändert.
+M:pd_kirby	Maximale Leistung, wenige Einstellungen.
+M:pd_kizzimo	Am aggressivsten bei der Latenz.
+M:pd_lawliet	Angepasste ausbalancierte Basis, geringerer Verbrauch.
+M:pd_nexus	Für Spiele, gute Leistung auf Desktops.
+M:pd_powerx	Minimale Eingabeverzögerung. Kann auf manchen AMD-CPUs Bluescreens auslösen.
+M:pd_sapphire	Plan von SapphireOS.
+M:pd_vtrl	Von VTRL Optimizer eingestellt, basiert auf Ultimate Performance.
+M:pd_xilly	Leichte Steigerung gegenüber dem Standard.
+M:pd_xos	Plan aus der xOS-Sammlung.
+M:hkFirmware	Firmware
+H:chkNvP2	Der Treiber senkt den Speichertakt nicht mehr, wenn ein CUDA-Programm startet. Schnelleres Rendern und Rechnen.
+H:chkNvDrsPower	Die Karte bleibt auf hohem Takt, statt zwischen den Frames herunterzufahren. Weniger FPS-Einbrüche.
+H:chkNvThreaded	OpenGL-Spiele verteilen die Arbeit des Treibers auf mehrere Kerne.
+H:chkNvTexPerf	Die Texturfilterung bevorzugt Tempo: ein paar FPS mehr, kaum sichtbarer Unterschied.
+H:chkNvAniso	Die anisotrope Filterung nimmt weniger Samples, wo man den Unterschied nicht sieht.
+H:chkNvShaderCache	Der Treiber behält kompilierte Shader: weniger Ruckler, wenn ein Spiel neue Bereiche lädt.
+H:chkNvDisplayPower	Der Treiber dunkelt den Bildschirm nicht zum Energiesparen ab.
+H:chkNvHdcp	Entfernt den Kopierschutz: weniger Arbeit für die Karte, aber Netflix und Ähnliches laufen nicht mehr in hoher Auflösung.
+H:chkNvPreempt	Die Karte beendet eine Aufgabe, bevor sie zur nächsten wechselt. Kann die Latenz senken; auf manchen PCs führt es zu Hängern.
+H:chkNvDynPstate	Die Karte senkt ihren Takt nie. Maximale Reaktion, mehr Wärme und Verbrauch auch im Leerlauf.
+H:chkNvLatency	Kürzt die internen Wartezeiten des Treibers zum Energiesparen. Die Wirkung schwankt: ausprobieren und messen.
+H:chkAmdAntiLag	Der Prozessor läuft der Grafikkarte nicht voraus. Direktere Steuerung in Spielen.
+H:chkAmdShaderCache	Kompilierte Shader werden immer behalten: weniger Ruckler beim Laden.
+H:chkAmdTexPerf	Die Texturfilterung bevorzugt Tempo, mit kaum sichtbaren Unterschieden.
+H:chkAmdTess	Der Treiber begrenzt die übermäßige Tessellation mancher Spiele. Mehr FPS in schweren Szenen.
+H:chkAmdFlipQueue	Nur ein Frame in der Warteschlange zum Bildschirm. Weniger Verzögerung zwischen Maus und Bild.
+H:chkAmdNoFrtc	Entfernt die vom Treiber gesetzte FPS-Grenze.
+H:chkAmdStutter	Der Videospeicher schaltet zwischen den Frames nicht ab. Gleichmäßigere Frametimes.
+H:chkAmdAspm	Die PCIe-Verbindung der Karte bleibt immer aktiv. Keine Mikroverzögerungen beim Aufwachen.
+H:chkAmdPowerGating	Die Einheiten der Karte werden im Leerlauf nicht abgeschaltet. Reaktionsschneller, mehr Verbrauch und Wärme.
+H:chkAmdDma	Ändert, wie die Karte Daten kopiert. Auf manchen Karten weniger Ruckler, auf anderen mehr.
+H:chkAmdPreempt	Die Karte beendet eine Rechenaufgabe vor der nächsten. Ausprobieren: auf manchen PCs führt es zu Hängern.
+H:chkNvLowLatency	Wie «Ein» in der NVIDIA-Systemsteuerung: Der Prozessor bereitet nur ein Bild im Voraus vor. Verträglicher als «Ultra», das mit manchen Spielen und G-SYNC ruckelt.
+H:chkNvNoAnsel	Schaltet Ansel ab, das Foto-Overlay von NVIDIA, das in jedem Spiel geladen bleibt.
+H:chkIntelTelemetry	Deaktiviert das Verbesserungsprogramm und den Nutzungsbericht, die mit Intels Treiberassistent installiert werden. Der Grafiktreiber braucht sie nicht.
+H:chkIntelGfxPower	Im Energiesparplan läuft die integrierte Intel-Grafik am Netz mit vollem Takt statt zu sparen. Im Akkubetrieb ändert sich nichts.
+H:chkIntelDpst	Auf Intel-Laptops senkt der Bildschirm Helligkeit und Kontrast je nach Inhalt: ausgeschaltet bleiben die Farben konstant. Bei manchen Modellen schaltet der Treiber es nach dem Neustart wieder ein.
+H:chkCpuIntelBoostPol	Am Netz steigt der Turbo von Intel-Prozessoren ohne die Richtliniengrenze des Energiesparplans. Im Akkubetrieb bleibt alles wie vorher.
+H:chkCpuIntelHybrid	Nur Prozessoren mit P- und E-Kernen (ab 12. Generation): Threads gehen wenn möglich auf die P-Kerne. Nützlich in Spielen; die E-Kerne bleiben bei steigender Last verfügbar.
+H:chkCpuAmdParking	Am Netz bleiben alle Kerne bereit, statt geparkt zu werden. Nicht verfügbar auf Ryzen X3D mit zwei Chiplets, wo das Parken Spielen hilft.
+H:chkCpuIdleOff	Der Prozessor geht nie in Ruhezustände: minimale Latenz, aber Verbrauch und Temperaturen bleiben auch im Leerlauf hoch. Nur auf einem gut gekühlten Desktop, am Netz.
+H:chkAdvUtc	Windows liest die BIOS-Zeit als UTC, wie Linux: Bei Dual-Boot springt die Uhr beim Systemwechsel nicht mehr um eine Stunde.
+H:chkAdvRazer	Blockiert Treiber-Co-Installer und den Ordner, in den sich Razer Synapse beim Anschließen eines Geräts kopiert. Blockiert auch Co-Installer anderer Hersteller.
+H:chkAdvLogi	Beendet den Logitech-Download-Assistenten und verhindert, dass er sich bei jedem Start neu installiert.
+H:chkIPv4Pref	IPv6 bleibt aktiv, aber Windows versucht zuerst IPv4. Nützlich bei Netzen oder Routern, die IPv6 schlecht handhaben.
+H:chkDiskNoSleep	Am Netz gehen Festplatten, SATA-Verbindung und NVMe-SSDs nie in den Energiesparmodus: keine Aufwachverzögerungen. Im Akkubetrieb bleibt alles wie vorher.

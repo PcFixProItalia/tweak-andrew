@@ -31,11 +31,11 @@ $script:PlanCatalog = @(
     @{ Key='core'; Group='test'; Kind='embedded'; Match="CoreVeeAir's"
        Name='CoreVeeAir'; Desc='Piano essenziale, poche modifiche mirate.' }
     @{ Key='exmfree'; Group='test'; Kind='embedded'; Match='EXM Free Power Plan'
-       Name='EXM Free V6'; Desc='Piu prestazioni e meno latenza; puo alzare le temperature.' }
+       Name='EXM Free V6'; Desc='Più prestazioni e meno latenza; può alzare le temperature.' }
     @{ Key='framesyncboost'; Group='test'; Kind='embedded'; Match='FRAMESYNC Labs Boost'
        Name='FrameSync Labs Boost'; Desc='Prestazioni massime e latenza minima, idle attivo.' }
     @{ Key='hybred'; Group='test'; Kind='embedded'; Match='Hybred Low Latency'
-       Name='Hybred Low Latency'; Desc='Latenza piu bassa e prestazioni piu alte.' }
+       Name='Hybred Low Latency'; Desc='Latenza più bassa e prestazioni più alte.' }
     @{ Key='kaisen'; Group='test'; Kind='embedded'; Match='^PC$'
        Name='Kaisen'; Desc='Piano pensato per PC fisso.' }
     @{ Key='khorvie'; Group='test'; Kind='embedded'; Match="Khorvie's PowerPlan"
@@ -43,13 +43,13 @@ $script:PlanCatalog = @(
     @{ Key='kirby'; Group='test'; Kind='embedded'; Match='Kirby PowerPlan'
        Name='Kirby v1.2'; Desc='Prestazioni massime, poche voci.' }
     @{ Key='kizzimo'; Group='test'; Kind='embedded'; Match="Kizzimo's Extreme Low Latency"
-       Name='Kizzimo Extreme Low Latency'; Desc='Il piu aggressivo sulla latenza.' }
+       Name='Kizzimo Extreme Low Latency'; Desc='Il più aggressivo sulla latenza.' }
     @{ Key='lawliet'; Group='test'; Kind='embedded'; Match="Lawliet's power plan"
-       Name='Lawliet'; Desc='Base bilanciata modificata, consumi piu contenuti.' }
+       Name='Lawliet'; Desc='Base bilanciata modificata, consumi più contenuti.' }
     @{ Key='nexus'; Group='test'; Kind='embedded'; Match='Nexus LiteOS Powerplan'
        Name='Nexus LiteOS'; Desc='Per il gioco, buone prestazioni su desktop.' }
     @{ Key='powerx'; Group='test'; Kind='embedded'; Match='PowerX v2'
-       Name='PowerX v2'; Desc='Input lag minimo. Puo causare BSOD su alcune CPU AMD.' }
+       Name='PowerX v2'; Desc='Input lag minimo. Può causare BSOD su alcune CPU AMD.' }
     @{ Key='sapphire'; Group='test'; Kind='embedded'; Match='^Sapphire$'
        Name='Sapphire'; Desc='Piano di SapphireOS.' }
     @{ Key='vtrl'; Group='test'; Kind='embedded'; Match='VTRL Optimized'
@@ -163,7 +163,7 @@ function Add-PlanRow {
     $texts.Margin = New-Object System.Windows.Thickness(0, 0, 12, 0)
 
     $title = New-Object System.Windows.Controls.TextBlock
-    $title.Text = [string]$Entry.Name
+    $title.Text = $(if ($script:Msg.ContainsKey("pn_$($Entry.Key)")) { T "pn_$($Entry.Key)" } else { [string]$Entry.Name })
     $title.FontFamily = New-Object System.Windows.Media.FontFamily("Raleway, Segoe UI")
     $title.FontWeight = [System.Windows.FontWeights]::SemiBold
     $title.FontSize = 13
@@ -171,7 +171,7 @@ function Add-PlanRow {
     $title.Foreground = New-Brush "#FFF2F2F5"
 
     $desc = New-Object System.Windows.Controls.TextBlock
-    $desc.Text = [string]$Entry.Desc
+    $desc.Text = $(if ($script:Msg.ContainsKey("pd_$($Entry.Key)")) { T "pd_$($Entry.Key)" } else { [string]$Entry.Desc })
     $desc.Style = $window.FindResource("SubTitle")
     $desc.Margin = New-Object System.Windows.Thickness(0, 3, 0, 0)
 

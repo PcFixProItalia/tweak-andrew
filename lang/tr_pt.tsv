@@ -837,3 +837,68 @@ M:wuSub_disable	Só para usos especiais: sem atualizações de segurança
 M:wuList_recommended	Novas versões do Windows adiadas em 365 dias;Atualizações mensais adiadas em 4 dias;Drivers excluídos do Windows Update;Sem reinício automático com usuário conectado
 M:wuList_default	Remove as políticas do Windows Update definidas;Restaura os serviços de atualização originais;Reativa as tarefas agendadas de atualização
 M:wuList_disable	Atualizações automáticas desligadas;Serviços e tarefas de atualização parados;Atualizações baixadas apagadas
+M:pn_ultimate	Desempenho máximo (Ultimate Performance)
+M:pn_high	Alto desempenho
+M:pn_balanced	Equilibrado
+M:pn_saver	Economia de energia
+M:pd_ultimate	Plano oculto do Windows: sem economia de energia, latência mínima.
+M:pd_bitsum	Plano da Bitsum (Process Lasso): desempenho de CPU constante.
+M:pd_high	Plano padrão do Windows de alto desempenho.
+M:pd_balanced	Plano padrão do Windows. Use-o para voltar atrás.
+M:pd_saver	Consumo mínimo, desempenho reduzido.
+M:pd_adamx	Prioriza o desempenho sobre a economia de energia.
+M:pd_ancel	Desempenho máximo, baseado no Ultimate Performance.
+M:pd_atlas	Otimizado para desempenho máximo (v0.4.2).
+M:pd_calypto	Desativa a economia de energia para reduzir a latência.
+M:pd_core	Plano básico, poucas alterações pontuais.
+M:pd_exmfree	Mais desempenho e menos latência; pode aumentar as temperaturas.
+M:pd_framesyncboost	Desempenho máximo e latência mínima, ociosidade ativa.
+M:pd_hybred	Menor latência e maior desempenho.
+M:pd_kaisen	Plano pensado para PC de mesa.
+M:pd_khorvie	Voltado ao desempenho, muitas opções alteradas.
+M:pd_kirby	Desempenho máximo, poucas opções.
+M:pd_kizzimo	O mais agressivo na latência.
+M:pd_lawliet	Base equilibrada modificada, consumo menor.
+M:pd_nexus	Para jogos, bom desempenho em desktops.
+M:pd_powerx	Atraso de entrada mínimo. Pode causar BSOD em algumas CPUs AMD.
+M:pd_sapphire	Plano do SapphireOS.
+M:pd_vtrl	Configurado pelo VTRL Optimizer, baseado no Ultimate Performance.
+M:pd_xilly	Leve melhoria em relação ao padrão.
+M:pd_xos	Plano da coleção xOS.
+M:hkFirmware	Firmware
+H:chkNvP2	O driver deixa de baixar o clock da memória quando um programa CUDA inicia. Renderização e cálculo mais rápidos.
+H:chkNvDrsPower	A placa fica em clocks altos em vez de desacelerar entre quadros. Menos quedas de FPS.
+H:chkNvThreaded	Jogos OpenGL distribuem o trabalho do driver em vários núcleos.
+H:chkNvTexPerf	A filtragem de texturas prioriza a velocidade: alguns FPS a mais, diferença visual mínima.
+H:chkNvAniso	A filtragem anisotrópica usa menos amostras onde a diferença não aparece.
+H:chkNvShaderCache	O driver guarda os shaders compilados: menos travadas quando um jogo carrega novas áreas.
+H:chkNvDisplayPower	O driver não escurece a tela para economizar energia.
+H:chkNvHdcp	Remove a proteção de conteúdo: menos trabalho para a placa, mas Netflix e similares não rodam em alta resolução.
+H:chkNvPreempt	A placa termina uma tarefa antes de passar à próxima. Pode reduzir a latência; em alguns PCs causa travamentos.
+H:chkNvDynPstate	A placa nunca reduz seus clocks. Resposta máxima, mais calor e consumo mesmo em repouso.
+H:chkNvLatency	Reduz as esperas internas do driver usadas para economizar energia. O efeito varia: teste e meça.
+H:chkAmdAntiLag	O processador não se adianta à placa de vídeo. Controles mais ágeis nos jogos.
+H:chkAmdShaderCache	Os shaders compilados são sempre mantidos: menos travadas no carregamento.
+H:chkAmdTexPerf	A filtragem de texturas prioriza a velocidade, com diferenças quase invisíveis.
+H:chkAmdTess	O driver limita a tesselação excessiva de alguns jogos. Mais FPS em cenas pesadas.
+H:chkAmdFlipQueue	Apenas um quadro na fila para a tela. Menos atraso entre o mouse e a imagem.
+H:chkAmdNoFrtc	Remove o limite de FPS definido pelo driver.
+H:chkAmdStutter	A memória de vídeo não desliga entre quadros. Tempos de quadro mais estáveis.
+H:chkAmdAspm	O link PCIe da placa fica sempre ativo. Sem microatrasos ao despertar.
+H:chkAmdPowerGating	As unidades da placa não desligam em repouso. Mais resposta, mais consumo e calor.
+H:chkAmdDma	Muda como a placa copia os dados. Em algumas placas reduz travadas, em outras piora.
+H:chkAmdPreempt	A placa termina uma tarefa de cálculo antes da próxima. Vale testar: em alguns PCs causa travamentos.
+H:chkNvLowLatency	Como «Ligado» no Painel de controle NVIDIA: o processador prepara só um quadro à frente. Mais compatível que «Ultra», que trava com alguns jogos e com G-SYNC.
+H:chkNvNoAnsel	Desativa o Ansel, a sobreposição de fotos da NVIDIA que fica carregada em cada jogo.
+H:chkIntelTelemetry	Desativa o programa de melhoria e o relatório de uso instalados com o assistente de drivers da Intel. O driver gráfico não precisa deles.
+H:chkIntelGfxPower	No plano de energia, na tomada, a gráfica integrada Intel roda no clock máximo em vez de economizar. Na bateria nada muda.
+H:chkIntelDpst	Em notebooks Intel a tela reduz brilho e contraste conforme o conteúdo: desligado, as cores ficam constantes. Em alguns modelos o driver reativa ao reiniciar.
+H:chkCpuIntelBoostPol	Na tomada, o turbo dos processadores Intel sobe sem o limite de política do plano de energia. Na bateria fica como antes.
+H:chkCpuIntelHybrid	Só processadores com núcleos P e E (a partir da 12ª geração): as threads vão para os núcleos P quando possível. Útil em jogos; os núcleos E seguem disponíveis quando a carga sobe.
+H:chkCpuAmdParking	Na tomada, todos os núcleos ficam prontos em vez de estacionados. Indisponível nos Ryzen X3D com dois chiplets, onde o estacionamento ajuda os jogos.
+H:chkCpuIdleOff	O processador nunca entra em estados ociosos: latência mínima, mas consumo e temperaturas altos mesmo em repouso. Só em desktop bem refrigerado, na tomada.
+H:chkAdvUtc	O Windows lê a hora da BIOS como UTC, como o Linux: com dual boot o relógio não pula mais uma hora ao trocar de sistema.
+H:chkAdvRazer	Bloqueia os coinstaladores de drivers e a pasta onde o Razer Synapse se copia ao conectar um dispositivo. Também bloqueia coinstaladores de outros fabricantes.
+H:chkAdvLogi	Fecha o assistente de download da Logitech e impede que se reinstale a cada inicialização.
+H:chkIPv4Pref	O IPv6 continua ativo, mas o Windows tenta primeiro o IPv4. Útil com redes ou roteadores que lidam mal com IPv6.
+H:chkDiskNoSleep	Na tomada, discos, link SATA e SSDs NVMe nunca entram em economia de energia: sem atrasos ao despertar. Na bateria tudo fica como antes.

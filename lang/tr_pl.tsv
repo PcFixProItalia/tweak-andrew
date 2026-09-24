@@ -837,3 +837,68 @@ M:wuSub_disable	Tylko do zastosowań specjalnych: brak aktualizacji zabezpiecze�
 M:wuList_recommended	Nowe wersje Windows odłożone o 365 dni;Aktualizacje miesięczne odłożone o 4 dni;Sterowniki wykluczone z Windows Update;Bez automatycznego restartu przy zalogowanym użytkowniku
 M:wuList_default	Usuwa ustawione zasady Windows Update;Przywraca pierwotne usługi aktualizacji;Włącza zaplanowane zadania aktualizacji
 M:wuList_disable	Automatyczne aktualizacje wyłączone;Usługi i zadania aktualizacji zatrzymane;Pobrane aktualizacje usunięte
+M:pn_ultimate	Najwyższa wydajność (Ultimate Performance)
+M:pn_high	Wysoka wydajność
+M:pn_balanced	Zrównoważony
+M:pn_saver	Oszczędzanie energii
+M:pd_ultimate	Ukryty plan Windows: bez oszczędzania energii, minimalne opóźnienia.
+M:pd_bitsum	Plan Bitsum (Process Lasso): stała wydajność CPU.
+M:pd_high	Standardowy plan Windows o wysokiej wydajności.
+M:pd_balanced	Domyślny plan Windows. Użyj go, aby wrócić.
+M:pd_saver	Minimalne zużycie, ograniczona wydajność.
+M:pd_adamx	Stawia wydajność ponad oszczędzanie energii.
+M:pd_ancel	Maksymalna wydajność, oparty na Ultimate Performance.
+M:pd_atlas	Zoptymalizowany pod maksymalną wydajność (v0.4.2).
+M:pd_calypto	Wyłącza oszczędzanie energii, by obniżyć opóźnienia.
+M:pd_core	Prosty plan, kilka celowanych zmian.
+M:pd_exmfree	Więcej wydajności, mniej opóźnień; może podnieść temperatury.
+M:pd_framesyncboost	Maksymalna wydajność i minimalne opóźnienia, bezczynność włączona.
+M:pd_hybred	Niższe opóźnienia i wyższa wydajność.
+M:pd_kaisen	Plan przeznaczony dla komputerów stacjonarnych.
+M:pd_khorvie	Nastawiony na wydajność, wiele zmienionych ustawień.
+M:pd_kirby	Maksymalna wydajność, niewiele ustawień.
+M:pd_kizzimo	Najbardziej agresywny pod względem opóźnień.
+M:pd_lawliet	Zmodyfikowana baza zrównoważona, mniejsze zużycie.
+M:pd_nexus	Do gier, dobra wydajność na komputerach stacjonarnych.
+M:pd_powerx	Minimalne opóźnienie wejścia. Może powodować BSOD na niektórych CPU AMD.
+M:pd_sapphire	Plan SapphireOS.
+M:pd_vtrl	Ustawiony przez VTRL Optimizer, oparty na Ultimate Performance.
+M:pd_xilly	Niewielki wzrost względem domyślnego.
+M:pd_xos	Plan z kolekcji xOS.
+M:hkFirmware	Oprogramowanie układowe
+H:chkNvP2	Sterownik przestaje obniżać taktowanie pamięci po uruchomieniu programu CUDA. Szybsze renderowanie i obliczenia.
+H:chkNvDrsPower	Karta utrzymuje wysokie taktowanie zamiast zwalniać między klatkami. Mniej spadków FPS.
+H:chkNvThreaded	Gry OpenGL rozkładają pracę sterownika na kilka rdzeni.
+H:chkNvTexPerf	Filtrowanie tekstur stawia na szybkość: kilka FPS więcej, minimalna różnica wizualna.
+H:chkNvAniso	Filtrowanie anizotropowe pobiera mniej próbek tam, gdzie różnicy nie widać.
+H:chkNvShaderCache	Sterownik zachowuje skompilowane shadery: mniej przycięć, gdy gra wczytuje nowe obszary.
+H:chkNvDisplayPower	Sterownik nie przyciemnia ekranu, by oszczędzać energię.
+H:chkNvHdcp	Usuwa ochronę treści: mniej pracy dla karty, ale Netflix i podobne nie odtworzą się w wysokiej rozdzielczości.
+H:chkNvPreempt	Karta kończy zadanie przed przejściem do następnego. Może zmniejszyć opóźnienia; na niektórych PC powoduje zawieszenia.
+H:chkNvDynPstate	Karta nigdy nie obniża taktowania. Maksymalna responsywność, więcej ciepła i poboru nawet w spoczynku.
+H:chkNvLatency	Skraca wewnętrzne oczekiwania sterownika służące oszczędzaniu energii. Efekt bywa różny: wypróbuj i zmierz.
+H:chkAmdAntiLag	Procesor nie wyprzedza karty graficznej. Szybsza reakcja sterowania w grach.
+H:chkAmdShaderCache	Skompilowane shadery są zawsze zachowywane: mniej przycięć przy wczytywaniu.
+H:chkAmdTexPerf	Filtrowanie tekstur stawia na szybkość, różnice są ledwo widoczne.
+H:chkAmdTess	Sterownik ogranicza nadmierną teselację w niektórych grach. Więcej FPS w ciężkich scenach.
+H:chkAmdFlipQueue	Tylko jedna klatka w kolejce do ekranu. Mniejsze opóźnienie między myszą a obrazem.
+H:chkAmdNoFrtc	Usuwa limit FPS ustawiony przez sterownik.
+H:chkAmdStutter	Pamięć wideo nie wyłącza się między klatkami. Stabilniejsze czasy klatek.
+H:chkAmdAspm	Łącze PCIe karty jest zawsze aktywne. Brak mikroopóźnień przy wybudzaniu.
+H:chkAmdPowerGating	Jednostki karty nie wyłączają się w spoczynku. Większa responsywność, większy pobór i ciepło.
+H:chkAmdDma	Zmienia sposób kopiowania danych przez kartę. Na niektórych kartach zmniejsza przycięcia, na innych je pogarsza.
+H:chkAmdPreempt	Karta kończy zadanie obliczeniowe przed następnym. Warto przetestować: na niektórych PC powoduje zawieszenia.
+H:chkNvLowLatency	Jak «Włączone» w Panelu sterowania NVIDIA: procesor przygotowuje tylko jedną klatkę naprzód. Bardziej zgodne niż «Ultra», które przycina w niektórych grach i z G-SYNC.
+H:chkNvNoAnsel	Wyłącza Ansel, nakładkę zdjęciową NVIDIA ładowaną w każdej grze.
+H:chkIntelTelemetry	Wyłącza program ulepszeń i raport użycia instalowane z asystentem sterowników Intel. Sterownik grafiki ich nie potrzebuje.
+H:chkIntelGfxPower	W planie zasilania, na zasilaczu, zintegrowana grafika Intel działa z pełnym taktowaniem zamiast oszczędzać. Na baterii nic się nie zmienia.
+H:chkIntelDpst	W laptopach Intel ekran obniża jasność i kontrast zależnie od treści: po wyłączeniu kolory są stałe. W niektórych modelach sterownik włącza to ponownie po restarcie.
+H:chkCpuIntelBoostPol	Na zasilaczu turbo procesorów Intel rośnie bez limitu zasad planu zasilania. Na baterii bez zmian.
+H:chkCpuIntelHybrid	Tylko procesory z rdzeniami P i E (od 12. generacji): wątki trafiają na rdzenie P, gdy to możliwe. Przydatne w grach; rdzenie E są dostępne przy większym obciążeniu.
+H:chkCpuAmdParking	Na zasilaczu wszystkie rdzenie są gotowe zamiast parkowane. Niedostępne na Ryzen X3D z dwoma chipletami, gdzie parkowanie pomaga grom.
+H:chkCpuIdleOff	Procesor nigdy nie przechodzi w stany bezczynności: minimalne opóźnienia, ale pobór i temperatury są wysokie nawet w spoczynku. Tylko na dobrze chłodzonym komputerze stacjonarnym, na zasilaczu.
+H:chkAdvUtc	Windows odczytuje czas BIOS jako UTC, jak Linux: przy podwójnym rozruchu zegar nie przeskakuje już o godzinę po zmianie systemu.
+H:chkAdvRazer	Blokuje współinstalatory sterowników i folder, do którego Razer Synapse kopiuje się po podłączeniu urządzenia. Blokuje też współinstalatory innych producentów.
+H:chkAdvLogi	Zamyka asystenta pobierania Logitech i nie pozwala mu instalować się przy każdym uruchomieniu.
+H:chkIPv4Pref	IPv6 pozostaje włączony, ale Windows najpierw próbuje IPv4. Przydatne z sieciami lub routerami, które źle obsługują IPv6.
+H:chkDiskNoSleep	Na zasilaczu dyski, łącze SATA i dyski NVMe nigdy nie przechodzą w oszczędzanie energii: brak opóźnień wybudzania. Na baterii bez zmian.

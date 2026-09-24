@@ -88,13 +88,13 @@ $script:Loc = @{
     chkGpuTdr          = @{ it = "TDR — allunga il timeout del driver a 10 s"; en = "TDR — raise the driver timeout to 10 s" }
     chkGpuMsi          = @{ it = "Interrupt MSI per la scheda video — attiva"; en = "MSI interrupts for the graphics card — enable" }
     ttlNvidia          = @{ it = "NVIDIA"; en = "NVIDIA" }
-    lblNvidiaHint      = @{ it = "Voci ignorate se la scheda non e NVIDIA."; en = "Skipped if the card is not NVIDIA." }
+    lblNvidiaHint      = @{ it = "Voci ignorate se la scheda non è NVIDIA."; en = "Skipped if the card is not NVIDIA." }
     chkNvTelemetry     = @{ it = "Telemetria NVIDIA — disattiva"; en = "NVIDIA telemetry — disable" }
     chkNvGfe           = @{ it = "GeForce Experience in background — disattiva"; en = "GeForce Experience in background — disable" }
     chkNvPerfMode      = @{ it = "Gestione energia GPU — prestazioni massime"; en = "GPU power management — maximum performance" }
     chkNvUpdates       = @{ it = "Controllo aggiornamenti driver NVIDIA — disattiva"; en = "NVIDIA driver update check — disable" }
     ttlAmd             = @{ it = "AMD RADEON"; en = "AMD RADEON" }
-    lblAmdHint         = @{ it = "Voci ignorate se la scheda non e AMD."; en = "Skipped if the card is not AMD." }
+    lblAmdHint         = @{ it = "Voci ignorate se la scheda non è AMD."; en = "Skipped if the card is not AMD." }
     chkAmdUx           = @{ it = "Programma esperienza utente AMD — disattiva"; en = "AMD User Experience Program — disable" }
     chkAmdBloat        = @{ it = "Servizi e avvii automatici AMD — disattiva"; en = "AMD services and auto-start entries — disable" }
     ttlIntelGpu        = @{ it = "INTEL GRAPHICS"; en = "INTEL GRAPHICS" }
@@ -102,7 +102,7 @@ $script:Loc = @{
 
     lblUiScale         = @{ it = "Scala interfaccia"; en = "Interface scale" }
     ttlShader          = @{ it = "CACHE SHADER"; en = "SHADER CACHE" }
-    lblShaderHint      = @{ it = "Gli shader gia compilati dai giochi. Svuotarla libera spazio e risolve gli artefatti dopo un cambio driver. Il primo avvio di ogni gioco sara piu lento, poi torna normale."; en = "Shaders already compiled by games. Clearing frees space and fixes artifacts after a driver change. The first launch of each game will be slower, then back to normal." }
+    lblShaderHint      = @{ it = "Gli shader già compilati dai giochi. Svuotarla libera spazio e risolve gli artefatti dopo un cambio driver. Il primo avvio di ogni gioco sarà più lento, poi torna normale."; en = "Shaders already compiled by games. Clearing frees space and fixes artifacts after a driver change. The first launch of each game will be slower, then back to normal." }
     btnShaderScan      = @{ it = "Calcola spazio occupato"; en = "Measure used space" }
     btnShaderClear     = @{ it = "Svuota cache shader"; en = "Clear shader cache" }
 
@@ -468,7 +468,7 @@ $script:Msg = @{
     shaderScanning   = @{ it = "Calcolo in corso..."; en = "Measuring..." }
     shaderNone       = @{ it = "Nessuna cache shader trovata."; en = "No shader cache found." }
     shaderTotal      = @{ it = "Totale"; en = "Total" }
-    shaderAsk        = @{ it = "Svuotare la cache shader?`n`nIl primo avvio di ogni gioco sara piu lento perche gli shader vengono ricompilati. Nessun dato di gioco viene toccato."; en = "Clear the shader cache?`n`nThe first launch of each game will be slower because shaders get recompiled. No game data is touched." }
+    shaderAsk        = @{ it = "Svuotare la cache shader?`n`nIl primo avvio di ogni gioco sarà più lento perché gli shader vengono ricompilati. Nessun dato di gioco viene toccato."; en = "Clear the shader cache?`n`nThe first launch of each game will be slower because shaders get recompiled. No game data is touched." }
     featNeedId       = @{ it = "Scrivi il numero della funzione prima di applicare."; en = "Enter the feature id before applying." }
     featEmpty        = @{ it = "Nessuna funzione modificata su questo computer."; en = "No feature overridden on this computer." }
     featStateOn      = @{ it = "attiva"; en = "enabled" }
@@ -778,6 +778,35 @@ $script:Msg = @{
     wuList_recommended = @{ it = "Nuove versioni di Windows rinviate di 365 giorni;Aggiornamenti mensili rinviati di 4 giorni;Driver esclusi da Windows Update;Nessun riavvio automatico con un utente collegato"; en = "New Windows versions deferred by 365 days;Monthly updates deferred by 4 days;Drivers excluded from Windows Update;No automatic restart while a user is signed in" }
     wuList_default     = @{ it = "Toglie i criteri di Windows Update impostati;Rimette i servizi di aggiornamento come in origine;Riattiva le attività pianificate degli aggiornamenti"; en = "Removes the Windows Update policies that were set;Restores the update services to their original state;Re-enables the scheduled update tasks" }
     wuList_disable     = @{ it = "Aggiornamenti automatici spenti;Servizi e attività di aggiornamento fermi;Aggiornamenti già scaricati eliminati"; en = "Automatic updates off;Update services and tasks stopped;Downloaded updates deleted" }
+    pn_ultimate        = @{ it = "Prestazioni eccellenti (Ultimate Performance)"; en = "Ultimate Performance" }
+    pn_high            = @{ it = "Prestazioni elevate"; en = "High performance" }
+    pn_balanced        = @{ it = "Bilanciato"; en = "Balanced" }
+    pn_saver           = @{ it = "Risparmio energia"; en = "Power saver" }
+    pd_ultimate        = @{ it = "Piano nascosto di Windows: nessun risparmio energetico, latenza minima."; en = "Hidden Windows plan: no power saving, minimum latency." }
+    pd_bitsum          = @{ it = "Piano di Bitsum (Process Lasso): prestazioni CPU costanti."; en = "Bitsum plan (Process Lasso): steady CPU performance." }
+    pd_high            = @{ it = "Piano standard di Windows ad alte prestazioni."; en = "Standard Windows high performance plan." }
+    pd_balanced        = @{ it = "Piano predefinito di Windows. Usalo per tornare indietro."; en = "Default Windows plan. Use it to go back." }
+    pd_saver           = @{ it = "Consumi minimi, prestazioni ridotte."; en = "Minimum power use, reduced performance." }
+    pd_adamx           = @{ it = "Favorisce le prestazioni sul risparmio energetico."; en = "Favors performance over power saving." }
+    pd_ancel           = @{ it = "Prestazioni massime, base Ultimate Performance."; en = "Maximum performance, based on Ultimate Performance." }
+    pd_atlas           = @{ it = "Ottimizzato per le prestazioni massime (v0.4.2)."; en = "Tuned for maximum performance (v0.4.2)." }
+    pd_calypto         = @{ it = "Disattiva il risparmio energetico per abbassare la latenza."; en = "Turns off power saving to lower latency." }
+    pd_core            = @{ it = "Piano essenziale, poche modifiche mirate."; en = "Minimal plan, a few targeted changes." }
+    pd_exmfree         = @{ it = "Più prestazioni e meno latenza; può alzare le temperature."; en = "More performance, less latency; may raise temperatures." }
+    pd_framesyncboost  = @{ it = "Prestazioni massime e latenza minima, idle attivo."; en = "Maximum performance and minimum latency, idle kept on." }
+    pd_hybred          = @{ it = "Latenza più bassa e prestazioni più alte."; en = "Lower latency and higher performance." }
+    pd_kaisen          = @{ it = "Piano pensato per PC fisso."; en = "Plan designed for desktop PCs." }
+    pd_khorvie         = @{ it = "Taglio prestazionale, molte voci modificate."; en = "Performance-oriented, many settings changed." }
+    pd_kirby           = @{ it = "Prestazioni massime, poche voci."; en = "Maximum performance, few settings." }
+    pd_kizzimo         = @{ it = "Il più aggressivo sulla latenza."; en = "The most aggressive on latency." }
+    pd_lawliet         = @{ it = "Base bilanciata modificata, consumi più contenuti."; en = "Modified balanced base, lower power use." }
+    pd_nexus           = @{ it = "Per il gioco, buone prestazioni su desktop."; en = "For gaming, good performance on desktops." }
+    pd_powerx          = @{ it = "Input lag minimo. Può causare BSOD su alcune CPU AMD."; en = "Minimum input lag. May cause BSODs on some AMD CPUs." }
+    pd_sapphire        = @{ it = "Piano di SapphireOS."; en = "SapphireOS plan." }
+    pd_vtrl            = @{ it = "Impostato da VTRL Optimizer, base Ultimate Performance."; en = "Set by VTRL Optimizer, based on Ultimate Performance." }
+    pd_xilly           = @{ it = "Incremento leggero rispetto al predefinito."; en = "A slight boost over the default." }
+    pd_xos             = @{ it = "Piano della raccolta xOS."; en = "Plan from the xOS collection." }
+    hkFirmware         = @{ it = "Firmware"; en = "Firmware" }
 }
 
 $script:LangCode = "it"

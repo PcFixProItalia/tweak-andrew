@@ -337,3 +337,32 @@ wuSub_disable	For special uses only: no security updates
 wuList_recommended	New Windows versions deferred by 365 days;Monthly updates deferred by 4 days;Drivers excluded from Windows Update;No automatic restart while a user is signed in
 wuList_default	Removes the Windows Update policies that were set;Restores the update services to their original state;Re-enables the scheduled update tasks
 wuList_disable	Automatic updates off;Update services and tasks stopped;Downloaded updates deleted
+pn_ultimate	Ultimate Performance
+pn_high	High performance
+pn_balanced	Balanced
+pn_saver	Power saver
+pd_ultimate	Hidden Windows plan: no power saving, minimum latency.
+pd_bitsum	Bitsum plan (Process Lasso): steady CPU performance.
+pd_high	Standard Windows high performance plan.
+pd_balanced	Default Windows plan. Use it to go back.
+pd_saver	Minimum power use, reduced performance.
+pd_adamx	Favors performance over power saving.
+pd_ancel	Maximum performance, based on Ultimate Performance.
+pd_atlas	Tuned for maximum performance (v0.4.2).
+pd_calypto	Turns off power saving to lower latency.
+pd_core	Minimal plan, a few targeted changes.
+pd_exmfree	More performance, less latency; may raise temperatures.
+pd_framesyncboost	Maximum performance and minimum latency, idle kept on.
+pd_hybred	Lower latency and higher performance.
+pd_kaisen	Plan designed for desktop PCs.
+pd_khorvie	Performance-oriented, many settings changed.
+pd_kirby	Maximum performance, few settings.
+pd_kizzimo	The most aggressive on latency.
+pd_lawliet	Modified balanced base, lower power use.
+pd_nexus	For gaming, good performance on desktops.
+pd_powerx	Minimum input lag. May cause BSODs on some AMD CPUs.
+pd_sapphire	SapphireOS plan.
+pd_vtrl	Set by VTRL Optimizer, based on Ultimate Performance.
+pd_xilly	A slight boost over the default.
+pd_xos	Plan from the xOS collection.
+hkFirmware	Firmware

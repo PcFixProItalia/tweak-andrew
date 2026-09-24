@@ -840,3 +840,68 @@ M:wuSub_disable	Pour usages particuliers : pas de mises à jour de sécurité
 M:wuList_recommended	Nouvelles versions de Windows reportées de 365 jours;Mises à jour mensuelles reportées de 4 jours;Pilotes exclus de Windows Update;Aucun redémarrage automatique avec un utilisateur connecté
 M:wuList_default	Retire les stratégies Windows Update définies;Rétablit les services de mise à jour d'origine;Réactive les tâches planifiées de mise à jour
 M:wuList_disable	Mises à jour automatiques désactivées;Services et tâches de mise à jour arrêtés;Mises à jour téléchargées supprimées
+M:pn_ultimate	Performances optimales (Ultimate Performance)
+M:pn_high	Performances élevées
+M:pn_balanced	Utilisation normale
+M:pn_saver	Économie d'énergie
+M:pd_ultimate	Mode caché de Windows : aucune économie d'énergie, latence minimale.
+M:pd_bitsum	Mode de Bitsum (Process Lasso) : performances CPU constantes.
+M:pd_high	Mode standard de Windows à hautes performances.
+M:pd_balanced	Mode par défaut de Windows. Utilisez-le pour revenir en arrière.
+M:pd_saver	Consommation minimale, performances réduites.
+M:pd_adamx	Privilégie les performances sur l'économie d'énergie.
+M:pd_ancel	Performances maximales, basé sur Ultimate Performance.
+M:pd_atlas	Optimisé pour des performances maximales (v0.4.2).
+M:pd_calypto	Désactive l'économie d'énergie pour réduire la latence.
+M:pd_core	Mode minimal, quelques changements ciblés.
+M:pd_exmfree	Plus de performances, moins de latence ; peut augmenter les températures.
+M:pd_framesyncboost	Performances maximales et latence minimale, repos actif.
+M:pd_hybred	Latence plus faible et performances plus élevées.
+M:pd_kaisen	Mode conçu pour les PC fixes.
+M:pd_khorvie	Orienté performances, nombreux réglages modifiés.
+M:pd_kirby	Performances maximales, peu de réglages.
+M:pd_kizzimo	Le plus agressif sur la latence.
+M:pd_lawliet	Base équilibrée modifiée, consommation réduite.
+M:pd_nexus	Pour le jeu, bonnes performances sur PC fixe.
+M:pd_powerx	Latence d'entrée minimale. Peut provoquer des BSOD sur certains CPU AMD.
+M:pd_sapphire	Mode de SapphireOS.
+M:pd_vtrl	Réglé par VTRL Optimizer, basé sur Ultimate Performance.
+M:pd_xilly	Légère amélioration par rapport au mode par défaut.
+M:pd_xos	Mode de la collection xOS.
+M:hkFirmware	Micrologiciel
+H:chkNvP2	Le pilote ne baisse plus la fréquence mémoire au lancement d'un programme CUDA. Rendu et calcul plus rapides.
+H:chkNvDrsPower	La carte reste à haute fréquence au lieu de ralentir entre les images. Moins de chutes de FPS.
+H:chkNvThreaded	Les jeux OpenGL répartissent le travail du pilote sur plusieurs cœurs.
+H:chkNvTexPerf	Le filtrage des textures privilégie la vitesse : quelques FPS en plus, différence visuelle minime.
+H:chkNvAniso	Le filtrage anisotrope prend moins d'échantillons là où la différence ne se voit pas.
+H:chkNvShaderCache	Le pilote conserve les shaders compilés : moins de saccades quand un jeu charge de nouvelles zones.
+H:chkNvDisplayPower	Le pilote n'assombrit pas l'écran pour économiser de l'énergie.
+H:chkNvHdcp	Retire la protection des contenus : moins de travail pour la carte, mais Netflix et autres ne seront plus en haute résolution.
+H:chkNvPreempt	La carte termine une tâche avant de passer à la suivante. Peut réduire la latence ; sur certains PC, provoque des blocages.
+H:chkNvDynPstate	La carte ne baisse jamais ses fréquences. Réactivité maximale, plus de chaleur et de consommation même au repos.
+H:chkNvLatency	Réduit les attentes internes du pilote destinées à économiser l'énergie. L'effet varie : essayez et mesurez.
+H:chkAmdAntiLag	Le processeur ne prend pas d'avance sur la carte graphique. Commandes plus réactives en jeu.
+H:chkAmdShaderCache	Les shaders compilés sont toujours conservés : moins de saccades au chargement.
+H:chkAmdTexPerf	Le filtrage des textures privilégie la vitesse, avec des différences à peine visibles.
+H:chkAmdTess	Le pilote limite la tessellation excessive de certains jeux. Plus de FPS dans les scènes lourdes.
+H:chkAmdFlipQueue	Une seule image en file vers l'écran. Moins de délai entre la souris et l'image.
+H:chkAmdNoFrtc	Supprime la limite de FPS fixée par le pilote.
+H:chkAmdStutter	La mémoire vidéo ne se met pas en veille entre les images. Temps d'image plus stables.
+H:chkAmdAspm	Le lien PCIe de la carte reste toujours actif. Pas de micro-délais au réveil.
+H:chkAmdPowerGating	Les unités de la carte ne s'éteignent pas au repos. Plus réactive, plus de consommation et de chaleur.
+H:chkAmdDma	Change la façon dont la carte copie les données. Sur certaines cartes, réduit les saccades ; sur d'autres, les aggrave.
+H:chkAmdPreempt	La carte termine un calcul avant le suivant. À tester : sur certains PC, provoque des blocages.
+H:chkNvLowLatency	Comme « Activé » dans le Panneau de configuration NVIDIA : le processeur ne prépare qu'une image d'avance. Plus compatible que « Ultra », qui saccade avec certains jeux et avec G-SYNC.
+H:chkNvNoAnsel	Désactive Ansel, la surcouche photo de NVIDIA chargée dans chaque jeu.
+H:chkIntelTelemetry	Désactive le programme d'amélioration et le rapport d'utilisation installés avec l'assistant de pilotes Intel. Le pilote graphique n'en a pas besoin.
+H:chkIntelGfxPower	Dans le mode d'alimentation, sur secteur, la carte graphique intégrée Intel tourne à pleine fréquence au lieu d'économiser. Sur batterie, rien ne change.
+H:chkIntelDpst	Sur les portables Intel, l'écran baisse luminosité et contraste selon ce qu'il affiche : désactivé, les couleurs restent constantes. Sur certains modèles, le pilote le réactive au redémarrage.
+H:chkCpuIntelBoostPol	Sur secteur, le turbo des processeurs Intel monte sans la limite de stratégie du mode d'alimentation. Sur batterie, rien ne change.
+H:chkCpuIntelHybrid	Uniquement les processeurs à cœurs P et E (12e génération et suivantes) : les threads vont sur les cœurs P si possible. Utile en jeu ; les cœurs E restent disponibles quand la charge augmente.
+H:chkCpuAmdParking	Sur secteur, tous les cœurs restent prêts au lieu d'être parqués. Indisponible sur les Ryzen X3D à deux chiplets, où le parcage aide les jeux.
+H:chkCpuIdleOff	Le processeur n'entre jamais en état de repos : latence minimale, mais consommation et températures élevées même au repos. Seulement sur un PC fixe bien refroidi, sur secteur.
+H:chkAdvUtc	Windows lit l'heure du BIOS en UTC, comme Linux : en double démarrage, l'horloge ne saute plus d'une heure à chaque changement de système.
+H:chkAdvRazer	Bloque les co-installeurs de pilotes et le dossier où Razer Synapse se copie quand on branche un périphérique. Bloque aussi les co-installeurs des autres fabricants.
+H:chkAdvLogi	Ferme l'assistant de téléchargement Logitech et l'empêche de se réinstaller à chaque démarrage.
+H:chkIPv4Pref	IPv6 reste actif, mais Windows essaie d'abord IPv4. Utile avec les réseaux ou routeurs qui gèrent mal IPv6.
+H:chkDiskNoSleep	Sur secteur, disques, lien SATA et SSD NVMe n'entrent jamais en économie d'énergie : aucun délai de réveil. Sur batterie, rien ne change.

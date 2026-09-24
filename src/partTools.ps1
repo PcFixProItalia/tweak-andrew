@@ -67,7 +67,7 @@ function Set-UiLock([string]$Key, [bool]$On) {
         $el.IsEnabled = -not $lock
         $el.Opacity = if ($lock) { 0.5 } else { 1 }
     }
-    foreach ($n in @('barQueue', 'chkRestorePoint')) {
+    foreach ($n in @('barQueue', 'btnDetectActive', 'chkRestorePoint')) {
         $el = $window.FindName($n)
         if ($el) { $el.IsEnabled = -not $lock }
     }

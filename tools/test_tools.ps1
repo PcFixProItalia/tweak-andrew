@@ -49,10 +49,10 @@ $window.Add_ContentRendered({
     # Strumento finto con avanzamento
     (E 'tabTools').IsChecked = $true; Pump 400
     Add-ToolJob 'Prova strumento' "Write-Host '@@STEP Primo passo'; foreach (`$i in 1..10) { Write-Host ('@@PCT ' + (`$i*10)); Start-Sleep -Milliseconds 300 }; Write-Host '@@DONE Fatto'"
-    $sw0 = [Diagnostics.Stopwatch]::StartNew(); while ((Test-ToolBusy) -and $sw0.ElapsedMilliseconds -lt 8000) { Pump 300; if ($script:ToolJob -and $script:ToolJob.Proc) { if ($script:ToolJob.Frac -ge 0.4 -and -not $shotMid) { $shotMid = $true; (E 'tabPerf').IsChecked = $true; Pump 200; Save-Shot 'tools-lock-perf'; (E 'tabTools').IsChecked = $true } } }
-    Write-Host ('  stato durante: ' + $script:ToolJob.StateText.Text)
-    Write-Host ("Durante lo strumento: Prestazioni abilitata=" + (E 'pagePerf').IsEnabled + ", App abilitata=" + (E 'pageApps').IsEnabled + ", barra=" + (E 'barQueue').IsEnabled)
-    Write-Host ("  indicatore: " + $pillActivity.Visibility + " | " + $txtActivity.Text + " " + $txtActivityPct.Text)
+    $sw0 = [Diagnostics.Stopwatch]::StartNew(); while ((Test-ToolBusy) -and $sw0.ElapsedMilliseconds -lt 8000) { Pump 300; if ($script:ToolJob -and $script:ToolJob.Proc) { if ($script:ToolJob.Frac -ge 0.4 -and -not $shotMid) { $shotMid = $true; $midState = $script:ToolJob.StateText.Text; $midPerf = (E 'pagePerf').IsEnabled; $midApps = (E 'pageApps').IsEnabled; $midBar = (E 'barQueue').IsEnabled; $midPill = "$($pillActivity.Visibility) | $($txtActivity.Text) $($txtActivityPct.Text)"; (E 'tabPerf').IsChecked = $true; Pump 200; Save-Shot 'tools-lock-perf'; (E 'tabTools').IsChecked = $true } } }
+    Write-Host ('  stato durante: ' + $midState)
+    Write-Host ("Durante lo strumento: Prestazioni abilitata=" + $midPerf + ", App abilitata=" + $midApps + ", barra=" + $midBar)
+    Write-Host ("  indicatore: " + $midPill)
     (E 'tabTools').IsChecked = $true
     $sw = [Diagnostics.Stopwatch]::StartNew()
     while ((Test-ToolBusy) -and $sw.ElapsedMilliseconds -lt 20000) { Pump 200 }

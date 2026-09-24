@@ -347,7 +347,7 @@ function Show-HomeInfo {
     Add-HomeRow $c.Panel (T 'hkModel') $i.Board
     $bd = Format-HomeDate $i.BiosDate
     Add-HomeRow $c.Panel 'BIOS' ($(if ($bd) { "$($i.Bios)  ($bd)" } else { $i.Bios }))
-    Add-HomeRow $c.Panel 'Firmware' $i.Firmware
+    Add-HomeRow $c.Panel (T 'hkFirmware') $i.Firmware
     if ($null -ne $i.SecureBoot) { Add-HomeRow $c.Panel 'Secure Boot' ($(if ($i.SecureBoot) { $on } else { $off })) }
     Add-HomeRow $c.Panel 'TPM' ($(if ($i.Tpm) { $i.Tpm } else { T 'valNone' }))
     [void]$cards.Add($c)

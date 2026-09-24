@@ -837,3 +837,68 @@ M:wuSub_disable	Solo para usos especiales: sin actualizaciones de seguridad
 M:wuList_recommended	Nuevas versiones de Windows aplazadas 365 días;Actualizaciones mensuales aplazadas 4 días;Controladores excluidos de Windows Update;Sin reinicio automático con un usuario conectado
 M:wuList_default	Quita las directivas de Windows Update aplicadas;Devuelve los servicios de actualización a su estado original;Reactiva las tareas programadas de actualización
 M:wuList_disable	Actualizaciones automáticas desactivadas;Servicios y tareas de actualización detenidos;Actualizaciones descargadas eliminadas
+M:pn_ultimate	Máximo rendimiento (Ultimate Performance)
+M:pn_high	Alto rendimiento
+M:pn_balanced	Equilibrado
+M:pn_saver	Economizador
+M:pd_ultimate	Plan oculto de Windows: sin ahorro de energía, latencia mínima.
+M:pd_bitsum	Plan de Bitsum (Process Lasso): rendimiento de CPU constante.
+M:pd_high	Plan estándar de Windows de alto rendimiento.
+M:pd_balanced	Plan predeterminado de Windows. Úsalo para volver atrás.
+M:pd_saver	Consumo mínimo, rendimiento reducido.
+M:pd_adamx	Prioriza el rendimiento sobre el ahorro de energía.
+M:pd_ancel	Rendimiento máximo, basado en Ultimate Performance.
+M:pd_atlas	Optimizado para el máximo rendimiento (v0.4.2).
+M:pd_calypto	Desactiva el ahorro de energía para reducir la latencia.
+M:pd_core	Plan básico, pocos cambios concretos.
+M:pd_exmfree	Más rendimiento y menos latencia; puede subir las temperaturas.
+M:pd_framesyncboost	Rendimiento máximo y latencia mínima, reposo activo.
+M:pd_hybred	Menor latencia y mayor rendimiento.
+M:pd_kaisen	Plan pensado para PC de sobremesa.
+M:pd_khorvie	Orientado al rendimiento, muchos ajustes cambiados.
+M:pd_kirby	Rendimiento máximo, pocos ajustes.
+M:pd_kizzimo	El más agresivo con la latencia.
+M:pd_lawliet	Base equilibrada modificada, menor consumo.
+M:pd_nexus	Para juegos, buen rendimiento en sobremesa.
+M:pd_powerx	Retraso de entrada mínimo. Puede causar BSOD en algunas CPU AMD.
+M:pd_sapphire	Plan de SapphireOS.
+M:pd_vtrl	Configurado por VTRL Optimizer, basado en Ultimate Performance.
+M:pd_xilly	Ligera mejora respecto al predeterminado.
+M:pd_xos	Plan de la colección xOS.
+M:hkFirmware	Firmware
+H:chkNvP2	El controlador deja de bajar el reloj de la memoria cuando arranca un programa CUDA. Renderizado y cálculo más rápidos.
+H:chkNvDrsPower	La tarjeta se mantiene a frecuencias altas en lugar de bajar entre fotogramas. Menos caídas de FPS.
+H:chkNvThreaded	Los juegos OpenGL reparten el trabajo del controlador entre varios núcleos.
+H:chkNvTexPerf	El filtrado de texturas prioriza la velocidad: algunos FPS más, diferencia visual mínima.
+H:chkNvAniso	El filtrado anisotrópico toma menos muestras donde la diferencia no se nota.
+H:chkNvShaderCache	El controlador conserva los shaders compilados: menos tirones cuando un juego carga zonas nuevas.
+H:chkNvDisplayPower	El controlador no atenúa la pantalla para ahorrar energía.
+H:chkNvHdcp	Quita la protección de contenidos: menos trabajo para la tarjeta, pero Netflix y similares no se verán en alta resolución.
+H:chkNvPreempt	La tarjeta termina un trabajo antes de pasar al siguiente. Puede reducir la latencia; en algunos PC provoca bloqueos.
+H:chkNvDynPstate	La tarjeta nunca baja sus frecuencias. Máxima respuesta, más calor y consumo incluso en reposo.
+H:chkNvLatency	Reduce las esperas internas del controlador usadas para ahorrar energía. El efecto varía: pruébalo y mide.
+H:chkAmdAntiLag	El procesador no se adelanta a la tarjeta gráfica. Controles más ágiles en los juegos.
+H:chkAmdShaderCache	Los shaders compilados se conservan siempre: menos tirones al cargar.
+H:chkAmdTexPerf	El filtrado de texturas prioriza la velocidad, con diferencias apenas visibles.
+H:chkAmdTess	El controlador limita la teselación excesiva de algunos juegos. Más FPS en escenas pesadas.
+H:chkAmdFlipQueue	Solo un fotograma en cola hacia la pantalla. Menos retraso entre el ratón y la imagen.
+H:chkAmdNoFrtc	Quita el límite de FPS fijado por el controlador.
+H:chkAmdStutter	La memoria de vídeo no se apaga entre fotogramas. Tiempos de fotograma más estables.
+H:chkAmdAspm	El enlace PCIe de la tarjeta queda siempre activo. Sin microretrasos al despertar.
+H:chkAmdPowerGating	Las unidades de la tarjeta no se apagan en reposo. Más respuesta, más consumo y calor.
+H:chkAmdDma	Cambia cómo la tarjeta copia los datos. En algunas tarjetas reduce los tirones, en otras los empeora.
+H:chkAmdPreempt	La tarjeta termina un trabajo de cálculo antes del siguiente. Conviene probarlo: en algunos PC provoca bloqueos.
+H:chkNvLowLatency	Como «Activado» en el Panel de control de NVIDIA: el procesador prepara solo un fotograma por delante. Más compatible que «Ultra», que da tirones con algunos juegos y con G-SYNC.
+H:chkNvNoAnsel	Desactiva Ansel, la capa de fotos de NVIDIA que queda cargada en cada juego.
+H:chkIntelTelemetry	Desactiva el programa de mejora y el informe de uso instalados con el asistente de controladores de Intel. El controlador gráfico no los necesita.
+H:chkIntelGfxPower	En el plan de energía, con el cargador conectado, la gráfica integrada Intel funciona a máxima frecuencia en lugar de ahorrar. Con batería no cambia nada.
+H:chkIntelDpst	En portátiles Intel la pantalla baja brillo y contraste según lo que muestra: desactivado, los colores se mantienen constantes. En algunos modelos el controlador lo reactiva al reiniciar.
+H:chkCpuIntelBoostPol	Con el cargador conectado, el turbo de los procesadores Intel sube sin el límite de política del plan de energía. Con batería queda como antes.
+H:chkCpuIntelHybrid	Solo procesadores con núcleos P y E (desde la 12.ª generación): los hilos van a los núcleos P cuando es posible. Útil en juegos; los núcleos E siguen disponibles cuando sube la carga.
+H:chkCpuAmdParking	Con el cargador conectado, todos los núcleos quedan listos en lugar de aparcarse. No disponible en Ryzen X3D de dos chiplets, donde el aparcamiento ayuda a los juegos.
+H:chkCpuIdleOff	El procesador nunca entra en estados de reposo: latencia mínima, pero consumo y temperaturas altos incluso en reposo. Solo en un sobremesa bien refrigerado y con el cargador conectado.
+H:chkAdvUtc	Windows lee la hora de la BIOS como UTC, igual que Linux: con arranque dual el reloj ya no salta una hora cada vez que cambias de sistema.
+H:chkAdvRazer	Bloquea los coinstaladores de controladores y la carpeta en la que Razer Synapse se copia al conectar un dispositivo. También bloquea los coinstaladores de otros fabricantes.
+H:chkAdvLogi	Cierra el asistente de descargas de Logitech e impide que se reinstale en cada inicio.
+H:chkIPv4Pref	IPv6 sigue activo, pero Windows prueba primero IPv4. Útil con redes o routers que gestionan mal IPv6.
+H:chkDiskNoSleep	Con el cargador conectado, discos, enlace SATA y SSD NVMe nunca entran en ahorro de energía: sin retrasos al despertar. Con batería todo queda como antes.

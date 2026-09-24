@@ -597,15 +597,17 @@ function Initialize-CatPage([string]$page, $hostEl, [bool]$embedded = $false) {
     }
 
     # Due colonne di schede, riempite tenendo le altezze il piu' possibile pari.
+    # Dentro Alimentazione le schede stanno in una colonna sola, accanto ai piani.
+    $nCols = if ($embedded) { 1 } else { 2 }
     $cols = New-Object System.Windows.Controls.Grid
-    foreach ($i in 0..1) {
+    foreach ($i in 0..($nCols - 1)) {
         $cd = New-Object System.Windows.Controls.ColumnDefinition
         $cd.Width = New-Object System.Windows.GridLength(1, [System.Windows.GridUnitType]::Star)
         $cols.ColumnDefinitions.Add($cd)
     }
     $stacks = @((New-Object System.Windows.Controls.StackPanel), (New-Object System.Windows.Controls.StackPanel))
     $heights = @(0, 0)
-    for ($i = 0; $i -lt 2; $i++) { [System.Windows.Controls.Grid]::SetColumn($stacks[$i], $i); [void]$cols.Children.Add($stacks[$i]) }
+    for ($i = 0; $i -lt $nCols; $i++) { [System.Windows.Controls.Grid]::SetColumn($stacks[$i], $i); [void]$cols.Children.Add($stacks[$i]) }
 
     $items = @($script:Catalog | Where-Object { $_.Page -eq $page })
     $groups = @($items | ForEach-Object { $_.Group } | Select-Object -Unique)
@@ -618,7 +620,7 @@ function Initialize-CatPage([string]$page, $hostEl, [bool]$embedded = $false) {
             [void]$c.Panel.Children.Add($row.Element)
             $rows += $row
         }
-        $col = if ($heights[0] -le $heights[1]) { 0 } else { 1 }
+        $col = if ($nCols -eq 1 -or $heights[0] -le $heights[1]) { 0 } else { 1 }
         [void]$stacks[$col].Children.Add($c.Card)
         $heights[$col] += $gi.Count + 2
         $script:CatCards[$page] += @{ Card = $c.Card; Rows = $rows }

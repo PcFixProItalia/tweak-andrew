@@ -15,7 +15,7 @@ for line in io.open(os.path.join(LANG, 'v7_strings.txt'), encoding='utf-8'):
     if not line or line.startswith('#'): continue
     p = line.split('|')
     if p[0] in ('L', 'M'): assert len(p) == 11, p[:2]
-    else: assert len(p) == 4, p[:2]
+    else: assert len(p) in (4, 11), p[:2]
     rows.append(p)
 
 partc = os.path.join(ROOT, 'src', 'partC.ps1')
@@ -52,6 +52,9 @@ for p in rows:
             upsert_tsv(os.path.join(LANG, 'tr_%s.tsv' % lg), '%s:%s' % (kind, key), text)
     else:
         upsert_tsv(os.path.join(LANG, 'tips_it_en.tsv'), key, p[2] + '\t' + p[3])
+        # Le descrizioni scritte in tutte le lingue portano anche le altre sette.
+        for lg, text in zip(OTHER, p[4:]):
+            upsert_tsv(os.path.join(LANG, 'tr_%s.tsv' % lg), 'H:%s' % key, text)
 
 io.open(partc, 'w', encoding='utf-8').write(t)
 print('testi uniti:', len(rows))

@@ -98,7 +98,7 @@ function Show-Page {
             if ($null -ne $pa -and $null -ne $script:GlowPage) { Set-PageGlow $pa.Color }
             # Sulle pagine a effetto immediato la coda di «Applica» non serve: si nasconde.
             $live = ($entry.Cat -and $entry.Cat -ne 'power') -or $entry.Apps -or $entry.Home -or $entry.Tools
-            foreach ($n in @('barQueue', 'pillSelected', 'chkRestorePoint')) {
+            foreach ($n in @('barQueue', 'pillSelected', 'btnDetectActive', 'chkRestorePoint')) {
                 $el = $window.FindName($n)
                 if ($el) { $el.Visibility = if ($live) { 'Collapsed' } else { 'Visible' } }
             }

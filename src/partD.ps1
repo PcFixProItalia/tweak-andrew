@@ -298,7 +298,7 @@ function Build-Actions {
 
     Add-IfChecked $chkActivityHistory {
         $p = 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\System'
-        Set-Reg $p 'PublishUserActivities' 0 'DWord' 'Cronologia attivita'
+        Set-Reg $p 'PublishUserActivities' 0 'DWord' 'Cronologia attività'
         Set-Reg $p 'EnableActivityFeed' 0 'DWord' 'Feed attivita'
         Set-Reg $p 'UploadUserActivities' 0 'DWord' 'Caricamento attivita'
     }
@@ -474,7 +474,7 @@ function Build-Actions {
 
     # ---------- MENU START ----------
     Add-IfChecked $chkStartMorePins {
-        Set-Reg 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced' 'Start_Layout' 1 'DWord' 'Layout Start con piu collegamenti'
+        Set-Reg 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced' 'Start_Layout' 1 'DWord' 'Layout Start con più collegamenti'
     }
     Add-IfChecked $chkStartHideRec {
         Set-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\Explorer' 'HideRecommendedSection' 1 'DWord' 'Sezione Consigliati'
