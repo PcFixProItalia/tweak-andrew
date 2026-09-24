@@ -1922,7 +1922,8 @@
                                     </LinearGradientBrush>
                                 </ScrollViewer.Resources>
                                 <StackPanel>
-                                <Grid Height="470">
+                                <!-- Altezza libera: la colonna destra cresce con le voci, la lista dei piani scorre da sola. -->
+                                <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="1.45*"/>
                                     <ColumnDefinition Width="*"/>
@@ -1952,7 +1953,7 @@
                                             </StackPanel>
                                         </Grid>
 
-                                        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Padding="0,0,8,0">
+                                        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Padding="0,0,8,0" MaxHeight="360" VerticalAlignment="Top">
                                             <StackPanel x:Name="panPlans"/>
                                         </ScrollViewer>
                                     </Grid>
