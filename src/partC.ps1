@@ -398,8 +398,8 @@ $script:Loc = @{
     chkAmdPowerGating  = @{ it = "Power gating spento"; en = "Power gating off" }
     chkAmdDma          = @{ it = "Copie DMA e scrittura a blocchi"; en = "DMA copies and block write" }
     chkAmdPreempt      = @{ it = "Prelazione dei calcoli spenta"; en = "Compute preemption off" }
-    ttlPowerAdv        = @{ it = "PIANO ATTIVO: IMPOSTAZIONI AVANZATE"; en = "ACTIVE PLAN: ADVANCED SETTINGS" }
-    lblPowerAdvHint    = @{ it = "Valgono subito sul piano in uso, a rete e a batteria. Cambiando piano si riparte dai suoi valori."; en = "They apply at once to the plan in use, on AC and battery. Switching plans starts from its own values." }
+    ttlPowerAdv        = @{ it = "IMPOSTAZIONI DEL PIANO IN USO"; en = "SETTINGS OF THE PLAN IN USE" }
+    lblPowerAdvHint    = @{ it = "Cambiano subito il piano attivo, sia con l'alimentatore sia a batteria: non serve premere Applica. Se attivi un altro piano, valgono le impostazioni di quello."; en = "They change the active plan right away, both plugged in and on battery: no need to press Apply. If you switch to another plan, its own settings apply." }
     radAppsCatalog     = @{ it = "Catalogo"; en = "Catalog" }
     radAppsInstalled   = @{ it = "Installate"; en = "Installed" }
     lblAppSearchHint   = @{ it = "Cerca..."; en = "Search..." }
@@ -807,6 +807,10 @@ $script:Msg = @{
     pd_xilly           = @{ it = "Incremento leggero rispetto al predefinito."; en = "A slight boost over the default." }
     pd_xos             = @{ it = "Piano della raccolta xOS."; en = "Plan from the xOS collection." }
     hkFirmware         = @{ it = "Firmware"; en = "Firmware" }
+    pwRecBtn           = @{ it = "Usa i valori consigliati"; en = "Use recommended values" }
+    pwDefBtn           = @{ it = "Torna ai valori di Windows"; en = "Back to Windows values" }
+    pwAskRec           = @{ it = "Imposto i valori consigliati sul piano in uso. Le modifiche valgono subito. Procedo?"; en = "I'll set the recommended values on the plan in use. The changes apply right away. Go ahead?" }
+    pwAskDef           = @{ it = "Riporto il piano in uso ai valori predefiniti di Windows. Le modifiche valgono subito. Procedo?"; en = "I'll put the plan in use back to the Windows default values. The changes apply right away. Go ahead?" }
 }
 
 $script:LangCode = "it"

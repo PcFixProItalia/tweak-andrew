@@ -579,12 +579,14 @@ function Initialize-CatPage([string]$page, $hostEl, [bool]$embedded = $false) {
         [System.Windows.Controls.Grid]::SetRow($top, 0)
         [void]$root.Children.Add($top)
     } else {
-        $bRec = New-CatButton (T 'applyRecommended') '#FF2ED3A7'
+        # In Alimentazione i pulsanti agiscono sul piano in uso e valgono subito: lo dicono le loro frasi.
+        $pw = $page -eq 'power'
+        $bRec = New-CatButton (T $(if ($pw) { 'pwRecBtn' } else { 'applyRecommended' })) '#FF2ED3A7'
         $bRec.DataContext = $page
-        $bRec.Add_Click({ $p = [string]$this.DataContext; Invoke-CatBulk $p { param($i) Get-CatRecTarget $i } (T 'askRecommended') })
-        $bDef = New-CatButton (T 'restoreWindows') ''
+        $bRec.Add_Click({ $p = [string]$this.DataContext; Invoke-CatBulk $p { param($i) Get-CatRecTarget $i } (T $(if ($p -eq 'power') { 'pwAskRec' } else { 'askRecommended' })) })
+        $bDef = New-CatButton (T $(if ($pw) { 'pwDefBtn' } else { 'restoreWindows' })) ''
         $bDef.DataContext = $page
-        $bDef.Add_Click({ $p = [string]$this.DataContext; Invoke-CatBulk $p { param($i) Get-CatDefTarget $i } (T 'askWindowsDefaults') })
+        $bDef.Add_Click({ $p = [string]$this.DataContext; Invoke-CatBulk $p { param($i) Get-CatDefTarget $i } (T $(if ($p -eq 'power') { 'pwAskDef' } else { 'askWindowsDefaults' })) })
         [void]$bar.Children.Add($bRec); [void]$bar.Children.Add($bDef)
         if (@($script:Catalog | Where-Object { $_.Page -eq $page -and $_.Flags -match 'X' }).Count -gt 0) {
             $bEx = New-CatButton (T 'restartExplorer') ''

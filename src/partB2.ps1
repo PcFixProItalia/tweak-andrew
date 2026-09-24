@@ -1985,6 +1985,12 @@
 
                                 <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto" Padding="0,0,6,0">
                                     <StackPanel>
+                                    <StackPanel Margin="7,0,7,4">
+                                        <TextBlock x:Name="ttlPowerAdv" Text="IMPOSTAZIONI DEL PIANO IN USO" Style="{StaticResource CardTitle}" Margin="0,0,0,4"/>
+                                        <TextBlock x:Name="lblPowerAdvHint" Style="{StaticResource SubTitle}" TextWrapping="Wrap"
+                                                   Text="Cambiano subito il piano attivo, sia con l'alimentatore sia a batteria: non serve premere Applica. Se attivi un altro piano, valgono le impostazioni di quello."/>
+                                    </StackPanel>
+                                    <Grid x:Name="catPower"/>
                                         <Border Style="{StaticResource Glass}">
                                             <StackPanel>
                                                 <TextBlock x:Name="ttlSleep" Text="RISPARMIO E SOSPENSIONE" Style="{StaticResource CardTitle}"/>
@@ -2007,12 +2013,6 @@
                                                 <CheckBox x:Name="chkMenuHibernate" Tag="live" Content="Iberna nel menu Arresta"/>
                                             </StackPanel>
                                         </Border>
-                                    <StackPanel Margin="7,6,7,4">
-                                        <TextBlock x:Name="ttlPowerAdv" Text="PIANO ATTIVO: IMPOSTAZIONI AVANZATE" Style="{StaticResource CardTitle}" Margin="0,0,0,4"/>
-                                        <TextBlock x:Name="lblPowerAdvHint" Style="{StaticResource SubTitle}" TextWrapping="Wrap"
-                                                   Text="Valgono subito sul piano in uso, a rete e a batteria. Cambiando piano si ripartira dai suoi valori."/>
-                                    </StackPanel>
-                                    <Grid x:Name="catPower"/>
                                     </StackPanel>
                                 </ScrollViewer>
                             </Grid>

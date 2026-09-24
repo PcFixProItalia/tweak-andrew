@@ -526,8 +526,8 @@ L:chkAmdAspm	Économie PCIe de la carte désactivée
 L:chkAmdPowerGating	Power gating désactivé
 L:chkAmdDma	Copies DMA et écriture par blocs
 L:chkAmdPreempt	Préemption de calcul désactivée
-L:ttlPowerAdv	PLAN ACTIF : PARAMÈTRES AVANCÉS
-L:lblPowerAdvHint	S'appliquent aussitôt au plan utilisé, sur secteur et sur batterie. Changer de plan repart de ses valeurs.
+L:ttlPowerAdv	PARAMÈTRES DU MODE UTILISÉ
+L:lblPowerAdvHint	Ils modifient tout de suite le mode actif, sur secteur comme sur batterie : inutile d'appuyer sur Appliquer. Si vous activez un autre mode, ce sont ses propres paramètres qui comptent.
 L:radAppsCatalog	Catalogue
 L:radAppsInstalled	Installées
 L:lblAppSearchHint	Rechercher...
@@ -905,3 +905,7 @@ H:chkAdvRazer	Bloque les co-installeurs de pilotes et le dossier où Razer Synap
 H:chkAdvLogi	Ferme l'assistant de téléchargement Logitech et l'empêche de se réinstaller à chaque démarrage.
 H:chkIPv4Pref	IPv6 reste actif, mais Windows essaie d'abord IPv4. Utile avec les réseaux ou routeurs qui gèrent mal IPv6.
 H:chkDiskNoSleep	Sur secteur, disques, lien SATA et SSD NVMe n'entrent jamais en économie d'énergie : aucun délai de réveil. Sur batterie, rien ne change.
+M:pwRecBtn	Utiliser les valeurs recommandées
+M:pwDefBtn	Revenir aux valeurs de Windows
+M:pwAskRec	Je règle les valeurs recommandées sur le mode utilisé. Les changements s'appliquent tout de suite. Je continue ?
+M:pwAskDef	Je remets le mode utilisé aux valeurs par défaut de Windows. Les changements s'appliquent tout de suite. Je continue ?

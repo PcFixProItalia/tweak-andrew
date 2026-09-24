@@ -523,8 +523,8 @@ L:chkAmdAspm	Oszczędzanie PCIe karty wyłączone
 L:chkAmdPowerGating	Power gating wyłączony
 L:chkAmdDma	Kopie DMA i zapis blokowy
 L:chkAmdPreempt	Wywłaszczanie obliczeń wyłączone
-L:ttlPowerAdv	AKTYWNY PLAN: USTAWIENIA ZAAWANSOWANE
-L:lblPowerAdvHint	Działają od razu na używany plan, na zasilaniu i baterii. Zmiana planu przywraca jego wartości.
+L:ttlPowerAdv	USTAWIENIA UŻYWANEGO PLANU
+L:lblPowerAdvHint	Zmieniają aktywny plan od razu, na zasilaczu i na baterii: nie trzeba naciskać Zastosuj. Po włączeniu innego planu obowiązują jego ustawienia.
 L:radAppsCatalog	Katalog
 L:radAppsInstalled	Zainstalowane
 L:lblAppSearchHint	Szukaj...
@@ -902,3 +902,7 @@ H:chkAdvRazer	Blokuje współinstalatory sterowników i folder, do którego Raze
 H:chkAdvLogi	Zamyka asystenta pobierania Logitech i nie pozwala mu instalować się przy każdym uruchomieniu.
 H:chkIPv4Pref	IPv6 pozostaje włączony, ale Windows najpierw próbuje IPv4. Przydatne z sieciami lub routerami, które źle obsługują IPv6.
 H:chkDiskNoSleep	Na zasilaczu dyski, łącze SATA i dyski NVMe nigdy nie przechodzą w oszczędzanie energii: brak opóźnień wybudzania. Na baterii bez zmian.
+M:pwRecBtn	Użyj zalecanych wartości
+M:pwDefBtn	Wróć do wartości Windows
+M:pwAskRec	Ustawię zalecane wartości w używanym planie. Zmiany działają od razu. Kontynuować?
+M:pwAskDef	Przywrócę w używanym planie domyślne wartości Windows. Zmiany działają od razu. Kontynuować?

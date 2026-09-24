@@ -523,8 +523,8 @@ L:chkAmdAspm	Ahorro PCIe de la tarjeta desactivado
 L:chkAmdPowerGating	Power gating desactivado
 L:chkAmdDma	Copias DMA y escritura por bloques
 L:chkAmdPreempt	Preferencia de cálculo desactivada
-L:ttlPowerAdv	PLAN ACTIVO: CONFIGURACIÓN AVANZADA
-L:lblPowerAdvHint	Se aplican al instante al plan en uso, con corriente y batería. Al cambiar de plan se parte de sus valores.
+L:ttlPowerAdv	AJUSTES DEL PLAN EN USO
+L:lblPowerAdvHint	Cambian al instante el plan activo, con cargador y con batería: no hace falta pulsar Aplicar. Si activas otro plan, se usan los ajustes de ese plan.
 L:radAppsCatalog	Catálogo
 L:radAppsInstalled	Instaladas
 L:lblAppSearchHint	Buscar...
@@ -902,3 +902,7 @@ H:chkAdvRazer	Bloquea los coinstaladores de controladores y la carpeta en la que
 H:chkAdvLogi	Cierra el asistente de descargas de Logitech e impide que se reinstale en cada inicio.
 H:chkIPv4Pref	IPv6 sigue activo, pero Windows prueba primero IPv4. Útil con redes o routers que gestionan mal IPv6.
 H:chkDiskNoSleep	Con el cargador conectado, discos, enlace SATA y SSD NVMe nunca entran en ahorro de energía: sin retrasos al despertar. Con batería todo queda como antes.
+M:pwRecBtn	Usar los valores recomendados
+M:pwDefBtn	Volver a los valores de Windows
+M:pwAskRec	Pongo los valores recomendados en el plan en uso. Los cambios se aplican al instante. ¿Continúo?
+M:pwAskDef	Devuelvo el plan en uso a los valores predeterminados de Windows. Los cambios se aplican al instante. ¿Continúo?

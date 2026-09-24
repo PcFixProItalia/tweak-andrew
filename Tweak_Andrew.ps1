@@ -2052,6 +2052,12 @@ $script:PlanData = @{
 
                                 <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto" Padding="0,0,6,0">
                                     <StackPanel>
+                                    <StackPanel Margin="7,0,7,4">
+                                        <TextBlock x:Name="ttlPowerAdv" Text="IMPOSTAZIONI DEL PIANO IN USO" Style="{StaticResource CardTitle}" Margin="0,0,0,4"/>
+                                        <TextBlock x:Name="lblPowerAdvHint" Style="{StaticResource SubTitle}" TextWrapping="Wrap"
+                                                   Text="Cambiano subito il piano attivo, sia con l'alimentatore sia a batteria: non serve premere Applica. Se attivi un altro piano, valgono le impostazioni di quello."/>
+                                    </StackPanel>
+                                    <Grid x:Name="catPower"/>
                                         <Border Style="{StaticResource Glass}">
                                             <StackPanel>
                                                 <TextBlock x:Name="ttlSleep" Text="RISPARMIO E SOSPENSIONE" Style="{StaticResource CardTitle}"/>
@@ -2074,12 +2080,6 @@ $script:PlanData = @{
                                                 <CheckBox x:Name="chkMenuHibernate" Tag="live" Content="Iberna nel menu Arresta"/>
                                             </StackPanel>
                                         </Border>
-                                    <StackPanel Margin="7,6,7,4">
-                                        <TextBlock x:Name="ttlPowerAdv" Text="PIANO ATTIVO: IMPOSTAZIONI AVANZATE" Style="{StaticResource CardTitle}" Margin="0,0,0,4"/>
-                                        <TextBlock x:Name="lblPowerAdvHint" Style="{StaticResource SubTitle}" TextWrapping="Wrap"
-                                                   Text="Valgono subito sul piano in uso, a rete e a batteria. Cambiando piano si ripartira dai suoi valori."/>
-                                    </StackPanel>
-                                    <Grid x:Name="catPower"/>
                                     </StackPanel>
                                 </ScrollViewer>
                             </Grid>
@@ -3134,8 +3134,8 @@ $script:Loc = @{
     chkAmdPowerGating  = @{ it = "Power gating spento"; en = "Power gating off" }
     chkAmdDma          = @{ it = "Copie DMA e scrittura a blocchi"; en = "DMA copies and block write" }
     chkAmdPreempt      = @{ it = "Prelazione dei calcoli spenta"; en = "Compute preemption off" }
-    ttlPowerAdv        = @{ it = "PIANO ATTIVO: IMPOSTAZIONI AVANZATE"; en = "ACTIVE PLAN: ADVANCED SETTINGS" }
-    lblPowerAdvHint    = @{ it = "Valgono subito sul piano in uso, a rete e a batteria. Cambiando piano si riparte dai suoi valori."; en = "They apply at once to the plan in use, on AC and battery. Switching plans starts from its own values." }
+    ttlPowerAdv        = @{ it = "IMPOSTAZIONI DEL PIANO IN USO"; en = "SETTINGS OF THE PLAN IN USE" }
+    lblPowerAdvHint    = @{ it = "Cambiano subito il piano attivo, sia con l'alimentatore sia a batteria: non serve premere Applica. Se attivi un altro piano, valgono le impostazioni di quello."; en = "They change the active plan right away, both plugged in and on battery: no need to press Apply. If you switch to another plan, its own settings apply." }
     radAppsCatalog     = @{ it = "Catalogo"; en = "Catalog" }
     radAppsInstalled   = @{ it = "Installate"; en = "Installed" }
     lblAppSearchHint   = @{ it = "Cerca..."; en = "Search..." }
@@ -3543,6 +3543,10 @@ $script:Msg = @{
     pd_xilly           = @{ it = "Incremento leggero rispetto al predefinito."; en = "A slight boost over the default." }
     pd_xos             = @{ it = "Piano della raccolta xOS."; en = "Plan from the xOS collection." }
     hkFirmware         = @{ it = "Firmware"; en = "Firmware" }
+    pwRecBtn           = @{ it = "Usa i valori consigliati"; en = "Use recommended values" }
+    pwDefBtn           = @{ it = "Torna ai valori di Windows"; en = "Back to Windows values" }
+    pwAskRec           = @{ it = "Imposto i valori consigliati sul piano in uso. Le modifiche valgono subito. Procedo?"; en = "I'll set the recommended values on the plan in use. The changes apply right away. Go ahead?" }
+    pwAskDef           = @{ it = "Riporto il piano in uso ai valori predefiniti di Windows. Le modifiche valgono subito. Procedo?"; en = "I'll put the plan in use back to the Windows default values. The changes apply right away. Go ahead?" }
 }
 
 $script:LangCode = "it"
@@ -5175,8 +5179,8 @@ $script:Tr = @{
         'L:chkAmdPowerGating' = "Power gating desactivado"
         'L:chkAmdDma' = "Copias DMA y escritura por bloques"
         'L:chkAmdPreempt' = "Preferencia de cálculo desactivada"
-        'L:ttlPowerAdv' = "PLAN ACTIVO: CONFIGURACIÓN AVANZADA"
-        'L:lblPowerAdvHint' = "Se aplican al instante al plan en uso, con corriente y batería. Al cambiar de plan se parte de sus valores."
+        'L:ttlPowerAdv' = "AJUSTES DEL PLAN EN USO"
+        'L:lblPowerAdvHint' = "Cambian al instante el plan activo, con cargador y con batería: no hace falta pulsar Aplicar. Si activas otro plan, se usan los ajustes de ese plan."
         'L:radAppsCatalog' = "Catálogo"
         'L:radAppsInstalled' = "Instaladas"
         'L:lblAppSearchHint' = "Buscar..."
@@ -5554,6 +5558,10 @@ $script:Tr = @{
         'H:chkAdvLogi' = "Cierra el asistente de descargas de Logitech e impide que se reinstale en cada inicio."
         'H:chkIPv4Pref' = "IPv6 sigue activo, pero Windows prueba primero IPv4. Útil con redes o routers que gestionan mal IPv6."
         'H:chkDiskNoSleep' = "Con el cargador conectado, discos, enlace SATA y SSD NVMe nunca entran en ahorro de energía: sin retrasos al despertar. Con batería todo queda como antes."
+        'M:pwRecBtn' = "Usar los valores recomendados"
+        'M:pwDefBtn' = "Volver a los valores de Windows"
+        'M:pwAskRec' = "Pongo los valores recomendados en el plan en uso. Los cambios se aplican al instante. ¿Continúo?"
+        'M:pwAskDef' = "Devuelvo el plan en uso a los valores predeterminados de Windows. Los cambios se aplican al instante. ¿Continúo?"
     }
     de = @{
         'L:lblSubtitle' = "Windows-Optimierung und -Steuerung — PcFixPro Italia"
@@ -6081,8 +6089,8 @@ $script:Tr = @{
         'L:chkAmdPowerGating' = "Power Gating aus"
         'L:chkAmdDma' = "DMA-Kopien und Blockschreiben"
         'L:chkAmdPreempt' = "Compute-Preemption aus"
-        'L:ttlPowerAdv' = "AKTIVER PLAN: ERWEITERTE EINSTELLUNGEN"
-        'L:lblPowerAdvHint' = "Gelten sofort für den aktiven Plan, am Netz und im Akkubetrieb. Ein Planwechsel startet mit dessen Werten."
+        'L:ttlPowerAdv' = "EINSTELLUNGEN DES AKTIVEN PLANS"
+        'L:lblPowerAdvHint' = "Sie ändern den aktiven Plan sofort, am Netz und im Akkubetrieb: Anwenden ist nicht nötig. Wenn du einen anderen Plan aktivierst, gelten dessen Einstellungen."
         'L:radAppsCatalog' = "Katalog"
         'L:radAppsInstalled' = "Installiert"
         'L:lblAppSearchHint' = "Suchen..."
@@ -6460,6 +6468,10 @@ $script:Tr = @{
         'H:chkAdvLogi' = "Beendet den Logitech-Download-Assistenten und verhindert, dass er sich bei jedem Start neu installiert."
         'H:chkIPv4Pref' = "IPv6 bleibt aktiv, aber Windows versucht zuerst IPv4. Nützlich bei Netzen oder Routern, die IPv6 schlecht handhaben."
         'H:chkDiskNoSleep' = "Am Netz gehen Festplatten, SATA-Verbindung und NVMe-SSDs nie in den Energiesparmodus: keine Aufwachverzögerungen. Im Akkubetrieb bleibt alles wie vorher."
+        'M:pwRecBtn' = "Empfohlene Werte verwenden"
+        'M:pwDefBtn' = "Zurück zu den Windows-Werten"
+        'M:pwAskRec' = "Ich setze die empfohlenen Werte im aktiven Plan. Die Änderungen gelten sofort. Fortfahren?"
+        'M:pwAskDef' = "Ich setze den aktiven Plan auf die Windows-Standardwerte zurück. Die Änderungen gelten sofort. Fortfahren?"
     }
     fr = @{
         'L:lblSubtitle' = "Optimisation et contrôle de Windows — PcFixPro Italia"
@@ -6990,8 +7002,8 @@ $script:Tr = @{
         'L:chkAmdPowerGating' = "Power gating désactivé"
         'L:chkAmdDma' = "Copies DMA et écriture par blocs"
         'L:chkAmdPreempt' = "Préemption de calcul désactivée"
-        'L:ttlPowerAdv' = "PLAN ACTIF : PARAMÈTRES AVANCÉS"
-        'L:lblPowerAdvHint' = "S'appliquent aussitôt au plan utilisé, sur secteur et sur batterie. Changer de plan repart de ses valeurs."
+        'L:ttlPowerAdv' = "PARAMÈTRES DU MODE UTILISÉ"
+        'L:lblPowerAdvHint' = "Ils modifient tout de suite le mode actif, sur secteur comme sur batterie : inutile d'appuyer sur Appliquer. Si vous activez un autre mode, ce sont ses propres paramètres qui comptent."
         'L:radAppsCatalog' = "Catalogue"
         'L:radAppsInstalled' = "Installées"
         'L:lblAppSearchHint' = "Rechercher..."
@@ -7369,6 +7381,10 @@ $script:Tr = @{
         'H:chkAdvLogi' = "Ferme l'assistant de téléchargement Logitech et l'empêche de se réinstaller à chaque démarrage."
         'H:chkIPv4Pref' = "IPv6 reste actif, mais Windows essaie d'abord IPv4. Utile avec les réseaux ou routeurs qui gèrent mal IPv6."
         'H:chkDiskNoSleep' = "Sur secteur, disques, lien SATA et SSD NVMe n'entrent jamais en économie d'énergie : aucun délai de réveil. Sur batterie, rien ne change."
+        'M:pwRecBtn' = "Utiliser les valeurs recommandées"
+        'M:pwDefBtn' = "Revenir aux valeurs de Windows"
+        'M:pwAskRec' = "Je règle les valeurs recommandées sur le mode utilisé. Les changements s'appliquent tout de suite. Je continue ?"
+        'M:pwAskDef' = "Je remets le mode utilisé aux valeurs par défaut de Windows. Les changements s'appliquent tout de suite. Je continue ?"
     }
     pl = @{
         'L:lblSubtitle' = "Optymalizacja i kontrola systemu Windows — PcFixPro Italia"
@@ -7896,8 +7912,8 @@ $script:Tr = @{
         'L:chkAmdPowerGating' = "Power gating wyłączony"
         'L:chkAmdDma' = "Kopie DMA i zapis blokowy"
         'L:chkAmdPreempt' = "Wywłaszczanie obliczeń wyłączone"
-        'L:ttlPowerAdv' = "AKTYWNY PLAN: USTAWIENIA ZAAWANSOWANE"
-        'L:lblPowerAdvHint' = "Działają od razu na używany plan, na zasilaniu i baterii. Zmiana planu przywraca jego wartości."
+        'L:ttlPowerAdv' = "USTAWIENIA UŻYWANEGO PLANU"
+        'L:lblPowerAdvHint' = "Zmieniają aktywny plan od razu, na zasilaczu i na baterii: nie trzeba naciskać Zastosuj. Po włączeniu innego planu obowiązują jego ustawienia."
         'L:radAppsCatalog' = "Katalog"
         'L:radAppsInstalled' = "Zainstalowane"
         'L:lblAppSearchHint' = "Szukaj..."
@@ -8275,6 +8291,10 @@ $script:Tr = @{
         'H:chkAdvLogi' = "Zamyka asystenta pobierania Logitech i nie pozwala mu instalować się przy każdym uruchomieniu."
         'H:chkIPv4Pref' = "IPv6 pozostaje włączony, ale Windows najpierw próbuje IPv4. Przydatne z sieciami lub routerami, które źle obsługują IPv6."
         'H:chkDiskNoSleep' = "Na zasilaczu dyski, łącze SATA i dyski NVMe nigdy nie przechodzą w oszczędzanie energii: brak opóźnień wybudzania. Na baterii bez zmian."
+        'M:pwRecBtn' = "Użyj zalecanych wartości"
+        'M:pwDefBtn' = "Wróć do wartości Windows"
+        'M:pwAskRec' = "Ustawię zalecane wartości w używanym planie. Zmiany działają od razu. Kontynuować?"
+        'M:pwAskDef' = "Przywrócę w używanym planie domyślne wartości Windows. Zmiany działają od razu. Kontynuować?"
     }
     pt = @{
         'L:lblSubtitle' = "Otimização e controle do Windows — PcFixPro Italia"
@@ -8802,8 +8822,8 @@ $script:Tr = @{
         'L:chkAmdPowerGating' = "Power gating desativado"
         'L:chkAmdDma' = "Cópias DMA e gravação em bloco"
         'L:chkAmdPreempt' = "Preempção de computação desativada"
-        'L:ttlPowerAdv' = "PLANO ATIVO: CONFIGURAÇÕES AVANÇADAS"
-        'L:lblPowerAdvHint' = "Valem na hora para o plano em uso, na tomada e na bateria. Trocar de plano volta aos valores dele."
+        'L:ttlPowerAdv' = "CONFIGURAÇÕES DO PLANO EM USO"
+        'L:lblPowerAdvHint' = "Mudam o plano ativo na hora, na tomada e na bateria: não é preciso clicar em Aplicar. Se você ativar outro plano, valem as configurações dele."
         'L:radAppsCatalog' = "Catálogo"
         'L:radAppsInstalled' = "Instalados"
         'L:lblAppSearchHint' = "Pesquisar..."
@@ -9181,6 +9201,10 @@ $script:Tr = @{
         'H:chkAdvLogi' = "Fecha o assistente de download da Logitech e impede que se reinstale a cada inicialização."
         'H:chkIPv4Pref' = "O IPv6 continua ativo, mas o Windows tenta primeiro o IPv4. Útil com redes ou roteadores que lidam mal com IPv6."
         'H:chkDiskNoSleep' = "Na tomada, discos, link SATA e SSDs NVMe nunca entram em economia de energia: sem atrasos ao despertar. Na bateria tudo fica como antes."
+        'M:pwRecBtn' = "Usar os valores recomendados"
+        'M:pwDefBtn' = "Voltar aos valores do Windows"
+        'M:pwAskRec' = "Vou definir os valores recomendados no plano em uso. As mudanças valem na hora. Continuo?"
+        'M:pwAskDef' = "Vou voltar o plano em uso aos valores padrão do Windows. As mudanças valem na hora. Continuo?"
     }
     ro = @{
         'L:lblSubtitle' = "Optimizarea și controlul Windows — PcFixPro Italia"
@@ -9708,8 +9732,8 @@ $script:Tr = @{
         'L:chkAmdPowerGating' = "Power gating dezactivat"
         'L:chkAmdDma' = "Copii DMA și scriere în bloc"
         'L:chkAmdPreempt' = "Preempțiune calcul dezactivată"
-        'L:ttlPowerAdv' = "PLAN ACTIV: SETĂRI AVANSATE"
-        'L:lblPowerAdvHint' = "Se aplică imediat planului folosit, la rețea și pe baterie. Schimbarea planului pornește de la valorile lui."
+        'L:ttlPowerAdv' = "SETĂRILE PLANULUI FOLOSIT"
+        'L:lblPowerAdvHint' = "Schimbă imediat planul activ, la priză și pe baterie: nu trebuie apăsat Aplică. Dacă activezi alt plan, se folosesc setările acelui plan."
         'L:radAppsCatalog' = "Catalog"
         'L:radAppsInstalled' = "Instalate"
         'L:lblAppSearchHint' = "Caută..."
@@ -10087,6 +10111,10 @@ $script:Tr = @{
         'H:chkAdvLogi' = "Închide asistentul de descărcare Logitech și îl împiedică să se reinstaleze la fiecare pornire."
         'H:chkIPv4Pref' = "IPv6 rămâne activ, dar Windows încearcă întâi IPv4. Util cu rețele sau routere care gestionează prost IPv6."
         'H:chkDiskNoSleep' = "La priză, discurile, legătura SATA și SSD-urile NVMe nu intră niciodată în economisire: fără întârzieri la trezire. Pe baterie totul rămâne ca înainte."
+        'M:pwRecBtn' = "Folosește valorile recomandate"
+        'M:pwDefBtn' = "Revino la valorile Windows"
+        'M:pwAskRec' = "Setez valorile recomandate pe planul folosit. Modificările se aplică imediat. Continui?"
+        'M:pwAskDef' = "Readuc planul folosit la valorile implicite Windows. Modificările se aplică imediat. Continui?"
     }
     ru = @{
         'L:lblSubtitle' = "Оптимизация и управление Windows — PcFixPro Italia"
@@ -10614,8 +10642,8 @@ $script:Tr = @{
         'L:chkAmdPowerGating' = "Power gating выключен"
         'L:chkAmdDma' = "Копирование DMA и блочная запись"
         'L:chkAmdPreempt' = "Вытеснение вычислений выключено"
-        'L:ttlPowerAdv' = "АКТИВНАЯ СХЕМА: ДОПОЛНИТЕЛЬНЫЕ ПАРАМЕТРЫ"
-        'L:lblPowerAdvHint' = "Применяются сразу к текущей схеме, от сети и от батареи. При смене схемы действуют её значения."
+        'L:ttlPowerAdv' = "НАСТРОЙКИ ТЕКУЩЕЙ СХЕМЫ"
+        'L:lblPowerAdvHint' = "Сразу меняют активную схему — от сети и от батареи: нажимать «Применить» не нужно. Если включить другую схему, действуют её собственные настройки."
         'L:radAppsCatalog' = "Каталог"
         'L:radAppsInstalled' = "Установленные"
         'L:lblAppSearchHint' = "Поиск..."
@@ -10993,6 +11021,10 @@ $script:Tr = @{
         'H:chkAdvLogi' = "Закрывает помощник загрузки Logitech и не даёт ему переустанавливаться при каждом запуске."
         'H:chkIPv4Pref' = "IPv6 остаётся включённым, но Windows сначала пробует IPv4. Полезно с сетями или роутерами, плохо работающими с IPv6."
         'H:chkDiskNoSleep' = "От сети диски, канал SATA и NVMe SSD никогда не переходят в энергосбережение: без задержек пробуждения. От батареи всё как раньше."
+        'M:pwRecBtn' = "Рекомендуемые значения"
+        'M:pwDefBtn' = "Вернуть значения Windows"
+        'M:pwAskRec' = "Установить рекомендуемые значения в текущей схеме? Изменения вступят в силу сразу."
+        'M:pwAskDef' = "Вернуть в текущей схеме значения Windows по умолчанию? Изменения вступят в силу сразу."
     }
 }
 
@@ -16308,12 +16340,14 @@ function Initialize-CatPage([string]$page, $hostEl, [bool]$embedded = $false) {
         [System.Windows.Controls.Grid]::SetRow($top, 0)
         [void]$root.Children.Add($top)
     } else {
-        $bRec = New-CatButton (T 'applyRecommended') '#FF2ED3A7'
+        # In Alimentazione i pulsanti agiscono sul piano in uso e valgono subito: lo dicono le loro frasi.
+        $pw = $page -eq 'power'
+        $bRec = New-CatButton (T $(if ($pw) { 'pwRecBtn' } else { 'applyRecommended' })) '#FF2ED3A7'
         $bRec.DataContext = $page
-        $bRec.Add_Click({ $p = [string]$this.DataContext; Invoke-CatBulk $p { param($i) Get-CatRecTarget $i } (T 'askRecommended') })
-        $bDef = New-CatButton (T 'restoreWindows') ''
+        $bRec.Add_Click({ $p = [string]$this.DataContext; Invoke-CatBulk $p { param($i) Get-CatRecTarget $i } (T $(if ($p -eq 'power') { 'pwAskRec' } else { 'askRecommended' })) })
+        $bDef = New-CatButton (T $(if ($pw) { 'pwDefBtn' } else { 'restoreWindows' })) ''
         $bDef.DataContext = $page
-        $bDef.Add_Click({ $p = [string]$this.DataContext; Invoke-CatBulk $p { param($i) Get-CatDefTarget $i } (T 'askWindowsDefaults') })
+        $bDef.Add_Click({ $p = [string]$this.DataContext; Invoke-CatBulk $p { param($i) Get-CatDefTarget $i } (T $(if ($p -eq 'power') { 'pwAskDef' } else { 'askWindowsDefaults' })) })
         [void]$bar.Children.Add($bRec); [void]$bar.Children.Add($bDef)
         if (@($script:Catalog | Where-Object { $_.Page -eq $page -and $_.Flags -match 'X' }).Count -gt 0) {
             $bEx = New-CatButton (T 'restartExplorer') ''

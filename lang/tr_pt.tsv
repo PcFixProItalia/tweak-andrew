@@ -523,8 +523,8 @@ L:chkAmdAspm	Economia PCIe da placa desativada
 L:chkAmdPowerGating	Power gating desativado
 L:chkAmdDma	Cópias DMA e gravação em bloco
 L:chkAmdPreempt	Preempção de computação desativada
-L:ttlPowerAdv	PLANO ATIVO: CONFIGURAÇÕES AVANÇADAS
-L:lblPowerAdvHint	Valem na hora para o plano em uso, na tomada e na bateria. Trocar de plano volta aos valores dele.
+L:ttlPowerAdv	CONFIGURAÇÕES DO PLANO EM USO
+L:lblPowerAdvHint	Mudam o plano ativo na hora, na tomada e na bateria: não é preciso clicar em Aplicar. Se você ativar outro plano, valem as configurações dele.
 L:radAppsCatalog	Catálogo
 L:radAppsInstalled	Instalados
 L:lblAppSearchHint	Pesquisar...
@@ -902,3 +902,7 @@ H:chkAdvRazer	Bloqueia os coinstaladores de drivers e a pasta onde o Razer Synap
 H:chkAdvLogi	Fecha o assistente de download da Logitech e impede que se reinstale a cada inicialização.
 H:chkIPv4Pref	O IPv6 continua ativo, mas o Windows tenta primeiro o IPv4. Útil com redes ou roteadores que lidam mal com IPv6.
 H:chkDiskNoSleep	Na tomada, discos, link SATA e SSDs NVMe nunca entram em economia de energia: sem atrasos ao despertar. Na bateria tudo fica como antes.
+M:pwRecBtn	Usar os valores recomendados
+M:pwDefBtn	Voltar aos valores do Windows
+M:pwAskRec	Vou definir os valores recomendados no plano em uso. As mudanças valem na hora. Continuo?
+M:pwAskDef	Vou voltar o plano em uso aos valores padrão do Windows. As mudanças valem na hora. Continuo?

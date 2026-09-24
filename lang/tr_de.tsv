@@ -523,8 +523,8 @@ L:chkAmdAspm	PCIe-Energiesparen der Karte aus
 L:chkAmdPowerGating	Power Gating aus
 L:chkAmdDma	DMA-Kopien und Blockschreiben
 L:chkAmdPreempt	Compute-Preemption aus
-L:ttlPowerAdv	AKTIVER PLAN: ERWEITERTE EINSTELLUNGEN
-L:lblPowerAdvHint	Gelten sofort für den aktiven Plan, am Netz und im Akkubetrieb. Ein Planwechsel startet mit dessen Werten.
+L:ttlPowerAdv	EINSTELLUNGEN DES AKTIVEN PLANS
+L:lblPowerAdvHint	Sie ändern den aktiven Plan sofort, am Netz und im Akkubetrieb: Anwenden ist nicht nötig. Wenn du einen anderen Plan aktivierst, gelten dessen Einstellungen.
 L:radAppsCatalog	Katalog
 L:radAppsInstalled	Installiert
 L:lblAppSearchHint	Suchen...
@@ -902,3 +902,7 @@ H:chkAdvRazer	Blockiert Treiber-Co-Installer und den Ordner, in den sich Razer S
 H:chkAdvLogi	Beendet den Logitech-Download-Assistenten und verhindert, dass er sich bei jedem Start neu installiert.
 H:chkIPv4Pref	IPv6 bleibt aktiv, aber Windows versucht zuerst IPv4. Nützlich bei Netzen oder Routern, die IPv6 schlecht handhaben.
 H:chkDiskNoSleep	Am Netz gehen Festplatten, SATA-Verbindung und NVMe-SSDs nie in den Energiesparmodus: keine Aufwachverzögerungen. Im Akkubetrieb bleibt alles wie vorher.
+M:pwRecBtn	Empfohlene Werte verwenden
+M:pwDefBtn	Zurück zu den Windows-Werten
+M:pwAskRec	Ich setze die empfohlenen Werte im aktiven Plan. Die Änderungen gelten sofort. Fortfahren?
+M:pwAskDef	Ich setze den aktiven Plan auf die Windows-Standardwerte zurück. Die Änderungen gelten sofort. Fortfahren?

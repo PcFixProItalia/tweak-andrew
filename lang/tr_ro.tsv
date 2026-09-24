@@ -523,8 +523,8 @@ L:chkAmdAspm	Economie PCIe a plăcii dezactivată
 L:chkAmdPowerGating	Power gating dezactivat
 L:chkAmdDma	Copii DMA și scriere în bloc
 L:chkAmdPreempt	Preempțiune calcul dezactivată
-L:ttlPowerAdv	PLAN ACTIV: SETĂRI AVANSATE
-L:lblPowerAdvHint	Se aplică imediat planului folosit, la rețea și pe baterie. Schimbarea planului pornește de la valorile lui.
+L:ttlPowerAdv	SETĂRILE PLANULUI FOLOSIT
+L:lblPowerAdvHint	Schimbă imediat planul activ, la priză și pe baterie: nu trebuie apăsat Aplică. Dacă activezi alt plan, se folosesc setările acelui plan.
 L:radAppsCatalog	Catalog
 L:radAppsInstalled	Instalate
 L:lblAppSearchHint	Caută...
@@ -902,3 +902,7 @@ H:chkAdvRazer	Blochează co-instalatoarele de drivere și folderul în care Raze
 H:chkAdvLogi	Închide asistentul de descărcare Logitech și îl împiedică să se reinstaleze la fiecare pornire.
 H:chkIPv4Pref	IPv6 rămâne activ, dar Windows încearcă întâi IPv4. Util cu rețele sau routere care gestionează prost IPv6.
 H:chkDiskNoSleep	La priză, discurile, legătura SATA și SSD-urile NVMe nu intră niciodată în economisire: fără întârzieri la trezire. Pe baterie totul rămâne ca înainte.
+M:pwRecBtn	Folosește valorile recomandate
+M:pwDefBtn	Revino la valorile Windows
+M:pwAskRec	Setez valorile recomandate pe planul folosit. Modificările se aplică imediat. Continui?
+M:pwAskDef	Readuc planul folosit la valorile implicite Windows. Modificările se aplică imediat. Continui?

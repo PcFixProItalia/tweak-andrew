@@ -332,8 +332,8 @@ chkAmdAspm	Card PCIe power saving off
 chkAmdPowerGating	Power gating off
 chkAmdDma	DMA copies and block write
 chkAmdPreempt	Compute preemption off
-ttlPowerAdv	ACTIVE PLAN: ADVANCED SETTINGS
-lblPowerAdvHint	They apply at once to the plan in use, on AC and battery. Switching plans starts from its own values.
+ttlPowerAdv	SETTINGS OF THE PLAN IN USE
+lblPowerAdvHint	They change the active plan right away, both plugged in and on battery: no need to press Apply. If you switch to another plan, its own settings apply.
 radAppsCatalog	Catalog
 radAppsInstalled	Installed
 lblAppSearchHint	Search...

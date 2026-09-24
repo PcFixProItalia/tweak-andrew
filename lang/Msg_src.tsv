@@ -366,3 +366,7 @@ pd_vtrl	Set by VTRL Optimizer, based on Ultimate Performance.
 pd_xilly	A slight boost over the default.
 pd_xos	Plan from the xOS collection.
 hkFirmware	Firmware
+pwRecBtn	Use recommended values
+pwDefBtn	Back to Windows values
+pwAskRec	I'll set the recommended values on the plan in use. The changes apply right away. Go ahead?
+pwAskDef	I'll put the plan in use back to the Windows default values. The changes apply right away. Go ahead?
