@@ -893,3 +893,7 @@ M:pwAskDef	Ich setze den aktiven Plan auf die Windows-Standardwerte zurück. Die
 M:svcMissing	Auf diesem PC nicht vorhanden
 M:recTip	Empfohlener Wert: {0}. Ein Klick setzt ihn, dann «Änderungen anwenden» drücken.
 M:recOn	aktiv
+M:recOff	aus
+M:recOnLimited	aktiv (mit Einschränkungen)
+M:recDefault	{0}, wie bei einem frisch installierten Windows
+M:recTipLive	Empfohlener Wert: {0}. Ein Klick setzt ihn sofort, wie der Schalter.

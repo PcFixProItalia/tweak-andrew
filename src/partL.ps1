@@ -1078,6 +1078,10 @@ $script:Tr = @{
         'M:svcMissing' = "No presente en este PC"
         'M:recTip' = "Valor recomendado: {0}. Un clic lo establece; luego pulsa «Aplicar cambios»."
         'M:recOn' = "activado"
+        'M:recOff' = "desactivado"
+        'M:recOnLimited' = "activado (con limitaciones)"
+        'M:recDefault' = "{0}, como en un Windows recién instalado"
+        'M:recTipLive' = "Valor recomendado: {0}. Un clic lo establece al instante, como el interruptor."
     }
     de = @{
         'L:lblSubtitle' = "Windows-Optimierung und -Steuerung — PcFixPro Italia"
@@ -1975,6 +1979,10 @@ $script:Tr = @{
         'M:svcMissing' = "Auf diesem PC nicht vorhanden"
         'M:recTip' = "Empfohlener Wert: {0}. Ein Klick setzt ihn, dann «Änderungen anwenden» drücken."
         'M:recOn' = "aktiv"
+        'M:recOff' = "aus"
+        'M:recOnLimited' = "aktiv (mit Einschränkungen)"
+        'M:recDefault' = "{0}, wie bei einem frisch installierten Windows"
+        'M:recTipLive' = "Empfohlener Wert: {0}. Ein Klick setzt ihn sofort, wie der Schalter."
     }
     fr = @{
         'L:lblSubtitle' = "Optimisation et contrôle de Windows — PcFixPro Italia"
@@ -2875,6 +2883,10 @@ $script:Tr = @{
         'M:svcMissing' = "Absent sur ce PC"
         'M:recTip' = "Valeur recommandée : {0}. Un clic la règle, puis appuyez sur « Appliquer les modifications »."
         'M:recOn' = "activé"
+        'M:recOff' = "désactivé"
+        'M:recOnLimited' = "activé (avec limitations)"
+        'M:recDefault' = "{0}, comme sur un Windows neuf"
+        'M:recTipLive' = "Valeur recommandée : {0}. Un clic la règle tout de suite, comme l'interrupteur."
     }
     pl = @{
         'L:lblSubtitle' = "Optymalizacja i kontrola systemu Windows — PcFixPro Italia"
@@ -3772,6 +3784,10 @@ $script:Tr = @{
         'M:svcMissing' = "Brak na tym komputerze"
         'M:recTip' = "Zalecana wartość: {0}. Jedno kliknięcie ją ustawia, potem naciśnij «Zastosuj zmiany»."
         'M:recOn' = "włączone"
+        'M:recOff' = "wyłączone"
+        'M:recOnLimited' = "włączone (z ograniczeniami)"
+        'M:recDefault' = "{0}, jak w świeżo zainstalowanym Windows"
+        'M:recTipLive' = "Zalecana wartość: {0}. Jedno kliknięcie ustawia ją od razu, jak przełącznik."
     }
     pt = @{
         'L:lblSubtitle' = "Otimização e controle do Windows — PcFixPro Italia"
@@ -4669,6 +4685,10 @@ $script:Tr = @{
         'M:svcMissing' = "Não presente neste PC"
         'M:recTip' = "Valor recomendado: {0}. Um clique o define; depois clique em «Aplicar alterações»."
         'M:recOn' = "ativado"
+        'M:recOff' = "desativado"
+        'M:recOnLimited' = "ativado (com limitações)"
+        'M:recDefault' = "{0}, como em um Windows recém-instalado"
+        'M:recTipLive' = "Valor recomendado: {0}. Um clique o define na hora, como o interruptor."
     }
     ro = @{
         'L:lblSubtitle' = "Optimizarea și controlul Windows — PcFixPro Italia"
@@ -5566,6 +5586,10 @@ $script:Tr = @{
         'M:svcMissing' = "Nu există pe acest PC"
         'M:recTip' = "Valoare recomandată: {0}. Un clic o setează, apoi apasă «Aplică modificările»."
         'M:recOn' = "activat"
+        'M:recOff' = "dezactivat"
+        'M:recOnLimited' = "activat (cu limitări)"
+        'M:recDefault' = "{0}, ca pe un Windows proaspăt instalat"
+        'M:recTipLive' = "Valoare recomandată: {0}. Un clic o setează imediat, ca întrerupătorul."
     }
     ru = @{
         'L:lblSubtitle' = "Оптимизация и управление Windows — PcFixPro Italia"
@@ -6463,6 +6487,10 @@ $script:Tr = @{
         'M:svcMissing' = "Нет на этом ПК"
         'M:recTip' = "Рекомендуемое значение: {0}. Щелчок выбирает его, затем нажмите «Применить изменения»."
         'M:recOn' = "включено"
+        'M:recOff' = "выключено"
+        'M:recOnLimited' = "включено (с ограничениями)"
+        'M:recDefault' = "{0}, как в только что установленной Windows"
+        'M:recTipLive' = "Рекомендуемое значение: {0}. Щелчок сразу его устанавливает, как переключатель."
     }
 }
 

@@ -327,8 +327,30 @@ function Update-CatRow($row) {
                 [void]$combo.Items.Add($match)
             }
             $combo.SelectedItem = $match
+            if ($row.RecBtn) { $row.RecBtn.Tag = if ([string]$state -eq $row.RecTarget) { 'match' } else { $null } }
         }
     } finally { $script:CatLoading = $false }
+}
+
+# Valore consigliato di una voce, con il testo da mostrare. Senza un consiglio
+# del catalogo vale lo stato di Windows appena installato.
+function Get-CatRecValue($it) {
+    if ($it.Page -eq 'priv') {
+        $on = $it.Rec -in @('y', 'l')
+        $text = if ($it.Rec -eq 'l') { T 'recOnLimited' } elseif ($on) { T 'recOn' } else { T 'recOff' }
+        return @{ Target = $on; Text = $text }
+    }
+    $target = Get-CatRecTarget $it; $fromDef = $false
+    if ($null -eq $target) { $target = Get-CatDefTarget $it; $fromDef = $true }
+    if ($null -eq $target) { return $null }
+    if ($it.Kind -in @('T','J')) { $text = T $(if ($target) { 'recOn' } else { 'recOff' }) }
+    else {
+        $o = Get-CatOptions $it | Where-Object { [string]$_.Key -eq [string]$target } | Select-Object -First 1
+        if ($null -eq $o) { return $null }
+        $text = $o.Text
+    }
+    if ($fromDef) { $text = (T 'recDefault') -f $text }
+    return @{ Target = $target; Text = $text }
 }
 
 function Get-CatOptions($it) {
@@ -390,12 +412,31 @@ function New-CatRow($it, $page) {
             Update-CatExplorerHint
         }
         $cb.Add_Checked($handler); $cb.Add_Unchecked($handler)
+        $rv = Get-CatRecValue $it
+        if ($rv) {
+            [System.Windows.Automation.AutomationProperties]::SetItemStatus($cb, $(if ($rv.Target) { 'rec' } else { 'recoff' }))
+            $cb.Resources['recTip'] = (T 'recTipLive') -f $rv.Text
+            # Il modello c'e' solo quando la casella entra nella pagina.
+            $cb.Add_Loaded({
+                if ($this.Resources.Contains('starHooked')) { return }
+                $hit = $this.Template.FindName('starHit', $this)
+                if ($null -eq $hit) { return }
+                $this.Resources['starHooked'] = $true
+                $hit.ToolTip = $this.Resources['recTip']
+                $hit.Add_PreviewMouseLeftButtonDown({
+                    $p = $this.TemplatedParent
+                    $p.IsChecked = ([System.Windows.Automation.AutomationProperties]::GetItemStatus($p) -eq 'rec')
+                    $_.Handled = $true
+                })
+            })
+        }
     } else {
         $inner = New-Object System.Windows.Controls.Grid
         $inner.Margin = '10,4,10,4'
         $ic0 = New-Object System.Windows.Controls.ColumnDefinition; $ic0.Width = New-Object System.Windows.GridLength(1, [System.Windows.GridUnitType]::Star)
         $ic1 = New-Object System.Windows.Controls.ColumnDefinition; $ic1.Width = [System.Windows.GridLength]::Auto
-        $inner.ColumnDefinitions.Add($ic0); $inner.ColumnDefinitions.Add($ic1)
+        $ic2 = New-Object System.Windows.Controls.ColumnDefinition; $ic2.Width = [System.Windows.GridLength]::Auto
+        $inner.ColumnDefinitions.Add($ic0); $inner.ColumnDefinitions.Add($ic2); $inner.ColumnDefinitions.Add($ic1)
         $tb = New-Object System.Windows.Controls.TextBlock
         $tb.Text = $label; $tb.TextWrapping = 'Wrap'; $tb.VerticalAlignment = 'Center'; $tb.Margin = '0,0,12,0'
         $tb.Foreground = New-CatBrush '#FFC4C4CC'; $tb.FontSize = 12.5
@@ -408,8 +449,22 @@ function New-CatRow($it, $page) {
             $ci.Tag = $o.Key; $ci.Content = $o.Text
             [void]$combo.Items.Add($ci)
         }
-        [System.Windows.Controls.Grid]::SetColumn($combo, 1)
+        [System.Windows.Controls.Grid]::SetColumn($combo, 2)
         [void]$inner.Children.Add($combo)
+        $rv = Get-CatRecValue $it
+        if ($rv) {
+            $rb = New-Object System.Windows.Controls.Button
+            $rb.Style = $window.FindResource('StarBtn'); $rb.Margin = '0,0,8,0'; $rb.VerticalAlignment = 'Center'
+            $rb.ToolTip = (T 'recTipLive') -f $rv.Text
+            $rb.DataContext = @{ Combo = $combo; Target = [string]$rv.Target }
+            $rb.Add_Click({
+                $d = $this.DataContext
+                $pick = $d.Combo.Items | Where-Object { [string]$_.Tag -eq $d.Target } | Select-Object -First 1
+                if ($pick -and $d.Combo.IsEnabled) { $d.Combo.SelectedItem = $pick }
+            })
+            [System.Windows.Controls.Grid]::SetColumn($rb, 1)
+            [void]$inner.Children.Add($rb)
+        }
         [System.Windows.Controls.Grid]::SetColumn($inner, 1)
         [void]$grid.Children.Add($inner)
         $ctl = $combo
@@ -426,7 +481,9 @@ function New-CatRow($it, $page) {
         $tb.Tag = 'label'
     }
     Set-CatTooltip $grid $it $page
-    $row = [pscustomobject]@{ Item = $it; Control = $ctl; Element = $grid; Label = $label; Card = $null }
+    $recBtn = if ($it.Kind -notin @('T','J') -and $rv) { $rb } else { $null }
+    $row = [pscustomobject]@{ Item = $it; Control = $ctl; Element = $grid; Label = $label; Card = $null
+                              RecBtn = $recBtn; RecTarget = $(if ($rv) { [string]$rv.Target } else { $null }) }
     [void]$script:CatRows.Add($row)
     Update-CatRow $row
     return $row

@@ -893,3 +893,7 @@ M:pwAskDef	Readuc planul folosit la valorile implicite Windows. Modificările se
 M:svcMissing	Nu există pe acest PC
 M:recTip	Valoare recomandată: {0}. Un clic o setează, apoi apasă «Aplică modificările».
 M:recOn	activat
+M:recOff	dezactivat
+M:recOnLimited	activat (cu limitări)
+M:recDefault	{0}, ca pe un Windows proaspăt instalat
+M:recTipLive	Valoare recomandată: {0}. Un clic o setează imediat, ca întrerupătorul.

@@ -896,3 +896,7 @@ M:pwAskDef	Je remets le mode utilisé aux valeurs par défaut de Windows. Les ch
 M:svcMissing	Absent sur ce PC
 M:recTip	Valeur recommandée : {0}. Un clic la règle, puis appuyez sur « Appliquer les modifications ».
 M:recOn	activé
+M:recOff	désactivé
+M:recOnLimited	activé (avec limitations)
+M:recDefault	{0}, comme sur un Windows neuf
+M:recTipLive	Valeur recommandée : {0}. Un clic la règle tout de suite, comme l'interrupteur.

@@ -193,14 +193,18 @@ $script:PlanData = @{
                                         Background="#262ED3A7" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,8,0">
                                     <TextBlock Text="{DynamicResource BadgeActive}" FontSize="10.5" FontWeight="SemiBold" Foreground="#FF2ED3A7"/>
                                 </Border>
-                                <!-- Voce consigliata: il tasto con il pollice la seleziona; si applica con «Applica modifiche».
-                                     E' un tasto scuro come l'interruttore e prende il colore della pagina. -->
-                                <Border x:Name="starHit" Grid.Column="2" Visibility="Collapsed" Background="#FF121215"
-                                        BorderBrush="#FF2A2A31" BorderThickness="1" CornerRadius="7"
-                                        Width="24" Height="22" Margin="0,0,10,0" VerticalAlignment="Center">
-                                    <Path x:Name="star" Width="12" Height="12" Stretch="Uniform"
-                                          Fill="#FF6E6E78" HorizontalAlignment="Center" VerticalAlignment="Center"
-                                          Data="M2,10 L6,10 L6,21 L2,21 Z M8,10 L12.4,3 C13.7,3 14.6,4.1 14.3,5.4 L13.5,9 L19.6,9 C21,9 22,10.3 21.6,11.6 L19.7,19.4 C19.4,20.4 18.5,21 17.5,21 L8,21 Z"/>
+                                <!-- Consiglio: la coccarda e' piena quando la voce e' gia' sul valore consigliato.
+                                     Il clic porta la voce al consiglio; si applica con «Applica modifiche». -->
+                                <Border x:Name="starHit" Grid.Column="2" Visibility="Collapsed" Background="Transparent"
+                                        Width="26" Height="26" Margin="0,0,8,0" VerticalAlignment="Center">
+                                    <Viewbox Width="17" Height="17" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <Grid Width="24" Height="24">
+                                            <Path x:Name="seal" StrokeThickness="1.8" StrokeLineJoin="Round"
+                                                  Stroke="#FF5C5C66" Fill="Transparent" Data="M12.00,1.00 L14.41,3.02 L17.50,2.47 L18.58,5.42 L21.53,6.50 L20.98,9.59 L23.00,12.00 L20.98,14.41 L21.53,17.50 L18.58,18.58 L17.50,21.53 L14.41,20.98 L12.00,23.00 L9.59,20.98 L6.50,21.53 L5.42,18.58 L2.47,17.50 L3.02,14.41 L1.00,12.00 L3.02,9.59 L2.47,6.50 L5.42,5.42 L6.50,2.47 L9.59,3.02 Z"/>
+                                            <Path x:Name="tick" StrokeThickness="2.3" StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeLineJoin="Round"
+                                                  Stroke="#FF5C5C66" Data="M7.8,12.3 L10.7,15.1 L16.3,9.3"/>
+                                        </Grid>
+                                    </Viewbox>
                                 </Border>
                                 <Border x:Name="track" Grid.Column="3" Width="36" Height="20" CornerRadius="10"
                                         Background="#FF121215" BorderBrush="#FF3A3A42" BorderThickness="1.5"
@@ -225,18 +229,30 @@ $script:PlanData = @{
                             <Trigger Property="AutomationProperties.ItemStatus" Value="rec">
                                 <Setter TargetName="starHit" Property="Visibility" Value="Visible"/>
                             </Trigger>
+                            <Trigger Property="AutomationProperties.ItemStatus" Value="recoff">
+                                <Setter TargetName="starHit" Property="Visibility" Value="Visible"/>
+                            </Trigger>
                             <Trigger SourceName="starHit" Property="IsMouseOver" Value="True">
-                                <Setter TargetName="star" Property="Fill" Value="{DynamicResource PA}"/>
-                                <Setter TargetName="starHit" Property="BorderBrush" Value="{DynamicResource PA}"/>
+                                <Setter TargetName="seal" Property="Stroke" Value="{DynamicResource PA}"/>
+                                <Setter TargetName="tick" Property="Stroke" Value="{DynamicResource PA}"/>
                             </Trigger>
                             <MultiTrigger>
                                 <MultiTrigger.Conditions>
                                     <Condition Property="AutomationProperties.ItemStatus" Value="rec"/>
                                     <Condition Property="IsChecked" Value="True"/>
                                 </MultiTrigger.Conditions>
-                                <Setter TargetName="star" Property="Fill" Value="{DynamicResource PA}"/>
-                                <Setter TargetName="starHit" Property="Background" Value="{DynamicResource PASoft}"/>
-                                <Setter TargetName="starHit" Property="BorderBrush" Value="{DynamicResource PA}"/>
+                                <Setter TargetName="seal" Property="Fill" Value="{DynamicResource PA}"/>
+                                <Setter TargetName="seal" Property="Stroke" Value="{DynamicResource PA}"/>
+                                <Setter TargetName="tick" Property="Stroke" Value="#FF000000"/>
+                            </MultiTrigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="AutomationProperties.ItemStatus" Value="recoff"/>
+                                    <Condition Property="IsChecked" Value="False"/>
+                                </MultiTrigger.Conditions>
+                                <Setter TargetName="seal" Property="Fill" Value="{DynamicResource PA}"/>
+                                <Setter TargetName="seal" Property="Stroke" Value="{DynamicResource PA}"/>
+                                <Setter TargetName="tick" Property="Stroke" Value="#FF000000"/>
                             </MultiTrigger>
                             <Trigger Property="IsChecked" Value="True">
                                 <Setter TargetName="track" Property="Background" Value="{DynamicResource PA}"/>
@@ -312,16 +328,25 @@ $script:PlanData = @{
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border x:Name="b" Background="#FF121215" BorderBrush="#FF2A2A31" BorderThickness="1" CornerRadius="12" Width="38">
-                            <Path x:Name="star" Width="14" Height="14" Stretch="Uniform"
-                                  Fill="#FF8E8E98" HorizontalAlignment="Center" VerticalAlignment="Center"
-                                  Data="M2,10 L6,10 L6,21 L2,21 Z M8,10 L12.4,3 C13.7,3 14.6,4.1 14.3,5.4 L13.5,9 L19.6,9 C21,9 22,10.3 21.6,11.6 L19.7,19.4 C19.4,20.4 18.5,21 17.5,21 L8,21 Z"/>
+                        <Border x:Name="b" Background="Transparent" Width="26" Height="26">
+                            <Viewbox Width="17" Height="17" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Grid Width="24" Height="24">
+                                    <Path x:Name="seal" StrokeThickness="1.8" StrokeLineJoin="Round"
+                                          Stroke="#FF5C5C66" Fill="Transparent" Data="M12.00,1.00 L14.41,3.02 L17.50,2.47 L18.58,5.42 L21.53,6.50 L20.98,9.59 L23.00,12.00 L20.98,14.41 L21.53,17.50 L18.58,18.58 L17.50,21.53 L14.41,20.98 L12.00,23.00 L9.59,20.98 L6.50,21.53 L5.42,18.58 L2.47,17.50 L3.02,14.41 L1.00,12.00 L3.02,9.59 L2.47,6.50 L5.42,5.42 L6.50,2.47 L9.59,3.02 Z"/>
+                                    <Path x:Name="tick" StrokeThickness="2.3" StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeLineJoin="Round"
+                                          Stroke="#FF5C5C66" Data="M7.8,12.3 L10.7,15.1 L16.3,9.3"/>
+                                </Grid>
+                            </Viewbox>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="b" Property="BorderBrush" Value="{DynamicResource PA}"/>
-                                <Setter TargetName="b" Property="Background" Value="{DynamicResource PASoft}"/>
-                                <Setter TargetName="star" Property="Fill" Value="{DynamicResource PA}"/>
+                                <Setter TargetName="seal" Property="Stroke" Value="{DynamicResource PA}"/>
+                                <Setter TargetName="tick" Property="Stroke" Value="{DynamicResource PA}"/>
+                            </Trigger>
+                            <Trigger Property="Tag" Value="match">
+                                <Setter TargetName="seal" Property="Fill" Value="{DynamicResource PA}"/>
+                                <Setter TargetName="seal" Property="Stroke" Value="{DynamicResource PA}"/>
+                                <Setter TargetName="tick" Property="Stroke" Value="#FF000000"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -3566,6 +3591,10 @@ $script:Msg = @{
     svcMissing         = @{ it = "Non presente su questo PC"; en = "Not on this PC" }
     recTip             = @{ it = "Valore consigliato: {0}. Un clic lo imposta, poi premi «Applica modifiche»."; en = "Recommended value: {0}. One click sets it, then press «Apply changes»." }
     recOn              = @{ it = "attivo"; en = "on" }
+    recOff             = @{ it = "spento"; en = "off" }
+    recOnLimited       = @{ it = "attivo (con limitazioni)"; en = "on (with limitations)" }
+    recDefault         = @{ it = "{0}, come Windows appena installato"; en = "{0}, as on a fresh Windows install" }
+    recTipLive         = @{ it = "Valore consigliato: {0}. Un clic lo imposta subito, come l'interruttore."; en = "Recommended value: {0}. One click sets it at once, like the switch." }
 }
 
 $script:LangCode = "it"
@@ -5541,6 +5570,10 @@ $script:Tr = @{
         'M:svcMissing' = "No presente en este PC"
         'M:recTip' = "Valor recomendado: {0}. Un clic lo establece; luego pulsa «Aplicar cambios»."
         'M:recOn' = "activado"
+        'M:recOff' = "desactivado"
+        'M:recOnLimited' = "activado (con limitaciones)"
+        'M:recDefault' = "{0}, como en un Windows recién instalado"
+        'M:recTipLive' = "Valor recomendado: {0}. Un clic lo establece al instante, como el interruptor."
     }
     de = @{
         'L:lblSubtitle' = "Windows-Optimierung und -Steuerung — PcFixPro Italia"
@@ -6438,6 +6471,10 @@ $script:Tr = @{
         'M:svcMissing' = "Auf diesem PC nicht vorhanden"
         'M:recTip' = "Empfohlener Wert: {0}. Ein Klick setzt ihn, dann «Änderungen anwenden» drücken."
         'M:recOn' = "aktiv"
+        'M:recOff' = "aus"
+        'M:recOnLimited' = "aktiv (mit Einschränkungen)"
+        'M:recDefault' = "{0}, wie bei einem frisch installierten Windows"
+        'M:recTipLive' = "Empfohlener Wert: {0}. Ein Klick setzt ihn sofort, wie der Schalter."
     }
     fr = @{
         'L:lblSubtitle' = "Optimisation et contrôle de Windows — PcFixPro Italia"
@@ -7338,6 +7375,10 @@ $script:Tr = @{
         'M:svcMissing' = "Absent sur ce PC"
         'M:recTip' = "Valeur recommandée : {0}. Un clic la règle, puis appuyez sur « Appliquer les modifications »."
         'M:recOn' = "activé"
+        'M:recOff' = "désactivé"
+        'M:recOnLimited' = "activé (avec limitations)"
+        'M:recDefault' = "{0}, comme sur un Windows neuf"
+        'M:recTipLive' = "Valeur recommandée : {0}. Un clic la règle tout de suite, comme l'interrupteur."
     }
     pl = @{
         'L:lblSubtitle' = "Optymalizacja i kontrola systemu Windows — PcFixPro Italia"
@@ -8235,6 +8276,10 @@ $script:Tr = @{
         'M:svcMissing' = "Brak na tym komputerze"
         'M:recTip' = "Zalecana wartość: {0}. Jedno kliknięcie ją ustawia, potem naciśnij «Zastosuj zmiany»."
         'M:recOn' = "włączone"
+        'M:recOff' = "wyłączone"
+        'M:recOnLimited' = "włączone (z ograniczeniami)"
+        'M:recDefault' = "{0}, jak w świeżo zainstalowanym Windows"
+        'M:recTipLive' = "Zalecana wartość: {0}. Jedno kliknięcie ustawia ją od razu, jak przełącznik."
     }
     pt = @{
         'L:lblSubtitle' = "Otimização e controle do Windows — PcFixPro Italia"
@@ -9132,6 +9177,10 @@ $script:Tr = @{
         'M:svcMissing' = "Não presente neste PC"
         'M:recTip' = "Valor recomendado: {0}. Um clique o define; depois clique em «Aplicar alterações»."
         'M:recOn' = "ativado"
+        'M:recOff' = "desativado"
+        'M:recOnLimited' = "ativado (com limitações)"
+        'M:recDefault' = "{0}, como em um Windows recém-instalado"
+        'M:recTipLive' = "Valor recomendado: {0}. Um clique o define na hora, como o interruptor."
     }
     ro = @{
         'L:lblSubtitle' = "Optimizarea și controlul Windows — PcFixPro Italia"
@@ -10029,6 +10078,10 @@ $script:Tr = @{
         'M:svcMissing' = "Nu există pe acest PC"
         'M:recTip' = "Valoare recomandată: {0}. Un clic o setează, apoi apasă «Aplică modificările»."
         'M:recOn' = "activat"
+        'M:recOff' = "dezactivat"
+        'M:recOnLimited' = "activat (cu limitări)"
+        'M:recDefault' = "{0}, ca pe un Windows proaspăt instalat"
+        'M:recTipLive' = "Valoare recomandată: {0}. Un clic o setează imediat, ca întrerupătorul."
     }
     ru = @{
         'L:lblSubtitle' = "Оптимизация и управление Windows — PcFixPro Italia"
@@ -10926,6 +10979,10 @@ $script:Tr = @{
         'M:svcMissing' = "Нет на этом ПК"
         'M:recTip' = "Рекомендуемое значение: {0}. Щелчок выбирает его, затем нажмите «Применить изменения»."
         'M:recOn' = "включено"
+        'M:recOff' = "выключено"
+        'M:recOnLimited' = "включено (с ограничениями)"
+        'M:recDefault' = "{0}, как в только что установленной Windows"
+        'M:recTipLive' = "Рекомендуемое значение: {0}. Щелчок сразу его устанавливает, как переключатель."
     }
 }
 
@@ -15755,8 +15812,30 @@ function Update-CatRow($row) {
                 [void]$combo.Items.Add($match)
             }
             $combo.SelectedItem = $match
+            if ($row.RecBtn) { $row.RecBtn.Tag = if ([string]$state -eq $row.RecTarget) { 'match' } else { $null } }
         }
     } finally { $script:CatLoading = $false }
+}
+
+# Valore consigliato di una voce, con il testo da mostrare. Senza un consiglio
+# del catalogo vale lo stato di Windows appena installato.
+function Get-CatRecValue($it) {
+    if ($it.Page -eq 'priv') {
+        $on = $it.Rec -in @('y', 'l')
+        $text = if ($it.Rec -eq 'l') { T 'recOnLimited' } elseif ($on) { T 'recOn' } else { T 'recOff' }
+        return @{ Target = $on; Text = $text }
+    }
+    $target = Get-CatRecTarget $it; $fromDef = $false
+    if ($null -eq $target) { $target = Get-CatDefTarget $it; $fromDef = $true }
+    if ($null -eq $target) { return $null }
+    if ($it.Kind -in @('T','J')) { $text = T $(if ($target) { 'recOn' } else { 'recOff' }) }
+    else {
+        $o = Get-CatOptions $it | Where-Object { [string]$_.Key -eq [string]$target } | Select-Object -First 1
+        if ($null -eq $o) { return $null }
+        $text = $o.Text
+    }
+    if ($fromDef) { $text = (T 'recDefault') -f $text }
+    return @{ Target = $target; Text = $text }
 }
 
 function Get-CatOptions($it) {
@@ -15818,12 +15897,31 @@ function New-CatRow($it, $page) {
             Update-CatExplorerHint
         }
         $cb.Add_Checked($handler); $cb.Add_Unchecked($handler)
+        $rv = Get-CatRecValue $it
+        if ($rv) {
+            [System.Windows.Automation.AutomationProperties]::SetItemStatus($cb, $(if ($rv.Target) { 'rec' } else { 'recoff' }))
+            $cb.Resources['recTip'] = (T 'recTipLive') -f $rv.Text
+            # Il modello c'e' solo quando la casella entra nella pagina.
+            $cb.Add_Loaded({
+                if ($this.Resources.Contains('starHooked')) { return }
+                $hit = $this.Template.FindName('starHit', $this)
+                if ($null -eq $hit) { return }
+                $this.Resources['starHooked'] = $true
+                $hit.ToolTip = $this.Resources['recTip']
+                $hit.Add_PreviewMouseLeftButtonDown({
+                    $p = $this.TemplatedParent
+                    $p.IsChecked = ([System.Windows.Automation.AutomationProperties]::GetItemStatus($p) -eq 'rec')
+                    $_.Handled = $true
+                })
+            })
+        }
     } else {
         $inner = New-Object System.Windows.Controls.Grid
         $inner.Margin = '10,4,10,4'
         $ic0 = New-Object System.Windows.Controls.ColumnDefinition; $ic0.Width = New-Object System.Windows.GridLength(1, [System.Windows.GridUnitType]::Star)
         $ic1 = New-Object System.Windows.Controls.ColumnDefinition; $ic1.Width = [System.Windows.GridLength]::Auto
-        $inner.ColumnDefinitions.Add($ic0); $inner.ColumnDefinitions.Add($ic1)
+        $ic2 = New-Object System.Windows.Controls.ColumnDefinition; $ic2.Width = [System.Windows.GridLength]::Auto
+        $inner.ColumnDefinitions.Add($ic0); $inner.ColumnDefinitions.Add($ic2); $inner.ColumnDefinitions.Add($ic1)
         $tb = New-Object System.Windows.Controls.TextBlock
         $tb.Text = $label; $tb.TextWrapping = 'Wrap'; $tb.VerticalAlignment = 'Center'; $tb.Margin = '0,0,12,0'
         $tb.Foreground = New-CatBrush '#FFC4C4CC'; $tb.FontSize = 12.5
@@ -15836,8 +15934,22 @@ function New-CatRow($it, $page) {
             $ci.Tag = $o.Key; $ci.Content = $o.Text
             [void]$combo.Items.Add($ci)
         }
-        [System.Windows.Controls.Grid]::SetColumn($combo, 1)
+        [System.Windows.Controls.Grid]::SetColumn($combo, 2)
         [void]$inner.Children.Add($combo)
+        $rv = Get-CatRecValue $it
+        if ($rv) {
+            $rb = New-Object System.Windows.Controls.Button
+            $rb.Style = $window.FindResource('StarBtn'); $rb.Margin = '0,0,8,0'; $rb.VerticalAlignment = 'Center'
+            $rb.ToolTip = (T 'recTipLive') -f $rv.Text
+            $rb.DataContext = @{ Combo = $combo; Target = [string]$rv.Target }
+            $rb.Add_Click({
+                $d = $this.DataContext
+                $pick = $d.Combo.Items | Where-Object { [string]$_.Tag -eq $d.Target } | Select-Object -First 1
+                if ($pick -and $d.Combo.IsEnabled) { $d.Combo.SelectedItem = $pick }
+            })
+            [System.Windows.Controls.Grid]::SetColumn($rb, 1)
+            [void]$inner.Children.Add($rb)
+        }
         [System.Windows.Controls.Grid]::SetColumn($inner, 1)
         [void]$grid.Children.Add($inner)
         $ctl = $combo
@@ -15854,7 +15966,9 @@ function New-CatRow($it, $page) {
         $tb.Tag = 'label'
     }
     Set-CatTooltip $grid $it $page
-    $row = [pscustomobject]@{ Item = $it; Control = $ctl; Element = $grid; Label = $label; Card = $null }
+    $recBtn = if ($it.Kind -notin @('T','J') -and $rv) { $rb } else { $null }
+    $row = [pscustomobject]@{ Item = $it; Control = $ctl; Element = $grid; Label = $label; Card = $null
+                              RecBtn = $recBtn; RecTarget = $(if ($rv) { [string]$rv.Target } else { $null }) }
     [void]$script:CatRows.Add($row)
     Update-CatRow $row
     return $row
@@ -18333,6 +18447,7 @@ function Update-CurrentValues {
     try { $v = (Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows\DWM' -Name OverlayTestMode -ErrorAction Stop).OverlayTestMode } catch {}
     $idx = switch ($v) { 5 { 1 } 2 { 2 } default { 0 } }
     $txtMpoCurrent.Text = (T 'currentSetting') -f ([string]$cmbMPO.Items[$idx].Content)
+    $btnMpoStar.Tag = if ($idx -eq 1) { 'match' } else { $null }
     if ($txtWuCurrent) { $txtWuCurrent.Text = (T 'currentSetting') -f (T "wu_$(Get-WuProfileNow)") }
 }
 
@@ -18342,22 +18457,31 @@ $btnMpoStar.Add_Click({
 })
 
 # ------------------------------------------------------------------------------
-# Tasto delle voci consigliate (pollice in su)
+# Consiglio su ogni voce: la coccarda dice il valore consigliato (acceso o
+# spento) ed e' piena quando la voce e' gia' li'. Il clic porta la voce al
+# consiglio senza applicarla: per quello c'e' «Applica modifiche».
 # ------------------------------------------------------------------------------
+# Interruttori di ambito e manutenzioni: non sono impostazioni da consigliare.
+$script:NoRecChecks = @('chkRestorePoint', 'chkStorageProfile', 'chkWuProfile', 'chkApplyNetwork', 'chkApplyDns',
+                        'chkApplyMPO', 'chkDiskCleanup', 'chkSmartChkdsk')
 function Update-RecStars {
     $names = @($script:RecommendedChecks.Values | ForEach-Object { $_ })
     foreach ($cb in $script:AllCheckBoxes) {
-        $rec = ($names -contains [string]$cb.Name) -and $cb.IsEnabled -and (Test-CheckVendor $cb) -and (Test-CheckPcType $cb)
-        [System.Windows.Automation.AutomationProperties]::SetItemStatus($cb, $(if ($rec) { 'rec' } else { '' }))
-        if (-not $rec) { continue }
+        $show = $cb.IsEnabled -and ($script:NoRecChecks -notcontains [string]$cb.Name) -and (Test-CheckVendor $cb)
+        $on = ($names -contains [string]$cb.Name) -and (Test-CheckPcType $cb)
+        [System.Windows.Automation.AutomationProperties]::SetItemStatus($cb, $(if (-not $show) { '' } elseif ($on) { 'rec' } else { 'recoff' }))
+        if (-not $show) { continue }
         [void]$cb.ApplyTemplate()
         $hit = $cb.Template.FindName('starHit', $cb)
         if ($null -eq $hit) { continue }
-        $hit.ToolTip = (T 'recTip') -f (T 'recOn')
+        $hit.ToolTip = (T 'recTip') -f (T $(if ($on) { 'recOn' } else { 'recOff' }))
         if ($cb.Resources.Contains('starHooked')) { continue }
         $cb.Resources['starHooked'] = $true
-        # Il tasto seleziona e basta: un secondo clic non toglie la voce.
-        $hit.Add_PreviewMouseLeftButtonDown({ $this.TemplatedParent.IsChecked = $true; $_.Handled = $true })
+        $hit.Add_PreviewMouseLeftButtonDown({
+            $p = $this.TemplatedParent
+            $p.IsChecked = ([System.Windows.Automation.AutomationProperties]::GetItemStatus($p) -eq 'rec')
+            $_.Handled = $true
+        })
     }
     $btnMpoStar.ToolTip = (T 'recTip') -f ([string]$cmbMPO.Items[1].Content)
 }

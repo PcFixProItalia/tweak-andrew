@@ -54,8 +54,8 @@ L'indicatore in alto mostra da ogni pagina cosa sta lavorando e a che punto è.
 Durante «Applica» e durante gli strumenti le pagine delle impostazioni si
 bloccano; Home e App restano libere. All'avvio il programma legge le azioni di
 «Applica» (senza eseguirle) e confronta i valori con il sistema: le voci già
-attive portano l'etichetta «Attivo». Il pollice in su segna le voci consigliate:
-il popup dice il valore consigliato e un clic le seleziona, senza applicarle.
+attive portano l'etichetta «Attivo». La coccarda con la spunta dice il valore consigliato di ogni voce:
+piena se la voce è già lì; un clic la porta al consiglio (nelle pagine con «Applica» senza applicarla).
 
 ## Avvio da qualsiasi PC
 
@@ -86,7 +86,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File tools\test.ps1 -Lang it
 # Home e pagina delle app: letture in background, aggiornamenti disponibili e
 # barra di avanzamento con un «winget download» (scarica, non installa)
 powershell -NoProfile -ExecutionPolicy Bypass -File tools\test_home_apps.ps1
-# Strumenti, blocco delle pagine, indicatore, pollici dei consigli e profili WU (operazioni finte)
+# Strumenti, blocco delle pagine, indicatore, coccarde dei consigli e profili WU (operazioni finte)
 powershell -NoProfile -ExecutionPolicy Bypass -File tools\test_tools.ps1
 ```
 

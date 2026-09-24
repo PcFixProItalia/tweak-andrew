@@ -893,3 +893,7 @@ M:pwAskDef	Przywrócę w używanym planie domyślne wartości Windows. Zmiany dz
 M:svcMissing	Brak na tym komputerze
 M:recTip	Zalecana wartość: {0}. Jedno kliknięcie ją ustawia, potem naciśnij «Zastosuj zmiany».
 M:recOn	włączone
+M:recOff	wyłączone
+M:recOnLimited	włączone (z ograniczeniami)
+M:recDefault	{0}, jak w świeżo zainstalowanym Windows
+M:recTipLive	Zalecana wartość: {0}. Jedno kliknięcie ustawia ją od razu, jak przełącznik.

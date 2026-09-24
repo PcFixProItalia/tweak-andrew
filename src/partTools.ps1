@@ -933,6 +933,7 @@ function Update-CurrentValues {
     try { $v = (Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows\DWM' -Name OverlayTestMode -ErrorAction Stop).OverlayTestMode } catch {}
     $idx = switch ($v) { 5 { 1 } 2 { 2 } default { 0 } }
     $txtMpoCurrent.Text = (T 'currentSetting') -f ([string]$cmbMPO.Items[$idx].Content)
+    $btnMpoStar.Tag = if ($idx -eq 1) { 'match' } else { $null }
     if ($txtWuCurrent) { $txtWuCurrent.Text = (T 'currentSetting') -f (T "wu_$(Get-WuProfileNow)") }
 }
 
@@ -942,22 +943,31 @@ $btnMpoStar.Add_Click({
 })
 
 # ------------------------------------------------------------------------------
-# Tasto delle voci consigliate (pollice in su)
+# Consiglio su ogni voce: la coccarda dice il valore consigliato (acceso o
+# spento) ed e' piena quando la voce e' gia' li'. Il clic porta la voce al
+# consiglio senza applicarla: per quello c'e' «Applica modifiche».
 # ------------------------------------------------------------------------------
+# Interruttori di ambito e manutenzioni: non sono impostazioni da consigliare.
+$script:NoRecChecks = @('chkRestorePoint', 'chkStorageProfile', 'chkWuProfile', 'chkApplyNetwork', 'chkApplyDns',
+                        'chkApplyMPO', 'chkDiskCleanup', 'chkSmartChkdsk')
 function Update-RecStars {
     $names = @($script:RecommendedChecks.Values | ForEach-Object { $_ })
     foreach ($cb in $script:AllCheckBoxes) {
-        $rec = ($names -contains [string]$cb.Name) -and $cb.IsEnabled -and (Test-CheckVendor $cb) -and (Test-CheckPcType $cb)
-        [System.Windows.Automation.AutomationProperties]::SetItemStatus($cb, $(if ($rec) { 'rec' } else { '' }))
-        if (-not $rec) { continue }
+        $show = $cb.IsEnabled -and ($script:NoRecChecks -notcontains [string]$cb.Name) -and (Test-CheckVendor $cb)
+        $on = ($names -contains [string]$cb.Name) -and (Test-CheckPcType $cb)
+        [System.Windows.Automation.AutomationProperties]::SetItemStatus($cb, $(if (-not $show) { '' } elseif ($on) { 'rec' } else { 'recoff' }))
+        if (-not $show) { continue }
         [void]$cb.ApplyTemplate()
         $hit = $cb.Template.FindName('starHit', $cb)
         if ($null -eq $hit) { continue }
-        $hit.ToolTip = (T 'recTip') -f (T 'recOn')
+        $hit.ToolTip = (T 'recTip') -f (T $(if ($on) { 'recOn' } else { 'recOff' }))
         if ($cb.Resources.Contains('starHooked')) { continue }
         $cb.Resources['starHooked'] = $true
-        # Il tasto seleziona e basta: un secondo clic non toglie la voce.
-        $hit.Add_PreviewMouseLeftButtonDown({ $this.TemplatedParent.IsChecked = $true; $_.Handled = $true })
+        $hit.Add_PreviewMouseLeftButtonDown({
+            $p = $this.TemplatedParent
+            $p.IsChecked = ([System.Windows.Automation.AutomationProperties]::GetItemStatus($p) -eq 'rec')
+            $_.Handled = $true
+        })
     }
     $btnMpoStar.ToolTip = (T 'recTip') -f ([string]$cmbMPO.Items[1].Content)
 }

@@ -126,14 +126,18 @@
                                         Background="#262ED3A7" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,8,0">
                                     <TextBlock Text="{DynamicResource BadgeActive}" FontSize="10.5" FontWeight="SemiBold" Foreground="#FF2ED3A7"/>
                                 </Border>
-                                <!-- Voce consigliata: il tasto con il pollice la seleziona; si applica con «Applica modifiche».
-                                     E' un tasto scuro come l'interruttore e prende il colore della pagina. -->
-                                <Border x:Name="starHit" Grid.Column="2" Visibility="Collapsed" Background="#FF121215"
-                                        BorderBrush="#FF2A2A31" BorderThickness="1" CornerRadius="7"
-                                        Width="24" Height="22" Margin="0,0,10,0" VerticalAlignment="Center">
-                                    <Path x:Name="star" Width="12" Height="12" Stretch="Uniform"
-                                          Fill="#FF6E6E78" HorizontalAlignment="Center" VerticalAlignment="Center"
-                                          Data="M2,10 L6,10 L6,21 L2,21 Z M8,10 L12.4,3 C13.7,3 14.6,4.1 14.3,5.4 L13.5,9 L19.6,9 C21,9 22,10.3 21.6,11.6 L19.7,19.4 C19.4,20.4 18.5,21 17.5,21 L8,21 Z"/>
+                                <!-- Consiglio: la coccarda e' piena quando la voce e' gia' sul valore consigliato.
+                                     Il clic porta la voce al consiglio; si applica con «Applica modifiche». -->
+                                <Border x:Name="starHit" Grid.Column="2" Visibility="Collapsed" Background="Transparent"
+                                        Width="26" Height="26" Margin="0,0,8,0" VerticalAlignment="Center">
+                                    <Viewbox Width="17" Height="17" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <Grid Width="24" Height="24">
+                                            <Path x:Name="seal" StrokeThickness="1.8" StrokeLineJoin="Round"
+                                                  Stroke="#FF5C5C66" Fill="Transparent" Data="M12.00,1.00 L14.41,3.02 L17.50,2.47 L18.58,5.42 L21.53,6.50 L20.98,9.59 L23.00,12.00 L20.98,14.41 L21.53,17.50 L18.58,18.58 L17.50,21.53 L14.41,20.98 L12.00,23.00 L9.59,20.98 L6.50,21.53 L5.42,18.58 L2.47,17.50 L3.02,14.41 L1.00,12.00 L3.02,9.59 L2.47,6.50 L5.42,5.42 L6.50,2.47 L9.59,3.02 Z"/>
+                                            <Path x:Name="tick" StrokeThickness="2.3" StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeLineJoin="Round"
+                                                  Stroke="#FF5C5C66" Data="M7.8,12.3 L10.7,15.1 L16.3,9.3"/>
+                                        </Grid>
+                                    </Viewbox>
                                 </Border>
                                 <Border x:Name="track" Grid.Column="3" Width="36" Height="20" CornerRadius="10"
                                         Background="#FF121215" BorderBrush="#FF3A3A42" BorderThickness="1.5"
@@ -158,18 +162,30 @@
                             <Trigger Property="AutomationProperties.ItemStatus" Value="rec">
                                 <Setter TargetName="starHit" Property="Visibility" Value="Visible"/>
                             </Trigger>
+                            <Trigger Property="AutomationProperties.ItemStatus" Value="recoff">
+                                <Setter TargetName="starHit" Property="Visibility" Value="Visible"/>
+                            </Trigger>
                             <Trigger SourceName="starHit" Property="IsMouseOver" Value="True">
-                                <Setter TargetName="star" Property="Fill" Value="{DynamicResource PA}"/>
-                                <Setter TargetName="starHit" Property="BorderBrush" Value="{DynamicResource PA}"/>
+                                <Setter TargetName="seal" Property="Stroke" Value="{DynamicResource PA}"/>
+                                <Setter TargetName="tick" Property="Stroke" Value="{DynamicResource PA}"/>
                             </Trigger>
                             <MultiTrigger>
                                 <MultiTrigger.Conditions>
                                     <Condition Property="AutomationProperties.ItemStatus" Value="rec"/>
                                     <Condition Property="IsChecked" Value="True"/>
                                 </MultiTrigger.Conditions>
-                                <Setter TargetName="star" Property="Fill" Value="{DynamicResource PA}"/>
-                                <Setter TargetName="starHit" Property="Background" Value="{DynamicResource PASoft}"/>
-                                <Setter TargetName="starHit" Property="BorderBrush" Value="{DynamicResource PA}"/>
+                                <Setter TargetName="seal" Property="Fill" Value="{DynamicResource PA}"/>
+                                <Setter TargetName="seal" Property="Stroke" Value="{DynamicResource PA}"/>
+                                <Setter TargetName="tick" Property="Stroke" Value="#FF000000"/>
+                            </MultiTrigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="AutomationProperties.ItemStatus" Value="recoff"/>
+                                    <Condition Property="IsChecked" Value="False"/>
+                                </MultiTrigger.Conditions>
+                                <Setter TargetName="seal" Property="Fill" Value="{DynamicResource PA}"/>
+                                <Setter TargetName="seal" Property="Stroke" Value="{DynamicResource PA}"/>
+                                <Setter TargetName="tick" Property="Stroke" Value="#FF000000"/>
                             </MultiTrigger>
                             <Trigger Property="IsChecked" Value="True">
                                 <Setter TargetName="track" Property="Background" Value="{DynamicResource PA}"/>
@@ -245,16 +261,25 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border x:Name="b" Background="#FF121215" BorderBrush="#FF2A2A31" BorderThickness="1" CornerRadius="12" Width="38">
-                            <Path x:Name="star" Width="14" Height="14" Stretch="Uniform"
-                                  Fill="#FF8E8E98" HorizontalAlignment="Center" VerticalAlignment="Center"
-                                  Data="M2,10 L6,10 L6,21 L2,21 Z M8,10 L12.4,3 C13.7,3 14.6,4.1 14.3,5.4 L13.5,9 L19.6,9 C21,9 22,10.3 21.6,11.6 L19.7,19.4 C19.4,20.4 18.5,21 17.5,21 L8,21 Z"/>
+                        <Border x:Name="b" Background="Transparent" Width="26" Height="26">
+                            <Viewbox Width="17" Height="17" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Grid Width="24" Height="24">
+                                    <Path x:Name="seal" StrokeThickness="1.8" StrokeLineJoin="Round"
+                                          Stroke="#FF5C5C66" Fill="Transparent" Data="M12.00,1.00 L14.41,3.02 L17.50,2.47 L18.58,5.42 L21.53,6.50 L20.98,9.59 L23.00,12.00 L20.98,14.41 L21.53,17.50 L18.58,18.58 L17.50,21.53 L14.41,20.98 L12.00,23.00 L9.59,20.98 L6.50,21.53 L5.42,18.58 L2.47,17.50 L3.02,14.41 L1.00,12.00 L3.02,9.59 L2.47,6.50 L5.42,5.42 L6.50,2.47 L9.59,3.02 Z"/>
+                                    <Path x:Name="tick" StrokeThickness="2.3" StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeLineJoin="Round"
+                                          Stroke="#FF5C5C66" Data="M7.8,12.3 L10.7,15.1 L16.3,9.3"/>
+                                </Grid>
+                            </Viewbox>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="b" Property="BorderBrush" Value="{DynamicResource PA}"/>
-                                <Setter TargetName="b" Property="Background" Value="{DynamicResource PASoft}"/>
-                                <Setter TargetName="star" Property="Fill" Value="{DynamicResource PA}"/>
+                                <Setter TargetName="seal" Property="Stroke" Value="{DynamicResource PA}"/>
+                                <Setter TargetName="tick" Property="Stroke" Value="{DynamicResource PA}"/>
+                            </Trigger>
+                            <Trigger Property="Tag" Value="match">
+                                <Setter TargetName="seal" Property="Fill" Value="{DynamicResource PA}"/>
+                                <Setter TargetName="seal" Property="Stroke" Value="{DynamicResource PA}"/>
+                                <Setter TargetName="tick" Property="Stroke" Value="#FF000000"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>

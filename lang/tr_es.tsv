@@ -893,3 +893,7 @@ M:pwAskDef	Devuelvo el plan en uso a los valores predeterminados de Windows. Los
 M:svcMissing	No presente en este PC
 M:recTip	Valor recomendado: {0}. Un clic lo establece; luego pulsa «Aplicar cambios».
 M:recOn	activado
+M:recOff	desactivado
+M:recOnLimited	activado (con limitaciones)
+M:recDefault	{0}, como en un Windows recién instalado
+M:recTipLive	Valor recomendado: {0}. Un clic lo establece al instante, como el interruptor.

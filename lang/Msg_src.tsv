@@ -369,3 +369,7 @@ pwAskDef	I'll put the plan in use back to the Windows default values. The change
 svcMissing	Not on this PC
 recTip	Recommended value: {0}. One click sets it, then press «Apply changes».
 recOn	on
+recOff	off
+recOnLimited	on (with limitations)
+recDefault	{0}, as on a fresh Windows install
+recTipLive	Recommended value: {0}. One click sets it at once, like the switch.

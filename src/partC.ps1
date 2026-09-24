@@ -803,6 +803,10 @@ $script:Msg = @{
     svcMissing         = @{ it = "Non presente su questo PC"; en = "Not on this PC" }
     recTip             = @{ it = "Valore consigliato: {0}. Un clic lo imposta, poi premi «Applica modifiche»."; en = "Recommended value: {0}. One click sets it, then press «Apply changes»." }
     recOn              = @{ it = "attivo"; en = "on" }
+    recOff             = @{ it = "spento"; en = "off" }
+    recOnLimited       = @{ it = "attivo (con limitazioni)"; en = "on (with limitations)" }
+    recDefault         = @{ it = "{0}, come Windows appena installato"; en = "{0}, as on a fresh Windows install" }
+    recTipLive         = @{ it = "Valore consigliato: {0}. Un clic lo imposta subito, come l'interruttore."; en = "Recommended value: {0}. One click sets it at once, like the switch." }
 }
 
 $script:LangCode = "it"
