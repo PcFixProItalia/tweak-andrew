@@ -15547,8 +15547,8 @@ $script:HomeJob = $null
 # Portatile o fisso. La scelta manuale vale piu' del rilevamento e resta salvata.
 $script:LaptopChassis = @(8, 9, 10, 11, 12, 14, 18, 21, 30, 31, 32)
 $script:DesktopChassis = @(3, 4, 5, 6, 7, 13, 15, 16, 35)
-# Voci che su un portatile costano batteria: «Seleziona tutto» e «Consigliati»
-# le lasciano stare. Restano selezionabili a mano.
+# Voci che su un portatile costano batteria: «Consigliati» le lascia stare,
+# «Seleziona tutto» le prende dopo un avviso.
 $script:LaptopSkip = @('chkPowerThrottling', 'chkUSBSuspend', 'chkNetPowerSave', 'chkHibernation', 'chkS0Sleep',
                        'chkNvPerfMode', 'chkNvDrsPower', 'chkNvDisplayPower', 'chkAmdUlps', 'chkAmdAspm',
                        'chkIntelGfxPower', 'chkIntelDpst', 'chkCpuIntelBoostPol', 'chkCpuAmdParking', 'chkCpuIdleOff')
