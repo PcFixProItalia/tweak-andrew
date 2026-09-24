@@ -713,7 +713,6 @@ L:chkDiskNoSleep	Discos y SSD siempre activos (enchufado)
 M:actRun	Cambios: {0}
 M:jobWorking	En curso...
 M:badgeActive	Activo
-M:starTip	Recomendado: un clic lo selecciona, luego pulsa «Aplicar cambios».
 M:scanRunning	Comprobando opciones ya activas...
 M:scanDone	Opciones ya activas en este PC: {0}. Están marcadas como «Activo».
 M:currentSetting	Ajuste actual: {0}
@@ -892,3 +891,5 @@ M:pwDefBtn	Volver a los valores de Windows
 M:pwAskRec	Pongo los valores recomendados en el plan en uso. Los cambios se aplican al instante. ¿Continúo?
 M:pwAskDef	Devuelvo el plan en uso a los valores predeterminados de Windows. Los cambios se aplican al instante. ¿Continúo?
 M:svcMissing	No presente en este PC
+M:recTip	Valor recomendado: {0}. Un clic lo establece; luego pulsa «Aplicar cambios».
+M:recOn	activado

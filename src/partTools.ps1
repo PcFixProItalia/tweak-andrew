@@ -942,7 +942,7 @@ $btnMpoStar.Add_Click({
 })
 
 # ------------------------------------------------------------------------------
-# Stellina delle voci consigliate
+# Tasto delle voci consigliate (pollice in su)
 # ------------------------------------------------------------------------------
 function Update-RecStars {
     $names = @($script:RecommendedChecks.Values | ForEach-Object { $_ })
@@ -953,13 +953,13 @@ function Update-RecStars {
         [void]$cb.ApplyTemplate()
         $hit = $cb.Template.FindName('starHit', $cb)
         if ($null -eq $hit) { continue }
-        $hit.ToolTip = T 'starTip'
+        $hit.ToolTip = (T 'recTip') -f (T 'recOn')
         if ($cb.Resources.Contains('starHooked')) { continue }
         $cb.Resources['starHooked'] = $true
-        # La stellina seleziona e basta: un secondo clic non toglie la voce.
+        # Il tasto seleziona e basta: un secondo clic non toglie la voce.
         $hit.Add_PreviewMouseLeftButtonDown({ $this.TemplatedParent.IsChecked = $true; $_.Handled = $true })
     }
-    $btnMpoStar.ToolTip = T 'starTip'
+    $btnMpoStar.ToolTip = (T 'recTip') -f ([string]$cmbMPO.Items[1].Content)
 }
 
 $btnDetectActive.Add_Click({

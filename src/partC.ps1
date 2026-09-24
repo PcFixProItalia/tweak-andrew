@@ -659,7 +659,6 @@ $script:Msg = @{
     actRun             = @{ it = "Modifiche: {0}"; en = "Changes: {0}" }
     jobWorking         = @{ it = "In corso..."; en = "Working..." }
     badgeActive        = @{ it = "Attivo"; en = "Active" }
-    starTip            = @{ it = "Consigliato: un clic lo seleziona, poi premi «Applica modifiche»."; en = "Recommended: one click selects it, then press «Apply changes»." }
     scanRunning        = @{ it = "Controllo delle voci già attive..."; en = "Checking entries already active..." }
     scanDone           = @{ it = "Voci già attive su questo PC: {0}. Sono segnate con «Attivo»."; en = "Entries already active on this PC: {0}. They are marked «Active»." }
     currentSetting     = @{ it = "Impostazione attuale: {0}"; en = "Current setting: {0}" }
@@ -802,6 +801,8 @@ $script:Msg = @{
     pwAskRec           = @{ it = "Imposto i valori consigliati sul piano in uso. Le modifiche valgono subito. Procedo?"; en = "I'll set the recommended values on the plan in use. The changes apply right away. Go ahead?" }
     pwAskDef           = @{ it = "Riporto il piano in uso ai valori predefiniti di Windows. Le modifiche valgono subito. Procedo?"; en = "I'll put the plan in use back to the Windows default values. The changes apply right away. Go ahead?" }
     svcMissing         = @{ it = "Non presente su questo PC"; en = "Not on this PC" }
+    recTip             = @{ it = "Valore consigliato: {0}. Un clic lo imposta, poi premi «Applica modifiche»."; en = "Recommended value: {0}. One click sets it, then press «Apply changes»." }
+    recOn              = @{ it = "attivo"; en = "on" }
 }
 
 $script:LangCode = "it"
@@ -859,6 +860,9 @@ function Set-Language([string]$code) {
     if ($script:SectionPicks) { Update-SectionPickText }
     $window.Resources['BadgeActive'] = [string](T 'badgeActive')
     if (Get-Command Show-WuProfiles -ErrorAction SilentlyContinue) { Show-WuProfiles; Update-CurrentValues }
+    # Le schede rilevate scrivono testi tradotti: si rifanno nella nuova lingua.
+    if ((Get-Command Show-CpuInfo -ErrorAction SilentlyContinue) -and $script:CpuVendor) { Show-CpuInfo }
+    if ((Get-Command Show-GpuInfo -ErrorAction SilentlyContinue) -and $script:GpuVendor) { Show-GpuInfo }
     if (Get-Command Update-RecStars -ErrorAction SilentlyContinue) { Update-RecStars }
     if (Get-Command Show-PlanList -ErrorAction SilentlyContinue) { Show-PlanList }
     # Menu del pannello MMCSS e decodifica della priorita': testi nella nuova lingua.
@@ -1515,7 +1519,7 @@ function Add-SectionPicks {
                     $g.ColumnDefinitions.Add($c0); $g.ColumnDefinitions.Add($c1)
                     [void]$g.Children.Add($title)
                     $box = New-Object System.Windows.Controls.CheckBox
-                    $box.Style = $window.FindResource('SectionPick'); $box.Tag = 'section'; $box.Margin = '8,-4,-6,-4'
+                    $box.Style = $window.FindResource('SectionPick'); $box.Tag = 'section'; $box.Margin = '4,-4,4,-4'
                     $box.Content = T 'sectionSelect'
                     [System.Windows.Controls.Grid]::SetColumn($box, 1); [void]$g.Children.Add($box)
                     $panel.Children.Insert(0, $g)

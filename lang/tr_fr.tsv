@@ -716,7 +716,6 @@ L:chkDiskNoSleep	Disques et SSD toujours actifs (sur secteur)
 M:actRun	Modifications : {0}
 M:jobWorking	En cours...
 M:badgeActive	Actif
-M:starTip	Recommandé : un clic le sélectionne, puis appuyez sur «Appliquer».
 M:scanRunning	Vérification des options déjà actives...
 M:scanDone	Options déjà actives sur ce PC : {0}. Elles sont marquées «Actif».
 M:currentSetting	Réglage actuel : {0}
@@ -895,3 +894,5 @@ M:pwDefBtn	Revenir aux valeurs de Windows
 M:pwAskRec	Je règle les valeurs recommandées sur le mode utilisé. Les changements s'appliquent tout de suite. Je continue ?
 M:pwAskDef	Je remets le mode utilisé aux valeurs par défaut de Windows. Les changements s'appliquent tout de suite. Je continue ?
 M:svcMissing	Absent sur ce PC
+M:recTip	Valeur recommandée : {0}. Un clic la règle, puis appuyez sur « Appliquer les modifications ».
+M:recOn	activé

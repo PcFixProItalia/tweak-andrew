@@ -713,7 +713,6 @@ L:chkDiskNoSleep	Discuri și SSD mereu active (la priză)
 M:actRun	Modificări: {0}
 M:jobWorking	În curs...
 M:badgeActive	Activ
-M:starTip	Recomandat: un clic îl selectează, apoi apasă «Aplică modificările».
 M:scanRunning	Se verifică opțiunile deja active...
 M:scanDone	Opțiuni deja active pe acest PC: {0}. Sunt marcate «Activ».
 M:currentSetting	Setare actuală: {0}
@@ -892,3 +891,5 @@ M:pwDefBtn	Revino la valorile Windows
 M:pwAskRec	Setez valorile recomandate pe planul folosit. Modificările se aplică imediat. Continui?
 M:pwAskDef	Readuc planul folosit la valorile implicite Windows. Modificările se aplică imediat. Continui?
 M:svcMissing	Nu există pe acest PC
+M:recTip	Valoare recomandată: {0}. Un clic o setează, apoi apasă «Aplică modificările».
+M:recOn	activat

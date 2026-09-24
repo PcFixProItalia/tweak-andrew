@@ -225,7 +225,6 @@ laptopSelAsk	On a laptop «Recommended» is the better choice: «Select all» al
 actRun	Changes: {0}
 jobWorking	Working...
 badgeActive	Active
-starTip	Recommended: one click selects it, then press «Apply changes».
 scanRunning	Checking entries already active...
 scanDone	Entries already active on this PC: {0}. They are marked «Active».
 currentSetting	Current setting: {0}
@@ -368,3 +367,5 @@ pwDefBtn	Back to Windows values
 pwAskRec	I'll set the recommended values on the plan in use. The changes apply right away. Go ahead?
 pwAskDef	I'll put the plan in use back to the Windows default values. The changes apply right away. Go ahead?
 svcMissing	Not on this PC
+recTip	Recommended value: {0}. One click sets it, then press «Apply changes».
+recOn	on

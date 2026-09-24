@@ -12,7 +12,7 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         Title="Tweak Andrew v6.0 - PcFixPro Italia" Height="840" Width="1340"
         MinWidth="1180" MinHeight="700"
-        WindowStartupLocation="CenterScreen"
+        WindowStartupLocation="CenterScreen" Grid.IsSharedSizeScope="True"
         WindowStyle="None" AllowsTransparency="False" Background="#FF000000"
         Foreground="#F2F2F5" TextOptions.TextFormattingMode="Ideal" UseLayoutRounding="True"
         ResizeMode="CanResize">
@@ -108,8 +108,10 @@
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="Auto"/>
+                                    <!-- Colonne condivise da tutte le righe: «Attivo», consiglio e interruttore
+                                         cadono sempre sulla stessa verticale, con o senza gli altri elementi. -->
+                                    <ColumnDefinition Width="Auto" SharedSizeGroup="ChkBadge"/>
+                                    <ColumnDefinition Width="Auto" SharedSizeGroup="ChkRec"/>
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
                                 <ContentPresenter Grid.Column="0" VerticalAlignment="Center" Margin="0,0,14,0">
@@ -121,15 +123,17 @@
                                 </ContentPresenter>
                                 <!-- Gia' attivo sul sistema: lo segna il rilevamento all'avvio. -->
                                 <Border x:Name="badge" Grid.Column="1" Visibility="Collapsed" CornerRadius="6" Padding="7,2"
-                                        Background="#262ED3A7" VerticalAlignment="Center" Margin="0,0,10,0">
+                                        Background="#262ED3A7" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,8,0">
                                     <TextBlock Text="{DynamicResource BadgeActive}" FontSize="10.5" FontWeight="SemiBold" Foreground="#FF2ED3A7"/>
                                 </Border>
-                                <!-- Voce consigliata: la stellina la seleziona; si applica con «Applica modifiche». -->
-                                <Border x:Name="starHit" Grid.Column="2" Visibility="Collapsed" Background="Transparent"
-                                        Width="24" Height="24" Margin="0,0,8,0" VerticalAlignment="Center">
-                                    <Path x:Name="star" Width="14" Height="14" Stretch="Uniform" StrokeThickness="1.4" StrokeLineJoin="Round"
-                                          Stroke="#FF6E6E78" Fill="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center"
-                                          Data="M12,2 L14.9,8.3 L21.8,9 L16.6,13.6 L18.1,20.4 L12,16.9 L5.9,20.4 L7.4,13.6 L2.2,9 L9.1,8.3 Z"/>
+                                <!-- Voce consigliata: il tasto con il pollice la seleziona; si applica con «Applica modifiche».
+                                     E' un tasto scuro come l'interruttore e prende il colore della pagina. -->
+                                <Border x:Name="starHit" Grid.Column="2" Visibility="Collapsed" Background="#FF121215"
+                                        BorderBrush="#FF2A2A31" BorderThickness="1" CornerRadius="7"
+                                        Width="24" Height="22" Margin="0,0,10,0" VerticalAlignment="Center">
+                                    <Path x:Name="star" Width="12" Height="12" Stretch="Uniform"
+                                          Fill="#FF6E6E78" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                          Data="M2,10 L6,10 L6,21 L2,21 Z M8,10 L12.4,3 C13.7,3 14.6,4.1 14.3,5.4 L13.5,9 L19.6,9 C21,9 22,10.3 21.6,11.6 L19.7,19.4 C19.4,20.4 18.5,21 17.5,21 L8,21 Z"/>
                                 </Border>
                                 <Border x:Name="track" Grid.Column="3" Width="36" Height="20" CornerRadius="10"
                                         Background="#FF121215" BorderBrush="#FF3A3A42" BorderThickness="1.5"
@@ -155,7 +159,8 @@
                                 <Setter TargetName="starHit" Property="Visibility" Value="Visible"/>
                             </Trigger>
                             <Trigger SourceName="starHit" Property="IsMouseOver" Value="True">
-                                <Setter TargetName="star" Property="Stroke" Value="{DynamicResource PA}"/>
+                                <Setter TargetName="star" Property="Fill" Value="{DynamicResource PA}"/>
+                                <Setter TargetName="starHit" Property="BorderBrush" Value="{DynamicResource PA}"/>
                             </Trigger>
                             <MultiTrigger>
                                 <MultiTrigger.Conditions>
@@ -163,7 +168,8 @@
                                     <Condition Property="IsChecked" Value="True"/>
                                 </MultiTrigger.Conditions>
                                 <Setter TargetName="star" Property="Fill" Value="{DynamicResource PA}"/>
-                                <Setter TargetName="star" Property="Stroke" Value="{DynamicResource PA}"/>
+                                <Setter TargetName="starHit" Property="Background" Value="{DynamicResource PASoft}"/>
+                                <Setter TargetName="starHit" Property="BorderBrush" Value="{DynamicResource PA}"/>
                             </MultiTrigger>
                             <Trigger Property="IsChecked" Value="True">
                                 <Setter TargetName="track" Property="Background" Value="{DynamicResource PA}"/>
@@ -239,16 +245,16 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border x:Name="b" Background="#FF111114" BorderBrush="#FF26262C" BorderThickness="1" CornerRadius="12" Width="38">
-                            <Path x:Name="star" Width="15" Height="15" Stretch="Uniform" StrokeThickness="1.5" StrokeLineJoin="Round"
-                                  Stroke="#FF8E8E98" Fill="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center"
-                                  Data="M12,2 L14.9,8.3 L21.8,9 L16.6,13.6 L18.1,20.4 L12,16.9 L5.9,20.4 L7.4,13.6 L2.2,9 L9.1,8.3 Z"/>
+                        <Border x:Name="b" Background="#FF121215" BorderBrush="#FF2A2A31" BorderThickness="1" CornerRadius="12" Width="38">
+                            <Path x:Name="star" Width="14" Height="14" Stretch="Uniform"
+                                  Fill="#FF8E8E98" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                  Data="M2,10 L6,10 L6,21 L2,21 Z M8,10 L12.4,3 C13.7,3 14.6,4.1 14.3,5.4 L13.5,9 L19.6,9 C21,9 22,10.3 21.6,11.6 L19.7,19.4 C19.4,20.4 18.5,21 17.5,21 L8,21 Z"/>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter TargetName="b" Property="BorderBrush" Value="{DynamicResource PA}"/>
+                                <Setter TargetName="b" Property="Background" Value="{DynamicResource PASoft}"/>
                                 <Setter TargetName="star" Property="Fill" Value="{DynamicResource PA}"/>
-                                <Setter TargetName="star" Property="Stroke" Value="{DynamicResource PA}"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -317,7 +323,7 @@
                     <ControlTemplate TargetType="CheckBox">
                         <Border x:Name="row" Background="Transparent" CornerRadius="8" Padding="6,3">
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock x:Name="txt" Text="{TemplateBinding Content}" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                                <TextBlock x:Name="txt" Text="{TemplateBinding Content}" VerticalAlignment="Center" Margin="0,0,6,0"/>
                                 <Border x:Name="box" Width="16" Height="16" CornerRadius="5" BorderThickness="1.5"
                                         BorderBrush="#FF4A4A53" Background="#FF101013" VerticalAlignment="Center">
                                     <Path x:Name="tick" Data="M3,7 L5.8,9.8 L11,4" Stroke="#FF000000" StrokeThickness="2"
@@ -1332,7 +1338,7 @@
 
                         <Grid Grid.Row="1">
 
-                            <ScrollViewer x:Name="pageHome" VerticalScrollBarVisibility="Auto" Padding="0,0,6,0">
+                            <ScrollViewer x:Name="pageHome" Grid.IsSharedSizeScope="True" VerticalScrollBarVisibility="Auto" Padding="0,0,6,0">
                                 <ScrollViewer.Resources>
                                     <SolidColorBrush x:Key="PA" Color="#FF1E90FF"/>
                                     <SolidColorBrush x:Key="PASoft" Color="#261E90FF"/>
@@ -1346,7 +1352,7 @@
                                 </StackPanel>
                             </ScrollViewer>
 
-                            <ScrollViewer x:Name="pagePerf" Visibility="Collapsed" VerticalScrollBarVisibility="Auto" Padding="0,0,6,0">
+                            <ScrollViewer x:Name="pagePerf" Grid.IsSharedSizeScope="True" Visibility="Collapsed" VerticalScrollBarVisibility="Auto" Padding="0,0,6,0">
                                 <ScrollViewer.Resources>
                                     <SolidColorBrush x:Key="PA" Color="#FFFF7A45"/>
                                     <SolidColorBrush x:Key="PASoft" Color="#24FF7A45"/>
@@ -1463,7 +1469,7 @@
                                 </Grid>
                             </ScrollViewer>
 
-                            <ScrollViewer x:Name="pagePrivacy" Visibility="Collapsed" VerticalScrollBarVisibility="Auto" Padding="0,0,6,0">
+                            <ScrollViewer x:Name="pagePrivacy" Grid.IsSharedSizeScope="True" Visibility="Collapsed" VerticalScrollBarVisibility="Auto" Padding="0,0,6,0">
                                 <ScrollViewer.Resources>
                                     <SolidColorBrush x:Key="PA" Color="#FFA78BFA"/>
                                     <SolidColorBrush x:Key="PASoft" Color="#24A78BFA"/>
@@ -1540,7 +1546,7 @@
                                 </Grid>
                             </ScrollViewer>
 
-                            <ScrollViewer x:Name="pageUi" Visibility="Collapsed" VerticalScrollBarVisibility="Auto" Padding="0,0,6,0">
+                            <ScrollViewer x:Name="pageUi" Grid.IsSharedSizeScope="True" Visibility="Collapsed" VerticalScrollBarVisibility="Auto" Padding="0,0,6,0">
                                 <ScrollViewer.Resources>
                                     <SolidColorBrush x:Key="PA" Color="#FFF472B6"/>
                                     <SolidColorBrush x:Key="PASoft" Color="#24F472B6"/>
@@ -1644,7 +1650,7 @@
                                 </Grid>
                             </ScrollViewer>
 
-                            <Grid x:Name="pageNet" Visibility="Collapsed">
+                            <Grid x:Name="pageNet" Grid.IsSharedSizeScope="True" Visibility="Collapsed">
                                 <Grid.Resources>
                                     <SolidColorBrush x:Key="PA" Color="#FF38BDF8"/>
                                     <SolidColorBrush x:Key="PASoft" Color="#2438BDF8"/>
@@ -1848,7 +1854,7 @@
                                 </Grid>
                             </Grid>
 
-                            <Grid x:Name="pageStorage" Visibility="Collapsed">
+                            <Grid x:Name="pageStorage" Grid.IsSharedSizeScope="True" Visibility="Collapsed">
                                 <Grid.Resources>
                                     <SolidColorBrush x:Key="PA" Color="#FF818CF8"/>
                                     <SolidColorBrush x:Key="PASoft" Color="#24818CF8"/>
@@ -1935,7 +1941,7 @@
                             </Grid>
 
                             <!-- In cima l'avviso; a sinistra i piani in una colonna che scorre da sola, a destra il resto, una scheda sotto l'altra. -->
-                            <Grid x:Name="pagePower" Visibility="Collapsed">
+                            <Grid x:Name="pagePower" Grid.IsSharedSizeScope="True" Visibility="Collapsed">
                                 <Grid.Resources>
                                     <SolidColorBrush x:Key="PA" Color="#FFFFC53D"/>
                                     <SolidColorBrush x:Key="PASoft" Color="#24FFC53D"/>
@@ -2033,7 +2039,7 @@
                                 </ScrollViewer>
                             </Grid>
 
-                            <ScrollViewer x:Name="pageGpu" Visibility="Collapsed" VerticalScrollBarVisibility="Auto" Padding="0,0,6,0">
+                            <ScrollViewer x:Name="pageGpu" Grid.IsSharedSizeScope="True" Visibility="Collapsed" VerticalScrollBarVisibility="Auto" Padding="0,0,6,0">
                                 <ScrollViewer.Resources>
                                     <SolidColorBrush x:Key="PA" Color="#FF52E3A1"/>
                                     <SolidColorBrush x:Key="PASoft" Color="#2452E3A1"/>
@@ -2170,7 +2176,7 @@
                                     </StackPanel>
                                 </Grid>
                             </ScrollViewer>
-                            <ScrollViewer x:Name="pageAdv" Visibility="Collapsed" VerticalScrollBarVisibility="Auto" Padding="0,0,6,0">
+                            <ScrollViewer x:Name="pageAdv" Grid.IsSharedSizeScope="True" Visibility="Collapsed" VerticalScrollBarVisibility="Auto" Padding="0,0,6,0">
                                 <ScrollViewer.Resources>
                                     <SolidColorBrush x:Key="PA" Color="#FFF87171"/>
                                     <SolidColorBrush x:Key="PASoft" Color="#24F87171"/>
@@ -2320,7 +2326,7 @@
                                 </Grid>
                                 </StackPanel>
                             </ScrollViewer>
-                            <ScrollViewer x:Name="pageSched" Visibility="Collapsed" VerticalScrollBarVisibility="Auto" Padding="0,0,6,0">
+                            <ScrollViewer x:Name="pageSched" Grid.IsSharedSizeScope="True" Visibility="Collapsed" VerticalScrollBarVisibility="Auto" Padding="0,0,6,0">
                                 <ScrollViewer.Resources>
                                     <SolidColorBrush x:Key="PA" Color="#FFA3E635"/>
                                     <SolidColorBrush x:Key="PASoft" Color="#24A3E635"/>
@@ -2459,7 +2465,7 @@
                                 </Grid>
                             </ScrollViewer>
 
-                            <Grid x:Name="pagePriv2" Visibility="Collapsed">
+                            <Grid x:Name="pagePriv2" Grid.IsSharedSizeScope="True" Visibility="Collapsed">
                                 <Grid.Resources>
                                     <SolidColorBrush x:Key="PA" Color="#FFC084FC"/>
                                     <SolidColorBrush x:Key="PASoft" Color="#24C084FC"/>
@@ -2471,7 +2477,7 @@
                                 <Grid x:Name="catPriv"/>
                             </Grid>
 
-                            <Grid x:Name="pageExp" Visibility="Collapsed">
+                            <Grid x:Name="pageExp" Grid.IsSharedSizeScope="True" Visibility="Collapsed">
                                 <Grid.Resources>
                                     <SolidColorBrush x:Key="PA" Color="#FF2DD4BF"/>
                                     <SolidColorBrush x:Key="PASoft" Color="#242DD4BF"/>
@@ -2483,7 +2489,7 @@
                                 <Grid x:Name="catExp"/>
                             </Grid>
 
-                            <Grid x:Name="pageTask" Visibility="Collapsed">
+                            <Grid x:Name="pageTask" Grid.IsSharedSizeScope="True" Visibility="Collapsed">
                                 <Grid.Resources>
                                     <SolidColorBrush x:Key="PA" Color="#FF60A5FA"/>
                                     <SolidColorBrush x:Key="PASoft" Color="#2460A5FA"/>
@@ -2495,7 +2501,7 @@
                                 <Grid x:Name="catTask"/>
                             </Grid>
 
-                            <Grid x:Name="pageNotif" Visibility="Collapsed">
+                            <Grid x:Name="pageNotif" Grid.IsSharedSizeScope="True" Visibility="Collapsed">
                                 <Grid.Resources>
                                     <SolidColorBrush x:Key="PA" Color="#FFFB7185"/>
                                     <SolidColorBrush x:Key="PASoft" Color="#24FB7185"/>
@@ -2507,7 +2513,7 @@
                                 <Grid x:Name="catNotif"/>
                             </Grid>
 
-                            <Grid x:Name="pageGame" Visibility="Collapsed">
+                            <Grid x:Name="pageGame" Grid.IsSharedSizeScope="True" Visibility="Collapsed">
                                 <Grid.Resources>
                                     <SolidColorBrush x:Key="PA" Color="#FFE879F9"/>
                                     <SolidColorBrush x:Key="PASoft" Color="#24E879F9"/>
@@ -2519,7 +2525,7 @@
                                 <Grid x:Name="catGame"/>
                             </Grid>
 
-                            <Grid x:Name="pageWin" Visibility="Collapsed">
+                            <Grid x:Name="pageWin" Grid.IsSharedSizeScope="True" Visibility="Collapsed">
                                 <Grid.Resources>
                                     <SolidColorBrush x:Key="PA" Color="#FF94A3B8"/>
                                     <SolidColorBrush x:Key="PASoft" Color="#2494A3B8"/>
@@ -2531,7 +2537,7 @@
                                 <Grid x:Name="catWin"/>
                             </Grid>
 
-                            <Grid x:Name="pageTools" Visibility="Collapsed">
+                            <Grid x:Name="pageTools" Grid.IsSharedSizeScope="True" Visibility="Collapsed">
                                 <Grid.Resources>
                                     <SolidColorBrush x:Key="PA" Color="#FF2DD4BF"/>
                                     <SolidColorBrush x:Key="PASoft" Color="#242DD4BF"/>
@@ -2568,7 +2574,7 @@
                                 </ScrollViewer>
                             </Grid>
 
-                            <Grid x:Name="pageApps" Visibility="Collapsed">
+                            <Grid x:Name="pageApps" Grid.IsSharedSizeScope="True" Visibility="Collapsed">
                                 <Grid.Resources>
                                     <SolidColorBrush x:Key="PA" Color="#FFFDBA74"/>
                                     <SolidColorBrush x:Key="PASoft" Color="#24FDBA74"/>
@@ -2657,7 +2663,7 @@
                                         </Grid>
                                         <ProgressBar x:Name="prgTweaks" Height="5" Margin="0,7,0,0" Minimum="0" Maximum="1" Value="0"/>
                                     </StackPanel>
-                                    <CheckBox x:Name="chkRestorePoint" Grid.Column="1" Content="Punto di ripristino"
+                                    <CheckBox x:Name="chkRestorePoint" Grid.Column="1" Content="Punto di ripristino" Grid.IsSharedSizeScope="True"
                                               VerticalAlignment="Center" Margin="0,-4,0,-4"/>
                                 </Grid>
 

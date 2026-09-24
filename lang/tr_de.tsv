@@ -713,7 +713,6 @@ L:chkDiskNoSleep	Festplatten und SSDs immer aktiv (am Netz)
 M:actRun	Änderungen: {0}
 M:jobWorking	Läuft...
 M:badgeActive	Aktiv
-M:starTip	Empfohlen: ein Klick wählt es aus, dann «Änderungen anwenden» drücken.
 M:scanRunning	Bereits aktive Einträge werden geprüft...
 M:scanDone	Bereits aktive Einträge auf diesem PC: {0}. Sie sind mit «Aktiv» markiert.
 M:currentSetting	Aktuelle Einstellung: {0}
@@ -892,3 +891,5 @@ M:pwDefBtn	Zurück zu den Windows-Werten
 M:pwAskRec	Ich setze die empfohlenen Werte im aktiven Plan. Die Änderungen gelten sofort. Fortfahren?
 M:pwAskDef	Ich setze den aktiven Plan auf die Windows-Standardwerte zurück. Die Änderungen gelten sofort. Fortfahren?
 M:svcMissing	Auf diesem PC nicht vorhanden
+M:recTip	Empfohlener Wert: {0}. Ein Klick setzt ihn, dann «Änderungen anwenden» drücken.
+M:recOn	aktiv
