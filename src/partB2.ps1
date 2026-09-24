@@ -1502,11 +1502,9 @@
                                             <StackPanel>
                                                 <TextBlock x:Name="ttlContent" Text="SUGGERIMENTI" Style="{StaticResource CardTitle}" Foreground="#FF2ED3A7"/>
                                                 <CheckBox x:Name="chkConsumerFeatures" Content="App suggerite"/>
-                                                <CheckBox x:Name="chkStoreSearch" Content="Ricerca Store"/>
                                                 <CheckBox x:Name="chkSuggestedContent" Content="Contenuti suggeriti"/>
                                                 <CheckBox x:Name="chkLockScreenAds" Content="Spotlight"/>
                                                 <CheckBox x:Name="chkStartBing" Content="Bing nel menu Start"/>
-                                                <CheckBox x:Name="chkStartRecs" Content="Suggerimenti Start"/>
                                                 <CheckBox x:Name="chkStartTracking" Content="Tracciamento app"/>
                                                 <CheckBox x:Name="chkFolderDiscovery" Content="Tipo cartella"/>
                                             </StackPanel>
@@ -1913,9 +1911,7 @@
                                             <TextBlock x:Name="lblNowHint" Text="Partono subito al clic."
                                                        Style="{StaticResource SubTitle}" Margin="0,0,0,12"/>
                                             <Button x:Name="btnTrimNow" Content="Esegui TRIM ora" Style="{StaticResource GhostBtn}" Margin="0,0,0,8"/>
-                                            <Button x:Name="btnOptimizeNow" Content="Ottimizza C:" Style="{StaticResource GhostBtn}" Margin="0,0,0,8"/>
-                                            <Button x:Name="btnEmptyRecycle" Content="Svuota il Cestino" Style="{StaticResource GhostBtn}" Margin="0,0,0,8"/>
-                                            <Button x:Name="btnCleanUpdates" Content="Cache Windows Update" Style="{StaticResource GhostBtn}"/>
+                                            <Button x:Name="btnOptimizeNow" Content="Ottimizza C:" Style="{StaticResource GhostBtn}"/>
                                         </StackPanel>
                                     </Border>
 
@@ -1923,7 +1919,6 @@
                                         <StackPanel>
                                             <TextBlock x:Name="ttlMaintenance" Text="MANUTENZIONE" Style="{StaticResource CardTitle}"/>
                                             <CheckBox x:Name="chkDiskCleanup" Content="Pulizia Disco e DISM"/>
-                                            <CheckBox x:Name="chkTempCleanup" Content="File temporanei"/>
                                             <CheckBox x:Name="chkSmartChkdsk" Content="CHKDSK intelligente"/>
                                         </StackPanel>
                                     </Border>
@@ -2245,7 +2240,6 @@
                                                            Text="I servizi assenti vengono ignorati. Si possono sempre riattivare da services.msc."/>
                                                 <CheckBox x:Name="chkSvcSysMain" Content="SysMain — precaricamento delle app in memoria"/>
                                                 <CheckBox x:Name="chkSvcDiag" Content="Diagnostica e tracciamento eventi"/>
-                                                <CheckBox x:Name="chkSvcErrors" Content="Segnalazione errori Windows"/>
                                                 <CheckBox x:Name="chkSvcPca" Content="Assistente compatibilità programmi"/>
                                                 <CheckBox x:Name="chkSvcDiscovery" Content="Rilevamento dispositivi in rete (UPnP, SSDP)"/>
                                                 <CheckBox x:Name="chkSvcSensors" Content="Sensori e geolocalizzazione"/>
@@ -2266,7 +2260,6 @@
                                                 <CheckBox x:Name="chkPrefetch" Content="Prefetch e Superfetch nel registro"/>
                                                 <CheckBox x:Name="chkFth" Content="Fault Tolerant Heap — niente correzioni automatiche"/>
                                                 <CheckBox x:Name="chkAppCompat" Content="Motore di compatibilità e inventario programmi"/>
-                                                <CheckBox x:Name="chkSvcHostSplit" Content="Meno processi svchost (accorpa i servizi)"/>
                                                 <CheckBox x:Name="chkMemCompression" Tag="risky" Content="Compressione della memoria — rischioso sotto 16 GB di RAM"/>
                                             </StackPanel>
                                         </Border>

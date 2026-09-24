@@ -73,7 +73,6 @@ task.allApps#grid	Grilă
 task.allApps#list	Listă
 task.recentApps	Aplicații adăugate recent
 task.frequentApps	Aplicațiile cele mai folosite
-task.recentDocs	Fișiere recomandate și deschise recent
 task.startLock	Blocare în meniul contului
 g.task.bar	Bara de activități
 task.autoHide	Ascunde automat bara de activități
@@ -186,48 +185,21 @@ win.psPolicy#all	Toate, cu avertisment
 win.psPolicy#bypass	Toate, fără avertisment
 win.devMode	Mod dezvoltator
 win.workplace	Solicitări «Permite organizației să gestioneze dispozitivul»
-win.autoMaint	Întreținere automată
-g.win.upd	Windows Update
-win.wuMode	Modul Windows Update
-win.wuMode#auto	Automat (implicit)
-win.wuMode#notify	Anunță înainte de descărcare
-win.wuMode#ask	Descarcă și întreabă înainte de instalare
-win.wuMode#off	Dezactivat (nerecomandat)
+g.win.upd	Windows Update: preferințe
 win.wuLatest	Noutăți imediat ce apar
 win.wuOther	Actualizări pentru alte produse Microsoft
 win.wuExpedite	Actualizează-mă cât mai repede
 win.wuRestartNote	Anunță când e nevoie de repornire
 win.wuMetered	Descarcă pe conexiuni contorizate
-win.coInstallers	Aplicațiile producătorului instalate cu driverele
 g.win.svc	Servicii
-win.svcSysMain	SysMain (preîncărcarea aplicațiilor)
-win.svcSearch	Windows Search (indexare)
-win.svcDiagTrack	Experiențe conectate și telemetrie
 win.svcCdp	Platforma dispozitivelor conectate
-win.svcPca	Asistentul de compatibilitate a programelor
-win.svcWer	Raportarea erorilor
-win.svcGeo	Geolocalizare
-win.svcRetail	Mod demonstrativ pentru magazine
-win.svcInsider	Windows Insider
-win.svcPhone	Serviciu telefon
-win.svcWallet	Serviciu Portofel
-win.svcSmartCard	Smart card
-win.svcMaps	Managerul hărților descărcate
-win.svcFax	Fax
 win.svcWmpShare	Partajare Windows Media Player
 win.svcMixed	Realitate mixtă OpenXR
 win.svcHotspot	Hotspot mobil
 win.svcSms	Router SMS
-win.svcParental	Control parental
 win.svcNfc	Plăți și NFC
 win.svcSpot	Verificator punctual
-win.svcRas	Conexiuni de acces la distanță
-win.svcRdp	Desktop la distanță
-win.svcXbox	Servicii Xbox Live
-win.svcBio	Biometrie
-win.svcTouch	Tastatură tactilă și creion
 win.svcTapi	Telefonie (TAPI)
-win.svcSensors	Senzori
 g.win.tasks	Activități programate
 win.tAppraiser	Evaluatorul de compatibilitate Microsoft
 win.tPdu	Actualizarea datelor programelor
@@ -242,21 +214,13 @@ win.tFamily	Monitorizare Family Safety
 win.tPowerDiag	Diagnosticul eficienței energetice
 win.tSqm	Activități SQM
 g.priv.uPriv	Confidențialitate
-pv.adId	Dezactivează și resetează ID-ul de publicitate
-pv.typing	Nu trimite datele de tastare
 pv.timeline	Fără sugestii în cronologie
 pv.startSugg	Fără sugestii în Start
-pv.tips	Fără sfaturi și trucuri în timpul utilizării
 pv.settingsSugg	Fără conținut sugerat în Setări
-pv.finishSetup	Fără invitații de a termina configurarea
-pv.welcome	Fără prezentare după actualizări
 pv.silentApps	Fără aplicații instalate în tăcere
-pv.appLaunch	Nu urmări lansarea aplicațiilor
 pv.accountNotif	Fără anunțuri de cont în Setări
 pv.langList	Nu partaja lista de limbi cu site-urile
 pv.textPred	Fără sugestii de text pe tastatura tactilă
-pv.appNotif	Dezactivează notificările aplicațiilor
-pv.storeUrls	SmartScreen nu verifică conținutul web al aplicațiilor
 g.priv.uClip	Istoric activități și clipboard
 pv.clipHist	Nu păstra istoricul clipboardului
 pv.clipCloud	Nu sincroniza clipboardul în cloud
@@ -282,7 +246,6 @@ pv.uDocs	Blochează accesul la documente
 pv.uPics	Blochează accesul la imagini
 pv.uVideos	Blochează accesul la videoclipuri
 pv.uFiles	Blochează accesul la tot sistemul de fișiere
-pv.uBackground	Oprește aplicațiile din fundal
 g.priv.uSync	Sincronizarea setărilor
 pv.syncPwd	Nu sincroniza parolele
 pv.syncTheme	Nu sincroniza tema și fundalul
@@ -291,67 +254,45 @@ pv.syncAccess	Nu sincroniza accesibilitatea
 pv.syncOther	Nu sincroniza alte setări Windows
 g.priv.uSpeech	Vorbire și introducere
 pv.speech	Dezactivează recunoașterea vocală online
-pv.inking	Nu colecta scrisul de mână și contactele
 pv.voiceAct	Aplicațiile nu ascultă cuvântul de activare
 g.priv.uAi	IA Windows
-pv.uCopilot	Dezactivează Copilot
 pv.uRecall	Dezactivează Recall
 pv.uClickToDo	Dezactivează Click to Do
 pv.copilotAvail	Ascunde Copilot în shell
 pv.bingChat	Dezactivează chatul Bing integrat
 pv.insights	Dezactivează analizele tastării
 pv.nudges	Fără invitații de a încerca Copilot
-pv.copilotBtn	Ascunde butonul Copilot
 pv.copilotMic	Copilot nu poate folosi microfonul
 pv.wordCopilot	Dezactivează Copilot în Word
 pv.excelCopilot	Dezactivează Copilot în Excel
 pv.officeCloud	Limitează serviciile online Office
 g.priv.uBehav	Comportamentul utilizatorului
-pv.tailored	Fără experiențe personalizate din datele de diagnostic
-pv.feedback	Windows nu cere feedback
 pv.thirdParty	Fără sugestii de la terți
 pv.spotSettings	Fără Spotlight în Setări
 pv.spotAll	Dezactivează toate funcțiile Spotlight
 pv.wmp	Windows Media Player nu urmărește utilizarea
-g.priv.uExp	Explorer fișiere
-pv.syncAds	Fără reclame în Explorer
-pv.officeFiles	Fără fișiere Office.com în Pornire
-pv.recentFiles	Nu afișa fișierele recente
-pv.frequent	Nu afișa folderele frecvente
-pv.recentDocs	Nu urmări documentele deschise
 g.priv.uLock	Ecran de blocare
-pv.lockFacts	Fără curiozități și sfaturi pe ecranul de blocare
 pv.lockSpot	Fără imagini Spotlight pe ecranul de blocare
-pv.lockToast	Fără notificări pe ecranul de blocare
 g.priv.uSearch	Căutare
 pv.searchHist	Nu păstra istoricul căutărilor
 pv.searchHigh	Fără evidențieri în căutare
-pv.searchBing	Fără rezultate web Bing în Start
 pv.searchMsa	Nu căuta în conținutul contului Microsoft
 pv.searchAad	Nu căuta în conținutul contului de serviciu
 g.priv.uBar	Bara de activități
 pv.meetNow	Ascunde Întâlnire acum
-pv.chatBtn	Ascunde Chat Teams
 g.priv.uMisc	Diverse
 pv.resume	Nu relua pe PC activitățile de pe telefon
 g.priv.mSec	Securitate
 pv.pwdReveal	Ascunde butonul de afișare a parolei
-pv.stepsRec	Dezactivează Înregistrarea pașilor
-pv.inventory	Dezactivează inventarul programelor
-pv.appTelemetry	Dezactivează telemetria aplicațiilor
 pv.lockCam	Dezactivează camera pe ecranul de blocare
 pv.kms	Fără validare online a activării KMS
 pv.drm	Fără acces la Internet pentru DRM Windows Media
-pv.remoteAssist	Dezactivează Asistența la distanță
 g.priv.mPriv	Confidențialitate
-pv.telemetry	Redu telemetria la minim
 pv.deviceName	Nu trimite numele PC-ului cu telemetria
-pv.feedbackNotif	Fără solicitări de feedback
 pv.diagLogs	Limitează colectarea jurnalelor de diagnostic
 pv.dumps	Limitează trimiterea imaginilor de memorie
 pv.oneSettings	Nu descărca configurări de telemetrie
 pv.diagViewer	Dezactivează vizualizatorul datelor de diagnostic
-pv.mAdId	Dezactivează ID-ul de publicitate pentru toți
 pv.ceip	Ieși din Programul de îmbunătățire a experienței
 pv.handErr	Nu trimite erorile de recunoaștere a scrisului
 pv.handShare	Nu partaja datele creionului
@@ -361,10 +302,8 @@ pv.helpFb	Fără evaluări ale Ajutorului
 pv.wer	Dezactivează raportarea erorilor
 pv.cloudContent	Fără conținut optimizat din cloud
 pv.softLanding	Fără sfaturi Windows
-pv.consumer	Fără aplicații de consum instalate automat
 pv.consumerAcct	Fără conținut legat de contul personal
 g.priv.mClip	Istoric activități și clipboard
-pv.actFeed	Dezactivează istoricul activităților
 pv.mClip	Dezactivează istoricul clipboardului pentru toți
 pv.crossClip	Fără clipboard partajat între dispozitive
 g.priv.mApps	Confidențialitatea aplicațiilor
@@ -386,7 +325,6 @@ pv.mMessages	Refuză aplicațiilor mesajele
 pv.mRadios	Refuză aplicațiilor controlul antenelor
 pv.mNotif	Refuză aplicațiilor notificările
 pv.mLocation	Refuză aplicațiilor locația
-pv.mBackground	Refuză aplicațiilor rularea în fundal
 pv.mCamera	Refuză aplicațiilor camera
 pv.mMic	Refuză aplicațiilor microfonul
 g.priv.mEdge	Microsoft Edge
@@ -401,13 +339,10 @@ pv.eNavErr	Nu rezolva online erorile de navigare
 pv.ePreload	Nu preîncărca paginile
 pv.eDiag	Fără date de diagnostic din Edge
 pv.eRewards	Ascunde Microsoft Rewards
-pv.eRecomm	Fără recomandări și anunțuri promoționale
 pv.eIeRedirect	Nu deschide în Edge site-urile Internet Explorer
 pv.eCcFill	Nu salva cardurile de credit
 pv.eAddrFill	Nu completa automat adresele
 pv.eSearchSugg	Fără sugestii de căutare
-pv.eBoost	Dezactivează accelerarea pornirii
-pv.eBackground	Închide Edge complet la ieșire
 pv.eSiteSafety	Fără informații despre site-uri din serviciile Microsoft
 pv.eSpell	Verificare ortografică doar locală
 pv.eNewTab	Filă nouă fără știri
@@ -415,7 +350,6 @@ pv.ePwd	Nu salva parolele
 pv.eSmartScreen	Dezactivează SmartScreen în Edge
 pv.eTypo	Dezactivează verificarea greșelilor de tastare
 g.priv.mEdgeAi	Microsoft Edge și IA
-pv.eSidebar	Dezactivează bara laterală și Copilot
 pv.ePageCtx	Copilot nu poate citi paginile deschise
 pv.eCompose	Fără scriere asistată de IA
 pv.eHistAi	Fără căutare IA în istoric
@@ -430,8 +364,6 @@ pv.webSearch	Fără căutare web din Start
 pv.searchLoc	Căutarea nu folosește locația
 pv.mHighlights	Fără evidențieri în căutare pentru toți
 g.priv.mAi	IA Windows
-pv.mCopilot	Dezactivează Copilot pentru toți
-pv.mRecall	Dezactivează Recall și analiza ecranului
 pv.mClickToDo	Dezactivează Click to Do pentru toți
 pv.agents	Dezactivează agenții IA
 pv.settingsAgent	Dezactivează agentul din Setări
@@ -444,17 +376,13 @@ g.priv.mLoc	Servicii de localizare
 pv.winLocProv	Dezactivează furnizorul de locație Windows
 pv.locScript	Fără scripturi de localizare
 pv.mapsAuto	Fără actualizarea automată a hărților
-pv.locAll	Dezactivează localizarea
 pv.sensors	Dezactivează senzorii
 pv.findDevice	Dezactivează Găsește dispozitivul meu
 g.priv.mUpd	Windows Update
-pv.p2p	Nu partaja actualizările cu alte PC-uri
 pv.speechUpd	Fără actualizări ale modelelor vocale
 pv.mrtReport	Nu trimite rezultatele instrumentului de eliminare malware
 pv.preview	Blochează versiunile de previzualizare Windows
 pv.noReboot	Fără reporniri automate cu utilizatori conectați
-pv.wuDrivers	Fără drivere din Windows Update
-pv.storeAuto	Fără actualizări automate ale aplicațiilor din Store
 pv.mrtOffer	Nu descărca instrumentul de eliminare malware
 g.priv.mDef	Microsoft Defender și SpyNet
 pv.samples	Nu trimite mostre de fișiere
@@ -463,12 +391,10 @@ pv.defNotif	Fără notificări extinse Defender
 g.priv.mExp	Explorer fișiere
 pv.openWith	Fără căutare în Store la «Deschidere cu»
 pv.kfm	OneDrive nu mută folderele personale
-pv.oneDrive	Dezactivează OneDrive
 g.priv.mMobile	Dispozitive mobile
 pv.phoneLink	Dezactivează legarea telefonului de PC
 pv.cdp	Dezactivează experiențele între dispozitive
 g.priv.mBar	Bara de activități
-pv.widgets	Dezactivează widgeturile
 pv.mMeetNow	Ascunde Întâlnire acum pentru toți
 pv.chatIcon	Ascunde Chat pentru toți
 g.priv.mSync	Sincronizarea setărilor

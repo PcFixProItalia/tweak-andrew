@@ -315,6 +315,7 @@ function Build-Actions {
 
     Add-IfChecked $chkTailoredExp {
         Set-Reg 'HKCU:\Software\Policies\Microsoft\Windows\CloudContent' 'DisableTailoredExperiencesWithDiagnosticData' 1 'DWord' 'Esperienze personalizzate'
+        Set-Reg 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Privacy' 'TailoredExperiencesWithDiagnosticDataEnabled' 0 'DWord' 'Esperienze personalizzate (impostazione)'
     }
 
     Add-IfChecked $chkFeedback {
@@ -330,6 +331,9 @@ function Build-Actions {
     Add-IfChecked $chkInkingTyping {
         Set-Reg 'HKCU:\Software\Microsoft\Input\TIPC' 'Enabled' 0 'DWord' 'Raccolta dati digitazione'
         Set-Reg 'HKCU:\Software\Microsoft\Personalization\Settings' 'AcceptedPrivacyPolicy' 0 'DWord' 'Personalizzazione input'
+        Set-Reg 'HKCU:\Software\Microsoft\InputPersonalization' 'RestrictImplicitInkCollection' 1 'DWord' 'Raccolta scrittura a mano'
+        Set-Reg 'HKCU:\Software\Microsoft\InputPersonalization' 'RestrictImplicitTextCollection' 1 'DWord' 'Raccolta testo digitato'
+        Set-Reg 'HKCU:\Software\Microsoft\InputPersonalization\TrainedDataStore' 'HarvestContacts' 0 'DWord' 'Raccolta contatti'
     }
 
     Add-IfChecked $chkWiFiSense {
@@ -342,10 +346,6 @@ function Build-Actions {
         Set-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\CloudContent' 'DisableWindowsConsumerFeatures' 1 'DWord' 'App suggerite'
     }
 
-    Add-IfChecked $chkStoreSearch {
-        Set-Reg 'HKCU:\SOFTWARE\Policies\Microsoft\Windows\Explorer' 'DisableSearchBoxSuggestions' 1 'DWord' 'Suggerimenti di ricerca'
-        Set-Reg 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Search' 'BingSearchEnabled' 0 'DWord' 'Ricerca Bing'
-    }
 
     Add-IfChecked $chkSuggestedContent {
         $c = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager'
@@ -362,11 +362,9 @@ function Build-Actions {
 
     Add-IfChecked $chkStartBing {
         Set-Reg 'HKCU:\Software\Policies\Microsoft\Windows\Explorer' 'DisableSearchBoxSuggestions' 1 'DWord' 'Bing nel menu Start'
+        Set-Reg 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Search' 'BingSearchEnabled' 0 'DWord' 'Ricerca Bing'
     }
 
-    Add-IfChecked $chkStartRecs {
-        Set-Reg 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced' 'Start_IrisRecommendations' 0 'DWord' 'Suggerimenti del menu Start'
-    }
 
     Add-IfChecked $chkStartTracking {
         $a = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced'
@@ -383,6 +381,8 @@ function Build-Actions {
         Set-Reg 'HKCU:\Software\Policies\Microsoft\Windows\WindowsCopilot' 'TurnOffWindowsCopilot' 1 'DWord' 'Copilot (utente)'
         Set-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsCopilot' 'TurnOffWindowsCopilot' 1 'DWord' 'Copilot (sistema)'
         Set-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsAI' 'DisableAIDataAnalysis' 1 'DWord' 'Recall'
+        Set-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsAI' 'AllowRecallEnablement' 0 'DWord' 'Recall disponibile'
+        Set-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsAI' 'TurnOffSavingSnapshots' 1 'DWord' 'Istantanee di Recall'
         Set-Reg 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced' 'ShowCopilotButton' 0 'DWord' 'Pulsante Copilot'
     }
 
@@ -493,6 +493,7 @@ function Build-Actions {
     Add-IfChecked $chkTaskbarWidgets {
         Set-Reg 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced' 'TaskbarDa' 0 'DWord' 'Widget'
         Set-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Dsh' 'AllowNewsAndInterests' 0 'DWord' 'Notizie e interessi'
+        Set-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Feeds' 'EnableFeeds' 0 'DWord' 'Notizie nella barra'
     }
     Add-IfChecked $chkTaskbarChat { Set-Reg 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced' 'TaskbarMn' 0 'DWord' 'Icona Chat' }
     Add-IfChecked $chkTaskbarEndTask { Set-Reg 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced\TaskbarDeveloperSettings' 'TaskbarEndTask' 1 'DWord' 'Termina attivita' }
@@ -846,15 +847,6 @@ function Build-Actions {
         Write-Log "[OK] Pulizia disco e compattazione WinSxS completate."
     }
 
-    Add-IfChecked $chkTempCleanup {
-        foreach ($folder in @($env:TEMP, "$env:SystemRoot\Temp", "$env:SystemRoot\Prefetch")) {
-            if (Test-Path $folder) {
-                Get-ChildItem -LiteralPath $folder -Recurse -Force -ErrorAction SilentlyContinue |
-                    Remove-Item -Force -Recurse -ErrorAction SilentlyContinue
-            }
-        }
-        Write-Log "[OK] File temporanei eliminati."
-    }
 
     Add-IfChecked $chkSmartChkdsk {
         try {
@@ -881,10 +873,6 @@ function Build-Actions {
         foreach ($s in @('DPS','WdiServiceHost','WdiSystemHost','diagnosticshub.standardcollector.service','diagsvc','DusmSvc')) {
             Set-Svc $s 'Disabled' $s
         }
-    }
-    Add-IfChecked $chkSvcErrors {
-        Set-Svc 'WerSvc' 'Disabled' 'Segnalazione errori'
-        Set-Reg 'HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting' 'Disabled' 1 'DWord' 'Segnalazione errori'
     }
     Add-IfChecked $chkSvcPca {
         Set-Svc 'PcaSvc' 'Disabled' 'Assistente compatibilita'
@@ -979,17 +967,6 @@ function Build-Actions {
         Set-Reg $a 'DisableInventory' 1 'DWord' 'Inventario programmi'
         Set-Reg $a 'DisableEngine' 1 'DWord' 'Motore di compatibilita'
         Set-Reg $a 'AITEnable' 0 'DWord' 'Application Impact Telemetry'
-    }
-    Add-IfChecked $chkSvcHostSplit {
-        # Oltre questa soglia Windows separa ogni servizio in un processo a se'.
-        # Portandola alla RAM totale i servizi tornano raggruppati: meno processi,
-        # meno memoria di contorno.
-        try {
-            $kb = [int64]((Get-CimInstance Win32_ComputerSystem -ErrorAction Stop).TotalPhysicalMemory / 1KB)
-            if ($kb -gt 0) {
-                Set-Reg 'HKLM:\SYSTEM\CurrentControlSet\Control' 'SvcHostSplitThresholdInKB' $kb 'DWord' 'Soglia di separazione svchost'
-            }
-        } catch { Write-Log "[ERRORE] Soglia svchost: $($_.Exception.Message)" }
     }
     Add-IfChecked $chkMemCompression {
         try {

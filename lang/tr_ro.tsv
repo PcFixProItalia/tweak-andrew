@@ -90,11 +90,9 @@ L:chkInkingTyping	Personalizarea scrisului și tastării — dezactivează
 L:chkWiFiSense	Wi-Fi Sense — dezactivează
 L:ttlContent	SUGESTII ȘI CONȚINUT
 L:chkConsumerFeatures	Aplicații sugerate și instalare automată — blochează
-L:chkStoreSearch	Sugestii de căutare Microsoft Store — dezactivează
 L:chkSuggestedContent	Conținut sugerat în Setări — dezactivează
 L:chkLockScreenAds	Spotlight și reclame pe ecranul de blocare — dezactivează
 L:chkStartBing	Căutare Bing în meniul Start — dezactivează
-L:chkStartRecs	Recomandări în meniul Start — dezactivează
 L:chkStartTracking	Aplicații folosite des și documente recente — nu urmări
 L:chkFolderDiscovery	Detectarea tipului de folder în Explorer — dezactivează
 L:ttlMsApps	APLICAȚII MICROSOFT
@@ -179,11 +177,8 @@ L:ttlNow	ACȚIUNI IMEDIATE
 L:lblNowHint	Rulează imediat, fără a trece prin «Aplică».
 L:btnTrimNow	Rulează TRIM acum
 L:btnOptimizeNow	Optimizează / defragmentează C:
-L:btnEmptyRecycle	Golește Coșul de reciclare
-L:btnCleanUpdates	Șterge cache-ul Windows Update
 L:ttlMaintenance	ÎNTREȚINERE LA APLICARE
 L:chkDiskCleanup	Curățare disc și compactare WinSxS (DISM)
-L:chkTempCleanup	Șterge fișierele temporare
 L:chkSmartChkdsk	CHKDSK inteligent (SSD sau HDD)
 L:ttlSpace	SPAȚIU ȘI POLITICI
 L:chkStorageSense	Senzor de stocare — dezactivează
@@ -202,7 +197,6 @@ L:ttlSvc	SERVICII DE OPRIT
 L:lblSvcHint	Serviciile absente sunt omise. Pot fi oricând reactivate din services.msc.
 L:chkSvcSysMain	SysMain — preîncărcarea aplicațiilor în memorie
 L:chkSvcDiag	Diagnosticare și urmărirea evenimentelor
-L:chkSvcErrors	Raportarea erorilor Windows
 L:chkSvcPca	Asistentul de compatibilitate a programelor
 L:chkSvcDiscovery	Descoperirea dispozitivelor din rețea (UPnP, SSDP)
 L:chkSvcSensors	Senzori și geolocalizare
@@ -222,7 +216,6 @@ L:ttlMem	MEMORIE ȘI PROCESE
 L:chkPrefetch	Valorile Prefetch și Superfetch din registru
 L:chkFth	Fault Tolerant Heap — fără corecții automate
 L:chkAppCompat	Motorul de compatibilitate și inventarul programelor
-L:chkSvcHostSplit	Mai puține procese svchost (gruparea serviciilor)
 L:chkMemCompression	Comprimarea memoriei — riscant sub 16 GB RAM
 L:ttlWu	WINDOWS UPDATE
 L:chkWuNoReboot	Fără reporniri automate cât folosești computerul
@@ -312,11 +305,9 @@ H:chkErrorReporting	Erorile programelor nu mai sunt trimise către Microsoft. Ma
 H:chkInkingTyping	Windows nu mai învață din ce scrii și tastezi. Mai multă confidențialitate.
 H:chkWiFiSense	Împiedică partajarea automată a rețelelor Wi-Fi și conectarea la hotspot-uri necunoscute.
 H:chkConsumerFeatures	Împiedică Windows să instaleze singur aplicații și jocuri promoționale.
-H:chkStoreSearch	Elimină sugestiile web și din Store din căutări. Rezultate mai curate și mai rapide.
 H:chkSuggestedContent	Fără sfaturi și promoții în Setări și în sistem.
 H:chkLockScreenAds	Elimină imaginile care se schimbă, sfaturile și reclamele de pe ecranul de blocare.
 H:chkStartBing	Căutarea din meniul Start caută doar pe computer, nu pe internet. Mai rapidă și mai privată.
-H:chkStartRecs	Elimină sugestiile de aplicații și fișiere din meniul Start.
 H:chkStartTracking	Windows nu mai ține lista aplicațiilor folosite des și a documentelor recente.
 H:chkFolderDiscovery	Explorer nu mai încearcă să ghicească tipul fiecărui folder. Folderele mari se deschid mai repede.
 H:chkWindowsAI	Oprește Copilot, Recall și funcțiile AI din Windows. Mai puține resurse folosite și mai multă confidențialitate.
@@ -369,7 +360,6 @@ H:chkNetPowerSave	Placa de rețea nu mai intră în economie de energie. Conexiu
 H:chkDisableIPv6	Oprește IPv6. Util doar dacă furnizorul nu îl folosește și ai probleme de conexiune.
 H:chkStorageProfile	Aplică optimizările gândite pentru tipul de disc ales: SSD sau hard disk.
 H:chkDiskCleanup	Șterge fișierele de sistem inutile și versiunile vechi ale actualizărilor. Recuperează spațiu, uneori câțiva GB.
-H:chkTempCleanup	Golește folderele cu fișiere temporare. Mai mult spațiu liber.
 H:chkSmartChkdsk	Verifică discul la următoarea repornire în modul potrivit pentru SSD sau hard disk. Repară erorile sistemului de fișiere.
 H:chkStorageSense	Windows nu mai șterge singur fișiere ca să facă loc. Tu decizi ce elimini.
 H:chkReservedStorage	Eliberează spațiul pe care Windows îl păstrează pentru actualizări, circa 7 GB.
@@ -388,7 +378,6 @@ H:chkAmdBloat	Împiedică programele suplimentare AMD să pornească odată cu W
 H:chkIntelBloat	Serviciile suplimentare ale plăcii Intel pornesc doar când e nevoie.
 H:chkSvcSysMain	Windows nu mai preîncarcă în memorie aplicațiile folosite des. Util pe SSD-uri rapide, unde nu e nevoie.
 H:chkSvcDiag	Oprește serviciile care analizează problemele și performanța în fundal.
-H:chkSvcErrors	Oprește serviciul care colectează și trimite rapoartele de erori.
 H:chkSvcPca	Oprește serviciul care verifică compatibilitatea programelor vechi.
 H:chkSvcDiscovery	PC-ul nu mai caută dispozitive în rețeaua locală. Mai puțin trafic, dar imprimantele și televizoarele din rețea pot să nu mai apară.
 H:chkSvcSensors	Oprește serviciile de senzori și locație. Util pe PC-urile desktop, care nu le au.
@@ -406,7 +395,6 @@ H:chkTaskDefrag	Oprește optimizarea automată a unităților. Pe SSD va trebui 
 H:chkPrefetch	Windows nu mai pregătește din timp fișierele programelor. Mai puține scrieri pe SSD.
 H:chkFth	Windows nu mai aplică corecții automate programelor care se blochează. Comportament mai previzibil.
 H:chkAppCompat	Oprește verificările de compatibilitate ale programelor. Programele pornesc puțin mai repede.
-H:chkSvcHostSplit	Grupează serviciile Windows în mai puține procese. Mai puțină memorie folosită și un Manager de activități mai clar.
 H:chkMemCompression	Windows nu mai comprimă memoria. Mai puțină muncă pentru procesor, dar e nevoie de multă RAM.
 H:chkWuNoReboot	Actualizările nu mai repornesc PC-ul cât îl folosești.
 H:chkWuDefer	Versiunile noi de Windows vin după un an, când sunt deja stabile. Actualizările de securitate continuă să vină.
@@ -804,9 +792,6 @@ M:featTip_sandbox	Un Windows de unică folosință pentru programe suspecte. Doa
 M:featTip_wsl	Distribuții Linux în Windows.
 M:featTip_media	Pentru jocuri și programe vechi care cer DirectPlay sau Windows Media Player.
 M:featTip_nfs	Acces la partajări NFS de pe NAS și servere Linux.
-M:oosuHint	Instrumentul gratuit de confidențialitate O&O, fără instalare. Se descarcă de pe site-ul oficial într-un folder al programului, se verifică semnătura și se deschide.
-M:oosuRun	Descarcă și deschide
-M:oosuAsk	Descarc O&O ShutUp10++ de pe oo-software.com (circa 3 MB) și îl deschid. Continui?
 M:ttlPanels	Panouri Windows
 M:panelsHint	Ferestrele clasice de setări, la un clic.
 M:panel_control	Panou de control

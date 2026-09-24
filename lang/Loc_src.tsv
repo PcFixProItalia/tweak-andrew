@@ -93,11 +93,9 @@ chkInkingTyping	Inking and typing personalization — disable
 chkWiFiSense	Wi-Fi Sense — disable
 ttlContent	SUGGESTIONS AND CONTENT
 chkConsumerFeatures	Suggested apps and auto-install — block
-chkStoreSearch	Microsoft Store search suggestions — disable
 chkSuggestedContent	Suggested content in Settings — disable
 chkLockScreenAds	Lock screen Spotlight and ads — disable
 chkStartBing	Bing search in Start menu — disable
-chkStartRecs	Start menu recommendations — disable
 chkStartTracking	Most used apps and recent documents — stop tracking
 chkFolderDiscovery	File Explorer folder type discovery — disable
 ttlMsApps	MICROSOFT APPS
@@ -189,11 +187,8 @@ ttlNow	IMMEDIATE ACTIONS
 lblNowHint	These run right away, without going through «Apply».
 btnTrimNow	Run TRIM now
 btnOptimizeNow	Optimize / defragment C:
-btnEmptyRecycle	Empty the Recycle Bin
-btnCleanUpdates	Delete Windows Update cache
 ttlMaintenance	MAINTENANCE ON APPLY
 chkDiskCleanup	Disk Cleanup and WinSxS compaction (DISM)
-chkTempCleanup	Delete temporary files
 chkSmartChkdsk	Smart CHKDSK (SSD or HDD)
 ttlSpace	SPACE AND POLICIES
 chkStorageSense	Storage Sense — disable
@@ -212,7 +207,6 @@ ttlSvc	SERVICES TO STOP
 lblSvcHint	Missing services are skipped. They can always be turned back on from services.msc.
 chkSvcSysMain	SysMain — preloading apps into memory
 chkSvcDiag	Diagnostics and event tracing
-chkSvcErrors	Windows Error Reporting
 chkSvcPca	Program Compatibility Assistant
 chkSvcDiscovery	Network device discovery (UPnP, SSDP)
 chkSvcSensors	Sensors and geolocation
@@ -232,7 +226,6 @@ ttlMem	MEMORY AND PROCESSES
 chkPrefetch	Prefetch and Superfetch registry values
 chkFth	Fault Tolerant Heap — no automatic patching
 chkAppCompat	Compatibility engine and program inventory
-chkSvcHostSplit	Fewer svchost processes (group the services)
 chkMemCompression	Memory compression — risky below 16 GB of RAM
 ttlWu	WINDOWS UPDATE
 chkWuNoReboot	No automatic reboots while you are using the computer

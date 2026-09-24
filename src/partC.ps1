@@ -140,11 +140,9 @@ $script:Loc = @{
 
     ttlContent         = @{ it = "SUGGERIMENTI E CONTENUTI"; en = "SUGGESTIONS AND CONTENT" }
     chkConsumerFeatures= @{ it = "App suggerite e installazioni automatiche — blocca"; en = "Suggested apps and auto-install — block" }
-    chkStoreSearch     = @{ it = "Suggerimenti di ricerca Microsoft Store — disattiva"; en = "Microsoft Store search suggestions — disable" }
     chkSuggestedContent= @{ it = "Contenuti suggeriti nelle Impostazioni — disattiva"; en = "Suggested content in Settings — disable" }
     chkLockScreenAds   = @{ it = "Spotlight e annunci nella schermata di blocco — disattiva"; en = "Lock screen Spotlight and ads — disable" }
     chkStartBing       = @{ it = "Ricerca Bing nel menu Start — disattiva"; en = "Bing search in Start menu — disable" }
-    chkStartRecs       = @{ it = "Suggerimenti del menu Start — disattiva"; en = "Start menu recommendations — disable" }
     chkStartTracking   = @{ it = "App più usate e documenti recenti — non tracciare"; en = "Most used apps and recent documents — stop tracking" }
     chkFolderDiscovery = @{ it = "Rilevamento tipo cartella in Esplora file — disattiva"; en = "File Explorer folder type discovery — disable" }
 
@@ -246,12 +244,9 @@ $script:Loc = @{
     lblNowHint         = @{ it = "Partono subito al clic, senza passare da «Applica»."; en = "These run right away, without going through «Apply»." }
     btnTrimNow         = @{ it = "Esegui TRIM ora"; en = "Run TRIM now" }
     btnOptimizeNow     = @{ it = "Ottimizza / deframmenta C:"; en = "Optimize / defragment C:" }
-    btnEmptyRecycle    = @{ it = "Svuota il Cestino"; en = "Empty the Recycle Bin" }
-    btnCleanUpdates    = @{ it = "Elimina cache di Windows Update"; en = "Delete Windows Update cache" }
 
     ttlMaintenance     = @{ it = "MANUTENZIONE ALL'APPLICAZIONE"; en = "MAINTENANCE ON APPLY" }
     chkDiskCleanup     = @{ it = "Pulizia Disco e compattazione WinSxS (DISM)"; en = "Disk Cleanup and WinSxS compaction (DISM)" }
-    chkTempCleanup     = @{ it = "Elimina i file temporanei"; en = "Delete temporary files" }
     chkSmartChkdsk     = @{ it = "CHKDSK intelligente (SSD o HDD)"; en = "Smart CHKDSK (SSD or HDD)" }
 
     ttlSpace           = @{ it = "SPAZIO E CRITERI"; en = "SPACE AND POLICIES" }
@@ -274,7 +269,6 @@ $script:Loc = @{
     lblSvcHint         = @{ it = "I servizi assenti vengono ignorati. Si possono sempre riattivare da services.msc."; en = "Missing services are skipped. They can always be turned back on from services.msc." }
     chkSvcSysMain      = @{ it = "SysMain — precaricamento delle app in memoria"; en = "SysMain — preloading apps into memory" }
     chkSvcDiag         = @{ it = "Diagnostica e tracciamento eventi"; en = "Diagnostics and event tracing" }
-    chkSvcErrors       = @{ it = "Segnalazione errori Windows"; en = "Windows Error Reporting" }
     chkSvcPca          = @{ it = "Assistente compatibilità programmi"; en = "Program Compatibility Assistant" }
     chkSvcDiscovery    = @{ it = "Rilevamento dispositivi in rete (UPnP, SSDP)"; en = "Network device discovery (UPnP, SSDP)" }
     chkSvcSensors      = @{ it = "Sensori e geolocalizzazione"; en = "Sensors and geolocation" }
@@ -296,7 +290,6 @@ $script:Loc = @{
     chkPrefetch        = @{ it = "Prefetch e Superfetch nel registro"; en = "Prefetch and Superfetch registry values" }
     chkFth             = @{ it = "Fault Tolerant Heap — niente correzioni automatiche"; en = "Fault Tolerant Heap — no automatic patching" }
     chkAppCompat       = @{ it = "Motore di compatibilità e inventario programmi"; en = "Compatibility engine and program inventory" }
-    chkSvcHostSplit    = @{ it = "Meno processi svchost (accorpa i servizi)"; en = "Fewer svchost processes (group the services)" }
     chkMemCompression  = @{ it = "Compressione della memoria — rischioso sotto 16 GB di RAM"; en = "Memory compression — risky below 16 GB of RAM" }
 
     ttlWu              = @{ it = "WINDOWS UPDATE"; en = "WINDOWS UPDATE" }
@@ -745,9 +738,6 @@ $script:Msg = @{
     featTip_wsl        = @{ it = "Distribuzioni Linux dentro Windows."; en = "Linux distributions inside Windows." }
     featTip_media      = @{ it = "Per giochi e programmi vecchi che richiedono DirectPlay o Windows Media Player."; en = "For old games and programs that need DirectPlay or Windows Media Player." }
     featTip_nfs        = @{ it = "Accesso alle cartelle condivise NFS di NAS e server Linux."; en = "Access to NFS shares on NAS and Linux servers." }
-    oosuHint           = @{ it = "Lo strumento di privacy di O&O, gratuito e senza installazione. Si scarica dal sito ufficiale in una cartella del programma, se ne controlla la firma digitale e si apre."; en = "O&O's free privacy tool, no install needed. It is downloaded from the official site into a program folder, its digital signature is checked and it opens." }
-    oosuRun            = @{ it = "Scarica e apri"; en = "Download and open" }
-    oosuAsk            = @{ it = "Scarico O&O ShutUp10++ da oo-software.com (circa 3 MB) e lo apro. Procedo?"; en = "I'll download O&O ShutUp10++ from oo-software.com (about 3 MB) and open it. Go ahead?" }
     ttlPanels          = @{ it = "Pannelli di Windows"; en = "Windows panels" }
     panelsHint         = @{ it = "Le finestre classiche delle impostazioni, a un clic."; en = "The classic settings windows, one click away." }
     panel_control      = @{ it = "Pannello di controllo"; en = "Control Panel" }
@@ -948,9 +938,9 @@ $chkActivityHistory = E 'chkActivityHistory'; $chkLocationTracking = E 'chkLocat
 $chkAdvertisingID = E 'chkAdvertisingID'; $chkTailoredExp = E 'chkTailoredExp'
 $chkFeedback = E 'chkFeedback'; $chkErrorReporting = E 'chkErrorReporting'
 $chkInkingTyping = E 'chkInkingTyping'; $chkWiFiSense = E 'chkWiFiSense'
-$chkConsumerFeatures = E 'chkConsumerFeatures'; $chkStoreSearch = E 'chkStoreSearch'
+$chkConsumerFeatures = E 'chkConsumerFeatures'
 $chkSuggestedContent = E 'chkSuggestedContent'; $chkLockScreenAds = E 'chkLockScreenAds'
-$chkStartBing = E 'chkStartBing'; $chkStartRecs = E 'chkStartRecs'
+$chkStartBing = E 'chkStartBing'
 $chkStartTracking = E 'chkStartTracking'; $chkFolderDiscovery = E 'chkFolderDiscovery'
 $chkWindowsAI = E 'chkWindowsAI'; $chkEdgeDebloat = E 'chkEdgeDebloat'
 $chkOneDriveRemove = E 'chkOneDriveRemove'; $chkOutlookNew = E 'chkOutlookNew'
@@ -992,19 +982,18 @@ $chkNetPowerSave = E 'chkNetPowerSave'; $chkDisableIPv6 = E 'chkDisableIPv6'
 $btnDetectStorage = E 'btnDetectStorage'
 $radStorageSSD = E 'radStorageSSD'; $radStorageHDD = E 'radStorageHDD'; $chkStorageProfile = E 'chkStorageProfile'
 $btnTrimNow = E 'btnTrimNow'; $btnOptimizeNow = E 'btnOptimizeNow'
-$btnEmptyRecycle = E 'btnEmptyRecycle'; $btnCleanUpdates = E 'btnCleanUpdates'
-$chkDiskCleanup = E 'chkDiskCleanup'; $chkTempCleanup = E 'chkTempCleanup'; $chkSmartChkdsk = E 'chkSmartChkdsk'
+$chkDiskCleanup = E 'chkDiskCleanup'; $chkSmartChkdsk = E 'chkSmartChkdsk'
 $chkStorageSense = E 'chkStorageSense'; $chkReservedStorage = E 'chkReservedStorage'
 
 # Avanzate
-$chkSvcSysMain = E 'chkSvcSysMain'; $chkSvcDiag = E 'chkSvcDiag'; $chkSvcErrors = E 'chkSvcErrors'
+$chkSvcSysMain = E 'chkSvcSysMain'; $chkSvcDiag = E 'chkSvcDiag'
 $chkSvcPca = E 'chkSvcPca'; $chkSvcDiscovery = E 'chkSvcDiscovery'; $chkSvcSensors = E 'chkSvcSensors'
 $chkSvcSmartCard = E 'chkSvcSmartCard'; $chkSvcParental = E 'chkSvcParental'; $chkSvcHyperV = E 'chkSvcHyperV'
 $chkSvcPrint = E 'chkSvcPrint'; $chkSvcSearch = E 'chkSvcSearch'; $chkSvcRemote = E 'chkSvcRemote'
 $chkSvcBiometric = E 'chkSvcBiometric'; $chkSvcTouch = E 'chkSvcTouch'
 $chkTaskExtra = E 'chkTaskExtra'; $chkTaskMaint = E 'chkTaskMaint'; $chkTaskDefrag = E 'chkTaskDefrag'
 $chkPrefetch = E 'chkPrefetch'; $chkFth = E 'chkFth'; $chkAppCompat = E 'chkAppCompat'
-$chkSvcHostSplit = E 'chkSvcHostSplit'; $chkMemCompression = E 'chkMemCompression'
+$chkMemCompression = E 'chkMemCompression'
 $chkWuNoStore = E 'chkWuNoStore'; $chkWuProfile = E 'chkWuProfile'
 $chkAdvUtc = E 'chkAdvUtc'; $chkAdvRazer = E 'chkAdvRazer'; $chkAdvLogi = E 'chkAdvLogi'; $chkIPv4Pref = E 'chkIPv4Pref'
 $chkBootQuiet = E 'chkBootQuiet'; $chkBootMenu = E 'chkBootMenu'; $chkBootTimeout = E 'chkBootTimeout'
@@ -1322,31 +1311,7 @@ $btnOptimizeNow.Add_Click({
     Show-StorageInventory
 })
 
-$btnEmptyRecycle.Add_Click({
-    if (-not (Show-Dialog (T 'confirmTitle') (T 'emptyRecycleAsk') 'danger')) { return }
-    try {
-        Clear-RecycleBin -Force -ErrorAction Stop
-        Write-Log "[OK] Cestino svuotato."
-    } catch { Write-Log "[AVVISO] Cestino: $($_.Exception.Message)" }
-    Show-StorageInventory
-})
 
-$btnCleanUpdates.Add_Click({
-    Write-Log "[STORAGE] Pulizia della cache di Windows Update..."
-    try {
-        Stop-Service -Name wuauserv -Force -ErrorAction SilentlyContinue
-        Stop-Service -Name bits -Force -ErrorAction SilentlyContinue
-        $sd = "$env:SystemRoot\SoftwareDistribution\Download"
-        if (Test-Path $sd) {
-            Get-ChildItem -LiteralPath $sd -Force -ErrorAction SilentlyContinue |
-                Remove-Item -Recurse -Force -ErrorAction SilentlyContinue
-        }
-        Start-Service -Name bits -ErrorAction SilentlyContinue
-        Start-Service -Name wuauserv -ErrorAction SilentlyContinue
-        Write-Log "[OK] Cache di Windows Update eliminata."
-    } catch { Write-Log "[ERRORE] Cache di Windows Update: $($_.Exception.Message)" }
-    Show-StorageInventory
-})
 
 # ------------------------------------------------------------------------------
 # 9. PIANI DI ALIMENTAZIONE
@@ -1501,7 +1466,7 @@ $script:AdvancedCheckBoxes = @(Get-CheckBoxesFromTree (E 'pageAdv'))
 # ambito (rete, MPO, DNS, profilo disco), i tweak marcati come rischiosi e
 # tutta la pagina Avanzate.
 $script:ExcludedFromSelectAll = @(@(
-    $chkRestorePoint, $chkDiskCleanup, $chkTempCleanup, $chkSmartChkdsk,
+    $chkRestorePoint, $chkDiskCleanup, $chkSmartChkdsk,
     $chkStorageProfile, $chkWuProfile, $chkApplyNetwork, $chkApplyDns, $chkApplyMPO
 ) + $script:AdvancedCheckBoxes | Where-Object { $null -ne $_ })
 
@@ -1649,8 +1614,8 @@ $script:RecommendedChecks = @{
     pagePerf    = @('chkMMCSS','chkPriority','chkKernelMem','chkPowerThrottling','chkUSBSuspend','chkNtfsPerf','chkRamTweak','chkGameMode','chkGameDVR',
                     'chkCpuIntelBoostPol','chkCpuAmdParking')
     pagePrivacy = @('chkTelemetry','chkTelemetryTasks','chkActivityHistory','chkAdvertisingID','chkTailoredExp','chkFeedback','chkErrorReporting',
-                    'chkInkingTyping','chkWiFiSense','chkConsumerFeatures','chkStoreSearch','chkSuggestedContent','chkLockScreenAds','chkStartBing',
-                    'chkStartRecs','chkStartTracking','chkWindowsAI','chkEdgeDebloat','chkDeliveryOpt','chkWPBT','chkBackgroundApps',
+                    'chkInkingTyping','chkWiFiSense','chkConsumerFeatures','chkSuggestedContent','chkLockScreenAds','chkStartBing',
+                    'chkStartTracking','chkWindowsAI','chkEdgeDebloat','chkDeliveryOpt','chkWPBT','chkBackgroundApps',
                     'chkRemoteAssistance','chkCompanionApps','chkServicesManual','chkTeredo')
     pageUi      = @('chkDarkTheme','chkFileExt','chkLongPaths','chkExplorerThisPC','chkRemove3D','chkRecycleConfirm','chkMenuDelay','chkStartNoWeb',
                     'chkStartNoAccount','chkTaskbarWidgets','chkTaskbarChat','chkTaskbarEndTask','chkMouseAccel','chkNumLock','chkStickyKeys')

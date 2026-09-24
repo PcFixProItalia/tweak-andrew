@@ -1569,11 +1569,9 @@ $script:PlanData = @{
                                             <StackPanel>
                                                 <TextBlock x:Name="ttlContent" Text="SUGGERIMENTI" Style="{StaticResource CardTitle}" Foreground="#FF2ED3A7"/>
                                                 <CheckBox x:Name="chkConsumerFeatures" Content="App suggerite"/>
-                                                <CheckBox x:Name="chkStoreSearch" Content="Ricerca Store"/>
                                                 <CheckBox x:Name="chkSuggestedContent" Content="Contenuti suggeriti"/>
                                                 <CheckBox x:Name="chkLockScreenAds" Content="Spotlight"/>
                                                 <CheckBox x:Name="chkStartBing" Content="Bing nel menu Start"/>
-                                                <CheckBox x:Name="chkStartRecs" Content="Suggerimenti Start"/>
                                                 <CheckBox x:Name="chkStartTracking" Content="Tracciamento app"/>
                                                 <CheckBox x:Name="chkFolderDiscovery" Content="Tipo cartella"/>
                                             </StackPanel>
@@ -1980,9 +1978,7 @@ $script:PlanData = @{
                                             <TextBlock x:Name="lblNowHint" Text="Partono subito al clic."
                                                        Style="{StaticResource SubTitle}" Margin="0,0,0,12"/>
                                             <Button x:Name="btnTrimNow" Content="Esegui TRIM ora" Style="{StaticResource GhostBtn}" Margin="0,0,0,8"/>
-                                            <Button x:Name="btnOptimizeNow" Content="Ottimizza C:" Style="{StaticResource GhostBtn}" Margin="0,0,0,8"/>
-                                            <Button x:Name="btnEmptyRecycle" Content="Svuota il Cestino" Style="{StaticResource GhostBtn}" Margin="0,0,0,8"/>
-                                            <Button x:Name="btnCleanUpdates" Content="Cache Windows Update" Style="{StaticResource GhostBtn}"/>
+                                            <Button x:Name="btnOptimizeNow" Content="Ottimizza C:" Style="{StaticResource GhostBtn}"/>
                                         </StackPanel>
                                     </Border>
 
@@ -1990,7 +1986,6 @@ $script:PlanData = @{
                                         <StackPanel>
                                             <TextBlock x:Name="ttlMaintenance" Text="MANUTENZIONE" Style="{StaticResource CardTitle}"/>
                                             <CheckBox x:Name="chkDiskCleanup" Content="Pulizia Disco e DISM"/>
-                                            <CheckBox x:Name="chkTempCleanup" Content="File temporanei"/>
                                             <CheckBox x:Name="chkSmartChkdsk" Content="CHKDSK intelligente"/>
                                         </StackPanel>
                                     </Border>
@@ -2312,7 +2307,6 @@ $script:PlanData = @{
                                                            Text="I servizi assenti vengono ignorati. Si possono sempre riattivare da services.msc."/>
                                                 <CheckBox x:Name="chkSvcSysMain" Content="SysMain — precaricamento delle app in memoria"/>
                                                 <CheckBox x:Name="chkSvcDiag" Content="Diagnostica e tracciamento eventi"/>
-                                                <CheckBox x:Name="chkSvcErrors" Content="Segnalazione errori Windows"/>
                                                 <CheckBox x:Name="chkSvcPca" Content="Assistente compatibilità programmi"/>
                                                 <CheckBox x:Name="chkSvcDiscovery" Content="Rilevamento dispositivi in rete (UPnP, SSDP)"/>
                                                 <CheckBox x:Name="chkSvcSensors" Content="Sensori e geolocalizzazione"/>
@@ -2333,7 +2327,6 @@ $script:PlanData = @{
                                                 <CheckBox x:Name="chkPrefetch" Content="Prefetch e Superfetch nel registro"/>
                                                 <CheckBox x:Name="chkFth" Content="Fault Tolerant Heap — niente correzioni automatiche"/>
                                                 <CheckBox x:Name="chkAppCompat" Content="Motore di compatibilità e inventario programmi"/>
-                                                <CheckBox x:Name="chkSvcHostSplit" Content="Meno processi svchost (accorpa i servizi)"/>
                                                 <CheckBox x:Name="chkMemCompression" Tag="risky" Content="Compressione della memoria — rischioso sotto 16 GB di RAM"/>
                                             </StackPanel>
                                         </Border>
@@ -2904,11 +2897,9 @@ $script:Loc = @{
 
     ttlContent         = @{ it = "SUGGERIMENTI E CONTENUTI"; en = "SUGGESTIONS AND CONTENT" }
     chkConsumerFeatures= @{ it = "App suggerite e installazioni automatiche — blocca"; en = "Suggested apps and auto-install — block" }
-    chkStoreSearch     = @{ it = "Suggerimenti di ricerca Microsoft Store — disattiva"; en = "Microsoft Store search suggestions — disable" }
     chkSuggestedContent= @{ it = "Contenuti suggeriti nelle Impostazioni — disattiva"; en = "Suggested content in Settings — disable" }
     chkLockScreenAds   = @{ it = "Spotlight e annunci nella schermata di blocco — disattiva"; en = "Lock screen Spotlight and ads — disable" }
     chkStartBing       = @{ it = "Ricerca Bing nel menu Start — disattiva"; en = "Bing search in Start menu — disable" }
-    chkStartRecs       = @{ it = "Suggerimenti del menu Start — disattiva"; en = "Start menu recommendations — disable" }
     chkStartTracking   = @{ it = "App più usate e documenti recenti — non tracciare"; en = "Most used apps and recent documents — stop tracking" }
     chkFolderDiscovery = @{ it = "Rilevamento tipo cartella in Esplora file — disattiva"; en = "File Explorer folder type discovery — disable" }
 
@@ -3010,12 +3001,9 @@ $script:Loc = @{
     lblNowHint         = @{ it = "Partono subito al clic, senza passare da «Applica»."; en = "These run right away, without going through «Apply»." }
     btnTrimNow         = @{ it = "Esegui TRIM ora"; en = "Run TRIM now" }
     btnOptimizeNow     = @{ it = "Ottimizza / deframmenta C:"; en = "Optimize / defragment C:" }
-    btnEmptyRecycle    = @{ it = "Svuota il Cestino"; en = "Empty the Recycle Bin" }
-    btnCleanUpdates    = @{ it = "Elimina cache di Windows Update"; en = "Delete Windows Update cache" }
 
     ttlMaintenance     = @{ it = "MANUTENZIONE ALL'APPLICAZIONE"; en = "MAINTENANCE ON APPLY" }
     chkDiskCleanup     = @{ it = "Pulizia Disco e compattazione WinSxS (DISM)"; en = "Disk Cleanup and WinSxS compaction (DISM)" }
-    chkTempCleanup     = @{ it = "Elimina i file temporanei"; en = "Delete temporary files" }
     chkSmartChkdsk     = @{ it = "CHKDSK intelligente (SSD o HDD)"; en = "Smart CHKDSK (SSD or HDD)" }
 
     ttlSpace           = @{ it = "SPAZIO E CRITERI"; en = "SPACE AND POLICIES" }
@@ -3038,7 +3026,6 @@ $script:Loc = @{
     lblSvcHint         = @{ it = "I servizi assenti vengono ignorati. Si possono sempre riattivare da services.msc."; en = "Missing services are skipped. They can always be turned back on from services.msc." }
     chkSvcSysMain      = @{ it = "SysMain — precaricamento delle app in memoria"; en = "SysMain — preloading apps into memory" }
     chkSvcDiag         = @{ it = "Diagnostica e tracciamento eventi"; en = "Diagnostics and event tracing" }
-    chkSvcErrors       = @{ it = "Segnalazione errori Windows"; en = "Windows Error Reporting" }
     chkSvcPca          = @{ it = "Assistente compatibilità programmi"; en = "Program Compatibility Assistant" }
     chkSvcDiscovery    = @{ it = "Rilevamento dispositivi in rete (UPnP, SSDP)"; en = "Network device discovery (UPnP, SSDP)" }
     chkSvcSensors      = @{ it = "Sensori e geolocalizzazione"; en = "Sensors and geolocation" }
@@ -3060,7 +3047,6 @@ $script:Loc = @{
     chkPrefetch        = @{ it = "Prefetch e Superfetch nel registro"; en = "Prefetch and Superfetch registry values" }
     chkFth             = @{ it = "Fault Tolerant Heap — niente correzioni automatiche"; en = "Fault Tolerant Heap — no automatic patching" }
     chkAppCompat       = @{ it = "Motore di compatibilità e inventario programmi"; en = "Compatibility engine and program inventory" }
-    chkSvcHostSplit    = @{ it = "Meno processi svchost (accorpa i servizi)"; en = "Fewer svchost processes (group the services)" }
     chkMemCompression  = @{ it = "Compressione della memoria — rischioso sotto 16 GB di RAM"; en = "Memory compression — risky below 16 GB of RAM" }
 
     ttlWu              = @{ it = "WINDOWS UPDATE"; en = "WINDOWS UPDATE" }
@@ -3509,9 +3495,6 @@ $script:Msg = @{
     featTip_wsl        = @{ it = "Distribuzioni Linux dentro Windows."; en = "Linux distributions inside Windows." }
     featTip_media      = @{ it = "Per giochi e programmi vecchi che richiedono DirectPlay o Windows Media Player."; en = "For old games and programs that need DirectPlay or Windows Media Player." }
     featTip_nfs        = @{ it = "Accesso alle cartelle condivise NFS di NAS e server Linux."; en = "Access to NFS shares on NAS and Linux servers." }
-    oosuHint           = @{ it = "Lo strumento di privacy di O&O, gratuito e senza installazione. Si scarica dal sito ufficiale in una cartella del programma, se ne controlla la firma digitale e si apre."; en = "O&O's free privacy tool, no install needed. It is downloaded from the official site into a program folder, its digital signature is checked and it opens." }
-    oosuRun            = @{ it = "Scarica e apri"; en = "Download and open" }
-    oosuAsk            = @{ it = "Scarico O&O ShutUp10++ da oo-software.com (circa 3 MB) e lo apro. Procedo?"; en = "I'll download O&O ShutUp10++ from oo-software.com (about 3 MB) and open it. Go ahead?" }
     ttlPanels          = @{ it = "Pannelli di Windows"; en = "Windows panels" }
     panelsHint         = @{ it = "Le finestre classiche delle impostazioni, a un clic."; en = "The classic settings windows, one click away." }
     panel_control      = @{ it = "Pannello di controllo"; en = "Control Panel" }
@@ -3712,9 +3695,9 @@ $chkActivityHistory = E 'chkActivityHistory'; $chkLocationTracking = E 'chkLocat
 $chkAdvertisingID = E 'chkAdvertisingID'; $chkTailoredExp = E 'chkTailoredExp'
 $chkFeedback = E 'chkFeedback'; $chkErrorReporting = E 'chkErrorReporting'
 $chkInkingTyping = E 'chkInkingTyping'; $chkWiFiSense = E 'chkWiFiSense'
-$chkConsumerFeatures = E 'chkConsumerFeatures'; $chkStoreSearch = E 'chkStoreSearch'
+$chkConsumerFeatures = E 'chkConsumerFeatures'
 $chkSuggestedContent = E 'chkSuggestedContent'; $chkLockScreenAds = E 'chkLockScreenAds'
-$chkStartBing = E 'chkStartBing'; $chkStartRecs = E 'chkStartRecs'
+$chkStartBing = E 'chkStartBing'
 $chkStartTracking = E 'chkStartTracking'; $chkFolderDiscovery = E 'chkFolderDiscovery'
 $chkWindowsAI = E 'chkWindowsAI'; $chkEdgeDebloat = E 'chkEdgeDebloat'
 $chkOneDriveRemove = E 'chkOneDriveRemove'; $chkOutlookNew = E 'chkOutlookNew'
@@ -3756,19 +3739,18 @@ $chkNetPowerSave = E 'chkNetPowerSave'; $chkDisableIPv6 = E 'chkDisableIPv6'
 $btnDetectStorage = E 'btnDetectStorage'
 $radStorageSSD = E 'radStorageSSD'; $radStorageHDD = E 'radStorageHDD'; $chkStorageProfile = E 'chkStorageProfile'
 $btnTrimNow = E 'btnTrimNow'; $btnOptimizeNow = E 'btnOptimizeNow'
-$btnEmptyRecycle = E 'btnEmptyRecycle'; $btnCleanUpdates = E 'btnCleanUpdates'
-$chkDiskCleanup = E 'chkDiskCleanup'; $chkTempCleanup = E 'chkTempCleanup'; $chkSmartChkdsk = E 'chkSmartChkdsk'
+$chkDiskCleanup = E 'chkDiskCleanup'; $chkSmartChkdsk = E 'chkSmartChkdsk'
 $chkStorageSense = E 'chkStorageSense'; $chkReservedStorage = E 'chkReservedStorage'
 
 # Avanzate
-$chkSvcSysMain = E 'chkSvcSysMain'; $chkSvcDiag = E 'chkSvcDiag'; $chkSvcErrors = E 'chkSvcErrors'
+$chkSvcSysMain = E 'chkSvcSysMain'; $chkSvcDiag = E 'chkSvcDiag'
 $chkSvcPca = E 'chkSvcPca'; $chkSvcDiscovery = E 'chkSvcDiscovery'; $chkSvcSensors = E 'chkSvcSensors'
 $chkSvcSmartCard = E 'chkSvcSmartCard'; $chkSvcParental = E 'chkSvcParental'; $chkSvcHyperV = E 'chkSvcHyperV'
 $chkSvcPrint = E 'chkSvcPrint'; $chkSvcSearch = E 'chkSvcSearch'; $chkSvcRemote = E 'chkSvcRemote'
 $chkSvcBiometric = E 'chkSvcBiometric'; $chkSvcTouch = E 'chkSvcTouch'
 $chkTaskExtra = E 'chkTaskExtra'; $chkTaskMaint = E 'chkTaskMaint'; $chkTaskDefrag = E 'chkTaskDefrag'
 $chkPrefetch = E 'chkPrefetch'; $chkFth = E 'chkFth'; $chkAppCompat = E 'chkAppCompat'
-$chkSvcHostSplit = E 'chkSvcHostSplit'; $chkMemCompression = E 'chkMemCompression'
+$chkMemCompression = E 'chkMemCompression'
 $chkWuNoStore = E 'chkWuNoStore'; $chkWuProfile = E 'chkWuProfile'
 $chkAdvUtc = E 'chkAdvUtc'; $chkAdvRazer = E 'chkAdvRazer'; $chkAdvLogi = E 'chkAdvLogi'; $chkIPv4Pref = E 'chkIPv4Pref'
 $chkBootQuiet = E 'chkBootQuiet'; $chkBootMenu = E 'chkBootMenu'; $chkBootTimeout = E 'chkBootTimeout'
@@ -4086,31 +4068,7 @@ $btnOptimizeNow.Add_Click({
     Show-StorageInventory
 })
 
-$btnEmptyRecycle.Add_Click({
-    if (-not (Show-Dialog (T 'confirmTitle') (T 'emptyRecycleAsk') 'danger')) { return }
-    try {
-        Clear-RecycleBin -Force -ErrorAction Stop
-        Write-Log "[OK] Cestino svuotato."
-    } catch { Write-Log "[AVVISO] Cestino: $($_.Exception.Message)" }
-    Show-StorageInventory
-})
 
-$btnCleanUpdates.Add_Click({
-    Write-Log "[STORAGE] Pulizia della cache di Windows Update..."
-    try {
-        Stop-Service -Name wuauserv -Force -ErrorAction SilentlyContinue
-        Stop-Service -Name bits -Force -ErrorAction SilentlyContinue
-        $sd = "$env:SystemRoot\SoftwareDistribution\Download"
-        if (Test-Path $sd) {
-            Get-ChildItem -LiteralPath $sd -Force -ErrorAction SilentlyContinue |
-                Remove-Item -Recurse -Force -ErrorAction SilentlyContinue
-        }
-        Start-Service -Name bits -ErrorAction SilentlyContinue
-        Start-Service -Name wuauserv -ErrorAction SilentlyContinue
-        Write-Log "[OK] Cache di Windows Update eliminata."
-    } catch { Write-Log "[ERRORE] Cache di Windows Update: $($_.Exception.Message)" }
-    Show-StorageInventory
-})
 
 # ------------------------------------------------------------------------------
 # 9. PIANI DI ALIMENTAZIONE
@@ -4265,7 +4223,7 @@ $script:AdvancedCheckBoxes = @(Get-CheckBoxesFromTree (E 'pageAdv'))
 # ambito (rete, MPO, DNS, profilo disco), i tweak marcati come rischiosi e
 # tutta la pagina Avanzate.
 $script:ExcludedFromSelectAll = @(@(
-    $chkRestorePoint, $chkDiskCleanup, $chkTempCleanup, $chkSmartChkdsk,
+    $chkRestorePoint, $chkDiskCleanup, $chkSmartChkdsk,
     $chkStorageProfile, $chkWuProfile, $chkApplyNetwork, $chkApplyDns, $chkApplyMPO
 ) + $script:AdvancedCheckBoxes | Where-Object { $null -ne $_ })
 
@@ -4413,8 +4371,8 @@ $script:RecommendedChecks = @{
     pagePerf    = @('chkMMCSS','chkPriority','chkKernelMem','chkPowerThrottling','chkUSBSuspend','chkNtfsPerf','chkRamTweak','chkGameMode','chkGameDVR',
                     'chkCpuIntelBoostPol','chkCpuAmdParking')
     pagePrivacy = @('chkTelemetry','chkTelemetryTasks','chkActivityHistory','chkAdvertisingID','chkTailoredExp','chkFeedback','chkErrorReporting',
-                    'chkInkingTyping','chkWiFiSense','chkConsumerFeatures','chkStoreSearch','chkSuggestedContent','chkLockScreenAds','chkStartBing',
-                    'chkStartRecs','chkStartTracking','chkWindowsAI','chkEdgeDebloat','chkDeliveryOpt','chkWPBT','chkBackgroundApps',
+                    'chkInkingTyping','chkWiFiSense','chkConsumerFeatures','chkSuggestedContent','chkLockScreenAds','chkStartBing',
+                    'chkStartTracking','chkWindowsAI','chkEdgeDebloat','chkDeliveryOpt','chkWPBT','chkBackgroundApps',
                     'chkRemoteAssistance','chkCompanionApps','chkServicesManual','chkTeredo')
     pageUi      = @('chkDarkTheme','chkFileExt','chkLongPaths','chkExplorerThisPC','chkRemove3D','chkRecycleConfirm','chkMenuDelay','chkStartNoWeb',
                     'chkStartNoAccount','chkTaskbarWidgets','chkTaskbarChat','chkTaskbarEndTask','chkMouseAccel','chkNumLock','chkStickyKeys')
@@ -4529,11 +4487,9 @@ $script:Tips = @{
     chkInkingTyping = @{ it = "Windows smette di imparare da quello che scrivi e digiti. Più privacy."; en = "Windows stops learning from what you write and type. More privacy." }
     chkWiFiSense = @{ it = "Impedisce la condivisione automatica delle reti Wi-Fi e la connessione a hotspot sconosciuti."; en = "Prevents automatic Wi-Fi network sharing and connecting to unknown hotspots." }
     chkConsumerFeatures = @{ it = "Impedisce a Windows di installare da solo app e giochi promozionali."; en = "Stops Windows from installing promotional apps and games on its own." }
-    chkStoreSearch = @{ it = "Toglie i suggerimenti web e dello Store dalle ricerche. Risultati più puliti e veloci."; en = "Removes web and Store suggestions from searches. Cleaner, faster results." }
     chkSuggestedContent = @{ it = "Niente consigli e promozioni dentro Impostazioni e nel sistema."; en = "No tips and promotions inside Settings and around the system." }
     chkLockScreenAds = @{ it = "Toglie immagini a rotazione, consigli e pubblicità dalla schermata di blocco."; en = "Removes rotating images, tips and ads from the lock screen." }
     chkStartBing = @{ it = "La ricerca nel menu Start cerca solo sul computer, non su internet. Più veloce e più privata."; en = "Start menu search looks only on the computer, not the web. Faster and more private." }
-    chkStartRecs = @{ it = "Toglie i suggerimenti di app e file dal menu Start."; en = "Removes app and file suggestions from the Start menu." }
     chkStartTracking = @{ it = "Windows smette di tenere l'elenco delle app più usate e dei documenti recenti."; en = "Windows stops keeping a list of your most used apps and recent documents." }
     chkFolderDiscovery = @{ it = "Esplora file non cerca più di indovinare il tipo di ogni cartella. Le cartelle grandi si aprono prima."; en = "File Explorer no longer tries to guess each folder's type. Large folders open faster." }
     chkWindowsAI = @{ it = "Spegne Copilot, Recall e le funzioni di intelligenza artificiale di Windows. Meno risorse usate e più privacy."; en = "Turns off Copilot, Recall and Windows AI features. Fewer resources used and more privacy." }
@@ -4586,7 +4542,6 @@ $script:Tips = @{
     chkDisableIPv6 = @{ it = "Spegne il protocollo IPv6. Utile solo se il tuo operatore non lo usa e hai problemi di connessione."; en = "Turns off IPv6. Useful only if your provider does not use it and you have connection issues." }
     chkStorageProfile = @{ it = "Applica le ottimizzazioni pensate per il tipo di disco scelto: SSD o disco meccanico."; en = "Applies the optimizations meant for the chosen drive type: SSD or hard disk." }
     chkDiskCleanup = @{ it = "Elimina file di sistema superflui e vecchie versioni degli aggiornamenti. Recupera spazio, a volte diversi GB."; en = "Deletes unneeded system files and old update versions. Recovers space, sometimes several GB." }
-    chkTempCleanup = @{ it = "Svuota le cartelle dei file temporanei. Più spazio libero."; en = "Empties the temporary file folders. More free space." }
     chkSmartChkdsk = @{ it = "Controlla il disco al prossimo riavvio nel modo adatto a SSD o disco meccanico. Corregge errori del file system."; en = "Checks the disk at the next restart in the way that suits SSDs or hard disks. Fixes file system errors." }
     chkStorageSense = @{ it = "Windows non cancella più file da solo per fare spazio. Decidi tu cosa eliminare."; en = "Windows no longer deletes files on its own to make room. You decide what to remove." }
     chkReservedStorage = @{ it = "Libera lo spazio che Windows tiene da parte per gli aggiornamenti, circa 7 GB."; en = "Frees the space Windows keeps aside for updates, about 7 GB." }
@@ -4605,7 +4560,6 @@ $script:Tips = @{
     chkIntelBloat = @{ it = "I servizi accessori della grafica Intel partono solo quando servono."; en = "Intel graphics companion services start only when needed." }
     chkSvcSysMain = @{ it = "Windows smette di precaricare in memoria le app che usi spesso. Utile su SSD veloci, dove non serve."; en = "Windows stops preloading your frequent apps into memory. Useful on fast SSDs, where it is not needed." }
     chkSvcDiag = @{ it = "Ferma i servizi che analizzano problemi e prestazioni in background."; en = "Stops the services that analyse problems and performance in the background." }
-    chkSvcErrors = @{ it = "Ferma il servizio che raccoglie e invia i rapporti di errore."; en = "Stops the service that collects and sends error reports." }
     chkSvcPca = @{ it = "Ferma il servizio che controlla la compatibilità dei vecchi programmi."; en = "Stops the service that checks old programs for compatibility." }
     chkSvcDiscovery = @{ it = "Il PC smette di cercare dispositivi sulla rete locale. Meno traffico, ma stampanti e TV di rete potrebbero non comparire."; en = "The PC stops searching for devices on the local network. Less traffic, but network printers and TVs may not show up." }
     chkSvcSensors = @{ it = "Ferma i servizi di sensori e posizione. Utile sui PC fissi, che non li hanno."; en = "Stops sensor and location services. Useful on desktops, which do not have them." }
@@ -4623,7 +4577,6 @@ $script:Tips = @{
     chkPrefetch = @{ it = "Windows smette di preparare in anticipo i file dei programmi. Meno scritture sugli SSD."; en = "Windows stops preparing program files in advance. Fewer writes on SSDs." }
     chkFth = @{ it = "Windows smette di applicare correzioni automatiche ai programmi che si bloccano. Comportamento più prevedibile."; en = "Windows stops applying automatic fixes to programs that crash. More predictable behaviour." }
     chkAppCompat = @{ it = "Spegne i controlli di compatibilità sui programmi. Avvio dei programmi un po' più rapido."; en = "Turns off compatibility checks on programs. Programs start slightly faster." }
-    chkSvcHostSplit = @{ it = "Raggruppa i servizi di Windows in meno processi. Meno memoria usata e un Gestione attività più leggibile."; en = "Groups Windows services into fewer processes. Less memory used and a tidier Task Manager." }
     chkMemCompression = @{ it = "Windows smette di comprimere la memoria. Meno lavoro del processore, ma serve molta RAM."; en = "Windows stops compressing memory. Less processor work, but you need plenty of RAM." }
     chkWuNoReboot = @{ it = "Gli aggiornamenti non riavviano più il PC mentre lo usi."; en = "Updates no longer restart the PC while you are using it." }
     chkWuDefer = @{ it = "Le nuove versioni di Windows arrivano dopo un anno, quando sono già stabili. Le patch di sicurezza continuano ad arrivare."; en = "New Windows versions arrive after a year, once they are stable. Security patches keep coming." }
@@ -4775,11 +4728,9 @@ $script:Tr = @{
         'L:chkWiFiSense' = "Sensor de Wi-Fi — desactivar"
         'L:ttlContent' = "SUGERENCIAS Y CONTENIDO"
         'L:chkConsumerFeatures' = "Aplicaciones sugeridas e instalación automática — bloquear"
-        'L:chkStoreSearch' = "Sugerencias de búsqueda de Microsoft Store — desactivar"
         'L:chkSuggestedContent' = "Contenido sugerido en Configuración — desactivar"
         'L:chkLockScreenAds' = "Spotlight y anuncios en la pantalla de bloqueo — desactivar"
         'L:chkStartBing' = "Búsqueda de Bing en el menú Inicio — desactivar"
-        'L:chkStartRecs' = "Recomendaciones del menú Inicio — desactivar"
         'L:chkStartTracking' = "Aplicaciones más usadas y documentos recientes — no registrar"
         'L:chkFolderDiscovery' = "Detección del tipo de carpeta en el Explorador — desactivar"
         'L:ttlMsApps' = "APLICACIONES DE MICROSOFT"
@@ -4864,11 +4815,8 @@ $script:Tr = @{
         'L:lblNowHint' = "Se ejecutan al momento, sin pasar por «Aplicar»."
         'L:btnTrimNow' = "Ejecutar TRIM ahora"
         'L:btnOptimizeNow' = "Optimizar / desfragmentar C:"
-        'L:btnEmptyRecycle' = "Vaciar la Papelera"
-        'L:btnCleanUpdates' = "Borrar la caché de Windows Update"
         'L:ttlMaintenance' = "MANTENIMIENTO AL APLICAR"
         'L:chkDiskCleanup' = "Liberador de espacio y compactación de WinSxS (DISM)"
-        'L:chkTempCleanup' = "Borrar archivos temporales"
         'L:chkSmartChkdsk' = "CHKDSK inteligente (SSD o HDD)"
         'L:ttlSpace' = "ESPACIO Y DIRECTIVAS"
         'L:chkStorageSense' = "Sensor de almacenamiento — desactivar"
@@ -4887,7 +4835,6 @@ $script:Tr = @{
         'L:lblSvcHint' = "Los servicios que no existen se omiten. Siempre se pueden reactivar desde services.msc."
         'L:chkSvcSysMain' = "SysMain — precarga de aplicaciones en memoria"
         'L:chkSvcDiag' = "Diagnóstico y seguimiento de eventos"
-        'L:chkSvcErrors' = "Informe de errores de Windows"
         'L:chkSvcPca' = "Asistente para la compatibilidad de programas"
         'L:chkSvcDiscovery' = "Detección de dispositivos en red (UPnP, SSDP)"
         'L:chkSvcSensors' = "Sensores y geolocalización"
@@ -4907,7 +4854,6 @@ $script:Tr = @{
         'L:chkPrefetch' = "Prefetch y Superfetch en el registro"
         'L:chkFth' = "Fault Tolerant Heap — sin correcciones automáticas"
         'L:chkAppCompat' = "Motor de compatibilidad e inventario de programas"
-        'L:chkSvcHostSplit' = "Menos procesos svchost (agrupar servicios)"
         'L:chkMemCompression' = "Compresión de memoria — arriesgado con menos de 16 GB de RAM"
         'L:ttlWu' = "WINDOWS UPDATE"
         'L:chkWuNoReboot' = "Sin reinicios automáticos mientras usas el equipo"
@@ -4997,11 +4943,9 @@ $script:Tr = @{
         'H:chkInkingTyping' = "Windows deja de aprender de lo que escribes y tecleas. Más privacidad."
         'H:chkWiFiSense' = "Impide compartir redes Wi-Fi automáticamente y conectarse a puntos de acceso desconocidos."
         'H:chkConsumerFeatures' = "Impide que Windows instale por su cuenta aplicaciones y juegos promocionales."
-        'H:chkStoreSearch' = "Quita las sugerencias web y de Store de las búsquedas. Resultados más limpios y rápidos."
         'H:chkSuggestedContent' = "Sin consejos ni promociones en Configuración y en el sistema."
         'H:chkLockScreenAds' = "Quita imágenes rotativas, consejos y anuncios de la pantalla de bloqueo."
         'H:chkStartBing' = "La búsqueda del menú Inicio busca solo en el equipo, no en internet. Más rápida y más privada."
-        'H:chkStartRecs' = "Quita las sugerencias de aplicaciones y archivos del menú Inicio."
         'H:chkStartTracking' = "Windows deja de llevar la lista de aplicaciones más usadas y documentos recientes."
         'H:chkFolderDiscovery' = "El Explorador deja de intentar adivinar el tipo de cada carpeta. Las carpetas grandes se abren antes."
         'H:chkWindowsAI' = "Apaga Copilot, Recall y las funciones de IA de Windows. Menos recursos usados y más privacidad."
@@ -5054,7 +4998,6 @@ $script:Tr = @{
         'H:chkDisableIPv6' = "Apaga IPv6. Útil solo si tu proveedor no lo usa y tienes problemas de conexión."
         'H:chkStorageProfile' = "Aplica las optimizaciones pensadas para el tipo de disco elegido: SSD o disco mecánico."
         'H:chkDiskCleanup' = "Borra archivos de sistema innecesarios y versiones antiguas de actualizaciones. Recupera espacio, a veces varios GB."
-        'H:chkTempCleanup' = "Vacía las carpetas de archivos temporales. Más espacio libre."
         'H:chkSmartChkdsk' = "Revisa el disco en el próximo reinicio del modo adecuado para SSD o disco mecánico. Corrige errores del sistema de archivos."
         'H:chkStorageSense' = "Windows deja de borrar archivos por su cuenta para hacer sitio. Decides tú qué eliminar."
         'H:chkReservedStorage' = "Libera el espacio que Windows reserva para las actualizaciones, unos 7 GB."
@@ -5073,7 +5016,6 @@ $script:Tr = @{
         'H:chkIntelBloat' = "Los servicios accesorios de gráficos Intel arrancan solo cuando hacen falta."
         'H:chkSvcSysMain' = "Windows deja de precargar en memoria las aplicaciones que usas a menudo. Útil en SSD rápidos, donde no hace falta."
         'H:chkSvcDiag' = "Detiene los servicios que analizan problemas y rendimiento en segundo plano."
-        'H:chkSvcErrors' = "Detiene el servicio que recoge y envía los informes de errores."
         'H:chkSvcPca' = "Detiene el servicio que revisa la compatibilidad de programas antiguos."
         'H:chkSvcDiscovery' = "El equipo deja de buscar dispositivos en la red local. Menos tráfico, pero impresoras y TV de red podrían no aparecer."
         'H:chkSvcSensors' = "Detiene los servicios de sensores y ubicación. Útil en equipos de sobremesa, que no los tienen."
@@ -5091,7 +5033,6 @@ $script:Tr = @{
         'H:chkPrefetch' = "Windows deja de preparar por adelantado los archivos de los programas. Menos escrituras en SSD."
         'H:chkFth' = "Windows deja de aplicar correcciones automáticas a los programas que fallan. Comportamiento más predecible."
         'H:chkAppCompat' = "Apaga las comprobaciones de compatibilidad de los programas. Los programas arrancan algo más rápido."
-        'H:chkSvcHostSplit' = "Agrupa los servicios de Windows en menos procesos. Menos memoria usada y un Administrador de tareas más legible."
         'H:chkMemCompression' = "Windows deja de comprimir la memoria. Menos trabajo del procesador, pero hace falta mucha RAM."
         'H:chkWuNoReboot' = "Las actualizaciones ya no reinician el equipo mientras lo usas."
         'H:chkWuDefer' = "Las nuevas versiones de Windows llegan un año después, ya estables. Los parches de seguridad siguen llegando."
@@ -5489,9 +5430,6 @@ $script:Tr = @{
         'M:featTip_wsl' = "Distribuciones Linux dentro de Windows."
         'M:featTip_media' = "Para juegos y programas antiguos que requieren DirectPlay o Windows Media Player."
         'M:featTip_nfs' = "Acceso a recursos NFS de NAS y servidores Linux."
-        'M:oosuHint' = "La herramienta de privacidad gratuita de O&O, sin instalación. Se descarga del sitio oficial a una carpeta del programa, se comprueba su firma y se abre."
-        'M:oosuRun' = "Descargar y abrir"
-        'M:oosuAsk' = "Descargo O&O ShutUp10++ de oo-software.com (unos 3 MB) y lo abro. ¿Sigo?"
         'M:ttlPanels' = "Paneles de Windows"
         'M:panelsHint' = "Las ventanas clásicas de configuración, a un clic."
         'M:panel_control' = "Panel de control"
@@ -5686,11 +5624,9 @@ $script:Tr = @{
         'L:chkWiFiSense' = "WLAN-Optimierung (Wi-Fi Sense) — deaktivieren"
         'L:ttlContent' = "VORSCHLÄGE UND INHALTE"
         'L:chkConsumerFeatures' = "Vorgeschlagene Apps und automatische Installation — blockieren"
-        'L:chkStoreSearch' = "Microsoft-Store-Suchvorschläge — deaktivieren"
         'L:chkSuggestedContent' = "Vorgeschlagene Inhalte in den Einstellungen — deaktivieren"
         'L:chkLockScreenAds' = "Spotlight und Werbung auf dem Sperrbildschirm — deaktivieren"
         'L:chkStartBing' = "Bing-Suche im Startmenü — deaktivieren"
-        'L:chkStartRecs' = "Empfehlungen im Startmenü — deaktivieren"
         'L:chkStartTracking' = "Meistverwendete Apps und zuletzt geöffnete Dokumente — nicht erfassen"
         'L:chkFolderDiscovery' = "Ordnertyp-Erkennung im Explorer — deaktivieren"
         'L:ttlMsApps' = "MICROSOFT-APPS"
@@ -5775,11 +5711,8 @@ $script:Tr = @{
         'L:lblNowHint' = "Werden sofort ausgeführt, ohne «Anwenden»."
         'L:btnTrimNow' = "TRIM jetzt ausführen"
         'L:btnOptimizeNow' = "C: optimieren / defragmentieren"
-        'L:btnEmptyRecycle' = "Papierkorb leeren"
-        'L:btnCleanUpdates' = "Windows-Update-Cache löschen"
         'L:ttlMaintenance' = "WARTUNG BEIM ANWENDEN"
         'L:chkDiskCleanup' = "Datenträgerbereinigung und WinSxS-Komprimierung (DISM)"
-        'L:chkTempCleanup' = "Temporäre Dateien löschen"
         'L:chkSmartChkdsk' = "Intelligentes CHKDSK (SSD oder HDD)"
         'L:ttlSpace' = "SPEICHERPLATZ UND RICHTLINIEN"
         'L:chkStorageSense' = "Speicheroptimierung — deaktivieren"
@@ -5798,7 +5731,6 @@ $script:Tr = @{
         'L:lblSvcHint' = "Fehlende Dienste werden übersprungen. Sie lassen sich jederzeit über services.msc wieder einschalten."
         'L:chkSvcSysMain' = "SysMain — Apps vorab in den Speicher laden"
         'L:chkSvcDiag' = "Diagnose und Ereignisablaufverfolgung"
-        'L:chkSvcErrors' = "Windows-Fehlerberichterstattung"
         'L:chkSvcPca' = "Programmkompatibilitäts-Assistent"
         'L:chkSvcDiscovery' = "Geräteerkennung im Netzwerk (UPnP, SSDP)"
         'L:chkSvcSensors' = "Sensoren und Standort"
@@ -5818,7 +5750,6 @@ $script:Tr = @{
         'L:chkPrefetch' = "Prefetch- und Superfetch-Werte in der Registrierung"
         'L:chkFth' = "Fault Tolerant Heap — keine automatischen Korrekturen"
         'L:chkAppCompat' = "Kompatibilitäts-Engine und Programminventar"
-        'L:chkSvcHostSplit' = "Weniger svchost-Prozesse (Dienste bündeln)"
         'L:chkMemCompression' = "Speicherkomprimierung — riskant unter 16 GB RAM"
         'L:ttlWu' = "WINDOWS UPDATE"
         'L:chkWuNoReboot' = "Keine automatischen Neustarts, während du den Computer nutzt"
@@ -5908,11 +5839,9 @@ $script:Tr = @{
         'H:chkInkingTyping' = "Windows lernt nicht mehr aus dem, was du schreibst und tippst. Mehr Privatsphäre."
         'H:chkWiFiSense' = "Verhindert das automatische Teilen von WLAN-Netzen und Verbindungen zu unbekannten Hotspots."
         'H:chkConsumerFeatures' = "Verhindert, dass Windows eigenmächtig Werbe-Apps und -Spiele installiert."
-        'H:chkStoreSearch' = "Entfernt Web- und Store-Vorschläge aus der Suche. Sauberere und schnellere Ergebnisse."
         'H:chkSuggestedContent' = "Keine Tipps und Werbung mehr in den Einstellungen und im System."
         'H:chkLockScreenAds' = "Entfernt wechselnde Bilder, Tipps und Werbung vom Sperrbildschirm."
         'H:chkStartBing' = "Die Suche im Startmenü sucht nur auf dem Computer, nicht im Internet. Schneller und privater."
-        'H:chkStartRecs' = "Entfernt App- und Dateivorschläge aus dem Startmenü."
         'H:chkStartTracking' = "Windows führt keine Liste der meistgenutzten Apps und zuletzt geöffneten Dokumente mehr."
         'H:chkFolderDiscovery' = "Der Explorer versucht nicht mehr, den Typ jedes Ordners zu erraten. Große Ordner öffnen sich schneller."
         'H:chkWindowsAI' = "Schaltet Copilot, Recall und die KI-Funktionen von Windows ab. Weniger Ressourcenverbrauch und mehr Privatsphäre."
@@ -5965,7 +5894,6 @@ $script:Tr = @{
         'H:chkDisableIPv6' = "Schaltet IPv6 ab. Nur sinnvoll, wenn dein Anbieter es nicht nutzt und du Verbindungsprobleme hast."
         'H:chkStorageProfile' = "Wendet die Optimierungen für den gewählten Laufwerkstyp an: SSD oder Festplatte."
         'H:chkDiskCleanup' = "Löscht überflüssige Systemdateien und alte Update-Versionen. Gewinnt Platz zurück, manchmal mehrere GB."
-        'H:chkTempCleanup' = "Leert die Ordner mit temporären Dateien. Mehr freier Speicher."
         'H:chkSmartChkdsk' = "Prüft das Laufwerk beim nächsten Neustart passend für SSD oder Festplatte. Behebt Dateisystemfehler."
         'H:chkStorageSense' = "Windows löscht keine Dateien mehr selbstständig, um Platz zu schaffen. Du entscheidest, was weg kommt."
         'H:chkReservedStorage' = "Gibt den Platz frei, den Windows für Updates zurückhält, etwa 7 GB."
@@ -5984,7 +5912,6 @@ $script:Tr = @{
         'H:chkIntelBloat' = "Die Zusatzdienste der Intel-Grafik starten nur bei Bedarf."
         'H:chkSvcSysMain' = "Windows lädt häufig genutzte Apps nicht mehr vorab in den Speicher. Sinnvoll bei schnellen SSDs, wo es nicht nötig ist."
         'H:chkSvcDiag' = "Stoppt die Dienste, die Probleme und Leistung im Hintergrund analysieren."
-        'H:chkSvcErrors' = "Stoppt den Dienst, der Fehlerberichte sammelt und sendet."
         'H:chkSvcPca' = "Stoppt den Dienst, der alte Programme auf Kompatibilität prüft."
         'H:chkSvcDiscovery' = "Der PC sucht nicht mehr nach Geräten im lokalen Netzwerk. Weniger Datenverkehr, aber Netzwerkdrucker und Fernseher erscheinen eventuell nicht."
         'H:chkSvcSensors' = "Stoppt Sensor- und Standortdienste. Sinnvoll bei Desktop-PCs, die keine haben."
@@ -6002,7 +5929,6 @@ $script:Tr = @{
         'H:chkPrefetch' = "Windows bereitet Programmdateien nicht mehr im Voraus vor. Weniger Schreibvorgänge auf SSDs."
         'H:chkFth' = "Windows wendet keine automatischen Korrekturen mehr auf abstürzende Programme an. Vorhersehbareres Verhalten."
         'H:chkAppCompat' = "Schaltet Kompatibilitätsprüfungen für Programme ab. Programme starten etwas schneller."
-        'H:chkSvcHostSplit' = "Bündelt Windows-Dienste in weniger Prozesse. Weniger Speicherverbrauch und ein übersichtlicherer Task-Manager."
         'H:chkMemCompression' = "Windows komprimiert den Speicher nicht mehr. Weniger Arbeit für den Prozessor, aber du brauchst viel RAM."
         'H:chkWuNoReboot' = "Updates starten den PC nicht mehr neu, während du ihn nutzt."
         'H:chkWuDefer' = "Neue Windows-Versionen kommen ein Jahr später, wenn sie stabil sind. Sicherheitsupdates kommen weiterhin."
@@ -6400,9 +6326,6 @@ $script:Tr = @{
         'M:featTip_wsl' = "Linux-Distributionen in Windows."
         'M:featTip_media' = "Für alte Spiele und Programme mit DirectPlay oder Windows Media Player."
         'M:featTip_nfs' = "Zugriff auf NFS-Freigaben von NAS und Linux-Servern."
-        'M:oosuHint' = "Das kostenlose Datenschutz-Tool von O&O, ohne Installation. Es wird von der offiziellen Seite in einen Programmordner geladen, die Signatur geprüft und geöffnet."
-        'M:oosuRun' = "Herunterladen und öffnen"
-        'M:oosuAsk' = "Ich lade O&O ShutUp10++ von oo-software.com (ca. 3 MB) und öffne es. Fortfahren?"
         'M:ttlPanels' = "Windows-Systemsteuerungen"
         'M:panelsHint' = "Die klassischen Einstellungsfenster mit einem Klick."
         'M:panel_control' = "Systemsteuerung"
@@ -6597,11 +6520,9 @@ $script:Tr = @{
         'L:chkWiFiSense' = "Assistant Wi-Fi (Wi-Fi Sense) — désactiver"
         'L:ttlContent' = "SUGGESTIONS ET CONTENUS"
         'L:chkConsumerFeatures' = "Applications suggérées et installation automatique — bloquer"
-        'L:chkStoreSearch' = "Suggestions de recherche du Microsoft Store — désactiver"
         'L:chkSuggestedContent' = "Contenu suggéré dans Paramètres — désactiver"
         'L:chkLockScreenAds' = "Spotlight et publicités sur l'écran de verrouillage — désactiver"
         'L:chkStartBing' = "Recherche Bing dans le menu Démarrer — désactiver"
-        'L:chkStartRecs' = "Recommandations du menu Démarrer — désactiver"
         'L:chkStartTracking' = "Applications les plus utilisées et documents récents — ne plus suivre"
         'L:chkFolderDiscovery' = "Détection du type de dossier dans l'Explorateur — désactiver"
         'L:ttlMsApps' = "APPLICATIONS MICROSOFT"
@@ -6689,11 +6610,8 @@ $script:Tr = @{
         'L:lblNowHint' = "Exécutées tout de suite, sans passer par « Appliquer »."
         'L:btnTrimNow' = "Lancer TRIM maintenant"
         'L:btnOptimizeNow' = "Optimiser / défragmenter C:"
-        'L:btnEmptyRecycle' = "Vider la Corbeille"
-        'L:btnCleanUpdates' = "Supprimer le cache de Windows Update"
         'L:ttlMaintenance' = "MAINTENANCE À L'APPLICATION"
         'L:chkDiskCleanup' = "Nettoyage de disque et compactage de WinSxS (DISM)"
-        'L:chkTempCleanup' = "Supprimer les fichiers temporaires"
         'L:chkSmartChkdsk' = "CHKDSK intelligent (SSD ou HDD)"
         'L:ttlSpace' = "ESPACE ET STRATÉGIES"
         'L:chkStorageSense' = "Assistant de stockage — désactiver"
@@ -6712,7 +6630,6 @@ $script:Tr = @{
         'L:lblSvcHint' = "Les services absents sont ignorés. On peut toujours les réactiver depuis services.msc."
         'L:chkSvcSysMain' = "SysMain — préchargement des applications en mémoire"
         'L:chkSvcDiag' = "Diagnostic et suivi d'événements"
-        'L:chkSvcErrors' = "Rapport d'erreurs Windows"
         'L:chkSvcPca' = "Assistant Compatibilité des programmes"
         'L:chkSvcDiscovery' = "Découverte d'appareils réseau (UPnP, SSDP)"
         'L:chkSvcSensors' = "Capteurs et géolocalisation"
@@ -6732,7 +6649,6 @@ $script:Tr = @{
         'L:chkPrefetch' = "Valeurs Prefetch et Superfetch du registre"
         'L:chkFth' = "Fault Tolerant Heap — pas de corrections automatiques"
         'L:chkAppCompat' = "Moteur de compatibilité et inventaire des programmes"
-        'L:chkSvcHostSplit' = "Moins de processus svchost (regrouper les services)"
         'L:chkMemCompression' = "Compression de la mémoire — risqué sous 16 Go de RAM"
         'L:ttlWu' = "WINDOWS UPDATE"
         'L:chkWuNoReboot' = "Pas de redémarrage automatique pendant l'utilisation"
@@ -6822,11 +6738,9 @@ $script:Tr = @{
         'H:chkInkingTyping' = "Windows n'apprend plus de ce que vous écrivez et tapez. Plus de confidentialité."
         'H:chkWiFiSense' = "Empêche le partage automatique des réseaux Wi-Fi et la connexion à des points d'accès inconnus."
         'H:chkConsumerFeatures' = "Empêche Windows d'installer de lui-même des applications et jeux promotionnels."
-        'H:chkStoreSearch' = "Retire les suggestions web et du Store des recherches. Résultats plus propres et plus rapides."
         'H:chkSuggestedContent' = "Plus de conseils ni de promotions dans Paramètres et dans le système."
         'H:chkLockScreenAds' = "Retire images changeantes, conseils et publicités de l'écran de verrouillage."
         'H:chkStartBing' = "La recherche du menu Démarrer cherche seulement sur l'ordinateur, pas sur internet. Plus rapide et plus privée."
-        'H:chkStartRecs' = "Retire les suggestions d'applications et de fichiers du menu Démarrer."
         'H:chkStartTracking' = "Windows ne tient plus la liste des applications les plus utilisées et des documents récents."
         'H:chkFolderDiscovery' = "L'Explorateur n'essaie plus de deviner le type de chaque dossier. Les gros dossiers s'ouvrent plus vite."
         'H:chkWindowsAI' = "Coupe Copilot, Recall et les fonctions d'IA de Windows. Moins de ressources utilisées et plus de confidentialité."
@@ -6879,7 +6793,6 @@ $script:Tr = @{
         'H:chkDisableIPv6' = "Coupe IPv6. Utile seulement si votre fournisseur ne l'utilise pas et que vous avez des problèmes de connexion."
         'H:chkStorageProfile' = "Applique les optimisations prévues pour le type de disque choisi : SSD ou disque mécanique."
         'H:chkDiskCleanup' = "Supprime les fichiers système inutiles et les anciennes versions des mises à jour. Récupère de l'espace, parfois plusieurs Go."
-        'H:chkTempCleanup' = "Vide les dossiers de fichiers temporaires. Plus d'espace libre."
         'H:chkSmartChkdsk' = "Vérifie le disque au prochain redémarrage de la façon adaptée au SSD ou au disque mécanique. Corrige les erreurs du système de fichiers."
         'H:chkStorageSense' = "Windows ne supprime plus de fichiers de lui-même pour faire de la place. C'est vous qui décidez."
         'H:chkReservedStorage' = "Libère l'espace que Windows garde de côté pour les mises à jour, environ 7 Go."
@@ -6898,7 +6811,6 @@ $script:Tr = @{
         'H:chkIntelBloat' = "Les services annexes des graphismes Intel démarrent seulement quand il le faut."
         'H:chkSvcSysMain' = "Windows ne précharge plus en mémoire les applications que vous utilisez souvent. Utile sur les SSD rapides, où ce n'est pas nécessaire."
         'H:chkSvcDiag' = "Arrête les services qui analysent problèmes et performances en arrière-plan."
-        'H:chkSvcErrors' = "Arrête le service qui collecte et envoie les rapports d'erreurs."
         'H:chkSvcPca' = "Arrête le service qui vérifie la compatibilité des anciens programmes."
         'H:chkSvcDiscovery' = "Le PC ne cherche plus d'appareils sur le réseau local. Moins de trafic, mais imprimantes et TV réseau peuvent ne plus apparaître."
         'H:chkSvcSensors' = "Arrête les services de capteurs et de localisation. Utile sur les PC fixes, qui n'en ont pas."
@@ -6916,7 +6828,6 @@ $script:Tr = @{
         'H:chkPrefetch' = "Windows ne prépare plus à l'avance les fichiers des programmes. Moins d'écritures sur les SSD."
         'H:chkFth' = "Windows n'applique plus de corrections automatiques aux programmes qui plantent. Comportement plus prévisible."
         'H:chkAppCompat' = "Coupe les contrôles de compatibilité des programmes. Les programmes démarrent un peu plus vite."
-        'H:chkSvcHostSplit' = "Regroupe les services de Windows dans moins de processus. Moins de mémoire utilisée et un Gestionnaire des tâches plus lisible."
         'H:chkMemCompression' = "Windows ne compresse plus la mémoire. Moins de travail pour le processeur, mais il faut beaucoup de RAM."
         'H:chkWuNoReboot' = "Les mises à jour ne redémarrent plus le PC pendant que vous l'utilisez."
         'H:chkWuDefer' = "Les nouvelles versions de Windows arrivent un an plus tard, une fois stables. Les correctifs de sécurité continuent d'arriver."
@@ -7314,9 +7225,6 @@ $script:Tr = @{
         'M:featTip_wsl' = "Distributions Linux dans Windows."
         'M:featTip_media' = "Pour les anciens jeux et programmes qui exigent DirectPlay ou Windows Media Player."
         'M:featTip_nfs' = "Accès aux partages NFS des NAS et serveurs Linux."
-        'M:oosuHint' = "L'outil de confidentialité gratuit d'O&O, sans installation. Il est téléchargé depuis le site officiel dans un dossier du programme, sa signature est vérifiée puis il s'ouvre."
-        'M:oosuRun' = "Télécharger et ouvrir"
-        'M:oosuAsk' = "Je télécharge O&O ShutUp10++ depuis oo-software.com (environ 3 Mo) et je l'ouvre. Je continue ?"
         'M:ttlPanels' = "Panneaux Windows"
         'M:panelsHint' = "Les fenêtres de réglages classiques, en un clic."
         'M:panel_control' = "Panneau de configuration"
@@ -7511,11 +7419,9 @@ $script:Tr = @{
         'L:chkWiFiSense' = "Czujnik Wi-Fi (Wi-Fi Sense) — wyłącz"
         'L:ttlContent' = "SUGESTIE I TREŚCI"
         'L:chkConsumerFeatures' = "Sugerowane aplikacje i automatyczna instalacja — zablokuj"
-        'L:chkStoreSearch' = "Sugestie wyszukiwania Microsoft Store — wyłącz"
         'L:chkSuggestedContent' = "Sugerowana zawartość w Ustawieniach — wyłącz"
         'L:chkLockScreenAds' = "Spotlight i reklamy na ekranie blokady — wyłącz"
         'L:chkStartBing' = "Wyszukiwanie Bing w menu Start — wyłącz"
-        'L:chkStartRecs' = "Rekomendacje menu Start — wyłącz"
         'L:chkStartTracking' = "Najczęściej używane aplikacje i ostatnie dokumenty — nie śledź"
         'L:chkFolderDiscovery' = "Wykrywanie typu folderu w Eksploratorze — wyłącz"
         'L:ttlMsApps' = "APLIKACJE MICROSOFT"
@@ -7600,11 +7506,8 @@ $script:Tr = @{
         'L:lblNowHint' = "Wykonywane od razu, bez przycisku «Zastosuj»."
         'L:btnTrimNow' = "Uruchom TRIM teraz"
         'L:btnOptimizeNow' = "Optymalizuj / defragmentuj C:"
-        'L:btnEmptyRecycle' = "Opróżnij Kosz"
-        'L:btnCleanUpdates' = "Usuń pamięć Windows Update"
         'L:ttlMaintenance' = "KONSERWACJA PRZY ZASTOSOWANIU"
         'L:chkDiskCleanup' = "Oczyszczanie dysku i kompaktowanie WinSxS (DISM)"
-        'L:chkTempCleanup' = "Usuń pliki tymczasowe"
         'L:chkSmartChkdsk' = "Inteligentny CHKDSK (SSD lub HDD)"
         'L:ttlSpace' = "MIEJSCE I ZASADY"
         'L:chkStorageSense' = "Czujnik pamięci — wyłącz"
@@ -7623,7 +7526,6 @@ $script:Tr = @{
         'L:lblSvcHint' = "Brakujące usługi są pomijane. Zawsze można je włączyć ponownie w services.msc."
         'L:chkSvcSysMain' = "SysMain — wstępne ładowanie aplikacji do pamięci"
         'L:chkSvcDiag' = "Diagnostyka i śledzenie zdarzeń"
-        'L:chkSvcErrors' = "Raportowanie błędów Windows"
         'L:chkSvcPca' = "Asystent zgodności programów"
         'L:chkSvcDiscovery' = "Wykrywanie urządzeń w sieci (UPnP, SSDP)"
         'L:chkSvcSensors' = "Czujniki i geolokalizacja"
@@ -7643,7 +7545,6 @@ $script:Tr = @{
         'L:chkPrefetch' = "Wartości Prefetch i Superfetch w rejestrze"
         'L:chkFth' = "Fault Tolerant Heap — bez automatycznych poprawek"
         'L:chkAppCompat' = "Mechanizm zgodności i spis programów"
-        'L:chkSvcHostSplit' = "Mniej procesów svchost (grupowanie usług)"
         'L:chkMemCompression' = "Kompresja pamięci — ryzykowne poniżej 16 GB RAM"
         'L:ttlWu' = "WINDOWS UPDATE"
         'L:chkWuNoReboot' = "Bez automatycznych restartów podczas pracy"
@@ -7733,11 +7634,9 @@ $script:Tr = @{
         'H:chkInkingTyping' = "Windows przestaje uczyć się z tego, co piszesz i wpisujesz. Więcej prywatności."
         'H:chkWiFiSense' = "Blokuje automatyczne udostępnianie sieci Wi-Fi i łączenie z nieznanymi hotspotami."
         'H:chkConsumerFeatures' = "Nie pozwala Windows samodzielnie instalować promocyjnych aplikacji i gier."
-        'H:chkStoreSearch' = "Usuwa sugestie z internetu i Sklepu z wyszukiwania. Czystsze i szybsze wyniki."
         'H:chkSuggestedContent' = "Bez porad i promocji w Ustawieniach i w systemie."
         'H:chkLockScreenAds' = "Usuwa zmieniające się obrazy, porady i reklamy z ekranu blokady."
         'H:chkStartBing' = "Wyszukiwanie w menu Start szuka tylko na komputerze, nie w internecie. Szybciej i bardziej prywatnie."
-        'H:chkStartRecs' = "Usuwa sugestie aplikacji i plików z menu Start."
         'H:chkStartTracking' = "Windows przestaje prowadzić listę najczęściej używanych aplikacji i ostatnich dokumentów."
         'H:chkFolderDiscovery' = "Eksplorator przestaje zgadywać typ każdego folderu. Duże foldery otwierają się szybciej."
         'H:chkWindowsAI' = "Wyłącza Copilot, Recall i funkcje AI w Windows. Mniejsze zużycie zasobów i więcej prywatności."
@@ -7790,7 +7689,6 @@ $script:Tr = @{
         'H:chkDisableIPv6' = "Wyłącza IPv6. Przydatne tylko, jeśli dostawca go nie używa, a masz problemy z połączeniem."
         'H:chkStorageProfile' = "Stosuje optymalizacje przygotowane dla wybranego typu dysku: SSD lub HDD."
         'H:chkDiskCleanup' = "Usuwa zbędne pliki systemowe i stare wersje aktualizacji. Odzyskuje miejsce, czasem kilka GB."
-        'H:chkTempCleanup' = "Opróżnia foldery plików tymczasowych. Więcej wolnego miejsca."
         'H:chkSmartChkdsk' = "Sprawdza dysk przy następnym uruchomieniu w sposób odpowiedni dla SSD lub HDD. Naprawia błędy systemu plików."
         'H:chkStorageSense' = "Windows przestaje sam usuwać pliki, żeby zrobić miejsce. Ty decydujesz, co usunąć."
         'H:chkReservedStorage' = "Zwalnia miejsce, które Windows rezerwuje na aktualizacje, około 7 GB."
@@ -7809,7 +7707,6 @@ $script:Tr = @{
         'H:chkIntelBloat' = "Dodatkowe usługi grafiki Intel startują tylko wtedy, gdy są potrzebne."
         'H:chkSvcSysMain' = "Windows przestaje wstępnie ładować do pamięci często używane aplikacje. Przydatne na szybkich SSD, gdzie nie jest to potrzebne."
         'H:chkSvcDiag' = "Zatrzymuje usługi analizujące problemy i wydajność w tle."
-        'H:chkSvcErrors' = "Zatrzymuje usługę, która zbiera i wysyła raporty o błędach."
         'H:chkSvcPca' = "Zatrzymuje usługę sprawdzającą zgodność starych programów."
         'H:chkSvcDiscovery' = "Komputer przestaje szukać urządzeń w sieci lokalnej. Mniejszy ruch, ale drukarki i telewizory sieciowe mogą się nie pojawiać."
         'H:chkSvcSensors' = "Zatrzymuje usługi czujników i lokalizacji. Przydatne na komputerach stacjonarnych, które ich nie mają."
@@ -7827,7 +7724,6 @@ $script:Tr = @{
         'H:chkPrefetch' = "Windows przestaje przygotowywać z wyprzedzeniem pliki programów. Mniej zapisów na SSD."
         'H:chkFth' = "Windows przestaje nakładać automatyczne poprawki na zawieszające się programy. Bardziej przewidywalne działanie."
         'H:chkAppCompat' = "Wyłącza sprawdzanie zgodności programów. Programy uruchamiają się nieco szybciej."
-        'H:chkSvcHostSplit' = "Grupuje usługi Windows w mniejszej liczbie procesów. Mniej pamięci i czytelniejszy Menedżer zadań."
         'H:chkMemCompression' = "Windows przestaje kompresować pamięć. Mniej pracy procesora, ale potrzeba dużo RAM."
         'H:chkWuNoReboot' = "Aktualizacje nie uruchamiają już komputera ponownie, gdy z niego korzystasz."
         'H:chkWuDefer' = "Nowe wersje Windows przychodzą rok później, gdy są już stabilne. Poprawki bezpieczeństwa nadal docierają."
@@ -8225,9 +8121,6 @@ $script:Tr = @{
         'M:featTip_wsl' = "Dystrybucje Linuksa w Windows."
         'M:featTip_media' = "Dla starych gier i programów wymagających DirectPlay lub Windows Media Player."
         'M:featTip_nfs' = "Dostęp do udziałów NFS na NAS i serwerach Linux."
-        'M:oosuHint' = "Darmowe narzędzie prywatności O&O, bez instalacji. Pobierane z oficjalnej strony do folderu programu, z weryfikacją podpisu, potem otwierane."
-        'M:oosuRun' = "Pobierz i otwórz"
-        'M:oosuAsk' = "Pobiorę O&O ShutUp10++ z oo-software.com (ok. 3 MB) i otworzę. Kontynuować?"
         'M:ttlPanels' = "Panele systemu Windows"
         'M:panelsHint' = "Klasyczne okna ustawień jednym kliknięciem."
         'M:panel_control' = "Panel sterowania"
@@ -8422,11 +8315,9 @@ $script:Tr = @{
         'L:chkWiFiSense' = "Sensor de Wi-Fi — desativar"
         'L:ttlContent' = "SUGESTÕES E CONTEÚDO"
         'L:chkConsumerFeatures' = "Apps sugeridos e instalação automática — bloquear"
-        'L:chkStoreSearch' = "Sugestões de pesquisa da Microsoft Store — desativar"
         'L:chkSuggestedContent' = "Conteúdo sugerido em Configurações — desativar"
         'L:chkLockScreenAds' = "Spotlight e anúncios na tela de bloqueio — desativar"
         'L:chkStartBing' = "Pesquisa do Bing no menu Iniciar — desativar"
-        'L:chkStartRecs' = "Recomendações do menu Iniciar — desativar"
         'L:chkStartTracking' = "Apps mais usados e documentos recentes — não registrar"
         'L:chkFolderDiscovery' = "Detecção do tipo de pasta no Explorador — desativar"
         'L:ttlMsApps' = "APPS DA MICROSOFT"
@@ -8511,11 +8402,8 @@ $script:Tr = @{
         'L:lblNowHint' = "Executadas na hora, sem passar por «Aplicar»."
         'L:btnTrimNow' = "Executar TRIM agora"
         'L:btnOptimizeNow' = "Otimizar / desfragmentar C:"
-        'L:btnEmptyRecycle' = "Esvaziar a Lixeira"
-        'L:btnCleanUpdates' = "Excluir o cache do Windows Update"
         'L:ttlMaintenance' = "MANUTENÇÃO AO APLICAR"
         'L:chkDiskCleanup' = "Limpeza de disco e compactação do WinSxS (DISM)"
-        'L:chkTempCleanup' = "Excluir arquivos temporários"
         'L:chkSmartChkdsk' = "CHKDSK inteligente (SSD ou HDD)"
         'L:ttlSpace' = "ESPAÇO E POLÍTICAS"
         'L:chkStorageSense' = "Sensor de Armazenamento — desativar"
@@ -8534,7 +8422,6 @@ $script:Tr = @{
         'L:lblSvcHint' = "Serviços ausentes são ignorados. Sempre podem ser reativados em services.msc."
         'L:chkSvcSysMain' = "SysMain — pré-carregamento de apps na memória"
         'L:chkSvcDiag' = "Diagnóstico e rastreamento de eventos"
-        'L:chkSvcErrors' = "Relatório de erros do Windows"
         'L:chkSvcPca' = "Assistente de Compatibilidade de Programas"
         'L:chkSvcDiscovery' = "Descoberta de dispositivos na rede (UPnP, SSDP)"
         'L:chkSvcSensors' = "Sensores e geolocalização"
@@ -8554,7 +8441,6 @@ $script:Tr = @{
         'L:chkPrefetch' = "Valores de Prefetch e Superfetch no registro"
         'L:chkFth' = "Fault Tolerant Heap — sem correções automáticas"
         'L:chkAppCompat' = "Mecanismo de compatibilidade e inventário de programas"
-        'L:chkSvcHostSplit' = "Menos processos svchost (agrupar serviços)"
         'L:chkMemCompression' = "Compressão de memória — arriscado com menos de 16 GB de RAM"
         'L:ttlWu' = "WINDOWS UPDATE"
         'L:chkWuNoReboot' = "Sem reinícios automáticos enquanto você usa o computador"
@@ -8644,11 +8530,9 @@ $script:Tr = @{
         'H:chkInkingTyping' = "O Windows para de aprender com o que você escreve e digita. Mais privacidade."
         'H:chkWiFiSense' = "Impede o compartilhamento automático de redes Wi-Fi e a conexão a hotspots desconhecidos."
         'H:chkConsumerFeatures' = "Impede que o Windows instale sozinho apps e jogos promocionais."
-        'H:chkStoreSearch' = "Remove sugestões da web e da Store das pesquisas. Resultados mais limpos e rápidos."
         'H:chkSuggestedContent' = "Sem dicas nem promoções nas Configurações e no sistema."
         'H:chkLockScreenAds' = "Remove imagens rotativas, dicas e anúncios da tela de bloqueio."
         'H:chkStartBing' = "A pesquisa do menu Iniciar busca só no computador, não na internet. Mais rápida e mais privada."
-        'H:chkStartRecs' = "Remove sugestões de apps e arquivos do menu Iniciar."
         'H:chkStartTracking' = "O Windows para de manter a lista de apps mais usados e documentos recentes."
         'H:chkFolderDiscovery' = "O Explorador para de tentar adivinhar o tipo de cada pasta. Pastas grandes abrem mais rápido."
         'H:chkWindowsAI' = "Desliga o Copilot, o Recall e os recursos de IA do Windows. Menos recursos usados e mais privacidade."
@@ -8701,7 +8585,6 @@ $script:Tr = @{
         'H:chkDisableIPv6' = "Desliga o IPv6. Útil só se o seu provedor não o usa e você tem problemas de conexão."
         'H:chkStorageProfile' = "Aplica as otimizações pensadas para o tipo de disco escolhido: SSD ou disco mecânico."
         'H:chkDiskCleanup' = "Exclui arquivos de sistema desnecessários e versões antigas de atualizações. Recupera espaço, às vezes vários GB."
-        'H:chkTempCleanup' = "Esvazia as pastas de arquivos temporários. Mais espaço livre."
         'H:chkSmartChkdsk' = "Verifica o disco no próximo reinício do jeito certo para SSD ou disco mecânico. Corrige erros do sistema de arquivos."
         'H:chkStorageSense' = "O Windows para de apagar arquivos sozinho para abrir espaço. Você decide o que remover."
         'H:chkReservedStorage' = "Libera o espaço que o Windows reserva para atualizações, cerca de 7 GB."
@@ -8720,7 +8603,6 @@ $script:Tr = @{
         'H:chkIntelBloat' = "Os serviços extras da placa Intel só iniciam quando necessários."
         'H:chkSvcSysMain' = "O Windows para de pré-carregar na memória os apps que você usa com frequência. Útil em SSDs rápidos, onde não é necessário."
         'H:chkSvcDiag' = "Para os serviços que analisam problemas e desempenho em segundo plano."
-        'H:chkSvcErrors' = "Para o serviço que coleta e envia relatórios de erro."
         'H:chkSvcPca' = "Para o serviço que verifica a compatibilidade de programas antigos."
         'H:chkSvcDiscovery' = "O PC para de procurar dispositivos na rede local. Menos tráfego, mas impressoras e TVs de rede podem não aparecer."
         'H:chkSvcSensors' = "Para os serviços de sensores e localização. Útil em desktops, que não os têm."
@@ -8738,7 +8620,6 @@ $script:Tr = @{
         'H:chkPrefetch' = "O Windows para de preparar com antecedência os arquivos dos programas. Menos gravações no SSD."
         'H:chkFth' = "O Windows para de aplicar correções automáticas aos programas que travam. Comportamento mais previsível."
         'H:chkAppCompat' = "Desliga as verificações de compatibilidade dos programas. Os programas abrem um pouco mais rápido."
-        'H:chkSvcHostSplit' = "Agrupa os serviços do Windows em menos processos. Menos memória usada e um Gerenciador de Tarefas mais legível."
         'H:chkMemCompression' = "O Windows para de comprimir a memória. Menos trabalho do processador, mas é preciso bastante RAM."
         'H:chkWuNoReboot' = "As atualizações não reiniciam mais o PC enquanto você o usa."
         'H:chkWuDefer' = "As novas versões do Windows chegam um ano depois, já estáveis. As correções de segurança continuam chegando."
@@ -9136,9 +9017,6 @@ $script:Tr = @{
         'M:featTip_wsl' = "Distribuições Linux dentro do Windows."
         'M:featTip_media' = "Para jogos e programas antigos que exigem DirectPlay ou Windows Media Player."
         'M:featTip_nfs' = "Acesso a compartilhamentos NFS de NAS e servidores Linux."
-        'M:oosuHint' = "A ferramenta de privacidade gratuita da O&O, sem instalação. É baixada do site oficial para uma pasta do programa, a assinatura é verificada e ela abre."
-        'M:oosuRun' = "Baixar e abrir"
-        'M:oosuAsk' = "Vou baixar o O&O ShutUp10++ de oo-software.com (cerca de 3 MB) e abri-lo. Continuo?"
         'M:ttlPanels' = "Painéis do Windows"
         'M:panelsHint' = "As janelas clássicas de configuração, a um clique."
         'M:panel_control' = "Painel de Controle"
@@ -9333,11 +9211,9 @@ $script:Tr = @{
         'L:chkWiFiSense' = "Wi-Fi Sense — dezactivează"
         'L:ttlContent' = "SUGESTII ȘI CONȚINUT"
         'L:chkConsumerFeatures' = "Aplicații sugerate și instalare automată — blochează"
-        'L:chkStoreSearch' = "Sugestii de căutare Microsoft Store — dezactivează"
         'L:chkSuggestedContent' = "Conținut sugerat în Setări — dezactivează"
         'L:chkLockScreenAds' = "Spotlight și reclame pe ecranul de blocare — dezactivează"
         'L:chkStartBing' = "Căutare Bing în meniul Start — dezactivează"
-        'L:chkStartRecs' = "Recomandări în meniul Start — dezactivează"
         'L:chkStartTracking' = "Aplicații folosite des și documente recente — nu urmări"
         'L:chkFolderDiscovery' = "Detectarea tipului de folder în Explorer — dezactivează"
         'L:ttlMsApps' = "APLICAȚII MICROSOFT"
@@ -9422,11 +9298,8 @@ $script:Tr = @{
         'L:lblNowHint' = "Rulează imediat, fără a trece prin «Aplică»."
         'L:btnTrimNow' = "Rulează TRIM acum"
         'L:btnOptimizeNow' = "Optimizează / defragmentează C:"
-        'L:btnEmptyRecycle' = "Golește Coșul de reciclare"
-        'L:btnCleanUpdates' = "Șterge cache-ul Windows Update"
         'L:ttlMaintenance' = "ÎNTREȚINERE LA APLICARE"
         'L:chkDiskCleanup' = "Curățare disc și compactare WinSxS (DISM)"
-        'L:chkTempCleanup' = "Șterge fișierele temporare"
         'L:chkSmartChkdsk' = "CHKDSK inteligent (SSD sau HDD)"
         'L:ttlSpace' = "SPAȚIU ȘI POLITICI"
         'L:chkStorageSense' = "Senzor de stocare — dezactivează"
@@ -9445,7 +9318,6 @@ $script:Tr = @{
         'L:lblSvcHint' = "Serviciile absente sunt omise. Pot fi oricând reactivate din services.msc."
         'L:chkSvcSysMain' = "SysMain — preîncărcarea aplicațiilor în memorie"
         'L:chkSvcDiag' = "Diagnosticare și urmărirea evenimentelor"
-        'L:chkSvcErrors' = "Raportarea erorilor Windows"
         'L:chkSvcPca' = "Asistentul de compatibilitate a programelor"
         'L:chkSvcDiscovery' = "Descoperirea dispozitivelor din rețea (UPnP, SSDP)"
         'L:chkSvcSensors' = "Senzori și geolocalizare"
@@ -9465,7 +9337,6 @@ $script:Tr = @{
         'L:chkPrefetch' = "Valorile Prefetch și Superfetch din registru"
         'L:chkFth' = "Fault Tolerant Heap — fără corecții automate"
         'L:chkAppCompat' = "Motorul de compatibilitate și inventarul programelor"
-        'L:chkSvcHostSplit' = "Mai puține procese svchost (gruparea serviciilor)"
         'L:chkMemCompression' = "Comprimarea memoriei — riscant sub 16 GB RAM"
         'L:ttlWu' = "WINDOWS UPDATE"
         'L:chkWuNoReboot' = "Fără reporniri automate cât folosești computerul"
@@ -9555,11 +9426,9 @@ $script:Tr = @{
         'H:chkInkingTyping' = "Windows nu mai învață din ce scrii și tastezi. Mai multă confidențialitate."
         'H:chkWiFiSense' = "Împiedică partajarea automată a rețelelor Wi-Fi și conectarea la hotspot-uri necunoscute."
         'H:chkConsumerFeatures' = "Împiedică Windows să instaleze singur aplicații și jocuri promoționale."
-        'H:chkStoreSearch' = "Elimină sugestiile web și din Store din căutări. Rezultate mai curate și mai rapide."
         'H:chkSuggestedContent' = "Fără sfaturi și promoții în Setări și în sistem."
         'H:chkLockScreenAds' = "Elimină imaginile care se schimbă, sfaturile și reclamele de pe ecranul de blocare."
         'H:chkStartBing' = "Căutarea din meniul Start caută doar pe computer, nu pe internet. Mai rapidă și mai privată."
-        'H:chkStartRecs' = "Elimină sugestiile de aplicații și fișiere din meniul Start."
         'H:chkStartTracking' = "Windows nu mai ține lista aplicațiilor folosite des și a documentelor recente."
         'H:chkFolderDiscovery' = "Explorer nu mai încearcă să ghicească tipul fiecărui folder. Folderele mari se deschid mai repede."
         'H:chkWindowsAI' = "Oprește Copilot, Recall și funcțiile AI din Windows. Mai puține resurse folosite și mai multă confidențialitate."
@@ -9612,7 +9481,6 @@ $script:Tr = @{
         'H:chkDisableIPv6' = "Oprește IPv6. Util doar dacă furnizorul nu îl folosește și ai probleme de conexiune."
         'H:chkStorageProfile' = "Aplică optimizările gândite pentru tipul de disc ales: SSD sau hard disk."
         'H:chkDiskCleanup' = "Șterge fișierele de sistem inutile și versiunile vechi ale actualizărilor. Recuperează spațiu, uneori câțiva GB."
-        'H:chkTempCleanup' = "Golește folderele cu fișiere temporare. Mai mult spațiu liber."
         'H:chkSmartChkdsk' = "Verifică discul la următoarea repornire în modul potrivit pentru SSD sau hard disk. Repară erorile sistemului de fișiere."
         'H:chkStorageSense' = "Windows nu mai șterge singur fișiere ca să facă loc. Tu decizi ce elimini."
         'H:chkReservedStorage' = "Eliberează spațiul pe care Windows îl păstrează pentru actualizări, circa 7 GB."
@@ -9631,7 +9499,6 @@ $script:Tr = @{
         'H:chkIntelBloat' = "Serviciile suplimentare ale plăcii Intel pornesc doar când e nevoie."
         'H:chkSvcSysMain' = "Windows nu mai preîncarcă în memorie aplicațiile folosite des. Util pe SSD-uri rapide, unde nu e nevoie."
         'H:chkSvcDiag' = "Oprește serviciile care analizează problemele și performanța în fundal."
-        'H:chkSvcErrors' = "Oprește serviciul care colectează și trimite rapoartele de erori."
         'H:chkSvcPca' = "Oprește serviciul care verifică compatibilitatea programelor vechi."
         'H:chkSvcDiscovery' = "PC-ul nu mai caută dispozitive în rețeaua locală. Mai puțin trafic, dar imprimantele și televizoarele din rețea pot să nu mai apară."
         'H:chkSvcSensors' = "Oprește serviciile de senzori și locație. Util pe PC-urile desktop, care nu le au."
@@ -9649,7 +9516,6 @@ $script:Tr = @{
         'H:chkPrefetch' = "Windows nu mai pregătește din timp fișierele programelor. Mai puține scrieri pe SSD."
         'H:chkFth' = "Windows nu mai aplică corecții automate programelor care se blochează. Comportament mai previzibil."
         'H:chkAppCompat' = "Oprește verificările de compatibilitate ale programelor. Programele pornesc puțin mai repede."
-        'H:chkSvcHostSplit' = "Grupează serviciile Windows în mai puține procese. Mai puțină memorie folosită și un Manager de activități mai clar."
         'H:chkMemCompression' = "Windows nu mai comprimă memoria. Mai puțină muncă pentru procesor, dar e nevoie de multă RAM."
         'H:chkWuNoReboot' = "Actualizările nu mai repornesc PC-ul cât îl folosești."
         'H:chkWuDefer' = "Versiunile noi de Windows vin după un an, când sunt deja stabile. Actualizările de securitate continuă să vină."
@@ -10047,9 +9913,6 @@ $script:Tr = @{
         'M:featTip_wsl' = "Distribuții Linux în Windows."
         'M:featTip_media' = "Pentru jocuri și programe vechi care cer DirectPlay sau Windows Media Player."
         'M:featTip_nfs' = "Acces la partajări NFS de pe NAS și servere Linux."
-        'M:oosuHint' = "Instrumentul gratuit de confidențialitate O&O, fără instalare. Se descarcă de pe site-ul oficial într-un folder al programului, se verifică semnătura și se deschide."
-        'M:oosuRun' = "Descarcă și deschide"
-        'M:oosuAsk' = "Descarc O&O ShutUp10++ de pe oo-software.com (circa 3 MB) și îl deschid. Continui?"
         'M:ttlPanels' = "Panouri Windows"
         'M:panelsHint' = "Ferestrele clasice de setări, la un clic."
         'M:panel_control' = "Panou de control"
@@ -10244,11 +10107,9 @@ $script:Tr = @{
         'L:chkWiFiSense' = "Контроль Wi-Fi (Wi-Fi Sense) — отключить"
         'L:ttlContent' = "ПРЕДЛОЖЕНИЯ И КОНТЕНТ"
         'L:chkConsumerFeatures' = "Предлагаемые приложения и автоустановка — блокировать"
-        'L:chkStoreSearch' = "Подсказки поиска Microsoft Store — отключить"
         'L:chkSuggestedContent' = "Рекомендуемое содержимое в Параметрах — отключить"
         'L:chkLockScreenAds' = "Spotlight и реклама на экране блокировки — отключить"
         'L:chkStartBing' = "Поиск Bing в меню «Пуск» — отключить"
-        'L:chkStartRecs' = "Рекомендации в меню «Пуск» — отключить"
         'L:chkStartTracking' = "Часто используемые приложения и недавние документы — не отслеживать"
         'L:chkFolderDiscovery' = "Определение типа папок в Проводнике — отключить"
         'L:ttlMsApps' = "ПРИЛОЖЕНИЯ MICROSOFT"
@@ -10333,11 +10194,8 @@ $script:Tr = @{
         'L:lblNowHint' = "Выполняются сразу, без кнопки «Применить»."
         'L:btnTrimNow' = "Выполнить TRIM сейчас"
         'L:btnOptimizeNow' = "Оптимизировать / дефрагментировать C:"
-        'L:btnEmptyRecycle' = "Очистить корзину"
-        'L:btnCleanUpdates' = "Удалить кэш Windows Update"
         'L:ttlMaintenance' = "ОБСЛУЖИВАНИЕ ПРИ ПРИМЕНЕНИИ"
         'L:chkDiskCleanup' = "Очистка диска и сжатие WinSxS (DISM)"
-        'L:chkTempCleanup' = "Удалить временные файлы"
         'L:chkSmartChkdsk' = "Умный CHKDSK (SSD или HDD)"
         'L:ttlSpace' = "МЕСТО И ПОЛИТИКИ"
         'L:chkStorageSense' = "Контроль памяти — отключить"
@@ -10356,7 +10214,6 @@ $script:Tr = @{
         'L:lblSvcHint' = "Отсутствующие службы пропускаются. Их всегда можно включить снова через services.msc."
         'L:chkSvcSysMain' = "SysMain — предзагрузка приложений в память"
         'L:chkSvcDiag' = "Диагностика и трассировка событий"
-        'L:chkSvcErrors' = "Отчёты об ошибках Windows"
         'L:chkSvcPca' = "Помощник по совместимости программ"
         'L:chkSvcDiscovery' = "Обнаружение устройств в сети (UPnP, SSDP)"
         'L:chkSvcSensors' = "Датчики и геолокация"
@@ -10376,7 +10233,6 @@ $script:Tr = @{
         'L:chkPrefetch' = "Значения Prefetch и Superfetch в реестре"
         'L:chkFth' = "Fault Tolerant Heap — без автоисправлений"
         'L:chkAppCompat' = "Механизм совместимости и учёт программ"
-        'L:chkSvcHostSplit' = "Меньше процессов svchost (группировка служб)"
         'L:chkMemCompression' = "Сжатие памяти — рискованно при ОЗУ меньше 16 ГБ"
         'L:ttlWu' = "WINDOWS UPDATE"
         'L:chkWuNoReboot' = "Без автоматических перезагрузок во время работы"
@@ -10466,11 +10322,9 @@ $script:Tr = @{
         'H:chkInkingTyping' = "Windows перестаёт учиться на том, что вы пишете и набираете. Больше приватности."
         'H:chkWiFiSense' = "Запрещает автоматический обмен сетями Wi-Fi и подключение к незнакомым точкам доступа."
         'H:chkConsumerFeatures' = "Не даёт Windows самостоятельно устанавливать рекламные приложения и игры."
-        'H:chkStoreSearch' = "Убирает веб-подсказки и подсказки Store из поиска. Чище и быстрее результаты."
         'H:chkSuggestedContent' = "Никаких советов и рекламы в Параметрах и в системе."
         'H:chkLockScreenAds' = "Убирает меняющиеся картинки, советы и рекламу с экрана блокировки."
         'H:chkStartBing' = "Поиск в меню «Пуск» ищет только на компьютере, а не в интернете. Быстрее и приватнее."
-        'H:chkStartRecs' = "Убирает рекомендации приложений и файлов из меню «Пуск»."
         'H:chkStartTracking' = "Windows перестаёт вести список часто используемых приложений и недавних документов."
         'H:chkFolderDiscovery' = "Проводник больше не пытается угадать тип каждой папки. Большие папки открываются быстрее."
         'H:chkWindowsAI' = "Отключает Copilot, Recall и функции ИИ в Windows. Меньше расход ресурсов и больше приватности."
@@ -10523,7 +10377,6 @@ $script:Tr = @{
         'H:chkDisableIPv6' = "Отключает IPv6. Полезно, только если провайдер его не использует и есть проблемы с подключением."
         'H:chkStorageProfile' = "Применяет оптимизации для выбранного типа накопителя: SSD или жёсткий диск."
         'H:chkDiskCleanup' = "Удаляет ненужные системные файлы и старые версии обновлений. Освобождает место, иногда несколько ГБ."
-        'H:chkTempCleanup' = "Очищает папки временных файлов. Больше свободного места."
         'H:chkSmartChkdsk' = "Проверяет диск при следующей перезагрузке способом, подходящим для SSD или HDD. Исправляет ошибки файловой системы."
         'H:chkStorageSense' = "Windows больше не удаляет файлы сама, чтобы освободить место. Вы решаете, что удалять."
         'H:chkReservedStorage' = "Освобождает место, которое Windows резервирует под обновления, около 7 ГБ."
@@ -10542,7 +10395,6 @@ $script:Tr = @{
         'H:chkIntelBloat' = "Вспомогательные службы графики Intel запускаются только по необходимости."
         'H:chkSvcSysMain' = "Windows перестаёт заранее загружать в память часто используемые приложения. Полезно на быстрых SSD, где это не нужно."
         'H:chkSvcDiag' = "Останавливает службы, которые в фоне анализируют проблемы и производительность."
-        'H:chkSvcErrors' = "Останавливает службу, собирающую и отправляющую отчёты об ошибках."
         'H:chkSvcPca' = "Останавливает службу, проверяющую совместимость старых программ."
         'H:chkSvcDiscovery' = "Компьютер перестаёт искать устройства в локальной сети. Меньше трафика, но сетевые принтеры и ТВ могут не появиться."
         'H:chkSvcSensors' = "Останавливает службы датчиков и местоположения. Полезно на настольных ПК, где их нет."
@@ -10560,7 +10412,6 @@ $script:Tr = @{
         'H:chkPrefetch' = "Windows перестаёт заранее готовить файлы программ. Меньше записей на SSD."
         'H:chkFth' = "Windows перестаёт автоматически «лечить» падающие программы. Поведение предсказуемее."
         'H:chkAppCompat' = "Отключает проверки совместимости программ. Программы запускаются чуть быстрее."
-        'H:chkSvcHostSplit' = "Объединяет службы Windows в меньшее число процессов. Меньше расход памяти и понятнее Диспетчер задач."
         'H:chkMemCompression' = "Windows перестаёт сжимать память. Меньше работы процессору, но нужно много ОЗУ."
         'H:chkWuNoReboot' = "Обновления больше не перезагружают ПК, пока вы им пользуетесь."
         'H:chkWuDefer' = "Новые версии Windows приходят через год, уже стабильными. Обновления безопасности продолжают приходить."
@@ -10958,9 +10809,6 @@ $script:Tr = @{
         'M:featTip_wsl' = "Дистрибутивы Linux внутри Windows."
         'M:featTip_media' = "Для старых игр и программ с DirectPlay или Windows Media Player."
         'M:featTip_nfs' = "Доступ к ресурсам NFS на NAS и серверах Linux."
-        'M:oosuHint' = "Бесплатный инструмент приватности O&O без установки. Скачивается с официального сайта в папку программы, подпись проверяется, затем он открывается."
-        'M:oosuRun' = "Скачать и открыть"
-        'M:oosuAsk' = "Скачаю O&O ShutUp10++ с oo-software.com (около 3 МБ) и открою. Продолжить?"
         'M:ttlPanels' = "Панели Windows"
         'M:panelsHint' = "Классические окна настроек в один щелчок."
         'M:panel_control' = "Панель управления"
@@ -11135,7 +10983,6 @@ $script:Catalog = @(
     @{ Id = 'task.oldStart'; Page = 'task'; Group = 'start'; Kind = 'T'; Flags = 'RM'; Def = '0'; Rec = '-'; Ops = @(,@('HKLM\SYSTEM\ControlSet001\Control\FeatureManagement\Overrides\8\3036241548', 'EnabledState', 'D', '1', '-')) },
     @{ Id = 'task.recentApps'; Page = 'task'; Group = 'start'; Kind = 'T'; Flags = ''; Def = '1'; Rec = '0'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\Start', 'ShowRecentList', 'D', '1,-', '0')) },
     @{ Id = 'task.frequentApps'; Page = 'task'; Group = 'start'; Kind = 'T'; Flags = ''; Def = '1'; Rec = '0'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\Start', 'ShowFrequentList', 'D', '1,-', '0')) },
-    @{ Id = 'task.recentDocs'; Page = 'task'; Group = 'start'; Kind = 'T'; Flags = ''; Def = '1'; Rec = '0'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced', 'Start_TrackDocs', 'D', '1,-', '0')) },
     @{ Id = 'task.startLock'; Page = 'task'; Group = 'start'; Kind = 'T'; Flags = ''; Def = '1'; Rec = '-'; Ops = @(,@('HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FlyoutMenuSettings', 'ShowLockOption', 'D', '1,-', '0')) },
     @{ Id = 'task.autoHide'; Page = 'task'; Group = 'bar'; Kind = 'T'; Flags = 'X'; Def = '0'; Rec = '-'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\StuckRects3', 'Settings', 'Byte:8', '3', '2')) },
     @{ Id = 'task.badges'; Page = 'task'; Group = 'bar'; Kind = 'T'; Flags = ''; Def = '1'; Rec = '-'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced', 'TaskbarBadges', 'D', '1,-', '0')) },
@@ -11203,43 +11050,20 @@ $script:Catalog = @(
     @{ Id = 'win.psPolicy'; Page = 'win'; Group = 'sec'; Kind = 'S'; Flags = ''; Def = 'restricted'; Rec = 'remote'; Ops = @(,@('HKLM\SOFTWARE\Microsoft\PowerShell\1\ShellIds\Microsoft.PowerShell', 'ExecutionPolicy', 'S')); Opts = @(@{ Key = 'restricted'; Vals = @('Restricted,-') }, @{ Key = 'remote'; Vals = @('RemoteSigned') }, @{ Key = 'signed'; Vals = @('AllSigned') }, @{ Key = 'all'; Vals = @('Unrestricted') }, @{ Key = 'bypass'; Vals = @('Bypass') }) },
     @{ Id = 'win.devMode'; Page = 'win'; Group = 'sec'; Kind = 'T'; Flags = ''; Def = '0'; Rec = '-'; Ops = @(,@('HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\AppModelUnlock', 'AllowDevelopmentWithoutDevLicense', 'D', '1', '0,-')) },
     @{ Id = 'win.workplace'; Page = 'win'; Group = 'sec'; Kind = 'T'; Flags = ''; Def = '1'; Rec = '0'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\WorkplaceJoin', 'BlockAADWorkplaceJoin', 'D', '0,-', '1')) },
-    @{ Id = 'win.autoMaint'; Page = 'win'; Group = 'sec'; Kind = 'T'; Flags = ''; Def = '1'; Rec = '-'; Ops = @(,@('HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\Maintenance', 'MaintenanceDisabled', 'D', '0,-', '1')) },
     @{ Id = 'win.brave'; Page = 'win'; Group = 'browser'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = '-'; Ops = @(,@('HKLM\SOFTWARE\Policies\BraveSoftware\Brave', 'BraveRewardsDisabled', 'D', '1', '-'), ,@('HKLM\SOFTWARE\Policies\BraveSoftware\Brave', 'BraveWalletDisabled', 'D', '1', '-'), ,@('HKLM\SOFTWARE\Policies\BraveSoftware\Brave', 'BraveVPNDisabled', 'D', '1', '-'), ,@('HKLM\SOFTWARE\Policies\BraveSoftware\Brave', 'BraveAIChatEnabled', 'D', '0', '-'), ,@('HKLM\SOFTWARE\Policies\BraveSoftware\Brave', 'BraveStatsPingEnabled', 'D', '0', '-'), ,@('HKLM\SOFTWARE\Policies\BraveSoftware\Brave', 'BraveNewsDisabled', 'D', '1', '-'), ,@('HKLM\SOFTWARE\Policies\BraveSoftware\Brave', 'BraveTalkDisabled', 'D', '1', '-'), ,@('HKLM\SOFTWARE\Policies\BraveSoftware\Brave', 'TorDisabled', 'D', '1', '-'), ,@('HKLM\SOFTWARE\Policies\BraveSoftware\Brave', 'BraveP3AEnabled', 'D', '0', '-'), ,@('HKLM\SOFTWARE\Policies\BraveSoftware\Brave', 'UrlKeyedAnonymizedDataCollectionEnabled', 'D', '0', '-'), ,@('HKLM\SOFTWARE\Policies\BraveSoftware\Brave', 'SafeBrowsingExtendedReportingEnabled', 'D', '0', '-'), ,@('HKLM\SOFTWARE\Policies\BraveSoftware\Brave', 'MetricsReportingEnabled', 'D', '0', '-')) },
-    @{ Id = 'win.wuMode'; Page = 'win'; Group = 'upd'; Kind = 'S'; Flags = 'W'; Def = 'auto'; Rec = '-'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU', 'NoAutoUpdate', 'D'), ,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU', 'AUOptions', 'D')); Opts = @(@{ Key = 'auto'; Vals = @('-', '-') }, @{ Key = 'notify'; Vals = @('0', '2') }, @{ Key = 'ask'; Vals = @('0', '3') }, @{ Key = 'off'; Vals = @('1', '1') }) },
     @{ Id = 'win.wuLatest'; Page = 'win'; Group = 'upd'; Kind = 'T'; Flags = ''; Def = '0'; Rec = '0'; Ops = @(,@('HKLM\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings', 'IsContinuousInnovationOptedIn', 'D', '1', '0,-')) },
     @{ Id = 'win.wuOther'; Page = 'win'; Group = 'upd'; Kind = 'T'; Flags = ''; Def = '0'; Rec = '-'; Ops = @(,@('HKLM\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings', 'AllowMUUpdateService', 'D', '1', '0,-')) },
     @{ Id = 'win.wuExpedite'; Page = 'win'; Group = 'upd'; Kind = 'T'; Flags = ''; Def = '0'; Rec = '0'; Ops = @(,@('HKLM\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings', 'IsExpedited', 'D', '1', '0,-')) },
     @{ Id = 'win.wuRestartNote'; Page = 'win'; Group = 'upd'; Kind = 'T'; Flags = ''; Def = '0'; Rec = '1'; Ops = @(,@('HKLM\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings', 'RestartNotificationsAllowed2', 'D', '1', '0,-')) },
     @{ Id = 'win.wuMetered'; Page = 'win'; Group = 'upd'; Kind = 'T'; Flags = ''; Def = '0'; Rec = '0'; Ops = @(,@('HKLM\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings', 'AllowAutoWindowsUpdateDownloadOverMeteredNetwork', 'D', '1', '0,-')) },
-    @{ Id = 'win.coInstallers'; Page = 'win'; Group = 'upd'; Kind = 'T'; Flags = ''; Def = '1'; Rec = '0'; Ops = @(,@('HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Device Installer', 'DisableCoInstallers', 'D', '0,-', '1')) },
-    @{ Id = 'win.svcSysMain'; Page = 'win'; Group = 'svc'; Kind = 'V'; Flags = ''; Def = 'A'; Rec = '-'; Svcs = @('SysMain') },
-    @{ Id = 'win.svcSearch'; Page = 'win'; Group = 'svc'; Kind = 'V'; Flags = ''; Def = 'AD'; Rec = '-'; Svcs = @('WSearch') },
-    @{ Id = 'win.svcDiagTrack'; Page = 'win'; Group = 'svc'; Kind = 'V'; Flags = ''; Def = 'A'; Rec = 'X'; Svcs = @('DiagTrack') },
     @{ Id = 'win.svcCdp'; Page = 'win'; Group = 'svc'; Kind = 'V'; Flags = ''; Def = 'AD'; Rec = 'M'; Svcs = @('CDPSvc') },
-    @{ Id = 'win.svcPca'; Page = 'win'; Group = 'svc'; Kind = 'V'; Flags = ''; Def = 'AD'; Rec = 'M'; Svcs = @('PcaSvc') },
-    @{ Id = 'win.svcWer'; Page = 'win'; Group = 'svc'; Kind = 'V'; Flags = ''; Def = 'M'; Rec = 'X'; Svcs = @('WerSvc') },
-    @{ Id = 'win.svcGeo'; Page = 'win'; Group = 'svc'; Kind = 'V'; Flags = ''; Def = 'M'; Rec = '-'; Svcs = @('lfsvc') },
-    @{ Id = 'win.svcRetail'; Page = 'win'; Group = 'svc'; Kind = 'V'; Flags = ''; Def = 'M'; Rec = 'X'; Svcs = @('RetailDemo') },
-    @{ Id = 'win.svcInsider'; Page = 'win'; Group = 'svc'; Kind = 'V'; Flags = ''; Def = 'M'; Rec = 'X'; Svcs = @('wisvc') },
-    @{ Id = 'win.svcPhone'; Page = 'win'; Group = 'svc'; Kind = 'V'; Flags = ''; Def = 'M'; Rec = '-'; Svcs = @('PhoneSvc') },
-    @{ Id = 'win.svcWallet'; Page = 'win'; Group = 'svc'; Kind = 'V'; Flags = ''; Def = 'M'; Rec = 'X'; Svcs = @('WalletService') },
-    @{ Id = 'win.svcSmartCard'; Page = 'win'; Group = 'svc'; Kind = 'V'; Flags = ''; Def = 'M'; Rec = 'X'; Svcs = @('SCardSvr', 'ScDeviceEnum', 'SCPolicySvc') },
-    @{ Id = 'win.svcMaps'; Page = 'win'; Group = 'svc'; Kind = 'V'; Flags = ''; Def = 'AD'; Rec = 'X'; Svcs = @('MapsBroker') },
-    @{ Id = 'win.svcFax'; Page = 'win'; Group = 'svc'; Kind = 'V'; Flags = ''; Def = 'M'; Rec = 'X'; Svcs = @('Fax') },
     @{ Id = 'win.svcWmpShare'; Page = 'win'; Group = 'svc'; Kind = 'V'; Flags = ''; Def = 'M'; Rec = 'X'; Svcs = @('WMPNetworkSvc') },
     @{ Id = 'win.svcMixed'; Page = 'win'; Group = 'svc'; Kind = 'V'; Flags = ''; Def = 'M'; Rec = 'X'; Svcs = @('MixedRealityOpenXRSvc') },
     @{ Id = 'win.svcHotspot'; Page = 'win'; Group = 'svc'; Kind = 'V'; Flags = ''; Def = 'M'; Rec = '-'; Svcs = @('icssvc') },
     @{ Id = 'win.svcSms'; Page = 'win'; Group = 'svc'; Kind = 'V'; Flags = ''; Def = 'M'; Rec = 'X'; Svcs = @('SmsRouter') },
-    @{ Id = 'win.svcParental'; Page = 'win'; Group = 'svc'; Kind = 'V'; Flags = ''; Def = 'M'; Rec = 'X'; Svcs = @('WpcMonSvc') },
     @{ Id = 'win.svcNfc'; Page = 'win'; Group = 'svc'; Kind = 'V'; Flags = ''; Def = 'M'; Rec = 'X'; Svcs = @('SEMgrSvc') },
     @{ Id = 'win.svcSpot'; Page = 'win'; Group = 'svc'; Kind = 'V'; Flags = ''; Def = 'M'; Rec = '-'; Svcs = @('svsvc') },
-    @{ Id = 'win.svcRas'; Page = 'win'; Group = 'svc'; Kind = 'V'; Flags = ''; Def = 'M'; Rec = '-'; Svcs = @('RasMan', 'RasAuto') },
-    @{ Id = 'win.svcRdp'; Page = 'win'; Group = 'svc'; Kind = 'V'; Flags = ''; Def = 'M'; Rec = '-'; Svcs = @('TermService', 'SessionEnv', 'UmRdpService') },
-    @{ Id = 'win.svcXbox'; Page = 'win'; Group = 'svc'; Kind = 'V'; Flags = ''; Def = 'M'; Rec = '-'; Svcs = @('XblAuthManager', 'XblGameSave', 'XboxNetApiSvc') },
-    @{ Id = 'win.svcBio'; Page = 'win'; Group = 'svc'; Kind = 'V'; Flags = ''; Def = 'M'; Rec = '-'; Svcs = @('WbioSrvc') },
-    @{ Id = 'win.svcTouch'; Page = 'win'; Group = 'svc'; Kind = 'V'; Flags = ''; Def = 'M'; Rec = '-'; Svcs = @('TabletInputService') },
     @{ Id = 'win.svcTapi'; Page = 'win'; Group = 'svc'; Kind = 'V'; Flags = ''; Def = 'M'; Rec = '-'; Svcs = @('TapiSrv') },
-    @{ Id = 'win.svcSensors'; Page = 'win'; Group = 'svc'; Kind = 'V'; Flags = ''; Def = 'M'; Rec = '-'; Svcs = @('SensrSvc', 'SensorDataService') },
     @{ Id = 'win.tAppraiser'; Page = 'win'; Group = 'tasks'; Kind = 'J'; Flags = ''; Def = '1'; Rec = '0'; Tasks = @('\Microsoft\Windows\Application Experience\Microsoft Compatibility Appraiser', '\Microsoft\Windows\Application Experience\Microsoft Compatibility Appraiser Exp') },
     @{ Id = 'win.tPdu'; Page = 'win'; Group = 'tasks'; Kind = 'J'; Flags = ''; Def = '1'; Rec = '0'; Tasks = @('\Microsoft\Windows\Application Experience\ProgramDataUpdater') },
     @{ Id = 'win.tStartupApp'; Page = 'win'; Group = 'tasks'; Kind = 'J'; Flags = ''; Def = '1'; Rec = '-'; Tasks = @('\Microsoft\Windows\Application Experience\StartupAppTask') },
@@ -11252,21 +11076,13 @@ $script:Catalog = @(
     @{ Id = 'win.tFamily'; Page = 'win'; Group = 'tasks'; Kind = 'J'; Flags = ''; Def = '1'; Rec = '-'; Tasks = @('\Microsoft\Windows\Shell\FamilySafetyMonitor', '\Microsoft\Windows\Shell\FamilySafetyRefreshTask') },
     @{ Id = 'win.tPowerDiag'; Page = 'win'; Group = 'tasks'; Kind = 'J'; Flags = ''; Def = '1'; Rec = '0'; Tasks = @('\Microsoft\Windows\Power Efficiency Diagnostics\AnalyzeSystem') },
     @{ Id = 'win.tSqm'; Page = 'win'; Group = 'tasks'; Kind = 'J'; Flags = ''; Def = '1'; Rec = '0'; Tasks = @('\Microsoft\Windows\PI\Sqm-Tasks') },
-    @{ Id = 'pv.adId'; Page = 'priv'; Group = 'uPriv'; Kind = 'T'; Flags = 'U'; Def = '0'; Rec = 'y'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\AdvertisingInfo', 'Enabled', 'D', '0', '1,-')) },
-    @{ Id = 'pv.typing'; Page = 'priv'; Group = 'uPriv'; Kind = 'T'; Flags = 'U'; Def = '0'; Rec = 'y'; Ops = @(,@('HKCU\Software\Microsoft\Input\TIPC', 'Enabled', 'D', '0', '1,-')) },
     @{ Id = 'pv.timeline'; Page = 'priv'; Group = 'uPriv'; Kind = 'T'; Flags = 'U'; Def = '0'; Rec = 'y'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager', 'SubscribedContent-353698Enabled', 'D', '0', '1,-')) },
     @{ Id = 'pv.startSugg'; Page = 'priv'; Group = 'uPriv'; Kind = 'T'; Flags = 'U'; Def = '0'; Rec = 'y'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager', 'SubscribedContent-338388Enabled', 'D', '0', '1,-')) },
-    @{ Id = 'pv.tips'; Page = 'priv'; Group = 'uPriv'; Kind = 'T'; Flags = 'U'; Def = '0'; Rec = 'y'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager', 'SubscribedContent-338389Enabled', 'D', '0', '1,-')) },
     @{ Id = 'pv.settingsSugg'; Page = 'priv'; Group = 'uPriv'; Kind = 'T'; Flags = 'U'; Def = '0'; Rec = 'y'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager', 'SubscribedContent-338393Enabled', 'D', '0', '1,-'), ,@('HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager', 'SubscribedContent-353694Enabled', 'D', '0', '1,-'), ,@('HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager', 'SubscribedContent-353696Enabled', 'D', '0', '1,-')) },
-    @{ Id = 'pv.finishSetup'; Page = 'priv'; Group = 'uPriv'; Kind = 'T'; Flags = 'U'; Def = '0'; Rec = 'y'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\UserProfileEngagement', 'ScoobeSystemSettingEnabled', 'D', '0', '1,-')) },
-    @{ Id = 'pv.welcome'; Page = 'priv'; Group = 'uPriv'; Kind = 'T'; Flags = 'U'; Def = '0'; Rec = 'y'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager', 'SubscribedContent-310093Enabled', 'D', '0', '1,-')) },
     @{ Id = 'pv.silentApps'; Page = 'priv'; Group = 'uPriv'; Kind = 'T'; Flags = 'U'; Def = '0'; Rec = 'y'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager', 'SilentInstalledAppsEnabled', 'D', '0', '1,-')) },
-    @{ Id = 'pv.appLaunch'; Page = 'priv'; Group = 'uPriv'; Kind = 'T'; Flags = 'U'; Def = '0'; Rec = 'y'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced', 'Start_TrackProgs', 'D', '0', '1,-')) },
     @{ Id = 'pv.accountNotif'; Page = 'priv'; Group = 'uPriv'; Kind = 'T'; Flags = 'U'; Def = '0'; Rec = 'y'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\SystemSettings\AccountNotifications', 'EnableAccountNotifications', 'D', '0', '1,-')) },
     @{ Id = 'pv.langList'; Page = 'priv'; Group = 'uPriv'; Kind = 'T'; Flags = 'U'; Def = '0'; Rec = 'l'; Ops = @(,@('HKCU\Control Panel\International\User Profile', 'HttpAcceptLanguageOptOut', 'D', '1', '0,-')) },
     @{ Id = 'pv.textPred'; Page = 'priv'; Group = 'uPriv'; Kind = 'T'; Flags = 'U'; Def = '0'; Rec = 'l'; Ops = @(,@('HKCU\Software\Microsoft\TabletTip\1.7', 'EnableTextPrediction', 'D', '0', '1,-')) },
-    @{ Id = 'pv.appNotif'; Page = 'priv'; Group = 'uPriv'; Kind = 'T'; Flags = 'U'; Def = '0'; Rec = 'l'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\PushNotifications', 'ToastEnabled', 'D', '0', '1,-')) },
-    @{ Id = 'pv.storeUrls'; Page = 'priv'; Group = 'uPriv'; Kind = 'T'; Flags = 'U'; Def = '0'; Rec = 'n'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\AppHost', 'EnableWebContentEvaluation', 'D', '0', '1,-')) },
     @{ Id = 'pv.clipHist'; Page = 'priv'; Group = 'uClip'; Kind = 'T'; Flags = 'U'; Def = '1'; Rec = 'y'; Ops = @(,@('HKCU\Software\Microsoft\Clipboard', 'EnableClipboardHistory', 'D', '0,-', '1')) },
     @{ Id = 'pv.clipCloud'; Page = 'priv'; Group = 'uClip'; Kind = 'T'; Flags = 'U'; Def = '1'; Rec = 'y'; Ops = @(,@('HKCU\Software\Microsoft\Clipboard', 'CloudClipboardAutomaticUpload', 'D', '0,-', '1')) },
     @{ Id = 'pv.uAccount'; Page = 'priv'; Group = 'uApps'; Kind = 'T'; Flags = 'U'; Def = '0'; Rec = 'y'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\userAccountInformation', 'Value', 'S', 'Deny', 'Allow,-')) },
@@ -11290,65 +11106,43 @@ $script:Catalog = @(
     @{ Id = 'pv.uPics'; Page = 'priv'; Group = 'uApps'; Kind = 'T'; Flags = 'U'; Def = '0'; Rec = 'n'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\picturesLibrary', 'Value', 'S', 'Deny', 'Allow,-')) },
     @{ Id = 'pv.uVideos'; Page = 'priv'; Group = 'uApps'; Kind = 'T'; Flags = 'U'; Def = '0'; Rec = 'n'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\videosLibrary', 'Value', 'S', 'Deny', 'Allow,-')) },
     @{ Id = 'pv.uFiles'; Page = 'priv'; Group = 'uApps'; Kind = 'T'; Flags = 'U'; Def = '0'; Rec = 'n'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\broadFileSystemAccess', 'Value', 'S', 'Deny', 'Allow,-')) },
-    @{ Id = 'pv.uBackground'; Page = 'priv'; Group = 'uApps'; Kind = 'T'; Flags = 'U'; Def = '0'; Rec = 'l'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\BackgroundAccessApplications', 'GlobalUserDisabled', 'D', '1', '0,-')) },
     @{ Id = 'pv.syncPwd'; Page = 'priv'; Group = 'uSync'; Kind = 'T'; Flags = 'U'; Def = '0'; Rec = 'y'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\SettingSync\Groups\Credentials', 'Enabled', 'D', '0', '1,-')) },
     @{ Id = 'pv.syncTheme'; Page = 'priv'; Group = 'uSync'; Kind = 'T'; Flags = 'U'; Def = '0'; Rec = 'l'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\SettingSync\Groups\Personalization', 'Enabled', 'D', '0', '1,-')) },
     @{ Id = 'pv.syncLang'; Page = 'priv'; Group = 'uSync'; Kind = 'T'; Flags = 'U'; Def = '0'; Rec = 'l'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\SettingSync\Groups\Language', 'Enabled', 'D', '0', '1,-')) },
     @{ Id = 'pv.syncAccess'; Page = 'priv'; Group = 'uSync'; Kind = 'T'; Flags = 'U'; Def = '0'; Rec = 'l'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\SettingSync\Groups\Accessibility', 'Enabled', 'D', '0', '1,-')) },
     @{ Id = 'pv.syncOther'; Page = 'priv'; Group = 'uSync'; Kind = 'T'; Flags = 'U'; Def = '0'; Rec = 'l'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\SettingSync\Groups\Windows', 'Enabled', 'D', '0', '1,-')) },
     @{ Id = 'pv.speech'; Page = 'priv'; Group = 'uSpeech'; Kind = 'T'; Flags = 'U'; Def = '0'; Rec = 'y'; Ops = @(,@('HKCU\Software\Microsoft\Speech_OneCore\Settings\OnlineSpeechPrivacy', 'HasAccepted', 'D', '0', '1,-')) },
-    @{ Id = 'pv.inking'; Page = 'priv'; Group = 'uSpeech'; Kind = 'T'; Flags = 'U'; Def = '0'; Rec = 'y'; Ops = @(,@('HKCU\Software\Microsoft\InputPersonalization', 'RestrictImplicitInkCollection', 'D', '1', '0,-'), ,@('HKCU\Software\Microsoft\InputPersonalization', 'RestrictImplicitTextCollection', 'D', '1', '0,-'), ,@('HKCU\Software\Microsoft\InputPersonalization\TrainedDataStore', 'HarvestContacts', 'D', '0', '1,-'), ,@('HKCU\Software\Microsoft\Personalization\Settings', 'AcceptedPrivacyPolicy', 'D', '0', '1,-')) },
     @{ Id = 'pv.voiceAct'; Page = 'priv'; Group = 'uSpeech'; Kind = 'T'; Flags = 'U'; Def = '0'; Rec = 'y'; Ops = @(,@('HKCU\Software\Microsoft\Speech_OneCore\Settings\VoiceActivation\UserPreferenceForAllApps', 'AgentActivationEnabled', 'D', '0', '1,-')) },
-    @{ Id = 'pv.uCopilot'; Page = 'priv'; Group = 'uAi'; Kind = 'T'; Flags = 'UA'; Def = '0'; Rec = 'y'; Ops = @(,@('HKCU\Software\Policies\Microsoft\Windows\WindowsCopilot', 'TurnOffWindowsCopilot', 'D', '1', '0,-')) },
     @{ Id = 'pv.uRecall'; Page = 'priv'; Group = 'uAi'; Kind = 'T'; Flags = 'UA'; Def = '0'; Rec = 'y'; Ops = @(,@('HKCU\Software\Policies\Microsoft\Windows\WindowsAI', 'DisableAIDataAnalysis', 'D', '1', '0,-')) },
     @{ Id = 'pv.uClickToDo'; Page = 'priv'; Group = 'uAi'; Kind = 'T'; Flags = 'UA'; Def = '0'; Rec = 'y'; Ops = @(,@('HKCU\Software\Policies\Microsoft\Windows\WindowsAI', 'DisableClickToDo', 'D', '1', '0,-')) },
     @{ Id = 'pv.copilotAvail'; Page = 'priv'; Group = 'uAi'; Kind = 'T'; Flags = 'UA'; Def = '0'; Rec = 'y'; Ops = @(,@('HKCU\Software\Microsoft\Windows\Shell\Copilot', 'IsCopilotAvailable', 'D', '0', '1,-')) },
     @{ Id = 'pv.bingChat'; Page = 'priv'; Group = 'uAi'; Kind = 'T'; Flags = 'UA'; Def = '0'; Rec = 'y'; Ops = @(,@('HKCU\Software\Microsoft\Windows\Shell\Copilot\BingChat', 'IsUserEligible', 'D', '0', '1,-')) },
     @{ Id = 'pv.insights'; Page = 'priv'; Group = 'uAi'; Kind = 'T'; Flags = 'UA'; Def = '0'; Rec = 'y'; Ops = @(,@('HKCU\Software\Microsoft\input\Settings', 'InsightsEnabled', 'D', '0', '1,-')) },
     @{ Id = 'pv.nudges'; Page = 'priv'; Group = 'uAi'; Kind = 'T'; Flags = 'UA'; Def = '0'; Rec = 'y'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced', 'ShowCopilotNudges', 'D', '0', '1,-')) },
-    @{ Id = 'pv.copilotBtn'; Page = 'priv'; Group = 'uAi'; Kind = 'T'; Flags = 'UA'; Def = '0'; Rec = 'y'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced', 'ShowCopilotButton', 'D', '0', '1,-')) },
     @{ Id = 'pv.copilotMic'; Page = 'priv'; Group = 'uAi'; Kind = 'T'; Flags = 'UA'; Def = '0'; Rec = 'l'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\microphone\Microsoft.Copilot_8wekyb3d8bbwe', 'Value', 'S', 'Deny', 'Allow,-')) },
     @{ Id = 'pv.wordCopilot'; Page = 'priv'; Group = 'uAi'; Kind = 'T'; Flags = 'UA'; Def = '0'; Rec = 'l'; Ops = @(,@('HKCU\Software\Microsoft\Office\16.0\Word\Options', 'EnableCopilot', 'D', '0', '1,-')) },
     @{ Id = 'pv.excelCopilot'; Page = 'priv'; Group = 'uAi'; Kind = 'T'; Flags = 'UA'; Def = '0'; Rec = 'l'; Ops = @(,@('HKCU\Software\Microsoft\Office\16.0\Excel\Options', 'EnableCopilot', 'D', '0', '1,-')) },
     @{ Id = 'pv.officeCloud'; Page = 'priv'; Group = 'uAi'; Kind = 'T'; Flags = 'UA'; Def = '0'; Rec = 'l'; Ops = @(,@('HKCU\Software\Policies\Microsoft\office\16.0\common\privacy', 'controllerconnectedservicesenabled', 'D', '2', '-'), ,@('HKCU\Software\Policies\Microsoft\office\16.0\common\privacy', 'usercontentdisabled', 'D', '2', '-')) },
-    @{ Id = 'pv.tailored'; Page = 'priv'; Group = 'uBehav'; Kind = 'T'; Flags = 'U'; Def = '0'; Rec = 'y'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\Privacy', 'TailoredExperiencesWithDiagnosticDataEnabled', 'D', '0', '1,-'), ,@('HKCU\Software\Policies\Microsoft\Windows\CloudContent', 'DisableTailoredExperiencesWithDiagnosticData', 'D', '1', '0,-')) },
-    @{ Id = 'pv.feedback'; Page = 'priv'; Group = 'uBehav'; Kind = 'T'; Flags = 'U'; Def = '0'; Rec = 'y'; Ops = @(,@('HKCU\Software\Microsoft\Siuf\Rules', 'NumberOfSIUFInPeriod', 'D', '0', '-'), ,@('HKCU\Software\Microsoft\Siuf\Rules', 'PeriodInNanoSeconds', 'D', '-', '-')) },
     @{ Id = 'pv.thirdParty'; Page = 'priv'; Group = 'uBehav'; Kind = 'T'; Flags = 'U'; Def = '0'; Rec = 'y'; Ops = @(,@('HKCU\Software\Policies\Microsoft\Windows\CloudContent', 'DisableThirdPartySuggestions', 'D', '1', '0,-')) },
     @{ Id = 'pv.spotSettings'; Page = 'priv'; Group = 'uBehav'; Kind = 'T'; Flags = 'U'; Def = '0'; Rec = 'y'; Ops = @(,@('HKCU\Software\Policies\Microsoft\Windows\CloudContent', 'DisableWindowsSpotlightOnSettings', 'D', '1', '0,-')) },
     @{ Id = 'pv.spotAll'; Page = 'priv'; Group = 'uBehav'; Kind = 'T'; Flags = 'U'; Def = '0'; Rec = 'l'; Ops = @(,@('HKCU\Software\Policies\Microsoft\Windows\CloudContent', 'DisableWindowsSpotlightFeatures', 'D', '1', '0,-')) },
     @{ Id = 'pv.wmp'; Page = 'priv'; Group = 'uBehav'; Kind = 'T'; Flags = 'U'; Def = '0'; Rec = 'y'; Ops = @(,@('HKCU\Software\Microsoft\MediaPlayer\Preferences', 'UsageTracking', 'D', '0', '1,-')) },
-    @{ Id = 'pv.syncAds'; Page = 'priv'; Group = 'uExp'; Kind = 'T'; Flags = 'U'; Def = '0'; Rec = 'y'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced', 'ShowSyncProviderNotifications', 'D', '0', '1,-')) },
-    @{ Id = 'pv.officeFiles'; Page = 'priv'; Group = 'uExp'; Kind = 'T'; Flags = 'U'; Def = '0'; Rec = 'y'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer', 'ShowCloudFilesInQuickAccess', 'D', '0', '1,-')) },
-    @{ Id = 'pv.recentFiles'; Page = 'priv'; Group = 'uExp'; Kind = 'T'; Flags = 'U'; Def = '0'; Rec = 'l'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer', 'ShowRecent', 'D', '0', '1,-')) },
-    @{ Id = 'pv.frequent'; Page = 'priv'; Group = 'uExp'; Kind = 'T'; Flags = 'U'; Def = '0'; Rec = 'l'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer', 'ShowFrequent', 'D', '0', '1,-')) },
-    @{ Id = 'pv.recentDocs'; Page = 'priv'; Group = 'uExp'; Kind = 'T'; Flags = 'U'; Def = '0'; Rec = 'l'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced', 'Start_TrackDocs', 'D', '0', '1,-')) },
-    @{ Id = 'pv.lockFacts'; Page = 'priv'; Group = 'uLock'; Kind = 'T'; Flags = 'U'; Def = '0'; Rec = 'y'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager', 'RotatingLockScreenOverlayEnabled', 'D', '0', '1,-'), ,@('HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager', 'SubscribedContent-338387Enabled', 'D', '0', '1,-')) },
     @{ Id = 'pv.lockSpot'; Page = 'priv'; Group = 'uLock'; Kind = 'T'; Flags = 'U'; Def = '0'; Rec = 'l'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager', 'RotatingLockScreenEnabled', 'D', '0', '1,-')) },
-    @{ Id = 'pv.lockToast'; Page = 'priv'; Group = 'uLock'; Kind = 'T'; Flags = 'U'; Def = '0'; Rec = 'l'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\PushNotifications', 'LockScreenToastEnabled', 'D', '0', '1,-')) },
     @{ Id = 'pv.searchHist'; Page = 'priv'; Group = 'uSearch'; Kind = 'T'; Flags = 'U'; Def = '0'; Rec = 'y'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\SearchSettings', 'IsDeviceSearchHistoryEnabled', 'D', '0', '1,-')) },
     @{ Id = 'pv.searchHigh'; Page = 'priv'; Group = 'uSearch'; Kind = 'T'; Flags = 'U'; Def = '0'; Rec = 'y'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\SearchSettings', 'IsDynamicSearchBoxEnabled', 'D', '0', '1,-')) },
-    @{ Id = 'pv.searchBing'; Page = 'priv'; Group = 'uSearch'; Kind = 'T'; Flags = 'U'; Def = '0'; Rec = 'y'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\Search', 'BingSearchEnabled', 'D', '0', '1,-'), ,@('HKCU\Software\Policies\Microsoft\Windows\Explorer', 'DisableSearchBoxSuggestions', 'D', '1', '0,-')) },
     @{ Id = 'pv.searchMsa'; Page = 'priv'; Group = 'uSearch'; Kind = 'T'; Flags = 'U'; Def = '0'; Rec = 'l'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\SearchSettings', 'IsMSACloudSearchEnabled', 'D', '0', '1,-')) },
     @{ Id = 'pv.searchAad'; Page = 'priv'; Group = 'uSearch'; Kind = 'T'; Flags = 'U'; Def = '0'; Rec = 'l'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\SearchSettings', 'IsAADCloudSearchEnabled', 'D', '0', '1,-')) },
     @{ Id = 'pv.meetNow'; Page = 'priv'; Group = 'uBar'; Kind = 'T'; Flags = 'U'; Def = '0'; Rec = 'y'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer', 'HideSCAMeetNow', 'D', '1', '0,-')) },
-    @{ Id = 'pv.chatBtn'; Page = 'priv'; Group = 'uBar'; Kind = 'T'; Flags = 'U'; Def = '0'; Rec = 'y'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced', 'TaskbarMn', 'D', '0', '1,-')) },
     @{ Id = 'pv.resume'; Page = 'priv'; Group = 'uMisc'; Kind = 'T'; Flags = 'U'; Def = '0'; Rec = 'l'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\CrossDeviceResume\Configuration', 'IsResumeAllowed', 'D', '0', '1,-')) },
     @{ Id = 'pv.pwdReveal'; Page = 'priv'; Group = 'mSec'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\CredUI', 'DisablePasswordReveal', 'D', '1', '0,-')) },
-    @{ Id = 'pv.stepsRec'; Page = 'priv'; Group = 'mSec'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\AppCompat', 'DisableUAR', 'D', '1', '0,-')) },
-    @{ Id = 'pv.inventory'; Page = 'priv'; Group = 'mSec'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\AppCompat', 'DisableInventory', 'D', '1', '0,-')) },
-    @{ Id = 'pv.appTelemetry'; Page = 'priv'; Group = 'mSec'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\AppCompat', 'AITEnable', 'D', '0', '1,-')) },
     @{ Id = 'pv.lockCam'; Page = 'priv'; Group = 'mSec'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\Personalization', 'NoLockScreenCamera', 'D', '1', '0,-')) },
     @{ Id = 'pv.kms'; Page = 'priv'; Group = 'mSec'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows NT\CurrentVersion\Software Protection Platform', 'NoGenTicket', 'D', '1', '0,-')) },
     @{ Id = 'pv.drm'; Page = 'priv'; Group = 'mSec'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\WMDRM', 'DisableOnline', 'D', '1', '0,-')) },
-    @{ Id = 'pv.remoteAssist'; Page = 'priv'; Group = 'mSec'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SYSTEM\CurrentControlSet\Control\Remote Assistance', 'fAllowToGetHelp', 'D', '0', '1,-')) },
-    @{ Id = 'pv.telemetry'; Page = 'priv'; Group = 'mPriv'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\DataCollection', 'AllowTelemetry', 'D', '0', '-')) },
     @{ Id = 'pv.deviceName'; Page = 'priv'; Group = 'mPriv'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\DataCollection', 'AllowDeviceNameInTelemetry', 'D', '0', '-')) },
-    @{ Id = 'pv.feedbackNotif'; Page = 'priv'; Group = 'mPriv'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\DataCollection', 'DoNotShowFeedbackNotifications', 'D', '1', '0,-')) },
     @{ Id = 'pv.diagLogs'; Page = 'priv'; Group = 'mPriv'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\DataCollection', 'LimitDiagnosticLogCollection', 'D', '1', '0,-')) },
     @{ Id = 'pv.dumps'; Page = 'priv'; Group = 'mPriv'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\DataCollection', 'LimitDumpCollection', 'D', '1', '0,-')) },
     @{ Id = 'pv.oneSettings'; Page = 'priv'; Group = 'mPriv'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\DataCollection', 'DisableOneSettingsDownloads', 'D', '1', '0,-')) },
     @{ Id = 'pv.diagViewer'; Page = 'priv'; Group = 'mPriv'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\DataCollection', 'DisableDiagnosticDataViewer', 'D', '1', '0,-')) },
-    @{ Id = 'pv.mAdId'; Page = 'priv'; Group = 'mPriv'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\AdvertisingInfo', 'DisabledByGroupPolicy', 'D', '1', '0,-')) },
     @{ Id = 'pv.ceip'; Page = 'priv'; Group = 'mPriv'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\SQMClient\Windows', 'CEIPEnable', 'D', '0', '-')) },
     @{ Id = 'pv.handErr'; Page = 'priv'; Group = 'mPriv'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\HandwritingErrorReports', 'PreventHandwritingErrorReports', 'D', '1', '0,-')) },
     @{ Id = 'pv.handShare'; Page = 'priv'; Group = 'mPriv'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\TabletPC', 'PreventHandwritingDataSharing', 'D', '1', '0,-')) },
@@ -11358,9 +11152,7 @@ $script:Catalog = @(
     @{ Id = 'pv.wer'; Page = 'priv'; Group = 'mPriv'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'l'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting', 'Disabled', 'D', '1', '0,-')) },
     @{ Id = 'pv.cloudContent'; Page = 'priv'; Group = 'mPriv'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\CloudContent', 'DisableCloudOptimizedContent', 'D', '1', '0,-')) },
     @{ Id = 'pv.softLanding'; Page = 'priv'; Group = 'mPriv'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\CloudContent', 'DisableSoftLanding', 'D', '1', '0,-')) },
-    @{ Id = 'pv.consumer'; Page = 'priv'; Group = 'mPriv'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\CloudContent', 'DisableWindowsConsumerFeatures', 'D', '1', '0,-')) },
     @{ Id = 'pv.consumerAcct'; Page = 'priv'; Group = 'mPriv'; Kind = 'T'; Flags = 'MA'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\CloudContent', 'DisableConsumerAccountStateContent', 'D', '1', '0,-')) },
-    @{ Id = 'pv.actFeed'; Page = 'priv'; Group = 'mClip'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\System', 'EnableActivityFeed', 'D', '0', '-'), ,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\System', 'PublishUserActivities', 'D', '0', '-'), ,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\System', 'UploadUserActivities', 'D', '0', '-')) },
     @{ Id = 'pv.mClip'; Page = 'priv'; Group = 'mClip'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'l'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\System', 'AllowClipboardHistory', 'D', '0', '-')) },
     @{ Id = 'pv.crossClip'; Page = 'priv'; Group = 'mClip'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\System', 'AllowCrossDeviceClipboard', 'D', '0', '-')) },
     @{ Id = 'pv.mAccount'; Page = 'priv'; Group = 'mApps'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy', 'LetAppsAccessAccountInfo', 'D', '2', '-')) },
@@ -11381,7 +11173,6 @@ $script:Catalog = @(
     @{ Id = 'pv.mRadios'; Page = 'priv'; Group = 'mApps'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'l'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy', 'LetAppsAccessRadios', 'D', '2', '-')) },
     @{ Id = 'pv.mNotif'; Page = 'priv'; Group = 'mApps'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'l'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy', 'LetAppsAccessNotifications', 'D', '2', '-')) },
     @{ Id = 'pv.mLocation'; Page = 'priv'; Group = 'mApps'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'l'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy', 'LetAppsAccessLocation', 'D', '2', '-')) },
-    @{ Id = 'pv.mBackground'; Page = 'priv'; Group = 'mApps'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'l'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy', 'LetAppsRunInBackground', 'D', '2', '-')) },
     @{ Id = 'pv.mCamera'; Page = 'priv'; Group = 'mApps'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'n'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy', 'LetAppsAccessCamera', 'D', '2', '-')) },
     @{ Id = 'pv.mMic'; Page = 'priv'; Group = 'mApps'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'n'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy', 'LetAppsAccessMicrophone', 'D', '2', '-')) },
     @{ Id = 'pv.eDnt'; Page = 'priv'; Group = 'mEdge'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Edge', 'ConfigureDoNotTrack', 'D', '1', '-')) },
@@ -11395,20 +11186,16 @@ $script:Catalog = @(
     @{ Id = 'pv.ePreload'; Page = 'priv'; Group = 'mEdge'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Edge', 'NetworkPredictionOptions', 'D', '2', '-')) },
     @{ Id = 'pv.eDiag'; Page = 'priv'; Group = 'mEdge'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Edge', 'DiagnosticData', 'D', '0', '-')) },
     @{ Id = 'pv.eRewards'; Page = 'priv'; Group = 'mEdge'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Edge', 'ShowMicrosoftRewards', 'D', '0', '-')) },
-    @{ Id = 'pv.eRecomm'; Page = 'priv'; Group = 'mEdge'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Edge', 'ShowRecommendationsEnabled', 'D', '0', '-')) },
     @{ Id = 'pv.eIeRedirect'; Page = 'priv'; Group = 'mEdge'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Edge', 'RedirectSitesFromInternetExplorerRedirectMode', 'D', '0', '-')) },
     @{ Id = 'pv.eCcFill'; Page = 'priv'; Group = 'mEdge'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'l'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Edge', 'AutofillCreditCardEnabled', 'D', '0', '-')) },
     @{ Id = 'pv.eAddrFill'; Page = 'priv'; Group = 'mEdge'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'l'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Edge', 'AutofillAddressEnabled', 'D', '0', '-')) },
     @{ Id = 'pv.eSearchSugg'; Page = 'priv'; Group = 'mEdge'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'l'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Edge', 'SearchSuggestEnabled', 'D', '0', '-')) },
-    @{ Id = 'pv.eBoost'; Page = 'priv'; Group = 'mEdge'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'l'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Edge', 'StartupBoostEnabled', 'D', '0', '-')) },
-    @{ Id = 'pv.eBackground'; Page = 'priv'; Group = 'mEdge'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'l'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Edge', 'BackgroundModeEnabled', 'D', '0', '-')) },
     @{ Id = 'pv.eSiteSafety'; Page = 'priv'; Group = 'mEdge'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'l'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Edge', 'SiteSafetyServicesEnabled', 'D', '0', '-')) },
     @{ Id = 'pv.eSpell'; Page = 'priv'; Group = 'mEdge'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'l'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Edge', 'MicrosoftEditorProofingEnabled', 'D', '0', '-')) },
     @{ Id = 'pv.eNewTab'; Page = 'priv'; Group = 'mEdge'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'l'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Edge', 'NewTabPageContentEnabled', 'D', '0', '-')) },
     @{ Id = 'pv.ePwd'; Page = 'priv'; Group = 'mEdge'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'n'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Edge', 'PasswordManagerEnabled', 'D', '0', '-')) },
     @{ Id = 'pv.eSmartScreen'; Page = 'priv'; Group = 'mEdge'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'n'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Edge', 'SmartScreenEnabled', 'D', '0', '-')) },
     @{ Id = 'pv.eTypo'; Page = 'priv'; Group = 'mEdge'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'n'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Edge', 'TyposquattingCheckerEnabled', 'D', '0', '-')) },
-    @{ Id = 'pv.eSidebar'; Page = 'priv'; Group = 'mEdgeAi'; Kind = 'T'; Flags = 'MA'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Edge', 'HubsSidebarEnabled', 'D', '0', '-')) },
     @{ Id = 'pv.ePageCtx'; Page = 'priv'; Group = 'mEdgeAi'; Kind = 'T'; Flags = 'MA'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Edge', 'CopilotPageContext', 'D', '0', '-'), ,@('HKLM\SOFTWARE\Policies\Microsoft\Edge', 'CopilotCDPPageContext', 'D', '0', '-')) },
     @{ Id = 'pv.eCompose'; Page = 'priv'; Group = 'mEdgeAi'; Kind = 'T'; Flags = 'MA'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Edge', 'ComposeInlineEnabled', 'D', '0', '-')) },
     @{ Id = 'pv.eHistAi'; Page = 'priv'; Group = 'mEdgeAi'; Kind = 'T'; Flags = 'MA'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Edge', 'EdgeHistoryAISearchEnabled', 'D', '0', '-')) },
@@ -11421,8 +11208,6 @@ $script:Catalog = @(
     @{ Id = 'pv.webSearch'; Page = 'priv'; Group = 'mSearch'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search', 'DisableWebSearch', 'D', '1', '-'), ,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search', 'ConnectedSearchUseWeb', 'D', '0', '-'), ,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\Explorer', 'DisableSearchBoxSuggestions', 'D', '1', '-')) },
     @{ Id = 'pv.searchLoc'; Page = 'priv'; Group = 'mSearch'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search', 'AllowSearchToUseLocation', 'D', '0', '-')) },
     @{ Id = 'pv.mHighlights'; Page = 'priv'; Group = 'mSearch'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search', 'EnableDynamicContentInWSB', 'D', '0', '-')) },
-    @{ Id = 'pv.mCopilot'; Page = 'priv'; Group = 'mAi'; Kind = 'T'; Flags = 'MA'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsCopilot', 'TurnOffWindowsCopilot', 'D', '1', '-')) },
-    @{ Id = 'pv.mRecall'; Page = 'priv'; Group = 'mAi'; Kind = 'T'; Flags = 'MA'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsAI', 'DisableAIDataAnalysis', 'D', '1', '-'), ,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsAI', 'AllowRecallEnablement', 'D', '0', '-'), ,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsAI', 'TurnOffSavingSnapshots', 'D', '1', '-')) },
     @{ Id = 'pv.mClickToDo'; Page = 'priv'; Group = 'mAi'; Kind = 'T'; Flags = 'MA'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsAI', 'DisableClickToDo', 'D', '1', '-')) },
     @{ Id = 'pv.agents'; Page = 'priv'; Group = 'mAi'; Kind = 'T'; Flags = 'MA'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsAI', 'DisableAgentConnectors', 'D', '1', '-'), ,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsAI', 'DisableAgentWorkspaces', 'D', '1', '-'), ,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsAI', 'DisableRemoteAgentConnectors', 'D', '1', '-')) },
     @{ Id = 'pv.settingsAgent'; Page = 'priv'; Group = 'mAi'; Kind = 'T'; Flags = 'MA'; Def = '0'; Rec = 'l'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsAI', 'DisableSettingsAgent', 'D', '1', '-')) },
@@ -11434,26 +11219,20 @@ $script:Catalog = @(
     @{ Id = 'pv.winLocProv'; Page = 'priv'; Group = 'mLoc'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\LocationAndSensors', 'DisableWindowsLocationProvider', 'D', '1', '-')) },
     @{ Id = 'pv.locScript'; Page = 'priv'; Group = 'mLoc'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\LocationAndSensors', 'DisableLocationScripting', 'D', '1', '-')) },
     @{ Id = 'pv.mapsAuto'; Page = 'priv'; Group = 'mLoc'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\Maps', 'AutoDownloadAndUpdateMapData', 'D', '0', '-'), ,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\Maps', 'AllowUntriggeredNetworkTrafficOnSettingsPage', 'D', '0', '-')) },
-    @{ Id = 'pv.locAll'; Page = 'priv'; Group = 'mLoc'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'l'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\LocationAndSensors', 'DisableLocation', 'D', '1', '-')) },
     @{ Id = 'pv.sensors'; Page = 'priv'; Group = 'mLoc'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'l'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\LocationAndSensors', 'DisableSensors', 'D', '1', '-')) },
     @{ Id = 'pv.findDevice'; Page = 'priv'; Group = 'mLoc'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'l'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\FindMyDevice', 'AllowFindMyDevice', 'D', '0', '-')) },
-    @{ Id = 'pv.p2p'; Page = 'priv'; Group = 'mUpd'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\DeliveryOptimization', 'DODownloadMode', 'D', '0', '-')) },
     @{ Id = 'pv.speechUpd'; Page = 'priv'; Group = 'mUpd'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Speech', 'AllowSpeechModelUpdate', 'D', '0', '-')) },
     @{ Id = 'pv.mrtReport'; Page = 'priv'; Group = 'mUpd'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\MRT', 'DontReportInfectionInformation', 'D', '1', '-')) },
     @{ Id = 'pv.preview'; Page = 'priv'; Group = 'mUpd'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\PreviewBuilds', 'AllowBuildPreview', 'D', '0', '-')) },
     @{ Id = 'pv.noReboot'; Page = 'priv'; Group = 'mUpd'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU', 'NoAutoRebootWithLoggedOnUsers', 'D', '1', '-')) },
-    @{ Id = 'pv.wuDrivers'; Page = 'priv'; Group = 'mUpd'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'l'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate', 'ExcludeWUDriversInQualityUpdate', 'D', '1', '-')) },
-    @{ Id = 'pv.storeAuto'; Page = 'priv'; Group = 'mUpd'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'l'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\WindowsStore', 'AutoDownload', 'D', '2', '-')) },
     @{ Id = 'pv.mrtOffer'; Page = 'priv'; Group = 'mUpd'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'n'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\MRT', 'DontOfferThroughWUAU', 'D', '1', '-')) },
     @{ Id = 'pv.samples'; Page = 'priv'; Group = 'mDef'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Spynet', 'SubmitSamplesConsent', 'D', '2', '-')) },
     @{ Id = 'pv.spynet'; Page = 'priv'; Group = 'mDef'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'l'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Spynet', 'SpynetReporting', 'D', '0', '-')) },
     @{ Id = 'pv.defNotif'; Page = 'priv'; Group = 'mDef'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'l'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows Defender Security Center\Notifications', 'DisableEnhancedNotifications', 'D', '1', '-')) },
     @{ Id = 'pv.openWith'; Page = 'priv'; Group = 'mExp'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\Explorer', 'NoUseStoreOpenWith', 'D', '1', '-')) },
     @{ Id = 'pv.kfm'; Page = 'priv'; Group = 'mExp'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'l'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\OneDrive', 'KFMBlockOptIn', 'D', '1', '-')) },
-    @{ Id = 'pv.oneDrive'; Page = 'priv'; Group = 'mExp'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'n'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\OneDrive', 'DisableFileSyncNGSC', 'D', '1', '-')) },
     @{ Id = 'pv.phoneLink'; Page = 'priv'; Group = 'mMobile'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\System', 'EnableMmx', 'D', '0', '-')) },
     @{ Id = 'pv.cdp'; Page = 'priv'; Group = 'mMobile'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'l'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\System', 'EnableCdp', 'D', '0', '-')) },
-    @{ Id = 'pv.widgets'; Page = 'priv'; Group = 'mBar'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Dsh', 'AllowNewsAndInterests', 'D', '0', '-'), ,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Feeds', 'EnableFeeds', 'D', '0', '-')) },
     @{ Id = 'pv.mMeetNow'; Page = 'priv'; Group = 'mBar'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer', 'HideSCAMeetNow', 'D', '1', '-')) },
     @{ Id = 'pv.chatIcon'; Page = 'priv'; Group = 'mBar'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Chat', 'ChatIcon', 'D', '3', '-')) },
     @{ Id = 'pv.credSync'; Page = 'priv'; Group = 'mSync'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\SettingSync', 'DisableCredentialsSettingSync', 'D', '2', '-'), ,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\SettingSync', 'DisableCredentialsSettingSyncUserOverride', 'D', '1', '-')) },
@@ -11562,7 +11341,6 @@ $script:CatText = @{
     'task.oldStart' = @{ it = 'Menu Start precedente (Windows 11 25H2)'; en = 'Previous Start menu (Windows 11 25H2)'; es = 'Menú Inicio anterior (Windows 11 25H2)'; de = 'Vorheriges Startmenü (Windows 11 25H2)'; fr = 'Ancien menu Démarrer (Windows 11 25H2)'; pl = 'Poprzednie menu Start (Windows 11 25H2)'; pt = 'Menu Iniciar anterior (Windows 11 25H2)'; ro = 'Meniul Start anterior (Windows 11 25H2)'; ru = 'Прежнее меню «Пуск» (Windows 11 25H2)' }
     'task.recentApps' = @{ it = 'App aggiunte di recente'; en = 'Recently added apps'; es = 'Apps agregadas recientemente'; de = 'Zuletzt hinzugefügte Apps'; fr = 'Apps récemment ajoutées'; pl = 'Ostatnio dodane aplikacje'; pt = 'Apps adicionados recentemente'; ro = 'Aplicații adăugate recent'; ru = 'Недавно добавленные приложения' }
     'task.frequentApps' = @{ it = 'App più usate'; en = 'Most used apps'; es = 'Apps más usadas'; de = 'Meistverwendete Apps'; fr = 'Apps les plus utilisées'; pl = 'Najczęściej używane aplikacje'; pt = 'Apps mais usados'; ro = 'Aplicațiile cele mai folosite'; ru = 'Часто используемые приложения' }
-    'task.recentDocs' = @{ it = 'File consigliati e aperti di recente'; en = 'Recommended and recently opened files'; es = 'Archivos recomendados y abiertos recientemente'; de = 'Empfohlene und zuletzt geöffnete Dateien'; fr = 'Fichiers recommandés et récemment ouverts'; pl = 'Polecane i ostatnio otwierane pliki'; pt = 'Arquivos recomendados e abertos recentemente'; ro = 'Fișiere recomandate și deschise recent'; ru = 'Рекомендуемые и недавние файлы' }
     'task.startLock' = @{ it = 'Blocca nel menu account'; en = 'Lock in the account menu'; es = 'Bloquear en el menú de cuenta'; de = 'Sperren im Kontomenü'; fr = 'Verrouiller dans le menu du compte'; pl = 'Zablokuj w menu konta'; pt = 'Bloquear no menu da conta'; ro = 'Blocare în meniul contului'; ru = '«Заблокировать» в меню учётной записи' }
     'g.task.bar' = @{ it = 'Barra delle applicazioni'; en = 'Taskbar'; es = 'Barra de tareas'; de = 'Taskleiste'; fr = 'Barre des tâches'; pl = 'Pasek zadań'; pt = 'Barra de tarefas'; ro = 'Bara de activități'; ru = 'Панель задач' }
     'task.autoHide' = @{ it = 'Nascondi automaticamente la barra'; en = 'Automatically hide the taskbar'; es = 'Ocultar automáticamente la barra de tareas'; de = 'Taskleiste automatisch ausblenden'; fr = 'Masquer automatiquement la barre des tâches'; pl = 'Automatycznie ukrywaj pasek zadań'; pt = 'Ocultar automaticamente a barra de tarefas'; ro = 'Ascunde automat bara de activități'; ru = 'Автоматически скрывать панель задач' }
@@ -11676,50 +11454,23 @@ $script:CatText = @{
     'win.psPolicy#bypass' = @{ it = 'Tutti, senza avviso'; en = 'All, no warning'; es = 'Todos, sin aviso'; de = 'Alle, ohne Warnung'; fr = 'Tous, sans avertissement'; pl = 'Wszystkie, bez ostrzeżenia'; pt = 'Todos, sem aviso'; ro = 'Toate, fără avertisment'; ru = 'Все, без предупреждения' }
     'win.devMode' = @{ it = 'Modalità sviluppatore'; en = 'Developer mode'; es = 'Modo de desarrollador'; de = 'Entwicklermodus'; fr = 'Mode développeur'; pl = 'Tryb dewelopera'; pt = 'Modo de desenvolvedor'; ro = 'Mod dezvoltator'; ru = 'Режим разработчика' }
     'win.workplace' = @{ it = 'Richieste «Consenti all''organizzazione di gestire il dispositivo»'; en = '«Allow my organization to manage my device» prompts'; es = 'Avisos «Permitir que mi organización administre el dispositivo»'; de = 'Aufforderungen «Meiner Organisation die Verwaltung erlauben»'; fr = 'Demandes «Autoriser mon organisation à gérer mon appareil»'; pl = 'Monity «Zezwól organizacji na zarządzanie urządzeniem»'; pt = 'Avisos «Permitir que minha organização gerencie o dispositivo»'; ro = 'Solicitări «Permite organizației să gestioneze dispozitivul»'; ru = 'Запросы «Разрешить организации управлять устройством»' }
-    'win.autoMaint' = @{ it = 'Manutenzione automatica'; en = 'Automatic maintenance'; es = 'Mantenimiento automático'; de = 'Automatische Wartung'; fr = 'Maintenance automatique'; pl = 'Automatyczna konserwacja'; pt = 'Manutenção automática'; ro = 'Întreținere automată'; ru = 'Автоматическое обслуживание' }
     'g.win.browser' = @{ it = 'Browser'; en = 'Browsers'; es = 'Navegadores'; de = 'Browser'; fr = 'Navigateurs'; pl = 'Przeglądarki'; pt = 'Navegadores'; ro = 'Browsere'; ru = 'Браузеры' }
     'win.brave' = @{ it = 'Brave senza Rewards, Wallet, VPN, IA e statistiche'; en = 'Brave without Rewards, Wallet, VPN, AI and statistics'; es = 'Brave sin Rewards, Wallet, VPN, IA ni estadísticas'; de = 'Brave ohne Rewards, Wallet, VPN, KI und Statistiken'; fr = 'Brave sans Rewards, Wallet, VPN, IA ni statistiques'; pl = 'Brave bez Rewards, Wallet, VPN, AI i statystyk'; pt = 'Brave sem Rewards, Wallet, VPN, IA e estatísticas'; ro = 'Brave fără Rewards, Wallet, VPN, AI și statistici'; ru = 'Brave без Rewards, Wallet, VPN, ИИ и статистики' }
-    'g.win.upd' = @{ it = 'Windows Update'; en = 'Windows Update'; es = 'Windows Update'; de = 'Windows Update'; fr = 'Windows Update'; pl = 'Windows Update'; pt = 'Windows Update'; ro = 'Windows Update'; ru = 'Центр обновления Windows' }
-    'win.wuMode' = @{ it = 'Modalità di Windows Update'; en = 'Windows Update mode'; es = 'Modo de Windows Update'; de = 'Windows-Update-Modus'; fr = 'Mode de Windows Update'; pl = 'Tryb Windows Update'; pt = 'Modo do Windows Update'; ro = 'Modul Windows Update'; ru = 'Режим Центра обновления' }
-    'win.wuMode#auto' = @{ it = 'Automatica (predefinita)'; en = 'Automatic (default)'; es = 'Automático (predeterminado)'; de = 'Automatisch (Standard)'; fr = 'Automatique (par défaut)'; pl = 'Automatyczny (domyślny)'; pt = 'Automático (padrão)'; ro = 'Automat (implicit)'; ru = 'Автоматически (по умолчанию)' }
-    'win.wuMode#notify' = @{ it = 'Avvisa prima di scaricare'; en = 'Notify before download'; es = 'Avisar antes de descargar'; de = 'Vor dem Download benachrichtigen'; fr = 'Avertir avant de télécharger'; pl = 'Powiadamiaj przed pobraniem'; pt = 'Avisar antes de baixar'; ro = 'Anunță înainte de descărcare'; ru = 'Уведомлять перед загрузкой' }
-    'win.wuMode#ask' = @{ it = 'Scarica e chiedi prima di installare'; en = 'Download, ask before install'; es = 'Descargar y preguntar antes de instalar'; de = 'Herunterladen, vor Installation fragen'; fr = 'Télécharger, demander avant d''installer'; pl = 'Pobierz, pytaj przed instalacją'; pt = 'Baixar e perguntar antes de instalar'; ro = 'Descarcă și întreabă înainte de instalare'; ru = 'Загружать, спрашивать перед установкой' }
-    'win.wuMode#off' = @{ it = 'Disattivata (sconsigliato)'; en = 'Disabled (not recommended)'; es = 'Desactivado (no recomendado)'; de = 'Deaktiviert (nicht empfohlen)'; fr = 'Désactivé (déconseillé)'; pl = 'Wyłączony (niezalecane)'; pt = 'Desativado (não recomendado)'; ro = 'Dezactivat (nerecomandat)'; ru = 'Отключено (не рекомендуется)' }
+    'g.win.upd' = @{ it = 'Windows Update: preferenze'; en = 'Windows Update: preferences'; es = 'Windows Update: preferencias'; de = 'Windows Update: Einstellungen'; fr = 'Windows Update : préférences'; pl = 'Windows Update: preferencje'; pt = 'Windows Update: preferências'; ro = 'Windows Update: preferințe'; ru = 'Центр обновления: параметры' }
     'win.wuLatest' = @{ it = 'Novità appena disponibili'; en = 'Latest features as soon as available'; es = 'Novedades en cuanto estén disponibles'; de = 'Neueste Funktionen sofort erhalten'; fr = 'Nouveautés dès leur disponibilité'; pl = 'Nowości od razu, gdy są dostępne'; pt = 'Novidades assim que disponíveis'; ro = 'Noutăți imediat ce apar'; ru = 'Новые функции сразу после выхода' }
     'win.wuOther' = @{ it = 'Aggiornamenti per altri prodotti Microsoft'; en = 'Updates for other Microsoft products'; es = 'Actualizaciones de otros productos de Microsoft'; de = 'Updates für andere Microsoft-Produkte'; fr = 'Mises à jour d''autres produits Microsoft'; pl = 'Aktualizacje innych produktów Microsoft'; pt = 'Atualizações de outros produtos Microsoft'; ro = 'Actualizări pentru alte produse Microsoft'; ru = 'Обновления других продуктов Microsoft' }
     'win.wuExpedite' = @{ it = 'Aggiornami il prima possibile'; en = 'Get me up to date'; es = 'Ponerme al día cuanto antes'; de = 'Mich auf dem neuesten Stand halten'; fr = 'Me mettre à jour au plus vite'; pl = 'Aktualizuj mnie jak najszybciej'; pt = 'Deixar-me atualizado o quanto antes'; ro = 'Actualizează-mă cât mai repede'; ru = 'Обновлять меня как можно скорее' }
     'win.wuRestartNote' = @{ it = 'Avvisa quando serve un riavvio'; en = 'Notify when a restart is needed'; es = 'Avisar cuando haga falta reiniciar'; de = 'Benachrichtigen, wenn ein Neustart nötig ist'; fr = 'Avertir quand un redémarrage est nécessaire'; pl = 'Powiadamiaj, gdy potrzebny jest restart'; pt = 'Avisar quando precisar reiniciar'; ro = 'Anunță când e nevoie de repornire'; ru = 'Уведомлять о необходимости перезагрузки' }
     'win.wuMetered' = @{ it = 'Scarica anche su connessioni a consumo'; en = 'Download over metered connections'; es = 'Descargar en conexiones de uso medido'; de = 'Über getaktete Verbindungen herunterladen'; fr = 'Télécharger sur les connexions limitées'; pl = 'Pobieraj przez połączenia taryfowe'; pt = 'Baixar em conexões limitadas'; ro = 'Descarcă pe conexiuni contorizate'; ru = 'Загружать через лимитные подключения' }
-    'win.coInstallers' = @{ it = 'App dei produttori installate con i driver'; en = 'Maker apps installed with drivers'; es = 'Apps del fabricante instaladas con los controladores'; de = 'Hersteller-Apps mit Treibern installieren'; fr = 'Apps du fabricant installées avec les pilotes'; pl = 'Aplikacje producenta instalowane ze sterownikami'; pt = 'Apps do fabricante instalados com os drivers'; ro = 'Aplicațiile producătorului instalate cu driverele'; ru = 'Приложения производителя вместе с драйверами' }
     'g.win.svc' = @{ it = 'Servizi'; en = 'Services'; es = 'Servicios'; de = 'Dienste'; fr = 'Services'; pl = 'Usługi'; pt = 'Serviços'; ro = 'Servicii'; ru = 'Службы' }
-    'win.svcSysMain' = @{ it = 'SysMain (precaricamento app)'; en = 'SysMain (app preloading)'; es = 'SysMain (precarga de apps)'; de = 'SysMain (App-Vorladen)'; fr = 'SysMain (préchargement des apps)'; pl = 'SysMain (wstępne ładowanie aplikacji)'; pt = 'SysMain (pré-carregamento de apps)'; ro = 'SysMain (preîncărcarea aplicațiilor)'; ru = 'SysMain (предзагрузка приложений)' }
-    'win.svcSearch' = @{ it = 'Ricerca di Windows (indicizzazione)'; en = 'Windows Search (indexing)'; es = 'Windows Search (indexación)'; de = 'Windows Search (Indizierung)'; fr = 'Windows Search (indexation)'; pl = 'Windows Search (indeksowanie)'; pt = 'Windows Search (indexação)'; ro = 'Windows Search (indexare)'; ru = 'Windows Search (индексирование)' }
-    'win.svcDiagTrack' = @{ it = 'Esperienze utente connesse e telemetria'; en = 'Connected User Experiences and Telemetry'; es = 'Experiencias del usuario y telemetría asociadas'; de = 'Benutzererfahrungen und Telemetrie im verbundenen Modus'; fr = 'Expériences utilisateur connectées et télémétrie'; pl = 'Środowisko użytkownika i telemetria'; pt = 'Experiências do usuário conectado e telemetria'; ro = 'Experiențe conectate și telemetrie'; ru = 'Функциональные возможности и телеметрия' }
     'win.svcCdp' = @{ it = 'Piattaforma dispositivi connessi'; en = 'Connected Devices Platform'; es = 'Plataforma de dispositivos conectados'; de = 'Plattform für verbundene Geräte'; fr = 'Plateforme des appareils connectés'; pl = 'Platforma urządzeń połączonych'; pt = 'Plataforma de dispositivos conectados'; ro = 'Platforma dispozitivelor conectate'; ru = 'Платформа подключённых устройств' }
-    'win.svcPca' = @{ it = 'Compatibilità programmi'; en = 'Program Compatibility Assistant'; es = 'Asistente de compatibilidad de programas'; de = 'Programmkompatibilitäts-Assistent'; fr = 'Assistant Compatibilité des programmes'; pl = 'Asystent zgodności programów'; pt = 'Assistente de compatibilidade de programas'; ro = 'Asistentul de compatibilitate a programelor'; ru = 'Помощник по совместимости программ' }
-    'win.svcWer' = @{ it = 'Segnalazione errori'; en = 'Error Reporting'; es = 'Informe de errores'; de = 'Fehlerberichterstattung'; fr = 'Rapport d''erreurs'; pl = 'Raportowanie błędów'; pt = 'Relatório de erros'; ro = 'Raportarea erorilor'; ru = 'Отчёты об ошибках' }
-    'win.svcGeo' = @{ it = 'Geolocalizzazione'; en = 'Geolocation'; es = 'Geolocalización'; de = 'Geolocation'; fr = 'Géolocalisation'; pl = 'Geolokalizacja'; pt = 'Geolocalização'; ro = 'Geolocalizare'; ru = 'Геолокация' }
-    'win.svcRetail' = @{ it = 'Modalità demo per negozi'; en = 'Retail demo'; es = 'Modo demo para tiendas'; de = 'Demomodus für den Handel'; fr = 'Mode démo pour magasins'; pl = 'Tryb demonstracyjny dla sklepów'; pt = 'Modo demonstração para lojas'; ro = 'Mod demonstrativ pentru magazine'; ru = 'Демонстрационный режим для магазинов' }
-    'win.svcInsider' = @{ it = 'Programma Windows Insider'; en = 'Windows Insider'; es = 'Windows Insider'; de = 'Windows Insider'; fr = 'Windows Insider'; pl = 'Windows Insider'; pt = 'Windows Insider'; ro = 'Windows Insider'; ru = 'Windows Insider' }
-    'win.svcPhone' = @{ it = 'Telefonia'; en = 'Phone Service'; es = 'Servicio de telefonía'; de = 'Telefondienst'; fr = 'Service de téléphonie'; pl = 'Usługa telefonu'; pt = 'Serviço de telefone'; ro = 'Serviciu telefon'; ru = 'Телефонная служба' }
-    'win.svcWallet' = @{ it = 'Portafoglio'; en = 'Wallet Service'; es = 'Servicio de cartera'; de = 'Wallet-Dienst'; fr = 'Service Portefeuille'; pl = 'Usługa Portfel'; pt = 'Serviço de carteira'; ro = 'Serviciu Portofel'; ru = 'Служба кошелька' }
-    'win.svcSmartCard' = @{ it = 'Smart card'; en = 'Smart card'; es = 'Tarjeta inteligente'; de = 'Smartcard'; fr = 'Carte à puce'; pl = 'Karta inteligentna'; pt = 'Cartão inteligente'; ro = 'Smart card'; ru = 'Смарт-карта' }
-    'win.svcMaps' = @{ it = 'Gestione mappe scaricate'; en = 'Downloaded Maps Manager'; es = 'Administrador de mapas descargados'; de = 'Manager für heruntergeladene Karten'; fr = 'Gestionnaire des cartes téléchargées'; pl = 'Menedżer pobranych map'; pt = 'Gerenciador de mapas baixados'; ro = 'Managerul hărților descărcate'; ru = 'Диспетчер скачанных карт' }
-    'win.svcFax' = @{ it = 'Fax'; en = 'Fax'; es = 'Fax'; de = 'Fax'; fr = 'Télécopie'; pl = 'Faks'; pt = 'Fax'; ro = 'Fax'; ru = 'Факс' }
     'win.svcWmpShare' = @{ it = 'Condivisione di Windows Media Player'; en = 'Windows Media Player sharing'; es = 'Uso compartido de Windows Media Player'; de = 'Windows Media Player-Freigabe'; fr = 'Partage du Lecteur Windows Media'; pl = 'Udostępnianie Windows Media Player'; pt = 'Compartilhamento do Windows Media Player'; ro = 'Partajare Windows Media Player'; ru = 'Общий доступ Windows Media Player' }
     'win.svcMixed' = @{ it = 'Realtà mista OpenXR'; en = 'Mixed Reality OpenXR'; es = 'Realidad mixta OpenXR'; de = 'Mixed Reality OpenXR'; fr = 'Réalité mixte OpenXR'; pl = 'Rzeczywistość mieszana OpenXR'; pt = 'Realidade misturada OpenXR'; ro = 'Realitate mixtă OpenXR'; ru = 'Смешанная реальность OpenXR' }
     'win.svcHotspot' = @{ it = 'Hotspot mobile'; en = 'Mobile hotspot'; es = 'Zona con cobertura inalámbrica móvil'; de = 'Mobiler Hotspot'; fr = 'Point d''accès sans fil mobile'; pl = 'Mobilny punkt dostępu'; pt = 'Hotspot móvel'; ro = 'Hotspot mobil'; ru = 'Мобильный хот-спот' }
     'win.svcSms' = @{ it = 'Router SMS'; en = 'SMS router'; es = 'Enrutador de SMS'; de = 'SMS-Router'; fr = 'Routeur SMS'; pl = 'Router SMS'; pt = 'Roteador de SMS'; ro = 'Router SMS'; ru = 'Маршрутизатор SMS' }
-    'win.svcParental' = @{ it = 'Controllo genitori'; en = 'Parental controls'; es = 'Control parental'; de = 'Jugendschutz'; fr = 'Contrôle parental'; pl = 'Kontrola rodzicielska'; pt = 'Controle dos pais'; ro = 'Control parental'; ru = 'Родительский контроль' }
     'win.svcNfc' = @{ it = 'Pagamenti e NFC'; en = 'Payments and NFC'; es = 'Pagos y NFC'; de = 'Zahlungen und NFC'; fr = 'Paiements et NFC'; pl = 'Płatności i NFC'; pt = 'Pagamentos e NFC'; ro = 'Plăți și NFC'; ru = 'Платежи и NFC' }
     'win.svcSpot' = @{ it = 'Verifica spot'; en = 'Spot Verifier'; es = 'Comprobador puntual'; de = 'Stichprobenüberprüfung'; fr = 'Vérificateur ponctuel'; pl = 'Weryfikator punktowy'; pt = 'Verificador pontual'; ro = 'Verificator punctual'; ru = 'Точечная проверка' }
-    'win.svcRas' = @{ it = 'Connessioni di accesso remoto'; en = 'Remote access connections'; es = 'Conexiones de acceso remoto'; de = 'RAS-Verbindungen'; fr = 'Connexions d''accès à distance'; pl = 'Połączenia dostępu zdalnego'; pt = 'Conexões de acesso remoto'; ro = 'Conexiuni de acces la distanță'; ru = 'Подключения удалённого доступа' }
-    'win.svcRdp' = @{ it = 'Desktop remoto'; en = 'Remote Desktop'; es = 'Escritorio remoto'; de = 'Remotedesktop'; fr = 'Bureau à distance'; pl = 'Pulpit zdalny'; pt = 'Área de Trabalho Remota'; ro = 'Desktop la distanță'; ru = 'Удалённый рабочий стол' }
-    'win.svcXbox' = @{ it = 'Servizi Xbox Live'; en = 'Xbox Live services'; es = 'Servicios de Xbox Live'; de = 'Xbox Live-Dienste'; fr = 'Services Xbox Live'; pl = 'Usługi Xbox Live'; pt = 'Serviços Xbox Live'; ro = 'Servicii Xbox Live'; ru = 'Службы Xbox Live' }
-    'win.svcBio' = @{ it = 'Biometria'; en = 'Biometrics'; es = 'Biometría'; de = 'Biometrie'; fr = 'Biométrie'; pl = 'Biometria'; pt = 'Biometria'; ro = 'Biometrie'; ru = 'Биометрия' }
-    'win.svcTouch' = @{ it = 'Tastiera virtuale e penna'; en = 'Touch keyboard and pen'; es = 'Teclado táctil y lápiz'; de = 'Bildschirmtastatur und Stift'; fr = 'Clavier tactile et stylet'; pl = 'Klawiatura dotykowa i pióro'; pt = 'Teclado virtual e caneta'; ro = 'Tastatură tactilă și creion'; ru = 'Сенсорная клавиатура и перо' }
     'win.svcTapi' = @{ it = 'Telefonia (TAPI)'; en = 'Telephony (TAPI)'; es = 'Telefonía (TAPI)'; de = 'Telefonie (TAPI)'; fr = 'Téléphonie (TAPI)'; pl = 'Telefonia (TAPI)'; pt = 'Telefonia (TAPI)'; ro = 'Telefonie (TAPI)'; ru = 'Телефония (TAPI)' }
-    'win.svcSensors' = @{ it = 'Sensori'; en = 'Sensors'; es = 'Sensores'; de = 'Sensoren'; fr = 'Capteurs'; pl = 'Czujniki'; pt = 'Sensores'; ro = 'Senzori'; ru = 'Датчики' }
     'g.win.tasks' = @{ it = 'Attività pianificate'; en = 'Scheduled tasks'; es = 'Tareas programadas'; de = 'Geplante Aufgaben'; fr = 'Tâches planifiées'; pl = 'Zaplanowane zadania'; pt = 'Tarefas agendadas'; ro = 'Activități programate'; ru = 'Запланированные задачи' }
     'win.tAppraiser' = @{ it = 'Valutazione compatibilità Microsoft'; en = 'Microsoft Compatibility Appraiser'; es = 'Evaluador de compatibilidad de Microsoft'; de = 'Microsoft-Kompatibilitätsbewertung'; fr = 'Évaluateur de compatibilité Microsoft'; pl = 'Ocena zgodności Microsoft'; pt = 'Avaliador de compatibilidade da Microsoft'; ro = 'Evaluatorul de compatibilitate Microsoft'; ru = 'Оценщик совместимости Microsoft' }
     'win.tPdu' = @{ it = 'Aggiornamento dati dei programmi'; en = 'Program Data Updater'; es = 'Actualizador de datos de programas'; de = 'Programmdaten-Aktualisierung'; fr = 'Mise à jour des données de programmes'; pl = 'Aktualizator danych programów'; pt = 'Atualizador de dados de programas'; ro = 'Actualizarea datelor programelor'; ru = 'Обновление данных программ' }
@@ -11734,21 +11485,13 @@ $script:CatText = @{
     'win.tPowerDiag' = @{ it = 'Diagnostica dell''efficienza energetica'; en = 'Power efficiency diagnostics'; es = 'Diagnóstico de eficiencia energética'; de = 'Diagnose der Energieeffizienz'; fr = 'Diagnostic d''efficacité énergétique'; pl = 'Diagnostyka wydajności energetycznej'; pt = 'Diagnóstico de eficiência energética'; ro = 'Diagnosticul eficienței energetice'; ru = 'Диагностика энергоэффективности' }
     'win.tSqm' = @{ it = 'Attività SQM'; en = 'SQM tasks'; es = 'Tareas SQM'; de = 'SQM-Aufgaben'; fr = 'Tâches SQM'; pl = 'Zadania SQM'; pt = 'Tarefas SQM'; ro = 'Activități SQM'; ru = 'Задачи SQM' }
     'g.priv.uPriv' = @{ it = 'Privacy'; en = 'Privacy'; es = 'Privacidad'; de = 'Datenschutz'; fr = 'Confidentialité'; pl = 'Prywatność'; pt = 'Privacidade'; ro = 'Confidențialitate'; ru = 'Конфиденциальность' }
-    'pv.adId' = @{ it = 'Disattiva e azzera l''ID pubblicitario'; en = 'Disable and reset the advertising ID'; es = 'Desactivar y restablecer el ID de publicidad'; de = 'Werbe-ID deaktivieren und zurücksetzen'; fr = 'Désactiver et réinitialiser l''identifiant publicitaire'; pl = 'Wyłącz i zresetuj identyfikator reklamowy'; pt = 'Desativar e redefinir a ID de anúncio'; ro = 'Dezactivează și resetează ID-ul de publicitate'; ru = 'Отключить и сбросить рекламный идентификатор' }
-    'pv.typing' = @{ it = 'Non inviare i dati di digitazione'; en = 'Don''t send typing data'; es = 'No enviar datos de escritura'; de = 'Keine Eingabedaten senden'; fr = 'Ne pas envoyer les données de saisie'; pl = 'Nie wysyłaj danych pisania'; pt = 'Não enviar dados de digitação'; ro = 'Nu trimite datele de tastare'; ru = 'Не отправлять данные о вводе' }
     'pv.timeline' = @{ it = 'Niente suggerimenti nella sequenza temporale'; en = 'No suggestions in the timeline'; es = 'Sin sugerencias en la escala de tiempo'; de = 'Keine Vorschläge in der Zeitachse'; fr = 'Pas de suggestions dans la chronologie'; pl = 'Bez sugestii na osi czasu'; pt = 'Sem sugestões na linha do tempo'; ro = 'Fără sugestii în cronologie'; ru = 'Без предложений на временной шкале' }
     'pv.startSugg' = @{ it = 'Niente suggerimenti in Start'; en = 'No suggestions in Start'; es = 'Sin sugerencias en Inicio'; de = 'Keine Vorschläge in Start'; fr = 'Pas de suggestions dans Démarrer'; pl = 'Bez sugestii w Start'; pt = 'Sem sugestões no Iniciar'; ro = 'Fără sugestii în Start'; ru = 'Без предложений в «Пуске»' }
-    'pv.tips' = @{ it = 'Niente trucchi e suggerimenti durante l''uso'; en = 'No tips and tricks while using Windows'; es = 'Sin trucos ni consejos al usar Windows'; de = 'Keine Tipps und Tricks bei der Nutzung'; fr = 'Pas d''astuces pendant l''utilisation'; pl = 'Bez porad i wskazówek podczas pracy'; pt = 'Sem dicas e truques durante o uso'; ro = 'Fără sfaturi și trucuri în timpul utilizării'; ru = 'Без советов и подсказок при работе' }
     'pv.settingsSugg' = @{ it = 'Niente contenuti suggeriti in Impostazioni'; en = 'No suggested content in Settings'; es = 'Sin contenido sugerido en Configuración'; de = 'Keine vorgeschlagenen Inhalte in Einstellungen'; fr = 'Pas de contenu suggéré dans Paramètres'; pl = 'Bez sugerowanej zawartości w Ustawieniach'; pt = 'Sem conteúdo sugerido em Configurações'; ro = 'Fără conținut sugerat în Setări'; ru = 'Без рекомендуемого содержимого в «Параметрах»' }
-    'pv.finishSetup' = @{ it = 'Niente inviti a completare la configurazione'; en = 'No prompts to finish device setup'; es = 'Sin invitaciones a terminar la configuración'; de = 'Keine Aufforderungen zum Abschluss der Einrichtung'; fr = 'Pas d''invitations à terminer la configuration'; pl = 'Bez zaproszeń do dokończenia konfiguracji'; pt = 'Sem convites para concluir a configuração'; ro = 'Fără invitații de a termina configurarea'; ru = 'Без предложений завершить настройку' }
-    'pv.welcome' = @{ it = 'Niente presentazione dopo gli aggiornamenti'; en = 'No welcome tour after updates'; es = 'Sin presentación tras las actualizaciones'; de = 'Keine Einführung nach Updates'; fr = 'Pas de présentation après les mises à jour'; pl = 'Bez prezentacji po aktualizacjach'; pt = 'Sem apresentação após atualizações'; ro = 'Fără prezentare după actualizări'; ru = 'Без знакомства после обновлений' }
     'pv.silentApps' = @{ it = 'Niente app installate in silenzio'; en = 'No silently installed apps'; es = 'Sin apps instaladas en silencio'; de = 'Keine still installierten Apps'; fr = 'Pas d''apps installées en silence'; pl = 'Bez cicho instalowanych aplikacji'; pt = 'Sem apps instalados silenciosamente'; ro = 'Fără aplicații instalate în tăcere'; ru = 'Без тихо устанавливаемых приложений' }
-    'pv.appLaunch' = @{ it = 'Non tracciare le app avviate'; en = 'Don''t track app launches'; es = 'No rastrear el inicio de apps'; de = 'App-Starts nicht verfolgen'; fr = 'Ne pas suivre le lancement des apps'; pl = 'Nie śledź uruchamiania aplikacji'; pt = 'Não rastrear a abertura de apps'; ro = 'Nu urmări lansarea aplicațiilor'; ru = 'Не отслеживать запуск приложений' }
     'pv.accountNotif' = @{ it = 'Niente notifiche sull''account in Impostazioni'; en = 'No account notices in Settings'; es = 'Sin avisos de cuenta en Configuración'; de = 'Keine Kontohinweise in Einstellungen'; fr = 'Pas d''avis de compte dans Paramètres'; pl = 'Bez komunikatów o koncie w Ustawieniach'; pt = 'Sem avisos de conta em Configurações'; ro = 'Fără anunțuri de cont în Setări'; ru = 'Без уведомлений об учётной записи в «Параметрах»' }
     'pv.langList' = @{ it = 'Non condividere l''elenco delle lingue con i siti'; en = 'Don''t share the language list with websites'; es = 'No compartir la lista de idiomas con los sitios web'; de = 'Sprachliste nicht mit Websites teilen'; fr = 'Ne pas partager la liste des langues avec les sites'; pl = 'Nie udostępniaj listy języków stronom'; pt = 'Não compartilhar a lista de idiomas com sites'; ro = 'Nu partaja lista de limbi cu site-urile'; ru = 'Не сообщать сайтам список языков' }
     'pv.textPred' = @{ it = 'Niente suggerimenti di testo sulla tastiera virtuale'; en = 'No text suggestions on the touch keyboard'; es = 'Sin sugerencias de texto en el teclado táctil'; de = 'Keine Textvorschläge auf der Bildschirmtastatur'; fr = 'Pas de suggestions sur le clavier tactile'; pl = 'Bez podpowiedzi na klawiaturze dotykowej'; pt = 'Sem sugestões de texto no teclado virtual'; ro = 'Fără sugestii de text pe tastatura tactilă'; ru = 'Без подсказок на сенсорной клавиатуре' }
-    'pv.appNotif' = @{ it = 'Disattiva le notifiche delle app'; en = 'Disable app notifications'; es = 'Desactivar las notificaciones de las apps'; de = 'App-Benachrichtigungen deaktivieren'; fr = 'Désactiver les notifications des apps'; pl = 'Wyłącz powiadomienia aplikacji'; pt = 'Desativar as notificações dos apps'; ro = 'Dezactivează notificările aplicațiilor'; ru = 'Отключить уведомления приложений' }
-    'pv.storeUrls' = @{ it = 'Non far controllare a SmartScreen gli indirizzi delle app'; en = 'Don''t let SmartScreen check app web content'; es = 'SmartScreen no revisa el contenido web de las apps'; de = 'SmartScreen prüft keine Webinhalte von Apps'; fr = 'SmartScreen ne vérifie pas le contenu web des apps'; pl = 'SmartScreen nie sprawdza treści internetowych aplikacji'; pt = 'O SmartScreen não verifica o conteúdo web dos apps'; ro = 'SmartScreen nu verifică conținutul web al aplicațiilor'; ru = 'SmartScreen не проверяет веб-содержимое приложений' }
     'g.priv.uClip' = @{ it = 'Cronologia attività e Appunti'; en = 'Activity history and clipboard'; es = 'Historial de actividad y portapapeles'; de = 'Aktivitätsverlauf und Zwischenablage'; fr = 'Historique d''activités et presse-papiers'; pl = 'Historia aktywności i schowek'; pt = 'Histórico de atividades e área de transferência'; ro = 'Istoric activități și clipboard'; ru = 'Журнал действий и буфер обмена' }
     'pv.clipHist' = @{ it = 'Non conservare la cronologia degli Appunti'; en = 'Don''t keep clipboard history'; es = 'No guardar el historial del portapapeles'; de = 'Keinen Zwischenablageverlauf speichern'; fr = 'Ne pas garder l''historique du presse-papiers'; pl = 'Nie przechowuj historii schowka'; pt = 'Não manter o histórico da área de transferência'; ro = 'Nu păstra istoricul clipboardului'; ru = 'Не хранить журнал буфера обмена' }
     'pv.clipCloud' = @{ it = 'Non sincronizzare gli Appunti nel cloud'; en = 'Don''t sync the clipboard to the cloud'; es = 'No sincronizar el portapapeles en la nube'; de = 'Zwischenablage nicht in der Cloud synchronisieren'; fr = 'Ne pas synchroniser le presse-papiers dans le cloud'; pl = 'Nie synchronizuj schowka w chmurze'; pt = 'Não sincronizar a área de transferência na nuvem'; ro = 'Nu sincroniza clipboardul în cloud'; ru = 'Не синхронизировать буфер обмена в облаке' }
@@ -11774,7 +11517,6 @@ $script:CatText = @{
     'pv.uPics' = @{ it = 'Blocca l''accesso alle immagini'; en = 'Block access to pictures'; es = 'Bloquear el acceso a las imágenes'; de = 'Zugriff auf Bilder sperren'; fr = 'Bloquer l''accès aux images'; pl = 'Blokuj dostęp do obrazów'; pt = 'Bloquear acesso às imagens'; ro = 'Blochează accesul la imagini'; ru = 'Запретить доступ к изображениям' }
     'pv.uVideos' = @{ it = 'Blocca l''accesso ai video'; en = 'Block access to videos'; es = 'Bloquear el acceso a los vídeos'; de = 'Zugriff auf Videos sperren'; fr = 'Bloquer l''accès aux vidéos'; pl = 'Blokuj dostęp do wideo'; pt = 'Bloquear acesso aos vídeos'; ro = 'Blochează accesul la videoclipuri'; ru = 'Запретить доступ к видео' }
     'pv.uFiles' = @{ it = 'Blocca l''accesso a tutto il file system'; en = 'Block access to the whole file system'; es = 'Bloquear el acceso a todo el sistema de archivos'; de = 'Zugriff auf das gesamte Dateisystem sperren'; fr = 'Bloquer l''accès à tout le système de fichiers'; pl = 'Blokuj dostęp do całego systemu plików'; pt = 'Bloquear acesso a todo o sistema de arquivos'; ro = 'Blochează accesul la tot sistemul de fișiere'; ru = 'Запретить доступ ко всей файловой системе' }
-    'pv.uBackground' = @{ it = 'Impedisci alle app di restare attive in background'; en = 'Stop apps from running in the background'; es = 'Impedir que las apps se ejecuten en segundo plano'; de = 'Apps nicht im Hintergrund laufen lassen'; fr = 'Empêcher les apps de tourner en arrière-plan'; pl = 'Nie pozwalaj aplikacjom działać w tle'; pt = 'Impedir apps de rodar em segundo plano'; ro = 'Oprește aplicațiile din fundal'; ru = 'Запретить приложениям работать в фоне' }
     'g.priv.uSync' = @{ it = 'Sincronizzazione delle impostazioni'; en = 'Settings sync'; es = 'Sincronización de la configuración'; de = 'Synchronisierung der Einstellungen'; fr = 'Synchronisation des paramètres'; pl = 'Synchronizacja ustawień'; pt = 'Sincronização das configurações'; ro = 'Sincronizarea setărilor'; ru = 'Синхронизация параметров' }
     'pv.syncPwd' = @{ it = 'Non sincronizzare le password'; en = 'Don''t sync passwords'; es = 'No sincronizar contraseñas'; de = 'Kennwörter nicht synchronisieren'; fr = 'Ne pas synchroniser les mots de passe'; pl = 'Nie synchronizuj haseł'; pt = 'Não sincronizar senhas'; ro = 'Nu sincroniza parolele'; ru = 'Не синхронизировать пароли' }
     'pv.syncTheme' = @{ it = 'Non sincronizzare tema e sfondo'; en = 'Don''t sync theme and wallpaper'; es = 'No sincronizar tema y fondo'; de = 'Design und Hintergrund nicht synchronisieren'; fr = 'Ne pas synchroniser le thème et le fond'; pl = 'Nie synchronizuj motywu i tapety'; pt = 'Não sincronizar tema e papel de parede'; ro = 'Nu sincroniza tema și fundalul'; ru = 'Не синхронизировать тему и обои' }
@@ -11783,67 +11525,45 @@ $script:CatText = @{
     'pv.syncOther' = @{ it = 'Non sincronizzare le altre impostazioni di Windows'; en = 'Don''t sync other Windows settings'; es = 'No sincronizar otras opciones de Windows'; de = 'Andere Windows-Einstellungen nicht synchronisieren'; fr = 'Ne pas synchroniser les autres paramètres Windows'; pl = 'Nie synchronizuj innych ustawień Windows'; pt = 'Não sincronizar outras configurações do Windows'; ro = 'Nu sincroniza alte setări Windows'; ru = 'Не синхронизировать другие параметры Windows' }
     'g.priv.uSpeech' = @{ it = 'Voce e input'; en = 'Speech and input'; es = 'Voz y entrada'; de = 'Sprache und Eingabe'; fr = 'Voix et saisie'; pl = 'Mowa i wprowadzanie'; pt = 'Fala e entrada'; ro = 'Vorbire și introducere'; ru = 'Речь и ввод' }
     'pv.speech' = @{ it = 'Disattiva il riconoscimento vocale online'; en = 'Disable online speech recognition'; es = 'Desactivar el reconocimiento de voz en línea'; de = 'Online-Spracherkennung deaktivieren'; fr = 'Désactiver la reconnaissance vocale en ligne'; pl = 'Wyłącz rozpoznawanie mowy online'; pt = 'Desativar o reconhecimento de fala online'; ro = 'Dezactivează recunoașterea vocală online'; ru = 'Отключить онлайн-распознавание речи' }
-    'pv.inking' = @{ it = 'Non raccogliere scrittura a mano e contatti'; en = 'Don''t collect handwriting and contacts'; es = 'No recopilar escritura a mano ni contactos'; de = 'Keine Handschrift und Kontakte sammeln'; fr = 'Ne pas collecter l''écriture manuscrite et les contacts'; pl = 'Nie zbieraj pisma odręcznego i kontaktów'; pt = 'Não coletar escrita à mão e contatos'; ro = 'Nu colecta scrisul de mână și contactele'; ru = 'Не собирать рукописный ввод и контакты' }
     'pv.voiceAct' = @{ it = 'Le app non ascoltano la parola di attivazione'; en = 'Apps don''t listen for their wake word'; es = 'Las apps no escuchan su palabra de activación'; de = 'Apps hören nicht auf ihr Aktivierungswort'; fr = 'Les apps n''écoutent pas leur mot d''activation'; pl = 'Aplikacje nie nasłuchują słowa aktywacji'; pt = 'Os apps não escutam a palavra de ativação'; ro = 'Aplicațiile nu ascultă cuvântul de activare'; ru = 'Приложения не слушают слово активации' }
     'g.priv.uAi' = @{ it = 'Windows AI'; en = 'Windows AI'; es = 'IA de Windows'; de = 'Windows-KI'; fr = 'IA de Windows'; pl = 'Sztuczna inteligencja Windows'; pt = 'IA do Windows'; ro = 'IA Windows'; ru = 'ИИ в Windows' }
-    'pv.uCopilot' = @{ it = 'Disattiva Copilot'; en = 'Disable Copilot'; es = 'Desactivar Copilot'; de = 'Copilot deaktivieren'; fr = 'Désactiver Copilot'; pl = 'Wyłącz Copilot'; pt = 'Desativar o Copilot'; ro = 'Dezactivează Copilot'; ru = 'Отключить Copilot' }
     'pv.uRecall' = @{ it = 'Disattiva Recall'; en = 'Disable Recall'; es = 'Desactivar Recall'; de = 'Recall deaktivieren'; fr = 'Désactiver Recall'; pl = 'Wyłącz Recall'; pt = 'Desativar o Recall'; ro = 'Dezactivează Recall'; ru = 'Отключить Recall' }
     'pv.uClickToDo' = @{ it = 'Disattiva Click to Do'; en = 'Disable Click to Do'; es = 'Desactivar Click to Do'; de = 'Click to Do deaktivieren'; fr = 'Désactiver Click to Do'; pl = 'Wyłącz Click to Do'; pt = 'Desativar o Click to Do'; ro = 'Dezactivează Click to Do'; ru = 'Отключить Click to Do' }
     'pv.copilotAvail' = @{ it = 'Nascondi Copilot nella shell'; en = 'Hide Copilot in the shell'; es = 'Ocultar Copilot en el shell'; de = 'Copilot in der Shell ausblenden'; fr = 'Masquer Copilot dans le shell'; pl = 'Ukryj Copilot w powłoce'; pt = 'Ocultar o Copilot no shell'; ro = 'Ascunde Copilot în shell'; ru = 'Скрыть Copilot в оболочке' }
     'pv.bingChat' = @{ it = 'Disattiva la chat di Bing integrata'; en = 'Disable built-in Bing chat'; es = 'Desactivar el chat de Bing integrado'; de = 'Integrierten Bing-Chat deaktivieren'; fr = 'Désactiver le chat Bing intégré'; pl = 'Wyłącz wbudowany czat Bing'; pt = 'Desativar o chat integrado do Bing'; ro = 'Dezactivează chatul Bing integrat'; ru = 'Отключить встроенный чат Bing' }
     'pv.insights' = @{ it = 'Disattiva le analisi della digitazione'; en = 'Disable typing insights'; es = 'Desactivar el análisis de escritura'; de = 'Eingabeanalysen deaktivieren'; fr = 'Désactiver l''analyse de la saisie'; pl = 'Wyłącz analizy pisania'; pt = 'Desativar análises de digitação'; ro = 'Dezactivează analizele tastării'; ru = 'Отключить аналитику ввода' }
     'pv.nudges' = @{ it = 'Niente inviti a provare Copilot'; en = 'No invitations to try Copilot'; es = 'Sin invitaciones a probar Copilot'; de = 'Keine Aufforderungen, Copilot zu testen'; fr = 'Pas d''invitations à essayer Copilot'; pl = 'Bez zaproszeń do wypróbowania Copilot'; pt = 'Sem convites para experimentar o Copilot'; ro = 'Fără invitații de a încerca Copilot'; ru = 'Без предложений попробовать Copilot' }
-    'pv.copilotBtn' = @{ it = 'Nascondi il pulsante Copilot'; en = 'Hide the Copilot button'; es = 'Ocultar el botón de Copilot'; de = 'Copilot-Schaltfläche ausblenden'; fr = 'Masquer le bouton Copilot'; pl = 'Ukryj przycisk Copilot'; pt = 'Ocultar o botão do Copilot'; ro = 'Ascunde butonul Copilot'; ru = 'Скрыть кнопку Copilot' }
     'pv.copilotMic' = @{ it = 'Copilot non usa il microfono'; en = 'Copilot can''t use the microphone'; es = 'Copilot no puede usar el micrófono'; de = 'Copilot darf das Mikrofon nicht nutzen'; fr = 'Copilot ne peut pas utiliser le micro'; pl = 'Copilot nie może używać mikrofonu'; pt = 'O Copilot não pode usar o microfone'; ro = 'Copilot nu poate folosi microfonul'; ru = 'Copilot не может использовать микрофон' }
     'pv.wordCopilot' = @{ it = 'Disattiva Copilot in Word'; en = 'Disable Copilot in Word'; es = 'Desactivar Copilot en Word'; de = 'Copilot in Word deaktivieren'; fr = 'Désactiver Copilot dans Word'; pl = 'Wyłącz Copilot w Word'; pt = 'Desativar o Copilot no Word'; ro = 'Dezactivează Copilot în Word'; ru = 'Отключить Copilot в Word' }
     'pv.excelCopilot' = @{ it = 'Disattiva Copilot in Excel'; en = 'Disable Copilot in Excel'; es = 'Desactivar Copilot en Excel'; de = 'Copilot in Excel deaktivieren'; fr = 'Désactiver Copilot dans Excel'; pl = 'Wyłącz Copilot w Excel'; pt = 'Desativar o Copilot no Excel'; ro = 'Dezactivează Copilot în Excel'; ru = 'Отключить Copilot в Excel' }
     'pv.officeCloud' = @{ it = 'Limita i servizi online di Office'; en = 'Limit Office online services'; es = 'Limitar los servicios en línea de Office'; de = 'Office-Onlinedienste einschränken'; fr = 'Limiter les services en ligne d''Office'; pl = 'Ogranicz usługi online Office'; pt = 'Limitar os serviços online do Office'; ro = 'Limitează serviciile online Office'; ru = 'Ограничить онлайн-службы Office' }
     'g.priv.uBehav' = @{ it = 'Comportamento utente'; en = 'User behavior'; es = 'Comportamiento del usuario'; de = 'Benutzerverhalten'; fr = 'Comportement de l''utilisateur'; pl = 'Zachowanie użytkownika'; pt = 'Comportamento do usuário'; ro = 'Comportamentul utilizatorului'; ru = 'Поведение пользователя' }
-    'pv.tailored' = @{ it = 'Niente esperienze su misura dai dati diagnostici'; en = 'No tailored experiences from diagnostic data'; es = 'Sin experiencias personalizadas con datos de diagnóstico'; de = 'Keine maßgeschneiderten Erfahrungen aus Diagnosedaten'; fr = 'Pas d''expériences personnalisées issues du diagnostic'; pl = 'Bez dopasowanych doświadczeń z danych diagnostycznych'; pt = 'Sem experiências personalizadas com dados de diagnóstico'; ro = 'Fără experiențe personalizate din datele de diagnostic'; ru = 'Без персонализации по данным диагностики' }
-    'pv.feedback' = @{ it = 'Windows non chiede feedback'; en = 'Windows doesn''t ask for feedback'; es = 'Windows no pide comentarios'; de = 'Windows fragt nicht nach Feedback'; fr = 'Windows ne demande pas de commentaires'; pl = 'Windows nie prosi o opinie'; pt = 'O Windows não pede comentários'; ro = 'Windows nu cere feedback'; ru = 'Windows не просит отзывы' }
     'pv.thirdParty' = @{ it = 'Niente suggerimenti di terze parti'; en = 'No third-party suggestions'; es = 'Sin sugerencias de terceros'; de = 'Keine Vorschläge von Drittanbietern'; fr = 'Pas de suggestions de tiers'; pl = 'Bez sugestii firm zewnętrznych'; pt = 'Sem sugestões de terceiros'; ro = 'Fără sugestii de la terți'; ru = 'Без предложений сторонних компаний' }
     'pv.spotSettings' = @{ it = 'Niente Spotlight in Impostazioni'; en = 'No Spotlight in Settings'; es = 'Sin Spotlight en Configuración'; de = 'Kein Spotlight in Einstellungen'; fr = 'Pas de Spotlight dans Paramètres'; pl = 'Bez Spotlight w Ustawieniach'; pt = 'Sem Spotlight em Configurações'; ro = 'Fără Spotlight în Setări'; ru = 'Без Spotlight в «Параметрах»' }
     'pv.spotAll' = @{ it = 'Disattiva tutte le funzioni Spotlight'; en = 'Disable all Spotlight features'; es = 'Desactivar todas las funciones de Spotlight'; de = 'Alle Spotlight-Funktionen deaktivieren'; fr = 'Désactiver toutes les fonctions Spotlight'; pl = 'Wyłącz wszystkie funkcje Spotlight'; pt = 'Desativar todos os recursos Spotlight'; ro = 'Dezactivează toate funcțiile Spotlight'; ru = 'Отключить все функции Spotlight' }
     'pv.wmp' = @{ it = 'Windows Media Player non traccia l''uso'; en = 'Windows Media Player doesn''t track usage'; es = 'Windows Media Player no rastrea el uso'; de = 'Windows Media Player verfolgt die Nutzung nicht'; fr = 'Le Lecteur Windows Media ne suit pas l''utilisation'; pl = 'Windows Media Player nie śledzi użycia'; pt = 'O Windows Media Player não rastreia o uso'; ro = 'Windows Media Player nu urmărește utilizarea'; ru = 'Windows Media Player не отслеживает использование' }
-    'g.priv.uExp' = @{ it = 'Esplora file'; en = 'File Explorer'; es = 'Explorador de archivos'; de = 'Datei-Explorer'; fr = 'Explorateur de fichiers'; pl = 'Eksplorator plików'; pt = 'Explorador de Arquivos'; ro = 'Explorer fișiere'; ru = 'Проводник' }
-    'pv.syncAds' = @{ it = 'Niente pubblicità in Esplora file'; en = 'No ads in File Explorer'; es = 'Sin anuncios en el Explorador'; de = 'Keine Werbung im Explorer'; fr = 'Pas de publicité dans l''Explorateur'; pl = 'Bez reklam w Eksploratorze'; pt = 'Sem anúncios no Explorador'; ro = 'Fără reclame în Explorer'; ru = 'Без рекламы в Проводнике' }
-    'pv.officeFiles' = @{ it = 'Niente file di Office.com in Home'; en = 'No Office.com files in Home'; es = 'Sin archivos de Office.com en Inicio'; de = 'Keine Office.com-Dateien in Start'; fr = 'Pas de fichiers Office.com dans Accueil'; pl = 'Bez plików Office.com na stronie głównej'; pt = 'Sem arquivos do Office.com no Início'; ro = 'Fără fișiere Office.com în Pornire'; ru = 'Без файлов Office.com на главной' }
-    'pv.recentFiles' = @{ it = 'Non mostrare i file recenti'; en = 'Don''t show recent files'; es = 'No mostrar archivos recientes'; de = 'Zuletzt verwendete Dateien nicht anzeigen'; fr = 'Ne pas afficher les fichiers récents'; pl = 'Nie pokazuj ostatnich plików'; pt = 'Não mostrar arquivos recentes'; ro = 'Nu afișa fișierele recente'; ru = 'Не показывать недавние файлы' }
-    'pv.frequent' = @{ it = 'Non mostrare le cartelle frequenti'; en = 'Don''t show frequent folders'; es = 'No mostrar carpetas frecuentes'; de = 'Häufige Ordner nicht anzeigen'; fr = 'Ne pas afficher les dossiers fréquents'; pl = 'Nie pokazuj częstych folderów'; pt = 'Não mostrar pastas frequentes'; ro = 'Nu afișa folderele frecvente'; ru = 'Не показывать частые папки' }
-    'pv.recentDocs' = @{ it = 'Non tracciare i documenti aperti'; en = 'Don''t track opened documents'; es = 'No rastrear los documentos abiertos'; de = 'Geöffnete Dokumente nicht verfolgen'; fr = 'Ne pas suivre les documents ouverts'; pl = 'Nie śledź otwieranych dokumentów'; pt = 'Não rastrear documentos abertos'; ro = 'Nu urmări documentele deschise'; ru = 'Не отслеживать открытые документы' }
     'g.priv.uLock' = @{ it = 'Schermata di blocco'; en = 'Lock screen'; es = 'Pantalla de bloqueo'; de = 'Sperrbildschirm'; fr = 'Écran de verrouillage'; pl = 'Ekran blokady'; pt = 'Tela de bloqueio'; ro = 'Ecran de blocare'; ru = 'Экран блокировки' }
-    'pv.lockFacts' = @{ it = 'Niente curiosità e consigli sulla schermata di blocco'; en = 'No fun facts and tips on the lock screen'; es = 'Sin curiosidades ni consejos en la pantalla de bloqueo'; de = 'Keine Fakten und Tipps auf dem Sperrbildschirm'; fr = 'Pas d''anecdotes ni de conseils sur l''écran de verrouillage'; pl = 'Bez ciekawostek i porad na ekranie blokady'; pt = 'Sem curiosidades e dicas na tela de bloqueio'; ro = 'Fără curiozități și sfaturi pe ecranul de blocare'; ru = 'Без фактов и советов на экране блокировки' }
     'pv.lockSpot' = @{ it = 'Niente immagini Spotlight sulla schermata di blocco'; en = 'No Spotlight pictures on the lock screen'; es = 'Sin imágenes Spotlight en la pantalla de bloqueo'; de = 'Keine Spotlight-Bilder auf dem Sperrbildschirm'; fr = 'Pas d''images Spotlight sur l''écran de verrouillage'; pl = 'Bez obrazów Spotlight na ekranie blokady'; pt = 'Sem imagens Spotlight na tela de bloqueio'; ro = 'Fără imagini Spotlight pe ecranul de blocare'; ru = 'Без картинок Spotlight на экране блокировки' }
-    'pv.lockToast' = @{ it = 'Niente notifiche sulla schermata di blocco'; en = 'No notifications on the lock screen'; es = 'Sin notificaciones en la pantalla de bloqueo'; de = 'Keine Benachrichtigungen auf dem Sperrbildschirm'; fr = 'Pas de notifications sur l''écran de verrouillage'; pl = 'Bez powiadomień na ekranie blokady'; pt = 'Sem notificações na tela de bloqueio'; ro = 'Fără notificări pe ecranul de blocare'; ru = 'Без уведомлений на экране блокировки' }
     'g.priv.uSearch' = @{ it = 'Ricerca'; en = 'Search'; es = 'Búsqueda'; de = 'Suche'; fr = 'Recherche'; pl = 'Wyszukiwanie'; pt = 'Pesquisa'; ro = 'Căutare'; ru = 'Поиск' }
     'pv.searchHist' = @{ it = 'Non conservare la cronologia delle ricerche'; en = 'Don''t keep search history'; es = 'No guardar el historial de búsqueda'; de = 'Keinen Suchverlauf speichern'; fr = 'Ne pas garder l''historique de recherche'; pl = 'Nie przechowuj historii wyszukiwania'; pt = 'Não manter o histórico de pesquisa'; ro = 'Nu păstra istoricul căutărilor'; ru = 'Не хранить журнал поиска' }
     'pv.searchHigh' = @{ it = 'Niente contenuti in evidenza nella ricerca'; en = 'No search highlights'; es = 'Sin destacados en la búsqueda'; de = 'Keine Suchhighlights'; fr = 'Pas de temps forts dans la recherche'; pl = 'Bez wyróżnień w wyszukiwaniu'; pt = 'Sem destaques da pesquisa'; ro = 'Fără evidențieri în căutare'; ru = 'Без основных моментов в поиске' }
-    'pv.searchBing' = @{ it = 'Niente risultati web di Bing in Start'; en = 'No Bing web results in Start'; es = 'Sin resultados web de Bing en Inicio'; de = 'Keine Bing-Webergebnisse in Start'; fr = 'Pas de résultats web Bing dans Démarrer'; pl = 'Bez wyników Bing w Start'; pt = 'Sem resultados web do Bing no Iniciar'; ro = 'Fără rezultate web Bing în Start'; ru = 'Без веб-результатов Bing в «Пуске»' }
     'pv.searchMsa' = @{ it = 'Non cercare nei file dell''account Microsoft'; en = 'Don''t search Microsoft account content'; es = 'No buscar en el contenido de la cuenta Microsoft'; de = 'Nicht in Inhalten des Microsoft-Kontos suchen'; fr = 'Ne pas chercher dans le compte Microsoft'; pl = 'Nie przeszukuj zawartości konta Microsoft'; pt = 'Não pesquisar no conteúdo da conta Microsoft'; ro = 'Nu căuta în conținutul contului Microsoft'; ru = 'Не искать в содержимом учётной записи Microsoft' }
     'pv.searchAad' = @{ it = 'Non cercare nei file dell''account di lavoro'; en = 'Don''t search work account content'; es = 'No buscar en el contenido de la cuenta profesional'; de = 'Nicht in Inhalten des Arbeitskontos suchen'; fr = 'Ne pas chercher dans le compte professionnel'; pl = 'Nie przeszukuj zawartości konta służbowego'; pt = 'Não pesquisar no conteúdo da conta corporativa'; ro = 'Nu căuta în conținutul contului de serviciu'; ru = 'Не искать в содержимом рабочей учётной записи' }
     'g.priv.uBar' = @{ it = 'Barra delle applicazioni'; en = 'Taskbar'; es = 'Barra de tareas'; de = 'Taskleiste'; fr = 'Barre des tâches'; pl = 'Pasek zadań'; pt = 'Barra de tarefas'; ro = 'Bara de activități'; ru = 'Панель задач' }
     'pv.meetNow' = @{ it = 'Nascondi Riunione immediata'; en = 'Hide Meet Now'; es = 'Ocultar Reunirse ahora'; de = 'Jetzt besprechen ausblenden'; fr = 'Masquer Conversation instantanée'; pl = 'Ukryj Rozpocznij spotkanie'; pt = 'Ocultar Reunir Agora'; ro = 'Ascunde Întâlnire acum'; ru = 'Скрыть «Провести собрание»' }
-    'pv.chatBtn' = @{ it = 'Nascondi Chat di Teams'; en = 'Hide Teams Chat'; es = 'Ocultar el Chat de Teams'; de = 'Teams-Chat ausblenden'; fr = 'Masquer la Conversation Teams'; pl = 'Ukryj czat Teams'; pt = 'Ocultar o Chat do Teams'; ro = 'Ascunde Chat Teams'; ru = 'Скрыть чат Teams' }
     'g.priv.uMisc' = @{ it = 'Varie'; en = 'Miscellaneous'; es = 'Varios'; de = 'Verschiedenes'; fr = 'Divers'; pl = 'Różne'; pt = 'Diversos'; ro = 'Diverse'; ru = 'Разное' }
     'pv.resume' = @{ it = 'Non riprendere sul PC le attività del telefono'; en = 'Don''t resume phone activities on the PC'; es = 'No reanudar en el PC las actividades del teléfono'; de = 'Handy-Aktivitäten nicht am PC fortsetzen'; fr = 'Ne pas reprendre sur le PC les activités du téléphone'; pl = 'Nie wznawiaj na PC aktywności z telefonu'; pt = 'Não retomar no PC as atividades do celular'; ro = 'Nu relua pe PC activitățile de pe telefon'; ru = 'Не продолжать на ПК действия с телефона' }
     'g.priv.mSec' = @{ it = 'Sicurezza'; en = 'Security'; es = 'Seguridad'; de = 'Sicherheit'; fr = 'Sécurité'; pl = 'Zabezpieczenia'; pt = 'Segurança'; ro = 'Securitate'; ru = 'Безопасность' }
     'pv.pwdReveal' = @{ it = 'Nascondi il pulsante per mostrare la password'; en = 'Hide the password reveal button'; es = 'Ocultar el botón para mostrar la contraseña'; de = 'Schaltfläche zum Anzeigen des Kennworts ausblenden'; fr = 'Masquer le bouton d''affichage du mot de passe'; pl = 'Ukryj przycisk pokazywania hasła'; pt = 'Ocultar o botão de revelar senha'; ro = 'Ascunde butonul de afișare a parolei'; ru = 'Скрыть кнопку показа пароля' }
-    'pv.stepsRec' = @{ it = 'Disattiva Registrazione azioni utente'; en = 'Disable Steps Recorder'; es = 'Desactivar la Grabación de acciones de usuario'; de = 'Schrittaufzeichnung deaktivieren'; fr = 'Désactiver l''Enregistreur d''actions'; pl = 'Wyłącz Rejestrator kroków'; pt = 'Desativar o Gravador de Passos'; ro = 'Dezactivează Înregistrarea pașilor'; ru = 'Отключить средство записи действий' }
-    'pv.inventory' = @{ it = 'Disattiva l''inventario dei programmi'; en = 'Disable the program inventory'; es = 'Desactivar el inventario de programas'; de = 'Programminventar deaktivieren'; fr = 'Désactiver l''inventaire des programmes'; pl = 'Wyłącz inwentaryzację programów'; pt = 'Desativar o inventário de programas'; ro = 'Dezactivează inventarul programelor'; ru = 'Отключить инвентаризацию программ' }
-    'pv.appTelemetry' = @{ it = 'Disattiva la telemetria delle applicazioni'; en = 'Disable application telemetry'; es = 'Desactivar la telemetría de aplicaciones'; de = 'Anwendungstelemetrie deaktivieren'; fr = 'Désactiver la télémétrie des applications'; pl = 'Wyłącz telemetrię aplikacji'; pt = 'Desativar a telemetria de aplicativos'; ro = 'Dezactivează telemetria aplicațiilor'; ru = 'Отключить телеметрию приложений' }
     'pv.lockCam' = @{ it = 'Disattiva la fotocamera sulla schermata di blocco'; en = 'Disable the camera on the lock screen'; es = 'Desactivar la cámara en la pantalla de bloqueo'; de = 'Kamera auf dem Sperrbildschirm deaktivieren'; fr = 'Désactiver la caméra sur l''écran de verrouillage'; pl = 'Wyłącz kamerę na ekranie blokady'; pt = 'Desativar a câmera na tela de bloqueio'; ro = 'Dezactivează camera pe ecranul de blocare'; ru = 'Отключить камеру на экране блокировки' }
     'pv.kms' = @{ it = 'Niente convalida online dell''attivazione KMS'; en = 'No online KMS activation validation'; es = 'Sin validación en línea de la activación KMS'; de = 'Keine Online-Prüfung der KMS-Aktivierung'; fr = 'Pas de validation en ligne de l''activation KMS'; pl = 'Bez weryfikacji online aktywacji KMS'; pt = 'Sem validação online da ativação KMS'; ro = 'Fără validare online a activării KMS'; ru = 'Без онлайн-проверки активации KMS' }
     'pv.drm' = @{ it = 'Niente accesso a Internet per il DRM di Windows Media'; en = 'No Internet access for Windows Media DRM'; es = 'Sin acceso a Internet para el DRM de Windows Media'; de = 'Kein Internetzugriff für Windows Media DRM'; fr = 'Pas d''accès Internet pour le DRM Windows Media'; pl = 'Bez dostępu do Internetu dla DRM Windows Media'; pt = 'Sem acesso à Internet para o DRM do Windows Media'; ro = 'Fără acces la Internet pentru DRM Windows Media'; ru = 'Без доступа в Интернет для DRM Windows Media' }
-    'pv.remoteAssist' = @{ it = 'Disattiva Assistenza remota'; en = 'Disable Remote Assistance'; es = 'Desactivar Asistencia remota'; de = 'Remoteunterstützung deaktivieren'; fr = 'Désactiver l''Assistance à distance'; pl = 'Wyłącz Pomoc zdalną'; pt = 'Desativar a Assistência Remota'; ro = 'Dezactivează Asistența la distanță'; ru = 'Отключить удалённого помощника' }
     'g.priv.mPriv' = @{ it = 'Privacy'; en = 'Privacy'; es = 'Privacidad'; de = 'Datenschutz'; fr = 'Confidentialité'; pl = 'Prywatność'; pt = 'Privacidade'; ro = 'Confidențialitate'; ru = 'Конфиденциальность' }
-    'pv.telemetry' = @{ it = 'Riduci al minimo la telemetria'; en = 'Reduce telemetry to the minimum'; es = 'Reducir la telemetría al mínimo'; de = 'Telemetrie auf das Minimum senken'; fr = 'Réduire la télémétrie au minimum'; pl = 'Ogranicz telemetrię do minimum'; pt = 'Reduzir a telemetria ao mínimo'; ro = 'Redu telemetria la minim'; ru = 'Свести телеметрию к минимуму' }
     'pv.deviceName' = @{ it = 'Non inviare il nome del PC con la telemetria'; en = 'Don''t send the PC name with telemetry'; es = 'No enviar el nombre del PC con la telemetría'; de = 'PC-Namen nicht mit der Telemetrie senden'; fr = 'Ne pas envoyer le nom du PC avec la télémétrie'; pl = 'Nie wysyłaj nazwy komputera z telemetrią'; pt = 'Não enviar o nome do PC com a telemetria'; ro = 'Nu trimite numele PC-ului cu telemetria'; ru = 'Не отправлять имя ПК с телеметрией' }
-    'pv.feedbackNotif' = @{ it = 'Niente richieste di feedback'; en = 'No feedback requests'; es = 'Sin solicitudes de comentarios'; de = 'Keine Feedback-Anfragen'; fr = 'Pas de demandes de commentaires'; pl = 'Bez próśb o opinie'; pt = 'Sem pedidos de comentários'; ro = 'Fără solicitări de feedback'; ru = 'Без запросов отзывов' }
     'pv.diagLogs' = @{ it = 'Limita la raccolta dei log di diagnostica'; en = 'Limit diagnostic log collection'; es = 'Limitar la recopilación de registros de diagnóstico'; de = 'Sammlung von Diagnoseprotokollen begrenzen'; fr = 'Limiter la collecte des journaux de diagnostic'; pl = 'Ogranicz zbieranie dzienników diagnostycznych'; pt = 'Limitar a coleta de logs de diagnóstico'; ro = 'Limitează colectarea jurnalelor de diagnostic'; ru = 'Ограничить сбор журналов диагностики' }
     'pv.dumps' = @{ it = 'Limita l''invio dei dump di memoria'; en = 'Limit memory dump uploads'; es = 'Limitar el envío de volcados de memoria'; de = 'Hochladen von Speicherabbildern begrenzen'; fr = 'Limiter l''envoi des vidages mémoire'; pl = 'Ogranicz wysyłanie zrzutów pamięci'; pt = 'Limitar o envio de despejos de memória'; ro = 'Limitează trimiterea imaginilor de memorie'; ru = 'Ограничить отправку дампов памяти' }
     'pv.oneSettings' = @{ it = 'Non scaricare configurazioni della telemetria'; en = 'Don''t download telemetry configurations'; es = 'No descargar configuraciones de telemetría'; de = 'Keine Telemetriekonfigurationen herunterladen'; fr = 'Ne pas télécharger les configurations de télémétrie'; pl = 'Nie pobieraj konfiguracji telemetrii'; pt = 'Não baixar configurações de telemetria'; ro = 'Nu descărca configurări de telemetrie'; ru = 'Не загружать конфигурации телеметрии' }
     'pv.diagViewer' = @{ it = 'Disattiva il visualizzatore dati di diagnostica'; en = 'Disable the diagnostic data viewer'; es = 'Desactivar el visor de datos de diagnóstico'; de = 'Diagnosedatenanzeige deaktivieren'; fr = 'Désactiver la visionneuse des données de diagnostic'; pl = 'Wyłącz podgląd danych diagnostycznych'; pt = 'Desativar o visualizador de dados de diagnóstico'; ro = 'Dezactivează vizualizatorul datelor de diagnostic'; ru = 'Отключить просмотр диагностических данных' }
-    'pv.mAdId' = @{ it = 'Disattiva l''ID pubblicitario per tutti'; en = 'Disable the advertising ID for everyone'; es = 'Desactivar el ID de publicidad para todos'; de = 'Werbe-ID für alle deaktivieren'; fr = 'Désactiver l''identifiant publicitaire pour tous'; pl = 'Wyłącz identyfikator reklamowy dla wszystkich'; pt = 'Desativar a ID de anúncio para todos'; ro = 'Dezactivează ID-ul de publicitate pentru toți'; ru = 'Отключить рекламный идентификатор для всех' }
     'pv.ceip' = @{ it = 'Esci dal programma di miglioramento dell''esperienza'; en = 'Leave the Customer Experience Improvement Program'; es = 'Salir del Programa de mejora de la experiencia'; de = 'Programm zur Verbesserung der Benutzerfreundlichkeit verlassen'; fr = 'Quitter le Programme d''amélioration de l''expérience'; pl = 'Opuść program poprawy jakości obsługi'; pt = 'Sair do Programa de Aperfeiçoamento da Experiência'; ro = 'Ieși din Programul de îmbunătățire a experienței'; ru = 'Выйти из программы улучшения качества' }
     'pv.handErr' = @{ it = 'Non inviare errori di riconoscimento della scrittura'; en = 'Don''t send handwriting recognition errors'; es = 'No enviar errores de reconocimiento de escritura'; de = 'Keine Handschrift-Erkennungsfehler senden'; fr = 'Ne pas envoyer les erreurs de reconnaissance d''écriture'; pl = 'Nie wysyłaj błędów rozpoznawania pisma'; pt = 'Não enviar erros de reconhecimento de escrita'; ro = 'Nu trimite erorile de recunoaștere a scrisului'; ru = 'Не отправлять ошибки распознавания почерка' }
     'pv.handShare' = @{ it = 'Non condividere i dati della penna'; en = 'Don''t share pen data'; es = 'No compartir datos del lápiz'; de = 'Keine Stiftdaten teilen'; fr = 'Ne pas partager les données du stylet'; pl = 'Nie udostępniaj danych pióra'; pt = 'Não compartilhar dados da caneta'; ro = 'Nu partaja datele creionului'; ru = 'Не передавать данные пера' }
@@ -11853,10 +11573,8 @@ $script:CatText = @{
     'pv.wer' = @{ it = 'Disattiva la segnalazione errori'; en = 'Disable error reporting'; es = 'Desactivar el informe de errores'; de = 'Fehlerberichterstattung deaktivieren'; fr = 'Désactiver le rapport d''erreurs'; pl = 'Wyłącz raportowanie błędów'; pt = 'Desativar o relatório de erros'; ro = 'Dezactivează raportarea erorilor'; ru = 'Отключить отчёты об ошибках' }
     'pv.cloudContent' = @{ it = 'Niente contenuti ottimizzati dal cloud'; en = 'No cloud-optimized content'; es = 'Sin contenido optimizado desde la nube'; de = 'Keine cloudoptimierten Inhalte'; fr = 'Pas de contenu optimisé depuis le cloud'; pl = 'Bez treści optymalizowanych w chmurze'; pt = 'Sem conteúdo otimizado pela nuvem'; ro = 'Fără conținut optimizat din cloud'; ru = 'Без содержимого, оптимизированного облаком' }
     'pv.softLanding' = @{ it = 'Niente consigli su Windows'; en = 'No Windows tips'; es = 'Sin consejos de Windows'; de = 'Keine Windows-Tipps'; fr = 'Pas de conseils Windows'; pl = 'Bez porad Windows'; pt = 'Sem dicas do Windows'; ro = 'Fără sfaturi Windows'; ru = 'Без советов Windows' }
-    'pv.consumer' = @{ it = 'Niente app consumer installate da sole'; en = 'No consumer apps installed automatically'; es = 'Sin apps de consumo instaladas automáticamente'; de = 'Keine automatisch installierten Verbraucher-Apps'; fr = 'Pas d''apps grand public installées automatiquement'; pl = 'Bez automatycznie instalowanych aplikacji konsumenckich'; pt = 'Sem apps de consumidor instalados automaticamente'; ro = 'Fără aplicații de consum instalate automat'; ru = 'Без автоматической установки потребительских приложений' }
     'pv.consumerAcct' = @{ it = 'Niente contenuti legati all''account consumer'; en = 'No consumer account content'; es = 'Sin contenido vinculado a la cuenta de consumo'; de = 'Keine Inhalte zum Verbraucherkonto'; fr = 'Pas de contenu lié au compte grand public'; pl = 'Bez treści powiązanych z kontem konsumenckim'; pt = 'Sem conteúdo ligado à conta pessoal'; ro = 'Fără conținut legat de contul personal'; ru = 'Без содержимого личной учётной записи' }
     'g.priv.mClip' = @{ it = 'Cronologia attività e Appunti'; en = 'Activity history and clipboard'; es = 'Historial de actividad y portapapeles'; de = 'Aktivitätsverlauf und Zwischenablage'; fr = 'Historique d''activités et presse-papiers'; pl = 'Historia aktywności i schowek'; pt = 'Histórico de atividades e área de transferência'; ro = 'Istoric activități și clipboard'; ru = 'Журнал действий и буфер обмена' }
-    'pv.actFeed' = @{ it = 'Disattiva la cronologia delle attività'; en = 'Disable activity history'; es = 'Desactivar el historial de actividad'; de = 'Aktivitätsverlauf deaktivieren'; fr = 'Désactiver l''historique d''activités'; pl = 'Wyłącz historię aktywności'; pt = 'Desativar o histórico de atividades'; ro = 'Dezactivează istoricul activităților'; ru = 'Отключить журнал действий' }
     'pv.mClip' = @{ it = 'Disattiva la cronologia degli Appunti per tutti'; en = 'Disable clipboard history for everyone'; es = 'Desactivar el historial del portapapeles para todos'; de = 'Zwischenablageverlauf für alle deaktivieren'; fr = 'Désactiver l''historique du presse-papiers pour tous'; pl = 'Wyłącz historię schowka dla wszystkich'; pt = 'Desativar o histórico da área de transferência para todos'; ro = 'Dezactivează istoricul clipboardului pentru toți'; ru = 'Отключить журнал буфера обмена для всех' }
     'pv.crossClip' = @{ it = 'Niente Appunti condivisi tra dispositivi'; en = 'No clipboard sharing across devices'; es = 'Sin portapapeles compartido entre dispositivos'; de = 'Keine geräteübergreifende Zwischenablage'; fr = 'Pas de presse-papiers partagé entre appareils'; pl = 'Bez schowka między urządzeniami'; pt = 'Sem área de transferência entre dispositivos'; ro = 'Fără clipboard partajat între dispozitive'; ru = 'Без общего буфера обмена между устройствами' }
     'g.priv.mApps' = @{ it = 'Privacy delle app'; en = 'App privacy'; es = 'Privacidad de las apps'; de = 'App-Datenschutz'; fr = 'Confidentialité des apps'; pl = 'Prywatność aplikacji'; pt = 'Privacidade dos apps'; ro = 'Confidențialitatea aplicațiilor'; ru = 'Конфиденциальность приложений' }
@@ -11878,7 +11596,6 @@ $script:CatText = @{
     'pv.mRadios' = @{ it = 'Nega alle app il controllo delle antenne'; en = 'Deny apps radio control'; es = 'Denegar a las apps el control de las radios'; de = 'Apps die Funksteuerung verweigern'; fr = 'Refuser aux apps le contrôle des radios'; pl = 'Odmów aplikacjom sterowania radiami'; pt = 'Negar aos apps o controle dos rádios'; ro = 'Refuză aplicațiilor controlul antenelor'; ru = 'Запретить приложениям управление радиомодулями' }
     'pv.mNotif' = @{ it = 'Nega alle app le notifiche'; en = 'Deny apps notifications'; es = 'Denegar a las apps las notificaciones'; de = 'Apps Benachrichtigungen verweigern'; fr = 'Refuser aux apps les notifications'; pl = 'Odmów aplikacjom powiadomień'; pt = 'Negar aos apps as notificações'; ro = 'Refuză aplicațiilor notificările'; ru = 'Запретить приложениям уведомления' }
     'pv.mLocation' = @{ it = 'Nega alle app la posizione'; en = 'Deny apps location'; es = 'Denegar a las apps la ubicación'; de = 'Apps den Standort verweigern'; fr = 'Refuser aux apps la position'; pl = 'Odmów aplikacjom lokalizacji'; pt = 'Negar aos apps a localização'; ro = 'Refuză aplicațiilor locația'; ru = 'Запретить приложениям местоположение' }
-    'pv.mBackground' = @{ it = 'Nega alle app l''esecuzione in background'; en = 'Deny apps background running'; es = 'Denegar a las apps el segundo plano'; de = 'Apps den Hintergrundbetrieb verweigern'; fr = 'Refuser aux apps l''arrière-plan'; pl = 'Odmów aplikacjom działania w tle'; pt = 'Negar aos apps o segundo plano'; ro = 'Refuză aplicațiilor rularea în fundal'; ru = 'Запретить приложениям фоновую работу' }
     'pv.mCamera' = @{ it = 'Nega alle app la fotocamera'; en = 'Deny apps the camera'; es = 'Denegar a las apps la cámara'; de = 'Apps die Kamera verweigern'; fr = 'Refuser aux apps la caméra'; pl = 'Odmów aplikacjom kamery'; pt = 'Negar aos apps a câmera'; ro = 'Refuză aplicațiilor camera'; ru = 'Запретить приложениям камеру' }
     'pv.mMic' = @{ it = 'Nega alle app il microfono'; en = 'Deny apps the microphone'; es = 'Denegar a las apps el micrófono'; de = 'Apps das Mikrofon verweigern'; fr = 'Refuser aux apps le micro'; pl = 'Odmów aplikacjom mikrofonu'; pt = 'Negar aos apps o microfone'; ro = 'Refuză aplicațiilor microfonul'; ru = 'Запретить приложениям микрофон' }
     'g.priv.mEdge' = @{ it = 'Microsoft Edge'; en = 'Microsoft Edge'; es = 'Microsoft Edge'; de = 'Microsoft Edge'; fr = 'Microsoft Edge'; pl = 'Microsoft Edge'; pt = 'Microsoft Edge'; ro = 'Microsoft Edge'; ru = 'Microsoft Edge' }
@@ -11893,13 +11610,10 @@ $script:CatText = @{
     'pv.ePreload' = @{ it = 'Non precaricare le pagine'; en = 'Don''t preload pages'; es = 'No precargar páginas'; de = 'Seiten nicht vorab laden'; fr = 'Ne pas précharger les pages'; pl = 'Nie ładuj stron z wyprzedzeniem'; pt = 'Não pré-carregar páginas'; ro = 'Nu preîncărca paginile'; ru = 'Не загружать страницы заранее' }
     'pv.eDiag' = @{ it = 'Nessun dato di diagnostica da Edge'; en = 'No diagnostic data from Edge'; es = 'Sin datos de diagnóstico de Edge'; de = 'Keine Diagnosedaten von Edge'; fr = 'Pas de données de diagnostic d''Edge'; pl = 'Bez danych diagnostycznych z Edge'; pt = 'Sem dados de diagnóstico do Edge'; ro = 'Fără date de diagnostic din Edge'; ru = 'Без диагностических данных Edge' }
     'pv.eRewards' = @{ it = 'Nascondi Microsoft Rewards'; en = 'Hide Microsoft Rewards'; es = 'Ocultar Microsoft Rewards'; de = 'Microsoft Rewards ausblenden'; fr = 'Masquer Microsoft Rewards'; pl = 'Ukryj Microsoft Rewards'; pt = 'Ocultar o Microsoft Rewards'; ro = 'Ascunde Microsoft Rewards'; ru = 'Скрыть Microsoft Rewards' }
-    'pv.eRecomm' = @{ it = 'Niente consigli e notifiche promozionali'; en = 'No recommendations and promo notices'; es = 'Sin recomendaciones ni avisos promocionales'; de = 'Keine Empfehlungen und Werbehinweise'; fr = 'Pas de recommandations ni d''avis promotionnels'; pl = 'Bez rekomendacji i powiadomień promocyjnych'; pt = 'Sem recomendações e avisos promocionais'; ro = 'Fără recomandări și anunțuri promoționale'; ru = 'Без рекомендаций и рекламных уведомлений' }
     'pv.eIeRedirect' = @{ it = 'Non aprire in Edge i siti di Internet Explorer'; en = 'Don''t open Internet Explorer sites in Edge'; es = 'No abrir en Edge los sitios de Internet Explorer'; de = 'Internet-Explorer-Seiten nicht in Edge öffnen'; fr = 'Ne pas ouvrir les sites d''Internet Explorer dans Edge'; pl = 'Nie otwieraj witryn Internet Explorer w Edge'; pt = 'Não abrir no Edge os sites do Internet Explorer'; ro = 'Nu deschide în Edge site-urile Internet Explorer'; ru = 'Не открывать в Edge сайты Internet Explorer' }
     'pv.eCcFill' = @{ it = 'Non salvare le carte di credito'; en = 'Don''t save credit cards'; es = 'No guardar tarjetas de crédito'; de = 'Keine Kreditkarten speichern'; fr = 'Ne pas enregistrer les cartes bancaires'; pl = 'Nie zapisuj kart kredytowych'; pt = 'Não salvar cartões de crédito'; ro = 'Nu salva cardurile de credit'; ru = 'Не сохранять банковские карты' }
     'pv.eAddrFill' = @{ it = 'Non compilare automaticamente gli indirizzi'; en = 'Don''t autofill addresses'; es = 'No autocompletar direcciones'; de = 'Adressen nicht automatisch ausfüllen'; fr = 'Ne pas remplir automatiquement les adresses'; pl = 'Nie wypełniaj automatycznie adresów'; pt = 'Não preencher endereços automaticamente'; ro = 'Nu completa automat adresele'; ru = 'Не заполнять адреса автоматически' }
     'pv.eSearchSugg' = @{ it = 'Niente suggerimenti di ricerca'; en = 'No search suggestions'; es = 'Sin sugerencias de búsqueda'; de = 'Keine Suchvorschläge'; fr = 'Pas de suggestions de recherche'; pl = 'Bez sugestii wyszukiwania'; pt = 'Sem sugestões de pesquisa'; ro = 'Fără sugestii de căutare'; ru = 'Без поисковых подсказок' }
-    'pv.eBoost' = @{ it = 'Disattiva l''avvio rapido'; en = 'Disable startup boost'; es = 'Desactivar el aumento de inicio'; de = 'Startbeschleunigung deaktivieren'; fr = 'Désactiver le démarrage rapide'; pl = 'Wyłącz przyspieszenie uruchamiania'; pt = 'Desativar o aumento de inicialização'; ro = 'Dezactivează accelerarea pornirii'; ru = 'Отключить ускорение запуска' }
-    'pv.eBackground' = @{ it = 'Chiudi Edge del tutto quando esci'; en = 'Fully close Edge on exit'; es = 'Cerrar Edge por completo al salir'; de = 'Edge beim Beenden vollständig schließen'; fr = 'Fermer complètement Edge en quittant'; pl = 'Zamykaj Edge całkowicie przy wyjściu'; pt = 'Fechar o Edge por completo ao sair'; ro = 'Închide Edge complet la ieșire'; ru = 'Полностью закрывать Edge при выходе' }
     'pv.eSiteSafety' = @{ it = 'Niente informazioni sui siti dai servizi Microsoft'; en = 'No site info from Microsoft services'; es = 'Sin información de sitios de los servicios de Microsoft'; de = 'Keine Website-Infos von Microsoft-Diensten'; fr = 'Pas d''infos de sites par les services Microsoft'; pl = 'Bez informacji o witrynach z usług Microsoft'; pt = 'Sem informações de sites dos serviços Microsoft'; ro = 'Fără informații despre site-uri din serviciile Microsoft'; ru = 'Без сведений о сайтах от служб Microsoft' }
     'pv.eSpell' = @{ it = 'Controllo ortografico solo locale'; en = 'Local spell checking only'; es = 'Corrector ortográfico solo local'; de = 'Nur lokale Rechtschreibprüfung'; fr = 'Correcteur orthographique local uniquement'; pl = 'Tylko lokalne sprawdzanie pisowni'; pt = 'Verificação ortográfica só local'; ro = 'Verificare ortografică doar locală'; ru = 'Только локальная проверка орфографии' }
     'pv.eNewTab' = @{ it = 'Pagina Nuova scheda senza notizie'; en = 'New tab page without news'; es = 'Nueva pestaña sin noticias'; de = 'Neuer Tab ohne Nachrichten'; fr = 'Nouvel onglet sans actualités'; pl = 'Nowa karta bez wiadomości'; pt = 'Nova guia sem notícias'; ro = 'Filă nouă fără știri'; ru = 'Новая вкладка без новостей' }
@@ -11907,7 +11621,6 @@ $script:CatText = @{
     'pv.eSmartScreen' = @{ it = 'Disattiva SmartScreen in Edge'; en = 'Disable SmartScreen in Edge'; es = 'Desactivar SmartScreen en Edge'; de = 'SmartScreen in Edge deaktivieren'; fr = 'Désactiver SmartScreen dans Edge'; pl = 'Wyłącz SmartScreen w Edge'; pt = 'Desativar o SmartScreen no Edge'; ro = 'Dezactivează SmartScreen în Edge'; ru = 'Отключить SmartScreen в Edge' }
     'pv.eTypo' = @{ it = 'Disattiva il controllo degli errori di battitura'; en = 'Disable the typosquatting checker'; es = 'Desactivar el comprobador de errores tipográficos'; de = 'Tippfehlerprüfung deaktivieren'; fr = 'Désactiver le vérificateur de fautes de frappe'; pl = 'Wyłącz sprawdzanie literówek w adresach'; pt = 'Desativar o verificador de erros de digitação'; ro = 'Dezactivează verificarea greșelilor de tastare'; ru = 'Отключить проверку опечаток в адресах' }
     'g.priv.mEdgeAi' = @{ it = 'Microsoft Edge e IA'; en = 'Microsoft Edge and AI'; es = 'Microsoft Edge e IA'; de = 'Microsoft Edge und KI'; fr = 'Microsoft Edge et IA'; pl = 'Microsoft Edge i AI'; pt = 'Microsoft Edge e IA'; ro = 'Microsoft Edge și IA'; ru = 'Microsoft Edge и ИИ' }
-    'pv.eSidebar' = @{ it = 'Disattiva la barra laterale e Copilot'; en = 'Disable the sidebar and Copilot'; es = 'Desactivar la barra lateral y Copilot'; de = 'Seitenleiste und Copilot deaktivieren'; fr = 'Désactiver la barre latérale et Copilot'; pl = 'Wyłącz pasek boczny i Copilot'; pt = 'Desativar a barra lateral e o Copilot'; ro = 'Dezactivează bara laterală și Copilot'; ru = 'Отключить боковую панель и Copilot' }
     'pv.ePageCtx' = @{ it = 'Copilot non legge le pagine aperte'; en = 'Copilot can''t read open pages'; es = 'Copilot no puede leer las páginas abiertas'; de = 'Copilot darf geöffnete Seiten nicht lesen'; fr = 'Copilot ne peut pas lire les pages ouvertes'; pl = 'Copilot nie może czytać otwartych stron'; pt = 'O Copilot não pode ler as páginas abertas'; ro = 'Copilot nu poate citi paginile deschise'; ru = 'Copilot не может читать открытые страницы' }
     'pv.eCompose' = @{ it = 'Niente scrittura assistita dall''IA'; en = 'No AI-assisted writing'; es = 'Sin escritura asistida por IA'; de = 'Kein KI-gestütztes Schreiben'; fr = 'Pas d''écriture assistée par l''IA'; pl = 'Bez pisania wspomaganego przez AI'; pt = 'Sem escrita assistida por IA'; ro = 'Fără scriere asistată de IA'; ru = 'Без письма с помощью ИИ' }
     'pv.eHistAi' = @{ it = 'Niente ricerca IA nella cronologia'; en = 'No AI search in history'; es = 'Sin búsqueda con IA en el historial'; de = 'Keine KI-Suche im Verlauf'; fr = 'Pas de recherche IA dans l''historique'; pl = 'Bez wyszukiwania AI w historii'; pt = 'Sem pesquisa com IA no histórico'; ro = 'Fără căutare IA în istoric'; ru = 'Без поиска ИИ по журналу' }
@@ -11922,8 +11635,6 @@ $script:CatText = @{
     'pv.searchLoc' = @{ it = 'La ricerca non usa la posizione'; en = 'Search doesn''t use location'; es = 'La búsqueda no usa la ubicación'; de = 'Suche nutzt keinen Standort'; fr = 'La recherche n''utilise pas la position'; pl = 'Wyszukiwanie nie używa lokalizacji'; pt = 'A pesquisa não usa a localização'; ro = 'Căutarea nu folosește locația'; ru = 'Поиск не использует местоположение' }
     'pv.mHighlights' = @{ it = 'Niente contenuti in evidenza per tutti'; en = 'No search highlights for everyone'; es = 'Sin destacados de búsqueda para todos'; de = 'Keine Suchhighlights für alle'; fr = 'Pas de temps forts de recherche pour tous'; pl = 'Bez wyróżnień wyszukiwania dla wszystkich'; pt = 'Sem destaques da pesquisa para todos'; ro = 'Fără evidențieri în căutare pentru toți'; ru = 'Без основных моментов поиска для всех' }
     'g.priv.mAi' = @{ it = 'Windows AI'; en = 'Windows AI'; es = 'IA de Windows'; de = 'Windows-KI'; fr = 'IA de Windows'; pl = 'Sztuczna inteligencja Windows'; pt = 'IA do Windows'; ro = 'IA Windows'; ru = 'ИИ в Windows' }
-    'pv.mCopilot' = @{ it = 'Disattiva Copilot per tutti'; en = 'Disable Copilot for everyone'; es = 'Desactivar Copilot para todos'; de = 'Copilot für alle deaktivieren'; fr = 'Désactiver Copilot pour tous'; pl = 'Wyłącz Copilot dla wszystkich'; pt = 'Desativar o Copilot para todos'; ro = 'Dezactivează Copilot pentru toți'; ru = 'Отключить Copilot для всех' }
-    'pv.mRecall' = @{ it = 'Disattiva Recall e l''analisi dello schermo'; en = 'Disable Recall and screen analysis'; es = 'Desactivar Recall y el análisis de pantalla'; de = 'Recall und Bildschirmanalyse deaktivieren'; fr = 'Désactiver Recall et l''analyse de l''écran'; pl = 'Wyłącz Recall i analizę ekranu'; pt = 'Desativar o Recall e a análise da tela'; ro = 'Dezactivează Recall și analiza ecranului'; ru = 'Отключить Recall и анализ экрана' }
     'pv.mClickToDo' = @{ it = 'Disattiva Click to Do per tutti'; en = 'Disable Click to Do for everyone'; es = 'Desactivar Click to Do para todos'; de = 'Click to Do für alle deaktivieren'; fr = 'Désactiver Click to Do pour tous'; pl = 'Wyłącz Click to Do dla wszystkich'; pt = 'Desativar o Click to Do para todos'; ro = 'Dezactivează Click to Do pentru toți'; ru = 'Отключить Click to Do для всех' }
     'pv.agents' = @{ it = 'Disattiva gli agenti IA'; en = 'Disable AI agents'; es = 'Desactivar los agentes de IA'; de = 'KI-Agenten deaktivieren'; fr = 'Désactiver les agents IA'; pl = 'Wyłącz agentów AI'; pt = 'Desativar os agentes de IA'; ro = 'Dezactivează agenții IA'; ru = 'Отключить ИИ-агентов' }
     'pv.settingsAgent' = @{ it = 'Disattiva l''agente di Impostazioni'; en = 'Disable the Settings agent'; es = 'Desactivar el agente de Configuración'; de = 'Einstellungs-Agent deaktivieren'; fr = 'Désactiver l''agent des Paramètres'; pl = 'Wyłącz agenta Ustawień'; pt = 'Desativar o agente de Configurações'; ro = 'Dezactivează agentul din Setări'; ru = 'Отключить агента «Параметров»' }
@@ -11936,17 +11647,13 @@ $script:CatText = @{
     'pv.winLocProv' = @{ it = 'Disattiva il provider di posizione di Windows'; en = 'Disable the Windows location provider'; es = 'Desactivar el proveedor de ubicación de Windows'; de = 'Windows-Standortanbieter deaktivieren'; fr = 'Désactiver le fournisseur de position de Windows'; pl = 'Wyłącz dostawcę lokalizacji Windows'; pt = 'Desativar o provedor de localização do Windows'; ro = 'Dezactivează furnizorul de locație Windows'; ru = 'Отключить поставщика местоположения Windows' }
     'pv.locScript' = @{ it = 'Niente script di localizzazione'; en = 'No location scripting'; es = 'Sin scripts de ubicación'; de = 'Keine Standortskripts'; fr = 'Pas de scripts de localisation'; pl = 'Bez skryptów lokalizacji'; pt = 'Sem scripts de localização'; ro = 'Fără scripturi de localizare'; ru = 'Без сценариев определения местоположения' }
     'pv.mapsAuto' = @{ it = 'Niente aggiornamento automatico delle mappe'; en = 'No automatic map updates'; es = 'Sin actualización automática de mapas'; de = 'Keine automatischen Kartenupdates'; fr = 'Pas de mise à jour automatique des cartes'; pl = 'Bez automatycznych aktualizacji map'; pt = 'Sem atualização automática de mapas'; ro = 'Fără actualizarea automată a hărților'; ru = 'Без автообновления карт' }
-    'pv.locAll' = @{ it = 'Disattiva la localizzazione'; en = 'Disable location'; es = 'Desactivar la ubicación'; de = 'Standort deaktivieren'; fr = 'Désactiver la localisation'; pl = 'Wyłącz lokalizację'; pt = 'Desativar a localização'; ro = 'Dezactivează localizarea'; ru = 'Отключить определение местоположения' }
     'pv.sensors' = @{ it = 'Disattiva i sensori'; en = 'Disable sensors'; es = 'Desactivar los sensores'; de = 'Sensoren deaktivieren'; fr = 'Désactiver les capteurs'; pl = 'Wyłącz czujniki'; pt = 'Desativar os sensores'; ro = 'Dezactivează senzorii'; ru = 'Отключить датчики' }
     'pv.findDevice' = @{ it = 'Disattiva Trova il mio dispositivo'; en = 'Disable Find my device'; es = 'Desactivar Buscar mi dispositivo'; de = 'Mein Gerät suchen deaktivieren'; fr = 'Désactiver Localiser mon appareil'; pl = 'Wyłącz Znajdź moje urządzenie'; pt = 'Desativar Localizar meu dispositivo'; ro = 'Dezactivează Găsește dispozitivul meu'; ru = 'Отключить «Поиск устройства»' }
     'g.priv.mUpd' = @{ it = 'Windows Update'; en = 'Windows Update'; es = 'Windows Update'; de = 'Windows Update'; fr = 'Windows Update'; pl = 'Windows Update'; pt = 'Windows Update'; ro = 'Windows Update'; ru = 'Центр обновления Windows' }
-    'pv.p2p' = @{ it = 'Niente condivisione degli aggiornamenti con altri PC'; en = 'No update sharing with other PCs'; es = 'No compartir actualizaciones con otros PC'; de = 'Updates nicht mit anderen PCs teilen'; fr = 'Pas de partage des mises à jour avec d''autres PC'; pl = 'Nie udostępniaj aktualizacji innym komputerom'; pt = 'Não compartilhar atualizações com outros PCs'; ro = 'Nu partaja actualizările cu alte PC-uri'; ru = 'Не раздавать обновления другим ПК' }
     'pv.speechUpd' = @{ it = 'Niente aggiornamento dei modelli vocali'; en = 'No speech model updates'; es = 'Sin actualizaciones de modelos de voz'; de = 'Keine Updates der Sprachmodelle'; fr = 'Pas de mise à jour des modèles vocaux'; pl = 'Bez aktualizacji modeli mowy'; pt = 'Sem atualizações de modelos de fala'; ro = 'Fără actualizări ale modelelor vocale'; ru = 'Без обновлений речевых моделей' }
     'pv.mrtReport' = @{ it = 'Non inviare i risultati dello strumento antimalware'; en = 'Don''t send malware removal tool results'; es = 'No enviar resultados de la herramienta de eliminación de malware'; de = 'Ergebnisse des Malware-Entfernungstools nicht senden'; fr = 'Ne pas envoyer les résultats de l''outil de suppression de logiciels malveillants'; pl = 'Nie wysyłaj wyników narzędzia do usuwania złośliwego oprogramowania'; pt = 'Não enviar resultados da ferramenta de remoção de malware'; ro = 'Nu trimite rezultatele instrumentului de eliminare malware'; ru = 'Не отправлять результаты средства удаления вредоносных программ' }
     'pv.preview' = @{ it = 'Blocca le versioni di prova di Windows'; en = 'Block Windows preview builds'; es = 'Bloquear las compilaciones de prueba de Windows'; de = 'Windows-Vorabversionen sperren'; fr = 'Bloquer les versions préliminaires de Windows'; pl = 'Blokuj wersje zapoznawcze Windows'; pt = 'Bloquear builds de prévia do Windows'; ro = 'Blochează versiunile de previzualizare Windows'; ru = 'Блокировать предварительные сборки Windows' }
     'pv.noReboot' = @{ it = 'Niente riavvii automatici con utenti collegati'; en = 'No automatic restarts with signed-in users'; es = 'Sin reinicios automáticos con usuarios conectados'; de = 'Keine automatischen Neustarts mit angemeldeten Benutzern'; fr = 'Pas de redémarrage automatique avec des utilisateurs connectés'; pl = 'Bez automatycznych restartów przy zalogowanych użytkownikach'; pt = 'Sem reinícios automáticos com usuários conectados'; ro = 'Fără reporniri automate cu utilizatori conectați'; ru = 'Без автоперезагрузки при вошедших пользователях' }
-    'pv.wuDrivers' = @{ it = 'Niente driver da Windows Update'; en = 'No drivers from Windows Update'; es = 'Sin controladores de Windows Update'; de = 'Keine Treiber über Windows Update'; fr = 'Pas de pilotes via Windows Update'; pl = 'Bez sterowników z Windows Update'; pt = 'Sem drivers pelo Windows Update'; ro = 'Fără drivere din Windows Update'; ru = 'Без драйверов из Центра обновления' }
-    'pv.storeAuto' = @{ it = 'Niente aggiornamenti automatici delle app dello Store'; en = 'No automatic Store app updates'; es = 'Sin actualizaciones automáticas de apps de Store'; de = 'Keine automatischen Store-App-Updates'; fr = 'Pas de mise à jour automatique des apps du Store'; pl = 'Bez automatycznych aktualizacji aplikacji ze Sklepu'; pt = 'Sem atualizações automáticas de apps da Store'; ro = 'Fără actualizări automate ale aplicațiilor din Store'; ru = 'Без автообновления приложений Store' }
     'pv.mrtOffer' = @{ it = 'Non scaricare lo strumento di rimozione malware'; en = 'Don''t download the malware removal tool'; es = 'No descargar la herramienta de eliminación de malware'; de = 'Malware-Entfernungstool nicht herunterladen'; fr = 'Ne pas télécharger l''outil de suppression de logiciels malveillants'; pl = 'Nie pobieraj narzędzia do usuwania złośliwego oprogramowania'; pt = 'Não baixar a ferramenta de remoção de malware'; ro = 'Nu descărca instrumentul de eliminare malware'; ru = 'Не загружать средство удаления вредоносных программ' }
     'g.priv.mDef' = @{ it = 'Microsoft Defender e SpyNet'; en = 'Microsoft Defender and SpyNet'; es = 'Microsoft Defender y SpyNet'; de = 'Microsoft Defender und SpyNet'; fr = 'Microsoft Defender et SpyNet'; pl = 'Microsoft Defender i SpyNet'; pt = 'Microsoft Defender e SpyNet'; ro = 'Microsoft Defender și SpyNet'; ru = 'Microsoft Defender и SpyNet' }
     'pv.samples' = @{ it = 'Non inviare campioni di file'; en = 'Don''t send file samples'; es = 'No enviar muestras de archivos'; de = 'Keine Dateiproben senden'; fr = 'Ne pas envoyer d''échantillons de fichiers'; pl = 'Nie wysyłaj próbek plików'; pt = 'Não enviar amostras de arquivos'; ro = 'Nu trimite mostre de fișiere'; ru = 'Не отправлять образцы файлов' }
@@ -11955,12 +11662,10 @@ $script:CatText = @{
     'g.priv.mExp' = @{ it = 'Esplora file'; en = 'File Explorer'; es = 'Explorador de archivos'; de = 'Datei-Explorer'; fr = 'Explorateur de fichiers'; pl = 'Eksplorator plików'; pt = 'Explorador de Arquivos'; ro = 'Explorer fișiere'; ru = 'Проводник' }
     'pv.openWith' = @{ it = 'Niente ricerca nello Store in «Apri con»'; en = 'No Store lookup in «Open with»'; es = 'Sin búsqueda en Store en «Abrir con»'; de = 'Keine Store-Suche in «Öffnen mit»'; fr = 'Pas de recherche dans le Store via «Ouvrir avec»'; pl = 'Bez wyszukiwania w Sklepie w «Otwórz za pomocą»'; pt = 'Sem busca na Store em «Abrir com»'; ro = 'Fără căutare în Store la «Deschidere cu»'; ru = 'Без поиска в Store в «Открыть с помощью»' }
     'pv.kfm' = @{ it = 'OneDrive non sposta le cartelle personali'; en = 'OneDrive doesn''t move personal folders'; es = 'OneDrive no mueve las carpetas personales'; de = 'OneDrive verschiebt keine persönlichen Ordner'; fr = 'OneDrive ne déplace pas les dossiers personnels'; pl = 'OneDrive nie przenosi folderów osobistych'; pt = 'O OneDrive não move as pastas pessoais'; ro = 'OneDrive nu mută folderele personale'; ru = 'OneDrive не переносит личные папки' }
-    'pv.oneDrive' = @{ it = 'Disattiva OneDrive'; en = 'Disable OneDrive'; es = 'Desactivar OneDrive'; de = 'OneDrive deaktivieren'; fr = 'Désactiver OneDrive'; pl = 'Wyłącz OneDrive'; pt = 'Desativar o OneDrive'; ro = 'Dezactivează OneDrive'; ru = 'Отключить OneDrive' }
     'g.priv.mMobile' = @{ it = 'Dispositivi mobili'; en = 'Mobile devices'; es = 'Dispositivos móviles'; de = 'Mobilgeräte'; fr = 'Appareils mobiles'; pl = 'Urządzenia przenośne'; pt = 'Dispositivos móveis'; ro = 'Dispozitive mobile'; ru = 'Мобильные устройства' }
     'pv.phoneLink' = @{ it = 'Disattiva il collegamento tra telefono e PC'; en = 'Disable phone-PC linking'; es = 'Desactivar el vínculo entre teléfono y PC'; de = 'Verknüpfung von Handy und PC deaktivieren'; fr = 'Désactiver la liaison téléphone-PC'; pl = 'Wyłącz łączenie telefonu z PC'; pt = 'Desativar a ligação entre celular e PC'; ro = 'Dezactivează legarea telefonului de PC'; ru = 'Отключить связь телефона и ПК' }
     'pv.cdp' = @{ it = 'Disattiva l''esperienza tra dispositivi'; en = 'Disable cross-device experiences'; es = 'Desactivar las experiencias entre dispositivos'; de = 'Geräteübergreifende Funktionen deaktivieren'; fr = 'Désactiver les expériences entre appareils'; pl = 'Wyłącz funkcje między urządzeniami'; pt = 'Desativar experiências entre dispositivos'; ro = 'Dezactivează experiențele între dispozitive'; ru = 'Отключить функции между устройствами' }
     'g.priv.mBar' = @{ it = 'Barra delle applicazioni'; en = 'Taskbar'; es = 'Barra de tareas'; de = 'Taskleiste'; fr = 'Barre des tâches'; pl = 'Pasek zadań'; pt = 'Barra de tarefas'; ro = 'Bara de activități'; ru = 'Панель задач' }
-    'pv.widgets' = @{ it = 'Disattiva i widget'; en = 'Disable widgets'; es = 'Desactivar los widgets'; de = 'Widgets deaktivieren'; fr = 'Désactiver les widgets'; pl = 'Wyłącz widżety'; pt = 'Desativar os widgets'; ro = 'Dezactivează widgeturile'; ru = 'Отключить виджеты' }
     'pv.mMeetNow' = @{ it = 'Nascondi Riunione immediata per tutti'; en = 'Hide Meet Now for everyone'; es = 'Ocultar Reunirse ahora para todos'; de = 'Jetzt besprechen für alle ausblenden'; fr = 'Masquer Conversation instantanée pour tous'; pl = 'Ukryj Rozpocznij spotkanie dla wszystkich'; pt = 'Ocultar Reunir Agora para todos'; ro = 'Ascunde Întâlnire acum pentru toți'; ru = 'Скрыть «Провести собрание» для всех' }
     'pv.chatIcon' = @{ it = 'Nascondi la Chat per tutti'; en = 'Hide Chat for everyone'; es = 'Ocultar el Chat para todos'; de = 'Chat für alle ausblenden'; fr = 'Masquer la Conversation pour tous'; pl = 'Ukryj czat dla wszystkich'; pt = 'Ocultar o Chat para todos'; ro = 'Ascunde Chat pentru toți'; ru = 'Скрыть чат для всех' }
     'g.priv.mSync' = @{ it = 'Sincronizzazione delle impostazioni'; en = 'Settings sync'; es = 'Sincronización de la configuración'; de = 'Synchronisierung der Einstellungen'; fr = 'Synchronisation des paramètres'; pl = 'Synchronizacja ustawień'; pt = 'Sincronização das configurações'; ro = 'Sincronizarea setărilor'; ru = 'Синхронизация параметров' }
@@ -12144,7 +11849,6 @@ $script:CatTip = @{
     'task.oldStart' = @{ it = 'Riporta il menu Start con le app aggiunte in alto, come prima dell''aggiornamento 25H2. Serve un riavvio.'; en = 'Brings back the Start menu with pinned apps on top, as before the 25H2 update. Needs a restart.'; es = 'Recupera el menú Inicio con las apps ancladas arriba, como antes de la actualización 25H2. Requiere reiniciar.'; de = 'Holt das Startmenü mit angehefteten Apps oben zurück, wie vor dem Update 25H2. Neustart erforderlich.'; fr = 'Ramène le menu Démarrer avec les apps épinglées en haut, comme avant la mise à jour 25H2. Redémarrage nécessaire.'; pl = 'Przywraca menu Start z przypiętymi aplikacjami u góry, jak przed aktualizacją 25H2. Wymaga ponownego uruchomienia.'; pt = 'Traz de volta o menu Iniciar com os apps fixados no topo, como antes da atualização 25H2. Requer reinício.'; ro = 'Aduce înapoi meniul Start cu aplicațiile fixate sus, ca înainte de actualizarea 25H2. Necesită repornire.'; ru = 'Возвращает меню «Пуск» с закреплёнными приложениями сверху, как до обновления 25H2. Нужна перезагрузка.' }
     'task.recentApps' = @{ it = 'Mostra in Start i programmi appena installati.'; en = 'Shows freshly installed programs in Start.' }
     'task.frequentApps' = @{ it = 'Mostra in Start le app che apri più spesso.'; en = 'Shows the apps you open most in Start.' }
-    'task.recentDocs' = @{ it = 'Elenca in Start e nelle Jump List gli ultimi file aperti.'; en = 'Lists your latest files in Start and in Jump Lists.' }
     'task.startLock' = @{ it = 'La voce Blocca nel menu che si apre dalla tua foto in Start.'; en = 'The Lock entry in the menu under your picture in Start.' }
     'task.autoHide' = @{ it = 'La barra sparisce e ricompare quando porti il mouse in basso: più spazio per le finestre.'; en = 'The taskbar hides and comes back when you point at the bottom: more room for windows.' }
     'task.badges' = @{ it = 'I numerini sulle app, per esempio i messaggi non letti.'; en = 'The small numbers on apps, such as unread messages.' }
@@ -12212,43 +11916,20 @@ $script:CatTip = @{
     'win.psPolicy' = @{ it = 'Consente di lanciare i tuoi script .ps1 con un doppio clic o dal terminale.'; en = 'Lets you run your own .ps1 scripts with a double-click or from the terminal.' }
     'win.devMode' = @{ it = 'Installa app non firmate e usa strumenti di sviluppo. Tienila spenta se non ti serve.'; en = 'Install unsigned apps and use developer tools. Keep it off if you don''t need it.' }
     'win.workplace' = @{ it = 'Evita che accedendo a Office con un account di lavoro il PC finisca gestito dall''azienda.'; en = 'Stops a work account sign-in to Office from enrolling the PC in company management.' }
-    'win.autoMaint' = @{ it = 'Le pulizie e le ottimizzazioni notturne di Windows. Spenta, niente disco al lavoro mentre giochi.'; en = 'Windows'' nightly cleanups and optimizations. Off, no disk churn while you play.' }
     'win.brave' = @{ it = 'Criteri di Brave: spegne le funzioni di contorno e l''invio di statistiche. Si applica anche se Brave verrà installato dopo.'; en = 'Brave policies: turns off the side features and statistics reporting. Also applies if Brave is installed later.'; es = 'Directivas de Brave: desactiva las funciones accesorias y el envío de estadísticas. También se aplica si Brave se instala después.'; de = 'Brave-Richtlinien: schaltet Zusatzfunktionen und das Senden von Statistiken ab. Gilt auch, wenn Brave später installiert wird.'; fr = 'Stratégies de Brave : désactive les fonctions annexes et l''envoi de statistiques. S''applique aussi si Brave est installé plus tard.'; pl = 'Zasady Brave: wyłącza funkcje dodatkowe i wysyłanie statystyk. Działa też, jeśli Brave zostanie zainstalowany później.'; pt = 'Políticas do Brave: desliga as funções acessórias e o envio de estatísticas. Vale também se o Brave for instalado depois.'; ro = 'Politici Brave: oprește funcțiile auxiliare și trimiterea de statistici. Se aplică și dacă Brave e instalat mai târziu.'; ru = 'Политики Brave: отключают дополнительные функции и отправку статистики. Действуют и при установке Brave позже.' }
-    'win.wuMode' = @{ it = 'Scegli tu quando scaricare e installare gli aggiornamenti. Disattivarli lascia il PC senza patch di sicurezza.'; en = 'You choose when to download and install updates. Disabling them leaves the PC without security patches.' }
     'win.wuLatest' = @{ it = 'Ricevi in anticipo le funzioni nuove, a costo di qualche problema in più.'; en = 'Get new features early, at the cost of a few more problems.' }
     'win.wuOther' = @{ it = 'Aggiorna anche Office e gli altri programmi Microsoft da Windows Update.'; en = 'Also updates Office and other Microsoft programs from Windows Update.' }
     'win.wuExpedite' = @{ it = 'Windows riavvia appena può per finire gli aggiornamenti, anche fuori orario.'; en = 'Windows restarts as soon as it can to finish updates, even outside active hours.' }
     'win.wuRestartNote' = @{ it = 'Una notifica ti avvisa prima del riavvio, così salvi il lavoro.'; en = 'A notification warns you before the restart so you can save your work.' }
     'win.wuMetered' = @{ it = 'Spento, gli aggiornamenti non consumano i giga dell''hotspot del telefono.'; en = 'Off, updates don''t eat your phone hotspot data.' }
-    'win.coInstallers' = @{ it = 'Collegando mouse o cuffie, Windows non installa da solo i programmi di contorno del produttore.'; en = 'Plugging in a mouse or headset, Windows doesn''t install the maker''s companion software.' }
-    'win.svcSysMain' = @{ it = 'Tiene in RAM le app che usi spesso. Utile sugli HDD, poco sugli SSD veloci.'; en = 'Keeps your frequent apps in RAM. Useful on HDDs, less on fast SSDs.' }
-    'win.svcSearch' = @{ it = 'Indicizza i file per trovarli in un attimo. Fermo, la ricerca in Start rallenta.'; en = 'Indexes files so you find them instantly. Stopped, Start search gets slower.' }
-    'win.svcDiagTrack' = @{ it = 'Il servizio che invia a Microsoft i dati di diagnostica.'; en = 'The service that sends diagnostic data to Microsoft.' }
     'win.svcCdp' = @{ it = 'Collega il PC a telefono e altri dispositivi. Serve per Collegamento al telefono.'; en = 'Links the PC to your phone and other devices. Needed for Phone Link.' }
-    'win.svcPca' = @{ it = 'Controlla i vecchi programmi e propone impostazioni di compatibilità.'; en = 'Watches old programs and offers compatibility settings.' }
-    'win.svcWer' = @{ it = 'Invia a Microsoft i rapporti sui programmi che si bloccano.'; en = 'Sends Microsoft reports about programs that crash.' }
-    'win.svcGeo' = @{ it = 'Fornisce la posizione alle app. Fermo, meteo e mappe non sanno dove sei.'; en = 'Provides location to apps. Stopped, weather and maps don''t know where you are.' }
-    'win.svcRetail' = @{ it = 'La modalità vetrina dei PC esposti nei negozi. A casa non serve.'; en = 'The showroom mode of PCs on display in shops. Useless at home.' }
-    'win.svcInsider' = @{ it = 'Serve solo per ricevere le versioni di prova di Windows.'; en = 'Only needed to receive Windows preview builds.' }
-    'win.svcPhone' = @{ it = 'Gestisce le chiamate dal PC. Serve se chiami dal computer.'; en = 'Handles calls from the PC. Needed if you make calls from the computer.' }
-    'win.svcWallet' = @{ it = 'Servizio del portafoglio digitale di Windows, quasi mai usato.'; en = 'Windows digital wallet service, almost never used.' }
-    'win.svcSmartCard' = @{ it = 'Lettori di smart card: servono per CNS, CIE e firma digitale.'; en = 'Smart card readers: needed for ID cards and digital signatures.' }
-    'win.svcMaps' = @{ it = 'Aggiorna le mappe offline dell''app Mappe.'; en = 'Updates the offline maps of the Maps app.' }
-    'win.svcFax' = @{ it = 'Invio e ricezione di fax dal PC.'; en = 'Sending and receiving faxes from the PC.' }
     'win.svcWmpShare' = @{ it = 'Condivide la raccolta multimediale con TV e dispositivi della rete.'; en = 'Shares your media library with TVs and devices on the network.' }
     'win.svcMixed' = @{ it = 'Serve solo con i visori di realtà mista.'; en = 'Only needed with mixed reality headsets.' }
     'win.svcHotspot' = @{ it = 'Condivide la connessione del PC via Wi-Fi.'; en = 'Shares the PC''s connection over Wi-Fi.' }
     'win.svcSms' = @{ it = 'Instrada gli SMS per le app di messaggistica.'; en = 'Routes SMS for messaging apps.' }
-    'win.svcParental' = @{ it = 'Applica i limiti di Microsoft Family. Serve solo sugli account dei bambini.'; en = 'Enforces Microsoft Family limits. Only needed on children''s accounts.' }
     'win.svcNfc' = @{ it = 'Pagamenti contactless dal PC tramite NFC.'; en = 'Contactless payments from the PC through NFC.' }
     'win.svcSpot' = @{ it = 'Controlla i danni al file system segnalati dal disco.'; en = 'Checks file system damage reported by the disk.' }
-    'win.svcRas' = @{ it = 'Serve per le VPN integrate di Windows e le connessioni remote.'; en = 'Needed for Windows'' built-in VPNs and remote connections.' }
-    'win.svcRdp' = @{ it = 'Consente di controllare questo PC da un altro con Desktop remoto.'; en = 'Lets another PC control this one with Remote Desktop.' }
-    'win.svcXbox' = @{ it = 'Accesso, salvataggi in cloud e rete dei giochi Xbox e Game Pass.'; en = 'Sign-in, cloud saves and networking for Xbox and Game Pass games.' }
-    'win.svcBio' = @{ it = 'Serve per l''impronta digitale e il riconoscimento del volto di Windows Hello.'; en = 'Needed for Windows Hello fingerprint and face sign-in.' }
-    'win.svcTouch' = @{ it = 'Tastiera su schermo, pannello emoji e penna. Serve sui portatili touch.'; en = 'On-screen keyboard, emoji panel and pen. Needed on touch laptops.' }
     'win.svcTapi' = @{ it = 'Supporto telefonico per vecchi modem e centralini.'; en = 'Telephony support for old modems and PBXs.' }
-    'win.svcSensors' = @{ it = 'Rotazione dello schermo e luminosità automatica sui portatili e tablet.'; en = 'Screen rotation and auto-brightness on laptops and tablets.' }
     'win.tAppraiser' = @{ it = 'Analizza i programmi installati e invia l''elenco a Microsoft. Pesante sul disco.'; en = 'Scans installed programs and sends the list to Microsoft. Heavy on the disk.' }
     'win.tPdu' = @{ it = 'Raccoglie dati sull''uso dei programmi per il programma di miglioramento.'; en = 'Collects program usage data for the improvement program.' }
     'win.tStartupApp' = @{ it = 'Misura quanto rallentano l''avvio le app che partono con Windows.'; en = 'Measures how much startup apps slow down sign-in.' }
@@ -12261,21 +11942,13 @@ $script:CatTip = @{
     'win.tFamily' = @{ it = 'Controlla i limiti di Microsoft Family. Inutile senza account per bambini.'; en = 'Checks Microsoft Family limits. Useless without child accounts.' }
     'win.tPowerDiag' = @{ it = 'Analizza periodicamente il consumo del sistema.'; en = 'Periodically analyzes system power use.' }
     'win.tSqm' = @{ it = 'Misurazioni della qualità del software inviate a Microsoft.'; en = 'Software quality measurements sent to Microsoft.' }
-    'pv.adId' = @{ it = 'Le app non ti riconoscono più tra un annuncio e l''altro.'; en = 'Apps can no longer recognize you from one ad to the next.' }
-    'pv.typing' = @{ it = 'Quello che scrivi non serve più a migliorare i servizi di Microsoft.'; en = 'What you type is no longer used to improve Microsoft services.' }
     'pv.timeline' = @{ it = 'La cronologia delle attività non propone contenuti promozionali.'; en = 'The activity timeline stops offering promoted content.' }
     'pv.startSugg' = @{ it = 'Start smette di proporre app da installare.'; en = 'Start stops proposing apps to install.' }
-    'pv.tips' = @{ it = 'Spariscono i fumetti con consigli e pubblicità di servizi.'; en = 'Pop-ups with tips and service ads go away.' }
     'pv.settingsSugg' = @{ it = 'L''app Impostazioni mostra solo impostazioni, senza proposte.'; en = 'The Settings app shows settings only, without offers.' }
-    'pv.finishSetup' = @{ it = 'Niente più schermate a tutto schermo che propongono servizi Microsoft.'; en = 'No more full-screen pages pushing Microsoft services.' }
-    'pv.welcome' = @{ it = 'Dopo un aggiornamento torni subito al desktop.'; en = 'After an update you go straight back to the desktop.' }
     'pv.silentApps' = @{ it = 'Windows non aggiunge più giochi e app promozionali senza chiedere.'; en = 'Windows stops adding promotional games and apps without asking.' }
-    'pv.appLaunch' = @{ it = 'Windows non registra quali programmi apri e quanto spesso.'; en = 'Windows stops recording which programs you open and how often.' }
     'pv.accountNotif' = @{ it = 'Spariscono gli inviti a usare un account Microsoft e i servizi collegati.'; en = 'Invitations to use a Microsoft account and linked services go away.' }
     'pv.langList' = @{ it = 'I siti non ricevono le tue lingue. Alcuni potrebbero aprirsi in inglese.'; en = 'Websites don''t get your languages. Some may open in English.' }
     'pv.textPred' = @{ it = 'La tastiera su schermo non analizza quello che scrivi per suggerire parole.'; en = 'The on-screen keyboard stops analyzing what you type to suggest words.' }
-    'pv.appNotif' = @{ it = 'Nessuna app può mostrare fumetti di notifica.'; en = 'No app can show notification pop-ups.' }
-    'pv.storeUrls' = @{ it = 'Gli indirizzi aperti dalle app dello Store non passano da Microsoft. Toglie una protezione.'; en = 'Addresses opened by Store apps skip Microsoft''s check. Removes a safeguard.' }
     'pv.clipHist' = @{ it = 'Quello che copi non resta in un elenco consultabile con Win+V.'; en = 'What you copy doesn''t stay in a list you can open with Win+V.' }
     'pv.clipCloud' = @{ it = 'Il testo copiato non viaggia verso gli altri tuoi dispositivi.'; en = 'Copied text doesn''t travel to your other devices.' }
     'pv.uAccount' = @{ it = 'Le app non leggono nome, foto e dati del tuo account.'; en = 'Apps can''t read your name, picture and account details.' }
@@ -12299,65 +11972,43 @@ $script:CatTip = @{
     'pv.uPics' = @{ it = 'Le app dello Store non aprono la cartella Immagini.'; en = 'Store apps can''t open the Pictures folder.' }
     'pv.uVideos' = @{ it = 'Le app dello Store non aprono la cartella Video.'; en = 'Store apps can''t open the Videos folder.' }
     'pv.uFiles' = @{ it = 'Le app dello Store vedono solo le proprie cartelle.'; en = 'Store apps only see their own folders.' }
-    'pv.uBackground' = @{ it = 'Le app dello Store si fermano quando le chiudi: meno RAM e batteria.'; en = 'Store apps stop when you close them: less RAM and battery.' }
     'pv.syncPwd' = @{ it = 'Le credenziali salvate restano su questo PC.'; en = 'Saved credentials stay on this PC.' }
     'pv.syncTheme' = @{ it = 'Colori e sfondo non vengono copiati sugli altri PC del tuo account.'; en = 'Colors and wallpaper aren''t copied to your account''s other PCs.' }
     'pv.syncLang' = @{ it = 'Lingue e dizionari restano locali.'; en = 'Languages and dictionaries stay local.' }
     'pv.syncAccess' = @{ it = 'Le impostazioni di accessibilità restano su questo PC.'; en = 'Accessibility settings stay on this PC.' }
     'pv.syncOther' = @{ it = 'Le restanti preferenze di Windows non passano dal cloud.'; en = 'The remaining Windows preferences don''t go through the cloud.' }
     'pv.speech' = @{ it = 'La tua voce non viene inviata ai server Microsoft per la trascrizione.'; en = 'Your voice isn''t sent to Microsoft servers for transcription.' }
-    'pv.inking' = @{ it = 'Windows smette di costruire un dizionario personale da ciò che scrivi.'; en = 'Windows stops building a personal dictionary from what you write.' }
     'pv.voiceAct' = @{ it = 'Nessun assistente resta in ascolto del microfono in attesa del suo nome.'; en = 'No assistant keeps the microphone open waiting for its name.' }
-    'pv.uCopilot' = @{ it = 'Spegne l''assistente Copilot di Windows per il tuo account.'; en = 'Turns off Windows Copilot for your account.' }
     'pv.uRecall' = @{ it = 'Windows non fotografa lo schermo per ricordare cosa hai fatto.'; en = 'Windows doesn''t snapshot the screen to remember what you did.' }
     'pv.uClickToDo' = @{ it = 'L''IA non analizza il contenuto dello schermo per proporre azioni.'; en = 'AI doesn''t analyze on-screen content to suggest actions.' }
     'pv.copilotAvail' = @{ it = 'Windows smette di proporre Copilot nei suoi menu.'; en = 'Windows stops offering Copilot in its menus.' }
     'pv.bingChat' = @{ it = 'La chat con IA di Bing sparisce da ricerca e barra.'; en = 'Bing''s AI chat disappears from search and taskbar.' }
     'pv.insights' = @{ it = 'L''IA non studia come scrivi per darti statistiche e suggerimenti.'; en = 'AI doesn''t study how you type to give stats and suggestions.' }
     'pv.nudges' = @{ it = 'Spariscono i fumetti che propongono Copilot.'; en = 'The pop-ups pushing Copilot go away.' }
-    'pv.copilotBtn' = @{ it = 'Il pulsante di Copilot sparisce dalla barra delle applicazioni.'; en = 'The Copilot button leaves the taskbar.' }
     'pv.copilotMic' = @{ it = 'L''app Copilot non può ascoltarti.'; en = 'The Copilot app can''t listen to you.' }
     'pv.wordCopilot' = @{ it = 'Word non mostra il pannello di Copilot.'; en = 'Word doesn''t show the Copilot pane.' }
     'pv.excelCopilot' = @{ it = 'Excel non mostra il pannello di Copilot.'; en = 'Excel doesn''t show the Copilot pane.' }
     'pv.officeCloud' = @{ it = 'I documenti non vengono analizzati online. Traduzione e Designer smettono di funzionare.'; en = 'Documents aren''t analyzed online. Translator and Designer stop working.' }
-    'pv.tailored' = @{ it = 'I dati di diagnostica non servono a scegliere consigli e pubblicità per te.'; en = 'Diagnostic data isn''t used to pick tips and ads for you.' }
-    'pv.feedback' = @{ it = 'Niente più sondaggi a comparsa su come ti trovi.'; en = 'No more pop-up surveys about how you''re doing.' }
     'pv.thirdParty' = @{ it = 'Windows non mostra contenuti promossi da altre aziende.'; en = 'Windows doesn''t show content promoted by other companies.' }
     'pv.spotSettings' = @{ it = 'L''app Impostazioni non mostra contenuti Spotlight.'; en = 'The Settings app shows no Spotlight content.' }
     'pv.spotAll' = @{ it = 'Niente immagini e curiosità di Spotlight, anche su desktop e schermata di blocco.'; en = 'No Spotlight pictures and facts, desktop and lock screen included.' }
     'pv.wmp' = @{ it = 'Il lettore classico non registra cosa ascolti.'; en = 'The classic player doesn''t record what you listen to.' }
-    'pv.syncAds' = @{ it = 'Spariscono i banner di OneDrive e Microsoft 365.'; en = 'OneDrive and Microsoft 365 banners go away.' }
-    'pv.officeFiles' = @{ it = 'In Home compaiono solo i file del PC.'; en = 'Home shows only the PC''s files.' }
-    'pv.recentFiles' = @{ it = 'Chi usa il PC non vede cosa hai aperto di recente.'; en = 'Whoever uses the PC can''t see what you opened recently.' }
-    'pv.frequent' = @{ it = 'Home non rivela quali cartelle apri più spesso.'; en = 'Home doesn''t reveal which folders you open most.' }
-    'pv.recentDocs' = @{ it = 'Start e le Jump List non elencano gli ultimi file.'; en = 'Start and Jump Lists don''t list your latest files.' }
-    'pv.lockFacts' = @{ it = 'La schermata di blocco mostra solo ora e sfondo.'; en = 'The lock screen shows only the time and the picture.' }
     'pv.lockSpot' = @{ it = 'Lo sfondo resta fisso e non viene scaricato da Microsoft.'; en = 'The picture stays fixed and isn''t downloaded from Microsoft.' }
-    'pv.lockToast' = @{ it = 'Chi guarda il PC bloccato non legge i tuoi messaggi.'; en = 'Whoever looks at the locked PC can''t read your messages.' }
     'pv.searchHist' = @{ it = 'Le ricerche fatte in Start non vengono ricordate.'; en = 'Searches made in Start aren''t remembered.' }
     'pv.searchHigh' = @{ it = 'Il riquadro di ricerca non mostra ricorrenze e notizie.'; en = 'The search box doesn''t show events and news.' }
-    'pv.searchBing' = @{ it = 'Cercare in Start trova solo app e file del PC, e lo fa più in fretta.'; en = 'Searching in Start finds only the PC''s apps and files, and faster.' }
     'pv.searchMsa' = @{ it = 'La ricerca non interroga OneDrive e Outlook del tuo account.'; en = 'Search doesn''t query your account''s OneDrive and Outlook.' }
     'pv.searchAad' = @{ it = 'La ricerca non interroga SharePoint e i file aziendali.'; en = 'Search doesn''t query SharePoint and company files.' }
     'pv.meetNow' = @{ it = 'Toglie l''icona di Skype Riunione immediata dall''area di notifica (Windows 10).'; en = 'Removes the Skype Meet Now icon from the tray (Windows 10).' }
-    'pv.chatBtn' = @{ it = 'Toglie il pulsante Chat dalla barra.'; en = 'Removes the Chat button from the taskbar.' }
     'pv.resume' = @{ it = 'Il PC non propone di continuare ciò che facevi sul telefono.'; en = 'The PC doesn''t offer to continue what you were doing on your phone.' }
     'pv.pwdReveal' = @{ it = 'Chi ti sta accanto non può scoprire la password con un clic sull''occhio.'; en = 'Someone next to you can''t reveal the password by clicking the eye.' }
-    'pv.stepsRec' = @{ it = 'Niente registrazione dei clic e delle schermate per i rapporti di errore.'; en = 'No recording of clicks and screens for error reports.' }
-    'pv.inventory' = @{ it = 'Windows non invia l''elenco dei programmi e dei dispositivi installati.'; en = 'Windows doesn''t send the list of installed programs and devices.' }
-    'pv.appTelemetry' = @{ it = 'Niente dati sull''uso dei programmi inviati a Microsoft.'; en = 'No program usage data sent to Microsoft.' }
     'pv.lockCam' = @{ it = 'Dal PC bloccato nessuno può scattare foto.'; en = 'Nobody can take pictures from the locked PC.' }
     'pv.kms' = @{ it = 'Windows non invia dati di attivazione a Microsoft a ogni verifica.'; en = 'Windows doesn''t send activation data to Microsoft on every check.' }
     'pv.drm' = @{ it = 'I file protetti non contattano i server delle licenze.'; en = 'Protected files don''t contact the license servers.' }
-    'pv.remoteAssist' = @{ it = 'Nessuno può offrirti aiuto controllando il PC da remoto con Windows.'; en = 'Nobody can help you by controlling the PC remotely through Windows.' }
-    'pv.telemetry' = @{ it = 'Windows invia il minimo di dati diagnostici che l''edizione consente.'; en = 'Windows sends the least diagnostic data its edition allows.' }
     'pv.deviceName' = @{ it = 'I dati diagnostici non riportano come si chiama il tuo computer.'; en = 'Diagnostic data doesn''t include your computer''s name.' }
-    'pv.feedbackNotif' = @{ it = 'Nessun utente del PC riceve sondaggi di Windows.'; en = 'No user of the PC gets Windows surveys.' }
     'pv.diagLogs' = @{ it = 'Windows non raccoglie log estesi da inviare.'; en = 'Windows doesn''t gather extended logs to send.' }
     'pv.dumps' = @{ it = 'I dati della memoria dopo un errore restano sul PC.'; en = 'Memory data after a crash stays on the PC.' }
     'pv.oneSettings' = @{ it = 'Microsoft non può cambiare da remoto cosa raccoglie il PC.'; en = 'Microsoft can''t change remotely what the PC collects.' }
     'pv.diagViewer' = @{ it = 'Il visualizzatore non conserva copia dei dati inviati.'; en = 'The viewer doesn''t keep a copy of the data sent.' }
-    'pv.mAdId' = @{ it = 'Nessun account del PC ha un identificativo pubblicitario.'; en = 'No account on the PC gets an advertising identifier.' }
     'pv.ceip' = @{ it = 'Niente statistiche d''uso anonime inviate a Microsoft.'; en = 'No anonymous usage statistics sent to Microsoft.' }
     'pv.handErr' = @{ it = 'I campioni di scrittura a mano non lasciano il PC.'; en = 'Handwriting samples don''t leave the PC.' }
     'pv.handShare' = @{ it = 'La personalizzazione della penna non viene condivisa.'; en = 'Pen personalization isn''t shared.' }
@@ -12367,9 +12018,7 @@ $script:CatTip = @{
     'pv.wer' = @{ it = 'I rapporti sui blocchi non vengono inviati. Microsoft non potrà proporre soluzioni.'; en = 'Crash reports aren''t sent. Microsoft can''t offer fixes.' }
     'pv.cloudContent' = @{ it = 'Start e barra non scaricano contenuti promozionali.'; en = 'Start and taskbar don''t download promotional content.' }
     'pv.softLanding' = @{ it = 'Windows non presenta le sue funzioni con fumetti e schede.'; en = 'Windows doesn''t introduce its features with pop-ups and cards.' }
-    'pv.consumer' = @{ it = 'I nuovi account non si ritrovano giochi e app sponsorizzate.'; en = 'New accounts don''t get sponsored games and apps.' }
     'pv.consumerAcct' = @{ it = 'Windows non mostra offerte e funzioni IA legate all''account Microsoft personale.'; en = 'Windows doesn''t show offers and AI features tied to the personal Microsoft account.' }
-    'pv.actFeed' = @{ it = 'Windows non registra né carica le attività svolte sul PC.'; en = 'Windows neither records nor uploads the activities done on the PC.' }
     'pv.mClip' = @{ it = 'Nessun account può usare Win+V per ritrovare ciò che ha copiato.'; en = 'No account can use Win+V to find what it copied.' }
     'pv.crossClip' = @{ it = 'Il testo copiato non passa ad altri dispositivi tramite il cloud.'; en = 'Copied text doesn''t pass to other devices through the cloud.' }
     'pv.mAccount' = @{ it = 'Vale per tutti gli account e non si può cambiare da Impostazioni.'; en = 'Applies to every account and can''t be changed from Settings.' }
@@ -12390,7 +12039,6 @@ $script:CatTip = @{
     'pv.mRadios' = @{ it = 'Nessuna app accende o spegne Bluetooth e Wi-Fi.'; en = 'No app turns Bluetooth or Wi-Fi on or off.' }
     'pv.mNotif' = @{ it = 'Nessuna app legge le notifiche delle altre.'; en = 'No app reads other apps'' notifications.' }
     'pv.mLocation' = @{ it = 'Nessuna app sa dove si trova il PC.'; en = 'No app knows where the PC is.' }
-    'pv.mBackground' = @{ it = 'Le app dello Store non girano quando sono chiuse.'; en = 'Store apps don''t run when closed.' }
     'pv.mCamera' = @{ it = 'Nessuna app usa la webcam, videochiamate comprese.'; en = 'No app uses the webcam, video calls included.' }
     'pv.mMic' = @{ it = 'Nessuna app usa il microfono, chiamate comprese.'; en = 'No app uses the microphone, calls included.' }
     'pv.eDnt' = @{ it = 'Edge invia la richiesta Do Not Track a ogni sito.'; en = 'Edge sends the Do Not Track request to every site.' }
@@ -12404,20 +12052,16 @@ $script:CatTip = @{
     'pv.ePreload' = @{ it = 'Edge non apre in anticipo i link che potresti cliccare.'; en = 'Edge doesn''t open links you might click ahead of time.' }
     'pv.eDiag' = @{ it = 'Il browser non invia dati d''uso e di errore.'; en = 'The browser sends no usage or crash data.' }
     'pv.eRewards' = @{ it = 'Spariscono punti, premi e inviti di Rewards.'; en = 'Rewards points, prizes and prompts go away.' }
-    'pv.eRecomm' = @{ it = 'Edge non propone funzioni e servizi con fumetti.'; en = 'Edge doesn''t push features and services with pop-ups.' }
     'pv.eIeRedirect' = @{ it = 'Evita che Edge scarichi l''elenco dei siti incompatibili e si imponga.'; en = 'Stops Edge from downloading the incompatible sites list and taking over.' }
     'pv.eCcFill' = @{ it = 'I dati delle carte non restano nel browser.'; en = 'Card details don''t stay in the browser.' }
     'pv.eAddrFill' = @{ it = 'Indirizzi e telefoni non vengono salvati per i moduli.'; en = 'Addresses and phones aren''t stored for forms.' }
     'pv.eSearchSugg' = @{ it = 'Quello che scrivi nella barra non va al motore di ricerca prima dell''Invio.'; en = 'What you type in the bar doesn''t reach the search engine before Enter.' }
-    'pv.eBoost' = @{ it = 'Edge non resta caricato in memoria dopo l''accesso.'; en = 'Edge doesn''t stay loaded in memory after sign-in.' }
-    'pv.eBackground' = @{ it = 'Estensioni e app di Edge non restano attive a browser chiuso.'; en = 'Edge extensions and apps don''t keep running with the browser closed.' }
     'pv.eSiteSafety' = @{ it = 'I siti visitati non vengono controllati per mostrare dettagli sulla loro reputazione.'; en = 'Visited sites aren''t checked to show reputation details.' }
     'pv.eSpell' = @{ it = 'Il testo nei moduli non va ai server di Microsoft Editor.'; en = 'Text in forms isn''t sent to Microsoft Editor servers.' }
     'pv.eNewTab' = @{ it = 'La nuova scheda si apre più in fretta, senza feed di notizie.'; en = 'The new tab opens faster, with no news feed.' }
     'pv.ePwd' = @{ it = 'Edge non offre di ricordare le password. Serve un gestore dedicato.'; en = 'Edge doesn''t offer to remember passwords. You need a dedicated manager.' }
     'pv.eSmartScreen' = @{ it = 'Niente controllo su siti di phishing e download pericolosi.'; en = 'No check for phishing sites and dangerous downloads.' }
     'pv.eTypo' = @{ it = 'Edge non avvisa quando digiti per errore l''indirizzo di un sito falso.'; en = 'Edge doesn''t warn when you mistype into a fake site''s address.' }
-    'pv.eSidebar' = @{ it = 'Via il pannello laterale con Copilot e le app.'; en = 'The side panel with Copilot and apps goes away.' }
     'pv.ePageCtx' = @{ it = 'Il contenuto delle pagine non viene inviato a Copilot.'; en = 'Page content isn''t sent to Copilot.' }
     'pv.eCompose' = @{ it = 'I campi di testo non propongono riscritture con l''IA.'; en = 'Text fields don''t offer AI rewrites.' }
     'pv.eHistAi' = @{ it = 'La cronologia non viene elaborata da un modello di IA.'; en = 'History isn''t processed by an AI model.' }
@@ -12430,8 +12074,6 @@ $script:CatTip = @{
     'pv.webSearch' = @{ it = 'Per tutti gli account la ricerca in Start non passa da Bing.'; en = 'For every account Start search doesn''t go through Bing.' }
     'pv.searchLoc' = @{ it = 'I risultati non vengono adattati a dove ti trovi.'; en = 'Results aren''t tailored to where you are.' }
     'pv.mHighlights' = @{ it = 'Il riquadro di ricerca resta pulito su ogni account.'; en = 'The search box stays clean on every account.' }
-    'pv.mCopilot' = @{ it = 'Copilot resta spento su ogni account del PC.'; en = 'Copilot stays off on every account.' }
-    'pv.mRecall' = @{ it = 'Nessuna istantanea dello schermo viene salvata o analizzata.'; en = 'No screen snapshot is saved or analyzed.' }
     'pv.mClickToDo' = @{ it = 'L''IA non propone azioni su ciò che vedi a schermo.'; en = 'AI doesn''t offer actions on what you see on screen.' }
     'pv.agents' = @{ it = 'Gli agenti non possono agire sulle app e sui file per conto tuo.'; en = 'Agents can''t act on apps and files on your behalf.' }
     'pv.settingsAgent' = @{ it = 'La ricerca in Impostazioni torna a quella classica, senza IA.'; en = 'Settings search goes back to the classic one, without AI.' }
@@ -12443,26 +12085,20 @@ $script:CatTip = @{
     'pv.winLocProv' = @{ it = 'Windows non stima la posizione da reti Wi-Fi e indirizzi IP.'; en = 'Windows doesn''t estimate location from Wi-Fi networks and IP addresses.' }
     'pv.locScript' = @{ it = 'Script e pagine non possono chiedere la posizione al sistema.'; en = 'Scripts and pages can''t ask the system for the location.' }
     'pv.mapsAuto' = @{ it = 'Le mappe offline non scaricano dati da sole.'; en = 'Offline maps don''t download data by themselves.' }
-    'pv.locAll' = @{ it = 'Nessuna app e nessun servizio sa dove si trova il PC.'; en = 'No app or service knows where the PC is.' }
     'pv.sensors' = @{ it = 'Spegne i sensori: sui portatili si perde la rotazione automatica.'; en = 'Turns sensors off: laptops lose auto-rotation.' }
     'pv.findDevice' = @{ it = 'Il PC non comunica la sua posizione. In caso di furto non lo ritrovi.'; en = 'The PC doesn''t report its location. If stolen, you can''t track it.' }
-    'pv.p2p' = @{ it = 'Il PC scarica solo da Microsoft e non usa la tua connessione per altri.'; en = 'The PC downloads only from Microsoft and doesn''t use your bandwidth for others.' }
     'pv.speechUpd' = @{ it = 'I modelli di riconoscimento vocale non si scaricano in background.'; en = 'Speech recognition models don''t download in the background.' }
     'pv.mrtReport' = @{ it = 'Lo strumento mensile di rimozione malware non invia rapporti.'; en = 'The monthly malware removal tool doesn''t send reports.' }
     'pv.preview' = @{ it = 'Nessuno può iscrivere il PC al programma Insider.'; en = 'Nobody can enroll the PC in the Insider program.' }
     'pv.noReboot' = @{ it = 'Windows aspetta che sia tu a riavviare.'; en = 'Windows waits for you to restart.' }
-    'pv.wuDrivers' = @{ it = 'I driver scelti da te non vengono sostituiti.'; en = 'Drivers you chose aren''t replaced.' }
-    'pv.storeAuto' = @{ it = 'Le app dello Store si aggiornano solo quando lo chiedi tu.'; en = 'Store apps update only when you ask.' }
     'pv.mrtOffer' = @{ it = 'Salti il controllo antimalware mensile di Microsoft.'; en = 'You skip Microsoft''s monthly malware check.' }
     'pv.samples' = @{ it = 'I file sospetti restano sul PC invece di essere caricati per l''analisi.'; en = 'Suspicious files stay on the PC instead of being uploaded for analysis.' }
     'pv.spynet' = @{ it = 'Defender non consulta il cloud: più privacy, riconoscimento più lento delle minacce nuove.'; en = 'Defender skips the cloud: more privacy, slower detection of new threats.' }
     'pv.defNotif' = @{ it = 'Restano solo gli avvisi importanti, non i riepiloghi.'; en = 'Only important alerts remain, no summaries.' }
     'pv.openWith' = @{ it = 'Aprendo un file sconosciuto, Windows non propone app dello Store.'; en = 'Opening an unknown file, Windows doesn''t propose Store apps.' }
     'pv.kfm' = @{ it = 'Desktop, Documenti e Immagini restano sul disco, non in OneDrive.'; en = 'Desktop, Documents and Pictures stay on disk, not in OneDrive.' }
-    'pv.oneDrive' = @{ it = 'OneDrive smette di sincronizzare i file.'; en = 'OneDrive stops syncing files.' }
     'pv.phoneLink' = @{ it = 'Il telefono non può collegarsi al PC per continuare le attività.'; en = 'The phone can''t link to the PC to continue activities.' }
     'pv.cdp' = @{ it = 'Niente condivisione nelle vicinanze né app che continuano su altri dispositivi.'; en = 'No nearby sharing or apps continuing on other devices.' }
-    'pv.widgets' = @{ it = 'Via il pannello di notizie e meteo: meno processi in esecuzione.'; en = 'No news and weather panel: fewer processes running.' }
     'pv.mMeetNow' = @{ it = 'Toglie l''icona di Riunione immediata per ogni account (Windows 10).'; en = 'Removes the Meet Now icon for every account (Windows 10).' }
     'pv.chatIcon' = @{ it = 'Il pulsante Chat non compare su nessun account.'; en = 'The Chat button doesn''t show on any account.' }
     'pv.credSync' = @{ it = 'Le password di Windows non passano dal cloud su nessun account.'; en = 'Windows passwords don''t go through the cloud on any account.' }
@@ -12977,6 +12613,7 @@ function Build-Actions {
 
     Add-IfChecked $chkTailoredExp {
         Set-Reg 'HKCU:\Software\Policies\Microsoft\Windows\CloudContent' 'DisableTailoredExperiencesWithDiagnosticData' 1 'DWord' 'Esperienze personalizzate'
+        Set-Reg 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Privacy' 'TailoredExperiencesWithDiagnosticDataEnabled' 0 'DWord' 'Esperienze personalizzate (impostazione)'
     }
 
     Add-IfChecked $chkFeedback {
@@ -12992,6 +12629,9 @@ function Build-Actions {
     Add-IfChecked $chkInkingTyping {
         Set-Reg 'HKCU:\Software\Microsoft\Input\TIPC' 'Enabled' 0 'DWord' 'Raccolta dati digitazione'
         Set-Reg 'HKCU:\Software\Microsoft\Personalization\Settings' 'AcceptedPrivacyPolicy' 0 'DWord' 'Personalizzazione input'
+        Set-Reg 'HKCU:\Software\Microsoft\InputPersonalization' 'RestrictImplicitInkCollection' 1 'DWord' 'Raccolta scrittura a mano'
+        Set-Reg 'HKCU:\Software\Microsoft\InputPersonalization' 'RestrictImplicitTextCollection' 1 'DWord' 'Raccolta testo digitato'
+        Set-Reg 'HKCU:\Software\Microsoft\InputPersonalization\TrainedDataStore' 'HarvestContacts' 0 'DWord' 'Raccolta contatti'
     }
 
     Add-IfChecked $chkWiFiSense {
@@ -13004,10 +12644,6 @@ function Build-Actions {
         Set-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\CloudContent' 'DisableWindowsConsumerFeatures' 1 'DWord' 'App suggerite'
     }
 
-    Add-IfChecked $chkStoreSearch {
-        Set-Reg 'HKCU:\SOFTWARE\Policies\Microsoft\Windows\Explorer' 'DisableSearchBoxSuggestions' 1 'DWord' 'Suggerimenti di ricerca'
-        Set-Reg 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Search' 'BingSearchEnabled' 0 'DWord' 'Ricerca Bing'
-    }
 
     Add-IfChecked $chkSuggestedContent {
         $c = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager'
@@ -13024,11 +12660,9 @@ function Build-Actions {
 
     Add-IfChecked $chkStartBing {
         Set-Reg 'HKCU:\Software\Policies\Microsoft\Windows\Explorer' 'DisableSearchBoxSuggestions' 1 'DWord' 'Bing nel menu Start'
+        Set-Reg 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Search' 'BingSearchEnabled' 0 'DWord' 'Ricerca Bing'
     }
 
-    Add-IfChecked $chkStartRecs {
-        Set-Reg 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced' 'Start_IrisRecommendations' 0 'DWord' 'Suggerimenti del menu Start'
-    }
 
     Add-IfChecked $chkStartTracking {
         $a = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced'
@@ -13045,6 +12679,8 @@ function Build-Actions {
         Set-Reg 'HKCU:\Software\Policies\Microsoft\Windows\WindowsCopilot' 'TurnOffWindowsCopilot' 1 'DWord' 'Copilot (utente)'
         Set-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsCopilot' 'TurnOffWindowsCopilot' 1 'DWord' 'Copilot (sistema)'
         Set-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsAI' 'DisableAIDataAnalysis' 1 'DWord' 'Recall'
+        Set-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsAI' 'AllowRecallEnablement' 0 'DWord' 'Recall disponibile'
+        Set-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsAI' 'TurnOffSavingSnapshots' 1 'DWord' 'Istantanee di Recall'
         Set-Reg 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced' 'ShowCopilotButton' 0 'DWord' 'Pulsante Copilot'
     }
 
@@ -13155,6 +12791,7 @@ function Build-Actions {
     Add-IfChecked $chkTaskbarWidgets {
         Set-Reg 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced' 'TaskbarDa' 0 'DWord' 'Widget'
         Set-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Dsh' 'AllowNewsAndInterests' 0 'DWord' 'Notizie e interessi'
+        Set-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Feeds' 'EnableFeeds' 0 'DWord' 'Notizie nella barra'
     }
     Add-IfChecked $chkTaskbarChat { Set-Reg 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced' 'TaskbarMn' 0 'DWord' 'Icona Chat' }
     Add-IfChecked $chkTaskbarEndTask { Set-Reg 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced\TaskbarDeveloperSettings' 'TaskbarEndTask' 1 'DWord' 'Termina attivita' }
@@ -13508,15 +13145,6 @@ function Build-Actions {
         Write-Log "[OK] Pulizia disco e compattazione WinSxS completate."
     }
 
-    Add-IfChecked $chkTempCleanup {
-        foreach ($folder in @($env:TEMP, "$env:SystemRoot\Temp", "$env:SystemRoot\Prefetch")) {
-            if (Test-Path $folder) {
-                Get-ChildItem -LiteralPath $folder -Recurse -Force -ErrorAction SilentlyContinue |
-                    Remove-Item -Force -Recurse -ErrorAction SilentlyContinue
-            }
-        }
-        Write-Log "[OK] File temporanei eliminati."
-    }
 
     Add-IfChecked $chkSmartChkdsk {
         try {
@@ -13543,10 +13171,6 @@ function Build-Actions {
         foreach ($s in @('DPS','WdiServiceHost','WdiSystemHost','diagnosticshub.standardcollector.service','diagsvc','DusmSvc')) {
             Set-Svc $s 'Disabled' $s
         }
-    }
-    Add-IfChecked $chkSvcErrors {
-        Set-Svc 'WerSvc' 'Disabled' 'Segnalazione errori'
-        Set-Reg 'HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting' 'Disabled' 1 'DWord' 'Segnalazione errori'
     }
     Add-IfChecked $chkSvcPca {
         Set-Svc 'PcaSvc' 'Disabled' 'Assistente compatibilita'
@@ -13641,17 +13265,6 @@ function Build-Actions {
         Set-Reg $a 'DisableInventory' 1 'DWord' 'Inventario programmi'
         Set-Reg $a 'DisableEngine' 1 'DWord' 'Motore di compatibilita'
         Set-Reg $a 'AITEnable' 0 'DWord' 'Application Impact Telemetry'
-    }
-    Add-IfChecked $chkSvcHostSplit {
-        # Oltre questa soglia Windows separa ogni servizio in un processo a se'.
-        # Portandola alla RAM totale i servizi tornano raggruppati: meno processi,
-        # meno memoria di contorno.
-        try {
-            $kb = [int64]((Get-CimInstance Win32_ComputerSystem -ErrorAction Stop).TotalPhysicalMemory / 1KB)
-            if ($kb -gt 0) {
-                Set-Reg 'HKLM:\SYSTEM\CurrentControlSet\Control' 'SvcHostSplitThresholdInKB' $kb 'DWord' 'Soglia di separazione svchost'
-            }
-        } catch { Write-Log "[ERRORE] Soglia svchost: $($_.Exception.Message)" }
     }
     Add-IfChecked $chkMemCompression {
         try {
@@ -14024,7 +13637,10 @@ function Build-UndoActions {
         Reset-Reg 'HKCU:\Software\Microsoft\Windows\CurrentVersion\AdvertisingInfo' 'Enabled'
         Reset-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\AdvertisingInfo' 'DisabledByGroupPolicy'
     }
-    Add-UndoIfChecked $chkTailoredExp { Reset-Reg 'HKCU:\Software\Policies\Microsoft\Windows\CloudContent' 'DisableTailoredExperiencesWithDiagnosticData' }
+    Add-UndoIfChecked $chkTailoredExp {
+        Reset-Reg 'HKCU:\Software\Policies\Microsoft\Windows\CloudContent' 'DisableTailoredExperiencesWithDiagnosticData'
+        Reset-Reg 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Privacy' 'TailoredExperiencesWithDiagnosticDataEnabled' 1
+    }
     Add-UndoIfChecked $chkFeedback {
         Reset-Reg 'HKCU:\Software\Microsoft\Siuf\Rules' 'NumberOfSIUFInPeriod'
         Reset-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\DataCollection' 'DoNotShowFeedbackNotifications'
@@ -14036,6 +13652,9 @@ function Build-UndoActions {
     Add-UndoIfChecked $chkInkingTyping {
         Reset-Reg 'HKCU:\Software\Microsoft\Input\TIPC' 'Enabled'
         Reset-Reg 'HKCU:\Software\Microsoft\Personalization\Settings' 'AcceptedPrivacyPolicy'
+        Reset-Reg 'HKCU:\Software\Microsoft\InputPersonalization' 'RestrictImplicitInkCollection' 0
+        Reset-Reg 'HKCU:\Software\Microsoft\InputPersonalization' 'RestrictImplicitTextCollection' 0
+        Reset-Reg 'HKCU:\Software\Microsoft\InputPersonalization\TrainedDataStore' 'HarvestContacts' 1
     }
     Add-UndoIfChecked $chkWiFiSense {
         $b = 'HKLM:\SOFTWARE\Microsoft\PolicyManager\default\WiFi'
@@ -14043,10 +13662,6 @@ function Build-UndoActions {
         Reset-Reg "$b\AllowAutoConnectToWiFiSenseHotspots" 'Value' 1
     }
     Add-UndoIfChecked $chkConsumerFeatures { Reset-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\CloudContent' 'DisableWindowsConsumerFeatures' }
-    Add-UndoIfChecked $chkStoreSearch {
-        Reset-Reg 'HKCU:\SOFTWARE\Policies\Microsoft\Windows\Explorer' 'DisableSearchBoxSuggestions'
-        Reset-Reg 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Search' 'BingSearchEnabled'
-    }
     Add-UndoIfChecked $chkSuggestedContent {
         $c = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager'
         foreach ($v in @('SubscribedContent-338393Enabled','SubscribedContent-353694Enabled','SubscribedContent-353696Enabled','SystemPaneSuggestionsEnabled','SilentInstalledAppsEnabled','PreInstalledAppsEnabled','OemPreInstalledAppsEnabled')) {
@@ -14058,8 +13673,10 @@ function Build-UndoActions {
         Reset-Reg $c 'RotatingLockScreenOverlayEnabled' 1
         Reset-Reg $c 'SubscribedContent-338387Enabled' 1
     }
-    Add-UndoIfChecked $chkStartBing { Reset-Reg 'HKCU:\Software\Policies\Microsoft\Windows\Explorer' 'DisableSearchBoxSuggestions' }
-    Add-UndoIfChecked $chkStartRecs { Reset-Reg $adv 'Start_IrisRecommendations' }
+    Add-UndoIfChecked $chkStartBing {
+        Reset-Reg 'HKCU:\Software\Policies\Microsoft\Windows\Explorer' 'DisableSearchBoxSuggestions'
+        Reset-Reg 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Search' 'BingSearchEnabled'
+    }
     Add-UndoIfChecked $chkStartTracking { Reset-Reg $adv 'Start_TrackProgs' 1; Reset-Reg $adv 'Start_TrackDocs' 1 }
     Add-UndoIfChecked $chkFolderDiscovery { Reset-Reg 'HKCU:\Software\Classes\Local Settings\Software\Microsoft\Windows\Shell\Bags\AllFolders\Shell' 'FolderType' }
 
@@ -14067,6 +13684,8 @@ function Build-UndoActions {
         Reset-Reg 'HKCU:\Software\Policies\Microsoft\Windows\WindowsCopilot' 'TurnOffWindowsCopilot'
         Reset-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsCopilot' 'TurnOffWindowsCopilot'
         Reset-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsAI' 'DisableAIDataAnalysis'
+        Reset-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsAI' 'AllowRecallEnablement'
+        Reset-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsAI' 'TurnOffSavingSnapshots'
         Reset-Reg $adv 'ShowCopilotButton'
     }
     Add-UndoIfChecked $chkEdgeDebloat {
@@ -14145,6 +13764,7 @@ function Build-UndoActions {
     Add-UndoIfChecked $chkTaskbarWidgets {
         Reset-Reg $adv 'TaskbarDa'
         Reset-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Dsh' 'AllowNewsAndInterests'
+        Reset-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Feeds' 'EnableFeeds'
     }
     Add-UndoIfChecked $chkTaskbarChat { Reset-Reg $adv 'TaskbarMn' }
     Add-UndoIfChecked $chkTaskbarEndTask { Reset-Reg "$adv\TaskbarDeveloperSettings" 'TaskbarEndTask' }
@@ -14293,7 +13913,6 @@ function Build-UndoActions {
     }
     Add-NoUndo $chkStorageProfile 'TRIM e deframmentazione non hanno uno stato da ripristinare.'
     Add-NoUndo $chkDiskCleanup 'i file eliminati non si recuperano.'
-    Add-NoUndo $chkTempCleanup 'i file eliminati non si recuperano.'
     Add-UndoIfChecked $chkSmartChkdsk {
         chkntfs /d | Out-Null
         Write-Log "[OK] Controllo del disco pianificato annullato."
@@ -14302,10 +13921,6 @@ function Build-UndoActions {
     # ---------- AVANZATE ----------
     Add-UndoIfChecked $chkSvcSysMain { Reset-Svc @('SysMain') }
     Add-UndoIfChecked $chkSvcDiag { Reset-Svc @('DPS','WdiServiceHost','WdiSystemHost','diagnosticshub.standardcollector.service','diagsvc','DusmSvc') }
-    Add-UndoIfChecked $chkSvcErrors {
-        Reset-Svc @('WerSvc')
-        Reset-Reg 'HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting' 'Disabled'
-    }
     Add-UndoIfChecked $chkSvcPca { Reset-Svc @('PcaSvc') }
     Add-UndoIfChecked $chkSvcDiscovery { Reset-Svc @('SSDPSRV','upnphost','fdPHost','FDResPub','lltdsvc','Browser','NetTcpPortSharing') }
     Add-UndoIfChecked $chkSvcSensors { Reset-Svc @('SensorService','SensrSvc','SensorDataService','lfsvc') }
@@ -14359,7 +13974,6 @@ function Build-UndoActions {
         $a = 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\AppCompat'
         foreach ($v in @('DisablePCA','DisableUAR','DisableInventory','DisableEngine','AITEnable')) { Reset-Reg $a $v }
     }
-    Add-UndoIfChecked $chkSvcHostSplit { Reset-Reg 'HKLM:\SYSTEM\CurrentControlSet\Control' 'SvcHostSplitThresholdInKB' 3670016 }
     Add-UndoIfChecked $chkMemCompression {
         try { Enable-MMAgent -MemoryCompression -ErrorAction Stop; Write-Log "[OK] Compressione della memoria riattivata." }
         catch { Write-Log "[ERRORE] Compressione della memoria: $($_.Exception.Message)" }
@@ -18125,27 +17739,6 @@ schtasks.exe /Change /TN '\Microsoft\Windows\Registry\RegIdleBackup' /ENABLE | O
 schtasks.exe /Run /TN '\Microsoft\Windows\Registry\RegIdleBackup' | Out-Null
 exit 0
 '@
-    oosu = @'
-Write-Host '@@STEP Download'
-$dir = Join-Path $env:LOCALAPPDATA 'TweakAndrew'
-New-Item -ItemType Directory -Force -Path $dir | Out-Null
-$file = Join-Path $dir 'OOSU10.exe'
-[Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12
-$req = [Net.WebRequest]::Create('https://dl5.oo-software.com/files/ooshutup10/OOSU10.exe')
-$res = $req.GetResponse(); $total = $res.ContentLength
-$in = $res.GetResponseStream(); $out = [IO.File]::Create($file)
-$buf = New-Object byte[] 65536; $got = 0; $last = -1
-while (($n = $in.Read($buf, 0, $buf.Length)) -gt 0) {
-    $out.Write($buf, 0, $n); $got += $n
-    if ($total -gt 0) { $p = [int](100 * $got / $total); if ($p -ne $last) { Write-Host "@@PCT $p"; $last = $p } }
-}
-$out.Close(); $in.Close(); $res.Close()
-$sig = Get-AuthenticodeSignature $file
-if ($sig.Status -ne 'Valid') { Write-Host '@@DONE Firma non valida: file non avviato'; Remove-Item $file -Force; exit 2 }
-Write-Host '@@STEP Avvio'
-Start-Process -FilePath $file
-exit 0
-'@
 }
 
 # Funzionalita' di Windows che si possono attivare.
@@ -18326,16 +17919,6 @@ function Show-ToolsPage {
         foreach ($k in $keys) { $script:FeatureBoxes[$k].IsChecked = $false }
         $script:ToolsNeedRefresh = $true
         Add-ToolJob (T 'ttlFeatures') (Get-FeatureScript $keys) -Reboot
-    } 'PrimaryBtn'))
-    [void]$c.Panel.Children.Add($wp)
-    [void]$right.Children.Add($c.Card)
-
-    # O&O ShutUp10++
-    $c = New-ToolCard 'O&O ShutUp10++' (T 'oosuHint')
-    $wp = New-Object System.Windows.Controls.WrapPanel
-    [void]$wp.Children.Add((New-ToolButton (T 'oosuRun') {
-        if (-not (Show-Dialog 'O&O ShutUp10++' (T 'oosuAsk') 'ask')) { return }
-        Add-ToolJob 'O&O ShutUp10++' $script:ToolScripts.oosu
     } 'PrimaryBtn'))
     [void]$c.Panel.Children.Add($wp)
     [void]$right.Children.Add($c.Card)

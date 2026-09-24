@@ -356,27 +356,6 @@ schtasks.exe /Change /TN '\Microsoft\Windows\Registry\RegIdleBackup' /ENABLE | O
 schtasks.exe /Run /TN '\Microsoft\Windows\Registry\RegIdleBackup' | Out-Null
 exit 0
 '@
-    oosu = @'
-Write-Host '@@STEP Download'
-$dir = Join-Path $env:LOCALAPPDATA 'TweakAndrew'
-New-Item -ItemType Directory -Force -Path $dir | Out-Null
-$file = Join-Path $dir 'OOSU10.exe'
-[Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12
-$req = [Net.WebRequest]::Create('https://dl5.oo-software.com/files/ooshutup10/OOSU10.exe')
-$res = $req.GetResponse(); $total = $res.ContentLength
-$in = $res.GetResponseStream(); $out = [IO.File]::Create($file)
-$buf = New-Object byte[] 65536; $got = 0; $last = -1
-while (($n = $in.Read($buf, 0, $buf.Length)) -gt 0) {
-    $out.Write($buf, 0, $n); $got += $n
-    if ($total -gt 0) { $p = [int](100 * $got / $total); if ($p -ne $last) { Write-Host "@@PCT $p"; $last = $p } }
-}
-$out.Close(); $in.Close(); $res.Close()
-$sig = Get-AuthenticodeSignature $file
-if ($sig.Status -ne 'Valid') { Write-Host '@@DONE Firma non valida: file non avviato'; Remove-Item $file -Force; exit 2 }
-Write-Host '@@STEP Avvio'
-Start-Process -FilePath $file
-exit 0
-'@
 }
 
 # Funzionalita' di Windows che si possono attivare.
@@ -557,16 +536,6 @@ function Show-ToolsPage {
         foreach ($k in $keys) { $script:FeatureBoxes[$k].IsChecked = $false }
         $script:ToolsNeedRefresh = $true
         Add-ToolJob (T 'ttlFeatures') (Get-FeatureScript $keys) -Reboot
-    } 'PrimaryBtn'))
-    [void]$c.Panel.Children.Add($wp)
-    [void]$right.Children.Add($c.Card)
-
-    # O&O ShutUp10++
-    $c = New-ToolCard 'O&O ShutUp10++' (T 'oosuHint')
-    $wp = New-Object System.Windows.Controls.WrapPanel
-    [void]$wp.Children.Add((New-ToolButton (T 'oosuRun') {
-        if (-not (Show-Dialog 'O&O ShutUp10++' (T 'oosuAsk') 'ask')) { return }
-        Add-ToolJob 'O&O ShutUp10++' $script:ToolScripts.oosu
     } 'PrimaryBtn'))
     [void]$c.Panel.Children.Add($wp)
     [void]$right.Children.Add($c.Card)

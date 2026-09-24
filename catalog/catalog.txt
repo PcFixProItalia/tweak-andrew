@@ -245,9 +245,6 @@ H|task.recentApps|Mostra in Start i programmi appena installati.|Shows freshly i
 T|task.frequentApps||1|0|App più usate|Most used apps
 R|HKCU\Software\Microsoft\Windows\CurrentVersion\Start|ShowFrequentList|D|1,-|0
 H|task.frequentApps|Mostra in Start le app che apri più spesso.|Shows the apps you open most in Start.
-T|task.recentDocs||1|0|File consigliati e aperti di recente|Recommended and recently opened files
-R|HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced|Start_TrackDocs|D|1,-|0
-H|task.recentDocs|Elenca in Start e nelle Jump List gli ultimi file aperti.|Lists your latest files in Start and in Jump Lists.
 T|task.startLock||1|-|Blocca nel menu account|Lock in the account menu
 R|HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FlyoutMenuSettings|ShowLockOption|D|1,-|0
 H|task.startLock|La voce Blocca nel menu che si apre dalla tua foto in Start.|The Lock entry in the menu under your picture in Start.
@@ -509,10 +506,6 @@ H|win.devMode|Installa app non firmate e usa strumenti di sviluppo. Tienila spen
 T|win.workplace||1|0|Richieste «Consenti all'organizzazione di gestire il dispositivo»|«Allow my organization to manage my device» prompts
 R|HKLM\SOFTWARE\Policies\Microsoft\Windows\WorkplaceJoin|BlockAADWorkplaceJoin|D|0,-|1
 H|win.workplace|Evita che accedendo a Office con un account di lavoro il PC finisca gestito dall'azienda.|Stops a work account sign-in to Office from enrolling the PC in company management.
-T|win.autoMaint||1|-|Manutenzione automatica|Automatic maintenance
-R|HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\Maintenance|MaintenanceDisabled|D|0,-|1
-H|win.autoMaint|Le pulizie e le ottimizzazioni notturne di Windows. Spenta, niente disco al lavoro mentre giochi.|Windows' nightly cleanups and optimizations. Off, no disk churn while you play.
-
 G|browser|Browser|Browsers
 T|win.brave|M|0|-|Brave senza Rewards, Wallet, VPN, IA e statistiche|Brave without Rewards, Wallet, VPN, AI and statistics
 R|HKLM\SOFTWARE\Policies\BraveSoftware\Brave|BraveRewardsDisabled|D|1|-
@@ -529,15 +522,7 @@ R|HKLM\SOFTWARE\Policies\BraveSoftware\Brave|SafeBrowsingExtendedReportingEnable
 R|HKLM\SOFTWARE\Policies\BraveSoftware\Brave|MetricsReportingEnabled|D|0|-
 H|win.brave|Criteri di Brave: spegne le funzioni di contorno e l'invio di statistiche. Si applica anche se Brave verrà installato dopo.|Brave policies: turns off the side features and statistics reporting. Also applies if Brave is installed later.
 
-G|upd|Windows Update|Windows Update
-S|win.wuMode|W|auto|-|Modalità di Windows Update|Windows Update mode
-R|HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU|NoAutoUpdate|D
-R|HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU|AUOptions|D
-O|auto|Automatica (predefinita)|Automatic (default)|-|-
-O|notify|Avvisa prima di scaricare|Notify before download|0|2
-O|ask|Scarica e chiedi prima di installare|Download, ask before install|0|3
-O|off|Disattivata (sconsigliato)|Disabled (not recommended)|1|1
-H|win.wuMode|Scegli tu quando scaricare e installare gli aggiornamenti. Disattivarli lascia il PC senza patch di sicurezza.|You choose when to download and install updates. Disabling them leaves the PC without security patches.
+G|upd|Windows Update: preferenze|Windows Update: preferences
 T|win.wuLatest||0|0|Novità appena disponibili|Latest features as soon as available
 R|HKLM\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings|IsContinuousInnovationOptedIn|D|1|0,-
 H|win.wuLatest|Ricevi in anticipo le funzioni nuove, a costo di qualche problema in più.|Get new features early, at the cost of a few more problems.
@@ -553,39 +538,9 @@ H|win.wuRestartNote|Una notifica ti avvisa prima del riavvio, così salvi il lav
 T|win.wuMetered||0|0|Scarica anche su connessioni a consumo|Download over metered connections
 R|HKLM\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings|AllowAutoWindowsUpdateDownloadOverMeteredNetwork|D|1|0,-
 H|win.wuMetered|Spento, gli aggiornamenti non consumano i giga dell'hotspot del telefono.|Off, updates don't eat your phone hotspot data.
-T|win.coInstallers||1|0|App dei produttori installate con i driver|Maker apps installed with drivers
-R|HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Device Installer|DisableCoInstallers|D|0,-|1
-H|win.coInstallers|Collegando mouse o cuffie, Windows non installa da solo i programmi di contorno del produttore.|Plugging in a mouse or headset, Windows doesn't install the maker's companion software.
-
 G|svc|Servizi|Services
-V|win.svcSysMain||SysMain|A|-|SysMain (precaricamento app)|SysMain (app preloading)
-H|win.svcSysMain|Tiene in RAM le app che usi spesso. Utile sugli HDD, poco sugli SSD veloci.|Keeps your frequent apps in RAM. Useful on HDDs, less on fast SSDs.
-V|win.svcSearch||WSearch|AD|-|Ricerca di Windows (indicizzazione)|Windows Search (indexing)
-H|win.svcSearch|Indicizza i file per trovarli in un attimo. Fermo, la ricerca in Start rallenta.|Indexes files so you find them instantly. Stopped, Start search gets slower.
-V|win.svcDiagTrack||DiagTrack|A|X|Esperienze utente connesse e telemetria|Connected User Experiences and Telemetry
-H|win.svcDiagTrack|Il servizio che invia a Microsoft i dati di diagnostica.|The service that sends diagnostic data to Microsoft.
 V|win.svcCdp||CDPSvc|AD|M|Piattaforma dispositivi connessi|Connected Devices Platform
 H|win.svcCdp|Collega il PC a telefono e altri dispositivi. Serve per Collegamento al telefono.|Links the PC to your phone and other devices. Needed for Phone Link.
-V|win.svcPca||PcaSvc|AD|M|Compatibilità programmi|Program Compatibility Assistant
-H|win.svcPca|Controlla i vecchi programmi e propone impostazioni di compatibilità.|Watches old programs and offers compatibility settings.
-V|win.svcWer||WerSvc|M|X|Segnalazione errori|Error Reporting
-H|win.svcWer|Invia a Microsoft i rapporti sui programmi che si bloccano.|Sends Microsoft reports about programs that crash.
-V|win.svcGeo||lfsvc|M|-|Geolocalizzazione|Geolocation
-H|win.svcGeo|Fornisce la posizione alle app. Fermo, meteo e mappe non sanno dove sei.|Provides location to apps. Stopped, weather and maps don't know where you are.
-V|win.svcRetail||RetailDemo|M|X|Modalità demo per negozi|Retail demo
-H|win.svcRetail|La modalità vetrina dei PC esposti nei negozi. A casa non serve.|The showroom mode of PCs on display in shops. Useless at home.
-V|win.svcInsider||wisvc|M|X|Programma Windows Insider|Windows Insider
-H|win.svcInsider|Serve solo per ricevere le versioni di prova di Windows.|Only needed to receive Windows preview builds.
-V|win.svcPhone||PhoneSvc|M|-|Telefonia|Phone Service
-H|win.svcPhone|Gestisce le chiamate dal PC. Serve se chiami dal computer.|Handles calls from the PC. Needed if you make calls from the computer.
-V|win.svcWallet||WalletService|M|X|Portafoglio|Wallet Service
-H|win.svcWallet|Servizio del portafoglio digitale di Windows, quasi mai usato.|Windows digital wallet service, almost never used.
-V|win.svcSmartCard||SCardSvr,ScDeviceEnum,SCPolicySvc|M|X|Smart card|Smart card
-H|win.svcSmartCard|Lettori di smart card: servono per CNS, CIE e firma digitale.|Smart card readers: needed for ID cards and digital signatures.
-V|win.svcMaps||MapsBroker|AD|X|Gestione mappe scaricate|Downloaded Maps Manager
-H|win.svcMaps|Aggiorna le mappe offline dell'app Mappe.|Updates the offline maps of the Maps app.
-V|win.svcFax||Fax|M|X|Fax|Fax
-H|win.svcFax|Invio e ricezione di fax dal PC.|Sending and receiving faxes from the PC.
 V|win.svcWmpShare||WMPNetworkSvc|M|X|Condivisione di Windows Media Player|Windows Media Player sharing
 H|win.svcWmpShare|Condivide la raccolta multimediale con TV e dispositivi della rete.|Shares your media library with TVs and devices on the network.
 V|win.svcMixed||MixedRealityOpenXRSvc|M|X|Realtà mista OpenXR|Mixed Reality OpenXR
@@ -594,27 +549,12 @@ V|win.svcHotspot||icssvc|M|-|Hotspot mobile|Mobile hotspot
 H|win.svcHotspot|Condivide la connessione del PC via Wi-Fi.|Shares the PC's connection over Wi-Fi.
 V|win.svcSms||SmsRouter|M|X|Router SMS|SMS router
 H|win.svcSms|Instrada gli SMS per le app di messaggistica.|Routes SMS for messaging apps.
-V|win.svcParental||WpcMonSvc|M|X|Controllo genitori|Parental controls
-H|win.svcParental|Applica i limiti di Microsoft Family. Serve solo sugli account dei bambini.|Enforces Microsoft Family limits. Only needed on children's accounts.
 V|win.svcNfc||SEMgrSvc|M|X|Pagamenti e NFC|Payments and NFC
 H|win.svcNfc|Pagamenti contactless dal PC tramite NFC.|Contactless payments from the PC through NFC.
 V|win.svcSpot||svsvc|M|-|Verifica spot|Spot Verifier
 H|win.svcSpot|Controlla i danni al file system segnalati dal disco.|Checks file system damage reported by the disk.
-V|win.svcRas||RasMan,RasAuto|M|-|Connessioni di accesso remoto|Remote access connections
-H|win.svcRas|Serve per le VPN integrate di Windows e le connessioni remote.|Needed for Windows' built-in VPNs and remote connections.
-V|win.svcRdp||TermService,SessionEnv,UmRdpService|M|-|Desktop remoto|Remote Desktop
-H|win.svcRdp|Consente di controllare questo PC da un altro con Desktop remoto.|Lets another PC control this one with Remote Desktop.
-V|win.svcXbox||XblAuthManager,XblGameSave,XboxNetApiSvc|M|-|Servizi Xbox Live|Xbox Live services
-H|win.svcXbox|Accesso, salvataggi in cloud e rete dei giochi Xbox e Game Pass.|Sign-in, cloud saves and networking for Xbox and Game Pass games.
-V|win.svcBio||WbioSrvc|M|-|Biometria|Biometrics
-H|win.svcBio|Serve per l'impronta digitale e il riconoscimento del volto di Windows Hello.|Needed for Windows Hello fingerprint and face sign-in.
-V|win.svcTouch||TabletInputService|M|-|Tastiera virtuale e penna|Touch keyboard and pen
-H|win.svcTouch|Tastiera su schermo, pannello emoji e penna. Serve sui portatili touch.|On-screen keyboard, emoji panel and pen. Needed on touch laptops.
 V|win.svcTapi||TapiSrv|M|-|Telefonia (TAPI)|Telephony (TAPI)
 H|win.svcTapi|Supporto telefonico per vecchi modem e centralini.|Telephony support for old modems and PBXs.
-V|win.svcSensors||SensrSvc,SensorDataService|M|-|Sensori|Sensors
-H|win.svcSensors|Rotazione dello schermo e luminosità automatica sui portatili e tablet.|Screen rotation and auto-brightness on laptops and tablets.
-
 G|tasks|Attività pianificate|Scheduled tasks
 J|win.tAppraiser||1|0|Valutazione compatibilità Microsoft|Microsoft Compatibility Appraiser
 Q|\Microsoft\Windows\Application Experience\Microsoft Compatibility Appraiser

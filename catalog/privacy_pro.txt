@@ -6,38 +6,20 @@
 P|priv
 # ------------------------------------------------------------------ UTENTE
 G|uPriv|Privacy|Privacy
-T|pv.adId|U|0|y|Disattiva e azzera l'ID pubblicitario|Disable and reset the advertising ID
-R|HKCU\Software\Microsoft\Windows\CurrentVersion\AdvertisingInfo|Enabled|D|0|1,-
-H|pv.adId|Le app non ti riconoscono più tra un annuncio e l'altro.|Apps can no longer recognize you from one ad to the next.
-T|pv.typing|U|0|y|Non inviare i dati di digitazione|Don't send typing data
-R|HKCU\Software\Microsoft\Input\TIPC|Enabled|D|0|1,-
-H|pv.typing|Quello che scrivi non serve più a migliorare i servizi di Microsoft.|What you type is no longer used to improve Microsoft services.
 T|pv.timeline|U|0|y|Niente suggerimenti nella sequenza temporale|No suggestions in the timeline
 R|HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager|SubscribedContent-353698Enabled|D|0|1,-
 H|pv.timeline|La cronologia delle attività non propone contenuti promozionali.|The activity timeline stops offering promoted content.
 T|pv.startSugg|U|0|y|Niente suggerimenti in Start|No suggestions in Start
 R|HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager|SubscribedContent-338388Enabled|D|0|1,-
 H|pv.startSugg|Start smette di proporre app da installare.|Start stops proposing apps to install.
-T|pv.tips|U|0|y|Niente trucchi e suggerimenti durante l'uso|No tips and tricks while using Windows
-R|HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager|SubscribedContent-338389Enabled|D|0|1,-
-H|pv.tips|Spariscono i fumetti con consigli e pubblicità di servizi.|Pop-ups with tips and service ads go away.
 T|pv.settingsSugg|U|0|y|Niente contenuti suggeriti in Impostazioni|No suggested content in Settings
 R|HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager|SubscribedContent-338393Enabled|D|0|1,-
 R|HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager|SubscribedContent-353694Enabled|D|0|1,-
 R|HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager|SubscribedContent-353696Enabled|D|0|1,-
 H|pv.settingsSugg|L'app Impostazioni mostra solo impostazioni, senza proposte.|The Settings app shows settings only, without offers.
-T|pv.finishSetup|U|0|y|Niente inviti a completare la configurazione|No prompts to finish device setup
-R|HKCU\Software\Microsoft\Windows\CurrentVersion\UserProfileEngagement|ScoobeSystemSettingEnabled|D|0|1,-
-H|pv.finishSetup|Niente più schermate a tutto schermo che propongono servizi Microsoft.|No more full-screen pages pushing Microsoft services.
-T|pv.welcome|U|0|y|Niente presentazione dopo gli aggiornamenti|No welcome tour after updates
-R|HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager|SubscribedContent-310093Enabled|D|0|1,-
-H|pv.welcome|Dopo un aggiornamento torni subito al desktop.|After an update you go straight back to the desktop.
 T|pv.silentApps|U|0|y|Niente app installate in silenzio|No silently installed apps
 R|HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager|SilentInstalledAppsEnabled|D|0|1,-
 H|pv.silentApps|Windows non aggiunge più giochi e app promozionali senza chiedere.|Windows stops adding promotional games and apps without asking.
-T|pv.appLaunch|U|0|y|Non tracciare le app avviate|Don't track app launches
-R|HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced|Start_TrackProgs|D|0|1,-
-H|pv.appLaunch|Windows non registra quali programmi apri e quanto spesso.|Windows stops recording which programs you open and how often.
 T|pv.accountNotif|U|0|y|Niente notifiche sull'account in Impostazioni|No account notices in Settings
 R|HKCU\Software\Microsoft\Windows\CurrentVersion\SystemSettings\AccountNotifications|EnableAccountNotifications|D|0|1,-
 H|pv.accountNotif|Spariscono gli inviti a usare un account Microsoft e i servizi collegati.|Invitations to use a Microsoft account and linked services go away.
@@ -47,13 +29,6 @@ H|pv.langList|I siti non ricevono le tue lingue. Alcuni potrebbero aprirsi in in
 T|pv.textPred|U|0|l|Niente suggerimenti di testo sulla tastiera virtuale|No text suggestions on the touch keyboard
 R|HKCU\Software\Microsoft\TabletTip\1.7|EnableTextPrediction|D|0|1,-
 H|pv.textPred|La tastiera su schermo non analizza quello che scrivi per suggerire parole.|The on-screen keyboard stops analyzing what you type to suggest words.
-T|pv.appNotif|U|0|l|Disattiva le notifiche delle app|Disable app notifications
-R|HKCU\Software\Microsoft\Windows\CurrentVersion\PushNotifications|ToastEnabled|D|0|1,-
-H|pv.appNotif|Nessuna app può mostrare fumetti di notifica.|No app can show notification pop-ups.
-T|pv.storeUrls|U|0|n|Non far controllare a SmartScreen gli indirizzi delle app|Don't let SmartScreen check app web content
-R|HKCU\Software\Microsoft\Windows\CurrentVersion\AppHost|EnableWebContentEvaluation|D|0|1,-
-H|pv.storeUrls|Gli indirizzi aperti dalle app dello Store non passano da Microsoft. Toglie una protezione.|Addresses opened by Store apps skip Microsoft's check. Removes a safeguard.
-
 G|uClip|Cronologia attività e Appunti|Activity history and clipboard
 T|pv.clipHist|U|1|y|Non conservare la cronologia degli Appunti|Don't keep clipboard history
 R|HKCU\Software\Microsoft\Clipboard|EnableClipboardHistory|D|0,-|1
@@ -126,10 +101,6 @@ H|pv.uVideos|Le app dello Store non aprono la cartella Video.|Store apps can't o
 T|pv.uFiles|U|0|n|Blocca l'accesso a tutto il file system|Block access to the whole file system
 R|HKCU\Software\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\broadFileSystemAccess|Value|S|Deny|Allow,-
 H|pv.uFiles|Le app dello Store vedono solo le proprie cartelle.|Store apps only see their own folders.
-T|pv.uBackground|U|0|l|Impedisci alle app di restare attive in background|Stop apps from running in the background
-R|HKCU\Software\Microsoft\Windows\CurrentVersion\BackgroundAccessApplications|GlobalUserDisabled|D|1|0,-
-H|pv.uBackground|Le app dello Store si fermano quando le chiudi: meno RAM e batteria.|Store apps stop when you close them: less RAM and battery.
-
 G|uSync|Sincronizzazione delle impostazioni|Settings sync
 T|pv.syncPwd|U|0|y|Non sincronizzare le password|Don't sync passwords
 R|HKCU\Software\Microsoft\Windows\CurrentVersion\SettingSync\Groups\Credentials|Enabled|D|0|1,-
@@ -151,20 +122,11 @@ G|uSpeech|Voce e input|Speech and input
 T|pv.speech|U|0|y|Disattiva il riconoscimento vocale online|Disable online speech recognition
 R|HKCU\Software\Microsoft\Speech_OneCore\Settings\OnlineSpeechPrivacy|HasAccepted|D|0|1,-
 H|pv.speech|La tua voce non viene inviata ai server Microsoft per la trascrizione.|Your voice isn't sent to Microsoft servers for transcription.
-T|pv.inking|U|0|y|Non raccogliere scrittura a mano e contatti|Don't collect handwriting and contacts
-R|HKCU\Software\Microsoft\InputPersonalization|RestrictImplicitInkCollection|D|1|0,-
-R|HKCU\Software\Microsoft\InputPersonalization|RestrictImplicitTextCollection|D|1|0,-
-R|HKCU\Software\Microsoft\InputPersonalization\TrainedDataStore|HarvestContacts|D|0|1,-
-R|HKCU\Software\Microsoft\Personalization\Settings|AcceptedPrivacyPolicy|D|0|1,-
-H|pv.inking|Windows smette di costruire un dizionario personale da ciò che scrivi.|Windows stops building a personal dictionary from what you write.
 T|pv.voiceAct|U|0|y|Le app non ascoltano la parola di attivazione|Apps don't listen for their wake word
 R|HKCU\Software\Microsoft\Speech_OneCore\Settings\VoiceActivation\UserPreferenceForAllApps|AgentActivationEnabled|D|0|1,-
 H|pv.voiceAct|Nessun assistente resta in ascolto del microfono in attesa del suo nome.|No assistant keeps the microphone open waiting for its name.
 
 G|uAi|Windows AI|Windows AI
-T|pv.uCopilot|UA|0|y|Disattiva Copilot|Disable Copilot
-R|HKCU\Software\Policies\Microsoft\Windows\WindowsCopilot|TurnOffWindowsCopilot|D|1|0,-
-H|pv.uCopilot|Spegne l'assistente Copilot di Windows per il tuo account.|Turns off Windows Copilot for your account.
 T|pv.uRecall|UA|0|y|Disattiva Recall|Disable Recall
 R|HKCU\Software\Policies\Microsoft\Windows\WindowsAI|DisableAIDataAnalysis|D|1|0,-
 H|pv.uRecall|Windows non fotografa lo schermo per ricordare cosa hai fatto.|Windows doesn't snapshot the screen to remember what you did.
@@ -183,9 +145,6 @@ H|pv.insights|L'IA non studia come scrivi per darti statistiche e suggerimenti.|
 T|pv.nudges|UA|0|y|Niente inviti a provare Copilot|No invitations to try Copilot
 R|HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced|ShowCopilotNudges|D|0|1,-
 H|pv.nudges|Spariscono i fumetti che propongono Copilot.|The pop-ups pushing Copilot go away.
-T|pv.copilotBtn|UA|0|y|Nascondi il pulsante Copilot|Hide the Copilot button
-R|HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced|ShowCopilotButton|D|0|1,-
-H|pv.copilotBtn|Il pulsante di Copilot sparisce dalla barra delle applicazioni.|The Copilot button leaves the taskbar.
 T|pv.copilotMic|UA|0|l|Copilot non usa il microfono|Copilot can't use the microphone
 R|HKCU\Software\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\microphone\Microsoft.Copilot_8wekyb3d8bbwe|Value|S|Deny|Allow,-
 H|pv.copilotMic|L'app Copilot non può ascoltarti.|The Copilot app can't listen to you.
@@ -201,14 +160,6 @@ R|HKCU\Software\Policies\Microsoft\office\16.0\common\privacy|usercontentdisable
 H|pv.officeCloud|I documenti non vengono analizzati online. Traduzione e Designer smettono di funzionare.|Documents aren't analyzed online. Translator and Designer stop working.
 
 G|uBehav|Comportamento utente|User behavior
-T|pv.tailored|U|0|y|Niente esperienze su misura dai dati diagnostici|No tailored experiences from diagnostic data
-R|HKCU\Software\Microsoft\Windows\CurrentVersion\Privacy|TailoredExperiencesWithDiagnosticDataEnabled|D|0|1,-
-R|HKCU\Software\Policies\Microsoft\Windows\CloudContent|DisableTailoredExperiencesWithDiagnosticData|D|1|0,-
-H|pv.tailored|I dati di diagnostica non servono a scegliere consigli e pubblicità per te.|Diagnostic data isn't used to pick tips and ads for you.
-T|pv.feedback|U|0|y|Windows non chiede feedback|Windows doesn't ask for feedback
-R|HKCU\Software\Microsoft\Siuf\Rules|NumberOfSIUFInPeriod|D|0|-
-R|HKCU\Software\Microsoft\Siuf\Rules|PeriodInNanoSeconds|D|-|-
-H|pv.feedback|Niente più sondaggi a comparsa su come ti trovi.|No more pop-up surveys about how you're doing.
 T|pv.thirdParty|U|0|y|Niente suggerimenti di terze parti|No third-party suggestions
 R|HKCU\Software\Policies\Microsoft\Windows\CloudContent|DisableThirdPartySuggestions|D|1|0,-
 H|pv.thirdParty|Windows non mostra contenuti promossi da altre aziende.|Windows doesn't show content promoted by other companies.
@@ -222,35 +173,10 @@ T|pv.wmp|U|0|y|Windows Media Player non traccia l'uso|Windows Media Player doesn
 R|HKCU\Software\Microsoft\MediaPlayer\Preferences|UsageTracking|D|0|1,-
 H|pv.wmp|Il lettore classico non registra cosa ascolti.|The classic player doesn't record what you listen to.
 
-G|uExp|Esplora file|File Explorer
-T|pv.syncAds|U|0|y|Niente pubblicità in Esplora file|No ads in File Explorer
-R|HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced|ShowSyncProviderNotifications|D|0|1,-
-H|pv.syncAds|Spariscono i banner di OneDrive e Microsoft 365.|OneDrive and Microsoft 365 banners go away.
-T|pv.officeFiles|U|0|y|Niente file di Office.com in Home|No Office.com files in Home
-R|HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer|ShowCloudFilesInQuickAccess|D|0|1,-
-H|pv.officeFiles|In Home compaiono solo i file del PC.|Home shows only the PC's files.
-T|pv.recentFiles|U|0|l|Non mostrare i file recenti|Don't show recent files
-R|HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer|ShowRecent|D|0|1,-
-H|pv.recentFiles|Chi usa il PC non vede cosa hai aperto di recente.|Whoever uses the PC can't see what you opened recently.
-T|pv.frequent|U|0|l|Non mostrare le cartelle frequenti|Don't show frequent folders
-R|HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer|ShowFrequent|D|0|1,-
-H|pv.frequent|Home non rivela quali cartelle apri più spesso.|Home doesn't reveal which folders you open most.
-T|pv.recentDocs|U|0|l|Non tracciare i documenti aperti|Don't track opened documents
-R|HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced|Start_TrackDocs|D|0|1,-
-H|pv.recentDocs|Start e le Jump List non elencano gli ultimi file.|Start and Jump Lists don't list your latest files.
-
 G|uLock|Schermata di blocco|Lock screen
-T|pv.lockFacts|U|0|y|Niente curiosità e consigli sulla schermata di blocco|No fun facts and tips on the lock screen
-R|HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager|RotatingLockScreenOverlayEnabled|D|0|1,-
-R|HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager|SubscribedContent-338387Enabled|D|0|1,-
-H|pv.lockFacts|La schermata di blocco mostra solo ora e sfondo.|The lock screen shows only the time and the picture.
 T|pv.lockSpot|U|0|l|Niente immagini Spotlight sulla schermata di blocco|No Spotlight pictures on the lock screen
 R|HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager|RotatingLockScreenEnabled|D|0|1,-
 H|pv.lockSpot|Lo sfondo resta fisso e non viene scaricato da Microsoft.|The picture stays fixed and isn't downloaded from Microsoft.
-T|pv.lockToast|U|0|l|Niente notifiche sulla schermata di blocco|No notifications on the lock screen
-R|HKCU\Software\Microsoft\Windows\CurrentVersion\PushNotifications|LockScreenToastEnabled|D|0|1,-
-H|pv.lockToast|Chi guarda il PC bloccato non legge i tuoi messaggi.|Whoever looks at the locked PC can't read your messages.
-
 G|uSearch|Ricerca|Search
 T|pv.searchHist|U|0|y|Non conservare la cronologia delle ricerche|Don't keep search history
 R|HKCU\Software\Microsoft\Windows\CurrentVersion\SearchSettings|IsDeviceSearchHistoryEnabled|D|0|1,-
@@ -258,10 +184,6 @@ H|pv.searchHist|Le ricerche fatte in Start non vengono ricordate.|Searches made 
 T|pv.searchHigh|U|0|y|Niente contenuti in evidenza nella ricerca|No search highlights
 R|HKCU\Software\Microsoft\Windows\CurrentVersion\SearchSettings|IsDynamicSearchBoxEnabled|D|0|1,-
 H|pv.searchHigh|Il riquadro di ricerca non mostra ricorrenze e notizie.|The search box doesn't show events and news.
-T|pv.searchBing|U|0|y|Niente risultati web di Bing in Start|No Bing web results in Start
-R|HKCU\Software\Microsoft\Windows\CurrentVersion\Search|BingSearchEnabled|D|0|1,-
-R|HKCU\Software\Policies\Microsoft\Windows\Explorer|DisableSearchBoxSuggestions|D|1|0,-
-H|pv.searchBing|Cercare in Start trova solo app e file del PC, e lo fa più in fretta.|Searching in Start finds only the PC's apps and files, and faster.
 T|pv.searchMsa|U|0|l|Non cercare nei file dell'account Microsoft|Don't search Microsoft account content
 R|HKCU\Software\Microsoft\Windows\CurrentVersion\SearchSettings|IsMSACloudSearchEnabled|D|0|1,-
 H|pv.searchMsa|La ricerca non interroga OneDrive e Outlook del tuo account.|Search doesn't query your account's OneDrive and Outlook.
@@ -273,10 +195,6 @@ G|uBar|Barra delle applicazioni|Taskbar
 T|pv.meetNow|U|0|y|Nascondi Riunione immediata|Hide Meet Now
 R|HKCU\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer|HideSCAMeetNow|D|1|0,-
 H|pv.meetNow|Toglie l'icona di Skype Riunione immediata dall'area di notifica (Windows 10).|Removes the Skype Meet Now icon from the tray (Windows 10).
-T|pv.chatBtn|U|0|y|Nascondi Chat di Teams|Hide Teams Chat
-R|HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced|TaskbarMn|D|0|1,-
-H|pv.chatBtn|Toglie il pulsante Chat dalla barra.|Removes the Chat button from the taskbar.
-
 G|uMisc|Varie|Miscellaneous
 T|pv.resume|U|0|l|Non riprendere sul PC le attività del telefono|Don't resume phone activities on the PC
 R|HKCU\Software\Microsoft\Windows\CurrentVersion\CrossDeviceResume\Configuration|IsResumeAllowed|D|0|1,-
@@ -287,15 +205,6 @@ G|mSec|Sicurezza|Security
 T|pv.pwdReveal|M|0|y|Nascondi il pulsante per mostrare la password|Hide the password reveal button
 R|HKLM\SOFTWARE\Policies\Microsoft\Windows\CredUI|DisablePasswordReveal|D|1|0,-
 H|pv.pwdReveal|Chi ti sta accanto non può scoprire la password con un clic sull'occhio.|Someone next to you can't reveal the password by clicking the eye.
-T|pv.stepsRec|M|0|y|Disattiva Registrazione azioni utente|Disable Steps Recorder
-R|HKLM\SOFTWARE\Policies\Microsoft\Windows\AppCompat|DisableUAR|D|1|0,-
-H|pv.stepsRec|Niente registrazione dei clic e delle schermate per i rapporti di errore.|No recording of clicks and screens for error reports.
-T|pv.inventory|M|0|y|Disattiva l'inventario dei programmi|Disable the program inventory
-R|HKLM\SOFTWARE\Policies\Microsoft\Windows\AppCompat|DisableInventory|D|1|0,-
-H|pv.inventory|Windows non invia l'elenco dei programmi e dei dispositivi installati.|Windows doesn't send the list of installed programs and devices.
-T|pv.appTelemetry|M|0|y|Disattiva la telemetria delle applicazioni|Disable application telemetry
-R|HKLM\SOFTWARE\Policies\Microsoft\Windows\AppCompat|AITEnable|D|0|1,-
-H|pv.appTelemetry|Niente dati sull'uso dei programmi inviati a Microsoft.|No program usage data sent to Microsoft.
 T|pv.lockCam|M|0|y|Disattiva la fotocamera sulla schermata di blocco|Disable the camera on the lock screen
 R|HKLM\SOFTWARE\Policies\Microsoft\Windows\Personalization|NoLockScreenCamera|D|1|0,-
 H|pv.lockCam|Dal PC bloccato nessuno può scattare foto.|Nobody can take pictures from the locked PC.
@@ -305,20 +214,10 @@ H|pv.kms|Windows non invia dati di attivazione a Microsoft a ogni verifica.|Wind
 T|pv.drm|M|0|y|Niente accesso a Internet per il DRM di Windows Media|No Internet access for Windows Media DRM
 R|HKLM\SOFTWARE\Policies\Microsoft\WMDRM|DisableOnline|D|1|0,-
 H|pv.drm|I file protetti non contattano i server delle licenze.|Protected files don't contact the license servers.
-T|pv.remoteAssist|M|0|y|Disattiva Assistenza remota|Disable Remote Assistance
-R|HKLM\SYSTEM\CurrentControlSet\Control\Remote Assistance|fAllowToGetHelp|D|0|1,-
-H|pv.remoteAssist|Nessuno può offrirti aiuto controllando il PC da remoto con Windows.|Nobody can help you by controlling the PC remotely through Windows.
-
 G|mPriv|Privacy|Privacy
-T|pv.telemetry|M|0|y|Riduci al minimo la telemetria|Reduce telemetry to the minimum
-R|HKLM\SOFTWARE\Policies\Microsoft\Windows\DataCollection|AllowTelemetry|D|0|-
-H|pv.telemetry|Windows invia il minimo di dati diagnostici che l'edizione consente.|Windows sends the least diagnostic data its edition allows.
 T|pv.deviceName|M|0|y|Non inviare il nome del PC con la telemetria|Don't send the PC name with telemetry
 R|HKLM\SOFTWARE\Policies\Microsoft\Windows\DataCollection|AllowDeviceNameInTelemetry|D|0|-
 H|pv.deviceName|I dati diagnostici non riportano come si chiama il tuo computer.|Diagnostic data doesn't include your computer's name.
-T|pv.feedbackNotif|M|0|y|Niente richieste di feedback|No feedback requests
-R|HKLM\SOFTWARE\Policies\Microsoft\Windows\DataCollection|DoNotShowFeedbackNotifications|D|1|0,-
-H|pv.feedbackNotif|Nessun utente del PC riceve sondaggi di Windows.|No user of the PC gets Windows surveys.
 T|pv.diagLogs|M|0|y|Limita la raccolta dei log di diagnostica|Limit diagnostic log collection
 R|HKLM\SOFTWARE\Policies\Microsoft\Windows\DataCollection|LimitDiagnosticLogCollection|D|1|0,-
 H|pv.diagLogs|Windows non raccoglie log estesi da inviare.|Windows doesn't gather extended logs to send.
@@ -331,9 +230,6 @@ H|pv.oneSettings|Microsoft non può cambiare da remoto cosa raccoglie il PC.|Mic
 T|pv.diagViewer|M|0|y|Disattiva il visualizzatore dati di diagnostica|Disable the diagnostic data viewer
 R|HKLM\SOFTWARE\Policies\Microsoft\Windows\DataCollection|DisableDiagnosticDataViewer|D|1|0,-
 H|pv.diagViewer|Il visualizzatore non conserva copia dei dati inviati.|The viewer doesn't keep a copy of the data sent.
-T|pv.mAdId|M|0|y|Disattiva l'ID pubblicitario per tutti|Disable the advertising ID for everyone
-R|HKLM\SOFTWARE\Policies\Microsoft\Windows\AdvertisingInfo|DisabledByGroupPolicy|D|1|0,-
-H|pv.mAdId|Nessun account del PC ha un identificativo pubblicitario.|No account on the PC gets an advertising identifier.
 T|pv.ceip|M|0|y|Esci dal programma di miglioramento dell'esperienza|Leave the Customer Experience Improvement Program
 R|HKLM\SOFTWARE\Policies\Microsoft\SQMClient\Windows|CEIPEnable|D|0|-
 H|pv.ceip|Niente statistiche d'uso anonime inviate a Microsoft.|No anonymous usage statistics sent to Microsoft.
@@ -361,19 +257,11 @@ H|pv.cloudContent|Start e barra non scaricano contenuti promozionali.|Start and 
 T|pv.softLanding|M|0|y|Niente consigli su Windows|No Windows tips
 R|HKLM\SOFTWARE\Policies\Microsoft\Windows\CloudContent|DisableSoftLanding|D|1|0,-
 H|pv.softLanding|Windows non presenta le sue funzioni con fumetti e schede.|Windows doesn't introduce its features with pop-ups and cards.
-T|pv.consumer|M|0|y|Niente app consumer installate da sole|No consumer apps installed automatically
-R|HKLM\SOFTWARE\Policies\Microsoft\Windows\CloudContent|DisableWindowsConsumerFeatures|D|1|0,-
-H|pv.consumer|I nuovi account non si ritrovano giochi e app sponsorizzate.|New accounts don't get sponsored games and apps.
 T|pv.consumerAcct|MA|0|y|Niente contenuti legati all'account consumer|No consumer account content
 R|HKLM\SOFTWARE\Policies\Microsoft\Windows\CloudContent|DisableConsumerAccountStateContent|D|1|0,-
 H|pv.consumerAcct|Windows non mostra offerte e funzioni IA legate all'account Microsoft personale.|Windows doesn't show offers and AI features tied to the personal Microsoft account.
 
 G|mClip|Cronologia attività e Appunti|Activity history and clipboard
-T|pv.actFeed|M|0|y|Disattiva la cronologia delle attività|Disable activity history
-R|HKLM\SOFTWARE\Policies\Microsoft\Windows\System|EnableActivityFeed|D|0|-
-R|HKLM\SOFTWARE\Policies\Microsoft\Windows\System|PublishUserActivities|D|0|-
-R|HKLM\SOFTWARE\Policies\Microsoft\Windows\System|UploadUserActivities|D|0|-
-H|pv.actFeed|Windows non registra né carica le attività svolte sul PC.|Windows neither records nor uploads the activities done on the PC.
 T|pv.mClip|M|0|l|Disattiva la cronologia degli Appunti per tutti|Disable clipboard history for everyone
 R|HKLM\SOFTWARE\Policies\Microsoft\Windows\System|AllowClipboardHistory|D|0|-
 H|pv.mClip|Nessun account può usare Win+V per ritrovare ciò che ha copiato.|No account can use Win+V to find what it copied.
@@ -437,9 +325,6 @@ H|pv.mNotif|Nessuna app legge le notifiche delle altre.|No app reads other apps'
 T|pv.mLocation|M|0|l|Nega alle app la posizione|Deny apps location
 R|HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy|LetAppsAccessLocation|D|2|-
 H|pv.mLocation|Nessuna app sa dove si trova il PC.|No app knows where the PC is.
-T|pv.mBackground|M|0|l|Nega alle app l'esecuzione in background|Deny apps background running
-R|HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy|LetAppsRunInBackground|D|2|-
-H|pv.mBackground|Le app dello Store non girano quando sono chiuse.|Store apps don't run when closed.
 T|pv.mCamera|M|0|n|Nega alle app la fotocamera|Deny apps the camera
 R|HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy|LetAppsAccessCamera|D|2|-
 H|pv.mCamera|Nessuna app usa la webcam, videochiamate comprese.|No app uses the webcam, video calls included.
@@ -482,9 +367,6 @@ H|pv.eDiag|Il browser non invia dati d'uso e di errore.|The browser sends no usa
 T|pv.eRewards|M|0|y|Nascondi Microsoft Rewards|Hide Microsoft Rewards
 R|HKLM\SOFTWARE\Policies\Microsoft\Edge|ShowMicrosoftRewards|D|0|-
 H|pv.eRewards|Spariscono punti, premi e inviti di Rewards.|Rewards points, prizes and prompts go away.
-T|pv.eRecomm|M|0|y|Niente consigli e notifiche promozionali|No recommendations and promo notices
-R|HKLM\SOFTWARE\Policies\Microsoft\Edge|ShowRecommendationsEnabled|D|0|-
-H|pv.eRecomm|Edge non propone funzioni e servizi con fumetti.|Edge doesn't push features and services with pop-ups.
 T|pv.eIeRedirect|M|0|y|Non aprire in Edge i siti di Internet Explorer|Don't open Internet Explorer sites in Edge
 R|HKLM\SOFTWARE\Policies\Microsoft\Edge|RedirectSitesFromInternetExplorerRedirectMode|D|0|-
 H|pv.eIeRedirect|Evita che Edge scarichi l'elenco dei siti incompatibili e si imponga.|Stops Edge from downloading the incompatible sites list and taking over.
@@ -497,12 +379,6 @@ H|pv.eAddrFill|Indirizzi e telefoni non vengono salvati per i moduli.|Addresses 
 T|pv.eSearchSugg|M|0|l|Niente suggerimenti di ricerca|No search suggestions
 R|HKLM\SOFTWARE\Policies\Microsoft\Edge|SearchSuggestEnabled|D|0|-
 H|pv.eSearchSugg|Quello che scrivi nella barra non va al motore di ricerca prima dell'Invio.|What you type in the bar doesn't reach the search engine before Enter.
-T|pv.eBoost|M|0|l|Disattiva l'avvio rapido|Disable startup boost
-R|HKLM\SOFTWARE\Policies\Microsoft\Edge|StartupBoostEnabled|D|0|-
-H|pv.eBoost|Edge non resta caricato in memoria dopo l'accesso.|Edge doesn't stay loaded in memory after sign-in.
-T|pv.eBackground|M|0|l|Chiudi Edge del tutto quando esci|Fully close Edge on exit
-R|HKLM\SOFTWARE\Policies\Microsoft\Edge|BackgroundModeEnabled|D|0|-
-H|pv.eBackground|Estensioni e app di Edge non restano attive a browser chiuso.|Edge extensions and apps don't keep running with the browser closed.
 T|pv.eSiteSafety|M|0|l|Niente informazioni sui siti dai servizi Microsoft|No site info from Microsoft services
 R|HKLM\SOFTWARE\Policies\Microsoft\Edge|SiteSafetyServicesEnabled|D|0|-
 H|pv.eSiteSafety|I siti visitati non vengono controllati per mostrare dettagli sulla loro reputazione.|Visited sites aren't checked to show reputation details.
@@ -523,9 +399,6 @@ R|HKLM\SOFTWARE\Policies\Microsoft\Edge|TyposquattingCheckerEnabled|D|0|-
 H|pv.eTypo|Edge non avvisa quando digiti per errore l'indirizzo di un sito falso.|Edge doesn't warn when you mistype into a fake site's address.
 
 G|mEdgeAi|Microsoft Edge e IA|Microsoft Edge and AI
-T|pv.eSidebar|MA|0|y|Disattiva la barra laterale e Copilot|Disable the sidebar and Copilot
-R|HKLM\SOFTWARE\Policies\Microsoft\Edge|HubsSidebarEnabled|D|0|-
-H|pv.eSidebar|Via il pannello laterale con Copilot e le app.|The side panel with Copilot and apps goes away.
 T|pv.ePageCtx|MA|0|y|Copilot non legge le pagine aperte|Copilot can't read open pages
 R|HKLM\SOFTWARE\Policies\Microsoft\Edge|CopilotPageContext|D|0|-
 R|HKLM\SOFTWARE\Policies\Microsoft\Edge|CopilotCDPPageContext|D|0|-
@@ -570,14 +443,6 @@ R|HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search|EnableDynamicContentIn
 H|pv.mHighlights|Il riquadro di ricerca resta pulito su ogni account.|The search box stays clean on every account.
 
 G|mAi|Windows AI|Windows AI
-T|pv.mCopilot|MA|0|y|Disattiva Copilot per tutti|Disable Copilot for everyone
-R|HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsCopilot|TurnOffWindowsCopilot|D|1|-
-H|pv.mCopilot|Copilot resta spento su ogni account del PC.|Copilot stays off on every account.
-T|pv.mRecall|MA|0|y|Disattiva Recall e l'analisi dello schermo|Disable Recall and screen analysis
-R|HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsAI|DisableAIDataAnalysis|D|1|-
-R|HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsAI|AllowRecallEnablement|D|0|-
-R|HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsAI|TurnOffSavingSnapshots|D|1|-
-H|pv.mRecall|Nessuna istantanea dello schermo viene salvata o analizzata.|No screen snapshot is saved or analyzed.
 T|pv.mClickToDo|MA|0|y|Disattiva Click to Do per tutti|Disable Click to Do for everyone
 R|HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsAI|DisableClickToDo|D|1|-
 H|pv.mClickToDo|L'IA non propone azioni su ciò che vedi a schermo.|AI doesn't offer actions on what you see on screen.
@@ -620,9 +485,6 @@ T|pv.mapsAuto|M|0|y|Niente aggiornamento automatico delle mappe|No automatic map
 R|HKLM\SOFTWARE\Policies\Microsoft\Windows\Maps|AutoDownloadAndUpdateMapData|D|0|-
 R|HKLM\SOFTWARE\Policies\Microsoft\Windows\Maps|AllowUntriggeredNetworkTrafficOnSettingsPage|D|0|-
 H|pv.mapsAuto|Le mappe offline non scaricano dati da sole.|Offline maps don't download data by themselves.
-T|pv.locAll|M|0|l|Disattiva la localizzazione|Disable location
-R|HKLM\SOFTWARE\Policies\Microsoft\Windows\LocationAndSensors|DisableLocation|D|1|-
-H|pv.locAll|Nessuna app e nessun servizio sa dove si trova il PC.|No app or service knows where the PC is.
 T|pv.sensors|M|0|l|Disattiva i sensori|Disable sensors
 R|HKLM\SOFTWARE\Policies\Microsoft\Windows\LocationAndSensors|DisableSensors|D|1|-
 H|pv.sensors|Spegne i sensori: sui portatili si perde la rotazione automatica.|Turns sensors off: laptops lose auto-rotation.
@@ -631,9 +493,6 @@ R|HKLM\SOFTWARE\Policies\Microsoft\FindMyDevice|AllowFindMyDevice|D|0|-
 H|pv.findDevice|Il PC non comunica la sua posizione. In caso di furto non lo ritrovi.|The PC doesn't report its location. If stolen, you can't track it.
 
 G|mUpd|Windows Update|Windows Update
-T|pv.p2p|M|0|y|Niente condivisione degli aggiornamenti con altri PC|No update sharing with other PCs
-R|HKLM\SOFTWARE\Policies\Microsoft\Windows\DeliveryOptimization|DODownloadMode|D|0|-
-H|pv.p2p|Il PC scarica solo da Microsoft e non usa la tua connessione per altri.|The PC downloads only from Microsoft and doesn't use your bandwidth for others.
 T|pv.speechUpd|M|0|y|Niente aggiornamento dei modelli vocali|No speech model updates
 R|HKLM\SOFTWARE\Policies\Microsoft\Speech|AllowSpeechModelUpdate|D|0|-
 H|pv.speechUpd|I modelli di riconoscimento vocale non si scaricano in background.|Speech recognition models don't download in the background.
@@ -646,12 +505,6 @@ H|pv.preview|Nessuno può iscrivere il PC al programma Insider.|Nobody can enrol
 T|pv.noReboot|M|0|y|Niente riavvii automatici con utenti collegati|No automatic restarts with signed-in users
 R|HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU|NoAutoRebootWithLoggedOnUsers|D|1|-
 H|pv.noReboot|Windows aspetta che sia tu a riavviare.|Windows waits for you to restart.
-T|pv.wuDrivers|M|0|l|Niente driver da Windows Update|No drivers from Windows Update
-R|HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate|ExcludeWUDriversInQualityUpdate|D|1|-
-H|pv.wuDrivers|I driver scelti da te non vengono sostituiti.|Drivers you chose aren't replaced.
-T|pv.storeAuto|M|0|l|Niente aggiornamenti automatici delle app dello Store|No automatic Store app updates
-R|HKLM\SOFTWARE\Policies\Microsoft\WindowsStore|AutoDownload|D|2|-
-H|pv.storeAuto|Le app dello Store si aggiornano solo quando lo chiedi tu.|Store apps update only when you ask.
 T|pv.mrtOffer|M|0|n|Non scaricare lo strumento di rimozione malware|Don't download the malware removal tool
 R|HKLM\SOFTWARE\Policies\Microsoft\MRT|DontOfferThroughWUAU|D|1|-
 H|pv.mrtOffer|Salti il controllo antimalware mensile di Microsoft.|You skip Microsoft's monthly malware check.
@@ -674,10 +527,6 @@ H|pv.openWith|Aprendo un file sconosciuto, Windows non propone app dello Store.|
 T|pv.kfm|M|0|l|OneDrive non sposta le cartelle personali|OneDrive doesn't move personal folders
 R|HKLM\SOFTWARE\Policies\Microsoft\OneDrive|KFMBlockOptIn|D|1|-
 H|pv.kfm|Desktop, Documenti e Immagini restano sul disco, non in OneDrive.|Desktop, Documents and Pictures stay on disk, not in OneDrive.
-T|pv.oneDrive|M|0|n|Disattiva OneDrive|Disable OneDrive
-R|HKLM\SOFTWARE\Policies\Microsoft\Windows\OneDrive|DisableFileSyncNGSC|D|1|-
-H|pv.oneDrive|OneDrive smette di sincronizzare i file.|OneDrive stops syncing files.
-
 G|mMobile|Dispositivi mobili|Mobile devices
 T|pv.phoneLink|M|0|y|Disattiva il collegamento tra telefono e PC|Disable phone-PC linking
 R|HKLM\SOFTWARE\Policies\Microsoft\Windows\System|EnableMmx|D|0|-
@@ -687,10 +536,6 @@ R|HKLM\SOFTWARE\Policies\Microsoft\Windows\System|EnableCdp|D|0|-
 H|pv.cdp|Niente condivisione nelle vicinanze né app che continuano su altri dispositivi.|No nearby sharing or apps continuing on other devices.
 
 G|mBar|Barra delle applicazioni|Taskbar
-T|pv.widgets|M|0|y|Disattiva i widget|Disable widgets
-R|HKLM\SOFTWARE\Policies\Microsoft\Dsh|AllowNewsAndInterests|D|0|-
-R|HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Feeds|EnableFeeds|D|0|-
-H|pv.widgets|Via il pannello di notizie e meteo: meno processi in esecuzione.|No news and weather panel: fewer processes running.
 T|pv.mMeetNow|M|0|y|Nascondi Riunione immediata per tutti|Hide Meet Now for everyone
 R|HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer|HideSCAMeetNow|D|1|-
 H|pv.mMeetNow|Toglie l'icona di Riunione immediata per ogni account (Windows 10).|Removes the Meet Now icon for every account (Windows 10).

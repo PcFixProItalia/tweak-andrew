@@ -14,6 +14,9 @@ lang\                 traduzioni: 9 lingue per l'interfaccia e il catalogo
 tools\                generatori, prove automatiche e screenshot
 ```
 
+Ogni impostazione compare in un posto solo: se una voce di una pagina con
+«Applica» tocca gli stessi valori di una voce del catalogo, resta la prima.
+
 Le pagine Privacy avanzata, Esplora file, Start e barra, Notifiche e suoni,
 Giochi ed effetti, Windows e servizi e l'editor del piano energetico nascono da
 `catalog\*.txt`: ogni voce dice quali valori del registro, servizi, attivita'
@@ -40,9 +43,9 @@ gia' presenti da `winget export` e dall'elenco dei programmi installati.
 ## Strumenti
 
 Pulizia selettiva, riparazioni (rete, Windows Update, DISM e SFC, orologio,
-winget, Store, icone), funzionalità di Windows, pannelli classici e O&O
-ShutUp10++, scaricato dal sito ufficiale in `%LOCALAPPDATA%\TweakAndrew` e
-aperto solo se la firma digitale è valida. Gli strumenti girano uno alla volta
+winget, Store, icone), funzionalità di Windows e pannelli classici. Non serve
+più O&O ShutUp10++: le sue voci stanno in Privacy e Privacy avanzata, con gli
+stessi livelli di consiglio. Gli strumenti girano uno alla volta
 in una console virtuale, così la percentuale di DISM e SFC arriva al pannello.
 
 ## Operazioni in corso e stato attuale

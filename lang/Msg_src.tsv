@@ -304,9 +304,6 @@ featTip_sandbox	A disposable Windows to try suspicious programs. Pro and Enterpr
 featTip_wsl	Linux distributions inside Windows.
 featTip_media	For old games and programs that need DirectPlay or Windows Media Player.
 featTip_nfs	Access to NFS shares on NAS and Linux servers.
-oosuHint	O&O's free privacy tool, no install needed. It is downloaded from the official site into a program folder, its digital signature is checked and it opens.
-oosuRun	Download and open
-oosuAsk	I'll download O&O ShutUp10++ from oo-software.com (about 3 MB) and open it. Go ahead?
 ttlPanels	Windows panels
 panelsHint	The classic settings windows, one click away.
 panel_control	Control Panel

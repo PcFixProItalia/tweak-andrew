@@ -26,11 +26,9 @@ chkErrorReporting	Gli errori dei programmi non vengono più inviati a Microsoft.
 chkInkingTyping	Windows smette di imparare da quello che scrivi e digiti. Più privacy.	Windows stops learning from what you write and type. More privacy.
 chkWiFiSense	Impedisce la condivisione automatica delle reti Wi-Fi e la connessione a hotspot sconosciuti.	Prevents automatic Wi-Fi network sharing and connecting to unknown hotspots.
 chkConsumerFeatures	Impedisce a Windows di installare da solo app e giochi promozionali.	Stops Windows from installing promotional apps and games on its own.
-chkStoreSearch	Toglie i suggerimenti web e dello Store dalle ricerche. Risultati più puliti e veloci.	Removes web and Store suggestions from searches. Cleaner, faster results.
 chkSuggestedContent	Niente consigli e promozioni dentro Impostazioni e nel sistema.	No tips and promotions inside Settings and around the system.
 chkLockScreenAds	Toglie immagini a rotazione, consigli e pubblicità dalla schermata di blocco.	Removes rotating images, tips and ads from the lock screen.
 chkStartBing	La ricerca nel menu Start cerca solo sul computer, non su internet. Più veloce e più privata.	Start menu search looks only on the computer, not the web. Faster and more private.
-chkStartRecs	Toglie i suggerimenti di app e file dal menu Start.	Removes app and file suggestions from the Start menu.
 chkStartTracking	Windows smette di tenere l'elenco delle app più usate e dei documenti recenti.	Windows stops keeping a list of your most used apps and recent documents.
 chkFolderDiscovery	Esplora file non cerca più di indovinare il tipo di ogni cartella. Le cartelle grandi si aprono prima.	File Explorer no longer tries to guess each folder's type. Large folders open faster.
 chkWindowsAI	Spegne Copilot, Recall e le funzioni di intelligenza artificiale di Windows. Meno risorse usate e più privacy.	Turns off Copilot, Recall and Windows AI features. Fewer resources used and more privacy.
@@ -83,7 +81,6 @@ chkNetPowerSave	La scheda di rete non va più a risparmio energetico. Connession
 chkDisableIPv6	Spegne il protocollo IPv6. Utile solo se il tuo operatore non lo usa e hai problemi di connessione.	Turns off IPv6. Useful only if your provider does not use it and you have connection issues.
 chkStorageProfile	Applica le ottimizzazioni pensate per il tipo di disco scelto: SSD o disco meccanico.	Applies the optimizations meant for the chosen drive type: SSD or hard disk.
 chkDiskCleanup	Elimina file di sistema superflui e vecchie versioni degli aggiornamenti. Recupera spazio, a volte diversi GB.	Deletes unneeded system files and old update versions. Recovers space, sometimes several GB.
-chkTempCleanup	Svuota le cartelle dei file temporanei. Più spazio libero.	Empties the temporary file folders. More free space.
 chkSmartChkdsk	Controlla il disco al prossimo riavvio nel modo adatto a SSD o disco meccanico. Corregge errori del file system.	Checks the disk at the next restart in the way that suits SSDs or hard disks. Fixes file system errors.
 chkStorageSense	Windows non cancella più file da solo per fare spazio. Decidi tu cosa eliminare.	Windows no longer deletes files on its own to make room. You decide what to remove.
 chkReservedStorage	Libera lo spazio che Windows tiene da parte per gli aggiornamenti, circa 7 GB.	Frees the space Windows keeps aside for updates, about 7 GB.
@@ -102,7 +99,6 @@ chkAmdBloat	Evita che i programmi accessori AMD partano con Windows. Avvio più 
 chkIntelBloat	I servizi accessori della grafica Intel partono solo quando servono.	Intel graphics companion services start only when needed.
 chkSvcSysMain	Windows smette di precaricare in memoria le app che usi spesso. Utile su SSD veloci, dove non serve.	Windows stops preloading your frequent apps into memory. Useful on fast SSDs, where it is not needed.
 chkSvcDiag	Ferma i servizi che analizzano problemi e prestazioni in background.	Stops the services that analyse problems and performance in the background.
-chkSvcErrors	Ferma il servizio che raccoglie e invia i rapporti di errore.	Stops the service that collects and sends error reports.
 chkSvcPca	Ferma il servizio che controlla la compatibilità dei vecchi programmi.	Stops the service that checks old programs for compatibility.
 chkSvcDiscovery	Il PC smette di cercare dispositivi sulla rete locale. Meno traffico, ma stampanti e TV di rete potrebbero non comparire.	The PC stops searching for devices on the local network. Less traffic, but network printers and TVs may not show up.
 chkSvcSensors	Ferma i servizi di sensori e posizione. Utile sui PC fissi, che non li hanno.	Stops sensor and location services. Useful on desktops, which do not have them.
@@ -120,7 +116,6 @@ chkTaskDefrag	Ferma l'ottimizzazione automatica dei dischi. Sugli SSD va poi fat
 chkPrefetch	Windows smette di preparare in anticipo i file dei programmi. Meno scritture sugli SSD.	Windows stops preparing program files in advance. Fewer writes on SSDs.
 chkFth	Windows smette di applicare correzioni automatiche ai programmi che si bloccano. Comportamento più prevedibile.	Windows stops applying automatic fixes to programs that crash. More predictable behaviour.
 chkAppCompat	Spegne i controlli di compatibilità sui programmi. Avvio dei programmi un po' più rapido.	Turns off compatibility checks on programs. Programs start slightly faster.
-chkSvcHostSplit	Raggruppa i servizi di Windows in meno processi. Meno memoria usata e un Gestione attività più leggibile.	Groups Windows services into fewer processes. Less memory used and a tidier Task Manager.
 chkMemCompression	Windows smette di comprimere la memoria. Meno lavoro del processore, ma serve molta RAM.	Windows stops compressing memory. Less processor work, but you need plenty of RAM.
 chkWuNoReboot	Gli aggiornamenti non riavviano più il PC mentre lo usi.	Updates no longer restart the PC while you are using it.
 chkWuDefer	Le nuove versioni di Windows arrivano dopo un anno, quando sono già stabili. Le patch di sicurezza continuano ad arrivare.	New Windows versions arrive after a year, once they are stable. Security patches keep coming.

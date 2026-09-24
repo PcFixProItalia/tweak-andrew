@@ -73,7 +73,6 @@ task.allApps#grid	Grade
 task.allApps#list	Lista
 task.recentApps	Apps adicionados recentemente
 task.frequentApps	Apps mais usados
-task.recentDocs	Arquivos recomendados e abertos recentemente
 task.startLock	Bloquear no menu da conta
 g.task.bar	Barra de tarefas
 task.autoHide	Ocultar automaticamente a barra de tarefas
@@ -186,48 +185,21 @@ win.psPolicy#all	Todos, com aviso
 win.psPolicy#bypass	Todos, sem aviso
 win.devMode	Modo de desenvolvedor
 win.workplace	Avisos «Permitir que minha organização gerencie o dispositivo»
-win.autoMaint	Manutenção automática
-g.win.upd	Windows Update
-win.wuMode	Modo do Windows Update
-win.wuMode#auto	Automático (padrão)
-win.wuMode#notify	Avisar antes de baixar
-win.wuMode#ask	Baixar e perguntar antes de instalar
-win.wuMode#off	Desativado (não recomendado)
+g.win.upd	Windows Update: preferências
 win.wuLatest	Novidades assim que disponíveis
 win.wuOther	Atualizações de outros produtos Microsoft
 win.wuExpedite	Deixar-me atualizado o quanto antes
 win.wuRestartNote	Avisar quando precisar reiniciar
 win.wuMetered	Baixar em conexões limitadas
-win.coInstallers	Apps do fabricante instalados com os drivers
 g.win.svc	Serviços
-win.svcSysMain	SysMain (pré-carregamento de apps)
-win.svcSearch	Windows Search (indexação)
-win.svcDiagTrack	Experiências do usuário conectado e telemetria
 win.svcCdp	Plataforma de dispositivos conectados
-win.svcPca	Assistente de compatibilidade de programas
-win.svcWer	Relatório de erros
-win.svcGeo	Geolocalização
-win.svcRetail	Modo demonstração para lojas
-win.svcInsider	Windows Insider
-win.svcPhone	Serviço de telefone
-win.svcWallet	Serviço de carteira
-win.svcSmartCard	Cartão inteligente
-win.svcMaps	Gerenciador de mapas baixados
-win.svcFax	Fax
 win.svcWmpShare	Compartilhamento do Windows Media Player
 win.svcMixed	Realidade misturada OpenXR
 win.svcHotspot	Hotspot móvel
 win.svcSms	Roteador de SMS
-win.svcParental	Controle dos pais
 win.svcNfc	Pagamentos e NFC
 win.svcSpot	Verificador pontual
-win.svcRas	Conexões de acesso remoto
-win.svcRdp	Área de Trabalho Remota
-win.svcXbox	Serviços Xbox Live
-win.svcBio	Biometria
-win.svcTouch	Teclado virtual e caneta
 win.svcTapi	Telefonia (TAPI)
-win.svcSensors	Sensores
 g.win.tasks	Tarefas agendadas
 win.tAppraiser	Avaliador de compatibilidade da Microsoft
 win.tPdu	Atualizador de dados de programas
@@ -242,21 +214,13 @@ win.tFamily	Monitor do Family Safety
 win.tPowerDiag	Diagnóstico de eficiência energética
 win.tSqm	Tarefas SQM
 g.priv.uPriv	Privacidade
-pv.adId	Desativar e redefinir a ID de anúncio
-pv.typing	Não enviar dados de digitação
 pv.timeline	Sem sugestões na linha do tempo
 pv.startSugg	Sem sugestões no Iniciar
-pv.tips	Sem dicas e truques durante o uso
 pv.settingsSugg	Sem conteúdo sugerido em Configurações
-pv.finishSetup	Sem convites para concluir a configuração
-pv.welcome	Sem apresentação após atualizações
 pv.silentApps	Sem apps instalados silenciosamente
-pv.appLaunch	Não rastrear a abertura de apps
 pv.accountNotif	Sem avisos de conta em Configurações
 pv.langList	Não compartilhar a lista de idiomas com sites
 pv.textPred	Sem sugestões de texto no teclado virtual
-pv.appNotif	Desativar as notificações dos apps
-pv.storeUrls	O SmartScreen não verifica o conteúdo web dos apps
 g.priv.uClip	Histórico de atividades e área de transferência
 pv.clipHist	Não manter o histórico da área de transferência
 pv.clipCloud	Não sincronizar a área de transferência na nuvem
@@ -282,7 +246,6 @@ pv.uDocs	Bloquear acesso aos documentos
 pv.uPics	Bloquear acesso às imagens
 pv.uVideos	Bloquear acesso aos vídeos
 pv.uFiles	Bloquear acesso a todo o sistema de arquivos
-pv.uBackground	Impedir apps de rodar em segundo plano
 g.priv.uSync	Sincronização das configurações
 pv.syncPwd	Não sincronizar senhas
 pv.syncTheme	Não sincronizar tema e papel de parede
@@ -291,67 +254,45 @@ pv.syncAccess	Não sincronizar a acessibilidade
 pv.syncOther	Não sincronizar outras configurações do Windows
 g.priv.uSpeech	Fala e entrada
 pv.speech	Desativar o reconhecimento de fala online
-pv.inking	Não coletar escrita à mão e contatos
 pv.voiceAct	Os apps não escutam a palavra de ativação
 g.priv.uAi	IA do Windows
-pv.uCopilot	Desativar o Copilot
 pv.uRecall	Desativar o Recall
 pv.uClickToDo	Desativar o Click to Do
 pv.copilotAvail	Ocultar o Copilot no shell
 pv.bingChat	Desativar o chat integrado do Bing
 pv.insights	Desativar análises de digitação
 pv.nudges	Sem convites para experimentar o Copilot
-pv.copilotBtn	Ocultar o botão do Copilot
 pv.copilotMic	O Copilot não pode usar o microfone
 pv.wordCopilot	Desativar o Copilot no Word
 pv.excelCopilot	Desativar o Copilot no Excel
 pv.officeCloud	Limitar os serviços online do Office
 g.priv.uBehav	Comportamento do usuário
-pv.tailored	Sem experiências personalizadas com dados de diagnóstico
-pv.feedback	O Windows não pede comentários
 pv.thirdParty	Sem sugestões de terceiros
 pv.spotSettings	Sem Spotlight em Configurações
 pv.spotAll	Desativar todos os recursos Spotlight
 pv.wmp	O Windows Media Player não rastreia o uso
-g.priv.uExp	Explorador de Arquivos
-pv.syncAds	Sem anúncios no Explorador
-pv.officeFiles	Sem arquivos do Office.com no Início
-pv.recentFiles	Não mostrar arquivos recentes
-pv.frequent	Não mostrar pastas frequentes
-pv.recentDocs	Não rastrear documentos abertos
 g.priv.uLock	Tela de bloqueio
-pv.lockFacts	Sem curiosidades e dicas na tela de bloqueio
 pv.lockSpot	Sem imagens Spotlight na tela de bloqueio
-pv.lockToast	Sem notificações na tela de bloqueio
 g.priv.uSearch	Pesquisa
 pv.searchHist	Não manter o histórico de pesquisa
 pv.searchHigh	Sem destaques da pesquisa
-pv.searchBing	Sem resultados web do Bing no Iniciar
 pv.searchMsa	Não pesquisar no conteúdo da conta Microsoft
 pv.searchAad	Não pesquisar no conteúdo da conta corporativa
 g.priv.uBar	Barra de tarefas
 pv.meetNow	Ocultar Reunir Agora
-pv.chatBtn	Ocultar o Chat do Teams
 g.priv.uMisc	Diversos
 pv.resume	Não retomar no PC as atividades do celular
 g.priv.mSec	Segurança
 pv.pwdReveal	Ocultar o botão de revelar senha
-pv.stepsRec	Desativar o Gravador de Passos
-pv.inventory	Desativar o inventário de programas
-pv.appTelemetry	Desativar a telemetria de aplicativos
 pv.lockCam	Desativar a câmera na tela de bloqueio
 pv.kms	Sem validação online da ativação KMS
 pv.drm	Sem acesso à Internet para o DRM do Windows Media
-pv.remoteAssist	Desativar a Assistência Remota
 g.priv.mPriv	Privacidade
-pv.telemetry	Reduzir a telemetria ao mínimo
 pv.deviceName	Não enviar o nome do PC com a telemetria
-pv.feedbackNotif	Sem pedidos de comentários
 pv.diagLogs	Limitar a coleta de logs de diagnóstico
 pv.dumps	Limitar o envio de despejos de memória
 pv.oneSettings	Não baixar configurações de telemetria
 pv.diagViewer	Desativar o visualizador de dados de diagnóstico
-pv.mAdId	Desativar a ID de anúncio para todos
 pv.ceip	Sair do Programa de Aperfeiçoamento da Experiência
 pv.handErr	Não enviar erros de reconhecimento de escrita
 pv.handShare	Não compartilhar dados da caneta
@@ -361,10 +302,8 @@ pv.helpFb	Sem avaliações da Ajuda
 pv.wer	Desativar o relatório de erros
 pv.cloudContent	Sem conteúdo otimizado pela nuvem
 pv.softLanding	Sem dicas do Windows
-pv.consumer	Sem apps de consumidor instalados automaticamente
 pv.consumerAcct	Sem conteúdo ligado à conta pessoal
 g.priv.mClip	Histórico de atividades e área de transferência
-pv.actFeed	Desativar o histórico de atividades
 pv.mClip	Desativar o histórico da área de transferência para todos
 pv.crossClip	Sem área de transferência entre dispositivos
 g.priv.mApps	Privacidade dos apps
@@ -386,7 +325,6 @@ pv.mMessages	Negar aos apps as mensagens
 pv.mRadios	Negar aos apps o controle dos rádios
 pv.mNotif	Negar aos apps as notificações
 pv.mLocation	Negar aos apps a localização
-pv.mBackground	Negar aos apps o segundo plano
 pv.mCamera	Negar aos apps a câmera
 pv.mMic	Negar aos apps o microfone
 g.priv.mEdge	Microsoft Edge
@@ -401,13 +339,10 @@ pv.eNavErr	Não resolver erros de navegação online
 pv.ePreload	Não pré-carregar páginas
 pv.eDiag	Sem dados de diagnóstico do Edge
 pv.eRewards	Ocultar o Microsoft Rewards
-pv.eRecomm	Sem recomendações e avisos promocionais
 pv.eIeRedirect	Não abrir no Edge os sites do Internet Explorer
 pv.eCcFill	Não salvar cartões de crédito
 pv.eAddrFill	Não preencher endereços automaticamente
 pv.eSearchSugg	Sem sugestões de pesquisa
-pv.eBoost	Desativar o aumento de inicialização
-pv.eBackground	Fechar o Edge por completo ao sair
 pv.eSiteSafety	Sem informações de sites dos serviços Microsoft
 pv.eSpell	Verificação ortográfica só local
 pv.eNewTab	Nova guia sem notícias
@@ -415,7 +350,6 @@ pv.ePwd	Não salvar senhas
 pv.eSmartScreen	Desativar o SmartScreen no Edge
 pv.eTypo	Desativar o verificador de erros de digitação
 g.priv.mEdgeAi	Microsoft Edge e IA
-pv.eSidebar	Desativar a barra lateral e o Copilot
 pv.ePageCtx	O Copilot não pode ler as páginas abertas
 pv.eCompose	Sem escrita assistida por IA
 pv.eHistAi	Sem pesquisa com IA no histórico
@@ -430,8 +364,6 @@ pv.webSearch	Sem pesquisa web pelo Iniciar
 pv.searchLoc	A pesquisa não usa a localização
 pv.mHighlights	Sem destaques da pesquisa para todos
 g.priv.mAi	IA do Windows
-pv.mCopilot	Desativar o Copilot para todos
-pv.mRecall	Desativar o Recall e a análise da tela
 pv.mClickToDo	Desativar o Click to Do para todos
 pv.agents	Desativar os agentes de IA
 pv.settingsAgent	Desativar o agente de Configurações
@@ -444,17 +376,13 @@ g.priv.mLoc	Serviços de localização
 pv.winLocProv	Desativar o provedor de localização do Windows
 pv.locScript	Sem scripts de localização
 pv.mapsAuto	Sem atualização automática de mapas
-pv.locAll	Desativar a localização
 pv.sensors	Desativar os sensores
 pv.findDevice	Desativar Localizar meu dispositivo
 g.priv.mUpd	Windows Update
-pv.p2p	Não compartilhar atualizações com outros PCs
 pv.speechUpd	Sem atualizações de modelos de fala
 pv.mrtReport	Não enviar resultados da ferramenta de remoção de malware
 pv.preview	Bloquear builds de prévia do Windows
 pv.noReboot	Sem reinícios automáticos com usuários conectados
-pv.wuDrivers	Sem drivers pelo Windows Update
-pv.storeAuto	Sem atualizações automáticas de apps da Store
 pv.mrtOffer	Não baixar a ferramenta de remoção de malware
 g.priv.mDef	Microsoft Defender e SpyNet
 pv.samples	Não enviar amostras de arquivos
@@ -463,12 +391,10 @@ pv.defNotif	Sem notificações avançadas do Defender
 g.priv.mExp	Explorador de Arquivos
 pv.openWith	Sem busca na Store em «Abrir com»
 pv.kfm	O OneDrive não move as pastas pessoais
-pv.oneDrive	Desativar o OneDrive
 g.priv.mMobile	Dispositivos móveis
 pv.phoneLink	Desativar a ligação entre celular e PC
 pv.cdp	Desativar experiências entre dispositivos
 g.priv.mBar	Barra de tarefas
-pv.widgets	Desativar os widgets
 pv.mMeetNow	Ocultar Reunir Agora para todos
 pv.chatIcon	Ocultar o Chat para todos
 g.priv.mSync	Sincronização das configurações

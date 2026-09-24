@@ -90,11 +90,9 @@ L:chkInkingTyping	Personalização de escrita e digitação — desativar
 L:chkWiFiSense	Sensor de Wi-Fi — desativar
 L:ttlContent	SUGESTÕES E CONTEÚDO
 L:chkConsumerFeatures	Apps sugeridos e instalação automática — bloquear
-L:chkStoreSearch	Sugestões de pesquisa da Microsoft Store — desativar
 L:chkSuggestedContent	Conteúdo sugerido em Configurações — desativar
 L:chkLockScreenAds	Spotlight e anúncios na tela de bloqueio — desativar
 L:chkStartBing	Pesquisa do Bing no menu Iniciar — desativar
-L:chkStartRecs	Recomendações do menu Iniciar — desativar
 L:chkStartTracking	Apps mais usados e documentos recentes — não registrar
 L:chkFolderDiscovery	Detecção do tipo de pasta no Explorador — desativar
 L:ttlMsApps	APPS DA MICROSOFT
@@ -179,11 +177,8 @@ L:ttlNow	AÇÕES IMEDIATAS
 L:lblNowHint	Executadas na hora, sem passar por «Aplicar».
 L:btnTrimNow	Executar TRIM agora
 L:btnOptimizeNow	Otimizar / desfragmentar C:
-L:btnEmptyRecycle	Esvaziar a Lixeira
-L:btnCleanUpdates	Excluir o cache do Windows Update
 L:ttlMaintenance	MANUTENÇÃO AO APLICAR
 L:chkDiskCleanup	Limpeza de disco e compactação do WinSxS (DISM)
-L:chkTempCleanup	Excluir arquivos temporários
 L:chkSmartChkdsk	CHKDSK inteligente (SSD ou HDD)
 L:ttlSpace	ESPAÇO E POLÍTICAS
 L:chkStorageSense	Sensor de Armazenamento — desativar
@@ -202,7 +197,6 @@ L:ttlSvc	SERVIÇOS A PARAR
 L:lblSvcHint	Serviços ausentes são ignorados. Sempre podem ser reativados em services.msc.
 L:chkSvcSysMain	SysMain — pré-carregamento de apps na memória
 L:chkSvcDiag	Diagnóstico e rastreamento de eventos
-L:chkSvcErrors	Relatório de erros do Windows
 L:chkSvcPca	Assistente de Compatibilidade de Programas
 L:chkSvcDiscovery	Descoberta de dispositivos na rede (UPnP, SSDP)
 L:chkSvcSensors	Sensores e geolocalização
@@ -222,7 +216,6 @@ L:ttlMem	MEMÓRIA E PROCESSOS
 L:chkPrefetch	Valores de Prefetch e Superfetch no registro
 L:chkFth	Fault Tolerant Heap — sem correções automáticas
 L:chkAppCompat	Mecanismo de compatibilidade e inventário de programas
-L:chkSvcHostSplit	Menos processos svchost (agrupar serviços)
 L:chkMemCompression	Compressão de memória — arriscado com menos de 16 GB de RAM
 L:ttlWu	WINDOWS UPDATE
 L:chkWuNoReboot	Sem reinícios automáticos enquanto você usa o computador
@@ -312,11 +305,9 @@ H:chkErrorReporting	Os erros dos programas não são mais enviados à Microsoft.
 H:chkInkingTyping	O Windows para de aprender com o que você escreve e digita. Mais privacidade.
 H:chkWiFiSense	Impede o compartilhamento automático de redes Wi-Fi e a conexão a hotspots desconhecidos.
 H:chkConsumerFeatures	Impede que o Windows instale sozinho apps e jogos promocionais.
-H:chkStoreSearch	Remove sugestões da web e da Store das pesquisas. Resultados mais limpos e rápidos.
 H:chkSuggestedContent	Sem dicas nem promoções nas Configurações e no sistema.
 H:chkLockScreenAds	Remove imagens rotativas, dicas e anúncios da tela de bloqueio.
 H:chkStartBing	A pesquisa do menu Iniciar busca só no computador, não na internet. Mais rápida e mais privada.
-H:chkStartRecs	Remove sugestões de apps e arquivos do menu Iniciar.
 H:chkStartTracking	O Windows para de manter a lista de apps mais usados e documentos recentes.
 H:chkFolderDiscovery	O Explorador para de tentar adivinhar o tipo de cada pasta. Pastas grandes abrem mais rápido.
 H:chkWindowsAI	Desliga o Copilot, o Recall e os recursos de IA do Windows. Menos recursos usados e mais privacidade.
@@ -369,7 +360,6 @@ H:chkNetPowerSave	A placa de rede não entra mais em economia de energia. Conex�
 H:chkDisableIPv6	Desliga o IPv6. Útil só se o seu provedor não o usa e você tem problemas de conexão.
 H:chkStorageProfile	Aplica as otimizações pensadas para o tipo de disco escolhido: SSD ou disco mecânico.
 H:chkDiskCleanup	Exclui arquivos de sistema desnecessários e versões antigas de atualizações. Recupera espaço, às vezes vários GB.
-H:chkTempCleanup	Esvazia as pastas de arquivos temporários. Mais espaço livre.
 H:chkSmartChkdsk	Verifica o disco no próximo reinício do jeito certo para SSD ou disco mecânico. Corrige erros do sistema de arquivos.
 H:chkStorageSense	O Windows para de apagar arquivos sozinho para abrir espaço. Você decide o que remover.
 H:chkReservedStorage	Libera o espaço que o Windows reserva para atualizações, cerca de 7 GB.
@@ -388,7 +378,6 @@ H:chkAmdBloat	Impede que os programas extras da AMD iniciem com o Windows. Inici
 H:chkIntelBloat	Os serviços extras da placa Intel só iniciam quando necessários.
 H:chkSvcSysMain	O Windows para de pré-carregar na memória os apps que você usa com frequência. Útil em SSDs rápidos, onde não é necessário.
 H:chkSvcDiag	Para os serviços que analisam problemas e desempenho em segundo plano.
-H:chkSvcErrors	Para o serviço que coleta e envia relatórios de erro.
 H:chkSvcPca	Para o serviço que verifica a compatibilidade de programas antigos.
 H:chkSvcDiscovery	O PC para de procurar dispositivos na rede local. Menos tráfego, mas impressoras e TVs de rede podem não aparecer.
 H:chkSvcSensors	Para os serviços de sensores e localização. Útil em desktops, que não os têm.
@@ -406,7 +395,6 @@ H:chkTaskDefrag	Para a otimização automática das unidades. Em SSD, ela deve s
 H:chkPrefetch	O Windows para de preparar com antecedência os arquivos dos programas. Menos gravações no SSD.
 H:chkFth	O Windows para de aplicar correções automáticas aos programas que travam. Comportamento mais previsível.
 H:chkAppCompat	Desliga as verificações de compatibilidade dos programas. Os programas abrem um pouco mais rápido.
-H:chkSvcHostSplit	Agrupa os serviços do Windows em menos processos. Menos memória usada e um Gerenciador de Tarefas mais legível.
 H:chkMemCompression	O Windows para de comprimir a memória. Menos trabalho do processador, mas é preciso bastante RAM.
 H:chkWuNoReboot	As atualizações não reiniciam mais o PC enquanto você o usa.
 H:chkWuDefer	As novas versões do Windows chegam um ano depois, já estáveis. As correções de segurança continuam chegando.
@@ -804,9 +792,6 @@ M:featTip_sandbox	Um Windows descartável para testar programas suspeitos. Só P
 M:featTip_wsl	Distribuições Linux dentro do Windows.
 M:featTip_media	Para jogos e programas antigos que exigem DirectPlay ou Windows Media Player.
 M:featTip_nfs	Acesso a compartilhamentos NFS de NAS e servidores Linux.
-M:oosuHint	A ferramenta de privacidade gratuita da O&O, sem instalação. É baixada do site oficial para uma pasta do programa, a assinatura é verificada e ela abre.
-M:oosuRun	Baixar e abrir
-M:oosuAsk	Vou baixar o O&O ShutUp10++ de oo-software.com (cerca de 3 MB) e abri-lo. Continuo?
 M:ttlPanels	Painéis do Windows
 M:panelsHint	As janelas clássicas de configuração, a um clique.
 M:panel_control	Painel de Controle

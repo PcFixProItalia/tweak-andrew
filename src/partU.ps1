@@ -226,7 +226,10 @@ function Build-UndoActions {
         Reset-Reg 'HKCU:\Software\Microsoft\Windows\CurrentVersion\AdvertisingInfo' 'Enabled'
         Reset-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\AdvertisingInfo' 'DisabledByGroupPolicy'
     }
-    Add-UndoIfChecked $chkTailoredExp { Reset-Reg 'HKCU:\Software\Policies\Microsoft\Windows\CloudContent' 'DisableTailoredExperiencesWithDiagnosticData' }
+    Add-UndoIfChecked $chkTailoredExp {
+        Reset-Reg 'HKCU:\Software\Policies\Microsoft\Windows\CloudContent' 'DisableTailoredExperiencesWithDiagnosticData'
+        Reset-Reg 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Privacy' 'TailoredExperiencesWithDiagnosticDataEnabled' 1
+    }
     Add-UndoIfChecked $chkFeedback {
         Reset-Reg 'HKCU:\Software\Microsoft\Siuf\Rules' 'NumberOfSIUFInPeriod'
         Reset-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\DataCollection' 'DoNotShowFeedbackNotifications'
@@ -238,6 +241,9 @@ function Build-UndoActions {
     Add-UndoIfChecked $chkInkingTyping {
         Reset-Reg 'HKCU:\Software\Microsoft\Input\TIPC' 'Enabled'
         Reset-Reg 'HKCU:\Software\Microsoft\Personalization\Settings' 'AcceptedPrivacyPolicy'
+        Reset-Reg 'HKCU:\Software\Microsoft\InputPersonalization' 'RestrictImplicitInkCollection' 0
+        Reset-Reg 'HKCU:\Software\Microsoft\InputPersonalization' 'RestrictImplicitTextCollection' 0
+        Reset-Reg 'HKCU:\Software\Microsoft\InputPersonalization\TrainedDataStore' 'HarvestContacts' 1
     }
     Add-UndoIfChecked $chkWiFiSense {
         $b = 'HKLM:\SOFTWARE\Microsoft\PolicyManager\default\WiFi'
@@ -245,10 +251,6 @@ function Build-UndoActions {
         Reset-Reg "$b\AllowAutoConnectToWiFiSenseHotspots" 'Value' 1
     }
     Add-UndoIfChecked $chkConsumerFeatures { Reset-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\CloudContent' 'DisableWindowsConsumerFeatures' }
-    Add-UndoIfChecked $chkStoreSearch {
-        Reset-Reg 'HKCU:\SOFTWARE\Policies\Microsoft\Windows\Explorer' 'DisableSearchBoxSuggestions'
-        Reset-Reg 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Search' 'BingSearchEnabled'
-    }
     Add-UndoIfChecked $chkSuggestedContent {
         $c = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager'
         foreach ($v in @('SubscribedContent-338393Enabled','SubscribedContent-353694Enabled','SubscribedContent-353696Enabled','SystemPaneSuggestionsEnabled','SilentInstalledAppsEnabled','PreInstalledAppsEnabled','OemPreInstalledAppsEnabled')) {
@@ -260,8 +262,10 @@ function Build-UndoActions {
         Reset-Reg $c 'RotatingLockScreenOverlayEnabled' 1
         Reset-Reg $c 'SubscribedContent-338387Enabled' 1
     }
-    Add-UndoIfChecked $chkStartBing { Reset-Reg 'HKCU:\Software\Policies\Microsoft\Windows\Explorer' 'DisableSearchBoxSuggestions' }
-    Add-UndoIfChecked $chkStartRecs { Reset-Reg $adv 'Start_IrisRecommendations' }
+    Add-UndoIfChecked $chkStartBing {
+        Reset-Reg 'HKCU:\Software\Policies\Microsoft\Windows\Explorer' 'DisableSearchBoxSuggestions'
+        Reset-Reg 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Search' 'BingSearchEnabled'
+    }
     Add-UndoIfChecked $chkStartTracking { Reset-Reg $adv 'Start_TrackProgs' 1; Reset-Reg $adv 'Start_TrackDocs' 1 }
     Add-UndoIfChecked $chkFolderDiscovery { Reset-Reg 'HKCU:\Software\Classes\Local Settings\Software\Microsoft\Windows\Shell\Bags\AllFolders\Shell' 'FolderType' }
 
@@ -269,6 +273,8 @@ function Build-UndoActions {
         Reset-Reg 'HKCU:\Software\Policies\Microsoft\Windows\WindowsCopilot' 'TurnOffWindowsCopilot'
         Reset-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsCopilot' 'TurnOffWindowsCopilot'
         Reset-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsAI' 'DisableAIDataAnalysis'
+        Reset-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsAI' 'AllowRecallEnablement'
+        Reset-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsAI' 'TurnOffSavingSnapshots'
         Reset-Reg $adv 'ShowCopilotButton'
     }
     Add-UndoIfChecked $chkEdgeDebloat {
@@ -347,6 +353,7 @@ function Build-UndoActions {
     Add-UndoIfChecked $chkTaskbarWidgets {
         Reset-Reg $adv 'TaskbarDa'
         Reset-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Dsh' 'AllowNewsAndInterests'
+        Reset-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Feeds' 'EnableFeeds'
     }
     Add-UndoIfChecked $chkTaskbarChat { Reset-Reg $adv 'TaskbarMn' }
     Add-UndoIfChecked $chkTaskbarEndTask { Reset-Reg "$adv\TaskbarDeveloperSettings" 'TaskbarEndTask' }
@@ -495,7 +502,6 @@ function Build-UndoActions {
     }
     Add-NoUndo $chkStorageProfile 'TRIM e deframmentazione non hanno uno stato da ripristinare.'
     Add-NoUndo $chkDiskCleanup 'i file eliminati non si recuperano.'
-    Add-NoUndo $chkTempCleanup 'i file eliminati non si recuperano.'
     Add-UndoIfChecked $chkSmartChkdsk {
         chkntfs /d | Out-Null
         Write-Log "[OK] Controllo del disco pianificato annullato."
@@ -504,10 +510,6 @@ function Build-UndoActions {
     # ---------- AVANZATE ----------
     Add-UndoIfChecked $chkSvcSysMain { Reset-Svc @('SysMain') }
     Add-UndoIfChecked $chkSvcDiag { Reset-Svc @('DPS','WdiServiceHost','WdiSystemHost','diagnosticshub.standardcollector.service','diagsvc','DusmSvc') }
-    Add-UndoIfChecked $chkSvcErrors {
-        Reset-Svc @('WerSvc')
-        Reset-Reg 'HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting' 'Disabled'
-    }
     Add-UndoIfChecked $chkSvcPca { Reset-Svc @('PcaSvc') }
     Add-UndoIfChecked $chkSvcDiscovery { Reset-Svc @('SSDPSRV','upnphost','fdPHost','FDResPub','lltdsvc','Browser','NetTcpPortSharing') }
     Add-UndoIfChecked $chkSvcSensors { Reset-Svc @('SensorService','SensrSvc','SensorDataService','lfsvc') }
@@ -561,7 +563,6 @@ function Build-UndoActions {
         $a = 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\AppCompat'
         foreach ($v in @('DisablePCA','DisableUAR','DisableInventory','DisableEngine','AITEnable')) { Reset-Reg $a $v }
     }
-    Add-UndoIfChecked $chkSvcHostSplit { Reset-Reg 'HKLM:\SYSTEM\CurrentControlSet\Control' 'SvcHostSplitThresholdInKB' 3670016 }
     Add-UndoIfChecked $chkMemCompression {
         try { Enable-MMAgent -MemoryCompression -ErrorAction Stop; Write-Log "[OK] Compressione della memoria riattivata." }
         catch { Write-Log "[ERRORE] Compressione della memoria: $($_.Exception.Message)" }
