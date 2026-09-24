@@ -54,8 +54,8 @@ L'indicatore in alto mostra da ogni pagina cosa sta lavorando e a che punto è.
 Durante «Applica» e durante gli strumenti le pagine delle impostazioni si
 bloccano; Home e App restano libere. All'avvio il programma legge le azioni di
 «Applica» (senza eseguirle) e confronta i valori con il sistema: le voci già
-attive portano l'etichetta «Attivo». Il pollice in su segna le voci consigliate: il popup dice il valore consigliato, un clic le
-seleziona con un clic.
+attive portano l'etichetta «Attivo». Il pollice in su segna le voci consigliate:
+il popup dice il valore consigliato e un clic le seleziona, senza applicarle.
 
 ## Avvio da qualsiasi PC
 
