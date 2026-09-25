@@ -1,7 +1,7 @@
 ready	Ready.
 starting	Starting...
 done	Completed
-nothing	Nothing selected.
+nothing	Nothing to apply: the switches already match the system.
 activePlan	Active plan:
 detecting	Detecting...
 profileDetected	Detected profile:
@@ -10,7 +10,7 @@ free	free of
 chooseProfile	Select SSD or HDD before applying the storage profile.
 finished	All operations completed. Restart the computer to apply every change.
 finishedTitle	Tweak Andrew v6.0
-confirmRun	Apply the selected changes?
+confirmRun	Apply the changes? Switched-on entries are enabled; active entries you switched off go back to the Windows values.
 confirmTitle	Confirm
 emptyRecycleAsk	Permanently empty the Recycle Bin? This cannot be undone.
 summary	Summary
@@ -35,12 +35,12 @@ featStateOff	disabled
 bootResetAsk	Restore the default Windows boot settings?
 bootResetDone	Boot configuration restored to its defaults.
 undoPrefix	Default:
-undoAsk	Restore the Windows defaults for the selected entries?
+undoAsk	Put the switched-on entries of this page back to the Windows values?
 advWarnTitle	Advanced options
 advWarn	You selected entries from the Advanced section: they strip out parts of Windows and something may stop working. Continue?
 dlgYes	Yes, go ahead
 dlgNo	Cancel
-selCount	Selected entries: {0}
+selCount	Changes: {0}
 doneSummary	Done: {0} changes applied, {1} already set, {2} errors.
 doneReboot	Restart the PC to finish.
 psInterval	Quantum
@@ -373,3 +373,10 @@ recOff	off
 recOnLimited	on (with limitations)
 recDefault	{0}, as on a fresh Windows install
 recTipLive	Recommended value: {0}. One click sets it at once, like the switch.
+undoPageNone	There are no switched-on entries to reset on this page.
+emgTitle	Full reset
+emgAsk	Every setting the program can change goes back to the values of a fresh Windows install, on all pages, even those you never touched. A restore point is created first. Removed apps and deleted files do not come back. Continue?
+emgAsk2	Confirm again: the full reset cannot be undone from here, only with the restore point.
+emgRestorePoint	Restore point before the full reset
+emgHeader	Full reset to the Windows values
+emgDone	Full reset done: restart the computer so everything is back as before.

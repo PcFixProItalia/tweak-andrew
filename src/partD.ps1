@@ -12,9 +12,11 @@ function Add-Action {
     $script:Actions += ,@{ Name = $Name; Do = $Do }
 }
 
+# Entra in coda solo cio' che cambia: una voce accesa e gia' attiva sul sistema
+# non si ripete.
 function Add-IfChecked {
     param($Box,[scriptblock]$Do)
-    if ($null -ne $Box -and $Box.IsChecked -eq $true) { Add-Action ([string]$Box.Content) $Do }
+    if ($null -ne $Box -and $Box.IsChecked -eq $true -and $script:Baseline[[string]$Box.Name] -ne $true) { Add-Action ([string]$Box.Content) $Do }
 }
 
 # Modifica la configurazione di avvio. bcdedit non ha un equivalente in
@@ -1067,6 +1069,11 @@ function Build-Actions {
 # ------------------------------------------------------------------------------
 $btnRun.Add_Click({
     Build-Actions
+    # Voci attive spente dall'utente: tornano al valore di Windows.
+    $apply = $script:Actions
+    $script:UndoMode = 'revert'
+    try { Build-UndoActions } finally { $script:UndoMode = 'checked' }
+    $script:Actions = @($apply) + @($script:Actions)
     $total = $script:Actions.Count
     if ($total -eq 0) {
         Write-Log "[AVVISO] $(T 'nothing')"
@@ -1077,7 +1084,7 @@ $btnRun.Add_Click({
     if (-not (Show-Dialog (T 'confirmTitle') (T 'confirmRun') 'ask' ((T 'selCount') -f $total))) { return }
 
     # Le voci della pagina Avanzate tolgono pezzi di Windows: seconda conferma.
-    $advChecked = @($script:AdvancedCheckBoxes | Where-Object { $_.IsChecked -eq $true }).Count
+    $advChecked = @($script:AdvancedCheckBoxes | Where-Object { $_.IsChecked -eq $true -and (Test-Pending $_) }).Count
     if ($advChecked -gt 0) {
         if (-not (Show-Dialog (T 'advWarnTitle') (T 'advWarn') 'warn')) { return }
     }

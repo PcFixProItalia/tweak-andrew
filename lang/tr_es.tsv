@@ -183,13 +183,13 @@ L:chkSmartChkdsk	CHKDSK inteligente (SSD o HDD)
 L:ttlSpace	ESPACIO Y DIRECTIVAS
 L:chkStorageSense	Sensor de almacenamiento — desactivar
 L:chkReservedStorage	Almacenamiento reservado de Windows (7 GB) — desactivar
-L:lblSelected	Seleccionados:
+L:lblSelected	Cambios:
 L:chkRestorePoint	Punto de restauración
 L:btnSelectAll	Seleccionar todo
-L:btnDeselectAll	Quitar selección
+L:btnDeselectAll	Deshacer cambios
 L:btnDetectActive	Detectar aplicados
 L:btnRun	Aplicar cambios
-L:btnUndo	Restablecer predeterminados
+L:btnUndo	Restablecer esta página
 L:tabAdv	Avanzado
 L:ttlAdvIntro	ANTES DE EMPEZAR
 L:lblAdvIntro	Estas opciones quitan partes de Windows que la mayoría de equipos no usa. La ganancia es real en una máquina dedicada a juegos o trabajo, pero algunas cosas dejan de funcionar: lee cada opción. Crea un punto de restauración antes de aplicar y reinicia después.
@@ -242,7 +242,7 @@ L:chkSecDefenderIdle	Defender: analizar solo en reposo, CPU al 20%
 M:ready	Listo.
 M:starting	Iniciando...
 M:done	Completado
-M:nothing	No hay nada seleccionado.
+M:nothing	Nada que aplicar: los interruptores ya coinciden con el sistema.
 M:activePlan	Plan activo:
 M:detecting	Detectando...
 M:profileDetected	Perfil detectado:
@@ -250,7 +250,7 @@ M:noDisks	No se pueden detectar las unidades con Get-PhysicalDisk.
 M:free	libres de
 M:chooseProfile	Elige SSD o HDD antes de aplicar el perfil de almacenamiento.
 M:finished	Operaciones completadas. Reinicia el equipo para que todos los cambios surtan efecto.
-M:confirmRun	¿Aplicar los cambios seleccionados?
+M:confirmRun	¿Aplicar los cambios? Las opciones encendidas se activan; las activas que apagaste vuelven a los valores de Windows.
 M:confirmTitle	Confirmar
 M:emptyRecycleAsk	¿Vaciar la Papelera de forma permanente? No se puede deshacer.
 M:summary	Resumen
@@ -274,7 +274,7 @@ M:featStateOff	desactivada
 M:bootResetAsk	¿Restablecer la configuración de arranque predeterminada de Windows?
 M:bootResetDone	Configuración de arranque restablecida.
 M:undoPrefix	Predeterminado:
-M:undoAsk	¿Restablecer los valores de Windows en las opciones seleccionadas?
+M:undoAsk	¿Devolver a los valores de Windows las opciones encendidas de esta página?
 M:advWarnTitle	Opciones avanzadas
 M:advWarn	Has seleccionado opciones de la sección Avanzado: quitan partes de Windows y algo podría dejar de funcionar. ¿Continuar?
 H:chkMMCSS	Da prioridad a juegos y audio cuando el equipo está bajo carga. Menos tirones y un audio más limpio.
@@ -451,7 +451,7 @@ L:chkMenuSleep	Suspender en el menú de apagado
 L:chkMenuHibernate	Hibernar en el menú de apagado
 M:dlgYes	Sí, continuar
 M:dlgNo	Cancelar
-M:selCount	Opciones seleccionadas: {0}
+M:selCount	Cambios: {0}
 M:doneSummary	Hecho: {0} cambios aplicados, {1} ya estaban, {2} errores.
 M:doneReboot	Reinicia el PC para completarlos.
 M:psInterval	Quantum
@@ -897,3 +897,11 @@ M:recOff	desactivado
 M:recOnLimited	activado (con limitaciones)
 M:recDefault	{0}, como en un Windows recién instalado
 M:recTipLive	Valor recomendado: {0}. Un clic lo establece al instante, como el interruptor.
+L:btnEmergency	Restablecer todo
+M:undoPageNone	En esta página no hay opciones encendidas que restablecer.
+M:emgTitle	Restablecer todo
+M:emgAsk	Todos los ajustes que el programa puede cambiar vuelven a los valores de un Windows recién instalado, en todas las páginas, incluso las que nunca tocaste. Primero se crea un punto de restauración. Las apps eliminadas y los archivos borrados no vuelven. ¿Continuar?
+M:emgAsk2	Confirma de nuevo: el restablecimiento total no se deshace desde aquí, solo con el punto de restauración.
+M:emgRestorePoint	Punto de restauración antes de restablecer todo
+M:emgHeader	Restablecer todo a los valores de Windows
+M:emgDone	Restablecimiento completado: reinicia el equipo para que todo vuelva a estar como antes.

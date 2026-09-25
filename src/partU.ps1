@@ -89,16 +89,33 @@ function Reset-Bcd {
     if ($p -and $p.ExitCode -eq 0) { Write-Log "[OK] $Label" } else { Write-Log "[SALTATO] $Label - gia' predefinito." }
 }
 
+# Quali voci riportare al valore di Windows:
+#   page   - quelle accese nella pagina aperta («Ripristina questa pagina»)
+#   revert - quelle attive sul sistema che l'utente ha spento («Applica»)
+#   all    - tutte, per il ripristino totale (solo quelle adatte a questo PC)
+$script:UndoMode = 'checked'
+$script:UndoPageBoxes = @()
+function Test-UndoWanted($Box) {
+    if ($null -eq $Box) { return $false }
+    switch ($script:UndoMode) {
+        'revert' { return ($Box.IsChecked -ne $true) -and ($script:Baseline[[string]$Box.Name] -eq $true) }
+        'all'    { return (Test-CheckVendor $Box) }
+        'page'   { return ($Box.IsChecked -eq $true) -and ($script:UndoPageBoxes -contains $Box) }
+        default  { return ($Box.IsChecked -eq $true) }
+    }
+}
+
 function Add-UndoIfChecked {
     param($Box,[scriptblock]$Do)
-    if ($null -ne $Box -and $Box.IsChecked -eq $true) { Add-Action ("$(T 'undoPrefix') " + [string]$Box.Content) $Do }
+    if (Test-UndoWanted $Box) { Add-Action ("$(T 'undoPrefix') " + [string]$Box.Content) $Do }
 }
 
 # Voci che non hanno un «prima» da ripristinare: pulizie, file eliminati,
 # app disinstallate. Si elencano comunque, cosi' il registro spiega perche'.
 function Add-NoUndo {
     param($Box,[string]$Reason)
-    if ($null -ne $Box -and $Box.IsChecked -eq $true) {
+    if ($script:UndoMode -in @('revert', 'all')) { return }
+    if (Test-UndoWanted $Box) {
         $label = [string]$Box.Content
         Add-Action ("$(T 'undoPrefix') $label") ([scriptblock]::Create("Write-Log '[SALTATO] $($label -replace "'", "''") - $($Reason -replace "'", "''")'"))
     }
@@ -649,17 +666,78 @@ function Invoke-ActionQueue {
     Show-StorageInventory
     Update-PowerPlanLabel
     Update-ApplyButton
-    # Lo stato «Attivo» delle voci cambia dopo ogni giro.
-    if (Get-Command Update-ActiveBadges -ErrorAction SilentlyContinue) { Update-ActiveBadges | Out-Null }
+    # Lo stato «Attivo» delle voci cambia dopo ogni giro: gli interruttori lo seguono.
+    if (Get-Command Update-ActiveBadges -ErrorAction SilentlyContinue) { Update-ActiveBadges | Out-Null; Sync-ChecksToSystem -All }
+    foreach ($r in @($script:CatRows)) { Update-CatRow $r }
 }
 
+# «Ripristina questa pagina»: le voci accese della pagina aperta tornano ai
+# valori di Windows, senza toccare le altre pagine.
 $btnUndo.Add_Click({
-    Build-UndoActions
+    $page = Get-CurrentPage
+    $script:UndoPageBoxes = if ($page) { @(Get-CheckBoxesFromTree $page) } else { @() }
+    $script:UndoMode = 'page'
+    try { Build-UndoActions } finally { $script:UndoMode = 'checked' }
     $total = $script:Actions.Count
     if ($total -eq 0) {
-        Write-Log "[AVVISO] $(T 'nothing')"
+        $txtProgressLabel.Text = T 'undoPageNone'
         return
     }
     if (-not (Show-Dialog (T 'confirmTitle') (T 'undoAsk') 'ask' ((T 'selCount') -f $total))) { return }
     Invoke-ActionQueue "Tweak Andrew v6.0 - ANNULLA"
+})
+
+# ------------------------------------------------------------------------------
+# Ripristino totale: ogni impostazione del programma torna al valore di
+# Windows appena installato, senza selezionare nulla. Prima un punto di
+# ripristino. Voci del produttore sbagliato e pulizie non si toccano.
+# ------------------------------------------------------------------------------
+function Reset-CatPageDefaults([string]$page) {
+    foreach ($it in @($script:Catalog | Where-Object { $_.Page -eq $page })) {
+        $target = Get-CatDefTarget $it
+        if ($null -eq $target -or [string]$target -eq '-') { continue }
+        if ($it.Kind -eq 'S' -and -not ($it.Opts | Where-Object { $_.Key -eq $target })) { continue }
+        $now = Get-CatState $it
+        if ($null -eq $now) { continue }
+        if ([string]$now -eq [string]$target) { $script:SkipCount++; continue }
+        [void](Set-CatState $it $target)
+    }
+}
+
+function Reset-SchedDefaults {
+    Set-Reg $script:PsPath 'Win32PrioritySeparation' 2 'DWord' 'Win32PrioritySeparation = 0x02' | Out-Null
+    Set-Reg $script:MmRoot 'NetworkThrottlingIndex' 10 'DWord' 'MMCSS / NetworkThrottlingIndex' | Out-Null
+    Set-Reg $script:MmRoot 'SystemResponsiveness' 20 'DWord' 'MMCSS / SystemResponsiveness' | Out-Null
+    foreach ($name in $script:MmDefaults.Keys) {
+        $p = "$script:MmRoot\Tasks\$name"
+        if (-not (Test-Path $p)) { continue }
+        $d = $script:MmDefaults[$name]
+        Set-Reg $p 'Affinity' 0 'DWord' "$name / Affinity" | Out-Null
+        Set-Reg $p 'Clock Rate' 10000 'DWord' "$name / Clock Rate" | Out-Null
+        Set-Reg $p 'GPU Priority' 8 'DWord' "$name / GPU Priority" | Out-Null
+        Set-Reg $p 'Priority' ([int]$d.Prio) 'DWord' "$name / Priority" | Out-Null
+        Set-Reg $p 'Scheduling Category' ([string]$d.Sched) 'String' "$name / Scheduling Category" | Out-Null
+        Set-Reg $p 'SFIO Priority' 'Normal' 'String' "$name / SFIO Priority" | Out-Null
+        Set-Reg $p 'Background Only' ([string]$d.Bg) 'String' "$name / Background Only" | Out-Null
+        foreach ($v in @('Background Priority', 'Latency Sensitive')) { if ($null -ne (Get-RegOrNull $p $v)) { Remove-Reg $p $v "$name / $v" } }
+    }
+}
+
+$btnEmergency = E 'btnEmergency'
+$btnEmergency.Add_Click({
+    if (-not (Show-Dialog (T 'emgTitle') (T 'emgAsk') 'warn')) { return }
+    if (-not (Show-Dialog (T 'emgTitle') (T 'emgAsk2') 'warn')) { return }
+    $script:UndoMode = 'all'
+    try { Build-UndoActions } finally { $script:UndoMode = 'checked' }
+    $fixed = $script:Actions
+    $script:Actions = @()
+    Add-Action (T 'emgRestorePoint') { New-TweakRestorePoint }
+    $script:Actions += @($fixed)
+    foreach ($pg in @('exp', 'task', 'notif', 'game', 'win', 'priv', 'power')) {
+        $tab = @{ exp = 'tabExp'; task = 'tabTask'; notif = 'tabNotif'; game = 'tabGame'; win = 'tabWin'; priv = 'tabPriv2'; power = 'tabPower' }[$pg]
+        Add-Action ("$(T 'undoPrefix') " + [string](E $tab).Content) ([scriptblock]::Create("Reset-CatPageDefaults '$pg'"))
+    }
+    Add-Action ("$(T 'undoPrefix') " + [string](E 'tabSched').Content) { Reset-SchedDefaults }
+    Invoke-ActionQueue (T 'emgHeader')
+    Write-Log "[INFO] $(T 'emgDone')"
 })

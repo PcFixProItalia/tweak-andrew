@@ -67,7 +67,7 @@ function Set-UiLock([string]$Key, [bool]$On) {
         $el.IsEnabled = -not $lock
         $el.Opacity = if ($lock) { 0.5 } else { 1 }
     }
-    foreach ($n in @('barQueue', 'btnDetectActive', 'chkRestorePoint')) {
+    foreach ($n in @('barQueue', 'btnDetectActive', 'btnEmergency', 'chkRestorePoint')) {
         $el = $window.FindName($n)
         if ($el) { $el.IsEnabled = -not $lock }
     }
@@ -901,8 +901,25 @@ function Get-ExplicitActive {
     }
 }
 
+# Porta gli interruttori allo stato del sistema. Con -All tutti (avvio e dopo
+# Applica); senza, solo quelli che l'utente non ha ancora cambiato.
+function Sync-ChecksToSystem([hashtable]$Before = @{}, [switch]$All) {
+    $script:Syncing = $true
+    try {
+        foreach ($cb in $script:AllCheckBoxes) {
+            $n = [string]$cb.Name
+            $now = $script:Baseline[$n]
+            if ($null -eq $now) { if ($All) { $cb.IsChecked = $false }; continue }
+            if ($All -or (($cb.IsChecked -eq $true) -eq ($Before[$n] -eq $true))) { $cb.IsChecked = [bool]$now }
+        }
+    } finally { $script:Syncing = $false }
+    if ($script:SectionPicks) { foreach ($s in $script:SectionPicks) { Update-SectionPick $s } }
+    Update-ApplyButton
+}
+
 function Update-ActiveBadges {
     if ($null -eq $script:ProbePlans) { $script:ProbePlans = Get-ProbePlans }
+    $script:BaselineBefore = $script:Baseline.Clone()
     $explicit = Get-ExplicitActive
     $n = 0
     foreach ($cb in $script:AllCheckBoxes) {
@@ -920,6 +937,7 @@ function Update-ActiveBadges {
             if ($seen -eq 0) { $state = $null }
         }
         [System.Windows.Automation.AutomationProperties]::SetHelpText($cb, $(if ($state -eq $true) { 'active' } else { '' }))
+        if ($null -eq $state) { $script:Baseline.Remove($name) } else { $script:Baseline[$name] = [bool]$state }
         if ($state -eq $true) { $n++ }
     }
     Update-CurrentValues
@@ -975,6 +993,7 @@ function Update-RecStars {
 $btnDetectActive.Add_Click({
     Set-Activity 'scan' (T 'scanRunning') -1
     $n = Update-ActiveBadges
+    Sync-ChecksToSystem $script:BaselineBefore
     Clear-Activity 'scan'
     $txtProgressLabel.Text = (T 'scanDone') -f $n
     Write-Log "[INFO] Rilevamento completato: $n voci gia' attive."
@@ -984,6 +1003,7 @@ $btnDetectActive.Add_Click({
 $window.Add_ContentRendered({
     [void]$window.Dispatcher.BeginInvoke([Action]{
         $n = Update-ActiveBadges
+        Sync-ChecksToSystem -All
         $txtProgressLabel.Text = (T 'scanDone') -f $n
         Write-Log "[INFO] Voci gia' attive su questo PC: $n."
     }, [System.Windows.Threading.DispatcherPriority]::ApplicationIdle)

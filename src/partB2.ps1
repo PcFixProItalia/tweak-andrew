@@ -1315,6 +1315,7 @@
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
                             <Border x:Name="pillActivity" Grid.Column="1" Visibility="Collapsed" Cursor="Hand"
                                     Background="#FF0A0A0C" BorderBrush="#FF26262C" BorderThickness="1" CornerRadius="14"
@@ -1345,9 +1346,12 @@
                                            FontSize="26" FontWeight="Bold" Foreground="#FFF2F2F5" VerticalAlignment="Center"/>
                             </StackPanel>
                             <!-- «Rileva già attivi» sta qui e non nella barra in basso: con le lingue lunghe la barra andava su due righe. -->
-                            <Button x:Name="btnDetectActive" Grid.Column="2" Style="{StaticResource GhostBtn}" Height="36" Margin="0,0,10,0"
+                            <!-- Ripristino totale: sempre a portata, anche dalle pagine a effetto immediato. -->
+                            <Button x:Name="btnEmergency" Grid.Column="2" Style="{StaticResource UndoBtn}" Height="36" Margin="0,0,10,0"
+                                    VerticalAlignment="Center" Content="Ripristino totale"/>
+                            <Button x:Name="btnDetectActive" Grid.Column="3" Style="{StaticResource GhostBtn}" Height="36" Margin="0,0,10,0"
                                     VerticalAlignment="Center" Content="Rileva già attivi"/>
-                            <Border x:Name="pillSelected" Grid.Column="3" Background="#FF0A0A0C" BorderBrush="#FF1A1A1F" BorderThickness="1"
+                            <Border x:Name="pillSelected" Grid.Column="4" Background="#FF0A0A0C" BorderBrush="#FF1A1A1F" BorderThickness="1"
                                     CornerRadius="14" Padding="14,8" VerticalAlignment="Center">
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock x:Name="lblSelected" Text="Selezionati:" Foreground="#FF7E7E88" FontSize="12"

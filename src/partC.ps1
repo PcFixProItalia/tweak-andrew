@@ -253,14 +253,14 @@ $script:Loc = @{
     chkStorageSense    = @{ it = "Sensore memoria — disattiva"; en = "Storage Sense — disable" }
     chkReservedStorage = @{ it = "Spazio riservato di Windows (7 GB) — disattiva"; en = "Windows reserved storage (7 GB) — disable" }
 
-    lblSelected        = @{ it = "Selezionati:"; en = "Selected:" }
+    lblSelected        = @{ it = "Modifiche:"; en = "Changes:" }
     chkRestorePoint    = @{ it = "Punto di ripristino"; en = "Restore point" }
     btnSelectAll       = @{ it = "Seleziona tutto"; en = "Select all" }
-    btnDeselectAll     = @{ it = "Deseleziona"; en = "Clear all" }
+    btnDeselectAll     = @{ it = "Annulla scelte"; en = "Undo choices" }
     btnDetectActive    = @{ it = "Rileva già attivi"; en = "Detect applied" }
     btnRun             = @{ it = "Applica modifiche"; en = "Apply changes" }
 
-    btnUndo            = @{ it = "Reimposta predefiniti"; en = "Restore defaults" }
+    btnUndo            = @{ it = "Ripristina questa pagina"; en = "Reset this page" }
     tabAdv             = @{ it = "Avanzate"; en = "Advanced" }
     ttlAdvIntro        = @{ it = "PRIMA DI PROCEDERE"; en = "BEFORE YOU START" }
     lblAdvIntro        = @{ it = "Queste voci tolgono parti di Windows che la maggior parte dei computer non usa. Il guadagno è reale su una macchina dedicata a giochi o lavoro, ma qualcosa smette di funzionare: leggi la descrizione di ogni voce. Crea un punto di ripristino prima di applicare, e riavvia dopo."; en = "These options strip out parts of Windows that most computers never use. The gain is real on a machine dedicated to gaming or work, but some things stop working: read each entry. Create a restore point before applying, and reboot afterwards." }
@@ -428,6 +428,7 @@ $script:Loc = @{
     chkAdvLogi         = @{ it = "Niente assistente download Logitech"; en = "No Logitech download assistant" }
     chkIPv4Pref        = @{ it = "IPv4 prima di IPv6"; en = "IPv4 before IPv6" }
     chkDiskNoSleep     = @{ it = "Dischi e SSD sempre attivi (con alimentazione collegata)"; en = "Disks and SSDs always on (while plugged in)" }
+    btnEmergency       = @{ it = "Ripristino totale"; en = "Full reset" }
 }
 
 # Messaggi non legati a un controllo: log, finestre di dialogo, etichette dinamiche.
@@ -435,7 +436,7 @@ $script:Msg = @{
     ready            = @{ it = "Pronto."; en = "Ready." }
     starting         = @{ it = "Avvio in corso..."; en = "Starting..." }
     done             = @{ it = "Completato"; en = "Completed" }
-    nothing          = @{ it = "Nessuna voce selezionata."; en = "Nothing selected." }
+    nothing            = @{ it = "Nessuna modifica da applicare: gli interruttori corrispondono già al sistema."; en = "Nothing to apply: the switches already match the system." }
     activePlan       = @{ it = "Piano attivo:"; en = "Active plan:" }
     detecting        = @{ it = "Rilevamento in corso..."; en = "Detecting..." }
     profileDetected  = @{ it = "Profilo rilevato:"; en = "Detected profile:" }
@@ -444,7 +445,7 @@ $script:Msg = @{
     chooseProfile    = @{ it = "Seleziona SSD oppure HDD prima di applicare il profilo di archiviazione."; en = "Select SSD or HDD before applying the storage profile." }
     finished         = @{ it = "Operazioni completate. Riavvia il computer per rendere effettive tutte le modifiche."; en = "All operations completed. Restart the computer to apply every change." }
     finishedTitle    = @{ it = "Tweak Andrew v6.0"; en = "Tweak Andrew v6.0" }
-    confirmRun       = @{ it = "Vuoi applicare le modifiche selezionate?"; en = "Apply the selected changes?" }
+    confirmRun         = @{ it = "Applicare le modifiche? Le voci accese si attivano, quelle attive che hai spento tornano ai valori di Windows."; en = "Apply the changes? Switched-on entries are enabled; active entries you switched off go back to the Windows values." }
     confirmTitle     = @{ it = "Conferma"; en = "Confirm" }
     emptyRecycleAsk  = @{ it = "Svuotare definitivamente il Cestino? L'operazione non si può annullare."; en = "Permanently empty the Recycle Bin? This cannot be undone." }
     summary          = @{ it = "Riepilogo"; en = "Summary" }
@@ -469,12 +470,12 @@ $script:Msg = @{
     bootResetAsk     = @{ it = "Rimettere i valori di avvio predefiniti di Windows?"; en = "Restore the default Windows boot settings?" }
     bootResetDone    = @{ it = "Configurazione di avvio riportata ai valori predefiniti."; en = "Boot configuration restored to its defaults." }
     undoPrefix       = @{ it = "Predefinito:"; en = "Default:" }
-    undoAsk          = @{ it = "Rimettere i valori predefiniti di Windows per le voci selezionate?"; en = "Restore the Windows defaults for the selected entries?" }
+    undoAsk            = @{ it = "Riportare ai valori di Windows le voci accese di questa pagina?"; en = "Put the switched-on entries of this page back to the Windows values?" }
     advWarnTitle     = @{ it = "Voci avanzate"; en = "Advanced options" }
     advWarn          = @{ it = "Hai selezionato voci della sezione Avanzate: tolgono parti di Windows e qualcosa potrebbe smettere di funzionare. Procedere?"; en = "You selected entries from the Advanced section: they strip out parts of Windows and something may stop working. Continue?" }
     dlgYes           = @{ it = "Sì, procedi"; en = "Yes, go ahead" }
     dlgNo            = @{ it = "Annulla"; en = "Cancel" }
-    selCount         = @{ it = "Voci selezionate: {0}"; en = "Selected entries: {0}" }
+    selCount           = @{ it = "Modifiche: {0}"; en = "Changes: {0}" }
     doneSummary      = @{ it = "Fatto: {0} modifiche applicate, {1} già a posto, {2} errori."; en = "Done: {0} changes applied, {1} already set, {2} errors." }
     doneReboot       = @{ it = "Riavvia il PC per completarle."; en = "Restart the PC to finish." }
     psInterval       = @{ it = "Quanto"; en = "Quantum" }
@@ -807,6 +808,13 @@ $script:Msg = @{
     recOnLimited       = @{ it = "attivo (con limitazioni)"; en = "on (with limitations)" }
     recDefault         = @{ it = "{0}, come Windows appena installato"; en = "{0}, as on a fresh Windows install" }
     recTipLive         = @{ it = "Valore consigliato: {0}. Un clic lo imposta subito, come l'interruttore."; en = "Recommended value: {0}. One click sets it at once, like the switch." }
+    undoPageNone       = @{ it = "In questa pagina non ci sono voci accese da ripristinare."; en = "There are no switched-on entries to reset on this page." }
+    emgTitle           = @{ it = "Ripristino totale"; en = "Full reset" }
+    emgAsk             = @{ it = "Tutte le impostazioni che il programma può cambiare tornano ai valori di Windows appena installato, in tutte le pagine, anche quelle che non hai mai toccato. Prima viene creato un punto di ripristino. Le app rimosse e i file cancellati non tornano. Procedere?"; en = "Every setting the program can change goes back to the values of a fresh Windows install, on all pages, even those you never touched. A restore point is created first. Removed apps and deleted files do not come back. Continue?" }
+    emgAsk2            = @{ it = "Conferma ancora: il ripristino totale non si annulla da qui, solo con il punto di ripristino."; en = "Confirm again: the full reset cannot be undone from here, only with the restore point." }
+    emgRestorePoint    = @{ it = "Punto di ripristino prima del ripristino totale"; en = "Restore point before the full reset" }
+    emgHeader          = @{ it = "Ripristino totale ai valori di Windows"; en = "Full reset to the Windows values" }
+    emgDone            = @{ it = "Ripristino totale completato: riavvia il computer perché tutto torni come prima."; en = "Full reset done: restart the computer so everything is back as before." }
 }
 
 $script:LangCode = "it"
@@ -1561,10 +1569,23 @@ function Update-SectionPickText {
 # All'avvio nulla e' selezionato.
 foreach ($cb in $script:AllCheckBoxes) { $cb.IsChecked = $false }
 
+# L'interruttore dice lo stato voluto: acceso = attivo, spento = come Windows.
+# $script:Baseline tiene lo stato letto dal sistema (true, false, o assente se
+# non si puo' leggere). Una voce e' «da fare» quando l'interruttore non
+# corrisponde al sistema; le voci senza lettura sono azioni da eseguire se accese.
+$script:Baseline = @{}
+$script:Syncing = $false
+function Test-Pending($cb) {
+    $b = $script:Baseline[[string]$cb.Name]
+    if ($null -eq $b) { return ($cb.IsChecked -eq $true) }
+    return (($cb.IsChecked -eq $true) -ne ($b -eq $true))
+}
+
 function Update-ApplyButton {
-    $total = @($script:AllCheckBoxes | Where-Object { $_.IsChecked -eq $true }).Count
+    if ($script:Syncing) { return }
+    $total = @($script:AllCheckBoxes | Where-Object { Test-Pending $_ }).Count
     $btnRun.IsEnabled = ($total -gt 0)
-    if ($null -ne $btnUndo) { $btnUndo.IsEnabled = ($total -gt 0) }
+    if ($null -ne $btnUndo) { $btnUndo.IsEnabled = (@($script:AllCheckBoxes | Where-Object { $_.IsChecked -eq $true }).Count -gt 0) }
     if ($null -ne $txtSelectedCount) {
         $txtSelectedCount.Text = "$total"
         if ($total -gt 0) { $txtSelectedCount.Foreground = "#FF2ED3A7" } else { $txtSelectedCount.Foreground = "#FF5E5E68" }
@@ -1692,8 +1713,11 @@ $btnRecommended.Add_Click({
     Update-ApplyButton
 })
 
+# «Annulla scelte»: ogni interruttore torna allo stato del sistema.
 $btnDeselectAll.Add_Click({
-    foreach ($cb in $script:AllCheckBoxes) { $cb.IsChecked = $false }
+    $script:Syncing = $true
+    try { foreach ($cb in $script:AllCheckBoxes) { $cb.IsChecked = ($script:Baseline[[string]$cb.Name] -eq $true) } }
+    finally { $script:Syncing = $false }
     Update-ApplyButton
 })
 

@@ -57,6 +57,16 @@ bloccano; Home e App restano libere. All'avvio il programma legge le azioni di
 attive portano l'etichetta «Attivo». La coccarda con la spunta dice il valore consigliato di ogni voce:
 piena se la voce è già lì; un clic la porta al consiglio (nelle pagine con «Applica» senza applicarla).
 
+## Interruttori e ripristino
+
+Nelle pagine con «Applica» l'interruttore mostra lo stato voluto: all'avvio
+le voci già attive sul PC sono accese. «Applica modifiche» esegue solo le
+differenze: una voce accesa si attiva, una voce attiva spenta torna al valore
+di Windows. «Annulla scelte» riporta gli interruttori allo stato del sistema,
+«Ripristina questa pagina» riporta ai valori di Windows le voci accese della
+pagina aperta. «Ripristino totale», in alto, riporta tutto il programma ai
+valori di Windows appena installato, dopo un punto di ripristino e due conferme.
+
 ## Avvio da qualsiasi PC
 
 ```powershell

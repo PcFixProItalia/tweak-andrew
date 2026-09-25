@@ -183,13 +183,13 @@ L:chkSmartChkdsk	CHKDSK inteligente (SSD ou HDD)
 L:ttlSpace	ESPAÇO E POLÍTICAS
 L:chkStorageSense	Sensor de Armazenamento — desativar
 L:chkReservedStorage	Armazenamento reservado do Windows (7 GB) — desativar
-L:lblSelected	Selecionados:
+L:lblSelected	Alterações:
 L:chkRestorePoint	Ponto de restauração
 L:btnSelectAll	Selecionar tudo
-L:btnDeselectAll	Limpar seleção
+L:btnDeselectAll	Desfazer escolhas
 L:btnDetectActive	Detectar aplicados
 L:btnRun	Aplicar alterações
-L:btnUndo	Restaurar padrões
+L:btnUndo	Restaurar esta página
 L:tabAdv	Avançado
 L:ttlAdvIntro	ANTES DE COMEÇAR
 L:lblAdvIntro	Estas opções removem partes do Windows que a maioria dos computadores nunca usa. O ganho é real numa máquina dedicada a jogos ou trabalho, mas algumas coisas deixam de funcionar: leia cada item. Crie um ponto de restauração antes de aplicar e reinicie depois.
@@ -242,7 +242,7 @@ L:chkSecDefenderIdle	Defender: verificar só em repouso, CPU a 20%
 M:ready	Pronto.
 M:starting	Iniciando...
 M:done	Concluído
-M:nothing	Nada selecionado.
+M:nothing	Nada a aplicar: os interruptores já correspondem ao sistema.
 M:activePlan	Plano ativo:
 M:detecting	Detectando...
 M:profileDetected	Perfil detectado:
@@ -250,7 +250,7 @@ M:noDisks	Não foi possível detectar as unidades com Get-PhysicalDisk.
 M:free	livres de
 M:chooseProfile	Escolha SSD ou HDD antes de aplicar o perfil de armazenamento.
 M:finished	Operações concluídas. Reinicie o computador para aplicar todas as alterações.
-M:confirmRun	Aplicar as alterações selecionadas?
+M:confirmRun	Aplicar as alterações? Os itens ligados são ativados; os ativos que você desligou voltam aos valores do Windows.
 M:confirmTitle	Confirmar
 M:emptyRecycleAsk	Esvaziar a Lixeira permanentemente? Não é possível desfazer.
 M:summary	Resumo
@@ -274,7 +274,7 @@ M:featStateOff	desativado
 M:bootResetAsk	Restaurar a configuração de inicialização padrão do Windows?
 M:bootResetDone	Configuração de inicialização restaurada.
 M:undoPrefix	Padrão:
-M:undoAsk	Restaurar os valores do Windows nos itens selecionados?
+M:undoAsk	Voltar aos valores do Windows os itens ligados desta página?
 M:advWarnTitle	Opções avançadas
 M:advWarn	Você selecionou itens da seção Avançado: eles removem partes do Windows e algo pode deixar de funcionar. Continuar?
 H:chkMMCSS	Dá prioridade a jogos e áudio quando o computador está sob carga. Menos travadas e áudio mais limpo.
@@ -451,7 +451,7 @@ L:chkMenuSleep	Suspender no menu de energia
 L:chkMenuHibernate	Hibernar no menu de energia
 M:dlgYes	Sim, continuar
 M:dlgNo	Cancelar
-M:selCount	Itens selecionados: {0}
+M:selCount	Alterações: {0}
 M:doneSummary	Pronto: {0} alterações aplicadas, {1} já estavam assim, {2} erros.
 M:doneReboot	Reinicie o PC para concluí-las.
 M:psInterval	Quantum
@@ -897,3 +897,11 @@ M:recOff	desativado
 M:recOnLimited	ativado (com limitações)
 M:recDefault	{0}, como em um Windows recém-instalado
 M:recTipLive	Valor recomendado: {0}. Um clique o define na hora, como o interruptor.
+L:btnEmergency	Restaurar tudo
+M:undoPageNone	Nesta página não há itens ligados para restaurar.
+M:emgTitle	Restaurar tudo
+M:emgAsk	Todas as configurações que o programa pode alterar voltam aos valores de um Windows recém-instalado, em todas as páginas, mesmo as nunca tocadas. Primeiro é criado um ponto de restauração. Apps removidos e arquivos apagados não voltam. Continuar?
+M:emgAsk2	Confirme novamente: a restauração total não se desfaz daqui, só com o ponto de restauração.
+M:emgRestorePoint	Ponto de restauração antes da restauração total
+M:emgHeader	Restauração total aos valores do Windows
+M:emgDone	Restauração concluída: reinicie o computador para que tudo volte a ser como antes.

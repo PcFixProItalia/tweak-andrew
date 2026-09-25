@@ -183,13 +183,13 @@ L:chkSmartChkdsk	Inteligentny CHKDSK (SSD lub HDD)
 L:ttlSpace	MIEJSCE I ZASADY
 L:chkStorageSense	Czujnik pamięci — wyłącz
 L:chkReservedStorage	Zarezerwowane miejsce Windows (7 GB) — wyłącz
-L:lblSelected	Zaznaczono:
+L:lblSelected	Zmiany:
 L:chkRestorePoint	Punkt przywracania
 L:btnSelectAll	Zaznacz wszystko
-L:btnDeselectAll	Odznacz wszystko
+L:btnDeselectAll	Cofnij wybory
 L:btnDetectActive	Wykryj zastosowane
 L:btnRun	Zastosuj zmiany
-L:btnUndo	Przywróć domyślne
+L:btnUndo	Przywróć tę stronę
 L:tabAdv	Zaawansowane
 L:ttlAdvIntro	ZANIM ZACZNIESZ
 L:lblAdvIntro	Te opcje usuwają części Windows, których większość komputerów nigdy nie używa. Zysk jest realny na maszynie do gier lub pracy, ale niektóre rzeczy przestają działać: przeczytaj każdą pozycję. Przed zastosowaniem utwórz punkt przywracania, a potem uruchom ponownie.
@@ -242,7 +242,7 @@ L:chkSecDefenderIdle	Defender: skanuj tylko w bezczynności, CPU do 20%
 M:ready	Gotowe.
 M:starting	Uruchamianie...
 M:done	Zakończono
-M:nothing	Nic nie zaznaczono.
+M:nothing	Nic do zastosowania: przełączniki już odpowiadają systemowi.
 M:activePlan	Aktywny plan:
 M:detecting	Wykrywanie...
 M:profileDetected	Wykryty profil:
@@ -250,7 +250,7 @@ M:noDisks	Nie można wykryć dysków za pomocą Get-PhysicalDisk.
 M:free	wolne z
 M:chooseProfile	Wybierz SSD lub HDD przed zastosowaniem profilu dysku.
 M:finished	Wszystkie operacje zakończone. Uruchom komputer ponownie, aby zastosować wszystkie zmiany.
-M:confirmRun	Zastosować zaznaczone zmiany?
+M:confirmRun	Zastosować zmiany? Włączone pozycje zostaną aktywowane, a aktywne, które wyłączyłeś, wrócą do wartości Windows.
 M:confirmTitle	Potwierdź
 M:emptyRecycleAsk	Trwale opróżnić Kosz? Tej operacji nie można cofnąć.
 M:summary	Podsumowanie
@@ -274,7 +274,7 @@ M:featStateOff	wyłączona
 M:bootResetAsk	Przywrócić domyślną konfigurację rozruchu Windows?
 M:bootResetDone	Konfiguracja rozruchu przywrócona.
 M:undoPrefix	Domyślne:
-M:undoAsk	Przywrócić wartości domyślne Windows dla zaznaczonych pozycji?
+M:undoAsk	Przywrócić wartości Windows dla włączonych pozycji tej strony?
 M:advWarnTitle	Opcje zaawansowane
 M:advWarn	Zaznaczono pozycje z sekcji Zaawansowane: usuwają one części Windows i coś może przestać działać. Kontynuować?
 H:chkMMCSS	Daje pierwszeństwo grom i dźwiękowi, gdy komputer jest obciążony. Mniej przycięć i czystszy dźwięk.
@@ -451,7 +451,7 @@ L:chkMenuSleep	Uśpij w menu zasilania
 L:chkMenuHibernate	Hibernuj w menu zasilania
 M:dlgYes	Tak, kontynuuj
 M:dlgNo	Anuluj
-M:selCount	Zaznaczone pozycje: {0}
+M:selCount	Zmiany: {0}
 M:doneSummary	Gotowe: {0} zmian zastosowanych, {1} już ustawionych, {2} błędów.
 M:doneReboot	Uruchom komputer ponownie, aby je zakończyć.
 M:psInterval	Kwant
@@ -897,3 +897,11 @@ M:recOff	wyłączone
 M:recOnLimited	włączone (z ograniczeniami)
 M:recDefault	{0}, jak w świeżo zainstalowanym Windows
 M:recTipLive	Zalecana wartość: {0}. Jedno kliknięcie ustawia ją od razu, jak przełącznik.
+L:btnEmergency	Przywróć wszystko
+M:undoPageNone	Na tej stronie nie ma włączonych pozycji do przywrócenia.
+M:emgTitle	Przywróć wszystko
+M:emgAsk	Wszystkie ustawienia, które program może zmienić, wrócą do wartości świeżo zainstalowanego Windows, na wszystkich stronach, także tych nieruszanych. Najpierw powstanie punkt przywracania. Usunięte aplikacje i pliki nie wrócą. Kontynuować?
+M:emgAsk2	Potwierdź ponownie: pełnego przywrócenia nie cofniesz stąd, tylko punktem przywracania.
+M:emgRestorePoint	Punkt przywracania przed pełnym przywróceniem
+M:emgHeader	Pełne przywrócenie wartości Windows
+M:emgDone	Przywracanie zakończone: uruchom ponownie komputer, aby wszystko wróciło do stanu sprzed.
