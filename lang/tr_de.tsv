@@ -183,13 +183,13 @@ L:chkSmartChkdsk	Intelligentes CHKDSK (SSD oder HDD)
 L:ttlSpace	SPEICHERPLATZ UND RICHTLINIEN
 L:chkStorageSense	Speicheroptimierung — deaktivieren
 L:chkReservedStorage	Reservierter Windows-Speicher (7 GB) — deaktivieren
-L:lblSelected	Änderungen:
+L:lblSelected	Ausgewählt:
 L:chkRestorePoint	Wiederherstellungspunkt
 L:btnSelectAll	Alle auswählen
 L:btnDeselectAll	Auswahl verwerfen
 L:btnDetectActive	Angewendete erkennen
 L:btnRun	Änderungen anwenden
-L:btnUndo	Diese Seite zurücksetzen
+L:btnUndo	Auswahl zurücksetzen
 L:tabAdv	Erweitert
 L:ttlAdvIntro	BEVOR DU BEGINNST
 L:lblAdvIntro	Diese Optionen entfernen Teile von Windows, die die meisten Computer nie nutzen. Der Gewinn ist auf einem reinen Spiele- oder Arbeitsrechner echt, aber manches funktioniert danach nicht mehr: lies jeden Eintrag. Erstelle vorher einen Wiederherstellungspunkt und starte danach neu.
@@ -274,7 +274,7 @@ M:featStateOff	deaktiviert
 M:bootResetAsk	Die Windows-Standardstartkonfiguration wiederherstellen?
 M:bootResetDone	Startkonfiguration auf Standard zurückgesetzt.
 M:undoPrefix	Standard:
-M:undoAsk	Die eingeschalteten Einträge dieser Seite auf die Windows-Werte zurücksetzen?
+M:undoAsk	Die ausgewählten Einträge, also die geänderten, auf die Windows-Werte zurücksetzen?
 M:advWarnTitle	Erweiterte Optionen
 M:advWarn	Du hast Einträge aus dem Bereich Erweitert gewählt: Sie entfernen Teile von Windows, und manches könnte nicht mehr funktionieren. Fortfahren?
 H:chkMMCSS	Bevorzugt Spiele und Audio, wenn der Computer ausgelastet ist. Weniger Ruckler und saubererer Ton.
@@ -451,7 +451,7 @@ L:chkMenuSleep	Energie sparen im Ein/Aus-Menü
 L:chkMenuHibernate	Ruhezustand im Ein/Aus-Menü
 M:dlgYes	Ja, fortfahren
 M:dlgNo	Abbrechen
-M:selCount	Änderungen: {0}
+M:selCount	Ausgewählte Einträge: {0}
 M:doneSummary	Fertig: {0} Änderungen angewendet, {1} bereits gesetzt, {2} Fehler.
 M:doneReboot	Starte den PC neu, um sie abzuschließen.
 M:psInterval	Quantum
@@ -898,7 +898,7 @@ M:recOnLimited	aktiv (mit Einschränkungen)
 M:recDefault	{0}, wie bei einem frisch installierten Windows
 M:recTipLive	Empfohlener Wert: {0}. Ein Klick setzt ihn sofort, wie der Schalter.
 L:btnEmergency	Alles zurücksetzen
-M:undoPageNone	Auf dieser Seite gibt es keine eingeschalteten Einträge zum Zurücksetzen.
+M:undoPageNone	Nichts ausgewählt: Ändere die Schalter der Einträge, die zurückgesetzt werden sollen, und drücke erneut.
 M:emgTitle	Alles zurücksetzen
 M:emgAsk	Alle Einstellungen, die das Programm ändern kann, kehren auf allen Seiten zu den Werten eines frisch installierten Windows zurück, auch die nie angefassten. Zuerst wird ein Wiederherstellungspunkt erstellt. Entfernte Apps und gelöschte Dateien kommen nicht zurück. Fortfahren?
 M:emgAsk2	Bitte erneut bestätigen: Das vollständige Zurücksetzen lässt sich hier nicht rückgängig machen, nur mit dem Wiederherstellungspunkt.

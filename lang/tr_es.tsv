@@ -183,13 +183,13 @@ L:chkSmartChkdsk	CHKDSK inteligente (SSD o HDD)
 L:ttlSpace	ESPACIO Y DIRECTIVAS
 L:chkStorageSense	Sensor de almacenamiento — desactivar
 L:chkReservedStorage	Almacenamiento reservado de Windows (7 GB) — desactivar
-L:lblSelected	Cambios:
+L:lblSelected	Seleccionados:
 L:chkRestorePoint	Punto de restauración
 L:btnSelectAll	Seleccionar todo
 L:btnDeselectAll	Deshacer cambios
 L:btnDetectActive	Detectar aplicados
 L:btnRun	Aplicar cambios
-L:btnUndo	Restablecer esta página
+L:btnUndo	Restablecer seleccionados
 L:tabAdv	Avanzado
 L:ttlAdvIntro	ANTES DE EMPEZAR
 L:lblAdvIntro	Estas opciones quitan partes de Windows que la mayoría de equipos no usa. La ganancia es real en una máquina dedicada a juegos o trabajo, pero algunas cosas dejan de funcionar: lee cada opción. Crea un punto de restauración antes de aplicar y reinicia después.
@@ -274,7 +274,7 @@ M:featStateOff	desactivada
 M:bootResetAsk	¿Restablecer la configuración de arranque predeterminada de Windows?
 M:bootResetDone	Configuración de arranque restablecida.
 M:undoPrefix	Predeterminado:
-M:undoAsk	¿Devolver a los valores de Windows las opciones encendidas de esta página?
+M:undoAsk	¿Devolver a los valores de Windows las opciones seleccionadas, es decir, las que cambiaste?
 M:advWarnTitle	Opciones avanzadas
 M:advWarn	Has seleccionado opciones de la sección Avanzado: quitan partes de Windows y algo podría dejar de funcionar. ¿Continuar?
 H:chkMMCSS	Da prioridad a juegos y audio cuando el equipo está bajo carga. Menos tirones y un audio más limpio.
@@ -451,7 +451,7 @@ L:chkMenuSleep	Suspender en el menú de apagado
 L:chkMenuHibernate	Hibernar en el menú de apagado
 M:dlgYes	Sí, continuar
 M:dlgNo	Cancelar
-M:selCount	Cambios: {0}
+M:selCount	Opciones seleccionadas: {0}
 M:doneSummary	Hecho: {0} cambios aplicados, {1} ya estaban, {2} errores.
 M:doneReboot	Reinicia el PC para completarlos.
 M:psInterval	Quantum
@@ -898,7 +898,7 @@ M:recOnLimited	activado (con limitaciones)
 M:recDefault	{0}, como en un Windows recién instalado
 M:recTipLive	Valor recomendado: {0}. Un clic lo establece al instante, como el interruptor.
 L:btnEmergency	Restablecer todo
-M:undoPageNone	En esta página no hay opciones encendidas que restablecer.
+M:undoPageNone	Nada seleccionado: cambia los interruptores de las opciones a restablecer y vuelve a pulsar.
 M:emgTitle	Restablecer todo
 M:emgAsk	Todos los ajustes que el programa puede cambiar vuelven a los valores de un Windows recién instalado, en todas las páginas, incluso las que nunca tocaste. Primero se crea un punto de restauración. Las apps eliminadas y los archivos borrados no vuelven. ¿Continuar?
 M:emgAsk2	Confirma de nuevo: el restablecimiento total no se deshace desde aquí, solo con el punto de restauración.

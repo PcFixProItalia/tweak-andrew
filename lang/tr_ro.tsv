@@ -183,13 +183,13 @@ L:chkSmartChkdsk	CHKDSK inteligent (SSD sau HDD)
 L:ttlSpace	SPAȚIU ȘI POLITICI
 L:chkStorageSense	Senzor de stocare — dezactivează
 L:chkReservedStorage	Spațiul rezervat de Windows (7 GB) — dezactivează
-L:lblSelected	Modificări:
+L:lblSelected	Selectate:
 L:chkRestorePoint	Punct de restaurare
 L:btnSelectAll	Selectează tot
 L:btnDeselectAll	Anulează alegerile
 L:btnDetectActive	Detectează aplicate
 L:btnRun	Aplică modificările
-L:btnUndo	Resetează această pagină
+L:btnUndo	Resetează selectate
 L:tabAdv	Avansat
 L:ttlAdvIntro	ÎNAINTE DE A ÎNCEPE
 L:lblAdvIntro	Aceste opțiuni elimină părți din Windows pe care majoritatea computerelor nu le folosesc. Câștigul e real pe o mașină dedicată jocurilor sau muncii, dar unele lucruri nu mai funcționează: citește fiecare opțiune. Creează un punct de restaurare înainte și repornește după.
@@ -274,7 +274,7 @@ M:featStateOff	dezactivată
 M:bootResetAsk	Restabilești configurația de pornire implicită a Windows?
 M:bootResetDone	Configurația de pornire a fost restabilită.
 M:undoPrefix	Implicit:
-M:undoAsk	Readuci la valorile Windows elementele pornite din această pagină?
+M:undoAsk	Readuci la valorile Windows elementele selectate, adică cele schimbate?
 M:advWarnTitle	Opțiuni avansate
 M:advWarn	Ai selectat opțiuni din secțiunea Avansat: ele elimină părți din Windows și ceva ar putea să nu mai funcționeze. Continui?
 H:chkMMCSS	Dă prioritate jocurilor și sunetului când computerul e încărcat. Mai puține sacadări și sunet mai curat.
@@ -451,7 +451,7 @@ L:chkMenuSleep	Repaus în meniul de oprire
 L:chkMenuHibernate	Hibernare în meniul de oprire
 M:dlgYes	Da, continuă
 M:dlgNo	Anulează
-M:selCount	Modificări: {0}
+M:selCount	Elemente selectate: {0}
 M:doneSummary	Gata: {0} modificări aplicate, {1} deja setate, {2} erori.
 M:doneReboot	Repornește PC-ul pentru a le finaliza.
 M:psInterval	Cuantă
@@ -898,7 +898,7 @@ M:recOnLimited	activat (cu limitări)
 M:recDefault	{0}, ca pe un Windows proaspăt instalat
 M:recTipLive	Valoare recomandată: {0}. Un clic o setează imediat, ca întrerupătorul.
 L:btnEmergency	Resetare totală
-M:undoPageNone	Pe această pagină nu sunt elemente pornite de resetat.
+M:undoPageNone	Nimic selectat: schimbă comutatoarele elementelor de resetat, apoi apasă din nou.
 M:emgTitle	Resetare totală
 M:emgAsk	Toate setările pe care programul le poate schimba revin la valorile unui Windows proaspăt instalat, pe toate paginile, chiar și cele neatinse. Mai întâi se creează un punct de restaurare. Aplicațiile eliminate și fișierele șterse nu revin. Continui?
 M:emgAsk2	Confirmă din nou: resetarea totală nu se anulează de aici, doar cu punctul de restaurare.

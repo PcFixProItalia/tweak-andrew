@@ -183,13 +183,13 @@ L:chkSmartChkdsk	Inteligentny CHKDSK (SSD lub HDD)
 L:ttlSpace	MIEJSCE I ZASADY
 L:chkStorageSense	Czujnik pamięci — wyłącz
 L:chkReservedStorage	Zarezerwowane miejsce Windows (7 GB) — wyłącz
-L:lblSelected	Zmiany:
+L:lblSelected	Zaznaczone:
 L:chkRestorePoint	Punkt przywracania
 L:btnSelectAll	Zaznacz wszystko
 L:btnDeselectAll	Cofnij wybory
 L:btnDetectActive	Wykryj zastosowane
 L:btnRun	Zastosuj zmiany
-L:btnUndo	Przywróć tę stronę
+L:btnUndo	Przywróć zaznaczone
 L:tabAdv	Zaawansowane
 L:ttlAdvIntro	ZANIM ZACZNIESZ
 L:lblAdvIntro	Te opcje usuwają części Windows, których większość komputerów nigdy nie używa. Zysk jest realny na maszynie do gier lub pracy, ale niektóre rzeczy przestają działać: przeczytaj każdą pozycję. Przed zastosowaniem utwórz punkt przywracania, a potem uruchom ponownie.
@@ -274,7 +274,7 @@ M:featStateOff	wyłączona
 M:bootResetAsk	Przywrócić domyślną konfigurację rozruchu Windows?
 M:bootResetDone	Konfiguracja rozruchu przywrócona.
 M:undoPrefix	Domyślne:
-M:undoAsk	Przywrócić wartości Windows dla włączonych pozycji tej strony?
+M:undoAsk	Przywrócić wartości Windows dla zaznaczonych, czyli zmienionych pozycji?
 M:advWarnTitle	Opcje zaawansowane
 M:advWarn	Zaznaczono pozycje z sekcji Zaawansowane: usuwają one części Windows i coś może przestać działać. Kontynuować?
 H:chkMMCSS	Daje pierwszeństwo grom i dźwiękowi, gdy komputer jest obciążony. Mniej przycięć i czystszy dźwięk.
@@ -451,7 +451,7 @@ L:chkMenuSleep	Uśpij w menu zasilania
 L:chkMenuHibernate	Hibernuj w menu zasilania
 M:dlgYes	Tak, kontynuuj
 M:dlgNo	Anuluj
-M:selCount	Zmiany: {0}
+M:selCount	Zaznaczone pozycje: {0}
 M:doneSummary	Gotowe: {0} zmian zastosowanych, {1} już ustawionych, {2} błędów.
 M:doneReboot	Uruchom komputer ponownie, aby je zakończyć.
 M:psInterval	Kwant
@@ -898,7 +898,7 @@ M:recOnLimited	włączone (z ograniczeniami)
 M:recDefault	{0}, jak w świeżo zainstalowanym Windows
 M:recTipLive	Zalecana wartość: {0}. Jedno kliknięcie ustawia ją od razu, jak przełącznik.
 L:btnEmergency	Przywróć wszystko
-M:undoPageNone	Na tej stronie nie ma włączonych pozycji do przywrócenia.
+M:undoPageNone	Nic nie zaznaczono: zmień przełączniki pozycji do przywrócenia i naciśnij ponownie.
 M:emgTitle	Przywróć wszystko
 M:emgAsk	Wszystkie ustawienia, które program może zmienić, wrócą do wartości świeżo zainstalowanego Windows, na wszystkich stronach, także tych nieruszanych. Najpierw powstanie punkt przywracania. Usunięte aplikacje i pliki nie wrócą. Kontynuować?
 M:emgAsk2	Potwierdź ponownie: pełnego przywrócenia nie cofniesz stąd, tylko punktem przywracania.

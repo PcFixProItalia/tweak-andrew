@@ -90,7 +90,7 @@ function Reset-Bcd {
 }
 
 # Quali voci riportare al valore di Windows:
-#   page   - quelle accese nella pagina aperta («Ripristina questa pagina»)
+#   page   - quelle selezionate, cioe' cambiate dall'utente («Ripristina selezionati»)
 #   revert - quelle attive sul sistema che l'utente ha spento («Applica»)
 #   all    - tutte, per il ripristino totale (solo quelle adatte a questo PC)
 $script:UndoMode = 'checked'
@@ -100,7 +100,7 @@ function Test-UndoWanted($Box) {
     switch ($script:UndoMode) {
         'revert' { return ($Box.IsChecked -ne $true) -and ($script:Baseline[[string]$Box.Name] -eq $true) }
         'all'    { return (Test-CheckVendor $Box) }
-        'page'   { return ($Box.IsChecked -eq $true) -and ($script:UndoPageBoxes -contains $Box) }
+        'page'   { return (Test-Pending $Box) }
         default  { return ($Box.IsChecked -eq $true) }
     }
 }
@@ -671,11 +671,9 @@ function Invoke-ActionQueue {
     foreach ($r in @($script:CatRows)) { Update-CatRow $r }
 }
 
-# «Ripristina questa pagina»: le voci accese della pagina aperta tornano ai
-# valori di Windows, senza toccare le altre pagine.
+# «Ripristina selezionati»: le voci cambiate dall'utente, in qualunque pagina
+# e in qualunque verso, tornano ai valori di Windows.
 $btnUndo.Add_Click({
-    $page = Get-CurrentPage
-    $script:UndoPageBoxes = if ($page) { @(Get-CheckBoxesFromTree $page) } else { @() }
     $script:UndoMode = 'page'
     try { Build-UndoActions } finally { $script:UndoMode = 'checked' }
     $total = $script:Actions.Count

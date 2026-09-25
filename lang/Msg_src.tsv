@@ -35,12 +35,12 @@ featStateOff	disabled
 bootResetAsk	Restore the default Windows boot settings?
 bootResetDone	Boot configuration restored to its defaults.
 undoPrefix	Default:
-undoAsk	Put the switched-on entries of this page back to the Windows values?
+undoAsk	Put the selected entries, the ones you changed, back to the Windows values?
 advWarnTitle	Advanced options
 advWarn	You selected entries from the Advanced section: they strip out parts of Windows and something may stop working. Continue?
 dlgYes	Yes, go ahead
 dlgNo	Cancel
-selCount	Changes: {0}
+selCount	Selected entries: {0}
 doneSummary	Done: {0} changes applied, {1} already set, {2} errors.
 doneReboot	Restart the PC to finish.
 psInterval	Quantum
@@ -373,7 +373,7 @@ recOff	off
 recOnLimited	on (with limitations)
 recDefault	{0}, as on a fresh Windows install
 recTipLive	Recommended value: {0}. One click sets it at once, like the switch.
-undoPageNone	There are no switched-on entries to reset on this page.
+undoPageNone	Nothing selected: change the switches of the entries to reset, then press again.
 emgTitle	Full reset
 emgAsk	Every setting the program can change goes back to the values of a fresh Windows install, on all pages, even those you never touched. A restore point is created first. Removed apps and deleted files do not come back. Continue?
 emgAsk2	Confirm again: the full reset cannot be undone from here, only with the restore point.

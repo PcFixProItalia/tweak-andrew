@@ -3045,14 +3045,14 @@ $script:Loc = @{
     chkStorageSense    = @{ it = "Sensore memoria — disattiva"; en = "Storage Sense — disable" }
     chkReservedStorage = @{ it = "Spazio riservato di Windows (7 GB) — disattiva"; en = "Windows reserved storage (7 GB) — disable" }
 
-    lblSelected        = @{ it = "Modifiche:"; en = "Changes:" }
+    lblSelected        = @{ it = "Selezionati:"; en = "Selected:" }
     chkRestorePoint    = @{ it = "Punto di ripristino"; en = "Restore point" }
     btnSelectAll       = @{ it = "Seleziona tutto"; en = "Select all" }
     btnDeselectAll     = @{ it = "Annulla scelte"; en = "Undo choices" }
     btnDetectActive    = @{ it = "Rileva già attivi"; en = "Detect applied" }
     btnRun             = @{ it = "Applica modifiche"; en = "Apply changes" }
 
-    btnUndo            = @{ it = "Ripristina questa pagina"; en = "Reset this page" }
+    btnUndo            = @{ it = "Ripristina selezionati"; en = "Reset selected" }
     tabAdv             = @{ it = "Avanzate"; en = "Advanced" }
     ttlAdvIntro        = @{ it = "PRIMA DI PROCEDERE"; en = "BEFORE YOU START" }
     lblAdvIntro        = @{ it = "Queste voci tolgono parti di Windows che la maggior parte dei computer non usa. Il guadagno è reale su una macchina dedicata a giochi o lavoro, ma qualcosa smette di funzionare: leggi la descrizione di ogni voce. Crea un punto di ripristino prima di applicare, e riavvia dopo."; en = "These options strip out parts of Windows that most computers never use. The gain is real on a machine dedicated to gaming or work, but some things stop working: read each entry. Create a restore point before applying, and reboot afterwards." }
@@ -3262,12 +3262,12 @@ $script:Msg = @{
     bootResetAsk     = @{ it = "Rimettere i valori di avvio predefiniti di Windows?"; en = "Restore the default Windows boot settings?" }
     bootResetDone    = @{ it = "Configurazione di avvio riportata ai valori predefiniti."; en = "Boot configuration restored to its defaults." }
     undoPrefix       = @{ it = "Predefinito:"; en = "Default:" }
-    undoAsk            = @{ it = "Riportare ai valori di Windows le voci accese di questa pagina?"; en = "Put the switched-on entries of this page back to the Windows values?" }
+    undoAsk            = @{ it = "Riportare ai valori di Windows le voci selezionate, cioè quelle che hai cambiato?"; en = "Put the selected entries, the ones you changed, back to the Windows values?" }
     advWarnTitle     = @{ it = "Voci avanzate"; en = "Advanced options" }
     advWarn          = @{ it = "Hai selezionato voci della sezione Avanzate: tolgono parti di Windows e qualcosa potrebbe smettere di funzionare. Procedere?"; en = "You selected entries from the Advanced section: they strip out parts of Windows and something may stop working. Continue?" }
     dlgYes           = @{ it = "Sì, procedi"; en = "Yes, go ahead" }
     dlgNo            = @{ it = "Annulla"; en = "Cancel" }
-    selCount           = @{ it = "Modifiche: {0}"; en = "Changes: {0}" }
+    selCount           = @{ it = "Voci selezionate: {0}"; en = "Selected entries: {0}" }
     doneSummary      = @{ it = "Fatto: {0} modifiche applicate, {1} già a posto, {2} errori."; en = "Done: {0} changes applied, {1} already set, {2} errors." }
     doneReboot       = @{ it = "Riavvia il PC per completarle."; en = "Restart the PC to finish." }
     psInterval       = @{ it = "Quanto"; en = "Quantum" }
@@ -3600,7 +3600,7 @@ $script:Msg = @{
     recOnLimited       = @{ it = "attivo (con limitazioni)"; en = "on (with limitations)" }
     recDefault         = @{ it = "{0}, come Windows appena installato"; en = "{0}, as on a fresh Windows install" }
     recTipLive         = @{ it = "Valore consigliato: {0}. Un clic lo imposta subito, come l'interruttore."; en = "Recommended value: {0}. One click sets it at once, like the switch." }
-    undoPageNone       = @{ it = "In questa pagina non ci sono voci accese da ripristinare."; en = "There are no switched-on entries to reset on this page." }
+    undoPageNone       = @{ it = "Nessuna voce selezionata: cambia gli interruttori delle voci da ripristinare, poi premi di nuovo."; en = "Nothing selected: change the switches of the entries to reset, then press again." }
     emgTitle           = @{ it = "Ripristino totale"; en = "Full reset" }
     emgAsk             = @{ it = "Tutte le impostazioni che il programma può cambiare tornano ai valori di Windows appena installato, in tutte le pagine, anche quelle che non hai mai toccato. Prima viene creato un punto di ripristino. Le app rimosse e i file cancellati non tornano. Procedere?"; en = "Every setting the program can change goes back to the values of a fresh Windows install, on all pages, even those you never touched. A restore point is created first. Removed apps and deleted files do not come back. Continue?" }
     emgAsk2            = @{ it = "Conferma ancora: il ripristino totale non si annulla da qui, solo con il punto di ripristino."; en = "Confirm again: the full reset cannot be undone from here, only with the restore point." }
@@ -4377,7 +4377,7 @@ function Update-ApplyButton {
     if ($script:Syncing) { return }
     $total = @($script:AllCheckBoxes | Where-Object { Test-Pending $_ }).Count
     $btnRun.IsEnabled = ($total -gt 0)
-    if ($null -ne $btnUndo) { $btnUndo.IsEnabled = (@($script:AllCheckBoxes | Where-Object { $_.IsChecked -eq $true }).Count -gt 0) }
+    if ($null -ne $btnUndo) { $btnUndo.IsEnabled = ($total -gt 0) }
     if ($null -ne $txtSelectedCount) {
         $txtSelectedCount.Text = "$total"
         if ($total -gt 0) { $txtSelectedCount.Foreground = "#FF2ED3A7" } else { $txtSelectedCount.Foreground = "#FF5E5E68" }
@@ -4888,13 +4888,13 @@ $script:Tr = @{
         'L:ttlSpace' = "ESPACIO Y DIRECTIVAS"
         'L:chkStorageSense' = "Sensor de almacenamiento — desactivar"
         'L:chkReservedStorage' = "Almacenamiento reservado de Windows (7 GB) — desactivar"
-        'L:lblSelected' = "Cambios:"
+        'L:lblSelected' = "Seleccionados:"
         'L:chkRestorePoint' = "Punto de restauración"
         'L:btnSelectAll' = "Seleccionar todo"
         'L:btnDeselectAll' = "Deshacer cambios"
         'L:btnDetectActive' = "Detectar aplicados"
         'L:btnRun' = "Aplicar cambios"
-        'L:btnUndo' = "Restablecer esta página"
+        'L:btnUndo' = "Restablecer seleccionados"
         'L:tabAdv' = "Avanzado"
         'L:ttlAdvIntro' = "ANTES DE EMPEZAR"
         'L:lblAdvIntro' = "Estas opciones quitan partes de Windows que la mayoría de equipos no usa. La ganancia es real en una máquina dedicada a juegos o trabajo, pero algunas cosas dejan de funcionar: lee cada opción. Crea un punto de restauración antes de aplicar y reinicia después."
@@ -4979,7 +4979,7 @@ $script:Tr = @{
         'M:bootResetAsk' = "¿Restablecer la configuración de arranque predeterminada de Windows?"
         'M:bootResetDone' = "Configuración de arranque restablecida."
         'M:undoPrefix' = "Predeterminado:"
-        'M:undoAsk' = "¿Devolver a los valores de Windows las opciones encendidas de esta página?"
+        'M:undoAsk' = "¿Devolver a los valores de Windows las opciones seleccionadas, es decir, las que cambiaste?"
         'M:advWarnTitle' = "Opciones avanzadas"
         'M:advWarn' = "Has seleccionado opciones de la sección Avanzado: quitan partes de Windows y algo podría dejar de funcionar. ¿Continuar?"
         'H:chkMMCSS' = "Da prioridad a juegos y audio cuando el equipo está bajo carga. Menos tirones y un audio más limpio."
@@ -5156,7 +5156,7 @@ $script:Tr = @{
         'L:chkMenuHibernate' = "Hibernar en el menú de apagado"
         'M:dlgYes' = "Sí, continuar"
         'M:dlgNo' = "Cancelar"
-        'M:selCount' = "Cambios: {0}"
+        'M:selCount' = "Opciones seleccionadas: {0}"
         'M:doneSummary' = "Hecho: {0} cambios aplicados, {1} ya estaban, {2} errores."
         'M:doneReboot' = "Reinicia el PC para completarlos."
         'M:psInterval' = "Quantum"
@@ -5603,7 +5603,7 @@ $script:Tr = @{
         'M:recDefault' = "{0}, como en un Windows recién instalado"
         'M:recTipLive' = "Valor recomendado: {0}. Un clic lo establece al instante, como el interruptor."
         'L:btnEmergency' = "Restablecer todo"
-        'M:undoPageNone' = "En esta página no hay opciones encendidas que restablecer."
+        'M:undoPageNone' = "Nada seleccionado: cambia los interruptores de las opciones a restablecer y vuelve a pulsar."
         'M:emgTitle' = "Restablecer todo"
         'M:emgAsk' = "Todos los ajustes que el programa puede cambiar vuelven a los valores de un Windows recién instalado, en todas las páginas, incluso las que nunca tocaste. Primero se crea un punto de restauración. Las apps eliminadas y los archivos borrados no vuelven. ¿Continuar?"
         'M:emgAsk2' = "Confirma de nuevo: el restablecimiento total no se deshace desde aquí, solo con el punto de restauración."
@@ -5797,13 +5797,13 @@ $script:Tr = @{
         'L:ttlSpace' = "SPEICHERPLATZ UND RICHTLINIEN"
         'L:chkStorageSense' = "Speicheroptimierung — deaktivieren"
         'L:chkReservedStorage' = "Reservierter Windows-Speicher (7 GB) — deaktivieren"
-        'L:lblSelected' = "Änderungen:"
+        'L:lblSelected' = "Ausgewählt:"
         'L:chkRestorePoint' = "Wiederherstellungspunkt"
         'L:btnSelectAll' = "Alle auswählen"
         'L:btnDeselectAll' = "Auswahl verwerfen"
         'L:btnDetectActive' = "Angewendete erkennen"
         'L:btnRun' = "Änderungen anwenden"
-        'L:btnUndo' = "Diese Seite zurücksetzen"
+        'L:btnUndo' = "Auswahl zurücksetzen"
         'L:tabAdv' = "Erweitert"
         'L:ttlAdvIntro' = "BEVOR DU BEGINNST"
         'L:lblAdvIntro' = "Diese Optionen entfernen Teile von Windows, die die meisten Computer nie nutzen. Der Gewinn ist auf einem reinen Spiele- oder Arbeitsrechner echt, aber manches funktioniert danach nicht mehr: lies jeden Eintrag. Erstelle vorher einen Wiederherstellungspunkt und starte danach neu."
@@ -5888,7 +5888,7 @@ $script:Tr = @{
         'M:bootResetAsk' = "Die Windows-Standardstartkonfiguration wiederherstellen?"
         'M:bootResetDone' = "Startkonfiguration auf Standard zurückgesetzt."
         'M:undoPrefix' = "Standard:"
-        'M:undoAsk' = "Die eingeschalteten Einträge dieser Seite auf die Windows-Werte zurücksetzen?"
+        'M:undoAsk' = "Die ausgewählten Einträge, also die geänderten, auf die Windows-Werte zurücksetzen?"
         'M:advWarnTitle' = "Erweiterte Optionen"
         'M:advWarn' = "Du hast Einträge aus dem Bereich Erweitert gewählt: Sie entfernen Teile von Windows, und manches könnte nicht mehr funktionieren. Fortfahren?"
         'H:chkMMCSS' = "Bevorzugt Spiele und Audio, wenn der Computer ausgelastet ist. Weniger Ruckler und saubererer Ton."
@@ -6065,7 +6065,7 @@ $script:Tr = @{
         'L:chkMenuHibernate' = "Ruhezustand im Ein/Aus-Menü"
         'M:dlgYes' = "Ja, fortfahren"
         'M:dlgNo' = "Abbrechen"
-        'M:selCount' = "Änderungen: {0}"
+        'M:selCount' = "Ausgewählte Einträge: {0}"
         'M:doneSummary' = "Fertig: {0} Änderungen angewendet, {1} bereits gesetzt, {2} Fehler."
         'M:doneReboot' = "Starte den PC neu, um sie abzuschließen."
         'M:psInterval' = "Quantum"
@@ -6512,7 +6512,7 @@ $script:Tr = @{
         'M:recDefault' = "{0}, wie bei einem frisch installierten Windows"
         'M:recTipLive' = "Empfohlener Wert: {0}. Ein Klick setzt ihn sofort, wie der Schalter."
         'L:btnEmergency' = "Alles zurücksetzen"
-        'M:undoPageNone' = "Auf dieser Seite gibt es keine eingeschalteten Einträge zum Zurücksetzen."
+        'M:undoPageNone' = "Nichts ausgewählt: Ändere die Schalter der Einträge, die zurückgesetzt werden sollen, und drücke erneut."
         'M:emgTitle' = "Alles zurücksetzen"
         'M:emgAsk' = "Alle Einstellungen, die das Programm ändern kann, kehren auf allen Seiten zu den Werten eines frisch installierten Windows zurück, auch die nie angefassten. Zuerst wird ein Wiederherstellungspunkt erstellt. Entfernte Apps und gelöschte Dateien kommen nicht zurück. Fortfahren?"
         'M:emgAsk2' = "Bitte erneut bestätigen: Das vollständige Zurücksetzen lässt sich hier nicht rückgängig machen, nur mit dem Wiederherstellungspunkt."
@@ -6709,13 +6709,13 @@ $script:Tr = @{
         'L:ttlSpace' = "ESPACE ET STRATÉGIES"
         'L:chkStorageSense' = "Assistant de stockage — désactiver"
         'L:chkReservedStorage' = "Stockage réservé de Windows (7 Go) — désactiver"
-        'L:lblSelected' = "Modifications :"
+        'L:lblSelected' = "Sélectionnés :"
         'L:chkRestorePoint' = "Point de restauration"
         'L:btnSelectAll' = "Tout sélectionner"
         'L:btnDeselectAll' = "Annuler les choix"
         'L:btnDetectActive' = "Détecter les actifs"
         'L:btnRun' = "Appliquer les modifications"
-        'L:btnUndo' = "Réinitialiser cette page"
+        'L:btnUndo' = "Réinitialiser la sélection"
         'L:tabAdv' = "Avancé"
         'L:ttlAdvIntro' = "AVANT DE COMMENCER"
         'L:lblAdvIntro' = "Ces options retirent des parties de Windows que la plupart des ordinateurs n'utilisent jamais. Le gain est réel sur une machine dédiée au jeu ou au travail, mais certaines choses cessent de fonctionner : lisez chaque option. Créez un point de restauration avant d'appliquer et redémarrez ensuite."
@@ -6800,7 +6800,7 @@ $script:Tr = @{
         'M:bootResetAsk' = "Restaurer la configuration de démarrage par défaut de Windows ?"
         'M:bootResetDone' = "Configuration de démarrage restaurée."
         'M:undoPrefix' = "Par défaut :"
-        'M:undoAsk' = "Remettre aux valeurs de Windows les éléments allumés de cette page ?"
+        'M:undoAsk' = "Remettre aux valeurs de Windows les éléments sélectionnés, c'est-à-dire ceux que vous avez changés ?"
         'M:advWarnTitle' = "Options avancées"
         'M:advWarn' = "Vous avez sélectionné des options de la section Avancé : elles retirent des parties de Windows et quelque chose pourrait cesser de fonctionner. Continuer ?"
         'H:chkMMCSS' = "Donne la priorité aux jeux et à l'audio quand l'ordinateur est chargé. Moins de saccades et un son plus propre."
@@ -6977,7 +6977,7 @@ $script:Tr = @{
         'L:chkMenuHibernate' = "Mettre en veille prolongée dans le menu Marche/Arrêt"
         'M:dlgYes' = "Oui, continuer"
         'M:dlgNo' = "Annuler"
-        'M:selCount' = "Modifications : {0}"
+        'M:selCount' = "Éléments sélectionnés : {0}"
         'M:doneSummary' = "Terminé : {0} modifications appliquées, {1} déjà en place, {2} erreurs."
         'M:doneReboot' = "Redémarrez le PC pour les finaliser."
         'M:psInterval' = "Quantum"
@@ -7424,7 +7424,7 @@ $script:Tr = @{
         'M:recDefault' = "{0}, comme sur un Windows neuf"
         'M:recTipLive' = "Valeur recommandée : {0}. Un clic la règle tout de suite, comme l'interrupteur."
         'L:btnEmergency' = "Tout réinitialiser"
-        'M:undoPageNone' = "Aucun élément allumé à réinitialiser sur cette page."
+        'M:undoPageNone' = "Rien de sélectionné : changez les interrupteurs des éléments à réinitialiser, puis appuyez à nouveau."
         'M:emgTitle' = "Tout réinitialiser"
         'M:emgAsk' = "Tous les réglages que le programme peut modifier reviennent aux valeurs d'un Windows neuf, sur toutes les pages, même celles jamais touchées. Un point de restauration est créé d'abord. Les applications supprimées et les fichiers effacés ne reviennent pas. Continuer ?"
         'M:emgAsk2' = "Confirmez encore : la réinitialisation complète ne s'annule pas d'ici, seulement avec le point de restauration."
@@ -7618,13 +7618,13 @@ $script:Tr = @{
         'L:ttlSpace' = "MIEJSCE I ZASADY"
         'L:chkStorageSense' = "Czujnik pamięci — wyłącz"
         'L:chkReservedStorage' = "Zarezerwowane miejsce Windows (7 GB) — wyłącz"
-        'L:lblSelected' = "Zmiany:"
+        'L:lblSelected' = "Zaznaczone:"
         'L:chkRestorePoint' = "Punkt przywracania"
         'L:btnSelectAll' = "Zaznacz wszystko"
         'L:btnDeselectAll' = "Cofnij wybory"
         'L:btnDetectActive' = "Wykryj zastosowane"
         'L:btnRun' = "Zastosuj zmiany"
-        'L:btnUndo' = "Przywróć tę stronę"
+        'L:btnUndo' = "Przywróć zaznaczone"
         'L:tabAdv' = "Zaawansowane"
         'L:ttlAdvIntro' = "ZANIM ZACZNIESZ"
         'L:lblAdvIntro' = "Te opcje usuwają części Windows, których większość komputerów nigdy nie używa. Zysk jest realny na maszynie do gier lub pracy, ale niektóre rzeczy przestają działać: przeczytaj każdą pozycję. Przed zastosowaniem utwórz punkt przywracania, a potem uruchom ponownie."
@@ -7709,7 +7709,7 @@ $script:Tr = @{
         'M:bootResetAsk' = "Przywrócić domyślną konfigurację rozruchu Windows?"
         'M:bootResetDone' = "Konfiguracja rozruchu przywrócona."
         'M:undoPrefix' = "Domyślne:"
-        'M:undoAsk' = "Przywrócić wartości Windows dla włączonych pozycji tej strony?"
+        'M:undoAsk' = "Przywrócić wartości Windows dla zaznaczonych, czyli zmienionych pozycji?"
         'M:advWarnTitle' = "Opcje zaawansowane"
         'M:advWarn' = "Zaznaczono pozycje z sekcji Zaawansowane: usuwają one części Windows i coś może przestać działać. Kontynuować?"
         'H:chkMMCSS' = "Daje pierwszeństwo grom i dźwiękowi, gdy komputer jest obciążony. Mniej przycięć i czystszy dźwięk."
@@ -7886,7 +7886,7 @@ $script:Tr = @{
         'L:chkMenuHibernate' = "Hibernuj w menu zasilania"
         'M:dlgYes' = "Tak, kontynuuj"
         'M:dlgNo' = "Anuluj"
-        'M:selCount' = "Zmiany: {0}"
+        'M:selCount' = "Zaznaczone pozycje: {0}"
         'M:doneSummary' = "Gotowe: {0} zmian zastosowanych, {1} już ustawionych, {2} błędów."
         'M:doneReboot' = "Uruchom komputer ponownie, aby je zakończyć."
         'M:psInterval' = "Kwant"
@@ -8333,7 +8333,7 @@ $script:Tr = @{
         'M:recDefault' = "{0}, jak w świeżo zainstalowanym Windows"
         'M:recTipLive' = "Zalecana wartość: {0}. Jedno kliknięcie ustawia ją od razu, jak przełącznik."
         'L:btnEmergency' = "Przywróć wszystko"
-        'M:undoPageNone' = "Na tej stronie nie ma włączonych pozycji do przywrócenia."
+        'M:undoPageNone' = "Nic nie zaznaczono: zmień przełączniki pozycji do przywrócenia i naciśnij ponownie."
         'M:emgTitle' = "Przywróć wszystko"
         'M:emgAsk' = "Wszystkie ustawienia, które program może zmienić, wrócą do wartości świeżo zainstalowanego Windows, na wszystkich stronach, także tych nieruszanych. Najpierw powstanie punkt przywracania. Usunięte aplikacje i pliki nie wrócą. Kontynuować?"
         'M:emgAsk2' = "Potwierdź ponownie: pełnego przywrócenia nie cofniesz stąd, tylko punktem przywracania."
@@ -8527,13 +8527,13 @@ $script:Tr = @{
         'L:ttlSpace' = "ESPAÇO E POLÍTICAS"
         'L:chkStorageSense' = "Sensor de Armazenamento — desativar"
         'L:chkReservedStorage' = "Armazenamento reservado do Windows (7 GB) — desativar"
-        'L:lblSelected' = "Alterações:"
+        'L:lblSelected' = "Selecionados:"
         'L:chkRestorePoint' = "Ponto de restauração"
         'L:btnSelectAll' = "Selecionar tudo"
         'L:btnDeselectAll' = "Desfazer escolhas"
         'L:btnDetectActive' = "Detectar aplicados"
         'L:btnRun' = "Aplicar alterações"
-        'L:btnUndo' = "Restaurar esta página"
+        'L:btnUndo' = "Restaurar selecionados"
         'L:tabAdv' = "Avançado"
         'L:ttlAdvIntro' = "ANTES DE COMEÇAR"
         'L:lblAdvIntro' = "Estas opções removem partes do Windows que a maioria dos computadores nunca usa. O ganho é real numa máquina dedicada a jogos ou trabalho, mas algumas coisas deixam de funcionar: leia cada item. Crie um ponto de restauração antes de aplicar e reinicie depois."
@@ -8618,7 +8618,7 @@ $script:Tr = @{
         'M:bootResetAsk' = "Restaurar a configuração de inicialização padrão do Windows?"
         'M:bootResetDone' = "Configuração de inicialização restaurada."
         'M:undoPrefix' = "Padrão:"
-        'M:undoAsk' = "Voltar aos valores do Windows os itens ligados desta página?"
+        'M:undoAsk' = "Voltar aos valores do Windows os itens selecionados, ou seja, os que você alterou?"
         'M:advWarnTitle' = "Opções avançadas"
         'M:advWarn' = "Você selecionou itens da seção Avançado: eles removem partes do Windows e algo pode deixar de funcionar. Continuar?"
         'H:chkMMCSS' = "Dá prioridade a jogos e áudio quando o computador está sob carga. Menos travadas e áudio mais limpo."
@@ -8795,7 +8795,7 @@ $script:Tr = @{
         'L:chkMenuHibernate' = "Hibernar no menu de energia"
         'M:dlgYes' = "Sim, continuar"
         'M:dlgNo' = "Cancelar"
-        'M:selCount' = "Alterações: {0}"
+        'M:selCount' = "Itens selecionados: {0}"
         'M:doneSummary' = "Pronto: {0} alterações aplicadas, {1} já estavam assim, {2} erros."
         'M:doneReboot' = "Reinicie o PC para concluí-las."
         'M:psInterval' = "Quantum"
@@ -9242,7 +9242,7 @@ $script:Tr = @{
         'M:recDefault' = "{0}, como em um Windows recém-instalado"
         'M:recTipLive' = "Valor recomendado: {0}. Um clique o define na hora, como o interruptor."
         'L:btnEmergency' = "Restaurar tudo"
-        'M:undoPageNone' = "Nesta página não há itens ligados para restaurar."
+        'M:undoPageNone' = "Nada selecionado: mude os interruptores dos itens a restaurar e clique de novo."
         'M:emgTitle' = "Restaurar tudo"
         'M:emgAsk' = "Todas as configurações que o programa pode alterar voltam aos valores de um Windows recém-instalado, em todas as páginas, mesmo as nunca tocadas. Primeiro é criado um ponto de restauração. Apps removidos e arquivos apagados não voltam. Continuar?"
         'M:emgAsk2' = "Confirme novamente: a restauração total não se desfaz daqui, só com o ponto de restauração."
@@ -9436,13 +9436,13 @@ $script:Tr = @{
         'L:ttlSpace' = "SPAȚIU ȘI POLITICI"
         'L:chkStorageSense' = "Senzor de stocare — dezactivează"
         'L:chkReservedStorage' = "Spațiul rezervat de Windows (7 GB) — dezactivează"
-        'L:lblSelected' = "Modificări:"
+        'L:lblSelected' = "Selectate:"
         'L:chkRestorePoint' = "Punct de restaurare"
         'L:btnSelectAll' = "Selectează tot"
         'L:btnDeselectAll' = "Anulează alegerile"
         'L:btnDetectActive' = "Detectează aplicate"
         'L:btnRun' = "Aplică modificările"
-        'L:btnUndo' = "Resetează această pagină"
+        'L:btnUndo' = "Resetează selectate"
         'L:tabAdv' = "Avansat"
         'L:ttlAdvIntro' = "ÎNAINTE DE A ÎNCEPE"
         'L:lblAdvIntro' = "Aceste opțiuni elimină părți din Windows pe care majoritatea computerelor nu le folosesc. Câștigul e real pe o mașină dedicată jocurilor sau muncii, dar unele lucruri nu mai funcționează: citește fiecare opțiune. Creează un punct de restaurare înainte și repornește după."
@@ -9527,7 +9527,7 @@ $script:Tr = @{
         'M:bootResetAsk' = "Restabilești configurația de pornire implicită a Windows?"
         'M:bootResetDone' = "Configurația de pornire a fost restabilită."
         'M:undoPrefix' = "Implicit:"
-        'M:undoAsk' = "Readuci la valorile Windows elementele pornite din această pagină?"
+        'M:undoAsk' = "Readuci la valorile Windows elementele selectate, adică cele schimbate?"
         'M:advWarnTitle' = "Opțiuni avansate"
         'M:advWarn' = "Ai selectat opțiuni din secțiunea Avansat: ele elimină părți din Windows și ceva ar putea să nu mai funcționeze. Continui?"
         'H:chkMMCSS' = "Dă prioritate jocurilor și sunetului când computerul e încărcat. Mai puține sacadări și sunet mai curat."
@@ -9704,7 +9704,7 @@ $script:Tr = @{
         'L:chkMenuHibernate' = "Hibernare în meniul de oprire"
         'M:dlgYes' = "Da, continuă"
         'M:dlgNo' = "Anulează"
-        'M:selCount' = "Modificări: {0}"
+        'M:selCount' = "Elemente selectate: {0}"
         'M:doneSummary' = "Gata: {0} modificări aplicate, {1} deja setate, {2} erori."
         'M:doneReboot' = "Repornește PC-ul pentru a le finaliza."
         'M:psInterval' = "Cuantă"
@@ -10151,7 +10151,7 @@ $script:Tr = @{
         'M:recDefault' = "{0}, ca pe un Windows proaspăt instalat"
         'M:recTipLive' = "Valoare recomandată: {0}. Un clic o setează imediat, ca întrerupătorul."
         'L:btnEmergency' = "Resetare totală"
-        'M:undoPageNone' = "Pe această pagină nu sunt elemente pornite de resetat."
+        'M:undoPageNone' = "Nimic selectat: schimbă comutatoarele elementelor de resetat, apoi apasă din nou."
         'M:emgTitle' = "Resetare totală"
         'M:emgAsk' = "Toate setările pe care programul le poate schimba revin la valorile unui Windows proaspăt instalat, pe toate paginile, chiar și cele neatinse. Mai întâi se creează un punct de restaurare. Aplicațiile eliminate și fișierele șterse nu revin. Continui?"
         'M:emgAsk2' = "Confirmă din nou: resetarea totală nu se anulează de aici, doar cu punctul de restaurare."
@@ -10345,13 +10345,13 @@ $script:Tr = @{
         'L:ttlSpace' = "МЕСТО И ПОЛИТИКИ"
         'L:chkStorageSense' = "Контроль памяти — отключить"
         'L:chkReservedStorage' = "Зарезервированное хранилище Windows (7 ГБ) — отключить"
-        'L:lblSelected' = "Изменения:"
+        'L:lblSelected' = "Выбрано:"
         'L:chkRestorePoint' = "Точка восстановления"
         'L:btnSelectAll' = "Выбрать всё"
         'L:btnDeselectAll' = "Отменить выбор"
         'L:btnDetectActive' = "Найти применённые"
         'L:btnRun' = "Применить изменения"
-        'L:btnUndo' = "Сбросить эту страницу"
+        'L:btnUndo' = "Сбросить выбранные"
         'L:tabAdv' = "Дополнительно"
         'L:ttlAdvIntro' = "ПЕРЕД НАЧАЛОМ"
         'L:lblAdvIntro' = "Эти параметры убирают части Windows, которыми большинство компьютеров не пользуется. Выигрыш реален на машине для игр или работы, но кое-что перестаёт работать: читайте описание каждого пункта. Перед применением создайте точку восстановления, а после — перезагрузитесь."
@@ -10436,7 +10436,7 @@ $script:Tr = @{
         'M:bootResetAsk' = "Вернуть конфигурацию загрузки Windows по умолчанию?"
         'M:bootResetDone' = "Конфигурация загрузки сброшена."
         'M:undoPrefix' = "По умолчанию:"
-        'M:undoAsk' = "Вернуть значения Windows для включённых пунктов этой страницы?"
+        'M:undoAsk' = "Вернуть значения Windows для выбранных, то есть изменённых пунктов?"
         'M:advWarnTitle' = "Дополнительные параметры"
         'M:advWarn' = "Выбраны пункты из раздела «Дополнительно»: они убирают части Windows, и что-то может перестать работать. Продолжить?"
         'H:chkMMCSS' = "Отдаёт приоритет играм и звуку, когда компьютер загружен. Меньше рывков и чище звук."
@@ -10613,7 +10613,7 @@ $script:Tr = @{
         'L:chkMenuHibernate' = "«Гибернация» в меню завершения работы"
         'M:dlgYes' = "Да, продолжить"
         'M:dlgNo' = "Отмена"
-        'M:selCount' = "Изменений: {0}"
+        'M:selCount' = "Выбрано пунктов: {0}"
         'M:doneSummary' = "Готово: применено изменений — {0}, уже было настроено — {1}, ошибок — {2}."
         'M:doneReboot' = "Перезагрузите ПК, чтобы завершить."
         'M:psInterval' = "Квант"
@@ -11060,7 +11060,7 @@ $script:Tr = @{
         'M:recDefault' = "{0}, как в только что установленной Windows"
         'M:recTipLive' = "Рекомендуемое значение: {0}. Щелчок сразу его устанавливает, как переключатель."
         'L:btnEmergency' = "Сбросить всё"
-        'M:undoPageNone' = "На этой странице нет включённых пунктов для сброса."
+        'M:undoPageNone' = "Ничего не выбрано: переключите пункты для сброса и нажмите снова."
         'M:emgTitle' = "Сбросить всё"
         'M:emgAsk' = "Все параметры, которые может менять программа, вернутся к значениям только что установленной Windows на всех страницах, даже нетронутых. Сначала создаётся точка восстановления. Удалённые приложения и файлы не вернутся. Продолжить?"
         'M:emgAsk2' = "Подтвердите ещё раз: полный сброс нельзя отменить отсюда, только точкой восстановления."
@@ -13666,7 +13666,7 @@ function Reset-Bcd {
 }
 
 # Quali voci riportare al valore di Windows:
-#   page   - quelle accese nella pagina aperta («Ripristina questa pagina»)
+#   page   - quelle selezionate, cioe' cambiate dall'utente («Ripristina selezionati»)
 #   revert - quelle attive sul sistema che l'utente ha spento («Applica»)
 #   all    - tutte, per il ripristino totale (solo quelle adatte a questo PC)
 $script:UndoMode = 'checked'
@@ -13676,7 +13676,7 @@ function Test-UndoWanted($Box) {
     switch ($script:UndoMode) {
         'revert' { return ($Box.IsChecked -ne $true) -and ($script:Baseline[[string]$Box.Name] -eq $true) }
         'all'    { return (Test-CheckVendor $Box) }
-        'page'   { return ($Box.IsChecked -eq $true) -and ($script:UndoPageBoxes -contains $Box) }
+        'page'   { return (Test-Pending $Box) }
         default  { return ($Box.IsChecked -eq $true) }
     }
 }
@@ -14247,11 +14247,9 @@ function Invoke-ActionQueue {
     foreach ($r in @($script:CatRows)) { Update-CatRow $r }
 }
 
-# «Ripristina questa pagina»: le voci accese della pagina aperta tornano ai
-# valori di Windows, senza toccare le altre pagine.
+# «Ripristina selezionati»: le voci cambiate dall'utente, in qualunque pagina
+# e in qualunque verso, tornano ai valori di Windows.
 $btnUndo.Add_Click({
-    $page = Get-CurrentPage
-    $script:UndoPageBoxes = if ($page) { @(Get-CheckBoxesFromTree $page) } else { @() }
     $script:UndoMode = 'page'
     try { Build-UndoActions } finally { $script:UndoMode = 'checked' }
     $total = $script:Actions.Count

@@ -186,13 +186,13 @@ L:chkSmartChkdsk	CHKDSK intelligent (SSD ou HDD)
 L:ttlSpace	ESPACE ET STRATÉGIES
 L:chkStorageSense	Assistant de stockage — désactiver
 L:chkReservedStorage	Stockage réservé de Windows (7 Go) — désactiver
-L:lblSelected	Modifications :
+L:lblSelected	Sélectionnés :
 L:chkRestorePoint	Point de restauration
 L:btnSelectAll	Tout sélectionner
 L:btnDeselectAll	Annuler les choix
 L:btnDetectActive	Détecter les actifs
 L:btnRun	Appliquer les modifications
-L:btnUndo	Réinitialiser cette page
+L:btnUndo	Réinitialiser la sélection
 L:tabAdv	Avancé
 L:ttlAdvIntro	AVANT DE COMMENCER
 L:lblAdvIntro	Ces options retirent des parties de Windows que la plupart des ordinateurs n'utilisent jamais. Le gain est réel sur une machine dédiée au jeu ou au travail, mais certaines choses cessent de fonctionner : lisez chaque option. Créez un point de restauration avant d'appliquer et redémarrez ensuite.
@@ -277,7 +277,7 @@ M:featStateOff	désactivée
 M:bootResetAsk	Restaurer la configuration de démarrage par défaut de Windows ?
 M:bootResetDone	Configuration de démarrage restaurée.
 M:undoPrefix	Par défaut :
-M:undoAsk	Remettre aux valeurs de Windows les éléments allumés de cette page ?
+M:undoAsk	Remettre aux valeurs de Windows les éléments sélectionnés, c'est-à-dire ceux que vous avez changés ?
 M:advWarnTitle	Options avancées
 M:advWarn	Vous avez sélectionné des options de la section Avancé : elles retirent des parties de Windows et quelque chose pourrait cesser de fonctionner. Continuer ?
 H:chkMMCSS	Donne la priorité aux jeux et à l'audio quand l'ordinateur est chargé. Moins de saccades et un son plus propre.
@@ -454,7 +454,7 @@ L:chkMenuSleep	Mettre en veille dans le menu Marche/Arrêt
 L:chkMenuHibernate	Mettre en veille prolongée dans le menu Marche/Arrêt
 M:dlgYes	Oui, continuer
 M:dlgNo	Annuler
-M:selCount	Modifications : {0}
+M:selCount	Éléments sélectionnés : {0}
 M:doneSummary	Terminé : {0} modifications appliquées, {1} déjà en place, {2} erreurs.
 M:doneReboot	Redémarrez le PC pour les finaliser.
 M:psInterval	Quantum
@@ -901,7 +901,7 @@ M:recOnLimited	activé (avec limitations)
 M:recDefault	{0}, comme sur un Windows neuf
 M:recTipLive	Valeur recommandée : {0}. Un clic la règle tout de suite, comme l'interrupteur.
 L:btnEmergency	Tout réinitialiser
-M:undoPageNone	Aucun élément allumé à réinitialiser sur cette page.
+M:undoPageNone	Rien de sélectionné : changez les interrupteurs des éléments à réinitialiser, puis appuyez à nouveau.
 M:emgTitle	Tout réinitialiser
 M:emgAsk	Tous les réglages que le programme peut modifier reviennent aux valeurs d'un Windows neuf, sur toutes les pages, même celles jamais touchées. Un point de restauration est créé d'abord. Les applications supprimées et les fichiers effacés ne reviennent pas. Continuer ?
 M:emgAsk2	Confirmez encore : la réinitialisation complète ne s'annule pas d'ici, seulement avec le point de restauration.

@@ -63,8 +63,8 @@ Nelle pagine con «Applica» l'interruttore mostra lo stato voluto: all'avvio
 le voci già attive sul PC sono accese. «Applica modifiche» esegue solo le
 differenze: una voce accesa si attiva, una voce attiva spenta torna al valore
 di Windows. «Annulla scelte» riporta gli interruttori allo stato del sistema,
-«Ripristina questa pagina» riporta ai valori di Windows le voci accese della
-pagina aperta. «Ripristino totale», in alto, riporta tutto il programma ai
+«Ripristina selezionati» riporta ai valori di Windows le voci cambiate, in
+qualunque pagina. «Ripristino totale», in alto, riporta tutto il programma ai
 valori di Windows appena installato, dopo un punto di ripristino e due conferme.
 
 ## Avvio da qualsiasi PC

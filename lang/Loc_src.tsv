@@ -193,13 +193,13 @@ chkSmartChkdsk	Smart CHKDSK (SSD or HDD)
 ttlSpace	SPACE AND POLICIES
 chkStorageSense	Storage Sense — disable
 chkReservedStorage	Windows reserved storage (7 GB) — disable
-lblSelected	Changes:
+lblSelected	Selected:
 chkRestorePoint	Restore point
 btnSelectAll	Select all
 btnDeselectAll	Undo choices
 btnDetectActive	Detect applied
 btnRun	Apply changes
-btnUndo	Reset this page
+btnUndo	Reset selected
 tabAdv	Advanced
 ttlAdvIntro	BEFORE YOU START
 lblAdvIntro	These options strip out parts of Windows that most computers never use. The gain is real on a machine dedicated to gaming or work, but some things stop working: read each entry. Create a restore point before applying, and reboot afterwards.

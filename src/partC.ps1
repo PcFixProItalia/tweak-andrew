@@ -253,14 +253,14 @@ $script:Loc = @{
     chkStorageSense    = @{ it = "Sensore memoria — disattiva"; en = "Storage Sense — disable" }
     chkReservedStorage = @{ it = "Spazio riservato di Windows (7 GB) — disattiva"; en = "Windows reserved storage (7 GB) — disable" }
 
-    lblSelected        = @{ it = "Modifiche:"; en = "Changes:" }
+    lblSelected        = @{ it = "Selezionati:"; en = "Selected:" }
     chkRestorePoint    = @{ it = "Punto di ripristino"; en = "Restore point" }
     btnSelectAll       = @{ it = "Seleziona tutto"; en = "Select all" }
     btnDeselectAll     = @{ it = "Annulla scelte"; en = "Undo choices" }
     btnDetectActive    = @{ it = "Rileva già attivi"; en = "Detect applied" }
     btnRun             = @{ it = "Applica modifiche"; en = "Apply changes" }
 
-    btnUndo            = @{ it = "Ripristina questa pagina"; en = "Reset this page" }
+    btnUndo            = @{ it = "Ripristina selezionati"; en = "Reset selected" }
     tabAdv             = @{ it = "Avanzate"; en = "Advanced" }
     ttlAdvIntro        = @{ it = "PRIMA DI PROCEDERE"; en = "BEFORE YOU START" }
     lblAdvIntro        = @{ it = "Queste voci tolgono parti di Windows che la maggior parte dei computer non usa. Il guadagno è reale su una macchina dedicata a giochi o lavoro, ma qualcosa smette di funzionare: leggi la descrizione di ogni voce. Crea un punto di ripristino prima di applicare, e riavvia dopo."; en = "These options strip out parts of Windows that most computers never use. The gain is real on a machine dedicated to gaming or work, but some things stop working: read each entry. Create a restore point before applying, and reboot afterwards." }
@@ -470,12 +470,12 @@ $script:Msg = @{
     bootResetAsk     = @{ it = "Rimettere i valori di avvio predefiniti di Windows?"; en = "Restore the default Windows boot settings?" }
     bootResetDone    = @{ it = "Configurazione di avvio riportata ai valori predefiniti."; en = "Boot configuration restored to its defaults." }
     undoPrefix       = @{ it = "Predefinito:"; en = "Default:" }
-    undoAsk            = @{ it = "Riportare ai valori di Windows le voci accese di questa pagina?"; en = "Put the switched-on entries of this page back to the Windows values?" }
+    undoAsk            = @{ it = "Riportare ai valori di Windows le voci selezionate, cioè quelle che hai cambiato?"; en = "Put the selected entries, the ones you changed, back to the Windows values?" }
     advWarnTitle     = @{ it = "Voci avanzate"; en = "Advanced options" }
     advWarn          = @{ it = "Hai selezionato voci della sezione Avanzate: tolgono parti di Windows e qualcosa potrebbe smettere di funzionare. Procedere?"; en = "You selected entries from the Advanced section: they strip out parts of Windows and something may stop working. Continue?" }
     dlgYes           = @{ it = "Sì, procedi"; en = "Yes, go ahead" }
     dlgNo            = @{ it = "Annulla"; en = "Cancel" }
-    selCount           = @{ it = "Modifiche: {0}"; en = "Changes: {0}" }
+    selCount           = @{ it = "Voci selezionate: {0}"; en = "Selected entries: {0}" }
     doneSummary      = @{ it = "Fatto: {0} modifiche applicate, {1} già a posto, {2} errori."; en = "Done: {0} changes applied, {1} already set, {2} errors." }
     doneReboot       = @{ it = "Riavvia il PC per completarle."; en = "Restart the PC to finish." }
     psInterval       = @{ it = "Quanto"; en = "Quantum" }
@@ -808,7 +808,7 @@ $script:Msg = @{
     recOnLimited       = @{ it = "attivo (con limitazioni)"; en = "on (with limitations)" }
     recDefault         = @{ it = "{0}, come Windows appena installato"; en = "{0}, as on a fresh Windows install" }
     recTipLive         = @{ it = "Valore consigliato: {0}. Un clic lo imposta subito, come l'interruttore."; en = "Recommended value: {0}. One click sets it at once, like the switch." }
-    undoPageNone       = @{ it = "In questa pagina non ci sono voci accese da ripristinare."; en = "There are no switched-on entries to reset on this page." }
+    undoPageNone       = @{ it = "Nessuna voce selezionata: cambia gli interruttori delle voci da ripristinare, poi premi di nuovo."; en = "Nothing selected: change the switches of the entries to reset, then press again." }
     emgTitle           = @{ it = "Ripristino totale"; en = "Full reset" }
     emgAsk             = @{ it = "Tutte le impostazioni che il programma può cambiare tornano ai valori di Windows appena installato, in tutte le pagine, anche quelle che non hai mai toccato. Prima viene creato un punto di ripristino. Le app rimosse e i file cancellati non tornano. Procedere?"; en = "Every setting the program can change goes back to the values of a fresh Windows install, on all pages, even those you never touched. A restore point is created first. Removed apps and deleted files do not come back. Continue?" }
     emgAsk2            = @{ it = "Conferma ancora: il ripristino totale non si annulla da qui, solo con il punto di ripristino."; en = "Confirm again: the full reset cannot be undone from here, only with the restore point." }
@@ -1585,7 +1585,7 @@ function Update-ApplyButton {
     if ($script:Syncing) { return }
     $total = @($script:AllCheckBoxes | Where-Object { Test-Pending $_ }).Count
     $btnRun.IsEnabled = ($total -gt 0)
-    if ($null -ne $btnUndo) { $btnUndo.IsEnabled = (@($script:AllCheckBoxes | Where-Object { $_.IsChecked -eq $true }).Count -gt 0) }
+    if ($null -ne $btnUndo) { $btnUndo.IsEnabled = ($total -gt 0) }
     if ($null -ne $txtSelectedCount) {
         $txtSelectedCount.Text = "$total"
         if ($total -gt 0) { $txtSelectedCount.Foreground = "#FF2ED3A7" } else { $txtSelectedCount.Foreground = "#FF5E5E68" }
