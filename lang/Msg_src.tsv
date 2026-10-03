@@ -381,3 +381,5 @@ emgRestorePoint	Restore point before the full reset
 emgHeader	Full reset to the Windows values
 emgDone	Full reset done: restart the computer so everything is back as before.
 recAllDone	Recommended values ready: {0} to enable, {1} to keep or put back as Windows. Press «Apply changes».
+catBulkNothing	No changes: the entries on this page already have these values.
+catBulkCount	Entries to change: {0}

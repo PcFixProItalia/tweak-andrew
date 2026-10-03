@@ -967,7 +967,11 @@ $btnMpoStar.Add_Click({
 # ------------------------------------------------------------------------------
 # Interruttori di ambito e manutenzioni: non sono impostazioni da consigliare.
 $script:NoRecChecks = @('chkRestorePoint', 'chkStorageProfile', 'chkWuProfile', 'chkApplyNetwork', 'chkApplyDns',
-                        'chkApplyMPO', 'chkDiskCleanup', 'chkSmartChkdsk')
+                        'chkApplyMPO', 'chkDiskCleanup', 'chkSmartChkdsk',
+                        # Personalizzazione (pagina Avanzate): gusti, non ottimizzazioni.
+                        'chkTaskbarCenter', 'chkTaskbarSearch', 'chkTaskbarTaskView', 'chkTaskbarWidgets', 'chkTaskbarChat',
+                        'chkTaskbarEndTask', 'chkBatteryPct', 'chkSettingsHome', 'chkWindowSnapping',
+                        'chkStartMorePins', 'chkStartHideRec', 'chkStartNoWeb', 'chkStartNoAccount')
 function Update-RecStars {
     $names = @($script:RecommendedChecks.Values | ForEach-Object { $_ })
     foreach ($cb in $script:AllCheckBoxes) {

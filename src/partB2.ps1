@@ -1517,44 +1517,9 @@
                                             </StackPanel>
                                         </Border>
 
-                                        <Border Style="{StaticResource Glass}">
-                                            <StackPanel>
-                                                <TextBlock x:Name="ttlStart" Text="MENU START" Style="{StaticResource CardTitle}"/>
-                                                <CheckBox x:Name="chkStartMorePins" Content="Piu spazio ai collegamenti"/>
-                                                <CheckBox x:Name="chkStartHideRec" Content="Nascondi la sezione Consigliati"/>
-                                                <CheckBox x:Name="chkStartNoWeb" Content="Niente siti consigliati"/>
-                                                <CheckBox x:Name="chkStartNoAccount" Content="Niente notifiche account"/>
-                                            </StackPanel>
-                                        </Border>
                                     </StackPanel>
 
                                     <StackPanel Grid.Column="1">
-                                        <Border Style="{StaticResource Glass}">
-                                            <StackPanel>
-                                                <TextBlock x:Name="ttlTaskbar" Text="BARRA APPLICAZIONI" Style="{StaticResource CardTitle}"/>
-                                                <CheckBox x:Name="chkTaskbarCenter" Content="Icone al centro"/>
-                                                <CheckBox x:Name="chkTaskbarSearch" Content="Icona Cerca"/>
-                                                <CheckBox x:Name="chkTaskbarTaskView" Content="Visualizzazione attivita"/>
-                                                <CheckBox x:Name="chkTaskbarWidgets" Content="Widget"/>
-                                                <CheckBox x:Name="chkTaskbarChat" Content="Chat"/>
-                                                <CheckBox x:Name="chkTaskbarEndTask" Content="Termina attivita"/>
-                                                <CheckBox x:Name="chkBatteryPct" Content="Percentuale batteria"/>
-                                                <CheckBox x:Name="chkSettingsHome" Content="Pagina Impostazioni"/>
-                                                <CheckBox x:Name="chkWindowSnapping" Content="Affiancamento finestre"/>
-                                            </StackPanel>
-                                        </Border>
-                                    </StackPanel>
-
-                                    <StackPanel Grid.Column="2">
-                                        <Border Style="{StaticResource Glass}">
-                                            <StackPanel>
-                                                <TextBlock x:Name="ttlInput" Text="INPUT" Style="{StaticResource CardTitle}"/>
-                                                <CheckBox x:Name="chkMouseAccel" Content="Accelerazione mouse"/>
-                                                <CheckBox x:Name="chkNumLock" Content="Bloc Num"/>
-                                                <CheckBox x:Name="chkStickyKeys" Content="Tasti permanenti"/>
-                                                <CheckBox x:Name="chkScrollbars" Content="Barre di scorrimento"/>
-                                            </StackPanel>
-                                        </Border>
                                         <Border Style="{StaticResource Glass}">
                                             <StackPanel>
                                                 <TextBlock x:Name="ttlLock" Text="ACCESSO" Style="{StaticResource CardTitle}"/>
@@ -1564,7 +1529,6 @@
                                                 <CheckBox x:Name="chkLogonVerbose" Content="Accesso dettagliato"/>
                                             </StackPanel>
                                         </Border>
-
                                         <Border Style="{StaticResource Glass}">
                                             <StackPanel>
                                                 <TextBlock x:Name="ttlFeat" Text="FUNZIONI NASCOSTE" Style="{StaticResource CardTitle}"/>
@@ -1586,6 +1550,19 @@
                                                 </Border>
                                             </StackPanel>
                                         </Border>
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Column="2">
+                                        <Border Style="{StaticResource Glass}">
+                                            <StackPanel>
+                                                <TextBlock x:Name="ttlInput" Text="INPUT" Style="{StaticResource CardTitle}"/>
+                                                <CheckBox x:Name="chkMouseAccel" Content="Accelerazione mouse"/>
+                                                <CheckBox x:Name="chkNumLock" Content="Bloc Num"/>
+                                                <CheckBox x:Name="chkStickyKeys" Content="Tasti permanenti"/>
+                                                <CheckBox x:Name="chkScrollbars" Content="Barre di scorrimento"/>
+                                            </StackPanel>
+                                        </Border>
+
                                     </StackPanel>
                                 </Grid>
                             </ScrollViewer>
@@ -1957,15 +1934,6 @@
                                             </StackPanel>
                                         </Border>
 
-                                        <Border Style="{StaticResource Glass}">
-                                            <StackPanel>
-                                                <TextBlock x:Name="ttlShutdownMenu" Text="MENU ARRESTA" Style="{StaticResource CardTitle}"/>
-                                                <TextBlock x:Name="lblShutdownHint" Style="{StaticResource SubTitle}" Margin="0,0,0,10"
-                                                           Text="Valgono subito, senza Applica. Le impostazioni del piano energetico non vengono toccate."/>
-                                                <CheckBox x:Name="chkMenuSleep" Tag="live" Content="Sospendi nel menu Arresta"/>
-                                                <CheckBox x:Name="chkMenuHibernate" Tag="live" Content="Iberna nel menu Arresta"/>
-                                            </StackPanel>
-                                        </Border>
                                     </StackPanel>
                                 </ScrollViewer>
                             </Grid>
@@ -2245,6 +2213,55 @@
                                                 <CheckBox x:Name="chkSecSmartScreen" Tag="risky" Content="SmartScreen — controllo dei file scaricati"/>
                                                 <CheckBox x:Name="chkSecSpectre" Tag="risky" Content="Mitigazioni Spectre e Meltdown"/>
                                                 <CheckBox x:Name="chkSecDefenderIdle" Tag="risky" Content="Defender: scansioni solo a computer fermo, CPU al 20%"/>
+                                            </StackPanel>
+                                        </Border>
+                                    </StackPanel>
+                                </Grid>
+
+                                <!-- Personalizzazione: gusti personali, non ottimizzazioni. Restano fuori da
+                                     «Seleziona tutto» e dai consigli, come il resto di questa pagina. -->
+                                <TextBlock x:Name="lblPersonal" Text="PERSONALIZZAZIONE" Style="{StaticResource CardTitle}" Margin="12,14,0,2"/>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel Grid.Column="0">
+                                        <Border Style="{StaticResource Glass}">
+                                            <StackPanel>
+                                                <TextBlock x:Name="ttlTaskbar" Text="BARRA APPLICAZIONI" Style="{StaticResource CardTitle}"/>
+                                                <CheckBox x:Name="chkTaskbarCenter" Content="Icone al centro"/>
+                                                <CheckBox x:Name="chkTaskbarSearch" Content="Icona Cerca"/>
+                                                <CheckBox x:Name="chkTaskbarTaskView" Content="Visualizzazione attivita"/>
+                                                <CheckBox x:Name="chkTaskbarWidgets" Content="Widget"/>
+                                                <CheckBox x:Name="chkTaskbarChat" Content="Chat"/>
+                                                <CheckBox x:Name="chkTaskbarEndTask" Content="Termina attivita"/>
+                                                <CheckBox x:Name="chkBatteryPct" Content="Percentuale batteria"/>
+                                                <CheckBox x:Name="chkSettingsHome" Content="Pagina Impostazioni"/>
+                                                <CheckBox x:Name="chkWindowSnapping" Content="Affiancamento finestre"/>
+                                            </StackPanel>
+                                        </Border>
+                                    </StackPanel>
+                                    <StackPanel Grid.Column="1">
+                                        <Border Style="{StaticResource Glass}">
+                                            <StackPanel>
+                                                <TextBlock x:Name="ttlStart" Text="MENU START" Style="{StaticResource CardTitle}"/>
+                                                <CheckBox x:Name="chkStartMorePins" Content="Più spazio ai collegamenti"/>
+                                                <CheckBox x:Name="chkStartHideRec" Content="Nascondi la sezione Consigliati"/>
+                                                <CheckBox x:Name="chkStartNoWeb" Content="Niente siti consigliati"/>
+                                                <CheckBox x:Name="chkStartNoAccount" Content="Niente notifiche account"/>
+                                            </StackPanel>
+                                        </Border>
+                                    </StackPanel>
+                                    <StackPanel Grid.Column="2">
+                                        <Border Style="{StaticResource Glass}">
+                                            <StackPanel>
+                                                <TextBlock x:Name="ttlShutdownMenu" Text="MENU ARRESTA" Style="{StaticResource CardTitle}"/>
+                                                <TextBlock x:Name="lblShutdownHint" Style="{StaticResource SubTitle}" Margin="0,0,0,10"
+                                                           Text="Valgono subito, senza Applica. Le impostazioni del piano energetico non vengono toccate."/>
+                                                <CheckBox x:Name="chkMenuSleep" Tag="live" Content="Sospendi nel menu Arresta"/>
+                                                <CheckBox x:Name="chkMenuHibernate" Tag="live" Content="Iberna nel menu Arresta"/>
                                             </StackPanel>
                                         </Border>
                                     </StackPanel>

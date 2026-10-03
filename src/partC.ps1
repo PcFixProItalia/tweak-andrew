@@ -107,7 +107,7 @@ $script:Loc = @{
     btnShaderClear     = @{ it = "Svuota cache shader"; en = "Clear shader cache" }
 
     ttlStart           = @{ it = "MENU START"; en = "START MENU" }
-    chkStartMorePins   = @{ it = "Piu spazio ai collegamenti, meno ai consigli"; en = "More room for pins, less for recommendations" }
+    chkStartMorePins   = @{ it = "Più spazio ai collegamenti, meno ai consigli"; en = "More room for pins, less for recommendations" }
     chkStartHideRec    = @{ it = "Sezione «Consigliati» — nascondi"; en = "«Recommended» section — hide" }
     chkStartNoWeb      = @{ it = "Siti consigliati nel menu Start — togli"; en = "Recommended websites in Start — remove" }
     chkStartNoAccount  = @{ it = "Notifiche dell'account nel menu Start — togli"; en = "Account notifications in Start — remove" }
@@ -429,6 +429,7 @@ $script:Loc = @{
     chkIPv4Pref        = @{ it = "IPv4 prima di IPv6"; en = "IPv4 before IPv6" }
     chkDiskNoSleep     = @{ it = "Dischi e SSD sempre attivi (con alimentazione collegata)"; en = "Disks and SSDs always on (while plugged in)" }
     btnEmergency       = @{ it = "Ripristino totale"; en = "Full reset" }
+    lblPersonal        = @{ it = "PERSONALIZZAZIONE"; en = "PERSONALIZATION" }
 }
 
 # Messaggi non legati a un controllo: log, finestre di dialogo, etichette dinamiche.
@@ -816,6 +817,8 @@ $script:Msg = @{
     emgHeader          = @{ it = "Ripristino totale ai valori di Windows"; en = "Full reset to the Windows values" }
     emgDone            = @{ it = "Ripristino totale completato: riavvia il computer perché tutto torni come prima."; en = "Full reset done: restart the computer so everything is back as before." }
     recAllDone         = @{ it = "Valori consigliati pronti: {0} da attivare, {1} da lasciare o riportare come Windows. Premi «Applica modifiche»."; en = "Recommended values ready: {0} to enable, {1} to keep or put back as Windows. Press «Apply changes»." }
+    catBulkNothing     = @{ it = "Nessuna modifica: le voci di questa pagina sono già su questi valori."; en = "No changes: the entries on this page already have these values." }
+    catBulkCount       = @{ it = "Voci da cambiare: {0}"; en = "Entries to change: {0}" }
 }
 
 $script:LangCode = "it"
@@ -1681,8 +1684,7 @@ $script:RecommendedChecks = @{
                     'chkInkingTyping','chkWiFiSense','chkConsumerFeatures','chkSuggestedContent','chkLockScreenAds','chkStartBing',
                     'chkStartTracking','chkWindowsAI','chkEdgeDebloat','chkDeliveryOpt','chkWPBT','chkBackgroundApps',
                     'chkRemoteAssistance','chkCompanionApps','chkServicesManual','chkTeredo')
-    pageUi      = @('chkDarkTheme','chkFileExt','chkLongPaths','chkExplorerThisPC','chkRemove3D','chkRecycleConfirm','chkMenuDelay','chkStartNoWeb',
-                    'chkStartNoAccount','chkTaskbarWidgets','chkTaskbarChat','chkTaskbarEndTask','chkMouseAccel','chkNumLock','chkStickyKeys')
+    pageUi      = @('chkDarkTheme','chkFileExt','chkLongPaths','chkExplorerThisPC','chkRemove3D','chkRecycleConfirm','chkMenuDelay','chkMouseAccel','chkNumLock','chkStickyKeys')
     pageNet     = @('chkNetPowerSave')
     pageStorage = @('chkReservedStorage')
     pagePower   = @('chkFastStartup','chkHibernation','chkS0Sleep','chkS3Sleep','chkDiskNoSleep')

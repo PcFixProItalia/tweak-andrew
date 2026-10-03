@@ -906,3 +906,6 @@ M:emgRestorePoint	Ponto de restauração antes da restauração total
 M:emgHeader	Restauração total aos valores do Windows
 M:emgDone	Restauração concluída: reinicie o computador para que tudo volte a ser como antes.
 M:recAllDone	Valores recomendados prontos: {0} para ativar, {1} para manter ou voltar como o Windows. Clique em «Aplicar alterações».
+L:lblPersonal	PERSONALIZAÇÃO
+M:catBulkNothing	Nenhuma alteração: os itens desta página já têm esses valores.
+M:catBulkCount	Itens a alterar: {0}

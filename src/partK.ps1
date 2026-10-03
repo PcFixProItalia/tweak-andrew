@@ -511,7 +511,22 @@ function New-CatButton([string]$text, [string]$dot) {
 
 # Applica lo stesso stato a molte voci, con una sola conferma.
 function Invoke-CatBulk([string]$page, [scriptblock]$pick, [string]$question) {
-    if (-not (Show-Dialog -Title (T 'catBulkTitle') -Message $question -Kind 'warn')) { return }
+    # Prima si conta cosa cambierebbe: se e' gia' tutto a posto lo si dice, senza
+    # chiedere conferme per un giro che non farebbe nulla.
+    $todo = 0
+    foreach ($r in @($script:CatRows | Where-Object { $_.Item.Page -eq $page })) {
+        $target = & $pick $r.Item
+        if ($null -eq $target) { continue }
+        $now = Get-CatState $r.Item
+        if ($null -ne $now -and [string]$now -ne [string]$target) { $todo++ }
+    }
+    if ($todo -eq 0) {
+        $txtProgressLabel.Text = T 'catBulkNothing'
+        $txtProgressLabel.Foreground = New-CatBrush '#FF3DBE8B'
+        Write-Log "[INFO] $(T 'catBulkNothing')"
+        return
+    }
+    if (-not (Show-Dialog -Title (T 'catBulkTitle') -Message $question -Kind 'warn' -Detail ((T 'catBulkCount') -f $todo))) { return }
     $script:OkCount = 0; $script:WarnCount = 0; $script:SkipCount = 0
     $rows = @($script:CatRows | Where-Object { $_.Item.Page -eq $page })
     $n = 0

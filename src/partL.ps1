@@ -1091,6 +1091,9 @@ $script:Tr = @{
         'M:emgHeader' = "Restablecer todo a los valores de Windows"
         'M:emgDone' = "Restablecimiento completado: reinicia el equipo para que todo vuelva a estar como antes."
         'M:recAllDone' = "Valores recomendados listos: {0} para activar, {1} para dejar o devolver como Windows. Pulsa «Aplicar cambios»."
+        'L:lblPersonal' = "PERSONALIZACIÓN"
+        'M:catBulkNothing' = "Sin cambios: las opciones de esta página ya tienen estos valores."
+        'M:catBulkCount' = "Opciones a cambiar: {0}"
     }
     de = @{
         'L:lblSubtitle' = "Windows-Optimierung und -Steuerung — PcFixPro Italia"
@@ -2001,6 +2004,9 @@ $script:Tr = @{
         'M:emgHeader' = "Alles auf Windows-Werte zurücksetzen"
         'M:emgDone' = "Zurücksetzen abgeschlossen: Starte den Computer neu, damit alles wieder wie vorher ist."
         'M:recAllDone' = "Empfohlene Werte bereit: {0} zum Aktivieren, {1} zum Belassen oder Zurücksetzen wie Windows. «Änderungen anwenden» drücken."
+        'L:lblPersonal' = "PERSONALISIERUNG"
+        'M:catBulkNothing' = "Keine Änderungen: Die Einträge dieser Seite haben bereits diese Werte."
+        'M:catBulkCount' = "Zu ändernde Einträge: {0}"
     }
     fr = @{
         'L:lblSubtitle' = "Optimisation et contrôle de Windows — PcFixPro Italia"
@@ -2914,6 +2920,9 @@ $script:Tr = @{
         'M:emgHeader' = "Réinitialisation complète aux valeurs de Windows"
         'M:emgDone' = "Réinitialisation terminée : redémarrez l'ordinateur pour que tout redevienne comme avant."
         'M:recAllDone' = "Valeurs recommandées prêtes : {0} à activer, {1} à laisser ou remettre comme Windows. Appuyez sur « Appliquer les modifications »."
+        'L:lblPersonal' = "PERSONNALISATION"
+        'M:catBulkNothing' = "Aucune modification : les éléments de cette page ont déjà ces valeurs."
+        'M:catBulkCount' = "Éléments à modifier : {0}"
     }
     pl = @{
         'L:lblSubtitle' = "Optymalizacja i kontrola systemu Windows — PcFixPro Italia"
@@ -3824,6 +3833,9 @@ $script:Tr = @{
         'M:emgHeader' = "Pełne przywrócenie wartości Windows"
         'M:emgDone' = "Przywracanie zakończone: uruchom ponownie komputer, aby wszystko wróciło do stanu sprzed."
         'M:recAllDone' = "Zalecane wartości gotowe: {0} do włączenia, {1} do pozostawienia lub przywrócenia jak w Windows. Naciśnij «Zastosuj zmiany»."
+        'L:lblPersonal' = "PERSONALIZACJA"
+        'M:catBulkNothing' = "Brak zmian: pozycje na tej stronie mają już te wartości."
+        'M:catBulkCount' = "Pozycje do zmiany: {0}"
     }
     pt = @{
         'L:lblSubtitle' = "Otimização e controle do Windows — PcFixPro Italia"
@@ -4734,6 +4746,9 @@ $script:Tr = @{
         'M:emgHeader' = "Restauração total aos valores do Windows"
         'M:emgDone' = "Restauração concluída: reinicie o computador para que tudo volte a ser como antes."
         'M:recAllDone' = "Valores recomendados prontos: {0} para ativar, {1} para manter ou voltar como o Windows. Clique em «Aplicar alterações»."
+        'L:lblPersonal' = "PERSONALIZAÇÃO"
+        'M:catBulkNothing' = "Nenhuma alteração: os itens desta página já têm esses valores."
+        'M:catBulkCount' = "Itens a alterar: {0}"
     }
     ro = @{
         'L:lblSubtitle' = "Optimizarea și controlul Windows — PcFixPro Italia"
@@ -5644,6 +5659,9 @@ $script:Tr = @{
         'M:emgHeader' = "Resetare totală la valorile Windows"
         'M:emgDone' = "Resetare finalizată: repornește computerul ca totul să revină ca înainte."
         'M:recAllDone' = "Valori recomandate pregătite: {0} de activat, {1} de lăsat sau readus ca în Windows. Apasă «Aplică modificările»."
+        'L:lblPersonal' = "PERSONALIZARE"
+        'M:catBulkNothing' = "Nicio modificare: elementele acestei pagini au deja aceste valori."
+        'M:catBulkCount' = "Elemente de schimbat: {0}"
     }
     ru = @{
         'L:lblSubtitle' = "Оптимизация и управление Windows — PcFixPro Italia"
@@ -6554,6 +6572,9 @@ $script:Tr = @{
         'M:emgHeader' = "Полный сброс к значениям Windows"
         'M:emgDone' = "Сброс завершён: перезагрузите компьютер, чтобы всё вернулось как было."
         'M:recAllDone' = "Рекомендуемые значения готовы: {0} включить, {1} оставить или вернуть как в Windows. Нажмите «Применить изменения»."
+        'L:lblPersonal' = "ПЕРСОНАЛИЗАЦИЯ"
+        'M:catBulkNothing' = "Изменений нет: пункты этой страницы уже имеют эти значения."
+        'M:catBulkCount' = "Пунктов к изменению: {0}"
     }
 }
 

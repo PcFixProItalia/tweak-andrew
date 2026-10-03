@@ -1584,44 +1584,9 @@ $script:PlanData = @{
                                             </StackPanel>
                                         </Border>
 
-                                        <Border Style="{StaticResource Glass}">
-                                            <StackPanel>
-                                                <TextBlock x:Name="ttlStart" Text="MENU START" Style="{StaticResource CardTitle}"/>
-                                                <CheckBox x:Name="chkStartMorePins" Content="Piu spazio ai collegamenti"/>
-                                                <CheckBox x:Name="chkStartHideRec" Content="Nascondi la sezione Consigliati"/>
-                                                <CheckBox x:Name="chkStartNoWeb" Content="Niente siti consigliati"/>
-                                                <CheckBox x:Name="chkStartNoAccount" Content="Niente notifiche account"/>
-                                            </StackPanel>
-                                        </Border>
                                     </StackPanel>
 
                                     <StackPanel Grid.Column="1">
-                                        <Border Style="{StaticResource Glass}">
-                                            <StackPanel>
-                                                <TextBlock x:Name="ttlTaskbar" Text="BARRA APPLICAZIONI" Style="{StaticResource CardTitle}"/>
-                                                <CheckBox x:Name="chkTaskbarCenter" Content="Icone al centro"/>
-                                                <CheckBox x:Name="chkTaskbarSearch" Content="Icona Cerca"/>
-                                                <CheckBox x:Name="chkTaskbarTaskView" Content="Visualizzazione attivita"/>
-                                                <CheckBox x:Name="chkTaskbarWidgets" Content="Widget"/>
-                                                <CheckBox x:Name="chkTaskbarChat" Content="Chat"/>
-                                                <CheckBox x:Name="chkTaskbarEndTask" Content="Termina attivita"/>
-                                                <CheckBox x:Name="chkBatteryPct" Content="Percentuale batteria"/>
-                                                <CheckBox x:Name="chkSettingsHome" Content="Pagina Impostazioni"/>
-                                                <CheckBox x:Name="chkWindowSnapping" Content="Affiancamento finestre"/>
-                                            </StackPanel>
-                                        </Border>
-                                    </StackPanel>
-
-                                    <StackPanel Grid.Column="2">
-                                        <Border Style="{StaticResource Glass}">
-                                            <StackPanel>
-                                                <TextBlock x:Name="ttlInput" Text="INPUT" Style="{StaticResource CardTitle}"/>
-                                                <CheckBox x:Name="chkMouseAccel" Content="Accelerazione mouse"/>
-                                                <CheckBox x:Name="chkNumLock" Content="Bloc Num"/>
-                                                <CheckBox x:Name="chkStickyKeys" Content="Tasti permanenti"/>
-                                                <CheckBox x:Name="chkScrollbars" Content="Barre di scorrimento"/>
-                                            </StackPanel>
-                                        </Border>
                                         <Border Style="{StaticResource Glass}">
                                             <StackPanel>
                                                 <TextBlock x:Name="ttlLock" Text="ACCESSO" Style="{StaticResource CardTitle}"/>
@@ -1631,7 +1596,6 @@ $script:PlanData = @{
                                                 <CheckBox x:Name="chkLogonVerbose" Content="Accesso dettagliato"/>
                                             </StackPanel>
                                         </Border>
-
                                         <Border Style="{StaticResource Glass}">
                                             <StackPanel>
                                                 <TextBlock x:Name="ttlFeat" Text="FUNZIONI NASCOSTE" Style="{StaticResource CardTitle}"/>
@@ -1653,6 +1617,19 @@ $script:PlanData = @{
                                                 </Border>
                                             </StackPanel>
                                         </Border>
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Column="2">
+                                        <Border Style="{StaticResource Glass}">
+                                            <StackPanel>
+                                                <TextBlock x:Name="ttlInput" Text="INPUT" Style="{StaticResource CardTitle}"/>
+                                                <CheckBox x:Name="chkMouseAccel" Content="Accelerazione mouse"/>
+                                                <CheckBox x:Name="chkNumLock" Content="Bloc Num"/>
+                                                <CheckBox x:Name="chkStickyKeys" Content="Tasti permanenti"/>
+                                                <CheckBox x:Name="chkScrollbars" Content="Barre di scorrimento"/>
+                                            </StackPanel>
+                                        </Border>
+
                                     </StackPanel>
                                 </Grid>
                             </ScrollViewer>
@@ -2024,15 +2001,6 @@ $script:PlanData = @{
                                             </StackPanel>
                                         </Border>
 
-                                        <Border Style="{StaticResource Glass}">
-                                            <StackPanel>
-                                                <TextBlock x:Name="ttlShutdownMenu" Text="MENU ARRESTA" Style="{StaticResource CardTitle}"/>
-                                                <TextBlock x:Name="lblShutdownHint" Style="{StaticResource SubTitle}" Margin="0,0,0,10"
-                                                           Text="Valgono subito, senza Applica. Le impostazioni del piano energetico non vengono toccate."/>
-                                                <CheckBox x:Name="chkMenuSleep" Tag="live" Content="Sospendi nel menu Arresta"/>
-                                                <CheckBox x:Name="chkMenuHibernate" Tag="live" Content="Iberna nel menu Arresta"/>
-                                            </StackPanel>
-                                        </Border>
                                     </StackPanel>
                                 </ScrollViewer>
                             </Grid>
@@ -2312,6 +2280,55 @@ $script:PlanData = @{
                                                 <CheckBox x:Name="chkSecSmartScreen" Tag="risky" Content="SmartScreen — controllo dei file scaricati"/>
                                                 <CheckBox x:Name="chkSecSpectre" Tag="risky" Content="Mitigazioni Spectre e Meltdown"/>
                                                 <CheckBox x:Name="chkSecDefenderIdle" Tag="risky" Content="Defender: scansioni solo a computer fermo, CPU al 20%"/>
+                                            </StackPanel>
+                                        </Border>
+                                    </StackPanel>
+                                </Grid>
+
+                                <!-- Personalizzazione: gusti personali, non ottimizzazioni. Restano fuori da
+                                     «Seleziona tutto» e dai consigli, come il resto di questa pagina. -->
+                                <TextBlock x:Name="lblPersonal" Text="PERSONALIZZAZIONE" Style="{StaticResource CardTitle}" Margin="12,14,0,2"/>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel Grid.Column="0">
+                                        <Border Style="{StaticResource Glass}">
+                                            <StackPanel>
+                                                <TextBlock x:Name="ttlTaskbar" Text="BARRA APPLICAZIONI" Style="{StaticResource CardTitle}"/>
+                                                <CheckBox x:Name="chkTaskbarCenter" Content="Icone al centro"/>
+                                                <CheckBox x:Name="chkTaskbarSearch" Content="Icona Cerca"/>
+                                                <CheckBox x:Name="chkTaskbarTaskView" Content="Visualizzazione attivita"/>
+                                                <CheckBox x:Name="chkTaskbarWidgets" Content="Widget"/>
+                                                <CheckBox x:Name="chkTaskbarChat" Content="Chat"/>
+                                                <CheckBox x:Name="chkTaskbarEndTask" Content="Termina attivita"/>
+                                                <CheckBox x:Name="chkBatteryPct" Content="Percentuale batteria"/>
+                                                <CheckBox x:Name="chkSettingsHome" Content="Pagina Impostazioni"/>
+                                                <CheckBox x:Name="chkWindowSnapping" Content="Affiancamento finestre"/>
+                                            </StackPanel>
+                                        </Border>
+                                    </StackPanel>
+                                    <StackPanel Grid.Column="1">
+                                        <Border Style="{StaticResource Glass}">
+                                            <StackPanel>
+                                                <TextBlock x:Name="ttlStart" Text="MENU START" Style="{StaticResource CardTitle}"/>
+                                                <CheckBox x:Name="chkStartMorePins" Content="Più spazio ai collegamenti"/>
+                                                <CheckBox x:Name="chkStartHideRec" Content="Nascondi la sezione Consigliati"/>
+                                                <CheckBox x:Name="chkStartNoWeb" Content="Niente siti consigliati"/>
+                                                <CheckBox x:Name="chkStartNoAccount" Content="Niente notifiche account"/>
+                                            </StackPanel>
+                                        </Border>
+                                    </StackPanel>
+                                    <StackPanel Grid.Column="2">
+                                        <Border Style="{StaticResource Glass}">
+                                            <StackPanel>
+                                                <TextBlock x:Name="ttlShutdownMenu" Text="MENU ARRESTA" Style="{StaticResource CardTitle}"/>
+                                                <TextBlock x:Name="lblShutdownHint" Style="{StaticResource SubTitle}" Margin="0,0,0,10"
+                                                           Text="Valgono subito, senza Applica. Le impostazioni del piano energetico non vengono toccate."/>
+                                                <CheckBox x:Name="chkMenuSleep" Tag="live" Content="Sospendi nel menu Arresta"/>
+                                                <CheckBox x:Name="chkMenuHibernate" Tag="live" Content="Iberna nel menu Arresta"/>
                                             </StackPanel>
                                         </Border>
                                     </StackPanel>
@@ -2768,7 +2785,7 @@ $script:Loc = @{
     btnShaderClear     = @{ it = "Svuota cache shader"; en = "Clear shader cache" }
 
     ttlStart           = @{ it = "MENU START"; en = "START MENU" }
-    chkStartMorePins   = @{ it = "Piu spazio ai collegamenti, meno ai consigli"; en = "More room for pins, less for recommendations" }
+    chkStartMorePins   = @{ it = "Più spazio ai collegamenti, meno ai consigli"; en = "More room for pins, less for recommendations" }
     chkStartHideRec    = @{ it = "Sezione «Consigliati» — nascondi"; en = "«Recommended» section — hide" }
     chkStartNoWeb      = @{ it = "Siti consigliati nel menu Start — togli"; en = "Recommended websites in Start — remove" }
     chkStartNoAccount  = @{ it = "Notifiche dell'account nel menu Start — togli"; en = "Account notifications in Start — remove" }
@@ -3090,6 +3107,7 @@ $script:Loc = @{
     chkIPv4Pref        = @{ it = "IPv4 prima di IPv6"; en = "IPv4 before IPv6" }
     chkDiskNoSleep     = @{ it = "Dischi e SSD sempre attivi (con alimentazione collegata)"; en = "Disks and SSDs always on (while plugged in)" }
     btnEmergency       = @{ it = "Ripristino totale"; en = "Full reset" }
+    lblPersonal        = @{ it = "PERSONALIZZAZIONE"; en = "PERSONALIZATION" }
 }
 
 # Messaggi non legati a un controllo: log, finestre di dialogo, etichette dinamiche.
@@ -3477,6 +3495,8 @@ $script:Msg = @{
     emgHeader          = @{ it = "Ripristino totale ai valori di Windows"; en = "Full reset to the Windows values" }
     emgDone            = @{ it = "Ripristino totale completato: riavvia il computer perché tutto torni come prima."; en = "Full reset done: restart the computer so everything is back as before." }
     recAllDone         = @{ it = "Valori consigliati pronti: {0} da attivare, {1} da lasciare o riportare come Windows. Premi «Applica modifiche»."; en = "Recommended values ready: {0} to enable, {1} to keep or put back as Windows. Press «Apply changes»." }
+    catBulkNothing     = @{ it = "Nessuna modifica: le voci di questa pagina sono già su questi valori."; en = "No changes: the entries on this page already have these values." }
+    catBulkCount       = @{ it = "Voci da cambiare: {0}"; en = "Entries to change: {0}" }
 }
 
 $script:LangCode = "it"
@@ -4342,8 +4362,7 @@ $script:RecommendedChecks = @{
                     'chkInkingTyping','chkWiFiSense','chkConsumerFeatures','chkSuggestedContent','chkLockScreenAds','chkStartBing',
                     'chkStartTracking','chkWindowsAI','chkEdgeDebloat','chkDeliveryOpt','chkWPBT','chkBackgroundApps',
                     'chkRemoteAssistance','chkCompanionApps','chkServicesManual','chkTeredo')
-    pageUi      = @('chkDarkTheme','chkFileExt','chkLongPaths','chkExplorerThisPC','chkRemove3D','chkRecycleConfirm','chkMenuDelay','chkStartNoWeb',
-                    'chkStartNoAccount','chkTaskbarWidgets','chkTaskbarChat','chkTaskbarEndTask','chkMouseAccel','chkNumLock','chkStickyKeys')
+    pageUi      = @('chkDarkTheme','chkFileExt','chkLongPaths','chkExplorerThisPC','chkRemove3D','chkRecycleConfirm','chkMenuDelay','chkMouseAccel','chkNumLock','chkStickyKeys')
     pageNet     = @('chkNetPowerSave')
     pageStorage = @('chkReservedStorage')
     pagePower   = @('chkFastStartup','chkHibernation','chkS0Sleep','chkS3Sleep','chkDiskNoSleep')
@@ -5512,6 +5531,9 @@ $script:Tr = @{
         'M:emgHeader' = "Restablecer todo a los valores de Windows"
         'M:emgDone' = "Restablecimiento completado: reinicia el equipo para que todo vuelva a estar como antes."
         'M:recAllDone' = "Valores recomendados listos: {0} para activar, {1} para dejar o devolver como Windows. Pulsa «Aplicar cambios»."
+        'L:lblPersonal' = "PERSONALIZACIÓN"
+        'M:catBulkNothing' = "Sin cambios: las opciones de esta página ya tienen estos valores."
+        'M:catBulkCount' = "Opciones a cambiar: {0}"
     }
     de = @{
         'L:lblSubtitle' = "Windows-Optimierung und -Steuerung — PcFixPro Italia"
@@ -6422,6 +6444,9 @@ $script:Tr = @{
         'M:emgHeader' = "Alles auf Windows-Werte zurücksetzen"
         'M:emgDone' = "Zurücksetzen abgeschlossen: Starte den Computer neu, damit alles wieder wie vorher ist."
         'M:recAllDone' = "Empfohlene Werte bereit: {0} zum Aktivieren, {1} zum Belassen oder Zurücksetzen wie Windows. «Änderungen anwenden» drücken."
+        'L:lblPersonal' = "PERSONALISIERUNG"
+        'M:catBulkNothing' = "Keine Änderungen: Die Einträge dieser Seite haben bereits diese Werte."
+        'M:catBulkCount' = "Zu ändernde Einträge: {0}"
     }
     fr = @{
         'L:lblSubtitle' = "Optimisation et contrôle de Windows — PcFixPro Italia"
@@ -7335,6 +7360,9 @@ $script:Tr = @{
         'M:emgHeader' = "Réinitialisation complète aux valeurs de Windows"
         'M:emgDone' = "Réinitialisation terminée : redémarrez l'ordinateur pour que tout redevienne comme avant."
         'M:recAllDone' = "Valeurs recommandées prêtes : {0} à activer, {1} à laisser ou remettre comme Windows. Appuyez sur « Appliquer les modifications »."
+        'L:lblPersonal' = "PERSONNALISATION"
+        'M:catBulkNothing' = "Aucune modification : les éléments de cette page ont déjà ces valeurs."
+        'M:catBulkCount' = "Éléments à modifier : {0}"
     }
     pl = @{
         'L:lblSubtitle' = "Optymalizacja i kontrola systemu Windows — PcFixPro Italia"
@@ -8245,6 +8273,9 @@ $script:Tr = @{
         'M:emgHeader' = "Pełne przywrócenie wartości Windows"
         'M:emgDone' = "Przywracanie zakończone: uruchom ponownie komputer, aby wszystko wróciło do stanu sprzed."
         'M:recAllDone' = "Zalecane wartości gotowe: {0} do włączenia, {1} do pozostawienia lub przywrócenia jak w Windows. Naciśnij «Zastosuj zmiany»."
+        'L:lblPersonal' = "PERSONALIZACJA"
+        'M:catBulkNothing' = "Brak zmian: pozycje na tej stronie mają już te wartości."
+        'M:catBulkCount' = "Pozycje do zmiany: {0}"
     }
     pt = @{
         'L:lblSubtitle' = "Otimização e controle do Windows — PcFixPro Italia"
@@ -9155,6 +9186,9 @@ $script:Tr = @{
         'M:emgHeader' = "Restauração total aos valores do Windows"
         'M:emgDone' = "Restauração concluída: reinicie o computador para que tudo volte a ser como antes."
         'M:recAllDone' = "Valores recomendados prontos: {0} para ativar, {1} para manter ou voltar como o Windows. Clique em «Aplicar alterações»."
+        'L:lblPersonal' = "PERSONALIZAÇÃO"
+        'M:catBulkNothing' = "Nenhuma alteração: os itens desta página já têm esses valores."
+        'M:catBulkCount' = "Itens a alterar: {0}"
     }
     ro = @{
         'L:lblSubtitle' = "Optimizarea și controlul Windows — PcFixPro Italia"
@@ -10065,6 +10099,9 @@ $script:Tr = @{
         'M:emgHeader' = "Resetare totală la valorile Windows"
         'M:emgDone' = "Resetare finalizată: repornește computerul ca totul să revină ca înainte."
         'M:recAllDone' = "Valori recomandate pregătite: {0} de activat, {1} de lăsat sau readus ca în Windows. Apasă «Aplică modificările»."
+        'L:lblPersonal' = "PERSONALIZARE"
+        'M:catBulkNothing' = "Nicio modificare: elementele acestei pagini au deja aceste valori."
+        'M:catBulkCount' = "Elemente de schimbat: {0}"
     }
     ru = @{
         'L:lblSubtitle' = "Оптимизация и управление Windows — PcFixPro Italia"
@@ -10975,6 +11012,9 @@ $script:Tr = @{
         'M:emgHeader' = "Полный сброс к значениям Windows"
         'M:emgDone' = "Сброс завершён: перезагрузите компьютер, чтобы всё вернулось как было."
         'M:recAllDone' = "Рекомендуемые значения готовы: {0} включить, {1} оставить или вернуть как в Windows. Нажмите «Применить изменения»."
+        'L:lblPersonal' = "ПЕРСОНАЛИЗАЦИЯ"
+        'M:catBulkNothing' = "Изменений нет: пункты этой страницы уже имеют эти значения."
+        'M:catBulkCount' = "Пунктов к изменению: {0}"
     }
 }
 
@@ -16072,7 +16112,22 @@ function New-CatButton([string]$text, [string]$dot) {
 
 # Applica lo stesso stato a molte voci, con una sola conferma.
 function Invoke-CatBulk([string]$page, [scriptblock]$pick, [string]$question) {
-    if (-not (Show-Dialog -Title (T 'catBulkTitle') -Message $question -Kind 'warn')) { return }
+    # Prima si conta cosa cambierebbe: se e' gia' tutto a posto lo si dice, senza
+    # chiedere conferme per un giro che non farebbe nulla.
+    $todo = 0
+    foreach ($r in @($script:CatRows | Where-Object { $_.Item.Page -eq $page })) {
+        $target = & $pick $r.Item
+        if ($null -eq $target) { continue }
+        $now = Get-CatState $r.Item
+        if ($null -ne $now -and [string]$now -ne [string]$target) { $todo++ }
+    }
+    if ($todo -eq 0) {
+        $txtProgressLabel.Text = T 'catBulkNothing'
+        $txtProgressLabel.Foreground = New-CatBrush '#FF3DBE8B'
+        Write-Log "[INFO] $(T 'catBulkNothing')"
+        return
+    }
+    if (-not (Show-Dialog -Title (T 'catBulkTitle') -Message $question -Kind 'warn' -Detail ((T 'catBulkCount') -f $todo))) { return }
     $script:OkCount = 0; $script:WarnCount = 0; $script:SkipCount = 0
     $rows = @($script:CatRows | Where-Object { $_.Item.Page -eq $page })
     $n = 0
@@ -18557,7 +18612,11 @@ $btnMpoStar.Add_Click({
 # ------------------------------------------------------------------------------
 # Interruttori di ambito e manutenzioni: non sono impostazioni da consigliare.
 $script:NoRecChecks = @('chkRestorePoint', 'chkStorageProfile', 'chkWuProfile', 'chkApplyNetwork', 'chkApplyDns',
-                        'chkApplyMPO', 'chkDiskCleanup', 'chkSmartChkdsk')
+                        'chkApplyMPO', 'chkDiskCleanup', 'chkSmartChkdsk',
+                        # Personalizzazione (pagina Avanzate): gusti, non ottimizzazioni.
+                        'chkTaskbarCenter', 'chkTaskbarSearch', 'chkTaskbarTaskView', 'chkTaskbarWidgets', 'chkTaskbarChat',
+                        'chkTaskbarEndTask', 'chkBatteryPct', 'chkSettingsHome', 'chkWindowSnapping',
+                        'chkStartMorePins', 'chkStartHideRec', 'chkStartNoWeb', 'chkStartNoAccount')
 function Update-RecStars {
     $names = @($script:RecommendedChecks.Values | ForEach-Object { $_ })
     foreach ($cb in $script:AllCheckBoxes) {

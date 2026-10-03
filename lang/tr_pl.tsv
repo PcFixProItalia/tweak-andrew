@@ -906,3 +906,6 @@ M:emgRestorePoint	Punkt przywracania przed pełnym przywróceniem
 M:emgHeader	Pełne przywrócenie wartości Windows
 M:emgDone	Przywracanie zakończone: uruchom ponownie komputer, aby wszystko wróciło do stanu sprzed.
 M:recAllDone	Zalecane wartości gotowe: {0} do włączenia, {1} do pozostawienia lub przywrócenia jak w Windows. Naciśnij «Zastosuj zmiany».
+L:lblPersonal	PERSONALIZACJA
+M:catBulkNothing	Brak zmian: pozycje na tej stronie mają już te wartości.
+M:catBulkCount	Pozycje do zmiany: {0}
