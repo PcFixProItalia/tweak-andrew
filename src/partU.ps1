@@ -638,7 +638,7 @@ function Invoke-ActionQueue {
     Set-UiLock 'run' $true
     $btnRun.IsEnabled = $false; $btnUndo.IsEnabled = $false
     $script:OkCount = 0; $script:WarnCount = 0; $script:SkipCount = 0
-    $txtProgressLabel.Foreground = New-Object System.Windows.Media.SolidColorBrush ([System.Windows.Media.ColorConverter]::ConvertFromString('#FFF2F2F5'))
+    $txtProgressLabel.Foreground = New-Object System.Windows.Media.SolidColorBrush ([System.Windows.Media.ColorConverter]::ConvertFromString('#FFEDEFF2'))
     Update-Progress 0 $total (T 'starting')
     Write-Log "======================================================="
     Write-Log "[AVVIO] $Header - $total operazioni in coda."

@@ -90,7 +90,7 @@ function Add-ToolJob([string]$Name, [string]$Script, [switch]$Reboot) {
     if (-not (Test-ToolBusy)) { $script:ToolJobList.Clear(); $panToolJobs.Children.Clear() }
     $job = @{ Name = $Name; Label = $Name; Script = $Script; Reboot = [bool]$Reboot; Proc = $null; Done = $false; Ok = $false; Frac = 0.0 }
     New-AppJobRow $job $panToolJobs
-    Set-AppJobView $job (T 'jobWait') 0 '#FF6E6E78'
+    Set-AppJobView $job (T 'jobWait') 0 '#FF6C727A'
     [void]$script:ToolJobList.Add($job)
     $script:ToolJobs.Enqueue($job)
     $bdToolJobs.Visibility = 'Visible'; $btnToolJobsClose.Visibility = 'Collapsed'
@@ -109,7 +109,7 @@ function Start-ToolJob($job) {
         catch { Write-Log "[ERRORE] $($job.Name) - $($_.Exception.Message)"; Complete-ToolJob $job -1; return }
     }
     Write-Log "[INFO] Avvio: $($job.Name)"
-    Set-AppJobView $job (T 'jobPrep') -1 '#FFC4C4CC'
+    Set-AppJobView $job (T 'jobPrep') -1 '#FFC5C9CF'
 }
 
 function Update-ToolJobProgress($job) {
@@ -126,8 +126,8 @@ function Update-ToolJobProgress($job) {
     $pct = -1
     if ($own.Count -gt 0) { $pct = [int]$own[$own.Count - 1].Groups[1].Value }
     elseif ($any.Count -gt 0) { $pct = [Math]::Min(100, [int]$any[$any.Count - 1].Groups[1].Value) }
-    if ($pct -ge 0) { Set-AppJobView $job "$text  ·  $pct%" $pct '#FFE8E8EE'; $job.Frac = $pct / 100 }
-    else { Set-AppJobView $job $text -1 '#FFE8E8EE'; $job.Frac = 0.05 }
+    if ($pct -ge 0) { Set-AppJobView $job "$text  ·  $pct%" $pct '#FFE6E8EB'; $job.Frac = $pct / 100 }
+    else { Set-AppJobView $job $text -1 '#FFE6E8EB'; $job.Frac = 0.05 }
 }
 
 function Complete-ToolJob($job, [int]$code) {
@@ -141,7 +141,7 @@ function Complete-ToolJob($job, [int]$code) {
         $job.Ok = $true
         $txt = if ($msg) { $msg } elseif ($job.Reboot -or $code -eq 3010) { T 'jobOkReboot' } else { T 'jobOk' }
         Write-Log "[OK] $($job.Name) $msg"
-        Set-AppJobView $job $txt 100 $(if ($job.Reboot -or $code -eq 3010) { '#FFFDBA74' } else { '#FF2ED3A7' })
+        Set-AppJobView $job $txt 100 $(if ($job.Reboot -or $code -eq 3010) { '#FFFDBA74' } else { '#FF3DBE8B' })
     } else {
         Write-Log "[ERRORE] $($job.Name) - codice $code $msg"
         Set-AppJobView $job ($(if ($msg) { $msg } else { (T 'jobErr') -f $code })) 0 '#FFF87171'
@@ -438,7 +438,7 @@ function New-ToolRow([string]$Key, [scriptblock]$Click) {
     $g.ColumnDefinitions.Add($c0); $g.ColumnDefinitions.Add($c1)
     $sp = New-Object System.Windows.Controls.StackPanel; $sp.VerticalAlignment = 'Center'; $sp.Margin = '0,0,12,0'
     $t = New-Object System.Windows.Controls.TextBlock
-    $t.Text = T "tool_$Key"; $t.FontSize = 13; $t.FontWeight = 'SemiBold'; $t.Foreground = New-AppBrush '#FFE8E8EE'; $t.TextWrapping = 'Wrap'
+    $t.Text = T "tool_$Key"; $t.FontSize = 13; $t.FontWeight = 'SemiBold'; $t.Foreground = New-AppBrush '#FFE6E8EB'; $t.TextWrapping = 'Wrap'
     $d = New-Object System.Windows.Controls.TextBlock
     $d.Text = T "toolDesc_$Key"; $d.Style = $window.FindResource('SubTitle'); $d.Margin = '0,2,0,0'
     [void]$sp.Children.Add($t); [void]$sp.Children.Add($d)
@@ -720,15 +720,15 @@ function Show-WuProfiles {
         $rb.Style = $window.FindResource('ProfileCard'); $rb.GroupName = 'WuProfile'; $rb.Tag = $p
         $sp = New-Object System.Windows.Controls.StackPanel
         $t = New-Object System.Windows.Controls.TextBlock
-        $t.Text = T "wu_$p"; $t.FontSize = 14; $t.FontWeight = 'Bold'; $t.FontFamily = 'Raleway, Segoe UI'
-        $t.Foreground = New-AppBrush $(if ($p -eq 'disable') { '#FFF87171' } else { '#FFF2F2F5' })
+        $t.Text = T "wu_$p"; $t.FontSize = 14; $t.FontWeight = 'Bold'; $t.FontFamily = 'Segoe UI Variable Display, Segoe UI'
+        $t.Foreground = New-AppBrush $(if ($p -eq 'disable') { '#FFF87171' } else { '#FFEDEFF2' })
         $s = New-Object System.Windows.Controls.TextBlock
         $s.Text = T "wuSub_$p"; $s.FontSize = 11.5; $s.Margin = '0,2,0,6'
-        $s.Foreground = New-AppBrush $(if ($p -eq 'disable') { '#FFF87171' } else { '#FFA1A1AA' })
+        $s.Foreground = New-AppBrush $(if ($p -eq 'disable') { '#FFF87171' } else { '#FF9DA3AB' })
         [void]$sp.Children.Add($t); [void]$sp.Children.Add($s)
         foreach ($line in ((T "wuList_$p") -split ';')) {
             $l = New-Object System.Windows.Controls.TextBlock
-            $l.Text = "·  $line"; $l.FontSize = 11.5; $l.Foreground = New-AppBrush '#FFC4C4CC'; $l.TextWrapping = 'Wrap'; $l.Margin = '0,1,0,0'
+            $l.Text = "·  $line"; $l.FontSize = 11.5; $l.Foreground = New-AppBrush '#FFC5C9CF'; $l.TextWrapping = 'Wrap'; $l.Margin = '0,1,0,0'
             [void]$sp.Children.Add($l)
         }
         $rb.Content = $sp

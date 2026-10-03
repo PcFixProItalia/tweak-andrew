@@ -908,3 +908,4 @@ M:emgAsk2	Confirmez encore : la réinitialisation complète ne s'annule pas d'ic
 M:emgRestorePoint	Point de restauration avant la réinitialisation
 M:emgHeader	Réinitialisation complète aux valeurs de Windows
 M:emgDone	Réinitialisation terminée : redémarrez l'ordinateur pour que tout redevienne comme avant.
+M:recAllDone	Valeurs recommandées prêtes : {0} à activer, {1} à laisser ou remettre comme Windows. Appuyez sur « Appliquer les modifications ».

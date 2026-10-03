@@ -33,6 +33,7 @@ $lblPageTitle = E 'lblPageTitle'; $script:PageAccent = E 'pageAccent'; $script:G
 
 # Alone morbido in alto: stesso disegno per ogni pagina, cambia solo il colore.
 function Set-PageGlow([System.Windows.Media.Color]$c) {
+    return  # Tema Graphite: niente alone colorato.
     $b = New-Object System.Windows.Media.RadialGradientBrush
     $b.GradientOrigin = New-Object System.Windows.Point(0.6, -0.1)
     $b.Center = New-Object System.Windows.Point(0.6, -0.1)

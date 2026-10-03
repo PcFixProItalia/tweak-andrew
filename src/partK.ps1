@@ -378,7 +378,7 @@ function New-CatRow($it, $page) {
         $badges.Orientation = 'Horizontal'; $badges.VerticalAlignment = 'Center'; $badges.Margin = '10,0,0,0'
         $dot = New-Object System.Windows.Shapes.Ellipse
         $dot.Width = 8; $dot.Height = 8
-        $dot.Fill = New-CatBrush $(switch ($it.Rec) { 'y' { '#FF2ED3A7' } 'l' { '#FFE0A25E' } default { '#FFF87171' } })
+        $dot.Fill = New-CatBrush $(switch ($it.Rec) { 'y' { '#FF3DBE8B' } 'l' { '#FFE0A25E' } default { '#FFF87171' } })
         $dot.ToolTip = T $(switch ($it.Rec) { 'y' { 'recYes' } 'l' { 'recLimited' } default { 'recNo' } })
         [void]$badges.Children.Add($dot)
         $ai = New-Object System.Windows.Controls.Border
@@ -439,8 +439,8 @@ function New-CatRow($it, $page) {
         $inner.ColumnDefinitions.Add($ic0); $inner.ColumnDefinitions.Add($ic2); $inner.ColumnDefinitions.Add($ic1)
         $tb = New-Object System.Windows.Controls.TextBlock
         $tb.Text = $label; $tb.TextWrapping = 'Wrap'; $tb.VerticalAlignment = 'Center'; $tb.Margin = '0,0,12,0'
-        $tb.Foreground = New-CatBrush '#FFC4C4CC'; $tb.FontSize = 12.5
-        $tb.FontFamily = New-Object System.Windows.Media.FontFamily('Roboto, Segoe UI Variable Text, Segoe UI')
+        $tb.Foreground = New-CatBrush '#FFC5C9CF'; $tb.FontSize = 12.5
+        $tb.FontFamily = New-Object System.Windows.Media.FontFamily('Segoe UI Variable Text, Segoe UI')
         [void]$inner.Children.Add($tb)
         $combo = New-Object System.Windows.Controls.ComboBox
         $combo.Width = 210; $combo.Tag = $it.Id; $combo.VerticalAlignment = 'Center'
@@ -597,7 +597,7 @@ function Initialize-CatPage([string]$page, $hostEl, [bool]$embedded = $false) {
     $search.VerticalContentAlignment = 'Center'
     $search.Tag = $page
     $hint = New-Object System.Windows.Controls.TextBlock
-    $hint.Text = T 'catSearch'; $hint.Foreground = New-CatBrush '#FF6E6E78'; $hint.IsHitTestVisible = $false
+    $hint.Text = T 'catSearch'; $hint.Foreground = New-CatBrush '#FF6C727A'; $hint.IsHitTestVisible = $false
     $hint.Margin = '12,0,0,0'; $hint.VerticalAlignment = 'Center'
     $sgrid = New-Object System.Windows.Controls.Grid
     $sgrid.Margin = '0,0,12,8'
@@ -623,7 +623,7 @@ function Initialize-CatPage([string]$page, $hostEl, [bool]$embedded = $false) {
         }
         $bar2 = New-Object System.Windows.Controls.WrapPanel
         $bar2.Margin = '7,0,7,6'
-        $b1 = New-CatButton (T 'applyRecYes') '#FF2ED3A7'
+        $b1 = New-CatButton (T 'applyRecYes') '#FF3DBE8B'
         $b1.Add_Click({ Invoke-CatBulk 'priv' { param($i) if ($i.Rec -eq 'y') { $true } else { $null } } (T 'askRecYes') })
         $b2 = New-CatButton (T 'applyRecLimited') '#FFE0A25E'
         $b2.Add_Click({ Invoke-CatBulk 'priv' { param($i) if ($i.Rec -in @('y','l')) { $true } else { $null } } (T 'askRecLimited') })
@@ -643,7 +643,7 @@ function Initialize-CatPage([string]$page, $hostEl, [bool]$embedded = $false) {
     } else {
         # In Alimentazione i pulsanti agiscono sul piano in uso e valgono subito: lo dicono le loro frasi.
         $pw = $page -eq 'power'
-        $bRec = New-CatButton (T $(if ($pw) { 'pwRecBtn' } else { 'applyRecommended' })) '#FF2ED3A7'
+        $bRec = New-CatButton (T $(if ($pw) { 'pwRecBtn' } else { 'applyRecommended' })) '#FF3DBE8B'
         $bRec.DataContext = $page
         $bRec.Add_Click({ $p = [string]$this.DataContext; Invoke-CatBulk $p { param($i) Get-CatRecTarget $i } (T $(if ($p -eq 'power') { 'pwAskRec' } else { 'askRecommended' })) })
         $bDef = New-CatButton (T $(if ($pw) { 'pwDefBtn' } else { 'restoreWindows' })) ''

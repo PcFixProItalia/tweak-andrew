@@ -57,6 +57,19 @@ bloccano; Home e App restano libere. All'avvio il programma legge le azioni di
 attive portano l'etichetta «Attivo». La coccarda con la spunta dice il valore consigliato di ogni voce:
 piena se la voce è già lì; un clic la porta al consiglio (nelle pagine con «Applica» senza applicarla).
 
+## Aspetto
+
+Tema «Graphite»: fondo grafite piatto, schede con bordi sottili e angoli da 10
+pixel, un solo colore d'accento (`#4C8DFF`) per tutte le pagine e Segoe UI
+Variable come carattere. Il colore resta solo dove porta un significato:
+avvisi in arancio, sicurezza ridotta in rosso, marchi NVIDIA, AMD e Intel.
+
+## Selezione
+
+«Seleziona tutto», «Questa pagina» e «Tutta la sezione» portano ogni voce al
+suo valore consigliato: accese le consigliate, spente le altre. Nulla cambia
+finché non si preme «Applica modifiche».
+
 ## Interruttori e ripristino
 
 Nelle pagine con «Applica» l'interruttore mostra lo stato voluto: all'avvio

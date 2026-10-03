@@ -905,3 +905,4 @@ M:emgAsk2	Potwierdź ponownie: pełnego przywrócenia nie cofniesz stąd, tylko 
 M:emgRestorePoint	Punkt przywracania przed pełnym przywróceniem
 M:emgHeader	Pełne przywrócenie wartości Windows
 M:emgDone	Przywracanie zakończone: uruchom ponownie komputer, aby wszystko wróciło do stanu sprzed.
+M:recAllDone	Zalecane wartości gotowe: {0} do włączenia, {1} do pozostawienia lub przywrócenia jak w Windows. Naciśnij «Zastosuj zmiany».

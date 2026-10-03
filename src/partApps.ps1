@@ -128,7 +128,7 @@ public class PtyProcess {
 '@
 
 $script:AppLicColors = @{
-    os = @('#FF2ED3A7', '#262ED3A7'); fw = @('#FF7DD3FC', '#2638BDF8'); fr = @('#FFFDBA74', '#26FDBA74')
+    os = @('#FF3DBE8B', '#263DBE8B'); fw = @('#FF7DD3FC', '#2638BDF8'); fr = @('#FFFDBA74', '#26FDBA74')
     ms = @('#FFA5B4FC', '#26818CF8'); pd = @('#FFF87171', '#26F87171')
 }
 $script:AppTickGeometry = 'M3.6,8.6 L7,12 L13.4,4.8'
@@ -167,11 +167,11 @@ function New-AppContent([string]$title, [string]$sub, [array]$pills) {
     }
     $sp = New-Object System.Windows.Controls.StackPanel; $sp.VerticalAlignment = 'Center'
     $t1 = New-Object System.Windows.Controls.TextBlock
-    $t1.Text = $title; $t1.FontSize = 13; $t1.FontWeight = 'SemiBold'; $t1.Foreground = New-AppBrush '#FFE8E8EE'; $t1.TextTrimming = 'CharacterEllipsis'
+    $t1.Text = $title; $t1.FontSize = 13; $t1.FontWeight = 'SemiBold'; $t1.Foreground = New-AppBrush '#FFE6E8EB'; $t1.TextTrimming = 'CharacterEllipsis'
     [void]$sp.Children.Add($t1)
     if ($sub) {
         $t2 = New-Object System.Windows.Controls.TextBlock
-        $t2.Text = $sub; $t2.FontSize = 11.5; $t2.Foreground = New-AppBrush '#FF8E8E98'; $t2.TextWrapping = 'Wrap'; $t2.Margin = '0,2,0,0'
+        $t2.Text = $sub; $t2.FontSize = 11.5; $t2.Foreground = New-AppBrush '#FF8C929A'; $t2.TextWrapping = 'Wrap'; $t2.Margin = '0,2,0,0'
         [void]$sp.Children.Add($t2)
     }
     [void]$g.Children.Add($sp)
@@ -196,7 +196,7 @@ function New-AppPick([string]$key, $content) {
 # della casella un segno di spunta verde.
 function New-AppStatic($content) {
     $b = New-Object System.Windows.Controls.Border
-    $b.Background = New-AppBrush '#FF0A0A0C'; $b.BorderBrush = New-AppBrush '#FF16161A'; $b.BorderThickness = 1
+    $b.Background = New-AppBrush '#FF131518'; $b.BorderBrush = New-AppBrush '#FF16161A'; $b.BorderThickness = 1
     $b.CornerRadius = 12; $b.Padding = '11,8,11,8'; $b.Margin = '0,2,0,2'
     $g = New-Object System.Windows.Controls.Grid
     $c0 = New-Object System.Windows.Controls.ColumnDefinition; $c0.Width = [System.Windows.GridLength]::Auto
@@ -204,8 +204,8 @@ function New-AppStatic($content) {
     $g.ColumnDefinitions.Add($c0); $g.ColumnDefinitions.Add($c1)
     $dot = New-Object System.Windows.Controls.Border
     $dot.Width = 20; $dot.Height = 20; $dot.CornerRadius = 10; $dot.Margin = '0,0,12,0'; $dot.VerticalAlignment = 'Center'
-    $dot.Background = New-AppBrush '#262ED3A7'
-    $dot.Child = New-AppTick '#FF2ED3A7' 10
+    $dot.Background = New-AppBrush '#263DBE8B'
+    $dot.Child = New-AppTick '#FF3DBE8B' 10
     [void]$g.Children.Add($dot)
     [System.Windows.Controls.Grid]::SetColumn($content, 1); [void]$g.Children.Add($content)
     $b.Child = $g
@@ -277,7 +277,7 @@ function Show-AppCatalog {
                     $pills += New-AppPill ((T 'appUpdatable') + " $($upd.Available)") '#FFFDBA74' '#26FDBA74'
                     $row = New-AppPick "u:$wid" (New-AppContent $a.Name (Get-Text $a.Desc) $pills)
                 } else {
-                    $pills += New-AppPill (T 'appInstalled') '#FF2ED3A7' '#262ED3A7' -Tick
+                    $pills += New-AppPill (T 'appInstalled') '#FF3DBE8B' '#263DBE8B' -Tick
                     $row = New-AppStatic (New-AppContent $a.Name (Get-Text $a.Desc) $pills)
                 }
             } else {
@@ -378,7 +378,7 @@ function Show-AppInstalled {
     foreach ($a in $script:AppInstalledList) {
         if ($q -and $a.Name -notlike "*$q*" -and $a.Publisher -notlike "*$q*") { continue }
         $sub = (@($a.Version, $a.Publisher) | Where-Object { $_ }) -join '  ·  '
-        $pills = @(if ($a.Kind -eq 'Store') { New-AppPill 'Store' '#FFA5B4FC' '#26818CF8' } else { New-AppPill 'Win32' '#FFC4C4CC' '#1FFFFFFF' })
+        $pills = @(if ($a.Kind -eq 'Store') { New-AppPill 'Store' '#FFA5B4FC' '#26818CF8' } else { New-AppPill 'Win32' '#FFC5C9CF' '#1FFFFFFF' })
         if ($updNames.ContainsKey($a.Name)) { $pills = @(New-AppPill (T 'appUpdatable') '#FFFDBA74' '#26FDBA74') + $pills }
         [void]$card.Panel.Children.Add((New-AppPick $a.Key (New-AppContent $a.Name $sub $pills)))
     }
@@ -392,7 +392,7 @@ function Update-AppButtons {
     $label = if ($radAppsInstalled.IsChecked) { T 'appsUninstallSel' } else { T 'appsInstallSel' }
     $btnAppsAction.Content = if ($n -gt 0) { "$label ($n)" } else { $label }
     $btnAppsAction.IsEnabled = ($n -gt 0) -and ($radAppsInstalled.IsChecked -or $script:Winget)
-    $btnAppsAction.Tag = if ($radAppsInstalled.IsChecked) { New-AppBrush '#FFF87171' } else { New-AppBrush '#FF2ED3A7' }
+    $btnAppsAction.Tag = if ($radAppsInstalled.IsChecked) { New-AppBrush '#FFF87171' } else { New-AppBrush '#FF3DBE8B' }
     $label = T 'appsUpgradeSel'
     $btnAppsUpgrade.Content = if ($upd -gt 0) { "$label ($upd)" } else { $label }
     $btnAppsUpgrade.IsEnabled = ($upd -gt 0) -and ($null -ne $script:Winget)
@@ -448,11 +448,11 @@ function New-AppJobRow($job, $Panel = $panAppJobs) {
     $c1 = New-Object System.Windows.Controls.ColumnDefinition; $c1.Width = [System.Windows.GridLength]::Auto
     $g.ColumnDefinitions.Add($c0); $g.ColumnDefinitions.Add($c1)
     $name = New-Object System.Windows.Controls.TextBlock
-    $name.Text = $job.Name; $name.FontSize = 12.5; $name.FontWeight = 'SemiBold'; $name.Foreground = New-AppBrush '#FFE8E8EE'
+    $name.Text = $job.Name; $name.FontSize = 12.5; $name.FontWeight = 'SemiBold'; $name.Foreground = New-AppBrush '#FFE6E8EB'
     $name.TextTrimming = 'CharacterEllipsis'
     [void]$g.Children.Add($name)
     $state = New-Object System.Windows.Controls.TextBlock
-    $state.FontSize = 11.5; $state.Margin = '12,0,0,0'; $state.Foreground = New-AppBrush '#FF8E8E98'
+    $state.FontSize = 11.5; $state.Margin = '12,0,0,0'; $state.Foreground = New-AppBrush '#FF8C929A'
     [System.Windows.Controls.Grid]::SetColumn($state, 1); [void]$g.Children.Add($state)
     $track = New-Object System.Windows.Controls.Grid
     $track.Height = 4; $track.Margin = '0,6,0,0'; $track.ClipToBounds = $true
@@ -476,7 +476,7 @@ function New-AppJobRow($job, $Panel = $panAppJobs) {
     [void]$Panel.Children.Add($g)
 }
 
-function Set-AppJobView($job, [string]$text, [double]$pct = -1, [string]$color = '#FF8E8E98') {
+function Set-AppJobView($job, [string]$text, [double]$pct = -1, [string]$color = '#FF8C929A') {
     $job.StateText.Text = $text
     $job.StateText.Foreground = New-AppBrush $color
     if ($pct -ge 0) {
@@ -506,7 +506,7 @@ function Add-AppJob([string]$kind, [string]$name, [string]$file, [string]$argume
     $job = @{ Kind = $kind; Name = $name; Label = "$prefix $name"; File = $file; Args = $arguments; Pty = $pty
               Proc = $null; Done = $false; Ok = $false; Frac = 0.0; SawDl = $false; DlDone = $false }
     New-AppJobRow $job
-    Set-AppJobView $job (T 'jobWait') 0 '#FF6E6E78'
+    Set-AppJobView $job (T 'jobWait') 0 '#FF6C727A'
     [void]$script:AppJobList.Add($job)
     $script:AppJobs.Enqueue($job)
     $bdAppJobs.Visibility = 'Visible'; $btnAppJobsClose.Visibility = 'Collapsed'
@@ -531,7 +531,7 @@ function Start-AppJob($job) {
         }
     }
     $first = if ($job.Kind -eq 'uninstall') { T 'jobUninstall' } else { T 'jobPrep' }
-    Set-AppJobView $job $first -1 '#FFC4C4CC'
+    Set-AppJobView $job $first -1 '#FFC5C9CF'
 }
 
 function ConvertTo-AppBytes([string]$num, [string]$unit) {
@@ -571,19 +571,19 @@ function Update-AppJobProgress($job) {
         $pct = if ($sPct -ge 0) { $sPct } else { $oPct }
         $text = (T 'jobDownload') -f $pct
         if ($sizeText) { $text += "  ·  $sizeText" }
-        Set-AppJobView $job $text $pct '#FFE8E8EE'
+        Set-AppJobView $job $text $pct '#FFE6E8EB'
         $job.Frac = 0.7 * $pct / 100
     } elseif ($job.DlDone -or $job.SawDl) {
         if ($oState -eq 1 -and $oPct -gt 0 -and $oPct -lt 100) {
-            Set-AppJobView $job ((T 'jobInstallPct') -f $oPct) $oPct '#FFE8E8EE'
+            Set-AppJobView $job ((T 'jobInstallPct') -f $oPct) $oPct '#FFE6E8EB'
             $job.Frac = 0.7 + 0.3 * $oPct / 100
         } else {
-            Set-AppJobView $job (T 'jobInstall') -1 '#FFE8E8EE'
+            Set-AppJobView $job (T 'jobInstall') -1 '#FFE6E8EB'
             $job.Frac = 0.8
         }
     } elseif ($oState -eq 1 -and $oPct -gt 0) {
         # Pacchetti dello Store: una sola percentuale per tutto il lavoro.
-        Set-AppJobView $job ((T 'jobDownload') -f $oPct) $oPct '#FFE8E8EE'
+        Set-AppJobView $job ((T 'jobDownload') -f $oPct) $oPct '#FFE6E8EB'
         $job.Frac = $oPct / 100
     }
 }
@@ -620,7 +620,7 @@ function Complete-AppJob($job, [int]$code) {
         Set-AppJobView $job (T 'jobOkReboot') 100 '#FFFDBA74'
     } elseif ($code -eq 0 -or $script:WingetOkCodes -contains $hex) {
         $job.Ok = $true; Write-Log "[OK] $($job.Label)"
-        Set-AppJobView $job (T 'jobOk') 100 '#FF2ED3A7'
+        Set-AppJobView $job (T 'jobOk') 100 '#FF3DBE8B'
     } else {
         $msg = if ($script:WingetKnownErrors -contains $hex) { T "wgErr_$hex" } else { (T 'jobErr') -f $codeText }
         Write-Log "[ERRORE] $($job.Label) - $codeText $msg"

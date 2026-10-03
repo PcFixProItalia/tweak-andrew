@@ -905,3 +905,4 @@ M:emgAsk2	Confirma de nuevo: el restablecimiento total no se deshace desde aquí
 M:emgRestorePoint	Punto de restauración antes de restablecer todo
 M:emgHeader	Restablecer todo a los valores de Windows
 M:emgDone	Restablecimiento completado: reinicia el equipo para que todo vuelva a estar como antes.
+M:recAllDone	Valores recomendados listos: {0} para activar, {1} para dejar o devolver como Windows. Pulsa «Aplicar cambios».

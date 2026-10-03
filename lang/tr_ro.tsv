@@ -905,3 +905,4 @@ M:emgAsk2	Confirmă din nou: resetarea totală nu se anulează de aici, doar cu 
 M:emgRestorePoint	Punct de restaurare înainte de resetare
 M:emgHeader	Resetare totală la valorile Windows
 M:emgDone	Resetare finalizată: repornește computerul ca totul să revină ca înainte.
+M:recAllDone	Valori recomandate pregătite: {0} de activat, {1} de lăsat sau readus ca în Windows. Apasă «Aplică modificările».

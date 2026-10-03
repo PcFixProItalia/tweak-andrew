@@ -905,3 +905,4 @@ M:emgAsk2	Bitte erneut bestätigen: Das vollständige Zurücksetzen lässt sich 
 M:emgRestorePoint	Wiederherstellungspunkt vor dem Zurücksetzen
 M:emgHeader	Alles auf Windows-Werte zurücksetzen
 M:emgDone	Zurücksetzen abgeschlossen: Starte den Computer neu, damit alles wieder wie vorher ist.
+M:recAllDone	Empfohlene Werte bereit: {0} zum Aktivieren, {1} zum Belassen oder Zurücksetzen wie Windows. «Änderungen anwenden» drücken.

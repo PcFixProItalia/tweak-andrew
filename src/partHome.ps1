@@ -190,7 +190,7 @@ function Start-HomeInfo {
 function New-HomeText([string]$text, [double]$size, [string]$color, [string]$weight = 'Normal') {
     $t = New-Object System.Windows.Controls.TextBlock
     $t.Text = $text; $t.FontSize = $size; $t.Foreground = New-AppBrush $color; $t.FontWeight = $weight
-    $t.TextWrapping = 'Wrap'; $t.FontFamily = 'Roboto, Segoe UI'
+    $t.TextWrapping = 'Wrap'; $t.FontFamily = 'Segoe UI Variable Text, Segoe UI'
     return $t
 }
 
@@ -200,8 +200,8 @@ function Add-HomeRow($panel, [string]$label, [string]$value) {
     $c0 = New-Object System.Windows.Controls.ColumnDefinition; $c0.Width = New-Object System.Windows.GridLength(118)
     $c1 = New-Object System.Windows.Controls.ColumnDefinition
     $g.ColumnDefinitions.Add($c0); $g.ColumnDefinitions.Add($c1)
-    $l = New-HomeText $label 12 '#FF7E7E88'
-    $v = New-HomeText $value 12.5 '#FFE8E8EE'
+    $l = New-HomeText $label 12 '#FF7F858D'
+    $v = New-HomeText $value 12.5 '#FFE6E8EB'
     $v.Margin = '8,0,0,0'
     [System.Windows.Controls.Grid]::SetColumn($v, 1)
     [void]$g.Children.Add($l); [void]$g.Children.Add($v)
@@ -209,7 +209,7 @@ function Add-HomeRow($panel, [string]$label, [string]$value) {
 }
 
 function Add-HomeItem($panel, [string]$title) {
-    $t = New-HomeText $title 13 '#FFF2F2F5' 'SemiBold'
+    $t = New-HomeText $title 13 '#FFEDEFF2' 'SemiBold'
     $t.Margin = if ($panel.Children.Count -gt 1) { '0,12,0,3' } else { '0,0,0,3' }
     [void]$panel.Children.Add($t)
 }
@@ -240,13 +240,13 @@ function New-HomeHero($i) {
     $left = New-Object System.Windows.Controls.StackPanel; $left.VerticalAlignment = 'Center'
     $cap = New-Object System.Windows.Controls.TextBlock; $cap.Text = T 'homeThisPc'; $cap.Style = $window.FindResource('CardTitle'); $cap.Margin = '0,0,0,4'
     [void]$left.Children.Add($cap)
-    $name = New-HomeText $i.Pc 28 '#FFFFFFFF' 'Bold'; $name.FontFamily = 'Raleway, Segoe UI Variable Display, Segoe UI'
+    $name = New-HomeText $i.Pc 28 '#FFFFFFFF' 'Bold'; $name.FontFamily = 'Segoe UI Variable Display, Segoe UI'
     [void]$left.Children.Add($name)
     $grp = if ($i.PartOfDomain) { T 'homeDomain' } else { T 'homeWorkgroup' }
-    $l1 = New-HomeText "$($i.User)   ·   $grp $($i.Domain)" 12.5 '#FFA1A1AA'; $l1.Margin = '0,4,0,0'
+    $l1 = New-HomeText "$($i.User)   ·   $grp $($i.Domain)" 12.5 '#FF9DA3AB'; $l1.Margin = '0,4,0,0'
     [void]$left.Children.Add($l1)
     $osLine = (@($i.Os, $i.OsVersion) | Where-Object { $_ }) -join ' '
-    $l2 = New-HomeText "$osLine   ·   build $($i.OsBuild)   ·   $($i.OsArch)" 12.5 '#FFA1A1AA'; $l2.Margin = '0,2,0,0'
+    $l2 = New-HomeText "$osLine   ·   build $($i.OsBuild)   ·   $($i.OsArch)" 12.5 '#FF9DA3AB'; $l2.Margin = '0,2,0,0'
     [void]$left.Children.Add($l2)
 
     $chips = New-Object System.Windows.Controls.WrapPanel; $chips.Margin = '0,12,0,0'
@@ -261,7 +261,7 @@ function New-HomeHero($i) {
         $(if ($i.InstallDate) { (T 'homeInstalledOn') -f (Format-HomeDate $i.InstallDate) }),
         $model)) {
         if (-not $c) { continue }
-        $p = New-AppPill $c '#FFC4C4CC' '#FF141417'; $p.Margin = '0,0,8,6'; $p.Padding = '10,4,10,4'
+        $p = New-AppPill $c '#FFC5C9CF' '#FF1E2125'; $p.Margin = '0,0,8,6'; $p.Padding = '10,4,10,4'
         [void]$chips.Children.Add($p)
     }
     [void]$left.Children.Add($chips)

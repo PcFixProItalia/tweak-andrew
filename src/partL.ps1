@@ -1090,6 +1090,7 @@ $script:Tr = @{
         'M:emgRestorePoint' = "Punto de restauración antes de restablecer todo"
         'M:emgHeader' = "Restablecer todo a los valores de Windows"
         'M:emgDone' = "Restablecimiento completado: reinicia el equipo para que todo vuelva a estar como antes."
+        'M:recAllDone' = "Valores recomendados listos: {0} para activar, {1} para dejar o devolver como Windows. Pulsa «Aplicar cambios»."
     }
     de = @{
         'L:lblSubtitle' = "Windows-Optimierung und -Steuerung — PcFixPro Italia"
@@ -1999,6 +2000,7 @@ $script:Tr = @{
         'M:emgRestorePoint' = "Wiederherstellungspunkt vor dem Zurücksetzen"
         'M:emgHeader' = "Alles auf Windows-Werte zurücksetzen"
         'M:emgDone' = "Zurücksetzen abgeschlossen: Starte den Computer neu, damit alles wieder wie vorher ist."
+        'M:recAllDone' = "Empfohlene Werte bereit: {0} zum Aktivieren, {1} zum Belassen oder Zurücksetzen wie Windows. «Änderungen anwenden» drücken."
     }
     fr = @{
         'L:lblSubtitle' = "Optimisation et contrôle de Windows — PcFixPro Italia"
@@ -2911,6 +2913,7 @@ $script:Tr = @{
         'M:emgRestorePoint' = "Point de restauration avant la réinitialisation"
         'M:emgHeader' = "Réinitialisation complète aux valeurs de Windows"
         'M:emgDone' = "Réinitialisation terminée : redémarrez l'ordinateur pour que tout redevienne comme avant."
+        'M:recAllDone' = "Valeurs recommandées prêtes : {0} à activer, {1} à laisser ou remettre comme Windows. Appuyez sur « Appliquer les modifications »."
     }
     pl = @{
         'L:lblSubtitle' = "Optymalizacja i kontrola systemu Windows — PcFixPro Italia"
@@ -3820,6 +3823,7 @@ $script:Tr = @{
         'M:emgRestorePoint' = "Punkt przywracania przed pełnym przywróceniem"
         'M:emgHeader' = "Pełne przywrócenie wartości Windows"
         'M:emgDone' = "Przywracanie zakończone: uruchom ponownie komputer, aby wszystko wróciło do stanu sprzed."
+        'M:recAllDone' = "Zalecane wartości gotowe: {0} do włączenia, {1} do pozostawienia lub przywrócenia jak w Windows. Naciśnij «Zastosuj zmiany»."
     }
     pt = @{
         'L:lblSubtitle' = "Otimização e controle do Windows — PcFixPro Italia"
@@ -4729,6 +4733,7 @@ $script:Tr = @{
         'M:emgRestorePoint' = "Ponto de restauração antes da restauração total"
         'M:emgHeader' = "Restauração total aos valores do Windows"
         'M:emgDone' = "Restauração concluída: reinicie o computador para que tudo volte a ser como antes."
+        'M:recAllDone' = "Valores recomendados prontos: {0} para ativar, {1} para manter ou voltar como o Windows. Clique em «Aplicar alterações»."
     }
     ro = @{
         'L:lblSubtitle' = "Optimizarea și controlul Windows — PcFixPro Italia"
@@ -5638,6 +5643,7 @@ $script:Tr = @{
         'M:emgRestorePoint' = "Punct de restaurare înainte de resetare"
         'M:emgHeader' = "Resetare totală la valorile Windows"
         'M:emgDone' = "Resetare finalizată: repornește computerul ca totul să revină ca înainte."
+        'M:recAllDone' = "Valori recomandate pregătite: {0} de activat, {1} de lăsat sau readus ca în Windows. Apasă «Aplică modificările»."
     }
     ru = @{
         'L:lblSubtitle' = "Оптимизация и управление Windows — PcFixPro Italia"
@@ -6547,6 +6553,7 @@ $script:Tr = @{
         'M:emgRestorePoint' = "Точка восстановления перед полным сбросом"
         'M:emgHeader' = "Полный сброс к значениям Windows"
         'M:emgDone' = "Сброс завершён: перезагрузите компьютер, чтобы всё вернулось как было."
+        'M:recAllDone' = "Рекомендуемые значения готовы: {0} включить, {1} оставить или вернуть как в Windows. Нажмите «Применить изменения»."
     }
 }
 

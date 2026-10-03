@@ -905,3 +905,4 @@ M:emgAsk2	Confirme novamente: a restauração total não se desfaz daqui, só co
 M:emgRestorePoint	Ponto de restauração antes da restauração total
 M:emgHeader	Restauração total aos valores do Windows
 M:emgDone	Restauração concluída: reinicie o computador para que tudo volte a ser como antes.
+M:recAllDone	Valores recomendados prontos: {0} para ativar, {1} para manter ou voltar como o Windows. Clique em «Aplicar alterações».

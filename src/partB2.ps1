@@ -13,7 +13,7 @@
         Title="Tweak Andrew v6.0 - PcFixPro Italia" Height="840" Width="1340"
         MinWidth="1180" MinHeight="700"
         WindowStartupLocation="CenterScreen" Grid.IsSharedSizeScope="True"
-        WindowStyle="None" AllowsTransparency="False" Background="#FF000000"
+        WindowStyle="None" AllowsTransparency="False" Background="#FF0F1013"
         Foreground="#F2F2F5" TextOptions.TextFormattingMode="Ideal" UseLayoutRounding="True"
         ResizeMode="CanResize">
 
@@ -26,36 +26,33 @@
         <!-- Testi dei modelli: il codice li sostituisce quando cambia la lingua. -->
         <sys:String x:Key="BadgeActive">Attivo</sys:String>
 
-        <!-- Tema nero AMOLED: il nero pieno e' lo sfondo, le superfici salgono di
-             pochi punti di luminosita'. Ogni pagina ridefinisce PA, PASoft e
-             PACard con il proprio colore: il resto dello stile li legge da li'. -->
-        <SolidColorBrush x:Key="PA" Color="#FF1E90FF"/>
-        <SolidColorBrush x:Key="PASoft" Color="#261E90FF"/>
-        <LinearGradientBrush x:Key="PACard" StartPoint="0,0" EndPoint="0.7,1">
-            <GradientStop Color="#141E90FF" Offset="0"/>
-            <GradientStop Color="#0CFFFFFF" Offset="0.55"/>
-        </LinearGradientBrush>
+        <!-- Tema «Graphite»: grafite piatta, superfici appena piu' chiare, bordi
+             sottili e un solo colore d'accento. Le pagine ridefiniscono PA, PASoft
+             e PACard con gli stessi valori: il resto dello stile li legge da li'. -->
+        <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
+        <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
+        <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
 
-        <SolidColorBrush x:Key="Accent" Color="#FF1E90FF"/>
-        <SolidColorBrush x:Key="AccentDeep" Color="#FF0A6ED1"/>
+        <SolidColorBrush x:Key="Accent" Color="#FF4C8DFF"/>
+        <SolidColorBrush x:Key="AccentDeep" Color="#FF2F6FE0"/>
         <SolidColorBrush x:Key="SoftBlue" Color="#FF7FC4E8"/>
-        <SolidColorBrush x:Key="TextMain" Color="#FFF2F2F5"/>
-        <SolidColorBrush x:Key="TextDim" Color="#FFA1A1AA"/>
-        <SolidColorBrush x:Key="Success" Color="#FF2ED3A7"/>
+        <SolidColorBrush x:Key="TextMain" Color="#FFEDEFF2"/>
+        <SolidColorBrush x:Key="TextDim" Color="#FF9DA3AB"/>
+        <SolidColorBrush x:Key="Success" Color="#FF3DBE8B"/>
         <SolidColorBrush x:Key="Warn" Color="#FFE0A25E"/>
-        <SolidColorBrush x:Key="Outline" Color="#FF1C1C21"/>
-        <SolidColorBrush x:Key="OutlineStrong" Color="#FF2A2A31"/>
-        <SolidColorBrush x:Key="Surface" Color="#FF0B0B0D"/>
-        <SolidColorBrush x:Key="Surface2" Color="#FF131316"/>
+        <SolidColorBrush x:Key="Outline" Color="#FF25282D"/>
+        <SolidColorBrush x:Key="OutlineStrong" Color="#FF33373D"/>
+        <SolidColorBrush x:Key="Surface" Color="#FF131518"/>
+        <SolidColorBrush x:Key="Surface2" Color="#FF1A1C20"/>
 
-        <SolidColorBrush x:Key="AccentGradient" Color="#FF1E90FF"/>
-        <SolidColorBrush x:Key="AccentGradientHover" Color="#FF4AA8FF"/>
+        <SolidColorBrush x:Key="AccentGradient" Color="#FF4C8DFF"/>
+        <SolidColorBrush x:Key="AccentGradientHover" Color="#FF6FA4FF"/>
 
         <Style x:Key="ScrollThumb" TargetType="Thumb">
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Thumb">
-                        <Border x:Name="t" CornerRadius="3" Background="#FF26262C" Margin="3,0"/>
+                        <Border x:Name="t" CornerRadius="3" Background="#FF2C3036" Margin="3,0"/>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter TargetName="t" Property="Background" Value="{DynamicResource PA}"/>
@@ -94,8 +91,8 @@
             <Setter Property="ToolTipService.InitialShowDelay" Value="450"/>
             <Setter Property="ToolTipService.BetweenShowDelay" Value="150"/>
             <Setter Property="ToolTipService.ShowDuration" Value="30000"/>
-            <Setter Property="Foreground" Value="#FFC4C4CC"/>
-            <Setter Property="FontFamily" Value="Roboto, Segoe UI Variable Text, Segoe UI"/>
+            <Setter Property="Foreground" Value="#FFC5C9CF"/>
+            <Setter Property="FontFamily" Value="Segoe UI Variable Text, Segoe UI"/>
             <Setter Property="FontSize" Value="12.5"/>
             <Setter Property="Margin" Value="0,1"/>
             <Setter Property="Cursor" Value="Hand"/>
@@ -104,7 +101,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="CheckBox">
-                        <Border x:Name="row" Background="Transparent" CornerRadius="12" Padding="10,8" SnapsToDevicePixels="True">
+                        <Border x:Name="row" Background="Transparent" CornerRadius="7" Padding="10,8" SnapsToDevicePixels="True">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
@@ -122,9 +119,9 @@
                                     </ContentPresenter.ContentTemplate>
                                 </ContentPresenter>
                                 <!-- Gia' attivo sul sistema: lo segna il rilevamento all'avvio. -->
-                                <Border x:Name="badge" Grid.Column="1" Visibility="Collapsed" CornerRadius="6" Padding="7,2"
-                                        Background="#262ED3A7" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,8,0">
-                                    <TextBlock Text="{DynamicResource BadgeActive}" FontSize="10.5" FontWeight="SemiBold" Foreground="#FF2ED3A7"/>
+                                <Border x:Name="badge" Grid.Column="1" Visibility="Collapsed" CornerRadius="4" Padding="7,2"
+                                        Background="#263DBE8B" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,8,0">
+                                    <TextBlock Text="{DynamicResource BadgeActive}" FontSize="10.5" FontWeight="SemiBold" Foreground="#FF3DBE8B"/>
                                 </Border>
                                 <!-- Consiglio: la coccarda e' piena quando la voce e' gia' sul valore consigliato.
                                      Il clic porta la voce al consiglio; si applica con «Applica modifiche». -->
@@ -133,16 +130,16 @@
                                     <Viewbox Width="17" Height="17" HorizontalAlignment="Center" VerticalAlignment="Center">
                                         <Grid Width="24" Height="24">
                                             <Path x:Name="seal" StrokeThickness="1.8" StrokeLineJoin="Round"
-                                                  Stroke="#FF5C5C66" Fill="Transparent" Data="M12.00,1.00 L14.41,3.02 L17.50,2.47 L18.58,5.42 L21.53,6.50 L20.98,9.59 L23.00,12.00 L20.98,14.41 L21.53,17.50 L18.58,18.58 L17.50,21.53 L14.41,20.98 L12.00,23.00 L9.59,20.98 L6.50,21.53 L5.42,18.58 L2.47,17.50 L3.02,14.41 L1.00,12.00 L3.02,9.59 L2.47,6.50 L5.42,5.42 L6.50,2.47 L9.59,3.02 Z"/>
+                                                  Stroke="#FF5D636B" Fill="Transparent" Data="M12.00,1.00 L14.41,3.02 L17.50,2.47 L18.58,5.42 L21.53,6.50 L20.98,9.59 L23.00,12.00 L20.98,14.41 L21.53,17.50 L18.58,18.58 L17.50,21.53 L14.41,20.98 L12.00,23.00 L9.59,20.98 L6.50,21.53 L5.42,18.58 L2.47,17.50 L3.02,14.41 L1.00,12.00 L3.02,9.59 L2.47,6.50 L5.42,5.42 L6.50,2.47 L9.59,3.02 Z"/>
                                             <Path x:Name="tick" StrokeThickness="2.3" StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeLineJoin="Round"
-                                                  Stroke="#FF5C5C66" Data="M7.8,12.3 L10.7,15.1 L16.3,9.3"/>
+                                                  Stroke="#FF5D636B" Data="M7.8,12.3 L10.7,15.1 L16.3,9.3"/>
                                         </Grid>
                                     </Viewbox>
                                 </Border>
-                                <Border x:Name="track" Grid.Column="3" Width="36" Height="20" CornerRadius="10"
-                                        Background="#FF121215" BorderBrush="#FF3A3A42" BorderThickness="1.5"
+                                <Border x:Name="track" Grid.Column="3" Width="36" Height="20" CornerRadius="6"
+                                        Background="#FF1B1E22" BorderBrush="#FF3A3F46" BorderThickness="1.5"
                                         VerticalAlignment="Center">
-                                    <Border x:Name="thumb" Width="10" Height="10" CornerRadius="5" Background="#FF7A7A84"
+                                    <Border x:Name="thumb" Width="10" Height="10" CornerRadius="3" Background="#FF7A7A84"
                                             HorizontalAlignment="Left" VerticalAlignment="Center" Margin="4.5,0,0,0">
                                         <Border.RenderTransform>
                                             <TranslateTransform X="0"/>
@@ -153,8 +150,8 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="row" Property="Background" Value="#FF0F0F12"/>
-                                <Setter TargetName="track" Property="BorderBrush" Value="#FF55555F"/>
+                                <Setter TargetName="row" Property="Background" Value="#FF1B1E22"/>
+                                <Setter TargetName="track" Property="BorderBrush" Value="#FF565C64"/>
                             </Trigger>
                             <Trigger Property="AutomationProperties.HelpText" Value="active">
                                 <Setter TargetName="badge" Property="Visibility" Value="Visible"/>
@@ -190,10 +187,10 @@
                             <Trigger Property="IsChecked" Value="True">
                                 <Setter TargetName="track" Property="Background" Value="{DynamicResource PA}"/>
                                 <Setter TargetName="track" Property="BorderBrush" Value="{DynamicResource PA}"/>
-                                <Setter TargetName="thumb" Property="Background" Value="#FF000000"/>
+                                <Setter TargetName="thumb" Property="Background" Value="#FFFFFFFF"/>
                                 <Setter TargetName="thumb" Property="Width" Value="14"/>
                                 <Setter TargetName="thumb" Property="Height" Value="14"/>
-                                <Setter TargetName="thumb" Property="CornerRadius" Value="7"/>
+                                <Setter TargetName="thumb" Property="CornerRadius" Value="4"/>
                                 <Setter TargetName="thumb" Property="Margin" Value="2.5,0,0,0"/>
                                 <Setter Property="Foreground" Value="#FFFFFFFF"/>
                                 <Trigger.EnterActions>
@@ -235,13 +232,13 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="RadioButton">
-                        <Border x:Name="card" Background="#FF0C0C0F" BorderBrush="#FF1F1F25" BorderThickness="1.5"
-                                CornerRadius="14" Padding="14,12">
+                        <Border x:Name="card" Background="#FF15171A" BorderBrush="#FF1F1F25" BorderThickness="1.5"
+                                CornerRadius="7" Padding="14,12">
                             <ContentPresenter/>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="card" Property="Background" Value="#FF121215"/>
+                                <Setter TargetName="card" Property="Background" Value="#FF1B1E22"/>
                             </Trigger>
                             <Trigger Property="IsChecked" Value="True">
                                 <Setter TargetName="card" Property="BorderBrush" Value="{DynamicResource PA}"/>
@@ -265,9 +262,9 @@
                             <Viewbox Width="17" Height="17" HorizontalAlignment="Center" VerticalAlignment="Center">
                                 <Grid Width="24" Height="24">
                                     <Path x:Name="seal" StrokeThickness="1.8" StrokeLineJoin="Round"
-                                          Stroke="#FF5C5C66" Fill="Transparent" Data="M12.00,1.00 L14.41,3.02 L17.50,2.47 L18.58,5.42 L21.53,6.50 L20.98,9.59 L23.00,12.00 L20.98,14.41 L21.53,17.50 L18.58,18.58 L17.50,21.53 L14.41,20.98 L12.00,23.00 L9.59,20.98 L6.50,21.53 L5.42,18.58 L2.47,17.50 L3.02,14.41 L1.00,12.00 L3.02,9.59 L2.47,6.50 L5.42,5.42 L6.50,2.47 L9.59,3.02 Z"/>
+                                          Stroke="#FF5D636B" Fill="Transparent" Data="M12.00,1.00 L14.41,3.02 L17.50,2.47 L18.58,5.42 L21.53,6.50 L20.98,9.59 L23.00,12.00 L20.98,14.41 L21.53,17.50 L18.58,18.58 L17.50,21.53 L14.41,20.98 L12.00,23.00 L9.59,20.98 L6.50,21.53 L5.42,18.58 L2.47,17.50 L3.02,14.41 L1.00,12.00 L3.02,9.59 L2.47,6.50 L5.42,5.42 L6.50,2.47 L9.59,3.02 Z"/>
                                     <Path x:Name="tick" StrokeThickness="2.3" StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeLineJoin="Round"
-                                          Stroke="#FF5C5C66" Data="M7.8,12.3 L10.7,15.1 L16.3,9.3"/>
+                                          Stroke="#FF5D636B" Data="M7.8,12.3 L10.7,15.1 L16.3,9.3"/>
                                 </Grid>
                             </Viewbox>
                         </Border>
@@ -288,7 +285,7 @@
         </Style>
 
         <Style x:Key="PickRow" TargetType="CheckBox">
-            <Setter Property="Foreground" Value="#FFC4C4CC"/>
+            <Setter Property="Foreground" Value="#FFC5C9CF"/>
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Margin" Value="0,2"/>
             <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
@@ -297,15 +294,15 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="CheckBox">
-                        <Border x:Name="row" Background="#FF0C0C0F" BorderBrush="#FF1A1A1F" BorderThickness="1"
-                                CornerRadius="12" Padding="11,8" SnapsToDevicePixels="True">
+                        <Border x:Name="row" Background="#FF15171A" BorderBrush="#FF25282D" BorderThickness="1"
+                                CornerRadius="7" Padding="11,8" SnapsToDevicePixels="True">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <Border x:Name="box" Width="20" Height="20" CornerRadius="6" BorderThickness="1.6"
-                                        BorderBrush="#FF4A4A53" Background="#FF101013" VerticalAlignment="Center" Margin="0,0,12,0">
+                                        BorderBrush="#FF4A4F57" Background="#FF1B1E22" VerticalAlignment="Center" Margin="0,0,12,0">
                                     <Path x:Name="tick" Data="M3.6,8.6 L7,12 L13.4,4.8" Stroke="#FF000000" StrokeThickness="2.2"
                                           StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeLineJoin="Round"
                                           Visibility="Collapsed"/>
@@ -315,7 +312,7 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="row" Property="Background" Value="#FF121215"/>
+                                <Setter TargetName="row" Property="Background" Value="#FF1B1E22"/>
                                 <Setter TargetName="box" Property="BorderBrush" Value="{DynamicResource PA}"/>
                             </Trigger>
                             <Trigger Property="IsChecked" Value="True">
@@ -337,8 +334,8 @@
         <!-- Casella piccola accanto al titolo di una scheda: sceglie tutte le voci
              della sezione. Stessa casella quadrata delle app, in formato ridotto. -->
         <Style x:Key="SectionPick" TargetType="CheckBox">
-            <Setter Property="Foreground" Value="#FF8E8E98"/>
-            <Setter Property="FontFamily" Value="Roboto, Segoe UI"/>
+            <Setter Property="Foreground" Value="#FF8C929A"/>
+            <Setter Property="FontFamily" Value="Segoe UI Variable Text, Segoe UI"/>
             <Setter Property="FontSize" Value="11.5"/>
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
@@ -350,7 +347,7 @@
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock x:Name="txt" Text="{TemplateBinding Content}" VerticalAlignment="Center" Margin="0,0,6,0"/>
                                 <Border x:Name="box" Width="16" Height="16" CornerRadius="5" BorderThickness="1.5"
-                                        BorderBrush="#FF4A4A53" Background="#FF101013" VerticalAlignment="Center">
+                                        BorderBrush="#FF4A4F57" Background="#FF1B1E22" VerticalAlignment="Center">
                                     <Path x:Name="tick" Data="M3,7 L5.8,9.8 L11,4" Stroke="#FF000000" StrokeThickness="2"
                                           StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeLineJoin="Round"
                                           Visibility="Collapsed"/>
@@ -360,7 +357,7 @@
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter TargetName="box" Property="BorderBrush" Value="{DynamicResource PA}"/>
-                                <Setter Property="Foreground" Value="#FFE4E4EA"/>
+                                <Setter Property="Foreground" Value="#FFE6E8EB"/>
                             </Trigger>
                             <Trigger Property="IsChecked" Value="True">
                                 <Setter TargetName="box" Property="Background" Value="{DynamicResource PA}"/>
@@ -375,16 +372,16 @@
         </Style>
 
         <Style TargetType="RadioButton">
-            <Setter Property="Foreground" Value="#FFC4C4CC"/>
-            <Setter Property="FontFamily" Value="Roboto, Segoe UI Variable Text, Segoe UI"/>
+            <Setter Property="Foreground" Value="#FFC5C9CF"/>
+            <Setter Property="FontFamily" Value="Segoe UI Variable Text, Segoe UI"/>
             <Setter Property="FontSize" Value="12.5"/>
             <Setter Property="Margin" Value="0,2,8,2"/>
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="RadioButton">
-                        <Border x:Name="row" Background="#FF0E0E11" BorderBrush="#FF232329" BorderThickness="1"
-                                CornerRadius="12" Padding="12,8" SnapsToDevicePixels="True">
+                        <Border x:Name="row" Background="#FF16181C" BorderBrush="#FF2C3036" BorderThickness="1"
+                                CornerRadius="7" Padding="12,8" SnapsToDevicePixels="True">
                             <!-- Griglia e non StackPanel orizzontale: con larghezza infinita il testo lungo non andava a capo e veniva tagliato. -->
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -392,7 +389,7 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <Grid Width="16" Height="16" Margin="0,0,10,0" VerticalAlignment="Center">
-                                    <Ellipse x:Name="ring" Stroke="#FF4A4A53" StrokeThickness="1.6"/>
+                                    <Ellipse x:Name="ring" Stroke="#FF4A4F57" StrokeThickness="1.6"/>
                                     <Ellipse x:Name="dot" Width="8" Height="8" Fill="{DynamicResource PA}" Visibility="Collapsed"/>
                                 </Grid>
                                 <ContentPresenter Grid.Column="1" VerticalAlignment="Center">
@@ -406,7 +403,7 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="row" Property="Background" Value="#FF141417"/>
+                                <Setter TargetName="row" Property="Background" Value="#FF1E2125"/>
                             </Trigger>
                             <Trigger Property="IsChecked" Value="True">
                                 <Setter TargetName="ring" Property="Stroke" Value="{DynamicResource PA}"/>
@@ -425,44 +422,46 @@
         </Style>
 
         <Style x:Key="NavItem" TargetType="RadioButton">
-            <Setter Property="Foreground" Value="#FF8E8E98"/>
-            <Setter Property="FontFamily" Value="Raleway, Segoe UI Variable Display, Segoe UI"/>
-            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="#FF8C929A"/>
+            <Setter Property="FontFamily" Value="Segoe UI Variable Display, Segoe UI"/>
+            <Setter Property="FontWeight" Value="Normal"/>
             <Setter Property="FontSize" Value="13"/>
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Margin" Value="0,1"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="RadioButton">
-                        <Border x:Name="bg" CornerRadius="12" Background="Transparent" Padding="13,7" SnapsToDevicePixels="True">
+                        <Border x:Name="bg" CornerRadius="6" Background="Transparent" Padding="13,7" SnapsToDevicePixels="True">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
+                                <Border x:Name="bar" Width="3" CornerRadius="1.5" Background="{DynamicResource PA}" HorizontalAlignment="Left"
+                                        Margin="-13,2,0,2" Visibility="Hidden"/>
                                 <Path x:Name="icon" Grid.Column="0" Width="17" Height="17" Stretch="Uniform"
                                       Data="{Binding Tag, RelativeSource={RelativeSource TemplatedParent}}"
-                                      Stroke="#FF6E6E78" StrokeThickness="1.7" Fill="Transparent"
+                                      Stroke="#FF6C727A" StrokeThickness="1.7" Fill="Transparent"
                                       StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round"
                                       VerticalAlignment="Center" Margin="0,0,13,0"/>
                                 <TextBlock Grid.Column="1" VerticalAlignment="Center" Text="{TemplateBinding Content}"
                                            TextTrimming="CharacterEllipsis"/>
                                 <Ellipse x:Name="pip" Grid.Column="2" Width="6" Height="6" Fill="{DynamicResource PA}"
-                                         VerticalAlignment="Center" Opacity="0.55"/>
+                                         VerticalAlignment="Center" Visibility="Collapsed"/>
                             </Grid>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="bg" Property="Background" Value="#FF0F0F12"/>
-                                <Setter Property="Foreground" Value="#FFE4E4EA"/>
+                                <Setter TargetName="bg" Property="Background" Value="#FF1B1E22"/>
+                                <Setter Property="Foreground" Value="#FFE6E8EB"/>
                                 <Setter TargetName="icon" Property="Stroke" Value="{DynamicResource PA}"/>
                             </Trigger>
                             <Trigger Property="IsChecked" Value="True">
-                                <Setter TargetName="bg" Property="Background" Value="{DynamicResource PASoft}"/>
+                                <Setter TargetName="bg" Property="Background" Value="#FF1C1F24"/>
                                 <Setter Property="Foreground" Value="#FFFFFFFF"/>
                                 <Setter TargetName="icon" Property="Stroke" Value="{DynamicResource PA}"/>
-                                <Setter TargetName="pip" Property="Opacity" Value="1"/>
+                                <Setter TargetName="bar" Property="Visibility" Value="Visible"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -471,12 +470,12 @@
         </Style>
 
         <Style TargetType="ComboBox">
-            <Setter Property="Foreground" Value="#FFF2F2F5"/>
-            <Setter Property="BorderBrush" Value="#FF26262C"/>
+            <Setter Property="Foreground" Value="#FFEDEFF2"/>
+            <Setter Property="BorderBrush" Value="#FF2C3036"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="Padding" Value="12,7"/>
             <Setter Property="FontSize" Value="12"/>
-            <Setter Property="FontFamily" Value="Roboto, Segoe UI"/>
+            <Setter Property="FontFamily" Value="Segoe UI Variable Text, Segoe UI"/>
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="Template">
@@ -488,10 +487,10 @@
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
                             <Border x:Name="MainBorder" Grid.ColumnSpan="2"
-                                    Background="#FF111114"
+                                    Background="#FF1A1C20"
                                     BorderBrush="{TemplateBinding BorderBrush}"
                                     BorderThickness="{TemplateBinding BorderThickness}"
-                                    CornerRadius="12"/>
+                                    CornerRadius="7"/>
                             <ToggleButton x:Name="ToggleButton" Grid.ColumnSpan="2"
                                           Background="Transparent" BorderThickness="0" Focusable="False"
                                           IsChecked="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
@@ -510,14 +509,14 @@
                                               VerticalAlignment="Center" HorizontalAlignment="Left"
                                               TextBlock.Foreground="{TemplateBinding Foreground}"/>
                             <Path x:Name="Arrow" Grid.Column="1" Data="M1,1 L5.5,5.5 L10,1"
-                                  Stroke="#FF8E8E98" StrokeThickness="1.6" Fill="Transparent"
+                                  Stroke="#FF8C929A" StrokeThickness="1.6" Fill="Transparent"
                                   StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeLineJoin="Round"
                                   Margin="0,0,13,0" VerticalAlignment="Center" HorizontalAlignment="Right"/>
                             <Popup x:Name="PART_Popup" AllowsTransparency="True"
                                    IsOpen="{TemplateBinding IsDropDownOpen}" Placement="Bottom"
                                    PopupAnimation="Fade" Focusable="False">
-                                <Border Background="#FF0E0E11" BorderBrush="#FF26262C" BorderThickness="1"
-                                        CornerRadius="14" Margin="0,6,0,0" Padding="2"
+                                <Border Background="#FF16181C" BorderBrush="#FF2C3036" BorderThickness="1"
+                                        CornerRadius="7" Margin="0,6,0,0" Padding="2"
                                         MinWidth="{Binding ActualWidth, RelativeSource={RelativeSource TemplatedParent}}"
                                         MaxHeight="{TemplateBinding MaxDropDownHeight}">
                                     <ScrollViewer SnapsToDevicePixels="True" Margin="4">
@@ -534,10 +533,10 @@
                                 <Setter TargetName="MainBorder" Property="BorderBrush" Value="{DynamicResource PA}"/>
                             </Trigger>
                             <Trigger Property="IsEnabled" Value="False">
-                                <Setter TargetName="MainBorder" Property="Background" Value="#FF0A0A0C"/>
-                                <Setter TargetName="MainBorder" Property="BorderBrush" Value="#FF18181C"/>
-                                <Setter TargetName="Arrow" Property="Stroke" Value="#FF3A3A42"/>
-                                <Setter Property="Foreground" Value="#FF5E5E68"/>
+                                <Setter TargetName="MainBorder" Property="Background" Value="#FF131518"/>
+                                <Setter TargetName="MainBorder" Property="BorderBrush" Value="#FF1E2125"/>
+                                <Setter TargetName="Arrow" Property="Stroke" Value="#FF3A3F46"/>
+                                <Setter Property="Foreground" Value="#FF5D636B"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -546,18 +545,18 @@
         </Style>
 
         <Style TargetType="ComboBoxItem">
-            <Setter Property="Foreground" Value="#FFE4E4EA"/>
+            <Setter Property="Foreground" Value="#FFE6E8EB"/>
             <Setter Property="Padding" Value="10,7"/>
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="ComboBoxItem">
-                        <Border x:Name="b" Background="Transparent" CornerRadius="9" Padding="{TemplateBinding Padding}">
+                        <Border x:Name="b" Background="Transparent" CornerRadius="6" Padding="{TemplateBinding Padding}">
                             <ContentPresenter/>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="b" Property="Background" Value="#FF18181C"/>
+                                <Setter TargetName="b" Property="Background" Value="#FF1E2125"/>
                             </Trigger>
                             <Trigger Property="IsSelected" Value="True">
                                 <Setter TargetName="b" Property="Background" Value="{DynamicResource PASoft}"/>
@@ -572,18 +571,18 @@
              della pagina nell'angolo in alto. Nessuna ombra: sul nero non si vede. -->
         <Style x:Key="Glass" TargetType="Border">
             <Setter Property="Background" Value="{DynamicResource PACard}"/>
-            <Setter Property="BorderBrush" Value="#FF1A1A1F"/>
+            <Setter Property="BorderBrush" Value="#FF25282D"/>
             <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="CornerRadius" Value="22"/>
-            <Setter Property="Padding" Value="20"/>
-            <Setter Property="Margin" Value="7"/>
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="Padding" Value="18"/>
+            <Setter Property="Margin" Value="6"/>
         </Style>
 
         <!-- Avvisi in cima alle pagine: fascia centrata con icona, diversa dalle schede delle impostazioni. -->
         <Style x:Key="NoticeBar" TargetType="Border">
             <Setter Property="BorderBrush" Value="#55E0A25E"/>
             <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="CornerRadius" Value="14"/>
+            <Setter Property="CornerRadius" Value="8"/>
             <Setter Property="Padding" Value="24,12"/>
             <Setter Property="Margin" Value="7,0,7,8"/>
             <Setter Property="Background">
@@ -598,65 +597,65 @@
         </Style>
 
         <Style x:Key="Bar" TargetType="Border">
-            <Setter Property="Background" Value="#FF0A0A0C"/>
-            <Setter Property="BorderBrush" Value="#FF1A1A1F"/>
+            <Setter Property="Background" Value="#FF131518"/>
+            <Setter Property="BorderBrush" Value="#FF25282D"/>
             <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="CornerRadius" Value="22"/>
+            <Setter Property="CornerRadius" Value="10"/>
         </Style>
 
         <Style x:Key="GlassInner" TargetType="Border">
-            <Setter Property="Background" Value="#FF060607"/>
-            <Setter Property="BorderBrush" Value="#FF1A1A1F"/>
+            <Setter Property="Background" Value="#FF111316"/>
+            <Setter Property="BorderBrush" Value="#FF25282D"/>
             <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="CornerRadius" Value="14"/>
+            <Setter Property="CornerRadius" Value="8"/>
             <Setter Property="Padding" Value="13"/>
         </Style>
 
         <Style x:Key="CardTitle" TargetType="TextBlock">
-            <Setter Property="FontFamily" Value="Raleway, Segoe UI Variable Display, Segoe UI"/>
-            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontFamily" Value="Segoe UI Variable Display, Segoe UI"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
             <Setter Property="FontSize" Value="11.5"/>
-            <Setter Property="Foreground" Value="{DynamicResource PA}"/>
+            <Setter Property="Foreground" Value="#FFA9AFB7"/>
             <Setter Property="Margin" Value="0,0,0,12"/>
         </Style>
 
         <Style x:Key="SubTitle" TargetType="TextBlock">
-            <Setter Property="FontFamily" Value="Roboto, Segoe UI"/>
+            <Setter Property="FontFamily" Value="Segoe UI Variable Text, Segoe UI"/>
             <Setter Property="FontSize" Value="11.5"/>
-            <Setter Property="Foreground" Value="#FF7E7E88"/>
+            <Setter Property="Foreground" Value="#FF7F858D"/>
             <Setter Property="TextWrapping" Value="Wrap"/>
             <Setter Property="LineHeight" Value="17"/>
         </Style>
 
         <Style x:Key="FieldLabel" TargetType="TextBlock">
-            <Setter Property="FontFamily" Value="Roboto, Segoe UI"/>
+            <Setter Property="FontFamily" Value="Segoe UI Variable Text, Segoe UI"/>
             <Setter Property="FontSize" Value="12"/>
-            <Setter Property="Foreground" Value="#FFC4C4CC"/>
+            <Setter Property="Foreground" Value="#FFC5C9CF"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>
 
         <Style x:Key="PrimaryBtn" TargetType="Button">
             <Setter Property="Foreground" Value="White"/>
-            <Setter Property="FontFamily" Value="Raleway, Segoe UI Variable Display, Segoe UI"/>
+            <Setter Property="FontFamily" Value="Segoe UI Variable Display, Segoe UI"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border x:Name="b" Background="#FF1E90FF" CornerRadius="14" Padding="16,10">
+                        <Border x:Name="b" Background="#FF4C8DFF" CornerRadius="7" Padding="16,10">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="b" Property="Background" Value="#FF4AA8FF"/>
+                                <Setter TargetName="b" Property="Background" Value="#FF6FA4FF"/>
                             </Trigger>
                             <Trigger Property="IsPressed" Value="True">
-                                <Setter TargetName="b" Property="Background" Value="#FF0A6ED1"/>
+                                <Setter TargetName="b" Property="Background" Value="#FF2F6FE0"/>
                             </Trigger>
                             <Trigger Property="IsEnabled" Value="False">
-                                <Setter TargetName="b" Property="Background" Value="#FF141417"/>
-                                <Setter Property="Foreground" Value="#FF4E4E57"/>
+                                <Setter TargetName="b" Property="Background" Value="#FF1E2125"/>
+                                <Setter Property="Foreground" Value="#FF4E545C"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -665,15 +664,15 @@
         </Style>
 
         <Style x:Key="GhostBtn" TargetType="Button">
-            <Setter Property="Foreground" Value="#FFD4D4DA"/>
-            <Setter Property="FontFamily" Value="Roboto, Segoe UI"/>
+            <Setter Property="Foreground" Value="#FFD3D6DB"/>
+            <Setter Property="FontFamily" Value="Segoe UI Variable Text, Segoe UI"/>
             <Setter Property="FontSize" Value="12.5"/>
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border x:Name="b" Background="#FF111114" BorderBrush="#FF232329" BorderThickness="1"
-                                CornerRadius="12" Padding="14,9">
+                        <Border x:Name="b" Background="#FF1A1C20" BorderBrush="#FF2C3036" BorderThickness="1"
+                                CornerRadius="7" Padding="14,9">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
                                 <!-- Con l'arrotondamento dei pixel l'ultima lettera usciva dal
                                      riquadro del testo e veniva tagliata: il margine interno la
@@ -687,7 +686,7 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="b" Property="Background" Value="#FF17171B"/>
+                                <Setter TargetName="b" Property="Background" Value="#FF22252A"/>
                                 <Setter TargetName="b" Property="BorderBrush" Value="{DynamicResource PA}"/>
                                 <Setter Property="Foreground" Value="#FFFFFFFF"/>
                             </Trigger>
@@ -705,15 +704,15 @@
 
         <!-- Pulsante con pallino colorato davanti al testo: il colore arriva da Tag. -->
         <Style x:Key="DotBtn" TargetType="Button">
-            <Setter Property="Foreground" Value="#FFD4D4DA"/>
-            <Setter Property="FontFamily" Value="Roboto, Segoe UI"/>
+            <Setter Property="Foreground" Value="#FFD3D6DB"/>
+            <Setter Property="FontFamily" Value="Segoe UI Variable Text, Segoe UI"/>
             <Setter Property="FontSize" Value="12.5"/>
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border x:Name="b" Background="#FF111114" BorderBrush="#FF232329" BorderThickness="1"
-                                CornerRadius="12" Padding="13,9">
+                        <Border x:Name="b" Background="#FF1A1C20" BorderBrush="#FF2C3036" BorderThickness="1"
+                                CornerRadius="7" Padding="13,9">
                             <StackPanel Orientation="Horizontal">
                                 <Ellipse x:Name="dot" Width="8" Height="8" Margin="2,0,9,0" VerticalAlignment="Center"
                                          Fill="{Binding Tag, RelativeSource={RelativeSource TemplatedParent}}"/>
@@ -725,7 +724,7 @@
                                 <Setter TargetName="dot" Property="Visibility" Value="Collapsed"/>
                             </Trigger>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="b" Property="Background" Value="#FF17171B"/>
+                                <Setter TargetName="b" Property="Background" Value="#FF22252A"/>
                                 <Setter TargetName="b" Property="BorderBrush" Value="{DynamicResource PA}"/>
                                 <Setter Property="Foreground" Value="#FFFFFFFF"/>
                             </Trigger>
@@ -742,10 +741,10 @@
         </Style>
 
         <Style x:Key="NavHeader" TargetType="TextBlock">
-            <Setter Property="FontFamily" Value="Raleway, Segoe UI"/>
+            <Setter Property="FontFamily" Value="Segoe UI Variable Display, Segoe UI"/>
             <Setter Property="FontSize" Value="10"/>
             <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Foreground" Value="#FF55555F"/>
+            <Setter Property="Foreground" Value="#FF565C64"/>
             <Setter Property="Margin" Value="14,12,0,4"/>
         </Style>
 
@@ -756,7 +755,7 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Border x:Name="b" Background="#1FFF9F43" BorderBrush="#4DFF9F43" BorderThickness="1"
-                                CornerRadius="12" Padding="14,9">
+                                CornerRadius="7" Padding="14,9">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
                                 <!-- Con l'arrotondamento dei pixel l'ultima lettera usciva dal
                                      riquadro del testo e veniva tagliata: il margine interno la
@@ -775,9 +774,9 @@
                                 <Setter Property="Foreground" Value="#FFFFD2A1"/>
                             </Trigger>
                             <Trigger Property="IsEnabled" Value="False">
-                                <Setter TargetName="b" Property="Background" Value="#FF111114"/>
-                                <Setter TargetName="b" Property="BorderBrush" Value="#FF1C1C21"/>
-                                <Setter Property="Foreground" Value="#FF4E4E57"/>
+                                <Setter TargetName="b" Property="Background" Value="#FF1A1C20"/>
+                                <Setter TargetName="b" Property="BorderBrush" Value="#FF25282D"/>
+                                <Setter Property="Foreground" Value="#FF4E545C"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -786,8 +785,8 @@
         </Style>
 
         <Style x:Key="LangBtn" TargetType="Button">
-            <Setter Property="Foreground" Value="#FF8E8E98"/>
-            <Setter Property="FontFamily" Value="Raleway, Segoe UI"/>
+            <Setter Property="Foreground" Value="#FF8C929A"/>
+            <Setter Property="FontFamily" Value="Segoe UI Variable Display, Segoe UI"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="FontSize" Value="11"/>
             <Setter Property="Cursor" Value="Hand"/>
@@ -796,13 +795,13 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border x:Name="b" Background="Transparent" CornerRadius="9">
+                        <Border x:Name="b" Background="Transparent" CornerRadius="6">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="b" Property="Background" Value="#FF18181C"/>
-                                <Setter Property="Foreground" Value="#FFE4E4EA"/>
+                                <Setter TargetName="b" Property="Background" Value="#FF1E2125"/>
+                                <Setter Property="Foreground" Value="#FFE6E8EB"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -814,7 +813,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border Background="#FFF2F2F5" CornerRadius="9">
+                        <Border Background="#FFEDEFF2" CornerRadius="6">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                     </ControlTemplate>
@@ -826,7 +825,7 @@
             <Setter Property="Width" Value="42"/>
             <Setter Property="Height" Value="32"/>
             <Setter Property="Cursor" Value="Arrow"/>
-            <Setter Property="Foreground" Value="#FF8E8E98"/>
+            <Setter Property="Foreground" Value="#FF8C929A"/>
             <Setter Property="shell:WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
             <Setter Property="Template">
                 <Setter.Value>
@@ -836,7 +835,7 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="b" Property="Background" Value="#FF18181C"/>
+                                <Setter TargetName="b" Property="Background" Value="#FF1E2125"/>
                                 <Setter Property="Foreground" Value="#FFFFFFFF"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
@@ -864,7 +863,7 @@
 
         <!-- Barra di avanzamento: l'unico punto con piu' colori insieme. -->
         <Style TargetType="ProgressBar">
-            <Setter Property="Background" Value="#FF141417"/>
+            <Setter Property="Background" Value="#FF1E2125"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Template">
                 <Setter.Value>
@@ -876,7 +875,7 @@
                                 <Rectangle x:Name="PART_Indicator" HorizontalAlignment="Left" RadiusX="3" RadiusY="3">
                                     <Rectangle.Fill>
                                         <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                                            <GradientStop Color="#FF1E90FF" Offset="0"/>
+                                            <GradientStop Color="#FF4C8DFF" Offset="0"/>
                                             <GradientStop Color="#FFA78BFA" Offset="0.55"/>
                                             <GradientStop Color="#FFF472B6" Offset="1"/>
                                         </LinearGradientBrush>
@@ -898,8 +897,8 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="TextBox">
-                        <Border x:Name="b" Background="#FF111114" BorderBrush="#FF26262C"
-                                BorderThickness="1" CornerRadius="12">
+                        <Border x:Name="b" Background="#FF1A1C20" BorderBrush="#FF2C3036"
+                                BorderThickness="1" CornerRadius="7">
                             <ScrollViewer x:Name="PART_ContentHost" Margin="{TemplateBinding Padding}"
                                           VerticalAlignment="Center"/>
                         </Border>
@@ -917,7 +916,7 @@
         </Style>
 
         <Style x:Key="SoftSep" TargetType="Separator">
-            <Setter Property="Background" Value="#FF1A1A1F"/>
+            <Setter Property="Background" Value="#FF25282D"/>
             <Setter Property="Margin" Value="0,11"/>
             <Setter Property="Height" Value="1"/>
         </Style>
@@ -927,14 +926,14 @@
         <Style TargetType="ToolTip">
             <Setter Property="OverridesDefaultStyle" Value="True"/>
             <Setter Property="HasDropShadow" Value="False"/>
-            <Setter Property="Foreground" Value="#FFE4E4EA"/>
-            <Setter Property="FontFamily" Value="Roboto, Segoe UI"/>
+            <Setter Property="Foreground" Value="#FFE6E8EB"/>
+            <Setter Property="FontFamily" Value="Segoe UI Variable Text, Segoe UI"/>
             <Setter Property="FontSize" Value="12"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="ToolTip">
-                        <Border Background="#F7131317" BorderBrush="#FF2A2A31" BorderThickness="1"
-                                CornerRadius="12" MaxWidth="360" Margin="10">
+                        <Border Background="#F7131317" BorderBrush="#FF33373D" BorderThickness="1"
+                                CornerRadius="7" MaxWidth="360" Margin="10">
                             <Border.Effect>
                                 <DropShadowEffect BlurRadius="22" ShadowDepth="3" Opacity="0.55" Color="#000000"/>
                             </Border.Effect>
@@ -961,34 +960,11 @@
 
     </Window.Resources>
 
-    <Border x:Name="shell" CornerRadius="0" BorderThickness="0">
-        <Border.Background>
-            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                <GradientStop Color="#FF0D0F16" Offset="0"/>
-                <GradientStop Color="#FF060608" Offset="0.55"/>
-                <GradientStop Color="#FF0B090E" Offset="1"/>
-            </LinearGradientBrush>
-        </Border.Background>
+    <Border x:Name="shell" CornerRadius="0" BorderThickness="0" Background="#FF0F1013">
 
         <Grid>
             <!-- Alone morbido in alto: prende il colore della pagina aperta. -->
-            <Border x:Name="glowPage" IsHitTestVisible="False">
-                <Border.Background>
-                    <RadialGradientBrush GradientOrigin="0.6,-0.1" Center="0.6,-0.1" RadiusX="0.8" RadiusY="0.9">
-                        <GradientStop Color="#2EFF7A45" Offset="0"/>
-                        <GradientStop Color="#00FF7A45" Offset="1"/>
-                    </RadialGradientBrush>
-                </Border.Background>
-            </Border>
-            <!-- Alone fisso in basso a sinistra, blu PcFixPro. -->
-            <Border IsHitTestVisible="False">
-                <Border.Background>
-                    <RadialGradientBrush GradientOrigin="0,1.05" Center="0,1.05" RadiusX="0.6" RadiusY="0.7">
-                        <GradientStop Color="#221E90FF" Offset="0"/>
-                        <GradientStop Color="#001E90FF" Offset="1"/>
-                    </RadialGradientBrush>
-                </Border.Background>
-            </Border>
+            <Border x:Name="glowPage" IsHitTestVisible="False" Visibility="Collapsed"/>
             <Grid x:Name="rootScale">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="52"/>
@@ -1003,14 +979,14 @@
                     </Grid.ColumnDefinitions>
 
                     <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
-                        <Border Width="28" Height="28" CornerRadius="9" Background="#FF1E90FF" Margin="0,0,11,0">
-                            <TextBlock Text="A" Foreground="White" FontFamily="Raleway, Segoe UI" FontWeight="Bold"
+                        <Border Width="28" Height="28" CornerRadius="6" Background="#FF4C8DFF" Margin="0,0,11,0">
+                            <TextBlock Text="A" Foreground="White" FontFamily="Segoe UI Variable Display, Segoe UI" FontWeight="Bold"
                                        FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
-                        <TextBlock Text="Tweak Andrew" FontFamily="Raleway, Segoe UI Variable Display, Segoe UI"
-                                   FontSize="13.5" FontWeight="SemiBold" Foreground="#FFE4EBF2" VerticalAlignment="Center"/>
-                        <TextBlock Text="v6.1" FontFamily="Roboto, Segoe UI" FontSize="11"
-                                   Foreground="#FF6E7A88" VerticalAlignment="Center" Margin="9,1,0,0"/>
+                        <TextBlock Text="Tweak Andrew" FontFamily="Segoe UI Variable Display, Segoe UI"
+                                   FontSize="13.5" FontWeight="SemiBold" Foreground="#FFE6E8EB" VerticalAlignment="Center"/>
+                        <TextBlock Text="v6.1" FontFamily="Segoe UI Variable Text, Segoe UI" FontSize="11"
+                                   Foreground="#FF6C727A" VerticalAlignment="Center" Margin="9,1,0,0"/>
                     </StackPanel>
 
                     <ComboBox x:Name="cmbLang" Grid.Column="1" Width="138" Margin="0,0,10,0"
@@ -1046,7 +1022,8 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <Border Grid.Column="0" Background="Transparent" Padding="4,8,10,4" Margin="0,0,7,0">
+                    <Border Grid.Column="0" Background="#FF131518" BorderBrush="#FF22252A" BorderThickness="1" CornerRadius="10"
+                            Padding="8,10,6,8" Margin="0,0,10,0">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
@@ -1055,8 +1032,8 @@
                             </Grid.RowDefinitions>
 
                             <StackPanel Grid.Row="0" Margin="6,4,6,10" Visibility="Collapsed">
-                                <TextBlock Text="TWEAK ANDREW" FontFamily="Raleway, Segoe UI Variable Display, Segoe UI"
-                                           FontSize="17" FontWeight="Bold" Foreground="#FFF2F2F5"/>
+                                <TextBlock Text="TWEAK ANDREW" FontFamily="Segoe UI Variable Display, Segoe UI"
+                                           FontSize="17" FontWeight="Bold" Foreground="#FFEDEFF2"/>
                                 <TextBlock x:Name="lblSubtitle" Text="Ottimizzazione e controllo di Windows"
                                            Style="{StaticResource SubTitle}" Margin="0,3,0,0"/>
                             </StackPanel>
@@ -1067,12 +1044,9 @@
                                              Content="Home" Margin="0,0,0,10"
                                              Tag="M3.5,11 L12,4 L20.5,11 M6,9.2 L6,20 L10,20 L10,14.5 L14,14.5 L14,20 L18,20 L18,9.2">
                                     <RadioButton.Resources>
-                                        <SolidColorBrush x:Key="PA" Color="#FF1E90FF"/>
-                                        <SolidColorBrush x:Key="PASoft" Color="#261E90FF"/>
-                                        <LinearGradientBrush x:Key="PACard" StartPoint="0,0" EndPoint="0.7,1">
-                                            <GradientStop Color="#161E90FF" Offset="0"/>
-                                            <GradientStop Color="#0CFFFFFF" Offset="0.5"/>
-                                        </LinearGradientBrush>
+                                        <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
+                                        <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <TextBlock x:Name="navGrpSystem" Text="SISTEMA" Style="{StaticResource NavHeader}" Margin="14,0,0,4"/>
@@ -1080,72 +1054,54 @@
                                              Content="Prestazioni"
                                              Tag="M13,2 L4,13.5 L10.5,13.5 L10,22 L19,10.5 L12.5,10.5 Z">
                                     <RadioButton.Resources>
-                                        <SolidColorBrush x:Key="PA" Color="#FFFF7A45"/>
-                                        <SolidColorBrush x:Key="PASoft" Color="#24FF7A45"/>
-                                        <LinearGradientBrush x:Key="PACard" StartPoint="0,0" EndPoint="0.7,1">
-                                            <GradientStop Color="#16FF7A45" Offset="0"/>
-                                            <GradientStop Color="#0CFFFFFF" Offset="0.5"/>
-                                        </LinearGradientBrush>
+                                        <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
+                                        <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <RadioButton x:Name="tabSched" GroupName="Nav" Style="{StaticResource NavItem}"
                                              Content="Priorita"
                                              Tag="M4,7 L20,7 M4,12 L20,12 M4,17 L20,17 M8,5 L8,9 M15,10 L15,14 M10,15 L10,19">
                                     <RadioButton.Resources>
-                                        <SolidColorBrush x:Key="PA" Color="#FFA3E635"/>
-                                        <SolidColorBrush x:Key="PASoft" Color="#24A3E635"/>
-                                        <LinearGradientBrush x:Key="PACard" StartPoint="0,0" EndPoint="0.7,1">
-                                            <GradientStop Color="#16A3E635" Offset="0"/>
-                                            <GradientStop Color="#0CFFFFFF" Offset="0.5"/>
-                                        </LinearGradientBrush>
+                                        <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
+                                        <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <RadioButton x:Name="tabPower" GroupName="Nav" Style="{StaticResource NavItem}"
                                              Content="Alimentazione"
                                              Tag="M12,3.5 A8.5,8.5 0 1 0 12.01,3.5 M12,2.5 L12,11">
                                     <RadioButton.Resources>
-                                        <SolidColorBrush x:Key="PA" Color="#FFFFC53D"/>
-                                        <SolidColorBrush x:Key="PASoft" Color="#24FFC53D"/>
-                                        <LinearGradientBrush x:Key="PACard" StartPoint="0,0" EndPoint="0.7,1">
-                                            <GradientStop Color="#16FFC53D" Offset="0"/>
-                                            <GradientStop Color="#0CFFFFFF" Offset="0.5"/>
-                                        </LinearGradientBrush>
+                                        <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
+                                        <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <RadioButton x:Name="tabGpu" GroupName="Nav" Style="{StaticResource NavItem}"
                                              Content="Scheda video"
                                              Tag="M3.5,7 L16,7 A3.5,3.5 0 0 1 16,16 L3.5,16 Z M7,11.5 A1.1,1.1 0 1 0 7.01,11.5 M10.5,11.5 A1.1,1.1 0 1 0 10.51,11.5 M6,16 L6,19.5 M13.5,16 L13.5,19.5">
                                     <RadioButton.Resources>
-                                        <SolidColorBrush x:Key="PA" Color="#FF52E3A1"/>
-                                        <SolidColorBrush x:Key="PASoft" Color="#2452E3A1"/>
-                                        <LinearGradientBrush x:Key="PACard" StartPoint="0,0" EndPoint="0.7,1">
-                                            <GradientStop Color="#1652E3A1" Offset="0"/>
-                                            <GradientStop Color="#0CFFFFFF" Offset="0.5"/>
-                                        </LinearGradientBrush>
+                                        <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
+                                        <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <RadioButton x:Name="tabStorage" GroupName="Nav" Style="{StaticResource NavItem}"
                                              Content="Archiviazione"
                                              Tag="M4,6.5 A8,2.8 0 1 0 20,6.5 A8,2.8 0 1 0 4,6.5 M4,6.5 L4,17.5 A8,2.8 0 0 0 20,17.5 L20,6.5 M4,12 A8,2.8 0 0 0 20,12">
                                     <RadioButton.Resources>
-                                        <SolidColorBrush x:Key="PA" Color="#FF818CF8"/>
-                                        <SolidColorBrush x:Key="PASoft" Color="#24818CF8"/>
-                                        <LinearGradientBrush x:Key="PACard" StartPoint="0,0" EndPoint="0.7,1">
-                                            <GradientStop Color="#16818CF8" Offset="0"/>
-                                            <GradientStop Color="#0CFFFFFF" Offset="0.5"/>
-                                        </LinearGradientBrush>
+                                        <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
+                                        <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <RadioButton x:Name="tabNet" GroupName="Nav" Style="{StaticResource NavItem}"
                                              Content="Rete"
                                              Tag="M3,8.5 A13,13 0 0 1 21,8.5 M6.5,12.5 A8,8 0 0 1 17.5,12.5 M10,16.5 A3.2,3.2 0 0 1 14,16.5">
                                     <RadioButton.Resources>
-                                        <SolidColorBrush x:Key="PA" Color="#FF38BDF8"/>
-                                        <SolidColorBrush x:Key="PASoft" Color="#2438BDF8"/>
-                                        <LinearGradientBrush x:Key="PACard" StartPoint="0,0" EndPoint="0.7,1">
-                                            <GradientStop Color="#1638BDF8" Offset="0"/>
-                                            <GradientStop Color="#0CFFFFFF" Offset="0.5"/>
-                                        </LinearGradientBrush>
+                                        <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
+                                        <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <TextBlock x:Name="navGrpPrivacy" Text="PRIVACY" Style="{StaticResource NavHeader}"/>
@@ -1153,24 +1109,18 @@
                                              Content="Privacy"
                                              Tag="M12,2.5 L19.5,5.8 V11.2 C19.5,16 16.4,20.2 12,21.5 C7.6,20.2 4.5,16 4.5,11.2 V5.8 Z">
                                     <RadioButton.Resources>
-                                        <SolidColorBrush x:Key="PA" Color="#FFA78BFA"/>
-                                        <SolidColorBrush x:Key="PASoft" Color="#24A78BFA"/>
-                                        <LinearGradientBrush x:Key="PACard" StartPoint="0,0" EndPoint="0.7,1">
-                                            <GradientStop Color="#16A78BFA" Offset="0"/>
-                                            <GradientStop Color="#0CFFFFFF" Offset="0.5"/>
-                                        </LinearGradientBrush>
+                                        <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
+                                        <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <RadioButton x:Name="tabPriv2" GroupName="Nav" Style="{StaticResource NavItem}"
                                              Content="Privacy avanzata"
                                              Tag="M12,2.5 L19.5,5.8 V11.2 C19.5,16 16.4,20.2 12,21.5 C7.6,20.2 4.5,16 4.5,11.2 V5.8 Z M8.5,11.5 L11,14 L15.5,9">
                                     <RadioButton.Resources>
-                                        <SolidColorBrush x:Key="PA" Color="#FFC084FC"/>
-                                        <SolidColorBrush x:Key="PASoft" Color="#24C084FC"/>
-                                        <LinearGradientBrush x:Key="PACard" StartPoint="0,0" EndPoint="0.7,1">
-                                            <GradientStop Color="#16C084FC" Offset="0"/>
-                                            <GradientStop Color="#0CFFFFFF" Offset="0.5"/>
-                                        </LinearGradientBrush>
+                                        <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
+                                        <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <TextBlock x:Name="navGrpCustom" Text="PERSONALIZZA" Style="{StaticResource NavHeader}"/>
@@ -1178,60 +1128,45 @@
                                              Content="Interfaccia"
                                              Tag="M3.5,5 L20.5,5 L20.5,19 L3.5,19 Z M3.5,9 L20.5,9 M7.5,14 L13,14">
                                     <RadioButton.Resources>
-                                        <SolidColorBrush x:Key="PA" Color="#FFF472B6"/>
-                                        <SolidColorBrush x:Key="PASoft" Color="#24F472B6"/>
-                                        <LinearGradientBrush x:Key="PACard" StartPoint="0,0" EndPoint="0.7,1">
-                                            <GradientStop Color="#16F472B6" Offset="0"/>
-                                            <GradientStop Color="#0CFFFFFF" Offset="0.5"/>
-                                        </LinearGradientBrush>
+                                        <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
+                                        <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <RadioButton x:Name="tabExp" GroupName="Nav" Style="{StaticResource NavItem}"
                                              Content="Esplora file"
                                              Tag="M3.5,6.5 L9.5,6.5 L11.5,8.5 L20.5,8.5 L20.5,18.5 L3.5,18.5 Z">
                                     <RadioButton.Resources>
-                                        <SolidColorBrush x:Key="PA" Color="#FF2DD4BF"/>
-                                        <SolidColorBrush x:Key="PASoft" Color="#242DD4BF"/>
-                                        <LinearGradientBrush x:Key="PACard" StartPoint="0,0" EndPoint="0.7,1">
-                                            <GradientStop Color="#162DD4BF" Offset="0"/>
-                                            <GradientStop Color="#0CFFFFFF" Offset="0.5"/>
-                                        </LinearGradientBrush>
+                                        <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
+                                        <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <RadioButton x:Name="tabTask" GroupName="Nav" Style="{StaticResource NavItem}"
                                              Content="Start e barra"
                                              Tag="M3.5,4.5 L20.5,4.5 L20.5,19.5 L3.5,19.5 Z M3.5,15.5 L20.5,15.5 M7,17.5 L8,17.5 M11.5,17.5 L12.5,17.5 M16,17.5 L17,17.5">
                                     <RadioButton.Resources>
-                                        <SolidColorBrush x:Key="PA" Color="#FF60A5FA"/>
-                                        <SolidColorBrush x:Key="PASoft" Color="#2460A5FA"/>
-                                        <LinearGradientBrush x:Key="PACard" StartPoint="0,0" EndPoint="0.7,1">
-                                            <GradientStop Color="#1660A5FA" Offset="0"/>
-                                            <GradientStop Color="#0CFFFFFF" Offset="0.5"/>
-                                        </LinearGradientBrush>
+                                        <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
+                                        <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <RadioButton x:Name="tabNotif" GroupName="Nav" Style="{StaticResource NavItem}"
                                              Content="Notifiche e suoni"
                                              Tag="M6,16.5 L6,11 A6,6 0 0 1 18,11 L18,16.5 L19.5,18 L4.5,18 Z M10,20.5 L14,20.5">
                                     <RadioButton.Resources>
-                                        <SolidColorBrush x:Key="PA" Color="#FFFB7185"/>
-                                        <SolidColorBrush x:Key="PASoft" Color="#24FB7185"/>
-                                        <LinearGradientBrush x:Key="PACard" StartPoint="0,0" EndPoint="0.7,1">
-                                            <GradientStop Color="#16FB7185" Offset="0"/>
-                                            <GradientStop Color="#0CFFFFFF" Offset="0.5"/>
-                                        </LinearGradientBrush>
+                                        <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
+                                        <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <RadioButton x:Name="tabGame" GroupName="Nav" Style="{StaticResource NavItem}"
                                              Content="Giochi ed effetti"
                                              Tag="M7,8.5 L17,8.5 A4.5,4.5 0 0 1 17,17.5 L15.5,17.5 L13.5,15 L10.5,15 L8.5,17.5 L7,17.5 A4.5,4.5 0 0 1 7,8.5 Z M7,11.5 L7,14.5 M5.5,13 L8.5,13">
                                     <RadioButton.Resources>
-                                        <SolidColorBrush x:Key="PA" Color="#FFE879F9"/>
-                                        <SolidColorBrush x:Key="PASoft" Color="#24E879F9"/>
-                                        <LinearGradientBrush x:Key="PACard" StartPoint="0,0" EndPoint="0.7,1">
-                                            <GradientStop Color="#16E879F9" Offset="0"/>
-                                            <GradientStop Color="#0CFFFFFF" Offset="0.5"/>
-                                        </LinearGradientBrush>
+                                        <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
+                                        <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <TextBlock x:Name="navGrpWindows" Text="WINDOWS E APP" Style="{StaticResource NavHeader}"/>
@@ -1239,48 +1174,36 @@
                                              Content="Windows e servizi"
                                              Tag="M4,5 L11,4 L11,11.5 L4,11.5 Z M13,3.7 L20,2.8 L20,11.5 L13,11.5 Z M4,13.5 L11,13.5 L11,20 L4,19 Z M13,13.5 L20,13.5 L20,21.2 L13,20.3 Z">
                                     <RadioButton.Resources>
-                                        <SolidColorBrush x:Key="PA" Color="#FF94A3B8"/>
-                                        <SolidColorBrush x:Key="PASoft" Color="#2494A3B8"/>
-                                        <LinearGradientBrush x:Key="PACard" StartPoint="0,0" EndPoint="0.7,1">
-                                            <GradientStop Color="#1694A3B8" Offset="0"/>
-                                            <GradientStop Color="#0CFFFFFF" Offset="0.5"/>
-                                        </LinearGradientBrush>
+                                        <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
+                                        <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <RadioButton x:Name="tabApps" GroupName="Nav" Style="{StaticResource NavItem}"
                                              Content="App e software"
                                              Tag="M4,4 L10,4 L10,10 L4,10 Z M14,4 L20,4 L20,10 L14,10 Z M4,14 L10,14 L10,20 L4,20 Z M14,17 L20,17 M17,14 L17,20">
                                     <RadioButton.Resources>
-                                        <SolidColorBrush x:Key="PA" Color="#FFFDBA74"/>
-                                        <SolidColorBrush x:Key="PASoft" Color="#24FDBA74"/>
-                                        <LinearGradientBrush x:Key="PACard" StartPoint="0,0" EndPoint="0.7,1">
-                                            <GradientStop Color="#16FDBA74" Offset="0"/>
-                                            <GradientStop Color="#0CFFFFFF" Offset="0.5"/>
-                                        </LinearGradientBrush>
+                                        <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
+                                        <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <RadioButton x:Name="tabTools" GroupName="Nav" Style="{StaticResource NavItem}"
                                              Content="Strumenti"
                                              Tag="M14.7,6.3 A4,4 0 0 0 9.3,11.7 L3.5,17.5 L6.5,20.5 L12.3,14.7 A4,4 0 0 0 17.7,9.3 L15,12 L12,9 Z">
                                     <RadioButton.Resources>
-                                        <SolidColorBrush x:Key="PA" Color="#FF2DD4BF"/>
-                                        <SolidColorBrush x:Key="PASoft" Color="#242DD4BF"/>
-                                        <LinearGradientBrush x:Key="PACard" StartPoint="0,0" EndPoint="0.7,1">
-                                            <GradientStop Color="#162DD4BF" Offset="0"/>
-                                            <GradientStop Color="#0CFFFFFF" Offset="0.5"/>
-                                        </LinearGradientBrush>
+                                        <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
+                                        <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <RadioButton x:Name="tabAdv" GroupName="Nav" Style="{StaticResource NavItem}"
                                              Content="Avanzate"
                                              Tag="M12,3 L12,21 M3,12 L21,12 M6.5,6.5 L17.5,17.5 M17.5,6.5 L6.5,17.5">
                                     <RadioButton.Resources>
-                                        <SolidColorBrush x:Key="PA" Color="#FFF87171"/>
-                                        <SolidColorBrush x:Key="PASoft" Color="#24F87171"/>
-                                        <LinearGradientBrush x:Key="PACard" StartPoint="0,0" EndPoint="0.7,1">
-                                            <GradientStop Color="#16F87171" Offset="0"/>
-                                            <GradientStop Color="#0CFFFFFF" Offset="0.5"/>
-                                        </LinearGradientBrush>
+                                        <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
+                                        <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                             </StackPanel>
@@ -1295,7 +1218,7 @@
                                     <ComboBoxItem Content="150%"/>
                                 </ComboBox>
                                 <Separator Style="{StaticResource SoftSep}" Margin="0,0,0,10"/>
-                                <TextBlock Text="PcFixPro Italia" FontFamily="Raleway, Segoe UI" FontSize="11"
+                                <TextBlock Text="PcFixPro Italia" FontFamily="Segoe UI Variable Display, Segoe UI" FontSize="11"
                                            FontWeight="SemiBold" Foreground="#FF7FC4E8"/>
                                 <TextBlock Text="pcfixproitalia.it" Style="{StaticResource SubTitle}" FontSize="10.5" Margin="0,2,0,0"/>
                             </StackPanel>
@@ -1318,7 +1241,7 @@
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
                             <Border x:Name="pillActivity" Grid.Column="1" Visibility="Collapsed" Cursor="Hand"
-                                    Background="#FF0A0A0C" BorderBrush="#FF26262C" BorderThickness="1" CornerRadius="14"
+                                    Background="#FF131518" BorderBrush="#FF2C3036" BorderThickness="1" CornerRadius="7"
                                     Padding="14,7" Margin="0,0,10,0" VerticalAlignment="Center" MaxWidth="460">
                                 <Grid>
                                     <Grid.RowDefinitions>
@@ -1330,10 +1253,10 @@
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
-                                    <Ellipse x:Name="dotActivity" Width="7" Height="7" Fill="#FF2ED3A7" Margin="0,0,9,0" VerticalAlignment="Center"/>
-                                    <TextBlock x:Name="txtActivity" Grid.Column="1" Foreground="#FFE4E4EA" FontSize="12"
+                                    <Ellipse x:Name="dotActivity" Width="7" Height="7" Fill="#FF3DBE8B" Margin="0,0,9,0" VerticalAlignment="Center"/>
+                                    <TextBlock x:Name="txtActivity" Grid.Column="1" Foreground="#FFE6E8EB" FontSize="12"
                                                TextTrimming="CharacterEllipsis" VerticalAlignment="Center"/>
-                                    <TextBlock x:Name="txtActivityPct" Grid.Column="2" Foreground="#FF2ED3A7" FontSize="12" FontWeight="SemiBold"
+                                    <TextBlock x:Name="txtActivityPct" Grid.Column="2" Foreground="#FF3DBE8B" FontSize="12" FontWeight="SemiBold"
                                                Margin="10,0,0,0" VerticalAlignment="Center"/>
                                     <ProgressBar x:Name="prgActivity" Grid.Row="1" Grid.ColumnSpan="3" Height="3" Margin="0,6,0,0"
                                                  Minimum="0" Maximum="100" Value="0"/>
@@ -1342,8 +1265,8 @@
                             <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
                                 <Border x:Name="pageAccent" Width="5" Height="26" CornerRadius="2.5" Background="#FFFF7A45" Margin="0,0,14,0"/>
                                 <TextBlock x:Name="lblPageTitle" Text="Prestazioni"
-                                           FontFamily="Raleway, Segoe UI Variable Display, Segoe UI"
-                                           FontSize="26" FontWeight="Bold" Foreground="#FFF2F2F5" VerticalAlignment="Center"/>
+                                           FontFamily="Segoe UI Variable Display, Segoe UI"
+                                           FontSize="26" FontWeight="Bold" Foreground="#FFEDEFF2" VerticalAlignment="Center"/>
                             </StackPanel>
                             <!-- «Rileva già attivi» sta qui e non nella barra in basso: con le lingue lunghe la barra andava su due righe. -->
                             <!-- Ripristino totale: sempre a portata, anche dalle pagine a effetto immediato. -->
@@ -1351,15 +1274,15 @@
                                     VerticalAlignment="Center" Content="Ripristino totale"/>
                             <Button x:Name="btnDetectActive" Grid.Column="3" Style="{StaticResource GhostBtn}" Height="36" Margin="0,0,10,0"
                                     VerticalAlignment="Center" Content="Rileva già attivi"/>
-                            <Border x:Name="pillSelected" Grid.Column="4" Background="#FF0A0A0C" BorderBrush="#FF1A1A1F" BorderThickness="1"
-                                    CornerRadius="14" Padding="14,8" VerticalAlignment="Center">
+                            <Border x:Name="pillSelected" Grid.Column="4" Background="#FF131518" BorderBrush="#FF25282D" BorderThickness="1"
+                                    CornerRadius="7" Padding="14,8" VerticalAlignment="Center">
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock x:Name="lblSelected" Text="Selezionati:" Foreground="#FF7E7E88" FontSize="12"
+                                    <TextBlock x:Name="lblSelected" Text="Selezionati:" Foreground="#FF7F858D" FontSize="12"
                                                VerticalAlignment="Center" Margin="0,0,9,0"/>
                                     <!-- Con la scala al 130% l'arrotondamento tagliava la cifra: una
                                          larghezza minima e un filo di margine la tengono dentro. -->
-                                    <TextBlock x:Name="txtSelectedCount" Text="0" Foreground="#FF2ED3A7"
-                                               FontFamily="Raleway, Segoe UI" FontWeight="Bold" FontSize="15" VerticalAlignment="Center"
+                                    <TextBlock x:Name="txtSelectedCount" Text="0" Foreground="#FF3DBE8B"
+                                               FontFamily="Segoe UI Variable Display, Segoe UI" FontWeight="Bold" FontSize="15" VerticalAlignment="Center"
                                                MinWidth="20" Margin="0,0,3,0" TextAlignment="Right"/>
                                 </StackPanel>
                             </Border>
@@ -1369,12 +1292,9 @@
 
                             <ScrollViewer x:Name="pageHome" Grid.IsSharedSizeScope="True" VerticalScrollBarVisibility="Auto" Padding="0,0,6,0">
                                 <ScrollViewer.Resources>
-                                    <SolidColorBrush x:Key="PA" Color="#FF1E90FF"/>
-                                    <SolidColorBrush x:Key="PASoft" Color="#261E90FF"/>
-                                    <LinearGradientBrush x:Key="PACard" StartPoint="0,0" EndPoint="0.7,1">
-                                        <GradientStop Color="#161E90FF" Offset="0"/>
-                                        <GradientStop Color="#0CFFFFFF" Offset="0.5"/>
-                                    </LinearGradientBrush>
+                                    <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
+                                    <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
                                 </ScrollViewer.Resources>
                                 <StackPanel x:Name="panHome">
                                     <TextBlock x:Name="lblHomeLoading" Text="Lettura dell'hardware..." Style="{StaticResource SubTitle}" Margin="10"/>
@@ -1383,12 +1303,9 @@
 
                             <ScrollViewer x:Name="pagePerf" Grid.IsSharedSizeScope="True" Visibility="Collapsed" VerticalScrollBarVisibility="Auto" Padding="0,0,6,0">
                                 <ScrollViewer.Resources>
-                                    <SolidColorBrush x:Key="PA" Color="#FFFF7A45"/>
-                                    <SolidColorBrush x:Key="PASoft" Color="#24FF7A45"/>
-                                    <LinearGradientBrush x:Key="PACard" StartPoint="0,0" EndPoint="0.7,1">
-                                        <GradientStop Color="#16FF7A45" Offset="0"/>
-                                        <GradientStop Color="#0CFFFFFF" Offset="0.5"/>
-                                    </LinearGradientBrush>
+                                    <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
+                                    <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
                                 </ScrollViewer.Resources>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
@@ -1500,12 +1417,9 @@
 
                             <ScrollViewer x:Name="pagePrivacy" Grid.IsSharedSizeScope="True" Visibility="Collapsed" VerticalScrollBarVisibility="Auto" Padding="0,0,6,0">
                                 <ScrollViewer.Resources>
-                                    <SolidColorBrush x:Key="PA" Color="#FFA78BFA"/>
-                                    <SolidColorBrush x:Key="PASoft" Color="#24A78BFA"/>
-                                    <LinearGradientBrush x:Key="PACard" StartPoint="0,0" EndPoint="0.7,1">
-                                        <GradientStop Color="#16A78BFA" Offset="0"/>
-                                        <GradientStop Color="#0CFFFFFF" Offset="0.5"/>
-                                    </LinearGradientBrush>
+                                    <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
+                                    <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
                                 </ScrollViewer.Resources>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
@@ -1517,7 +1431,7 @@
                                     <StackPanel Grid.Column="0">
                                         <Border Style="{StaticResource Glass}">
                                             <StackPanel>
-                                                <TextBlock x:Name="ttlTelemetry" Text="TELEMETRIA" Style="{StaticResource CardTitle}" Foreground="#FF2ED3A7"/>
+                                                <TextBlock x:Name="ttlTelemetry" Text="TELEMETRIA" Style="{StaticResource CardTitle}"/>
                                                 <CheckBox x:Name="chkTelemetry" Content="Telemetria"/>
                                                 <CheckBox x:Name="chkTelemetryTasks" Content="Attivita pianificate"/>
                                                 <CheckBox x:Name="chkActivityHistory" Content="Cronologia"/>
@@ -1535,7 +1449,7 @@
                                     <StackPanel Grid.Column="1">
                                         <Border Style="{StaticResource Glass}">
                                             <StackPanel>
-                                                <TextBlock x:Name="ttlContent" Text="SUGGERIMENTI" Style="{StaticResource CardTitle}" Foreground="#FF2ED3A7"/>
+                                                <TextBlock x:Name="ttlContent" Text="SUGGERIMENTI" Style="{StaticResource CardTitle}"/>
                                                 <CheckBox x:Name="chkConsumerFeatures" Content="App suggerite"/>
                                                 <CheckBox x:Name="chkSuggestedContent" Content="Contenuti suggeriti"/>
                                                 <CheckBox x:Name="chkLockScreenAds" Content="Spotlight"/>
@@ -1546,7 +1460,7 @@
                                         </Border>
                                         <Border Style="{StaticResource Glass}">
                                             <StackPanel>
-                                                <TextBlock x:Name="ttlMsApps" Text="APP MICROSOFT" Style="{StaticResource CardTitle}" Foreground="#FF2ED3A7"/>
+                                                <TextBlock x:Name="ttlMsApps" Text="APP MICROSOFT" Style="{StaticResource CardTitle}"/>
                                                 <CheckBox x:Name="chkWindowsAI" Content="Copilot e Recall"/>
                                                 <CheckBox x:Name="chkEdgeDebloat" Content="Edge"/>
                                                 <CheckBox x:Name="chkOneDriveRemove" Content="OneDrive"/>
@@ -1558,7 +1472,7 @@
                                     <StackPanel Grid.Column="2">
                                         <Border Style="{StaticResource Glass}">
                                             <StackPanel>
-                                                <TextBlock x:Name="ttlServices" Text="SERVIZI" Style="{StaticResource CardTitle}" Foreground="#FF2ED3A7"/>
+                                                <TextBlock x:Name="ttlServices" Text="SERVIZI" Style="{StaticResource CardTitle}"/>
                                                 <CheckBox x:Name="chkServicesManual" Content="Servizi non essenziali"/>
                                                 <CheckBox x:Name="chkDeliveryOpt" Content="Ottimizzazione recapito"/>
                                                 <CheckBox x:Name="chkBitLocker" Content="BitLocker"/>
@@ -1577,12 +1491,9 @@
 
                             <ScrollViewer x:Name="pageUi" Grid.IsSharedSizeScope="True" Visibility="Collapsed" VerticalScrollBarVisibility="Auto" Padding="0,0,6,0">
                                 <ScrollViewer.Resources>
-                                    <SolidColorBrush x:Key="PA" Color="#FFF472B6"/>
-                                    <SolidColorBrush x:Key="PASoft" Color="#24F472B6"/>
-                                    <LinearGradientBrush x:Key="PACard" StartPoint="0,0" EndPoint="0.7,1">
-                                        <GradientStop Color="#16F472B6" Offset="0"/>
-                                        <GradientStop Color="#0CFFFFFF" Offset="0.5"/>
-                                    </LinearGradientBrush>
+                                    <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
+                                    <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
                                 </ScrollViewer.Resources>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
@@ -1594,7 +1505,7 @@
                                     <StackPanel Grid.Column="0">
                                         <Border Style="{StaticResource Glass}">
                                             <StackPanel>
-                                                <TextBlock x:Name="ttlSystemUi" Text="SISTEMA" Style="{StaticResource CardTitle}" Foreground="#FFE0A25E"/>
+                                                <TextBlock x:Name="ttlSystemUi" Text="SISTEMA" Style="{StaticResource CardTitle}"/>
                                                 <CheckBox x:Name="chkDarkTheme" Content="Tema scuro"/>
                                                 <CheckBox x:Name="chkFileExt" Content="Estensioni dei file"/>
                                                 <CheckBox x:Name="chkLongPaths" Content="Percorsi lunghi"/>
@@ -1608,7 +1519,7 @@
 
                                         <Border Style="{StaticResource Glass}">
                                             <StackPanel>
-                                                <TextBlock x:Name="ttlStart" Text="MENU START" Style="{StaticResource CardTitle}" Foreground="#FFE0A25E"/>
+                                                <TextBlock x:Name="ttlStart" Text="MENU START" Style="{StaticResource CardTitle}"/>
                                                 <CheckBox x:Name="chkStartMorePins" Content="Piu spazio ai collegamenti"/>
                                                 <CheckBox x:Name="chkStartHideRec" Content="Nascondi la sezione Consigliati"/>
                                                 <CheckBox x:Name="chkStartNoWeb" Content="Niente siti consigliati"/>
@@ -1620,7 +1531,7 @@
                                     <StackPanel Grid.Column="1">
                                         <Border Style="{StaticResource Glass}">
                                             <StackPanel>
-                                                <TextBlock x:Name="ttlTaskbar" Text="BARRA APPLICAZIONI" Style="{StaticResource CardTitle}" Foreground="#FFE0A25E"/>
+                                                <TextBlock x:Name="ttlTaskbar" Text="BARRA APPLICAZIONI" Style="{StaticResource CardTitle}"/>
                                                 <CheckBox x:Name="chkTaskbarCenter" Content="Icone al centro"/>
                                                 <CheckBox x:Name="chkTaskbarSearch" Content="Icona Cerca"/>
                                                 <CheckBox x:Name="chkTaskbarTaskView" Content="Visualizzazione attivita"/>
@@ -1637,7 +1548,7 @@
                                     <StackPanel Grid.Column="2">
                                         <Border Style="{StaticResource Glass}">
                                             <StackPanel>
-                                                <TextBlock x:Name="ttlInput" Text="INPUT" Style="{StaticResource CardTitle}" Foreground="#FFE0A25E"/>
+                                                <TextBlock x:Name="ttlInput" Text="INPUT" Style="{StaticResource CardTitle}"/>
                                                 <CheckBox x:Name="chkMouseAccel" Content="Accelerazione mouse"/>
                                                 <CheckBox x:Name="chkNumLock" Content="Bloc Num"/>
                                                 <CheckBox x:Name="chkStickyKeys" Content="Tasti permanenti"/>
@@ -1646,7 +1557,7 @@
                                         </Border>
                                         <Border Style="{StaticResource Glass}">
                                             <StackPanel>
-                                                <TextBlock x:Name="ttlLock" Text="ACCESSO" Style="{StaticResource CardTitle}" Foreground="#FFE0A25E"/>
+                                                <TextBlock x:Name="ttlLock" Text="ACCESSO" Style="{StaticResource CardTitle}"/>
                                                 <CheckBox x:Name="chkLockScreen" Content="Schermata di blocco"/>
                                                 <CheckBox x:Name="chkLogonBlur" Content="Sfocatura accesso"/>
                                                 <CheckBox x:Name="chkBSODVerbose" Content="Schermata blu dettagliata"/>
@@ -1656,7 +1567,7 @@
 
                                         <Border Style="{StaticResource Glass}">
                                             <StackPanel>
-                                                <TextBlock x:Name="ttlFeat" Text="FUNZIONI NASCOSTE" Style="{StaticResource CardTitle}" Foreground="#FFE0A25E"/>
+                                                <TextBlock x:Name="ttlFeat" Text="FUNZIONI NASCOSTE" Style="{StaticResource CardTitle}"/>
                                                 <TextBlock x:Name="lblFeatHint" Style="{StaticResource SubTitle}" Margin="0,0,0,10"
                                                            Text="Attiva o disattiva una funzione di Windows tramite il suo numero identificativo, come fa ViVeTool. Ogni build ha i suoi numeri."/>
                                                 <TextBlock x:Name="lblFeatId" Text="Numero della funzione" Style="{StaticResource FieldLabel}" Margin="0,0,0,6"/>
@@ -1681,12 +1592,9 @@
 
                             <Grid x:Name="pageNet" Grid.IsSharedSizeScope="True" Visibility="Collapsed">
                                 <Grid.Resources>
-                                    <SolidColorBrush x:Key="PA" Color="#FF38BDF8"/>
-                                    <SolidColorBrush x:Key="PASoft" Color="#2438BDF8"/>
-                                    <LinearGradientBrush x:Key="PACard" StartPoint="0,0" EndPoint="0.7,1">
-                                        <GradientStop Color="#1638BDF8" Offset="0"/>
-                                        <GradientStop Color="#0CFFFFFF" Offset="0.5"/>
-                                    </LinearGradientBrush>
+                                    <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
+                                    <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
                                 </Grid.Resources>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
@@ -1885,12 +1793,9 @@
 
                             <Grid x:Name="pageStorage" Grid.IsSharedSizeScope="True" Visibility="Collapsed">
                                 <Grid.Resources>
-                                    <SolidColorBrush x:Key="PA" Color="#FF818CF8"/>
-                                    <SolidColorBrush x:Key="PASoft" Color="#24818CF8"/>
-                                    <LinearGradientBrush x:Key="PACard" StartPoint="0,0" EndPoint="0.7,1">
-                                        <GradientStop Color="#16818CF8" Offset="0"/>
-                                        <GradientStop Color="#0CFFFFFF" Offset="0.5"/>
-                                    </LinearGradientBrush>
+                                    <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
+                                    <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
                                 </Grid.Resources>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="1.3*"/>
@@ -1972,12 +1877,9 @@
                             <!-- In cima l'avviso; a sinistra i piani in una colonna che scorre da sola, a destra il resto, una scheda sotto l'altra. -->
                             <Grid x:Name="pagePower" Grid.IsSharedSizeScope="True" Visibility="Collapsed">
                                 <Grid.Resources>
-                                    <SolidColorBrush x:Key="PA" Color="#FFFFC53D"/>
-                                    <SolidColorBrush x:Key="PASoft" Color="#24FFC53D"/>
-                                    <LinearGradientBrush x:Key="PACard" StartPoint="0,0" EndPoint="0.7,1">
-                                        <GradientStop Color="#16FFC53D" Offset="0"/>
-                                        <GradientStop Color="#0CFFFFFF" Offset="0.5"/>
-                                    </LinearGradientBrush>
+                                    <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
+                                    <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
                                 </Grid.Resources>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
@@ -1991,7 +1893,7 @@
                                 <Border Grid.ColumnSpan="2" Style="{StaticResource NoticeBar}">
                                     <StackPanel HorizontalAlignment="Center" MaxWidth="980">
                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,4">
-                                            <Border Width="18" Height="18" CornerRadius="9" Background="#FFE0A25E" Margin="0,0,8,0" VerticalAlignment="Center">
+                                            <Border Width="18" Height="18" CornerRadius="6" Background="#FFE0A25E" Margin="0,0,8,0" VerticalAlignment="Center">
                                                 <TextBlock Text="!" FontWeight="Bold" FontSize="12" Foreground="#FF1A1208" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                             </Border>
                                             <TextBlock x:Name="ttlPlanWarn" Text="PRIMA DI PROVARE" Style="{StaticResource CardTitle}" Foreground="#FFE0A25E" Margin="0" VerticalAlignment="Center"/>
@@ -2070,12 +1972,9 @@
 
                             <ScrollViewer x:Name="pageGpu" Grid.IsSharedSizeScope="True" Visibility="Collapsed" VerticalScrollBarVisibility="Auto" Padding="0,0,6,0">
                                 <ScrollViewer.Resources>
-                                    <SolidColorBrush x:Key="PA" Color="#FF52E3A1"/>
-                                    <SolidColorBrush x:Key="PASoft" Color="#2452E3A1"/>
-                                    <LinearGradientBrush x:Key="PACard" StartPoint="0,0" EndPoint="0.7,1">
-                                        <GradientStop Color="#1652E3A1" Offset="0"/>
-                                        <GradientStop Color="#0CFFFFFF" Offset="0.5"/>
-                                    </LinearGradientBrush>
+                                    <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
+                                    <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
                                 </ScrollViewer.Resources>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
@@ -2207,18 +2106,15 @@
                             </ScrollViewer>
                             <ScrollViewer x:Name="pageAdv" Grid.IsSharedSizeScope="True" Visibility="Collapsed" VerticalScrollBarVisibility="Auto" Padding="0,0,6,0">
                                 <ScrollViewer.Resources>
-                                    <SolidColorBrush x:Key="PA" Color="#FFF87171"/>
-                                    <SolidColorBrush x:Key="PASoft" Color="#24F87171"/>
-                                    <LinearGradientBrush x:Key="PACard" StartPoint="0,0" EndPoint="0.7,1">
-                                        <GradientStop Color="#16F87171" Offset="0"/>
-                                        <GradientStop Color="#0CFFFFFF" Offset="0.5"/>
-                                    </LinearGradientBrush>
+                                    <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
+                                    <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
                                 </ScrollViewer.Resources>
                                 <StackPanel>
                                 <Border Style="{StaticResource NoticeBar}">
                                     <StackPanel HorizontalAlignment="Center" MaxWidth="980">
                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,4">
-                                            <Border Width="18" Height="18" CornerRadius="9" Background="#FFE0A25E" Margin="0,0,8,0" VerticalAlignment="Center">
+                                            <Border Width="18" Height="18" CornerRadius="6" Background="#FFE0A25E" Margin="0,0,8,0" VerticalAlignment="Center">
                                                 <TextBlock Text="!" FontWeight="Bold" FontSize="12" Foreground="#FF1A1208" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                             </Border>
                                             <TextBlock x:Name="ttlAdvIntro" Text="PRIMA DI PROCEDERE" Style="{StaticResource CardTitle}" Foreground="#FFE0A25E" Margin="0" VerticalAlignment="Center"/>
@@ -2357,12 +2253,9 @@
                             </ScrollViewer>
                             <ScrollViewer x:Name="pageSched" Grid.IsSharedSizeScope="True" Visibility="Collapsed" VerticalScrollBarVisibility="Auto" Padding="0,0,6,0">
                                 <ScrollViewer.Resources>
-                                    <SolidColorBrush x:Key="PA" Color="#FFA3E635"/>
-                                    <SolidColorBrush x:Key="PASoft" Color="#24A3E635"/>
-                                    <LinearGradientBrush x:Key="PACard" StartPoint="0,0" EndPoint="0.7,1">
-                                        <GradientStop Color="#16A3E635" Offset="0"/>
-                                        <GradientStop Color="#0CFFFFFF" Offset="0.5"/>
-                                    </LinearGradientBrush>
+                                    <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
+                                    <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
                                 </ScrollViewer.Resources>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
@@ -2401,7 +2294,7 @@
                                                     <TextBox x:Name="txtPsCustom" Grid.Column="1" Height="34" Padding="10,0" Text="26" IsEnabled="False"/>
                                                 </Grid>
                                                 <Border Style="{StaticResource GlassInner}" Padding="12,9" Margin="0,0,0,14">
-                                                    <TextBlock x:Name="txtPsDecoded" Text="-" Foreground="#FFC4C4CC"
+                                                    <TextBlock x:Name="txtPsDecoded" Text="-" Foreground="#FFC5C9CF"
                                                                FontFamily="Consolas, Courier New" FontSize="11.5" TextWrapping="Wrap"/>
                                                 </Border>
                                                 <Grid>
@@ -2496,84 +2389,63 @@
 
                             <Grid x:Name="pagePriv2" Grid.IsSharedSizeScope="True" Visibility="Collapsed">
                                 <Grid.Resources>
-                                    <SolidColorBrush x:Key="PA" Color="#FFC084FC"/>
-                                    <SolidColorBrush x:Key="PASoft" Color="#24C084FC"/>
-                                    <LinearGradientBrush x:Key="PACard" StartPoint="0,0" EndPoint="0.7,1">
-                                        <GradientStop Color="#16C084FC" Offset="0"/>
-                                        <GradientStop Color="#0CFFFFFF" Offset="0.5"/>
-                                    </LinearGradientBrush>
+                                    <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
+                                    <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
                                 </Grid.Resources>
                                 <Grid x:Name="catPriv"/>
                             </Grid>
 
                             <Grid x:Name="pageExp" Grid.IsSharedSizeScope="True" Visibility="Collapsed">
                                 <Grid.Resources>
-                                    <SolidColorBrush x:Key="PA" Color="#FF2DD4BF"/>
-                                    <SolidColorBrush x:Key="PASoft" Color="#242DD4BF"/>
-                                    <LinearGradientBrush x:Key="PACard" StartPoint="0,0" EndPoint="0.7,1">
-                                        <GradientStop Color="#162DD4BF" Offset="0"/>
-                                        <GradientStop Color="#0CFFFFFF" Offset="0.5"/>
-                                    </LinearGradientBrush>
+                                    <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
+                                    <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
                                 </Grid.Resources>
                                 <Grid x:Name="catExp"/>
                             </Grid>
 
                             <Grid x:Name="pageTask" Grid.IsSharedSizeScope="True" Visibility="Collapsed">
                                 <Grid.Resources>
-                                    <SolidColorBrush x:Key="PA" Color="#FF60A5FA"/>
-                                    <SolidColorBrush x:Key="PASoft" Color="#2460A5FA"/>
-                                    <LinearGradientBrush x:Key="PACard" StartPoint="0,0" EndPoint="0.7,1">
-                                        <GradientStop Color="#1660A5FA" Offset="0"/>
-                                        <GradientStop Color="#0CFFFFFF" Offset="0.5"/>
-                                    </LinearGradientBrush>
+                                    <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
+                                    <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
                                 </Grid.Resources>
                                 <Grid x:Name="catTask"/>
                             </Grid>
 
                             <Grid x:Name="pageNotif" Grid.IsSharedSizeScope="True" Visibility="Collapsed">
                                 <Grid.Resources>
-                                    <SolidColorBrush x:Key="PA" Color="#FFFB7185"/>
-                                    <SolidColorBrush x:Key="PASoft" Color="#24FB7185"/>
-                                    <LinearGradientBrush x:Key="PACard" StartPoint="0,0" EndPoint="0.7,1">
-                                        <GradientStop Color="#16FB7185" Offset="0"/>
-                                        <GradientStop Color="#0CFFFFFF" Offset="0.5"/>
-                                    </LinearGradientBrush>
+                                    <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
+                                    <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
                                 </Grid.Resources>
                                 <Grid x:Name="catNotif"/>
                             </Grid>
 
                             <Grid x:Name="pageGame" Grid.IsSharedSizeScope="True" Visibility="Collapsed">
                                 <Grid.Resources>
-                                    <SolidColorBrush x:Key="PA" Color="#FFE879F9"/>
-                                    <SolidColorBrush x:Key="PASoft" Color="#24E879F9"/>
-                                    <LinearGradientBrush x:Key="PACard" StartPoint="0,0" EndPoint="0.7,1">
-                                        <GradientStop Color="#16E879F9" Offset="0"/>
-                                        <GradientStop Color="#0CFFFFFF" Offset="0.5"/>
-                                    </LinearGradientBrush>
+                                    <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
+                                    <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
                                 </Grid.Resources>
                                 <Grid x:Name="catGame"/>
                             </Grid>
 
                             <Grid x:Name="pageWin" Grid.IsSharedSizeScope="True" Visibility="Collapsed">
                                 <Grid.Resources>
-                                    <SolidColorBrush x:Key="PA" Color="#FF94A3B8"/>
-                                    <SolidColorBrush x:Key="PASoft" Color="#2494A3B8"/>
-                                    <LinearGradientBrush x:Key="PACard" StartPoint="0,0" EndPoint="0.7,1">
-                                        <GradientStop Color="#1694A3B8" Offset="0"/>
-                                        <GradientStop Color="#0CFFFFFF" Offset="0.5"/>
-                                    </LinearGradientBrush>
+                                    <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
+                                    <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
                                 </Grid.Resources>
                                 <Grid x:Name="catWin"/>
                             </Grid>
 
                             <Grid x:Name="pageTools" Grid.IsSharedSizeScope="True" Visibility="Collapsed">
                                 <Grid.Resources>
-                                    <SolidColorBrush x:Key="PA" Color="#FF2DD4BF"/>
-                                    <SolidColorBrush x:Key="PASoft" Color="#242DD4BF"/>
-                                    <LinearGradientBrush x:Key="PACard" StartPoint="0,0" EndPoint="0.7,1">
-                                        <GradientStop Color="#162DD4BF" Offset="0"/>
-                                        <GradientStop Color="#0CFFFFFF" Offset="0.5"/>
-                                    </LinearGradientBrush>
+                                    <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
+                                    <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
                                 </Grid.Resources>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
@@ -2588,7 +2460,7 @@
                                                 <ColumnDefinition Width="Auto"/>
                                             </Grid.ColumnDefinitions>
                                             <TextBlock x:Name="ttlToolJobs" Text="OPERAZIONI" Style="{StaticResource CardTitle}" Margin="0" VerticalAlignment="Center"/>
-                                            <TextBlock x:Name="txtToolJobsCount" Grid.Column="1" Foreground="{DynamicResource PA}" FontFamily="Roboto, Segoe UI"
+                                            <TextBlock x:Name="txtToolJobsCount" Grid.Column="1" Foreground="{DynamicResource PA}" FontFamily="Segoe UI Variable Text, Segoe UI"
                                                        FontSize="12" Margin="12,0,0,0" VerticalAlignment="Center"/>
                                             <Button x:Name="btnToolJobsClose" Grid.Column="2" Style="{StaticResource DotBtn}" Content="Chiudi" Visibility="Collapsed"/>
                                         </Grid>
@@ -2605,12 +2477,9 @@
 
                             <Grid x:Name="pageApps" Grid.IsSharedSizeScope="True" Visibility="Collapsed">
                                 <Grid.Resources>
-                                    <SolidColorBrush x:Key="PA" Color="#FFFDBA74"/>
-                                    <SolidColorBrush x:Key="PASoft" Color="#24FDBA74"/>
-                                    <LinearGradientBrush x:Key="PACard" StartPoint="0,0" EndPoint="0.7,1">
-                                        <GradientStop Color="#16FDBA74" Offset="0"/>
-                                        <GradientStop Color="#0CFFFFFF" Offset="0.5"/>
-                                    </LinearGradientBrush>
+                                    <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
+                                    <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
                                 </Grid.Resources>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
@@ -2623,7 +2492,7 @@
                                         <RadioButton x:Name="radAppsInstalled" GroupName="AppsView" Content="Installate" Margin="0,4,14,8"/>
                                         <Grid Margin="0,0,10,8">
                                             <TextBox x:Name="txtAppSearch" Width="220" Height="34" Padding="10,0" VerticalContentAlignment="Center"/>
-                                            <TextBlock x:Name="lblAppSearchHint" Text="Cerca..." Foreground="#FF6E6E78" IsHitTestVisible="False"
+                                            <TextBlock x:Name="lblAppSearchHint" Text="Cerca..." Foreground="#FF6C727A" IsHitTestVisible="False"
                                                        Margin="12,0,0,0" VerticalAlignment="Center"/>
                                         </Grid>
                                         <ComboBox x:Name="cmbAppCategory" Width="190" Margin="0,0,10,8" VerticalAlignment="Center"/>
@@ -2647,7 +2516,7 @@
                                                 <ColumnDefinition Width="Auto"/>
                                             </Grid.ColumnDefinitions>
                                             <TextBlock x:Name="ttlAppJobs" Text="OPERAZIONI" Style="{StaticResource CardTitle}" Margin="0" VerticalAlignment="Center"/>
-                                            <TextBlock x:Name="txtAppJobsCount" Grid.Column="1" Foreground="{DynamicResource PA}" FontFamily="Roboto, Segoe UI"
+                                            <TextBlock x:Name="txtAppJobsCount" Grid.Column="1" Foreground="{DynamicResource PA}" FontFamily="Segoe UI Variable Text, Segoe UI"
                                                        FontSize="12" Margin="12,0,0,0" VerticalAlignment="Center"/>
                                             <Button x:Name="btnAppJobsClose" Grid.Column="2" Style="{StaticResource DotBtn}" Content="Chiudi" Visibility="Collapsed"/>
                                         </Grid>
@@ -2685,10 +2554,10 @@
                                                 <ColumnDefinition Width="*"/>
                                                 <ColumnDefinition Width="Auto"/>
                                             </Grid.ColumnDefinitions>
-                                            <TextBlock x:Name="txtProgressLabel" Grid.Column="0" Text="Pronto." Foreground="#FFF2F2F5"
-                                                       FontFamily="Roboto, Segoe UI" FontSize="12.5" TextTrimming="CharacterEllipsis"/>
+                                            <TextBlock x:Name="txtProgressLabel" Grid.Column="0" Text="Pronto." Foreground="#FFEDEFF2"
+                                                       FontFamily="Segoe UI Variable Text, Segoe UI" FontSize="12.5" TextTrimming="CharacterEllipsis"/>
                                             <TextBlock x:Name="txtProgressCount" Grid.Column="1" Text="" Foreground="{DynamicResource PA}"
-                                                       FontFamily="Roboto, Segoe UI" FontSize="12.5" Margin="12,0,0,0"/>
+                                                       FontFamily="Segoe UI Variable Text, Segoe UI" FontSize="12.5" Margin="12,0,0,0"/>
                                         </Grid>
                                         <ProgressBar x:Name="prgTweaks" Height="5" Margin="0,7,0,0" Minimum="0" Maximum="1" Value="0"/>
                                     </StackPanel>

@@ -14,7 +14,7 @@ function Show-Dialog {
         [ValidateSet('ask','warn','danger')][string]$Kind = 'ask',
         [string]$Detail = ''
     )
-    $accent = switch ($Kind) { 'warn' { '#FFFFB86B' } 'danger' { '#FFF87171' } default { '#FF1E90FF' } }
+    $accent = switch ($Kind) { 'warn' { '#FFFFB86B' } 'danger' { '#FFF87171' } default { '#FF4C8DFF' } }
     $glyph  = if ($Kind -eq 'ask') { '?' } else { '!' }
 
     [xml]$dx = @'
@@ -23,7 +23,7 @@ function Show-Dialog {
         WindowStyle="None" AllowsTransparency="True" Background="Transparent"
         ShowInTaskbar="False" ResizeMode="NoResize" SizeToContent="WidthAndHeight"
         WindowStartupLocation="CenterOwner" TextOptions.TextFormattingMode="Ideal" UseLayoutRounding="True">
-    <Border Margin="24" CornerRadius="20" Background="#FF101014" BorderBrush="#FF26262C" BorderThickness="1"
+    <Border Margin="24" CornerRadius="20" Background="#FF101014" BorderBrush="#FF2C3036" BorderThickness="1"
             Padding="26,24,24,22" MinWidth="380" MaxWidth="480">
         <Border.Effect>
             <DropShadowEffect BlurRadius="36" ShadowDepth="6" Opacity="0.7" Color="#000000"/>
@@ -35,15 +35,15 @@ function Show-Dialog {
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Border x:Name="dIcon" Width="34" Height="34" CornerRadius="17" VerticalAlignment="Top" Margin="0,0,16,0">
-                    <TextBlock x:Name="dGlyph" FontFamily="Raleway, Segoe UI" FontWeight="Bold" FontSize="17"
+                    <TextBlock x:Name="dGlyph" FontFamily="Segoe UI Variable Display, Segoe UI" FontWeight="Bold" FontSize="17"
                                HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </Border>
                 <StackPanel Grid.Column="1">
-                    <TextBlock x:Name="dTitle" FontFamily="Raleway, Segoe UI Variable Display, Segoe UI" FontWeight="Bold"
-                               FontSize="16" Foreground="#FFF2F2F5" TextWrapping="Wrap" Margin="0,6,0,8"/>
-                    <TextBlock x:Name="dMsg" FontFamily="Roboto, Segoe UI" FontSize="13" Foreground="#FFB4B4BE"
+                    <TextBlock x:Name="dTitle" FontFamily="Segoe UI Variable Display, Segoe UI" FontWeight="Bold"
+                               FontSize="16" Foreground="#FFEDEFF2" TextWrapping="Wrap" Margin="0,6,0,8"/>
+                    <TextBlock x:Name="dMsg" FontFamily="Segoe UI Variable Text, Segoe UI" FontSize="13" Foreground="#FFB4B4BE"
                                TextWrapping="Wrap" LineHeight="20"/>
-                    <TextBlock x:Name="dDetail" FontFamily="Roboto, Segoe UI" FontSize="12" Margin="0,10,0,0"
+                    <TextBlock x:Name="dDetail" FontFamily="Segoe UI Variable Text, Segoe UI" FontSize="12" Margin="0,10,0,0"
                                TextWrapping="Wrap" Visibility="Collapsed"/>
                 </StackPanel>
             </Grid>
@@ -88,7 +88,7 @@ function Show-RunSummary {
     $text = (T 'doneSummary') -f $script:OkCount, $script:SkipCount, $script:WarnCount
     if ($script:OkCount -gt 0) { $text += "  " + (T 'doneReboot') }
     $txtProgressLabel.Text = $text
-    $color = if ($script:WarnCount -gt 0) { '#FFFFB86B' } else { '#FF2ED3A7' }
+    $color = if ($script:WarnCount -gt 0) { '#FFFFB86B' } else { '#FF3DBE8B' }
     $txtProgressLabel.Foreground = New-Object System.Windows.Media.SolidColorBrush ([System.Windows.Media.ColorConverter]::ConvertFromString($color))
 }
 

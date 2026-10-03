@@ -815,6 +815,7 @@ $script:Msg = @{
     emgRestorePoint    = @{ it = "Punto di ripristino prima del ripristino totale"; en = "Restore point before the full reset" }
     emgHeader          = @{ it = "Ripristino totale ai valori di Windows"; en = "Full reset to the Windows values" }
     emgDone            = @{ it = "Ripristino totale completato: riavvia il computer perché tutto torni come prima."; en = "Full reset done: restart the computer so everything is back as before." }
+    recAllDone         = @{ it = "Valori consigliati pronti: {0} da attivare, {1} da lasciare o riportare come Windows. Premi «Applica modifiche»."; en = "Recommended values ready: {0} to enable, {1} to keep or put back as Windows. Press «Apply changes»." }
 }
 
 $script:LangCode = "it"
@@ -1215,24 +1216,24 @@ function Show-StorageInventory {
             $cd.Width = if ($w -eq '*') { New-Object System.Windows.GridLength(1, [System.Windows.GridUnitType]::Star) } else { [System.Windows.GridLength]::Auto }
             $head.ColumnDefinitions.Add($cd)
         }
-        $pillColor = switch ($kind) { 'NVMe' { @('#FFA5B4FC', '#26818CF8') } 'SSD' { @('#FF7DD3FC', '#2638BDF8') } 'HDD' { @('#FFFCD34D', '#26F59E0B') } 'USB' { @('#FFC4C4CC', '#1FFFFFFF') } default { @('#FFC4C4CC', '#1FFFFFFF') } }
+        $pillColor = switch ($kind) { 'NVMe' { @('#FFA5B4FC', '#26818CF8') } 'SSD' { @('#FF7DD3FC', '#2638BDF8') } 'HDD' { @('#FFFCD34D', '#26F59E0B') } 'USB' { @('#FFC5C9CF', '#1FFFFFFF') } default { @('#FFC5C9CF', '#1FFFFFFF') } }
         $pills = New-Object System.Windows.Controls.StackPanel; $pills.Orientation = 'Horizontal'
         [void]$pills.Children.Add((New-DiskPill $kind $pillColor[0] $pillColor[1]))
-        if ($isSys) { [void]$pills.Children.Add((New-DiskPill (T 'diskSystem') '#FF2ED3A7' '#262ED3A7')) }
+        if ($isSys) { [void]$pills.Children.Add((New-DiskPill (T 'diskSystem') '#FF3DBE8B' '#263DBE8B')) }
         [void]$head.Children.Add($pills)
 
         $name = New-Object System.Windows.Controls.TextBlock
         $name.Text = [string]$d.FriendlyName; $name.FontWeight = 'SemiBold'; $name.FontSize = 13
-        $name.Foreground = New-DiskBrush '#FFF2F2F5'; $name.VerticalAlignment = 'Center'; $name.TextTrimming = 'CharacterEllipsis'
+        $name.Foreground = New-DiskBrush '#FFEDEFF2'; $name.VerticalAlignment = 'Center'; $name.TextTrimming = 'CharacterEllipsis'
         [System.Windows.Controls.Grid]::SetColumn($name, 1); [void]$head.Children.Add($name)
 
         $right = New-Object System.Windows.Controls.StackPanel; $right.Orientation = 'Horizontal'; $right.VerticalAlignment = 'Center'
         $healthy = ($d.HealthStatus -eq 'Healthy')
         $dot = New-Object System.Windows.Shapes.Ellipse; $dot.Width = 7; $dot.Height = 7; $dot.Margin = '10,0,6,0'; $dot.VerticalAlignment = 'Center'
-        $dot.Fill = New-DiskBrush $(if ($healthy) { '#FF2ED3A7' } else { '#FFFFB86B' })
+        $dot.Fill = New-DiskBrush $(if ($healthy) { '#FF3DBE8B' } else { '#FFFFB86B' })
         $dot.ToolTip = if ($healthy) { T 'diskHealthy' } else { T 'diskWarning' }
         $size = New-Object System.Windows.Controls.TextBlock
-        $size.Text = Format-DiskSize ([double]$d.Size); $size.Foreground = New-DiskBrush '#FFA1A1AA'; $size.FontSize = 12
+        $size.Text = Format-DiskSize ([double]$d.Size); $size.Foreground = New-DiskBrush '#FF9DA3AB'; $size.FontSize = 12
         [void]$right.Children.Add($size); [void]$right.Children.Add($dot)
         [System.Windows.Controls.Grid]::SetColumn($right, 2); [void]$head.Children.Add($right)
         [void]$sp.Children.Add($head)
@@ -1257,7 +1258,7 @@ function Show-StorageInventory {
             [System.Windows.Controls.Grid]::SetColumn($bar, 1); [void]$row.Children.Add($bar)
             $free = New-Object System.Windows.Controls.TextBlock
             $free.Text = (T 'volFree') -f (Format-DiskSize ([double]$v.SizeRemaining)), (Format-DiskSize ([double]$v.Size))
-            $free.Foreground = New-DiskBrush '#FFA1A1AA'; $free.FontSize = 11.5; $free.Margin = '12,0,0,0'; $free.VerticalAlignment = 'Center'
+            $free.Foreground = New-DiskBrush '#FF9DA3AB'; $free.FontSize = 11.5; $free.Margin = '12,0,0,0'; $free.VerticalAlignment = 'Center'
             [System.Windows.Controls.Grid]::SetColumn($free, 2); [void]$row.Children.Add($free)
             if ($v.FileSystemLabel) { $row.ToolTip = [string]$v.FileSystemLabel }
             [void]$sp.Children.Add($row)
@@ -1502,10 +1503,40 @@ $script:SelectableCheckBoxes = @(
 $script:SectionPicks = New-Object System.Collections.ArrayList
 $script:SectionSync = $false
 
+# Valore consigliato di una casella: acceso, spento, o nessuno (interruttori di
+# ambito, voci del produttore sbagliato). Lo decide Update-RecStars.
+function Get-RecTarget($cb) {
+    if (-not $cb.IsEnabled) { return $null }
+    switch ([System.Windows.Automation.AutomationProperties]::GetItemStatus($cb)) {
+        'rec'    { return $true }
+        'recoff' { return $false }
+        default  { return $null }
+    }
+}
+
+# «Seleziona tutto», «Questa pagina» e «Tutta la sezione» portano ogni voce al
+# suo valore consigliato: accese quelle consigliate, spente le altre.
+function Set-RecommendedValues([array]$boxes) {
+    $on = 0; $off = 0
+    $script:Syncing = $true; $script:SectionSync = $true
+    try {
+        foreach ($cb in $boxes) {
+            $want = Get-RecTarget $cb
+            if ($null -eq $want) { continue }
+            $cb.IsChecked = $want
+            if ($want) { $on++ } else { $off++ }
+        }
+    } finally { $script:Syncing = $false; $script:SectionSync = $false }
+    if ($script:SectionPicks) { foreach ($s in $script:SectionPicks) { Update-SectionPick $s } }
+    Update-ApplyButton
+    return @{ On = $on; Off = $off }
+}
+
+# La casella della sezione e' spuntata quando tutte le voci sono sul consiglio.
 function Update-SectionPick($sp) {
-    $on = @($sp.Items | Where-Object { $_.IsEnabled })
+    $rec = @($sp.Items | Where-Object { $null -ne (Get-RecTarget $_) })
     $script:SectionSync = $true
-    $sp.Box.IsChecked = ($on.Count -gt 0) -and (@($on | Where-Object { $_.IsChecked -ne $true }).Count -eq 0)
+    $sp.Box.IsChecked = ($rec.Count -gt 0) -and (@($rec | Where-Object { ($_.IsChecked -eq $true) -ne (Get-RecTarget $_) }).Count -eq 0)
     $script:SectionSync = $false
 }
 
@@ -1540,12 +1571,16 @@ function Add-SectionPicks {
                         $mine = $null
                         foreach ($s in $script:SectionPicks) { if ($s.Box -eq $this) { $mine = $s } }
                         if ($null -eq $mine) { return }
-                        $want = ($this.IsChecked -eq $true)
-                        $script:SectionSync = $true
-                        foreach ($cb in $mine.Items) { if ($cb.IsEnabled) { $cb.IsChecked = $want } }
-                        $script:SectionSync = $false
-                        Update-SectionPick $mine
-                        Update-ApplyButton
+                        if ($this.IsChecked -eq $true) {
+                            [void](Set-RecommendedValues $mine.Items)
+                        } else {
+                            # Tolta la spunta: la sezione torna allo stato del sistema.
+                            $script:Syncing = $true; $script:SectionSync = $true
+                            try { foreach ($cb in $mine.Items) { if ($cb.IsEnabled) { $cb.IsChecked = ($script:Baseline[[string]$cb.Name] -eq $true) } } }
+                            finally { $script:Syncing = $false; $script:SectionSync = $false }
+                            Update-SectionPick $mine
+                            Update-ApplyButton
+                        }
                     })
                     foreach ($cb in $items) {
                         $cb.Add_Checked({ if (-not $script:SectionSync) { foreach ($s in $script:SectionPicks) { if ($s.Items -contains $this) { Update-SectionPick $s } } } })
@@ -1588,7 +1623,7 @@ function Update-ApplyButton {
     if ($null -ne $btnUndo) { $btnUndo.IsEnabled = ($total -gt 0) }
     if ($null -ne $txtSelectedCount) {
         $txtSelectedCount.Text = "$total"
-        if ($total -gt 0) { $txtSelectedCount.Foreground = "#FF2ED3A7" } else { $txtSelectedCount.Foreground = "#FF5E5E68" }
+        if ($total -gt 0) { $txtSelectedCount.Foreground = "#FF3DBE8B" } else { $txtSelectedCount.Foreground = "#FF5D636B" }
     }
 }
 
@@ -1680,18 +1715,15 @@ function Confirm-LaptopSelection([array]$list) {
 }
 
 $btnSelectAll.Add_Click({
-    $found = @(Get-SelectableChecks)
-    if (-not (Confirm-LaptopSelection $found)) { return }
-    foreach ($cb in $found) { $cb.IsChecked = $true }
-    Update-ApplyButton
+    $r = Set-RecommendedValues @($script:AllCheckBoxes)
+    $txtProgressLabel.Text = (T 'recAllDone') -f $r.On, $r.Off
 })
 
 $btnSelectPage.Add_Click({
-    $found = @(Get-SelectableChecks -CurrentPageOnly)
-    if (-not (Confirm-LaptopSelection $found)) { return }
-    foreach ($cb in $found) { $cb.IsChecked = $true }
-    if ($found.Count -eq 0) { $txtProgressLabel.Text = T 'selPageNone' }
-    Update-ApplyButton
+    $page = Get-CurrentPage
+    $boxes = if ($page) { @(Get-CheckBoxesFromTree $page) } else { @() }
+    $r = Set-RecommendedValues $boxes
+    $txtProgressLabel.Text = if (($r.On + $r.Off) -eq 0) { T 'selPageNone' } else { (T 'recAllDone') -f $r.On, $r.Off }
 })
 
 $btnRecommended.Add_Click({
