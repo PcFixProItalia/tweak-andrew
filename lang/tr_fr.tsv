@@ -449,7 +449,7 @@ L:btnMmDefault	Par défaut
 L:btnMmApply	Enregistrer
 L:chkAmdUlps	Performances maximales — ULPS désactivé
 L:ttlShutdownMenu	MENU MARCHE/ARRÊT
-L:lblShutdownHint	Effet immédiat, sans Appliquer. Les réglages du mode d'alimentation ne sont pas touchés.
+L:lblShutdownHint	Affichent ou masquent les éléments du menu Arrêter. Ils s'appliquent avec « Appliquer les modifications » ; le mode d'alimentation ne change pas.
 L:chkMenuSleep	Mettre en veille dans le menu Marche/Arrêt
 L:chkMenuHibernate	Mettre en veille prolongée dans le menu Marche/Arrêt
 M:dlgYes	Oui, continuer

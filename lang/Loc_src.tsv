@@ -285,7 +285,7 @@ btnMmDefault	Defaults
 btnMmApply	Save
 chkAmdUlps	Maximum performance — ULPS off
 ttlShutdownMenu	POWER MENU
-lblShutdownHint	Take effect immediately, without Apply. The power plan settings are not touched.
+lblShutdownHint	Show or hide the items in the power menu. They apply with «Apply changes»; the power plan does not change.
 chkMenuSleep	Sleep in the power menu
 chkMenuHibernate	Hibernate in the power menu
 tabPriv2	Advanced privacy

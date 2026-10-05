@@ -541,6 +541,15 @@ function Build-Actions {
         Set-Reg 'HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip6\Parameters' 'DisabledComponents' 255 'DWord' 'IPv6'
     }
 
+    # Menu Arresta: l'interruttore dice se la voce compare. Spenta non vuol dire
+    # «come Windows» (Sospendi di serie c'e'), quindi si scrive la scelta com'e'.
+    if (Test-Pending $chkMenuSleep) {
+        Add-Action ([string]$chkMenuSleep.Content) ([scriptblock]::Create("Set-ShutdownMenuItem 'ShowSleepOption' `$$($chkMenuSleep.IsChecked -eq $true) 'Sospendi nel menu Arresta'"))
+    }
+    if (Test-Pending $chkMenuHibernate) {
+        Add-Action ([string]$chkMenuHibernate.Content) ([scriptblock]::Create("Set-MenuHibernate `$$($chkMenuHibernate.IsChecked -eq $true)"))
+    }
+
     if ($chkApplyNetwork.IsChecked -eq $true -and $radTcpCurrent.IsChecked -ne $true) {
         Add-Action "TCP / IP" {
             $tcpParams = "HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters"

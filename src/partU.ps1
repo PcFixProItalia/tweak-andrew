@@ -95,10 +95,12 @@ function Reset-Bcd {
 #   all    - tutte, per il ripristino totale (solo quelle adatte a questo PC)
 $script:UndoMode = 'checked'
 $script:UndoPageBoxes = @()
+# Voci che «Applica» scrive in tutti e due i versi: il giro di ripristino le salta.
+$script:SelfApplied = @('chkMenuSleep', 'chkMenuHibernate')
 function Test-UndoWanted($Box) {
     if ($null -eq $Box) { return $false }
     switch ($script:UndoMode) {
-        'revert' { return ($Box.IsChecked -ne $true) -and ($script:Baseline[[string]$Box.Name] -eq $true) }
+        'revert' { return ($Box.IsChecked -ne $true) -and ($script:Baseline[[string]$Box.Name] -eq $true) -and ($script:SelfApplied -notcontains [string]$Box.Name) }
         'all'    { return (Test-CheckVendor $Box) }
         'page'   { return (Test-Pending $Box) }
         default  { return ($Box.IsChecked -eq $true) }
@@ -132,6 +134,8 @@ function Build-UndoActions {
     $adv = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced'
     $mm  = 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management'
 
+    Add-UndoIfChecked $chkMenuSleep { Set-ShutdownMenuItem 'ShowSleepOption' $true 'Sospendi nel menu Arresta' }
+    Add-UndoIfChecked $chkMenuHibernate { Set-ShutdownMenuItem 'ShowHibernateOption' $false 'Iberna nel menu Arresta' }
     Add-NoUndo $chkRestorePoint 'un punto di ripristino non si annulla: si elimina da Protezione sistema.'
 
     # ---------- PRESTAZIONI ----------

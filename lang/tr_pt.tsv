@@ -446,7 +446,7 @@ L:btnMmDefault	Padrões
 L:btnMmApply	Salvar
 L:chkAmdUlps	Desempenho máximo — ULPS desligado
 L:ttlShutdownMenu	MENU DE ENERGIA
-L:lblShutdownHint	Valem na hora, sem Aplicar. As configurações do plano de energia não são alteradas.
+L:lblShutdownHint	Mostram ou ocultam os itens do menu Desligar. Aplicam-se com «Aplicar alterações»; o plano de energia não muda.
 L:chkMenuSleep	Suspender no menu de energia
 L:chkMenuHibernate	Hibernar no menu de energia
 M:dlgYes	Sim, continuar

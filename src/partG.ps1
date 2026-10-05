@@ -95,24 +95,26 @@ function Show-RunSummary {
 # ------------------------------------------------------------------------------
 # 24. MENU ARRESTA: SOSPENDI E IBERNA
 # ------------------------------------------------------------------------------
-# Interruttori a effetto immediato, fuori dalla coda di «Applica»: leggono lo
-# stato attuale all'avvio e lo cambiano appena li tocchi. La presenza delle due
-# voci nel menu Arresta e' un'impostazione di sistema, non del piano energetico:
-# timeout e valori del piano attivo restano come sono.
+# Voci della coda di «Applica» come le altre: l'interruttore mostra se la voce
+# compare nel menu, e «Applica» scrive la scelta. La presenza delle due voci e'
+# un'impostazione di sistema, non del piano energetico: timeout e valori del
+# piano attivo restano come sono.
 $script:FlyoutKey = 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FlyoutMenuSettings'
 $script:FlyoutPolicy = 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\Explorer'
 $chkMenuSleep = E 'chkMenuSleep'; $chkMenuHibernate = E 'chkMenuHibernate'
 $script:LiveLoading = $false
 
-function Read-ShutdownMenu {
-    $script:LiveLoading = $true
+# Stato attuale delle due voci. Senza valore, Windows mostra Sospendi e nasconde Iberna.
+function Get-ShutdownMenuState {
     $s = Get-RegOrNull $script:FlyoutKey 'ShowSleepOption'
     $h = Get-RegOrNull $script:FlyoutKey 'ShowHibernateOption'
     $hibOn = (Get-RegOrNull 'HKLM:\SYSTEM\CurrentControlSet\Control\Power' 'HibernateEnabled') -eq 1
-    # Senza valore, Windows mostra Sospendi e nasconde Iberna.
-    $chkMenuSleep.IsChecked = ($null -eq $s -or $s -ne 0)
-    $chkMenuHibernate.IsChecked = ($h -eq 1 -and $hibOn)
-    $script:LiveLoading = $false
+    return @{ Sleep = ($null -eq $s -or $s -ne 0); Hibernate = ($h -eq 1 -and $hibOn) }
+}
+function Read-ShutdownMenu {
+    $st = Get-ShutdownMenuState
+    $chkMenuSleep.IsChecked = $st.Sleep
+    $chkMenuHibernate.IsChecked = $st.Hibernate
 }
 
 function Set-ShutdownMenuItem {
@@ -122,20 +124,14 @@ function Set-ShutdownMenuItem {
     if ($null -ne (Get-RegOrNull $script:FlyoutPolicy $Name)) { Remove-Reg $script:FlyoutPolicy $Name "$Label (criterio)" }
 }
 
-$chkMenuSleep.Add_Click({
-    if ($script:LiveLoading) { return }
-    Set-ShutdownMenuItem 'ShowSleepOption' ($chkMenuSleep.IsChecked -eq $true) 'Sospendi nel menu Arresta'
-})
-$chkMenuHibernate.Add_Click({
-    if ($script:LiveLoading) { return }
-    $show = ($chkMenuHibernate.IsChecked -eq $true)
-    if ($show -and (Get-RegOrNull 'HKLM:\SYSTEM\CurrentControlSet\Control\Power' 'HibernateEnabled') -ne 1) {
+function Set-MenuHibernate([bool]$Show) {
+    if ($Show -and (Get-RegOrNull 'HKLM:\SYSTEM\CurrentControlSet\Control\Power' 'HibernateEnabled') -ne 1) {
         # La voce compare solo se l'ibernazione esiste: si riattiva il file di ibernazione.
         powercfg /hibernate on | Out-Null
         Write-Log "[OK] Ibernazione riattivata: serve per mostrare la voce Iberna."
     }
-    Set-ShutdownMenuItem 'ShowHibernateOption' $show 'Iberna nel menu Arresta'
-})
+    Set-ShutdownMenuItem 'ShowHibernateOption' $Show 'Iberna nel menu Arresta'
+}
 
 # ------------------------------------------------------------------------------
 # 25. PRIORITA' DEL PROCESSORE (Win32PrioritySeparation)

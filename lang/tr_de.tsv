@@ -446,7 +446,7 @@ L:btnMmDefault	Standardwerte
 L:btnMmApply	Speichern
 L:chkAmdUlps	Maximale Leistung — ULPS aus
 L:ttlShutdownMenu	EIN/AUS-MENÜ
-L:lblShutdownHint	Gelten sofort, ohne Anwenden. Die Einstellungen des Energiesparplans bleiben unverändert.
+L:lblShutdownHint	Zeigen oder verbergen die Einträge im Ein/Aus-Menü. Sie gelten mit «Änderungen anwenden»; der Energiesparplan bleibt unverändert.
 L:chkMenuSleep	Energie sparen im Ein/Aus-Menü
 L:chkMenuHibernate	Ruhezustand im Ein/Aus-Menü
 M:dlgYes	Ja, fortfahren

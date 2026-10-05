@@ -446,7 +446,7 @@ L:btnMmDefault	Domyślne
 L:btnMmApply	Zapisz
 L:chkAmdUlps	Maksymalna wydajność — ULPS wyłączony
 L:ttlShutdownMenu	MENU ZASILANIA
-L:lblShutdownHint	Działają od razu, bez Zastosuj. Ustawienia planu zasilania pozostają bez zmian.
+L:lblShutdownHint	Pokazują lub ukrywają pozycje w menu zasilania. Działają po «Zastosuj zmiany»; plan zasilania się nie zmienia.
 L:chkMenuSleep	Uśpij w menu zasilania
 L:chkMenuHibernate	Hibernuj w menu zasilania
 M:dlgYes	Tak, kontynuuj

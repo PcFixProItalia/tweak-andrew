@@ -2260,8 +2260,8 @@
                                                 <TextBlock x:Name="ttlShutdownMenu" Text="MENU ARRESTA" Style="{StaticResource CardTitle}"/>
                                                 <TextBlock x:Name="lblShutdownHint" Style="{StaticResource SubTitle}" Margin="0,0,0,10"
                                                            Text="Valgono subito, senza Applica. Le impostazioni del piano energetico non vengono toccate."/>
-                                                <CheckBox x:Name="chkMenuSleep" Tag="live" Content="Sospendi nel menu Arresta"/>
-                                                <CheckBox x:Name="chkMenuHibernate" Tag="live" Content="Iberna nel menu Arresta"/>
+                                                <CheckBox x:Name="chkMenuSleep" Content="Sospendi nel menu Arresta"/>
+                                                <CheckBox x:Name="chkMenuHibernate" Content="Iberna nel menu Arresta"/>
                                             </StackPanel>
                                         </Border>
                                     </StackPanel>

@@ -446,7 +446,7 @@ L:btnMmDefault	Implicite
 L:btnMmApply	Salvează
 L:chkAmdUlps	Performanță maximă — ULPS oprit
 L:ttlShutdownMenu	MENIUL DE OPRIRE
-L:lblShutdownHint	Se aplică imediat, fără Aplică. Setările schemei de alimentare nu sunt atinse.
+L:lblShutdownHint	Afișează sau ascund elementele din meniul de oprire. Se aplică cu «Aplică modificările»; planul de alimentare nu se schimbă.
 L:chkMenuSleep	Repaus în meniul de oprire
 L:chkMenuHibernate	Hibernare în meniul de oprire
 M:dlgYes	Da, continuă

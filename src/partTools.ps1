@@ -898,6 +898,8 @@ function Get-ExplicitActive {
         chkHibernation = (-not (Test-Path -LiteralPath "$env:SystemDrive\hiberfil.sys"))
         chkClassicMenu = (Test-Path 'HKCU:\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32')
         chkWuProfile   = $null
+        chkMenuSleep     = (Get-ShutdownMenuState).Sleep
+        chkMenuHibernate = (Get-ShutdownMenuState).Hibernate
     }
 }
 
@@ -971,7 +973,7 @@ $script:NoRecChecks = @('chkRestorePoint', 'chkStorageProfile', 'chkWuProfile', 
                         # Personalizzazione (pagina Avanzate): gusti, non ottimizzazioni.
                         'chkTaskbarCenter', 'chkTaskbarSearch', 'chkTaskbarTaskView', 'chkTaskbarWidgets', 'chkTaskbarChat',
                         'chkTaskbarEndTask', 'chkBatteryPct', 'chkSettingsHome', 'chkWindowSnapping',
-                        'chkStartMorePins', 'chkStartHideRec', 'chkStartNoWeb', 'chkStartNoAccount')
+                        'chkStartMorePins', 'chkStartHideRec', 'chkStartNoWeb', 'chkStartNoAccount', 'chkMenuSleep', 'chkMenuHibernate')
 function Update-RecStars {
     $names = @($script:RecommendedChecks.Values | ForEach-Object { $_ })
     foreach ($cb in $script:AllCheckBoxes) {

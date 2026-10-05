@@ -2327,8 +2327,8 @@ $script:PlanData = @{
                                                 <TextBlock x:Name="ttlShutdownMenu" Text="MENU ARRESTA" Style="{StaticResource CardTitle}"/>
                                                 <TextBlock x:Name="lblShutdownHint" Style="{StaticResource SubTitle}" Margin="0,0,0,10"
                                                            Text="Valgono subito, senza Applica. Le impostazioni del piano energetico non vengono toccate."/>
-                                                <CheckBox x:Name="chkMenuSleep" Tag="live" Content="Sospendi nel menu Arresta"/>
-                                                <CheckBox x:Name="chkMenuHibernate" Tag="live" Content="Iberna nel menu Arresta"/>
+                                                <CheckBox x:Name="chkMenuSleep" Content="Sospendi nel menu Arresta"/>
+                                                <CheckBox x:Name="chkMenuHibernate" Content="Iberna nel menu Arresta"/>
                                             </StackPanel>
                                         </Border>
                                     </StackPanel>
@@ -3029,7 +3029,7 @@ $script:Loc = @{
     btnMmApply         = @{ it = "Salva"; en = "Save" }
     chkAmdUlps         = @{ it = "Prestazioni massime — ULPS spento"; en = "Maximum performance — ULPS off" }
     ttlShutdownMenu    = @{ it = "MENU ARRESTA"; en = "POWER MENU" }
-    lblShutdownHint    = @{ it = "Valgono subito, senza Applica. Le impostazioni del piano energetico non vengono toccate."; en = "Take effect immediately, without Apply. The power plan settings are not touched." }
+    lblShutdownHint    = @{ it = "Mostrano o nascondono le voci nel menu Arresta. Si applicano con «Applica modifiche»; il piano energetico non cambia."; en = "Show or hide the items in the power menu. They apply with «Apply changes»; the power plan does not change." }
     chkMenuSleep       = @{ it = "Sospendi nel menu Arresta"; en = "Sleep in the power menu" }
     chkMenuHibernate   = @{ it = "Iberna nel menu Arresta"; en = "Hibernate in the power menu" }
     tabPriv2           = @{ it = "Privacy avanzata"; en = "Advanced privacy" }
@@ -5072,7 +5072,7 @@ $script:Tr = @{
         'L:btnMmApply' = "Guardar"
         'L:chkAmdUlps' = "Máximo rendimiento — ULPS apagado"
         'L:ttlShutdownMenu' = "MENÚ DE APAGADO"
-        'L:lblShutdownHint' = "Se aplican al momento, sin Aplicar. No se toca la configuración del plan de energía."
+        'L:lblShutdownHint' = "Muestran u ocultan las opciones del menú de apagado. Se aplican con «Aplicar cambios»; el plan de energía no cambia."
         'L:chkMenuSleep' = "Suspender en el menú de apagado"
         'L:chkMenuHibernate' = "Hibernar en el menú de apagado"
         'M:dlgYes' = "Sí, continuar"
@@ -5985,7 +5985,7 @@ $script:Tr = @{
         'L:btnMmApply' = "Speichern"
         'L:chkAmdUlps' = "Maximale Leistung — ULPS aus"
         'L:ttlShutdownMenu' = "EIN/AUS-MENÜ"
-        'L:lblShutdownHint' = "Gelten sofort, ohne Anwenden. Die Einstellungen des Energiesparplans bleiben unverändert."
+        'L:lblShutdownHint' = "Zeigen oder verbergen die Einträge im Ein/Aus-Menü. Sie gelten mit «Änderungen anwenden»; der Energiesparplan bleibt unverändert."
         'L:chkMenuSleep' = "Energie sparen im Ein/Aus-Menü"
         'L:chkMenuHibernate' = "Ruhezustand im Ein/Aus-Menü"
         'M:dlgYes' = "Ja, fortfahren"
@@ -6901,7 +6901,7 @@ $script:Tr = @{
         'L:btnMmApply' = "Enregistrer"
         'L:chkAmdUlps' = "Performances maximales — ULPS désactivé"
         'L:ttlShutdownMenu' = "MENU MARCHE/ARRÊT"
-        'L:lblShutdownHint' = "Effet immédiat, sans Appliquer. Les réglages du mode d'alimentation ne sont pas touchés."
+        'L:lblShutdownHint' = "Affichent ou masquent les éléments du menu Arrêter. Ils s'appliquent avec « Appliquer les modifications » ; le mode d'alimentation ne change pas."
         'L:chkMenuSleep' = "Mettre en veille dans le menu Marche/Arrêt"
         'L:chkMenuHibernate' = "Mettre en veille prolongée dans le menu Marche/Arrêt"
         'M:dlgYes' = "Oui, continuer"
@@ -7814,7 +7814,7 @@ $script:Tr = @{
         'L:btnMmApply' = "Zapisz"
         'L:chkAmdUlps' = "Maksymalna wydajność — ULPS wyłączony"
         'L:ttlShutdownMenu' = "MENU ZASILANIA"
-        'L:lblShutdownHint' = "Działają od razu, bez Zastosuj. Ustawienia planu zasilania pozostają bez zmian."
+        'L:lblShutdownHint' = "Pokazują lub ukrywają pozycje w menu zasilania. Działają po «Zastosuj zmiany»; plan zasilania się nie zmienia."
         'L:chkMenuSleep' = "Uśpij w menu zasilania"
         'L:chkMenuHibernate' = "Hibernuj w menu zasilania"
         'M:dlgYes' = "Tak, kontynuuj"
@@ -8727,7 +8727,7 @@ $script:Tr = @{
         'L:btnMmApply' = "Salvar"
         'L:chkAmdUlps' = "Desempenho máximo — ULPS desligado"
         'L:ttlShutdownMenu' = "MENU DE ENERGIA"
-        'L:lblShutdownHint' = "Valem na hora, sem Aplicar. As configurações do plano de energia não são alteradas."
+        'L:lblShutdownHint' = "Mostram ou ocultam os itens do menu Desligar. Aplicam-se com «Aplicar alterações»; o plano de energia não muda."
         'L:chkMenuSleep' = "Suspender no menu de energia"
         'L:chkMenuHibernate' = "Hibernar no menu de energia"
         'M:dlgYes' = "Sim, continuar"
@@ -9640,7 +9640,7 @@ $script:Tr = @{
         'L:btnMmApply' = "Salvează"
         'L:chkAmdUlps' = "Performanță maximă — ULPS oprit"
         'L:ttlShutdownMenu' = "MENIUL DE OPRIRE"
-        'L:lblShutdownHint' = "Se aplică imediat, fără Aplică. Setările schemei de alimentare nu sunt atinse."
+        'L:lblShutdownHint' = "Afișează sau ascund elementele din meniul de oprire. Se aplică cu «Aplică modificările»; planul de alimentare nu se schimbă."
         'L:chkMenuSleep' = "Repaus în meniul de oprire"
         'L:chkMenuHibernate' = "Hibernare în meniul de oprire"
         'M:dlgYes' = "Da, continuă"
@@ -10553,7 +10553,7 @@ $script:Tr = @{
         'L:btnMmApply' = "Сохранить"
         'L:chkAmdUlps' = "Максимальная производительность — ULPS выключен"
         'L:ttlShutdownMenu' = "МЕНЮ ЗАВЕРШЕНИЯ РАБОТЫ"
-        'L:lblShutdownHint' = "Действуют сразу, без «Применить». Настройки схемы электропитания не меняются."
+        'L:lblShutdownHint' = "Показывают или скрывают пункты меню завершения работы. Применяются кнопкой «Применить изменения»; схема питания не меняется."
         'L:chkMenuSleep' = "«Спящий режим» в меню завершения работы"
         'L:chkMenuHibernate' = "«Гибернация» в меню завершения работы"
         'M:dlgYes' = "Да, продолжить"
@@ -12937,6 +12937,15 @@ function Build-Actions {
         Set-Reg 'HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip6\Parameters' 'DisabledComponents' 255 'DWord' 'IPv6'
     }
 
+    # Menu Arresta: l'interruttore dice se la voce compare. Spenta non vuol dire
+    # «come Windows» (Sospendi di serie c'e'), quindi si scrive la scelta com'e'.
+    if (Test-Pending $chkMenuSleep) {
+        Add-Action ([string]$chkMenuSleep.Content) ([scriptblock]::Create("Set-ShutdownMenuItem 'ShowSleepOption' `$$($chkMenuSleep.IsChecked -eq $true) 'Sospendi nel menu Arresta'"))
+    }
+    if (Test-Pending $chkMenuHibernate) {
+        Add-Action ([string]$chkMenuHibernate.Content) ([scriptblock]::Create("Set-MenuHibernate `$$($chkMenuHibernate.IsChecked -eq $true)"))
+    }
+
     if ($chkApplyNetwork.IsChecked -eq $true -and $radTcpCurrent.IsChecked -ne $true) {
         Add-Action "TCP / IP" {
             $tcpParams = "HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters"
@@ -13655,10 +13664,12 @@ function Reset-Bcd {
 #   all    - tutte, per il ripristino totale (solo quelle adatte a questo PC)
 $script:UndoMode = 'checked'
 $script:UndoPageBoxes = @()
+# Voci che «Applica» scrive in tutti e due i versi: il giro di ripristino le salta.
+$script:SelfApplied = @('chkMenuSleep', 'chkMenuHibernate')
 function Test-UndoWanted($Box) {
     if ($null -eq $Box) { return $false }
     switch ($script:UndoMode) {
-        'revert' { return ($Box.IsChecked -ne $true) -and ($script:Baseline[[string]$Box.Name] -eq $true) }
+        'revert' { return ($Box.IsChecked -ne $true) -and ($script:Baseline[[string]$Box.Name] -eq $true) -and ($script:SelfApplied -notcontains [string]$Box.Name) }
         'all'    { return (Test-CheckVendor $Box) }
         'page'   { return (Test-Pending $Box) }
         default  { return ($Box.IsChecked -eq $true) }
@@ -13692,6 +13703,8 @@ function Build-UndoActions {
     $adv = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced'
     $mm  = 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management'
 
+    Add-UndoIfChecked $chkMenuSleep { Set-ShutdownMenuItem 'ShowSleepOption' $true 'Sospendi nel menu Arresta' }
+    Add-UndoIfChecked $chkMenuHibernate { Set-ShutdownMenuItem 'ShowHibernateOption' $false 'Iberna nel menu Arresta' }
     Add-NoUndo $chkRestorePoint 'un punto di ripristino non si annulla: si elimina da Protezione sistema.'
 
     # ---------- PRESTAZIONI ----------
@@ -15382,24 +15395,26 @@ function Show-RunSummary {
 # ------------------------------------------------------------------------------
 # 24. MENU ARRESTA: SOSPENDI E IBERNA
 # ------------------------------------------------------------------------------
-# Interruttori a effetto immediato, fuori dalla coda di «Applica»: leggono lo
-# stato attuale all'avvio e lo cambiano appena li tocchi. La presenza delle due
-# voci nel menu Arresta e' un'impostazione di sistema, non del piano energetico:
-# timeout e valori del piano attivo restano come sono.
+# Voci della coda di «Applica» come le altre: l'interruttore mostra se la voce
+# compare nel menu, e «Applica» scrive la scelta. La presenza delle due voci e'
+# un'impostazione di sistema, non del piano energetico: timeout e valori del
+# piano attivo restano come sono.
 $script:FlyoutKey = 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FlyoutMenuSettings'
 $script:FlyoutPolicy = 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\Explorer'
 $chkMenuSleep = E 'chkMenuSleep'; $chkMenuHibernate = E 'chkMenuHibernate'
 $script:LiveLoading = $false
 
-function Read-ShutdownMenu {
-    $script:LiveLoading = $true
+# Stato attuale delle due voci. Senza valore, Windows mostra Sospendi e nasconde Iberna.
+function Get-ShutdownMenuState {
     $s = Get-RegOrNull $script:FlyoutKey 'ShowSleepOption'
     $h = Get-RegOrNull $script:FlyoutKey 'ShowHibernateOption'
     $hibOn = (Get-RegOrNull 'HKLM:\SYSTEM\CurrentControlSet\Control\Power' 'HibernateEnabled') -eq 1
-    # Senza valore, Windows mostra Sospendi e nasconde Iberna.
-    $chkMenuSleep.IsChecked = ($null -eq $s -or $s -ne 0)
-    $chkMenuHibernate.IsChecked = ($h -eq 1 -and $hibOn)
-    $script:LiveLoading = $false
+    return @{ Sleep = ($null -eq $s -or $s -ne 0); Hibernate = ($h -eq 1 -and $hibOn) }
+}
+function Read-ShutdownMenu {
+    $st = Get-ShutdownMenuState
+    $chkMenuSleep.IsChecked = $st.Sleep
+    $chkMenuHibernate.IsChecked = $st.Hibernate
 }
 
 function Set-ShutdownMenuItem {
@@ -15409,20 +15424,14 @@ function Set-ShutdownMenuItem {
     if ($null -ne (Get-RegOrNull $script:FlyoutPolicy $Name)) { Remove-Reg $script:FlyoutPolicy $Name "$Label (criterio)" }
 }
 
-$chkMenuSleep.Add_Click({
-    if ($script:LiveLoading) { return }
-    Set-ShutdownMenuItem 'ShowSleepOption' ($chkMenuSleep.IsChecked -eq $true) 'Sospendi nel menu Arresta'
-})
-$chkMenuHibernate.Add_Click({
-    if ($script:LiveLoading) { return }
-    $show = ($chkMenuHibernate.IsChecked -eq $true)
-    if ($show -and (Get-RegOrNull 'HKLM:\SYSTEM\CurrentControlSet\Control\Power' 'HibernateEnabled') -ne 1) {
+function Set-MenuHibernate([bool]$Show) {
+    if ($Show -and (Get-RegOrNull 'HKLM:\SYSTEM\CurrentControlSet\Control\Power' 'HibernateEnabled') -ne 1) {
         # La voce compare solo se l'ibernazione esiste: si riattiva il file di ibernazione.
         powercfg /hibernate on | Out-Null
         Write-Log "[OK] Ibernazione riattivata: serve per mostrare la voce Iberna."
     }
-    Set-ShutdownMenuItem 'ShowHibernateOption' $show 'Iberna nel menu Arresta'
-})
+    Set-ShutdownMenuItem 'ShowHibernateOption' $Show 'Iberna nel menu Arresta'
+}
 
 # ------------------------------------------------------------------------------
 # 25. PRIORITA' DEL PROCESSORE (Win32PrioritySeparation)
@@ -18599,6 +18608,8 @@ function Get-ExplicitActive {
         chkHibernation = (-not (Test-Path -LiteralPath "$env:SystemDrive\hiberfil.sys"))
         chkClassicMenu = (Test-Path 'HKCU:\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32')
         chkWuProfile   = $null
+        chkMenuSleep     = (Get-ShutdownMenuState).Sleep
+        chkMenuHibernate = (Get-ShutdownMenuState).Hibernate
     }
 }
 
@@ -18672,7 +18683,7 @@ $script:NoRecChecks = @('chkRestorePoint', 'chkStorageProfile', 'chkWuProfile', 
                         # Personalizzazione (pagina Avanzate): gusti, non ottimizzazioni.
                         'chkTaskbarCenter', 'chkTaskbarSearch', 'chkTaskbarTaskView', 'chkTaskbarWidgets', 'chkTaskbarChat',
                         'chkTaskbarEndTask', 'chkBatteryPct', 'chkSettingsHome', 'chkWindowSnapping',
-                        'chkStartMorePins', 'chkStartHideRec', 'chkStartNoWeb', 'chkStartNoAccount')
+                        'chkStartMorePins', 'chkStartHideRec', 'chkStartNoWeb', 'chkStartNoAccount', 'chkMenuSleep', 'chkMenuHibernate')
 function Update-RecStars {
     $names = @($script:RecommendedChecks.Values | ForEach-Object { $_ })
     foreach ($cb in $script:AllCheckBoxes) {

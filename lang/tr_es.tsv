@@ -446,7 +446,7 @@ L:btnMmDefault	Predeterminados
 L:btnMmApply	Guardar
 L:chkAmdUlps	Máximo rendimiento — ULPS apagado
 L:ttlShutdownMenu	MENÚ DE APAGADO
-L:lblShutdownHint	Se aplican al momento, sin Aplicar. No se toca la configuración del plan de energía.
+L:lblShutdownHint	Muestran u ocultan las opciones del menú de apagado. Se aplican con «Aplicar cambios»; el plan de energía no cambia.
 L:chkMenuSleep	Suspender en el menú de apagado
 L:chkMenuHibernate	Hibernar en el menú de apagado
 M:dlgYes	Sí, continuar

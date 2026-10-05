@@ -351,7 +351,7 @@ $script:Loc = @{
     btnMmApply         = @{ it = "Salva"; en = "Save" }
     chkAmdUlps         = @{ it = "Prestazioni massime — ULPS spento"; en = "Maximum performance — ULPS off" }
     ttlShutdownMenu    = @{ it = "MENU ARRESTA"; en = "POWER MENU" }
-    lblShutdownHint    = @{ it = "Valgono subito, senza Applica. Le impostazioni del piano energetico non vengono toccate."; en = "Take effect immediately, without Apply. The power plan settings are not touched." }
+    lblShutdownHint    = @{ it = "Mostrano o nascondono le voci nel menu Arresta. Si applicano con «Applica modifiche»; il piano energetico non cambia."; en = "Show or hide the items in the power menu. They apply with «Apply changes»; the power plan does not change." }
     chkMenuSleep       = @{ it = "Sospendi nel menu Arresta"; en = "Sleep in the power menu" }
     chkMenuHibernate   = @{ it = "Iberna nel menu Arresta"; en = "Hibernate in the power menu" }
     tabPriv2           = @{ it = "Privacy avanzata"; en = "Advanced privacy" }
