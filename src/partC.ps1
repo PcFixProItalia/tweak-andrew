@@ -1403,19 +1403,20 @@ function Show-CurrentTcpSettings {
     }).Count -eq $interfaces.Count)
     if ($nagleOff) { Select-TcpValue $cmbNagle 'disabled: 1' } else { Select-TcpValue $cmbNagle 'enabled: 0' }
 
-    $spPath = 'HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\ServiceProvider'
-    $hostOptimal = (Get-RegOrNull $spPath 'LocalPriority') -eq 4 -and (Get-RegOrNull $spPath 'HostPriority') -eq 5 -and
+    $spPath = 'HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\ServiceProvider'
+    $hostOptimal = (Get-RegOrNull $spPath 'LocalPriority') -eq 4 -and (Get-RegOrNull $spPath 'HostsPriority') -eq 5 -and
                    (Get-RegOrNull $spPath 'DnsPriority') -eq 6 -and (Get-RegOrNull $spPath 'NetbtPriority') -eq 7
     if ($hostOptimal) { Select-TcpValue $cmbHostPriority 'Optimal (4-5-6-7)' } else { Select-TcpValue $cmbHostPriority 'Default Windows' }
 
     $memPath = 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management'
-    $memOptimal = (Get-RegOrNull $memPath 'LargeSystemCache') -eq 1 -and (Get-RegOrNull $memPath 'Size') -eq 3
+    $memOptimal = (Get-RegOrNull $memPath 'LargeSystemCache') -eq 1 -and
+                  (Get-RegOrNull 'HKLM:\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters' 'Size') -eq 3
     if ($memOptimal) { Select-TcpValue $cmbNetMemAlloc 'Optimal (1 / 3)' } else { Select-TcpValue $cmbNetMemAlloc 'Default Windows' }
 
     $portsOptimal = (Get-RegOrNull $tcpParams 'MaxUserPort') -eq 65534 -and (Get-RegOrNull $tcpParams 'TcpTimedWaitDelay') -eq 30
     if ($portsOptimal) { Select-TcpValue $cmbPortAlloc 'Max 65534 / Wait 30s' } else { Select-TcpValue $cmbPortAlloc 'Default Windows' }
 
-    $maxConn = Get-RegOrNull 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings' 'MaxConnectionsPerServer'
+    $maxConn = Get-RegOrNull 'HKLM:\SOFTWARE\Microsoft\Internet Explorer\MAIN\FeatureControl\FEATURE_MAXCONNECTIONSPERSERVER' 'iexplore.exe'
     if     ($maxConn -eq 10) { Select-TcpValue $cmbMaxConn '10 Connections' }
     elseif ($maxConn -eq 16) { Select-TcpValue $cmbMaxConn '16 Connections' }
     else                     { Select-TcpValue $cmbMaxConn 'Default (2)' }

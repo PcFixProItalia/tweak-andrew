@@ -570,30 +570,70 @@ function Build-Actions {
                 Set-RegAllInterfaces 'TCPNoDelay' 0 'Nagle / TCPNoDelay'
             }
 
-            $sp = "HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\ServiceProvider"
+            # Priorita' di risoluzione: la chiave e' Tcpip\ServiceProvider, non sotto Parameters.
+            $sp = "HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\ServiceProvider"
             if ([string]$cmbHostPriority.Text -match 'Optimal') {
                 Set-Reg $sp 'LocalPriority' 4 'DWord' 'LocalPriority'
-                Set-Reg $sp 'HostPriority'  5 'DWord' 'HostPriority'
+                Set-Reg $sp 'HostsPriority'  5 'DWord' 'HostsPriority'
                 Set-Reg $sp 'DnsPriority'   6 'DWord' 'DnsPriority'
                 Set-Reg $sp 'NetbtPriority' 7 'DWord' 'NetbtPriority'
-            } else { Write-Log "[SALTATO] Priorita' di risoluzione host: valori predefiniti." }
+            } else {
+                Set-Reg $sp 'LocalPriority' 499 'DWord' 'LocalPriority'
+                Set-Reg $sp 'HostsPriority'  500 'DWord' 'HostsPriority'
+                Set-Reg $sp 'DnsPriority'   2000 'DWord' 'DnsPriority'
+                Set-Reg $sp 'NetbtPriority' 2001 'DWord' 'NetbtPriority'
+            }
 
+            # Le versioni precedenti scrivevano sotto Parameters, dove Windows non legge: si toglie.
+            $spOld = "HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\ServiceProvider"
+            if (Test-Path $spOld) { Remove-Item $spOld -Recurse -Force -ErrorAction SilentlyContinue; Write-Log "[OK] Tcpip\Parameters\ServiceProvider (chiave fuori posto) rimossa." }
+
+            # LargeSystemCache sta in Memory Management, Size nei parametri del servizio Server.
             $mem = "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management"
+            $srv = "HKLM:\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters"
             if ([string]$cmbNetMemAlloc.Text -match 'Optimal') {
                 Set-Reg $mem 'LargeSystemCache' 1 'DWord' 'LargeSystemCache'
-                Set-Reg $mem 'Size' 3 'DWord' 'Memory Management / Size'
-            } else { Write-Log "[SALTATO] LargeSystemCache: valori predefiniti." }
+                Set-Reg $srv 'Size' 3 'DWord' 'LanmanServer / Size'
+            } else {
+                Set-Reg $mem 'LargeSystemCache' 0 'DWord' 'LargeSystemCache'
+                Set-Reg $srv 'Size' 1 'DWord' 'LanmanServer / Size'
+            }
+            if ($null -ne (Get-RegOrNull $mem 'Size')) { Remove-Reg $mem 'Size' 'Memory Management / Size (valore fuori posto)' }
 
             if ([string]$cmbPortAlloc.Text -match '65534') {
                 Set-Reg $tcpParams 'MaxUserPort' 65534 'DWord' 'MaxUserPort'
                 Set-Reg $tcpParams 'TcpTimedWaitDelay' 30 'DWord' 'TcpTimedWaitDelay'
-            } else { Write-Log "[SALTATO] Porte dinamiche: valori predefiniti." }
+            } else {
+                foreach ($v in 'MaxUserPort', 'TcpTimedWaitDelay') { if ($null -ne (Get-RegOrNull $tcpParams $v)) { Remove-Reg $tcpParams $v $v } }
+            }
 
-            $ie = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings"
+            # Connessioni per server: le stesse chiavi FeatureControl che legge TCP Optimizer.
             $connText = [string]$cmbMaxConn.Text
-            $conn = if ($connText -match '16') { 16 } elseif ($connText -match 'Default') { 2 } else { 10 }
-            Set-Reg $ie 'MaxConnectionsPerServer' $conn 'DWord' 'MaxConnectionsPerServer'
-            Set-Reg $ie 'MaxConnectionsPer1_0Server' $conn 'DWord' 'MaxConnectionsPer1_0Server'
+            $conn = if ($connText -match '16') { 16 } elseif ($connText -match 'Default') { 0 } else { 10 }
+            foreach ($root in 'HKLM:\SOFTWARE\Microsoft\Internet Explorer\MAIN\FeatureControl', 'HKLM:\SOFTWARE\WOW6432Node\Microsoft\Internet Explorer\MAIN\FeatureControl') {
+                foreach ($f in 'FEATURE_MAXCONNECTIONSPERSERVER', 'FEATURE_MAXCONNECTIONSPER1_0SERVER') {
+                    # Come TCP Optimizer: solo iexplore.exe; explorer.exe tiene i valori di Windows.
+                    if ($conn -gt 0) { Set-Reg "$root\$f" 'iexplore.exe' $conn 'DWord' "$f / iexplore.exe" | Out-Null }
+                    elseif ($null -ne (Get-RegOrNull "$root\$f" 'iexplore.exe')) { Remove-Reg "$root\$f" 'iexplore.exe' "$f / iexplore.exe" }
+                }
+            }
+
+            # Ritrasmissioni, RTO e QoS: le voci della scheda avanzata di TCP Optimizer.
+            $qosPol = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Psched"
+            $qosNla = "HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\QoS"
+            if ($radTcpDefault.IsChecked -eq $true) {
+                netsh int tcp set global maxsynretransmissions=4 nonsackrttresiliency=disabled initialRto=3000 | Out-Null
+                netsh int tcp set supplemental template=internet minrto=300 | Out-Null
+                if ($null -ne (Get-RegOrNull $qosPol 'NonBestEffortLimit')) { Remove-Reg $qosPol 'NonBestEffortLimit' 'QoS / NonBestEffortLimit' }
+                if ($null -ne (Get-RegOrNull $qosNla 'Do not use NLA')) { Remove-Reg $qosNla 'Do not use NLA' 'QoS / Do not use NLA' }
+                Write-Log "[OK] Ritrasmissioni e RTO su valori predefiniti."
+            } else {
+                netsh int tcp set global maxsynretransmissions=2 nonsackrttresiliency=disabled initialRto=2000 | Out-Null
+                netsh int tcp set supplemental template=internet minrto=300 | Out-Null
+                Set-Reg $qosPol 'NonBestEffortLimit' 0 'DWord' 'QoS / NonBestEffortLimit'
+                Set-Reg $qosNla 'Do not use NLA' '1' 'String' 'QoS / Do not use NLA'
+                Write-Log "[OK] Ritrasmissioni (2), RTO iniziale 2000 ms, RTO minimo 300 ms."
+            }
         }
     }
 

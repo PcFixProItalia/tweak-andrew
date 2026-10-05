@@ -412,12 +412,23 @@ function Build-UndoActions {
         Reset-Reg $sp 'NetworkThrottlingIndex' 10
         Reset-Reg $sp 'SystemResponsiveness' 20
         Remove-RegAllInterfaces 'TcpAckFrequency'; Remove-RegAllInterfaces 'TCPNoDelay'; Remove-RegAllInterfaces 'TcpDelAckTicks'
-        $pr = "$tcp\ServiceProvider"
-        Reset-Reg $pr 'LocalPriority' 499; Reset-Reg $pr 'HostPriority' 500
+        $pr = "HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\ServiceProvider"
+        Reset-Reg $pr 'LocalPriority' 499; Reset-Reg $pr 'HostsPriority' 500
         Reset-Reg $pr 'DnsPriority' 2000; Reset-Reg $pr 'NetbtPriority' 2001
-        Reset-Reg $mm 'LargeSystemCache' 0; Reset-Reg $mm 'Size'
+        # Le variabili di Build-UndoActions qui non ci sono: i percorsi si scrivono per intero.
+        Reset-Reg 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management' 'LargeSystemCache' 0
+        Reset-Reg 'HKLM:\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters' 'Size' 1
         $ie = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings"
         Reset-Reg $ie 'MaxConnectionsPerServer'; Reset-Reg $ie 'MaxConnectionsPer1_0Server'
+        foreach ($root in 'HKLM:\SOFTWARE\Microsoft\Internet Explorer\MAIN\FeatureControl', 'HKLM:\SOFTWARE\WOW6432Node\Microsoft\Internet Explorer\MAIN\FeatureControl') {
+            foreach ($f in 'FEATURE_MAXCONNECTIONSPERSERVER', 'FEATURE_MAXCONNECTIONSPER1_0SERVER') {
+                Reset-Reg "$root\$f" 'iexplore.exe'
+            }
+        }
+        netsh int tcp set global maxsynretransmissions=4 nonsackrttresiliency=disabled initialRto=3000 | Out-Null
+        netsh int tcp set supplemental template=internet minrto=300 | Out-Null
+        Reset-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\Psched' 'NonBestEffortLimit'
+        Reset-Reg 'HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\QoS' 'Do not use NLA'
     }
     Add-UndoIfChecked $chkApplyDns {
         foreach ($adapter in (Get-NetAdapter -ErrorAction SilentlyContinue | Where-Object { $_.Status -eq 'Up' })) {
