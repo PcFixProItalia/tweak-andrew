@@ -117,7 +117,6 @@ g.notif.sys	Komunikaty systemowe
 notif.capAccess	Komunikat, gdy aplikacja używa mikrofonu lub lokalizacji
 notif.startupApp	Komunikat o nowych aplikacjach autostartu
 notif.locPrompt	Komunikat, gdy aplikacje proszą o lokalizację
-notif.dst	Komunikat o zmianie czasu
 notif.secMaint	Zabezpieczenia i konserwacja
 notif.defender	Powiadomienia Zabezpieczeń Windows
 g.notif.sound	Dźwięki
@@ -127,7 +126,6 @@ notif.ducking#mute	Wycisz inne dźwięki
 notif.ducking#80	Ścisz inne dźwięki o 80%
 notif.ducking#50	Ścisz inne dźwięki o 50%
 notif.ducking#none	Nic nie rób
-notif.voiceAct	Aktywacja głosowa aplikacji
 notif.accSounds	Dźwięki aktywacji ułatwień dostępu
 notif.accWarn	Dźwięki ostrzeżeń ułatwień dostępu
 g.notif.access	Skróty ułatwień dostępu
@@ -401,7 +399,6 @@ g.priv.mSync	Synchronizacja ustawień
 pv.credSync	Nie synchronizuj haseł nikomu
 pv.allSync	Wyłącz synchronizację ustawień
 g.priv.mMisc	Różne
-pv.wifiSense	Wyłącz Czujnik Wi-Fi
 g.power.cpu	Procesor
 pw.cpuMin	Minimalny stan procesora
 pw.cpuMax	Maksymalny stan procesora

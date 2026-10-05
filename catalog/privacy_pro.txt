@@ -554,7 +554,3 @@ R|HKLM\SOFTWARE\Policies\Microsoft\Windows\SettingSync|DisableSettingSyncUserOve
 H|pv.allSync|Nessuna preferenza di Windows viene copiata sugli altri PC.|No Windows preference is copied to other PCs.
 
 G|mMisc|Varie|Miscellaneous
-T|pv.wifiSense|M|0|y|Disattiva Wi-Fi Sense|Disable Wi-Fi Sense
-R|HKLM\SOFTWARE\Microsoft\PolicyManager\default\WiFi\AllowWiFiHotSpotReporting|Value|D|0|1,-
-R|HKLM\SOFTWARE\Microsoft\PolicyManager\default\WiFi\AllowAutoConnectToWiFiSenseHotspots|Value|D|0|1,-
-H|pv.wifiSense|Il PC non si collega da solo a hotspot suggeriti e non ne segnala.|The PC doesn't join suggested hotspots by itself or report them.

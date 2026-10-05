@@ -117,7 +117,6 @@ g.notif.sys	Anunțuri de sistem
 notif.capAccess	Anunț când o aplicație folosește microfonul sau locația
 notif.startupApp	Anunț despre aplicații noi la pornire
 notif.locPrompt	Anunț când aplicațiile cer locația
-notif.dst	Anunț la schimbarea orei
 notif.secMaint	Securitate și întreținere
 notif.defender	Notificări Securitate Windows
 g.notif.sound	Sunete
@@ -127,7 +126,6 @@ notif.ducking#mute	Oprește celelalte sunete
 notif.ducking#80	Reduce celelalte sunete cu 80%
 notif.ducking#50	Reduce celelalte sunete cu 50%
 notif.ducking#none	Nu face nimic
-notif.voiceAct	Activarea vocală a aplicațiilor
 notif.accSounds	Sunete de activare pentru accesibilitate
 notif.accWarn	Sunete de avertizare pentru accesibilitate
 g.notif.access	Comenzi rapide de accesibilitate
@@ -401,7 +399,6 @@ g.priv.mSync	Sincronizarea setărilor
 pv.credSync	Nu sincroniza parolele pentru nimeni
 pv.allSync	Dezactivează sincronizarea setărilor
 g.priv.mMisc	Diverse
-pv.wifiSense	Dezactivează Wi-Fi Sense
 g.power.cpu	Procesor
 pw.cpuMin	Starea minimă a procesorului
 pw.cpuMax	Starea maximă a procesorului

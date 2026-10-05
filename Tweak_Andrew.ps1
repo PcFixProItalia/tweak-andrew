@@ -11115,12 +11115,10 @@ $script:Catalog = @(
     @{ Id = 'notif.capAccess'; Page = 'notif'; Group = 'sys'; Kind = 'T'; Flags = ''; Def = '1'; Rec = '-'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\Notifications\Settings\Windows.SystemToast.CapabilityAccess', 'Enabled', 'D', '1,-', '0')) },
     @{ Id = 'notif.startupApp'; Page = 'notif'; Group = 'sys'; Kind = 'T'; Flags = ''; Def = '1'; Rec = '0'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\Notifications\Settings\Windows.SystemToast.StartupApp', 'Enabled', 'D', '1,-', '0')) },
     @{ Id = 'notif.locPrompt'; Page = 'notif'; Group = 'sys'; Kind = 'T'; Flags = ''; Def = '1'; Rec = '1'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\location', 'ShowGlobalPrompts', 'D', '1,-', '0')) },
-    @{ Id = 'notif.dst'; Page = 'notif'; Group = 'sys'; Kind = 'T'; Flags = ''; Def = '1'; Rec = '0'; Ops = @(,@('HKCU\Control Panel\Desktop', 'DstNotification', 'D', '1,-', '0')) },
     @{ Id = 'notif.secMaint'; Page = 'notif'; Group = 'sys'; Kind = 'T'; Flags = ''; Def = '1'; Rec = '1'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\Notifications\Settings\Windows.SystemToast.SecurityAndMaintenance', 'Enabled', 'D', '1,-', '0')) },
     @{ Id = 'notif.defender'; Page = 'notif'; Group = 'sys'; Kind = 'T'; Flags = ''; Def = '1'; Rec = '1'; Ops = @(,@('HKLM\SOFTWARE\Microsoft\Windows Defender Security Center\Notifications', 'DisableNotifications', 'D', '0,-', '1')) },
     @{ Id = 'notif.bootSound'; Page = 'notif'; Group = 'sound'; Kind = 'T'; Flags = ''; Def = '1'; Rec = '-'; Ops = @(,@('HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Authentication\LogonUI\BootAnimation', 'DisableStartupSound', 'D', '0,-', '1'), ,@('HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\EditionOverrides', 'UserSetting_DisableStartupSound', 'D', '0,-', '1')) },
     @{ Id = 'notif.ducking'; Page = 'notif'; Group = 'sound'; Kind = 'S'; Flags = ''; Def = '80'; Rec = 'none'; Ops = @(,@('HKCU\Software\Microsoft\Multimedia\Audio', 'UserDuckingPreference', 'D')); Opts = @(@{ Key = 'mute'; Vals = @('0') }, @{ Key = '80'; Vals = @('1,-') }, @{ Key = '50'; Vals = @('2') }, @{ Key = 'none'; Vals = @('3') }) },
-    @{ Id = 'notif.voiceAct'; Page = 'notif'; Group = 'sound'; Kind = 'T'; Flags = ''; Def = '1'; Rec = '0'; Ops = @(,@('HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\SpeechOneCore\Settings', 'AgentActivationEnabled', 'D', '1,-', '0')) },
     @{ Id = 'notif.accSounds'; Page = 'notif'; Group = 'sound'; Kind = 'T'; Flags = ''; Def = '1'; Rec = '-'; Ops = @(,@('HKCU\Control Panel\Accessibility', 'Sound on Activation', 'D', '1,-', '0')) },
     @{ Id = 'notif.accWarn'; Page = 'notif'; Group = 'sound'; Kind = 'T'; Flags = ''; Def = '1'; Rec = '-'; Ops = @(,@('HKCU\Control Panel\Accessibility', 'Warning Sounds', 'D', '1,-', '0')) },
     @{ Id = 'notif.filterKeys'; Page = 'notif'; Group = 'access'; Kind = 'T'; Flags = ''; Def = '1'; Rec = '0'; Ops = @(,@('HKCU\Control Panel\Accessibility\Keyboard Response', 'Flags', 'S', '126', '122')) },
@@ -11344,7 +11342,6 @@ $script:Catalog = @(
     @{ Id = 'pv.chatIcon'; Page = 'priv'; Group = 'mBar'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Chat', 'ChatIcon', 'D', '3', '-')) },
     @{ Id = 'pv.credSync'; Page = 'priv'; Group = 'mSync'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\SettingSync', 'DisableCredentialsSettingSync', 'D', '2', '-'), ,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\SettingSync', 'DisableCredentialsSettingSyncUserOverride', 'D', '1', '-')) },
     @{ Id = 'pv.allSync'; Page = 'priv'; Group = 'mSync'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'l'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\SettingSync', 'DisableSettingSync', 'D', '2', '-'), ,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\SettingSync', 'DisableSettingSyncUserOverride', 'D', '1', '-')) },
-    @{ Id = 'pv.wifiSense'; Page = 'priv'; Group = 'mMisc'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Microsoft\PolicyManager\default\WiFi\AllowWiFiHotSpotReporting', 'Value', 'D', '0', '1,-'), ,@('HKLM\SOFTWARE\Microsoft\PolicyManager\default\WiFi\AllowAutoConnectToWiFiSenseHotspots', 'Value', 'D', '0', '1,-')) },
     @{ Id = 'pw.cpuMin'; Page = 'power'; Group = 'cpu'; Kind = 'N'; Flags = ''; Def = '5'; Rec = '-'; Opts = @(@{ Key = '5'; Vals = @() }, @{ Key = '50'; Vals = @() }, @{ Key = '100'; Vals = @() }); Sub = '54533251-82be-4824-96c1-47b60b740d00'; Set = '893dee8e-2bef-41e0-89c6-b55d0929964c' },
     @{ Id = 'pw.cpuMax'; Page = 'power'; Group = 'cpu'; Kind = 'N'; Flags = ''; Def = '100'; Rec = '100'; Opts = @(@{ Key = '99'; Vals = @() }, @{ Key = '100'; Vals = @() }); Sub = '54533251-82be-4824-96c1-47b60b740d00'; Set = 'bc5038f7-23e0-4960-96da-33abaf5935ec' },
     @{ Id = 'pw.boost'; Page = 'power'; Group = 'cpu'; Kind = 'N'; Flags = ''; Def = '2'; Rec = '2'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '1'; Vals = @() }, @{ Key = '2'; Vals = @() }, @{ Key = '3'; Vals = @() }, @{ Key = '4'; Vals = @() }); Sub = '54533251-82be-4824-96c1-47b60b740d00'; Set = 'be337238-0d82-4146-a960-4f3749d470c7' },
@@ -11493,7 +11490,6 @@ $script:CatText = @{
     'notif.capAccess' = @{ it = 'Avviso quando un''app usa microfono o posizione'; en = 'Notice when an app uses mic or location'; es = 'Aviso cuando una app usa el micrófono o la ubicación'; de = 'Hinweis, wenn eine App Mikrofon oder Standort nutzt'; fr = 'Avis quand une app utilise le micro ou la position'; pl = 'Komunikat, gdy aplikacja używa mikrofonu lub lokalizacji'; pt = 'Aviso quando um app usa microfone ou localização'; ro = 'Anunț când o aplicație folosește microfonul sau locația'; ru = 'Уведомление при использовании микрофона или местоположения' }
     'notif.startupApp' = @{ it = 'Avviso sulle nuove app all''avvio'; en = 'Notice about new startup apps'; es = 'Aviso de nuevas apps de inicio'; de = 'Hinweis auf neue Autostart-Apps'; fr = 'Avis sur les nouvelles apps au démarrage'; pl = 'Komunikat o nowych aplikacjach autostartu'; pt = 'Aviso sobre novos apps de inicialização'; ro = 'Anunț despre aplicații noi la pornire'; ru = 'Уведомление о новых приложениях автозапуска' }
     'notif.locPrompt' = @{ it = 'Avviso quando le app chiedono la posizione'; en = 'Notice when apps request location'; es = 'Aviso cuando las apps piden la ubicación'; de = 'Hinweis, wenn Apps den Standort anfragen'; fr = 'Avis quand les apps demandent la position'; pl = 'Komunikat, gdy aplikacje proszą o lokalizację'; pt = 'Aviso quando apps pedem a localização'; ro = 'Anunț când aplicațiile cer locația'; ru = 'Уведомление при запросе местоположения' }
-    'notif.dst' = @{ it = 'Avviso del cambio dell''ora'; en = 'Clock change notice'; es = 'Aviso de cambio de hora'; de = 'Hinweis zur Zeitumstellung'; fr = 'Avis de changement d''heure'; pl = 'Komunikat o zmianie czasu'; pt = 'Aviso de mudança de horário'; ro = 'Anunț la schimbarea orei'; ru = 'Уведомление о переводе часов' }
     'notif.secMaint' = @{ it = 'Sicurezza e manutenzione'; en = 'Security and maintenance'; es = 'Seguridad y mantenimiento'; de = 'Sicherheit und Wartung'; fr = 'Sécurité et maintenance'; pl = 'Zabezpieczenia i konserwacja'; pt = 'Segurança e manutenção'; ro = 'Securitate și întreținere'; ru = 'Безопасность и обслуживание' }
     'notif.defender' = @{ it = 'Notifiche di Sicurezza di Windows'; en = 'Windows Security notifications'; es = 'Notificaciones de Seguridad de Windows'; de = 'Benachrichtigungen von Windows-Sicherheit'; fr = 'Notifications de Sécurité Windows'; pl = 'Powiadomienia Zabezpieczeń Windows'; pt = 'Notificações da Segurança do Windows'; ro = 'Notificări Securitate Windows'; ru = 'Уведомления «Безопасности Windows»' }
     'g.notif.sound' = @{ it = 'Suoni'; en = 'Sounds'; es = 'Sonidos'; de = 'Töne'; fr = 'Sons'; pl = 'Dźwięki'; pt = 'Sons'; ro = 'Sunete'; ru = 'Звуки' }
@@ -11503,7 +11499,6 @@ $script:CatText = @{
     'notif.ducking#80' = @{ it = 'Abbassa gli altri suoni dell''80%'; en = 'Lower other sounds by 80%'; es = 'Bajar otros sonidos un 80%'; de = 'Andere Töne um 80% senken'; fr = 'Baisser les autres sons de 80%'; pl = 'Ścisz inne dźwięki o 80%'; pt = 'Reduzir outros sons em 80%'; ro = 'Reduce celelalte sunete cu 80%'; ru = 'Приглушать другие звуки на 80%' }
     'notif.ducking#50' = @{ it = 'Abbassa gli altri suoni del 50%'; en = 'Lower other sounds by 50%'; es = 'Bajar otros sonidos un 50%'; de = 'Andere Töne um 50% senken'; fr = 'Baisser les autres sons de 50%'; pl = 'Ścisz inne dźwięki o 50%'; pt = 'Reduzir outros sons em 50%'; ro = 'Reduce celelalte sunete cu 50%'; ru = 'Приглушать другие звуки на 50%' }
     'notif.ducking#none' = @{ it = 'Non fare nulla'; en = 'Do nothing'; es = 'No hacer nada'; de = 'Nichts tun'; fr = 'Ne rien faire'; pl = 'Nic nie rób'; pt = 'Não fazer nada'; ro = 'Nu face nimic'; ru = 'Ничего не делать' }
-    'notif.voiceAct' = @{ it = 'Attivazione vocale delle app'; en = 'Voice activation for apps'; es = 'Activación por voz de las apps'; de = 'Sprachaktivierung für Apps'; fr = 'Activation vocale des apps'; pl = 'Aktywacja głosowa aplikacji'; pt = 'Ativação por voz dos apps'; ro = 'Activarea vocală a aplicațiilor'; ru = 'Голосовая активация приложений' }
     'notif.accSounds' = @{ it = 'Suoni di attivazione dell''accessibilità'; en = 'Accessibility activation sounds'; es = 'Sonidos de activación de accesibilidad'; de = 'Aktivierungstöne der Barrierefreiheit'; fr = 'Sons d''activation de l''accessibilité'; pl = 'Dźwięki aktywacji ułatwień dostępu'; pt = 'Sons de ativação da acessibilidade'; ro = 'Sunete de activare pentru accesibilitate'; ru = 'Звуки включения спецвозможностей' }
     'notif.accWarn' = @{ it = 'Avvisi sonori dell''accessibilità'; en = 'Accessibility warning sounds'; es = 'Sonidos de aviso de accesibilidad'; de = 'Warntöne der Barrierefreiheit'; fr = 'Sons d''avertissement de l''accessibilité'; pl = 'Dźwięki ostrzeżeń ułatwień dostępu'; pt = 'Sons de aviso da acessibilidade'; ro = 'Sunete de avertizare pentru accesibilitate'; ru = 'Предупреждающие звуки спецвозможностей' }
     'g.notif.access' = @{ it = 'Scorciatoie di accessibilità'; en = 'Accessibility shortcuts'; es = 'Atajos de accesibilidad'; de = 'Tastenkombinationen der Barrierefreiheit'; fr = 'Raccourcis d''accessibilité'; pl = 'Skróty ułatwień dostępu'; pt = 'Atalhos de acessibilidade'; ro = 'Comenzi rapide de accesibilitate'; ru = 'Сочетания спецвозможностей' }
@@ -11779,7 +11774,6 @@ $script:CatText = @{
     'pv.credSync' = @{ it = 'Non sincronizzare le password per tutti'; en = 'Don''t sync passwords for anyone'; es = 'No sincronizar contraseñas para nadie'; de = 'Kennwörter für niemanden synchronisieren'; fr = 'Ne synchroniser les mots de passe pour personne'; pl = 'Nie synchronizuj haseł nikomu'; pt = 'Não sincronizar senhas para ninguém'; ro = 'Nu sincroniza parolele pentru nimeni'; ru = 'Никому не синхронизировать пароли' }
     'pv.allSync' = @{ it = 'Disattiva la sincronizzazione delle impostazioni'; en = 'Disable settings sync'; es = 'Desactivar la sincronización de la configuración'; de = 'Synchronisierung der Einstellungen deaktivieren'; fr = 'Désactiver la synchronisation des paramètres'; pl = 'Wyłącz synchronizację ustawień'; pt = 'Desativar a sincronização das configurações'; ro = 'Dezactivează sincronizarea setărilor'; ru = 'Отключить синхронизацию параметров' }
     'g.priv.mMisc' = @{ it = 'Varie'; en = 'Miscellaneous'; es = 'Varios'; de = 'Verschiedenes'; fr = 'Divers'; pl = 'Różne'; pt = 'Diversos'; ro = 'Diverse'; ru = 'Разное' }
-    'pv.wifiSense' = @{ it = 'Disattiva Wi-Fi Sense'; en = 'Disable Wi-Fi Sense'; es = 'Desactivar Wi-Fi Sense'; de = 'WLAN-Optimierung deaktivieren'; fr = 'Désactiver Wi-Fi Sense'; pl = 'Wyłącz Czujnik Wi-Fi'; pt = 'Desativar o Wi-Fi Sense'; ro = 'Dezactivează Wi-Fi Sense'; ru = 'Отключить Wi-Fi Sense' }
     'g.power.cpu' = @{ it = 'Processore'; en = 'Processor'; es = 'Procesador'; de = 'Prozessor'; fr = 'Processeur'; pl = 'Procesor'; pt = 'Processador'; ro = 'Procesor'; ru = 'Процессор' }
     'pw.cpuMin' = @{ it = 'Stato minimo del processore'; en = 'Minimum processor state'; es = 'Estado mínimo del procesador'; de = 'Minimaler Leistungszustand des Prozessors'; fr = 'État minimal du processeur'; pl = 'Minimalny stan procesora'; pt = 'Estado mínimo do processador'; ro = 'Starea minimă a procesorului'; ru = 'Минимальное состояние процессора' }
     'pw.cpuMin#5' = @{ it = '5%'; en = '5%' }
@@ -11981,12 +11975,10 @@ $script:CatTip = @{
     'notif.capAccess' = @{ it = 'Una notifica ti dice quale app ha appena usato microfono, fotocamera o posizione.'; en = 'A notification tells you which app just used the mic, camera or location.' }
     'notif.startupApp' = @{ it = 'Windows ti avvisa quando un programma si aggiunge all''avvio automatico.'; en = 'Windows tells you when a program adds itself to startup.' }
     'notif.locPrompt' = @{ it = 'Ti chiede il permesso la prima volta che un''app vuole sapere dove sei.'; en = 'Asks your permission the first time an app wants to know where you are.' }
-    'notif.dst' = @{ it = 'La notifica che segnala il passaggio all''ora legale o solare.'; en = 'The notification about daylight saving time changes.' }
     'notif.secMaint' = @{ it = 'Avvisi su backup, antivirus e problemi del sistema.'; en = 'Notices about backup, antivirus and system problems.' }
     'notif.defender' = @{ it = 'I riepiloghi e gli avvisi non critici di Sicurezza di Windows. Le minacce restano segnalate.'; en = 'Non-critical Windows Security summaries and notices. Threats are still reported.' }
     'notif.bootSound' = @{ it = 'Il suono che Windows riproduce all''accensione.'; en = 'The sound Windows plays when it starts.' }
     'notif.ducking' = @{ it = 'Quanto Windows abbassa musica e giochi quando arriva una chiamata vocale.'; en = 'How much Windows lowers music and games when a voice call comes in.' }
-    'notif.voiceAct' = @{ it = 'Le app di assistenza restano in ascolto della parola chiave. Spento, il microfono è libero.'; en = 'Assistant apps keep listening for their keyword. Off, the microphone is left alone.' }
     'notif.accSounds' = @{ it = 'Il segnale acustico quando si attiva una funzione di accessibilità.'; en = 'The beep when an accessibility feature turns on.' }
     'notif.accWarn' = @{ it = 'Il suono di avviso prima di attivare una scorciatoia di accessibilità.'; en = 'The warning sound before an accessibility shortcut turns on.' }
     'notif.filterKeys' = @{ it = 'Evita che tenere premuto Maiusc nei giochi apra la finestra del filtro tasti.'; en = 'Stops a held Shift in games from opening the Filter Keys window.' }
@@ -12210,7 +12202,6 @@ $script:CatTip = @{
     'pv.chatIcon' = @{ it = 'Il pulsante Chat non compare su nessun account.'; en = 'The Chat button doesn''t show on any account.' }
     'pv.credSync' = @{ it = 'Le password di Windows non passano dal cloud su nessun account.'; en = 'Windows passwords don''t go through the cloud on any account.' }
     'pv.allSync' = @{ it = 'Nessuna preferenza di Windows viene copiata sugli altri PC.'; en = 'No Windows preference is copied to other PCs.' }
-    'pv.wifiSense' = @{ it = 'Il PC non si collega da solo a hotspot suggeriti e non ne segnala.'; en = 'The PC doesn''t join suggested hotspots by itself or report them.' }
     'pw.cpuMin' = @{ it = 'Sotto questa soglia il processore non scende mai. Al 100% resta sempre alla frequenza piena.'; en = 'The processor never drops below this level. At 100% it always stays at full speed.' }
     'pw.cpuMax' = @{ it = 'Al 99% il turbo resta spento: portatile più fresco e silenzioso, un po'' meno veloce.'; en = 'At 99% turbo stays off: a cooler, quieter laptop, a bit slower.' }
     'pw.boost' = @{ it = 'Con quanta decisione il processore sale in turbo quando serve potenza.'; en = 'How eagerly the processor jumps into turbo when power is needed.' }
@@ -12913,7 +12904,11 @@ function Build-Actions {
         Set-Reg 'HKCU:\Control Panel\Mouse' 'MouseThreshold1' '0' 'String' 'Soglia mouse 1'
         Set-Reg 'HKCU:\Control Panel\Mouse' 'MouseThreshold2' '0' 'String' 'Soglia mouse 2'
     }
-    Add-IfChecked $chkNumLock { Set-Reg 'HKU:\.DEFAULT\Control Panel\Keyboard' 'InitialKeyboardIndicators' '2' 'String' 'Bloc Num all avvio' }
+    # Schermata di accesso (.DEFAULT) e utente: dopo l'accesso vale il valore dell'utente.
+    Add-IfChecked $chkNumLock {
+        Set-Reg 'HKU:\.DEFAULT\Control Panel\Keyboard' 'InitialKeyboardIndicators' '2' 'String' 'Bloc Num alla schermata di accesso'
+        Set-Reg 'HKCU:\Control Panel\Keyboard' 'InitialKeyboardIndicators' '2' 'String' 'Bloc Num dopo l accesso'
+    }
     Add-IfChecked $chkStickyKeys { Set-Reg 'HKCU:\Control Panel\Accessibility\StickyKeys' 'Flags' '506' 'String' 'Tasti permanenti' }
     Add-IfChecked $chkScrollbars { Set-Reg 'HKCU:\Control Panel\Accessibility' 'DynamicScrollbars' 0 'DWord' 'Barre di scorrimento' }
 
@@ -13686,6 +13681,12 @@ function Add-NoUndo {
     }
 }
 
+# Percorsi usati dentro i blocchi di annullamento. I blocchi girano dopo, dentro
+# Invoke-ActionQueue: le variabili locali di Build-UndoActions li' non esistono
+# piu', quindi questi due stanno a livello di script.
+$adv = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced'
+$mm  = 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management'
+
 function Build-UndoActions {
     $script:Actions = @()
     $adv = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced'
@@ -13947,7 +13948,10 @@ function Build-UndoActions {
         Reset-Reg 'HKCU:\Control Panel\Mouse' 'MouseThreshold1' '6' 'String'
         Reset-Reg 'HKCU:\Control Panel\Mouse' 'MouseThreshold2' '10' 'String'
     }
-    Add-UndoIfChecked $chkNumLock { Reset-Reg 'HKU:\.DEFAULT\Control Panel\Keyboard' 'InitialKeyboardIndicators' '2147483648' 'String' }
+    Add-UndoIfChecked $chkNumLock {
+        Reset-Reg 'HKU:\.DEFAULT\Control Panel\Keyboard' 'InitialKeyboardIndicators' '2147483648' 'String'
+        Reset-Reg 'HKCU:\Control Panel\Keyboard' 'InitialKeyboardIndicators' '0' 'String'
+    }
     Add-UndoIfChecked $chkStickyKeys { Reset-Reg 'HKCU:\Control Panel\Accessibility\StickyKeys' 'Flags' '510' 'String' }
     Add-UndoIfChecked $chkScrollbars { Reset-Reg 'HKCU:\Control Panel\Accessibility' 'DynamicScrollbars' }
     Add-UndoIfChecked $chkLockScreen { Reset-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\Personalization' 'NoLockScreen' }

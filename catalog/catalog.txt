@@ -345,9 +345,6 @@ H|notif.startupApp|Windows ti avvisa quando un programma si aggiunge all'avvio a
 T|notif.locPrompt||1|1|Avviso quando le app chiedono la posizione|Notice when apps request location
 R|HKCU\Software\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\location|ShowGlobalPrompts|D|1,-|0
 H|notif.locPrompt|Ti chiede il permesso la prima volta che un'app vuole sapere dove sei.|Asks your permission the first time an app wants to know where you are.
-T|notif.dst||1|0|Avviso del cambio dell'ora|Clock change notice
-R|HKCU\Control Panel\Desktop|DstNotification|D|1,-|0
-H|notif.dst|La notifica che segnala il passaggio all'ora legale o solare.|The notification about daylight saving time changes.
 T|notif.secMaint||1|1|Sicurezza e manutenzione|Security and maintenance
 R|HKCU\Software\Microsoft\Windows\CurrentVersion\Notifications\Settings\Windows.SystemToast.SecurityAndMaintenance|Enabled|D|1,-|0
 H|notif.secMaint|Avvisi su backup, antivirus e problemi del sistema.|Notices about backup, antivirus and system problems.
@@ -366,9 +363,6 @@ O|80|Abbassa gli altri suoni dell'80%|Lower other sounds by 80%|1,-
 O|50|Abbassa gli altri suoni del 50%|Lower other sounds by 50%|2
 O|none|Non fare nulla|Do nothing|3
 H|notif.ducking|Quanto Windows abbassa musica e giochi quando arriva una chiamata vocale.|How much Windows lowers music and games when a voice call comes in.
-T|notif.voiceAct||1|0|Attivazione vocale delle app|Voice activation for apps
-R|HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\SpeechOneCore\Settings|AgentActivationEnabled|D|1,-|0
-H|notif.voiceAct|Le app di assistenza restano in ascolto della parola chiave. Spento, il microfono è libero.|Assistant apps keep listening for their keyword. Off, the microphone is left alone.
 T|notif.accSounds||1|-|Suoni di attivazione dell'accessibilità|Accessibility activation sounds
 R|HKCU\Control Panel\Accessibility|Sound on Activation|D|1,-|0
 H|notif.accSounds|Il segnale acustico quando si attiva una funzione di accessibilità.|The beep when an accessibility feature turns on.

@@ -117,7 +117,6 @@ g.notif.sys	Avisos del sistema
 notif.capAccess	Aviso cuando una app usa el micrófono o la ubicación
 notif.startupApp	Aviso de nuevas apps de inicio
 notif.locPrompt	Aviso cuando las apps piden la ubicación
-notif.dst	Aviso de cambio de hora
 notif.secMaint	Seguridad y mantenimiento
 notif.defender	Notificaciones de Seguridad de Windows
 g.notif.sound	Sonidos
@@ -127,7 +126,6 @@ notif.ducking#mute	Silenciar otros sonidos
 notif.ducking#80	Bajar otros sonidos un 80%
 notif.ducking#50	Bajar otros sonidos un 50%
 notif.ducking#none	No hacer nada
-notif.voiceAct	Activación por voz de las apps
 notif.accSounds	Sonidos de activación de accesibilidad
 notif.accWarn	Sonidos de aviso de accesibilidad
 g.notif.access	Atajos de accesibilidad
@@ -401,7 +399,6 @@ g.priv.mSync	Sincronización de la configuración
 pv.credSync	No sincronizar contraseñas para nadie
 pv.allSync	Desactivar la sincronización de la configuración
 g.priv.mMisc	Varios
-pv.wifiSense	Desactivar Wi-Fi Sense
 g.power.cpu	Procesador
 pw.cpuMin	Estado mínimo del procesador
 pw.cpuMax	Estado máximo del procesador

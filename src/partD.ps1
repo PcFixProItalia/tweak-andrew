@@ -508,7 +508,11 @@ function Build-Actions {
         Set-Reg 'HKCU:\Control Panel\Mouse' 'MouseThreshold1' '0' 'String' 'Soglia mouse 1'
         Set-Reg 'HKCU:\Control Panel\Mouse' 'MouseThreshold2' '0' 'String' 'Soglia mouse 2'
     }
-    Add-IfChecked $chkNumLock { Set-Reg 'HKU:\.DEFAULT\Control Panel\Keyboard' 'InitialKeyboardIndicators' '2' 'String' 'Bloc Num all avvio' }
+    # Schermata di accesso (.DEFAULT) e utente: dopo l'accesso vale il valore dell'utente.
+    Add-IfChecked $chkNumLock {
+        Set-Reg 'HKU:\.DEFAULT\Control Panel\Keyboard' 'InitialKeyboardIndicators' '2' 'String' 'Bloc Num alla schermata di accesso'
+        Set-Reg 'HKCU:\Control Panel\Keyboard' 'InitialKeyboardIndicators' '2' 'String' 'Bloc Num dopo l accesso'
+    }
     Add-IfChecked $chkStickyKeys { Set-Reg 'HKCU:\Control Panel\Accessibility\StickyKeys' 'Flags' '506' 'String' 'Tasti permanenti' }
     Add-IfChecked $chkScrollbars { Set-Reg 'HKCU:\Control Panel\Accessibility' 'DynamicScrollbars' 0 'DWord' 'Barre di scorrimento' }
 

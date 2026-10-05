@@ -121,6 +121,12 @@ function Add-NoUndo {
     }
 }
 
+# Percorsi usati dentro i blocchi di annullamento. I blocchi girano dopo, dentro
+# Invoke-ActionQueue: le variabili locali di Build-UndoActions li' non esistono
+# piu', quindi questi due stanno a livello di script.
+$adv = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced'
+$mm  = 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management'
+
 function Build-UndoActions {
     $script:Actions = @()
     $adv = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced'
@@ -382,7 +388,10 @@ function Build-UndoActions {
         Reset-Reg 'HKCU:\Control Panel\Mouse' 'MouseThreshold1' '6' 'String'
         Reset-Reg 'HKCU:\Control Panel\Mouse' 'MouseThreshold2' '10' 'String'
     }
-    Add-UndoIfChecked $chkNumLock { Reset-Reg 'HKU:\.DEFAULT\Control Panel\Keyboard' 'InitialKeyboardIndicators' '2147483648' 'String' }
+    Add-UndoIfChecked $chkNumLock {
+        Reset-Reg 'HKU:\.DEFAULT\Control Panel\Keyboard' 'InitialKeyboardIndicators' '2147483648' 'String'
+        Reset-Reg 'HKCU:\Control Panel\Keyboard' 'InitialKeyboardIndicators' '0' 'String'
+    }
     Add-UndoIfChecked $chkStickyKeys { Reset-Reg 'HKCU:\Control Panel\Accessibility\StickyKeys' 'Flags' '510' 'String' }
     Add-UndoIfChecked $chkScrollbars { Reset-Reg 'HKCU:\Control Panel\Accessibility' 'DynamicScrollbars' }
     Add-UndoIfChecked $chkLockScreen { Reset-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\Personalization' 'NoLockScreen' }
