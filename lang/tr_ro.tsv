@@ -27,8 +27,6 @@ L:chkApplyMPO	Aplică setarea Multiplane Overlay (MPO)
 L:mpoOn	Activat (implicit în Windows)
 L:mpoOff	Dezactivat (rezolvă sacadări și pâlpâiri)
 L:mpoCompat	Activat, compatibil (2 planuri)
-L:ttlRisky	AVANSAT — REDUC SECURITATEA
-L:lblRiskyHint	Excluse din «Selectează tot». Activează-le doar dacă știi urmările.
 L:chkVBS	VBS / Integritatea memoriei — dezactivează
 L:chkMitigations	Protecții de sistem împotriva exploit-urilor — dezactivează
 L:tabPower	Alimentare

@@ -65,8 +65,6 @@ $script:Loc = @{
     mpoOff             = @{ it = "Disattivo (risolve stutter e sfarfallio)"; en = "Disabled (fixes stutter and flicker)" }
     mpoCompat          = @{ it = "Attivo compatibile (2 piani)"; en = "Enabled, compatible (2 planes)" }
 
-    ttlRisky           = @{ it = "AVANZATE — RIDUCONO LA SICUREZZA"; en = "ADVANCED — THESE REDUCE SECURITY" }
-    lblRiskyHint       = @{ it = "Escluse da «Seleziona tutto». Attivale solo se sai cosa comportano."; en = "Excluded from «Select all». Enable only if you know the consequences." }
     chkVBS             = @{ it = "VBS / Integrità della memoria — disattiva"; en = "VBS / Memory integrity — disable" }
     chkMitigations     = @{ it = "Mitigazioni exploit di sistema — disattiva"; en = "System exploit mitigations — disable" }
 

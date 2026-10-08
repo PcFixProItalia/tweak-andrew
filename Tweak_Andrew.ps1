@@ -1449,6 +1449,10 @@ $script:PlanData = @{
                                             </StackPanel>
                                         </Border>
 
+
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Column="2">
                                         <Border Style="{StaticResource Glass}">
                                             <StackPanel>
                                                 <TextBlock x:Name="ttlCpu" Text="PROCESSORE" Style="{StaticResource CardTitle}"/>
@@ -1456,25 +1460,6 @@ $script:PlanData = @{
                                                 <CheckBox x:Name="chkCpuIntelBoostPol" Content="Intel: turbo senza freni di politica"/>
                                                 <CheckBox x:Name="chkCpuIntelHybrid" Content="Intel ibridi: app in primo piano sui core P"/>
                                                 <CheckBox x:Name="chkCpuAmdParking" Content="AMD Ryzen: nessun core parcheggiato"/>
-                                            </StackPanel>
-                                        </Border>
-
-                                    </StackPanel>
-
-                                    <StackPanel Grid.Column="2">
-                                        <Border Style="{StaticResource Glass}">
-                                            <Border.Background>
-                                                <LinearGradientBrush StartPoint="0,0" EndPoint="0.7,1">
-                                                    <GradientStop Color="#22E0A25E" Offset="0"/>
-                                                    <GradientStop Color="#0AE0A25E" Offset="1"/>
-                                                </LinearGradientBrush>
-                                            </Border.Background>
-                                            <StackPanel>
-                                                <TextBlock x:Name="ttlRisky" Text="AVANZATE" Style="{StaticResource CardTitle}" Foreground="#FFE0A25E"/>
-                                                <TextBlock x:Name="lblRiskyHint" Text="Escluse da Seleziona tutto."
-                                                           Style="{StaticResource SubTitle}" Foreground="#FFD9A470" Margin="0,0,0,8"/>
-                                                <CheckBox x:Name="chkVBS" Tag="risky" Content="VBS"/>
-                                                <CheckBox x:Name="chkMitigations" Tag="risky" Content="Mitigazioni exploit"/>
                                                 <CheckBox x:Name="chkCpuIdleOff" Tag="risky" Content="Processore sempre sveglio"/>
                                             </StackPanel>
                                         </Border>
@@ -2279,6 +2264,8 @@ $script:PlanData = @{
                                                            Text="Tutte rischiose e mai incluse in «Seleziona tutto». Abbassano davvero le difese del computer: usale solo su una macchina che non naviga e non apre allegati."/>
                                                 <CheckBox x:Name="chkSecSmartScreen" Tag="risky" Content="SmartScreen — controllo dei file scaricati"/>
                                                 <CheckBox x:Name="chkSecSpectre" Tag="risky" Content="Mitigazioni Spectre e Meltdown"/>
+                                                <CheckBox x:Name="chkVBS" Tag="risky" Content="VBS"/>
+                                                <CheckBox x:Name="chkMitigations" Tag="risky" Content="Mitigazioni exploit"/>
                                                 <CheckBox x:Name="chkSecDefenderIdle" Tag="risky" Content="Defender: scansioni solo a computer fermo, CPU al 20%"/>
                                             </StackPanel>
                                         </Border>
@@ -2743,8 +2730,6 @@ $script:Loc = @{
     mpoOff             = @{ it = "Disattivo (risolve stutter e sfarfallio)"; en = "Disabled (fixes stutter and flicker)" }
     mpoCompat          = @{ it = "Attivo compatibile (2 piani)"; en = "Enabled, compatible (2 planes)" }
 
-    ttlRisky           = @{ it = "AVANZATE — RIDUCONO LA SICUREZZA"; en = "ADVANCED — THESE REDUCE SECURITY" }
-    lblRiskyHint       = @{ it = "Escluse da «Seleziona tutto». Attivale solo se sai cosa comportano."; en = "Excluded from «Select all». Enable only if you know the consequences." }
     chkVBS             = @{ it = "VBS / Integrità della memoria — disattiva"; en = "VBS / Memory integrity — disable" }
     chkMitigations     = @{ it = "Mitigazioni exploit di sistema — disattiva"; en = "System exploit mitigations — disable" }
 
@@ -4653,8 +4638,6 @@ $script:Tr = @{
         'L:mpoOn' = "Activado (predeterminado de Windows)"
         'L:mpoOff' = "Desactivado (corrige tirones y parpadeos)"
         'L:mpoCompat' = "Activado, compatible (2 planos)"
-        'L:ttlRisky' = "AVANZADO — REDUCEN LA SEGURIDAD"
-        'L:lblRiskyHint' = "Excluidos de «Seleccionar todo». Actívalos solo si conoces las consecuencias."
         'L:chkVBS' = "VBS / Integridad de memoria — desactivar"
         'L:chkMitigations' = "Mitigaciones de exploits del sistema — desactivar"
         'L:tabPower' = "Energía"
@@ -5566,8 +5549,6 @@ $script:Tr = @{
         'L:mpoOn' = "Aktiviert (Windows-Standard)"
         'L:mpoOff' = "Deaktiviert (behebt Ruckeln und Flackern)"
         'L:mpoCompat' = "Aktiviert, kompatibel (2 Ebenen)"
-        'L:ttlRisky' = "ERWEITERT — VERRINGERN DIE SICHERHEIT"
-        'L:lblRiskyHint' = "Von «Alle auswählen» ausgeschlossen. Nur aktivieren, wenn du die Folgen kennst."
         'L:chkVBS' = "VBS / Speicherintegrität — deaktivieren"
         'L:chkMitigations' = "System-Exploit-Schutz — deaktivieren"
         'L:tabPower' = "Energie"
@@ -6479,8 +6460,6 @@ $script:Tr = @{
         'L:mpoOn' = "Activé (par défaut dans Windows)"
         'L:mpoOff' = "Désactivé (corrige saccades et scintillements)"
         'L:mpoCompat' = "Activé, compatible (2 plans)"
-        'L:ttlRisky' = "AVANCÉ — RÉDUISENT LA SÉCURITÉ"
-        'L:lblRiskyHint' = "Exclus de « Tout sélectionner ». À activer seulement si vous en connaissez les conséquences."
         'L:chkVBS' = "VBS / Intégrité de la mémoire — désactiver"
         'L:chkMitigations' = "Protections système contre les exploits — désactiver"
         'L:tabPower' = "Alimentation"
@@ -7395,8 +7374,6 @@ $script:Tr = @{
         'L:mpoOn' = "Włączone (domyślne w Windows)"
         'L:mpoOff' = "Wyłączone (usuwa przycięcia i migotanie)"
         'L:mpoCompat' = "Włączone, zgodne (2 płaszczyzny)"
-        'L:ttlRisky' = "ZAAWANSOWANE — OBNIŻAJĄ BEZPIECZEŃSTWO"
-        'L:lblRiskyHint' = "Pomijane przez «Zaznacz wszystko». Włączaj tylko, jeśli znasz skutki."
         'L:chkVBS' = "VBS / Integralność pamięci — wyłącz"
         'L:chkMitigations' = "Systemowe zabezpieczenia przed exploitami — wyłącz"
         'L:tabPower' = "Zasilanie"
@@ -8308,8 +8285,6 @@ $script:Tr = @{
         'L:mpoOn' = "Ativado (padrão do Windows)"
         'L:mpoOff' = "Desativado (corrige travadas e cintilação)"
         'L:mpoCompat' = "Ativado, compatível (2 planos)"
-        'L:ttlRisky' = "AVANÇADO — REDUZEM A SEGURANÇA"
-        'L:lblRiskyHint' = "Excluídos de «Selecionar tudo». Ative só se conhecer as consequências."
         'L:chkVBS' = "VBS / Integridade da memória — desativar"
         'L:chkMitigations' = "Mitigações de exploits do sistema — desativar"
         'L:tabPower' = "Energia"
@@ -9221,8 +9196,6 @@ $script:Tr = @{
         'L:mpoOn' = "Activat (implicit în Windows)"
         'L:mpoOff' = "Dezactivat (rezolvă sacadări și pâlpâiri)"
         'L:mpoCompat' = "Activat, compatibil (2 planuri)"
-        'L:ttlRisky' = "AVANSAT — REDUC SECURITATEA"
-        'L:lblRiskyHint' = "Excluse din «Selectează tot». Activează-le doar dacă știi urmările."
         'L:chkVBS' = "VBS / Integritatea memoriei — dezactivează"
         'L:chkMitigations' = "Protecții de sistem împotriva exploit-urilor — dezactivează"
         'L:tabPower' = "Alimentare"
@@ -10134,8 +10107,6 @@ $script:Tr = @{
         'L:mpoOn' = "Включено (по умолчанию в Windows)"
         'L:mpoOff' = "Отключено (убирает рывки и мерцание)"
         'L:mpoCompat' = "Включено, совместимо (2 плоскости)"
-        'L:ttlRisky' = "ДОПОЛНИТЕЛЬНО — СНИЖАЮТ БЕЗОПАСНОСТЬ"
-        'L:lblRiskyHint' = "Не входят в «Выбрать всё». Включайте, только если понимаете последствия."
         'L:chkVBS' = "VBS / Целостность памяти — отключить"
         'L:chkMitigations' = "Системная защита от эксплойтов — отключить"
         'L:tabPower' = "Электропитание"

@@ -1382,6 +1382,10 @@
                                             </StackPanel>
                                         </Border>
 
+
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Column="2">
                                         <Border Style="{StaticResource Glass}">
                                             <StackPanel>
                                                 <TextBlock x:Name="ttlCpu" Text="PROCESSORE" Style="{StaticResource CardTitle}"/>
@@ -1389,25 +1393,6 @@
                                                 <CheckBox x:Name="chkCpuIntelBoostPol" Content="Intel: turbo senza freni di politica"/>
                                                 <CheckBox x:Name="chkCpuIntelHybrid" Content="Intel ibridi: app in primo piano sui core P"/>
                                                 <CheckBox x:Name="chkCpuAmdParking" Content="AMD Ryzen: nessun core parcheggiato"/>
-                                            </StackPanel>
-                                        </Border>
-
-                                    </StackPanel>
-
-                                    <StackPanel Grid.Column="2">
-                                        <Border Style="{StaticResource Glass}">
-                                            <Border.Background>
-                                                <LinearGradientBrush StartPoint="0,0" EndPoint="0.7,1">
-                                                    <GradientStop Color="#22E0A25E" Offset="0"/>
-                                                    <GradientStop Color="#0AE0A25E" Offset="1"/>
-                                                </LinearGradientBrush>
-                                            </Border.Background>
-                                            <StackPanel>
-                                                <TextBlock x:Name="ttlRisky" Text="AVANZATE" Style="{StaticResource CardTitle}" Foreground="#FFE0A25E"/>
-                                                <TextBlock x:Name="lblRiskyHint" Text="Escluse da Seleziona tutto."
-                                                           Style="{StaticResource SubTitle}" Foreground="#FFD9A470" Margin="0,0,0,8"/>
-                                                <CheckBox x:Name="chkVBS" Tag="risky" Content="VBS"/>
-                                                <CheckBox x:Name="chkMitigations" Tag="risky" Content="Mitigazioni exploit"/>
                                                 <CheckBox x:Name="chkCpuIdleOff" Tag="risky" Content="Processore sempre sveglio"/>
                                             </StackPanel>
                                         </Border>
@@ -2212,6 +2197,8 @@
                                                            Text="Tutte rischiose e mai incluse in «Seleziona tutto». Abbassano davvero le difese del computer: usale solo su una macchina che non naviga e non apre allegati."/>
                                                 <CheckBox x:Name="chkSecSmartScreen" Tag="risky" Content="SmartScreen — controllo dei file scaricati"/>
                                                 <CheckBox x:Name="chkSecSpectre" Tag="risky" Content="Mitigazioni Spectre e Meltdown"/>
+                                                <CheckBox x:Name="chkVBS" Tag="risky" Content="VBS"/>
+                                                <CheckBox x:Name="chkMitigations" Tag="risky" Content="Mitigazioni exploit"/>
                                                 <CheckBox x:Name="chkSecDefenderIdle" Tag="risky" Content="Defender: scansioni solo a computer fermo, CPU al 20%"/>
                                             </StackPanel>
                                         </Border>

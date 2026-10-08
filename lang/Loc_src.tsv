@@ -27,8 +27,6 @@ chkApplyMPO	Apply Multiplane Overlay (MPO) setting
 mpoOn	Enabled (Windows default)
 mpoOff	Disabled (fixes stutter and flicker)
 mpoCompat	Enabled, compatible (2 planes)
-ttlRisky	ADVANCED — THESE REDUCE SECURITY
-lblRiskyHint	Excluded from «Select all». Enable only if you know the consequences.
 chkVBS	VBS / Memory integrity — disable
 chkMitigations	System exploit mitigations — disable
 tabPower	Power

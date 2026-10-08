@@ -27,8 +27,6 @@ L:chkApplyMPO	Aplicar el ajuste Multiplane Overlay (MPO)
 L:mpoOn	Activado (predeterminado de Windows)
 L:mpoOff	Desactivado (corrige tirones y parpadeos)
 L:mpoCompat	Activado, compatible (2 planos)
-L:ttlRisky	AVANZADO — REDUCEN LA SEGURIDAD
-L:lblRiskyHint	Excluidos de «Seleccionar todo». Actívalos solo si conoces las consecuencias.
 L:chkVBS	VBS / Integridad de memoria — desactivar
 L:chkMitigations	Mitigaciones de exploits del sistema — desactivar
 L:tabPower	Energía

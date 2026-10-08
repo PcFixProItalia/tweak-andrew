@@ -27,8 +27,6 @@ L:chkApplyMPO	Multiplane-Overlay-Einstellung (MPO) anwenden
 L:mpoOn	Aktiviert (Windows-Standard)
 L:mpoOff	Deaktiviert (behebt Ruckeln und Flackern)
 L:mpoCompat	Aktiviert, kompatibel (2 Ebenen)
-L:ttlRisky	ERWEITERT — VERRINGERN DIE SICHERHEIT
-L:lblRiskyHint	Von «Alle auswählen» ausgeschlossen. Nur aktivieren, wenn du die Folgen kennst.
 L:chkVBS	VBS / Speicherintegrität — deaktivieren
 L:chkMitigations	System-Exploit-Schutz — deaktivieren
 L:tabPower	Energie

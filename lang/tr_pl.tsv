@@ -27,8 +27,6 @@ L:chkApplyMPO	Zastosuj ustawienie Multiplane Overlay (MPO)
 L:mpoOn	Włączone (domyślne w Windows)
 L:mpoOff	Wyłączone (usuwa przycięcia i migotanie)
 L:mpoCompat	Włączone, zgodne (2 płaszczyzny)
-L:ttlRisky	ZAAWANSOWANE — OBNIŻAJĄ BEZPIECZEŃSTWO
-L:lblRiskyHint	Pomijane przez «Zaznacz wszystko». Włączaj tylko, jeśli znasz skutki.
 L:chkVBS	VBS / Integralność pamięci — wyłącz
 L:chkMitigations	Systemowe zabezpieczenia przed exploitami — wyłącz
 L:tabPower	Zasilanie
