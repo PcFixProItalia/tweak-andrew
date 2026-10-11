@@ -4392,7 +4392,12 @@ $script:RecommendedChecks = @{
 # prelazione della scheda video).
 $script:MaxPerfExtra = @(
     'chkKernelDpc','chkTimer','chkVisualFX',
+    'chkCpuIntelHybrid',
     'chkGpuMsi','chkNvDynPstate','chkNvLatency','chkAmdPowerGating','chkAmdDma',
+    # Impostazioni del driver che scambiano un po' di qualita' d'immagine o di
+    # risparmio con fotogrammi in piu'.
+    'chkNvThreaded','chkNvTexPerf','chkNvAniso','chkNvNoAnsel',
+    'chkAmdTexPerf','chkAmdTess','chkAmdFlipQueue','chkAmdNoFrtc','chkAmdStutter','chkAmdAspm','chkIntelDpst',
     'chkTaskExtra','chkSvcSysMain','chkSvcDiag','chkSvcPca','chkSvcSensors','chkSvcParental',
     'chkPrefetch','chkFth','chkAppCompat','chkMemCompression','chkBootDynTick','chkBootTsc',
     'chkSecSmartScreen','chkSecSpectre','chkSecDownfall','chkVBS','chkMitigations','chkSecDefenderIdle')
