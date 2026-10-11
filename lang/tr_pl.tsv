@@ -183,7 +183,7 @@ L:chkReservedStorage	Zarezerwowane miejsce Windows (7 GB) — wyłącz
 L:lblSelected	Zaznaczone:
 L:chkRestorePoint	Punkt przywracania
 L:btnSelectAll	Zaznacz wszystko
-L:btnDeselectAll	Cofnij wybory
+L:btnDeselectAll	Odznacz
 L:btnDetectActive	Wykryj zastosowane
 L:btnRun	Zastosuj zmiany
 L:btnUndo	Przywróć zaznaczone
@@ -232,7 +232,7 @@ L:chkAppxBloat	Zbędne aplikacje (wiadomości, pogoda, mapy, Skype...)
 L:chkAppxXbox	Aplikacje Xbox i nakładka gier
 L:chkAppxProvision	Nie przywracaj ich dla nowych użytkowników
 L:ttlSec	OBNIŻONE BEZPIECZEŃSTWO
-L:lblSecHint	Wszystkie ryzykowne i nigdy nie wchodzą do «Zaznacz wszystko». Naprawdę obniżają ochronę: używaj ich tylko na komputerze, który nie przegląda internetu i nie otwiera załączników.
+L:lblSecHint	Wszystkie ryzykowne: naprawdę obniżają ochronę komputera. «Zalecane» włącza dwie z nich, «Zaznacz wszystko» włącza wszystkie po potwierdzeniu.
 L:chkSecSmartScreen	SmartScreen — sprawdzanie pobranych plików
 L:chkSecSpectre	Zabezpieczenia przed Spectre i Meltdown
 L:chkSecDefenderIdle	Defender: skanuj tylko w bezczynności, CPU do 20%
@@ -907,3 +907,6 @@ L:chkSecDownfall	Zabezpieczenie Downfall (tylko Intel)
 H:chkSecDownfall	Wyłącza ochronę przed Downfall na procesorach Intel od 6. do 11. generacji: odzyskuje wydajność w obciążeniach AVX, ale złośliwy program może odczytać dane innych programów. Z Hyper-V lub VBS system i tak ją zostawia.
 M:tool_rootCerts	Certyfikaty główne: aktualizuj
 M:toolDesc_rootCerts	Pobiera aktualną listę z Windows Update. Naprawia błędy certyfikatów na stronach i w programach.
+M:maxPerfTitle	Maksymalna wydajność
+M:maxPerfAsk	«Zaznacz wszystko» włącza wszystko, co daje wydajność, także to, co obniża bezpieczeństwo: zabezpieczenia Spectre, izolację jądra, ochronę przed exploitami, SmartScreen. Dobre dla komputera tylko do gier. Do codziennej pracy wybierz «Zalecane». Kontynuować?
+M:maxPerfDone	Maksymalna wydajność gotowa: {0} do włączenia, {1} zostaje lub wraca do ustawień Windows. Naciśnij «Zastosuj zmiany».

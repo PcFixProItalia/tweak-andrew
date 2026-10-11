@@ -183,7 +183,7 @@ L:chkReservedStorage	Armazenamento reservado do Windows (7 GB) — desativar
 L:lblSelected	Selecionados:
 L:chkRestorePoint	Ponto de restauração
 L:btnSelectAll	Selecionar tudo
-L:btnDeselectAll	Desfazer escolhas
+L:btnDeselectAll	Desmarcar
 L:btnDetectActive	Detectar aplicados
 L:btnRun	Aplicar alterações
 L:btnUndo	Restaurar selecionados
@@ -232,7 +232,7 @@ L:chkAppxBloat	Apps não essenciais (notícias, clima, mapas, Skype...)
 L:chkAppxXbox	Apps do Xbox e sobreposição de jogo
 L:chkAppxProvision	Não restaurá-los para novos usuários
 L:ttlSec	SEGURANÇA REDUZIDA
-L:lblSecHint	Todas arriscadas e nunca incluídas em «Selecionar tudo». Reduzem de verdade as defesas: use apenas numa máquina que não navega nem abre anexos.
+L:lblSecHint	Todas arriscadas: reduzem de verdade as defesas do computador. «Recomendados» liga duas, «Selecionar tudo» liga todas após uma confirmação.
 L:chkSecSmartScreen	SmartScreen — verificação de arquivos baixados
 L:chkSecSpectre	Mitigações de Spectre e Meltdown
 L:chkSecDefenderIdle	Defender: verificar só em repouso, CPU a 20%
@@ -907,3 +907,6 @@ L:chkSecDownfall	Mitigação Downfall (só Intel)
 H:chkSecDownfall	Desliga a proteção contra o Downfall em processadores Intel da 6ª à 11ª geração: recupera desempenho em cargas AVX, mas um programa malicioso pode ler dados de outros programas. Com Hyper-V ou VBS ativos, o Windows a mantém ligada.
 M:tool_rootCerts	Certificados raiz: atualizar
 M:toolDesc_rootCerts	Baixa a lista atual do Windows Update. Corrige erros de certificado em sites e programas.
+M:maxPerfTitle	Desempenho máximo
+M:maxPerfAsk	«Selecionar tudo» liga tudo o que dá desempenho, inclusive o que reduz a segurança: mitigações Spectre, isolamento do núcleo, proteções contra exploits, SmartScreen. Serve para um PC só de jogos. Para o dia a dia escolha «Recomendados». Continuar?
+M:maxPerfDone	Desempenho máximo pronto: {0} para ativar, {1} para manter ou voltar ao padrão do Windows. Pressione «Aplicar alterações».

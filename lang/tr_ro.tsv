@@ -183,7 +183,7 @@ L:chkReservedStorage	Spațiul rezervat de Windows (7 GB) — dezactivează
 L:lblSelected	Selectate:
 L:chkRestorePoint	Punct de restaurare
 L:btnSelectAll	Selectează tot
-L:btnDeselectAll	Anulează alegerile
+L:btnDeselectAll	Deselectează
 L:btnDetectActive	Detectează aplicate
 L:btnRun	Aplică modificările
 L:btnUndo	Resetează selectate
@@ -232,7 +232,7 @@ L:chkAppxBloat	Aplicații neesențiale (știri, vreme, hărți, Skype...)
 L:chkAppxXbox	Aplicații Xbox și suprapunerea de joc
 L:chkAppxProvision	Nu le restabili pentru utilizatorii noi
 L:ttlSec	SECURITATE REDUSĂ
-L:lblSecHint	Toate riscante și niciodată incluse în «Selectează tot». Scad cu adevărat apărarea computerului: folosește-le doar pe o mașină care nu navighează și nu deschide atașamente.
+L:lblSecHint	Toate riscante: scad cu adevărat protecția calculatorului. «Recomandate» pornește două dintre ele, «Selectează tot» le pornește pe toate după o confirmare.
 L:chkSecSmartScreen	SmartScreen — verificarea fișierelor descărcate
 L:chkSecSpectre	Protecții Spectre și Meltdown
 L:chkSecDefenderIdle	Defender: scanare doar în repaus, CPU la 20%
@@ -907,3 +907,6 @@ L:chkSecDownfall	Protecția Downfall (doar Intel)
 H:chkSecDownfall	Oprește protecția împotriva Downfall pe procesoarele Intel din generațiile 6–11: recuperează performanță în sarcini AVX, dar un program rău-intenționat poate citi datele altor programe. Cu Hyper-V sau VBS active, Windows o păstrează pornită.
 M:tool_rootCerts	Certificate rădăcină: actualizează
 M:toolDesc_rootCerts	Descarcă lista actuală de la Windows Update. Repară erorile de certificat pe site-uri și în programe.
+M:maxPerfTitle	Performanță maximă
+M:maxPerfAsk	«Selectează tot» pornește tot ce aduce performanță, inclusiv ce scade securitatea: protecțiile Spectre, izolarea nucleului, protecțiile anti-exploit, SmartScreen. Potrivit pentru un PC folosit doar la jocuri. Pentru uz zilnic alege «Recomandate». Continui?
+M:maxPerfDone	Performanță maximă pregătită: {0} de activat, {1} rămân sau revin la valorile Windows. Apasă «Aplică modificările».

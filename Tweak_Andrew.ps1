@@ -2259,7 +2259,7 @@ $script:PlanData = @{
                                             <StackPanel>
                                                 <TextBlock x:Name="ttlSec" Text="SICUREZZA RIDOTTA" Style="{StaticResource CardTitle}" Foreground="#FFFF6B6B"/>
                                                 <TextBlock x:Name="lblSecHint" Style="{StaticResource SubTitle}" Margin="0,0,0,10"
-                                                           Text="Tutte rischiose e mai incluse in «Seleziona tutto». Abbassano davvero le difese del computer: usale solo su una macchina che non naviga e non apre allegati."/>
+                                                           Text="Tutte rischiose: abbassano davvero le difese del computer. «Consigliati» ne accende due, «Seleziona tutto» le accende tutte dopo una conferma."/>
                                                 <CheckBox x:Name="chkSecSmartScreen" Tag="risky" Content="SmartScreen — controllo dei file scaricati"/>
                                                 <CheckBox x:Name="chkSecSpectre" Tag="risky" Content="Mitigazioni Spectre e Meltdown"/>
                                                 <CheckBox x:Name="chkSecDownfall" Tag="risky" Content="Mitigazione Downfall (Intel)"/>
@@ -2644,7 +2644,7 @@ $script:PlanData = @{
                                         <Button x:Name="btnSelectAll" Style="{StaticResource GhostBtn}" Height="40" Margin="0,0,8,4" Content="Seleziona tutto"/>
                                         <Button x:Name="btnSelectPage" Style="{StaticResource GhostBtn}" Height="40" Margin="0,0,8,4" Content="Questa pagina"/>
                                         <Button x:Name="btnRecommended" Style="{StaticResource GhostBtn}" Height="40" Margin="0,0,8,4" Content="Consigliati"/>
-                                        <Button x:Name="btnDeselectAll" Style="{StaticResource GhostBtn}" Height="40" Margin="0,0,8,4" Content="Deseleziona"/>
+                                        <Button x:Name="btnDeselectAll" Style="{StaticResource GhostBtn}" Height="40" Margin="0,0,8,4" Content="Deseleziona" IsEnabled="False"/>
                                     </WrapPanel>
                                     <StackPanel Grid.Column="1" Orientation="Horizontal">
                                         <Button x:Name="btnUndo" Style="{StaticResource UndoBtn}" Height="40" MinWidth="150" Margin="0,0,8,0" Content="Reimposta predefiniti"/>
@@ -2917,7 +2917,7 @@ $script:Loc = @{
     lblSelected        = @{ it = "Selezionati:"; en = "Selected:" }
     chkRestorePoint    = @{ it = "Punto di ripristino"; en = "Restore point" }
     btnSelectAll       = @{ it = "Seleziona tutto"; en = "Select all" }
-    btnDeselectAll     = @{ it = "Annulla scelte"; en = "Undo choices" }
+    btnDeselectAll     = @{ it = "Deseleziona"; en = "Deselect" }
     btnDetectActive    = @{ it = "Rileva già attivi"; en = "Detect applied" }
     btnRun             = @{ it = "Applica modifiche"; en = "Apply changes" }
 
@@ -2972,7 +2972,7 @@ $script:Loc = @{
     chkAppxProvision   = @{ it = "Non ripristinarle per i nuovi utenti"; en = "Do not restore them for new users" }
 
     ttlSec             = @{ it = "SICUREZZA RIDOTTA"; en = "REDUCED SECURITY" }
-    lblSecHint         = @{ it = "Tutte rischiose e mai incluse in «Seleziona tutto». Abbassano davvero le difese del computer: usale solo su una macchina che non naviga e non apre allegati."; en = "All risky and never part of «Select all». They genuinely lower the computer's defenses: use them only on a machine that does not browse the web or open attachments." }
+    lblSecHint         = @{ it = "Tutte rischiose: abbassano davvero le difese del computer. «Consigliati» ne accende due, «Seleziona tutto» le accende tutte dopo una conferma."; en = "All risky: they genuinely lower the computer's defenses. «Recommended» turns on two of them, «Select all» turns on all of them after a confirmation." }
     chkSecSmartScreen  = @{ it = "SmartScreen — controllo dei file scaricati"; en = "SmartScreen — checking downloaded files" }
     chkSecSpectre      = @{ it = "Mitigazioni Spectre e Meltdown"; en = "Spectre and Meltdown mitigations" }
     chkSecDefenderIdle = @{ it = "Defender: scansioni solo a computer fermo, CPU al 20%"; en = "Defender: scan only when idle, CPU capped at 20%" }
@@ -3482,6 +3482,9 @@ $script:Msg = @{
     catBulkCount       = @{ it = "Voci da cambiare: {0}"; en = "Entries to change: {0}" }
     tool_rootCerts     = @{ it = "Certificati radice: aggiorna"; en = "Root certificates: update" }
     toolDesc_rootCerts = @{ it = "Scarica l'elenco aggiornato da Windows Update. Risolve gli errori di certificato su siti e programmi."; en = "Downloads the current list from Windows Update. Fixes certificate errors on websites and in programs." }
+    maxPerfTitle       = @{ it = "Prestazioni massime"; en = "Maximum performance" }
+    maxPerfAsk         = @{ it = "«Seleziona tutto» accende ogni voce che dà prestazioni, comprese quelle che abbassano la sicurezza: mitigazioni Spectre, isolamento del kernel, protezioni dagli exploit, SmartScreen. Va bene su un PC usato solo per giocare. Per l'uso di tutti i giorni scegli «Consigliati». Continuare?"; en = "«Select all» turns on every entry that gives performance, including those that lower security: Spectre mitigations, kernel isolation, exploit protections, SmartScreen. Fine on a PC used only for gaming. For everyday use pick «Recommended». Continue?" }
+    maxPerfDone        = @{ it = "Prestazioni massime pronte: {0} da attivare, {1} da lasciare o riportare come Windows. Premi «Applica modifiche»."; en = "Maximum performance ready: {0} to enable, {1} to keep or put back as Windows. Press «Apply changes»." }
 }
 
 $script:LangCode = "it"
@@ -4309,6 +4312,7 @@ function Update-ApplyButton {
     $total = @($script:AllCheckBoxes | Where-Object { Test-Pending $_ }).Count
     $btnRun.IsEnabled = ($total -gt 0)
     if ($null -ne $btnUndo) { $btnUndo.IsEnabled = ($total -gt 0) }
+    if ($null -ne $btnDeselectAll) { $btnDeselectAll.IsEnabled = ($total -gt 0) }
     if ($null -ne $txtSelectedCount) {
         $txtSelectedCount.Text = "$total"
         if ($total -gt 0) { $txtSelectedCount.Foreground = "#FF3DBE8B" } else { $txtSelectedCount.Foreground = "#FF5D636B" }
@@ -4373,9 +4377,57 @@ $script:RecommendedChecks = @{
     pageNet     = @('chkNetPowerSave')
     pageStorage = @('chkReservedStorage')
     pagePower   = @('chkFastStartup','chkHibernation','chkS0Sleep','chkS3Sleep')
+    # Via di mezzo sulla sicurezza: Defender resta acceso e scansiona a PC fermo,
+    # l'isolamento del kernel si spegne. Spectre, exploit e SmartScreen restano.
+    pageAdv     = @('chkSecDefenderIdle','chkVBS')
     pageGpu     = @('chkGpuTdr','chkNvTelemetry','chkNvGfe','chkNvPerfMode','chkNvUpdates','chkNvP2','chkNvDrsPower','chkNvLowLatency',
                     'chkNvShaderCache','chkNvDisplayPower','chkAmdUx','chkAmdBloat','chkAmdUlps','chkAmdAntiLag','chkAmdShaderCache','chkIntelBloat',
                     'chkIntelTelemetry','chkIntelGfxPower')
+}
+
+# «Seleziona tutto»: oltre ai consigliati accende tutto cio' che toglie lavoro
+# al processore o latenza, sicurezza compresa. Restano fuori le voci che
+# rompono una funzione senza dare prestazioni (stampa, ricerca, desktop
+# remoto, HDCP) e quelle che su molti PC peggiorano (stati di riposo spenti,
+# prelazione della scheda video).
+$script:MaxPerfExtra = @(
+    'chkKernelDpc','chkTimer','chkVisualFX',
+    'chkGpuMsi','chkNvDynPstate','chkNvLatency','chkAmdPowerGating','chkAmdDma',
+    'chkTaskExtra','chkSvcSysMain','chkSvcDiag','chkSvcPca','chkSvcSensors','chkSvcParental',
+    'chkPrefetch','chkFth','chkAppCompat','chkMemCompression','chkBootDynTick','chkBootTsc',
+    'chkSecSmartScreen','chkSecSpectre','chkSecDownfall','chkVBS','chkMitigations','chkSecDefenderIdle')
+$script:SecurityChecks = @('chkSecSmartScreen','chkSecSpectre','chkSecDownfall','chkVBS','chkMitigations','chkSecDefenderIdle')
+
+function Test-MaxPerfWanted($cb) {
+    $n = [string]$cb.Name
+    if ($script:MaxPerfExtra -notcontains $n) { return $false }
+    if (-not $cb.IsEnabled -or -not (Test-CheckVendor $cb) -or -not (Test-CheckPcType $cb)) { return $false }
+    if ($n -eq 'chkSecDownfall') { return ($script:CpuVendor -eq 'Intel') }
+    if ($n -eq 'chkMemCompression') {
+        # Senza compressione la memoria finisce prima: solo con almeno 16 GB.
+        if ($null -eq $script:RamGb) { $script:RamGb = [math]::Round((Get-CimInstance Win32_ComputerSystem -ErrorAction SilentlyContinue).TotalPhysicalMemory / 1GB) }
+        return ($script:RamGb -ge 16)
+    }
+    return $true
+}
+
+function Set-MaxPerfValues([array]$boxes) {
+    $r = Set-RecommendedValues $boxes
+    $script:Syncing = $true; $script:SectionSync = $true
+    try {
+        foreach ($cb in $boxes) {
+            if ((Test-MaxPerfWanted $cb) -and $cb.IsChecked -ne $true) { $cb.IsChecked = $true; $r.On++; if ((Get-RecTarget $cb) -eq $false) { $r.Off-- } }
+        }
+    } finally { $script:Syncing = $false; $script:SectionSync = $false }
+    Update-ApplyButton
+    return $r
+}
+
+# Chiede conferma solo se tra le voci ce n'e' una che abbassa la sicurezza.
+function Confirm-MaxPerf([array]$boxes) {
+    $sec = @($boxes | Where-Object { ($script:SecurityChecks -contains [string]$_.Name) -and (Test-MaxPerfWanted $_) -and $_.IsChecked -ne $true })
+    if ($sec.Count -eq 0) { return $true }
+    return (Show-Dialog (T 'maxPerfTitle') (T 'maxPerfAsk') 'danger')
 }
 
 # La pagina Priorita' non ha caselle: i valori consigliati si preparano nei due
@@ -4402,37 +4454,30 @@ function Confirm-LaptopSelection([array]$list) {
 }
 
 $btnSelectAll.Add_Click({
-    $r = Set-RecommendedValues @($script:AllCheckBoxes)
-    $txtProgressLabel.Text = (T 'recAllDone') -f $r.On, $r.Off
+    $boxes = @($script:AllCheckBoxes)
+    if (-not (Confirm-MaxPerf $boxes)) { return }
+    $r = Set-MaxPerfValues $boxes
+    $txtProgressLabel.Text = (T 'maxPerfDone') -f $r.On, $r.Off
 })
 
 $btnSelectPage.Add_Click({
     $page = Get-CurrentPage
-    $boxes = if ($page) { @(Get-CheckBoxesFromTree $page) } else { @() }
-    $r = Set-RecommendedValues $boxes
-    $txtProgressLabel.Text = if (($r.On + $r.Off) -eq 0) { T 'selPageNone' } else { (T 'recAllDone') -f $r.On, $r.Off }
+    $boxes = if ($page) { @(Get-CheckBoxesFromTree $page | Where-Object { $script:AllCheckBoxes -contains $_ }) } else { @() }
+    if (-not (Confirm-MaxPerf $boxes)) { return }
+    $r = Set-MaxPerfValues $boxes
+    $txtProgressLabel.Text = if (($r.On + $r.Off) -eq 0) { T 'selPageNone' } else { (T 'maxPerfDone') -f $r.On, $r.Off }
 })
 
+# «Consigliati»: la via di mezzo, su tutte le pagine. Nella pagina Priorita'
+# prepara anche i due pannelli.
 $btnRecommended.Add_Click({
     $page = Get-CurrentPage
-    if ($null -eq $page) { return }
-    $name = [string]$page.Name
-    if ($name -eq 'pageSched') {
-        Set-SchedRecommended
-        $txtProgressLabel.Text = T 'recSched'
-        return
-    }
-    $names = $script:RecommendedChecks[$name]
-    if (-not $names) { $txtProgressLabel.Text = T 'recNone'; return }
-    $n = 0
-    foreach ($cb in @(Get-SelectableChecks -CurrentPageOnly -ByPcType)) {
-        if ($names -contains [string]$cb.Name) { $cb.IsChecked = $true; $n++ }
-    }
-    $txtProgressLabel.Text = (T 'recSelected') -f $n
-    Update-ApplyButton
+    if ($null -ne $page -and [string]$page.Name -eq 'pageSched') { Set-SchedRecommended }
+    $r = Set-RecommendedValues @($script:AllCheckBoxes)
+    $txtProgressLabel.Text = (T 'recAllDone') -f $r.On, $r.Off
 })
 
-# «Annulla scelte»: ogni interruttore torna allo stato del sistema.
+# «Deseleziona»: ogni interruttore torna allo stato del sistema.
 $btnDeselectAll.Add_Click({
     $script:Syncing = $true
     try { foreach ($cb in $script:AllCheckBoxes) { $cb.IsChecked = ($script:Baseline[[string]$cb.Name] -eq $true) } }
@@ -4814,7 +4859,7 @@ $script:Tr = @{
         'L:lblSelected' = "Seleccionados:"
         'L:chkRestorePoint' = "Punto de restauración"
         'L:btnSelectAll' = "Seleccionar todo"
-        'L:btnDeselectAll' = "Deshacer cambios"
+        'L:btnDeselectAll' = "Deseleccionar"
         'L:btnDetectActive' = "Detectar aplicados"
         'L:btnRun' = "Aplicar cambios"
         'L:btnUndo' = "Restablecer seleccionados"
@@ -4863,7 +4908,7 @@ $script:Tr = @{
         'L:chkAppxXbox' = "Aplicaciones de Xbox y superposición de juego"
         'L:chkAppxProvision' = "No restaurarlas para usuarios nuevos"
         'L:ttlSec' = "SEGURIDAD REDUCIDA"
-        'L:lblSecHint' = "Todas arriesgadas y nunca incluidas en «Seleccionar todo». Bajan de verdad las defensas: úsalas solo en una máquina que no navega ni abre adjuntos."
+        'L:lblSecHint' = "Todas arriesgadas: reducen de verdad las defensas del equipo. «Recomendados» activa dos, «Seleccionar todo» las activa todas tras una confirmación."
         'L:chkSecSmartScreen' = "SmartScreen — control de archivos descargados"
         'L:chkSecSpectre' = "Mitigaciones de Spectre y Meltdown"
         'L:chkSecDefenderIdle' = "Defender: analizar solo en reposo, CPU al 20%"
@@ -5538,6 +5583,9 @@ $script:Tr = @{
         'H:chkSecDownfall' = "Desactiva la protección contra Downfall en procesadores Intel de 6.ª a 11.ª generación: recupera rendimiento en cargas AVX, pero un programa malicioso puede leer datos de otros programas. Con Hyper-V o VBS activos, Windows la mantiene activada."
         'M:tool_rootCerts' = "Certificados raíz: actualizar"
         'M:toolDesc_rootCerts' = "Descarga la lista actual desde Windows Update. Corrige errores de certificado en webs y programas."
+        'M:maxPerfTitle' = "Rendimiento máximo"
+        'M:maxPerfAsk' = "«Seleccionar todo» activa todo lo que da rendimiento, incluido lo que reduce la seguridad: mitigaciones Spectre, aislamiento del núcleo, protecciones contra exploits, SmartScreen. Vale para un PC solo de juegos. Para el uso diario elige «Recomendados». ¿Continuar?"
+        'M:maxPerfDone' = "Rendimiento máximo listo: {0} para activar, {1} para dejar o devolver como Windows. Pulsa «Aplicar cambios»."
     }
     de = @{
         'L:lblSubtitle' = "Windows-Optimierung und -Steuerung — PcFixPro Italia"
@@ -5725,7 +5773,7 @@ $script:Tr = @{
         'L:lblSelected' = "Ausgewählt:"
         'L:chkRestorePoint' = "Wiederherstellungspunkt"
         'L:btnSelectAll' = "Alle auswählen"
-        'L:btnDeselectAll' = "Auswahl verwerfen"
+        'L:btnDeselectAll' = "Abwählen"
         'L:btnDetectActive' = "Angewendete erkennen"
         'L:btnRun' = "Änderungen anwenden"
         'L:btnUndo' = "Auswahl zurücksetzen"
@@ -5774,7 +5822,7 @@ $script:Tr = @{
         'L:chkAppxXbox' = "Xbox-Apps und Spiel-Overlay"
         'L:chkAppxProvision' = "Für neue Benutzer nicht wiederherstellen"
         'L:ttlSec' = "VERRINGERTE SICHERHEIT"
-        'L:lblSecHint' = "Alle riskant und nie Teil von «Alle auswählen». Sie senken die Abwehr des Computers wirklich: nur auf einem Rechner verwenden, der nicht im Web surft und keine Anhänge öffnet."
+        'L:lblSecHint' = "Alle riskant: Sie senken den Schutz des Computers wirklich. «Empfohlene» schaltet zwei davon ein, «Alles auswählen» nach einer Bestätigung alle."
         'L:chkSecSmartScreen' = "SmartScreen — Prüfung heruntergeladener Dateien"
         'L:chkSecSpectre' = "Schutz vor Spectre und Meltdown"
         'L:chkSecDefenderIdle' = "Defender: nur im Leerlauf scannen, CPU auf 20%"
@@ -6449,6 +6497,9 @@ $script:Tr = @{
         'H:chkSecDownfall' = "Schaltet den Schutz gegen Downfall auf Intel-Prozessoren der 6. bis 11. Generation ab: bringt Leistung bei AVX-Lasten zurück, aber ein Schadprogramm kann Daten anderer Programme lesen. Mit Hyper-V oder VBS lässt Windows ihn trotzdem an."
         'M:tool_rootCerts' = "Stammzertifikate: aktualisieren"
         'M:toolDesc_rootCerts' = "Lädt die aktuelle Liste von Windows Update. Behebt Zertifikatsfehler auf Websites und in Programmen."
+        'M:maxPerfTitle' = "Maximale Leistung"
+        'M:maxPerfAsk' = "«Alles auswählen» schaltet alles ein, was Leistung bringt, auch was die Sicherheit senkt: Spectre-Schutz, Kernisolierung, Exploit-Schutz, SmartScreen. In Ordnung für einen reinen Spiele-PC. Für den Alltag «Empfohlene» wählen. Fortfahren?"
+        'M:maxPerfDone' = "Maximale Leistung bereit: {0} zu aktivieren, {1} bleiben oder gehen auf Windows-Standard zurück. «Änderungen übernehmen» drücken."
     }
     fr = @{
         'L:lblSubtitle' = "Optimisation et contrôle de Windows — PcFixPro Italia"
@@ -6639,7 +6690,7 @@ $script:Tr = @{
         'L:lblSelected' = "Sélectionnés :"
         'L:chkRestorePoint' = "Point de restauration"
         'L:btnSelectAll' = "Tout sélectionner"
-        'L:btnDeselectAll' = "Annuler les choix"
+        'L:btnDeselectAll' = "Désélectionner"
         'L:btnDetectActive' = "Détecter les actifs"
         'L:btnRun' = "Appliquer les modifications"
         'L:btnUndo' = "Réinitialiser la sélection"
@@ -6688,7 +6739,7 @@ $script:Tr = @{
         'L:chkAppxXbox' = "Applications Xbox et superposition de jeu"
         'L:chkAppxProvision' = "Ne pas les restaurer pour les nouveaux utilisateurs"
         'L:ttlSec' = "SÉCURITÉ RÉDUITE"
-        'L:lblSecHint' = "Toutes risquées et jamais incluses dans « Tout sélectionner ». Elles abaissent réellement les défenses : à utiliser seulement sur une machine qui ne navigue pas et n'ouvre pas de pièces jointes."
+        'L:lblSecHint' = "Toutes risquées : elles abaissent réellement les défenses de l'ordinateur. «Recommandés» en active deux, «Tout sélectionner» les active toutes après confirmation."
         'L:chkSecSmartScreen' = "SmartScreen — contrôle des fichiers téléchargés"
         'L:chkSecSpectre' = "Protections contre Spectre et Meltdown"
         'L:chkSecDefenderIdle' = "Defender : analyse seulement au repos, CPU à 20 %"
@@ -7363,6 +7414,9 @@ $script:Tr = @{
         'H:chkSecDownfall' = "Désactive la protection contre Downfall sur les processeurs Intel de la 6e à la 11e génération : récupère des performances en charge AVX, mais un programme malveillant peut lire les données d'autres programmes. Avec Hyper-V ou VBS, Windows la garde active."
         'M:tool_rootCerts' = "Certificats racine : mettre à jour"
         'M:toolDesc_rootCerts' = "Télécharge la liste à jour depuis Windows Update. Corrige les erreurs de certificat sur les sites et dans les programmes."
+        'M:maxPerfTitle' = "Performances maximales"
+        'M:maxPerfAsk' = "«Tout sélectionner» active tout ce qui apporte des performances, y compris ce qui réduit la sécurité : atténuations Spectre, isolation du noyau, protections contre les exploits, SmartScreen. Convient à un PC réservé au jeu. Pour un usage quotidien, choisissez «Recommandés». Continuer ?"
+        'M:maxPerfDone' = "Performances maximales prêtes : {0} à activer, {1} à laisser ou à remettre comme Windows. Appuyez sur «Appliquer les modifications»."
     }
     pl = @{
         'L:lblSubtitle' = "Optymalizacja i kontrola systemu Windows — PcFixPro Italia"
@@ -7550,7 +7604,7 @@ $script:Tr = @{
         'L:lblSelected' = "Zaznaczone:"
         'L:chkRestorePoint' = "Punkt przywracania"
         'L:btnSelectAll' = "Zaznacz wszystko"
-        'L:btnDeselectAll' = "Cofnij wybory"
+        'L:btnDeselectAll' = "Odznacz"
         'L:btnDetectActive' = "Wykryj zastosowane"
         'L:btnRun' = "Zastosuj zmiany"
         'L:btnUndo' = "Przywróć zaznaczone"
@@ -7599,7 +7653,7 @@ $script:Tr = @{
         'L:chkAppxXbox' = "Aplikacje Xbox i nakładka gier"
         'L:chkAppxProvision' = "Nie przywracaj ich dla nowych użytkowników"
         'L:ttlSec' = "OBNIŻONE BEZPIECZEŃSTWO"
-        'L:lblSecHint' = "Wszystkie ryzykowne i nigdy nie wchodzą do «Zaznacz wszystko». Naprawdę obniżają ochronę: używaj ich tylko na komputerze, który nie przegląda internetu i nie otwiera załączników."
+        'L:lblSecHint' = "Wszystkie ryzykowne: naprawdę obniżają ochronę komputera. «Zalecane» włącza dwie z nich, «Zaznacz wszystko» włącza wszystkie po potwierdzeniu."
         'L:chkSecSmartScreen' = "SmartScreen — sprawdzanie pobranych plików"
         'L:chkSecSpectre' = "Zabezpieczenia przed Spectre i Meltdown"
         'L:chkSecDefenderIdle' = "Defender: skanuj tylko w bezczynności, CPU do 20%"
@@ -8274,6 +8328,9 @@ $script:Tr = @{
         'H:chkSecDownfall' = "Wyłącza ochronę przed Downfall na procesorach Intel od 6. do 11. generacji: odzyskuje wydajność w obciążeniach AVX, ale złośliwy program może odczytać dane innych programów. Z Hyper-V lub VBS system i tak ją zostawia."
         'M:tool_rootCerts' = "Certyfikaty główne: aktualizuj"
         'M:toolDesc_rootCerts' = "Pobiera aktualną listę z Windows Update. Naprawia błędy certyfikatów na stronach i w programach."
+        'M:maxPerfTitle' = "Maksymalna wydajność"
+        'M:maxPerfAsk' = "«Zaznacz wszystko» włącza wszystko, co daje wydajność, także to, co obniża bezpieczeństwo: zabezpieczenia Spectre, izolację jądra, ochronę przed exploitami, SmartScreen. Dobre dla komputera tylko do gier. Do codziennej pracy wybierz «Zalecane». Kontynuować?"
+        'M:maxPerfDone' = "Maksymalna wydajność gotowa: {0} do włączenia, {1} zostaje lub wraca do ustawień Windows. Naciśnij «Zastosuj zmiany»."
     }
     pt = @{
         'L:lblSubtitle' = "Otimização e controle do Windows — PcFixPro Italia"
@@ -8461,7 +8518,7 @@ $script:Tr = @{
         'L:lblSelected' = "Selecionados:"
         'L:chkRestorePoint' = "Ponto de restauração"
         'L:btnSelectAll' = "Selecionar tudo"
-        'L:btnDeselectAll' = "Desfazer escolhas"
+        'L:btnDeselectAll' = "Desmarcar"
         'L:btnDetectActive' = "Detectar aplicados"
         'L:btnRun' = "Aplicar alterações"
         'L:btnUndo' = "Restaurar selecionados"
@@ -8510,7 +8567,7 @@ $script:Tr = @{
         'L:chkAppxXbox' = "Apps do Xbox e sobreposição de jogo"
         'L:chkAppxProvision' = "Não restaurá-los para novos usuários"
         'L:ttlSec' = "SEGURANÇA REDUZIDA"
-        'L:lblSecHint' = "Todas arriscadas e nunca incluídas em «Selecionar tudo». Reduzem de verdade as defesas: use apenas numa máquina que não navega nem abre anexos."
+        'L:lblSecHint' = "Todas arriscadas: reduzem de verdade as defesas do computador. «Recomendados» liga duas, «Selecionar tudo» liga todas após uma confirmação."
         'L:chkSecSmartScreen' = "SmartScreen — verificação de arquivos baixados"
         'L:chkSecSpectre' = "Mitigações de Spectre e Meltdown"
         'L:chkSecDefenderIdle' = "Defender: verificar só em repouso, CPU a 20%"
@@ -9185,6 +9242,9 @@ $script:Tr = @{
         'H:chkSecDownfall' = "Desliga a proteção contra o Downfall em processadores Intel da 6ª à 11ª geração: recupera desempenho em cargas AVX, mas um programa malicioso pode ler dados de outros programas. Com Hyper-V ou VBS ativos, o Windows a mantém ligada."
         'M:tool_rootCerts' = "Certificados raiz: atualizar"
         'M:toolDesc_rootCerts' = "Baixa a lista atual do Windows Update. Corrige erros de certificado em sites e programas."
+        'M:maxPerfTitle' = "Desempenho máximo"
+        'M:maxPerfAsk' = "«Selecionar tudo» liga tudo o que dá desempenho, inclusive o que reduz a segurança: mitigações Spectre, isolamento do núcleo, proteções contra exploits, SmartScreen. Serve para um PC só de jogos. Para o dia a dia escolha «Recomendados». Continuar?"
+        'M:maxPerfDone' = "Desempenho máximo pronto: {0} para ativar, {1} para manter ou voltar ao padrão do Windows. Pressione «Aplicar alterações»."
     }
     ro = @{
         'L:lblSubtitle' = "Optimizarea și controlul Windows — PcFixPro Italia"
@@ -9372,7 +9432,7 @@ $script:Tr = @{
         'L:lblSelected' = "Selectate:"
         'L:chkRestorePoint' = "Punct de restaurare"
         'L:btnSelectAll' = "Selectează tot"
-        'L:btnDeselectAll' = "Anulează alegerile"
+        'L:btnDeselectAll' = "Deselectează"
         'L:btnDetectActive' = "Detectează aplicate"
         'L:btnRun' = "Aplică modificările"
         'L:btnUndo' = "Resetează selectate"
@@ -9421,7 +9481,7 @@ $script:Tr = @{
         'L:chkAppxXbox' = "Aplicații Xbox și suprapunerea de joc"
         'L:chkAppxProvision' = "Nu le restabili pentru utilizatorii noi"
         'L:ttlSec' = "SECURITATE REDUSĂ"
-        'L:lblSecHint' = "Toate riscante și niciodată incluse în «Selectează tot». Scad cu adevărat apărarea computerului: folosește-le doar pe o mașină care nu navighează și nu deschide atașamente."
+        'L:lblSecHint' = "Toate riscante: scad cu adevărat protecția calculatorului. «Recomandate» pornește două dintre ele, «Selectează tot» le pornește pe toate după o confirmare."
         'L:chkSecSmartScreen' = "SmartScreen — verificarea fișierelor descărcate"
         'L:chkSecSpectre' = "Protecții Spectre și Meltdown"
         'L:chkSecDefenderIdle' = "Defender: scanare doar în repaus, CPU la 20%"
@@ -10096,6 +10156,9 @@ $script:Tr = @{
         'H:chkSecDownfall' = "Oprește protecția împotriva Downfall pe procesoarele Intel din generațiile 6–11: recuperează performanță în sarcini AVX, dar un program rău-intenționat poate citi datele altor programe. Cu Hyper-V sau VBS active, Windows o păstrează pornită."
         'M:tool_rootCerts' = "Certificate rădăcină: actualizează"
         'M:toolDesc_rootCerts' = "Descarcă lista actuală de la Windows Update. Repară erorile de certificat pe site-uri și în programe."
+        'M:maxPerfTitle' = "Performanță maximă"
+        'M:maxPerfAsk' = "«Selectează tot» pornește tot ce aduce performanță, inclusiv ce scade securitatea: protecțiile Spectre, izolarea nucleului, protecțiile anti-exploit, SmartScreen. Potrivit pentru un PC folosit doar la jocuri. Pentru uz zilnic alege «Recomandate». Continui?"
+        'M:maxPerfDone' = "Performanță maximă pregătită: {0} de activat, {1} rămân sau revin la valorile Windows. Apasă «Aplică modificările»."
     }
     ru = @{
         'L:lblSubtitle' = "Оптимизация и управление Windows — PcFixPro Italia"
@@ -10283,7 +10346,7 @@ $script:Tr = @{
         'L:lblSelected' = "Выбрано:"
         'L:chkRestorePoint' = "Точка восстановления"
         'L:btnSelectAll' = "Выбрать всё"
-        'L:btnDeselectAll' = "Отменить выбор"
+        'L:btnDeselectAll' = "Снять выбор"
         'L:btnDetectActive' = "Найти применённые"
         'L:btnRun' = "Применить изменения"
         'L:btnUndo' = "Сбросить выбранные"
@@ -10332,7 +10395,7 @@ $script:Tr = @{
         'L:chkAppxXbox' = "Приложения Xbox и игровой оверлей"
         'L:chkAppxProvision' = "Не восстанавливать для новых пользователей"
         'L:ttlSec' = "СНИЖЕННАЯ БЕЗОПАСНОСТЬ"
-        'L:lblSecHint' = "Все рискованные и никогда не входят в «Выбрать всё». Они действительно ослабляют защиту: используйте их только на машине, которая не ходит в интернет и не открывает вложения."
+        'L:lblSecHint' = "Все рискованные: действительно снижают защиту компьютера. «Рекомендуемые» включает две из них, «Выбрать всё» включает все после подтверждения."
         'L:chkSecSmartScreen' = "SmartScreen — проверка скачанных файлов"
         'L:chkSecSpectre' = "Защита от Spectre и Meltdown"
         'L:chkSecDefenderIdle' = "Defender: сканировать только в простое, ЦП до 20%"
@@ -11007,6 +11070,9 @@ $script:Tr = @{
         'H:chkSecDownfall' = "Отключает защиту от Downfall на процессорах Intel с 6-го по 11-е поколение: возвращает производительность в нагрузках AVX, но вредоносная программа сможет читать данные других программ. При включённых Hyper-V или VBS Windows оставляет защиту."
         'M:tool_rootCerts' = "Корневые сертификаты: обновить"
         'M:toolDesc_rootCerts' = "Загружает актуальный список из Windows Update. Исправляет ошибки сертификатов на сайтах и в программах."
+        'M:maxPerfTitle' = "Максимальная производительность"
+        'M:maxPerfAsk' = "«Выбрать всё» включает всё, что даёт производительность, в том числе то, что снижает безопасность: защиту от Spectre, изоляцию ядра, защиту от эксплойтов, SmartScreen. Подходит для ПК только для игр. Для повседневной работы выберите «Рекомендуемые». Продолжить?"
+        'M:maxPerfDone' = "Максимальная производительность готова: {0} включить, {1} оставить или вернуть как в Windows. Нажмите «Применить изменения»."
     }
 }
 

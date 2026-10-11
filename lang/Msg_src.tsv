@@ -385,3 +385,6 @@ catBulkNothing	No changes: the entries on this page already have these values.
 catBulkCount	Entries to change: {0}
 tool_rootCerts	Root certificates: update
 toolDesc_rootCerts	Downloads the current list from Windows Update. Fixes certificate errors on websites and in programs.
+maxPerfTitle	Maximum performance
+maxPerfAsk	«Select all» turns on every entry that gives performance, including those that lower security: Spectre mitigations, kernel isolation, exploit protections, SmartScreen. Fine on a PC used only for gaming. For everyday use pick «Recommended». Continue?
+maxPerfDone	Maximum performance ready: {0} to enable, {1} to keep or put back as Windows. Press «Apply changes».

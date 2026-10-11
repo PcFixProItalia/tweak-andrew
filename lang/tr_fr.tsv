@@ -186,7 +186,7 @@ L:chkReservedStorage	Stockage réservé de Windows (7 Go) — désactiver
 L:lblSelected	Sélectionnés :
 L:chkRestorePoint	Point de restauration
 L:btnSelectAll	Tout sélectionner
-L:btnDeselectAll	Annuler les choix
+L:btnDeselectAll	Désélectionner
 L:btnDetectActive	Détecter les actifs
 L:btnRun	Appliquer les modifications
 L:btnUndo	Réinitialiser la sélection
@@ -235,7 +235,7 @@ L:chkAppxBloat	Applications non essentielles (actualités, météo, cartes, Skyp
 L:chkAppxXbox	Applications Xbox et superposition de jeu
 L:chkAppxProvision	Ne pas les restaurer pour les nouveaux utilisateurs
 L:ttlSec	SÉCURITÉ RÉDUITE
-L:lblSecHint	Toutes risquées et jamais incluses dans « Tout sélectionner ». Elles abaissent réellement les défenses : à utiliser seulement sur une machine qui ne navigue pas et n'ouvre pas de pièces jointes.
+L:lblSecHint	Toutes risquées : elles abaissent réellement les défenses de l'ordinateur. «Recommandés» en active deux, «Tout sélectionner» les active toutes après confirmation.
 L:chkSecSmartScreen	SmartScreen — contrôle des fichiers téléchargés
 L:chkSecSpectre	Protections contre Spectre et Meltdown
 L:chkSecDefenderIdle	Defender : analyse seulement au repos, CPU à 20 %
@@ -910,3 +910,6 @@ L:chkSecDownfall	Atténuation Downfall (Intel uniquement)
 H:chkSecDownfall	Désactive la protection contre Downfall sur les processeurs Intel de la 6e à la 11e génération : récupère des performances en charge AVX, mais un programme malveillant peut lire les données d'autres programmes. Avec Hyper-V ou VBS, Windows la garde active.
 M:tool_rootCerts	Certificats racine : mettre à jour
 M:toolDesc_rootCerts	Télécharge la liste à jour depuis Windows Update. Corrige les erreurs de certificat sur les sites et dans les programmes.
+M:maxPerfTitle	Performances maximales
+M:maxPerfAsk	«Tout sélectionner» active tout ce qui apporte des performances, y compris ce qui réduit la sécurité : atténuations Spectre, isolation du noyau, protections contre les exploits, SmartScreen. Convient à un PC réservé au jeu. Pour un usage quotidien, choisissez «Recommandés». Continuer ?
+M:maxPerfDone	Performances maximales prêtes : {0} à activer, {1} à laisser ou à remettre comme Windows. Appuyez sur «Appliquer les modifications».

@@ -183,7 +183,7 @@ L:chkReservedStorage	Almacenamiento reservado de Windows (7 GB) — desactivar
 L:lblSelected	Seleccionados:
 L:chkRestorePoint	Punto de restauración
 L:btnSelectAll	Seleccionar todo
-L:btnDeselectAll	Deshacer cambios
+L:btnDeselectAll	Deseleccionar
 L:btnDetectActive	Detectar aplicados
 L:btnRun	Aplicar cambios
 L:btnUndo	Restablecer seleccionados
@@ -232,7 +232,7 @@ L:chkAppxBloat	Aplicaciones no esenciales (noticias, tiempo, mapas, Skype...)
 L:chkAppxXbox	Aplicaciones de Xbox y superposición de juego
 L:chkAppxProvision	No restaurarlas para usuarios nuevos
 L:ttlSec	SEGURIDAD REDUCIDA
-L:lblSecHint	Todas arriesgadas y nunca incluidas en «Seleccionar todo». Bajan de verdad las defensas: úsalas solo en una máquina que no navega ni abre adjuntos.
+L:lblSecHint	Todas arriesgadas: reducen de verdad las defensas del equipo. «Recomendados» activa dos, «Seleccionar todo» las activa todas tras una confirmación.
 L:chkSecSmartScreen	SmartScreen — control de archivos descargados
 L:chkSecSpectre	Mitigaciones de Spectre y Meltdown
 L:chkSecDefenderIdle	Defender: analizar solo en reposo, CPU al 20%
@@ -907,3 +907,6 @@ L:chkSecDownfall	Mitigación Downfall (solo Intel)
 H:chkSecDownfall	Desactiva la protección contra Downfall en procesadores Intel de 6.ª a 11.ª generación: recupera rendimiento en cargas AVX, pero un programa malicioso puede leer datos de otros programas. Con Hyper-V o VBS activos, Windows la mantiene activada.
 M:tool_rootCerts	Certificados raíz: actualizar
 M:toolDesc_rootCerts	Descarga la lista actual desde Windows Update. Corrige errores de certificado en webs y programas.
+M:maxPerfTitle	Rendimiento máximo
+M:maxPerfAsk	«Seleccionar todo» activa todo lo que da rendimiento, incluido lo que reduce la seguridad: mitigaciones Spectre, aislamiento del núcleo, protecciones contra exploits, SmartScreen. Vale para un PC solo de juegos. Para el uso diario elige «Recomendados». ¿Continuar?
+M:maxPerfDone	Rendimiento máximo listo: {0} para activar, {1} para dejar o devolver como Windows. Pulsa «Aplicar cambios».

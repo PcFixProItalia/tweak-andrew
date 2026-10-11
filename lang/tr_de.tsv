@@ -183,7 +183,7 @@ L:chkReservedStorage	Reservierter Windows-Speicher (7 GB) — deaktivieren
 L:lblSelected	Ausgewählt:
 L:chkRestorePoint	Wiederherstellungspunkt
 L:btnSelectAll	Alle auswählen
-L:btnDeselectAll	Auswahl verwerfen
+L:btnDeselectAll	Abwählen
 L:btnDetectActive	Angewendete erkennen
 L:btnRun	Änderungen anwenden
 L:btnUndo	Auswahl zurücksetzen
@@ -232,7 +232,7 @@ L:chkAppxBloat	Nicht benötigte Apps (Nachrichten, Wetter, Karten, Skype...)
 L:chkAppxXbox	Xbox-Apps und Spiel-Overlay
 L:chkAppxProvision	Für neue Benutzer nicht wiederherstellen
 L:ttlSec	VERRINGERTE SICHERHEIT
-L:lblSecHint	Alle riskant und nie Teil von «Alle auswählen». Sie senken die Abwehr des Computers wirklich: nur auf einem Rechner verwenden, der nicht im Web surft und keine Anhänge öffnet.
+L:lblSecHint	Alle riskant: Sie senken den Schutz des Computers wirklich. «Empfohlene» schaltet zwei davon ein, «Alles auswählen» nach einer Bestätigung alle.
 L:chkSecSmartScreen	SmartScreen — Prüfung heruntergeladener Dateien
 L:chkSecSpectre	Schutz vor Spectre und Meltdown
 L:chkSecDefenderIdle	Defender: nur im Leerlauf scannen, CPU auf 20%
@@ -907,3 +907,6 @@ L:chkSecDownfall	Downfall-Schutz (nur Intel)
 H:chkSecDownfall	Schaltet den Schutz gegen Downfall auf Intel-Prozessoren der 6. bis 11. Generation ab: bringt Leistung bei AVX-Lasten zurück, aber ein Schadprogramm kann Daten anderer Programme lesen. Mit Hyper-V oder VBS lässt Windows ihn trotzdem an.
 M:tool_rootCerts	Stammzertifikate: aktualisieren
 M:toolDesc_rootCerts	Lädt die aktuelle Liste von Windows Update. Behebt Zertifikatsfehler auf Websites und in Programmen.
+M:maxPerfTitle	Maximale Leistung
+M:maxPerfAsk	«Alles auswählen» schaltet alles ein, was Leistung bringt, auch was die Sicherheit senkt: Spectre-Schutz, Kernisolierung, Exploit-Schutz, SmartScreen. In Ordnung für einen reinen Spiele-PC. Für den Alltag «Empfohlene» wählen. Fortfahren?
+M:maxPerfDone	Maximale Leistung bereit: {0} zu aktivieren, {1} bleiben oder gehen auf Windows-Standard zurück. «Änderungen übernehmen» drücken.

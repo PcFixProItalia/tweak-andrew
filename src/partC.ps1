@@ -253,7 +253,7 @@ $script:Loc = @{
     lblSelected        = @{ it = "Selezionati:"; en = "Selected:" }
     chkRestorePoint    = @{ it = "Punto di ripristino"; en = "Restore point" }
     btnSelectAll       = @{ it = "Seleziona tutto"; en = "Select all" }
-    btnDeselectAll     = @{ it = "Annulla scelte"; en = "Undo choices" }
+    btnDeselectAll     = @{ it = "Deseleziona"; en = "Deselect" }
     btnDetectActive    = @{ it = "Rileva già attivi"; en = "Detect applied" }
     btnRun             = @{ it = "Applica modifiche"; en = "Apply changes" }
 
@@ -308,7 +308,7 @@ $script:Loc = @{
     chkAppxProvision   = @{ it = "Non ripristinarle per i nuovi utenti"; en = "Do not restore them for new users" }
 
     ttlSec             = @{ it = "SICUREZZA RIDOTTA"; en = "REDUCED SECURITY" }
-    lblSecHint         = @{ it = "Tutte rischiose e mai incluse in «Seleziona tutto». Abbassano davvero le difese del computer: usale solo su una macchina che non naviga e non apre allegati."; en = "All risky and never part of «Select all». They genuinely lower the computer's defenses: use them only on a machine that does not browse the web or open attachments." }
+    lblSecHint         = @{ it = "Tutte rischiose: abbassano davvero le difese del computer. «Consigliati» ne accende due, «Seleziona tutto» le accende tutte dopo una conferma."; en = "All risky: they genuinely lower the computer's defenses. «Recommended» turns on two of them, «Select all» turns on all of them after a confirmation." }
     chkSecSmartScreen  = @{ it = "SmartScreen — controllo dei file scaricati"; en = "SmartScreen — checking downloaded files" }
     chkSecSpectre      = @{ it = "Mitigazioni Spectre e Meltdown"; en = "Spectre and Meltdown mitigations" }
     chkSecDefenderIdle = @{ it = "Defender: scansioni solo a computer fermo, CPU al 20%"; en = "Defender: scan only when idle, CPU capped at 20%" }
@@ -818,6 +818,9 @@ $script:Msg = @{
     catBulkCount       = @{ it = "Voci da cambiare: {0}"; en = "Entries to change: {0}" }
     tool_rootCerts     = @{ it = "Certificati radice: aggiorna"; en = "Root certificates: update" }
     toolDesc_rootCerts = @{ it = "Scarica l'elenco aggiornato da Windows Update. Risolve gli errori di certificato su siti e programmi."; en = "Downloads the current list from Windows Update. Fixes certificate errors on websites and in programs." }
+    maxPerfTitle       = @{ it = "Prestazioni massime"; en = "Maximum performance" }
+    maxPerfAsk         = @{ it = "«Seleziona tutto» accende ogni voce che dà prestazioni, comprese quelle che abbassano la sicurezza: mitigazioni Spectre, isolamento del kernel, protezioni dagli exploit, SmartScreen. Va bene su un PC usato solo per giocare. Per l'uso di tutti i giorni scegli «Consigliati». Continuare?"; en = "«Select all» turns on every entry that gives performance, including those that lower security: Spectre mitigations, kernel isolation, exploit protections, SmartScreen. Fine on a PC used only for gaming. For everyday use pick «Recommended». Continue?" }
+    maxPerfDone        = @{ it = "Prestazioni massime pronte: {0} da attivare, {1} da lasciare o riportare come Windows. Premi «Applica modifiche»."; en = "Maximum performance ready: {0} to enable, {1} to keep or put back as Windows. Press «Apply changes»." }
 }
 
 $script:LangCode = "it"
@@ -1645,6 +1648,7 @@ function Update-ApplyButton {
     $total = @($script:AllCheckBoxes | Where-Object { Test-Pending $_ }).Count
     $btnRun.IsEnabled = ($total -gt 0)
     if ($null -ne $btnUndo) { $btnUndo.IsEnabled = ($total -gt 0) }
+    if ($null -ne $btnDeselectAll) { $btnDeselectAll.IsEnabled = ($total -gt 0) }
     if ($null -ne $txtSelectedCount) {
         $txtSelectedCount.Text = "$total"
         if ($total -gt 0) { $txtSelectedCount.Foreground = "#FF3DBE8B" } else { $txtSelectedCount.Foreground = "#FF5D636B" }
@@ -1709,9 +1713,57 @@ $script:RecommendedChecks = @{
     pageNet     = @('chkNetPowerSave')
     pageStorage = @('chkReservedStorage')
     pagePower   = @('chkFastStartup','chkHibernation','chkS0Sleep','chkS3Sleep')
+    # Via di mezzo sulla sicurezza: Defender resta acceso e scansiona a PC fermo,
+    # l'isolamento del kernel si spegne. Spectre, exploit e SmartScreen restano.
+    pageAdv     = @('chkSecDefenderIdle','chkVBS')
     pageGpu     = @('chkGpuTdr','chkNvTelemetry','chkNvGfe','chkNvPerfMode','chkNvUpdates','chkNvP2','chkNvDrsPower','chkNvLowLatency',
                     'chkNvShaderCache','chkNvDisplayPower','chkAmdUx','chkAmdBloat','chkAmdUlps','chkAmdAntiLag','chkAmdShaderCache','chkIntelBloat',
                     'chkIntelTelemetry','chkIntelGfxPower')
+}
+
+# «Seleziona tutto»: oltre ai consigliati accende tutto cio' che toglie lavoro
+# al processore o latenza, sicurezza compresa. Restano fuori le voci che
+# rompono una funzione senza dare prestazioni (stampa, ricerca, desktop
+# remoto, HDCP) e quelle che su molti PC peggiorano (stati di riposo spenti,
+# prelazione della scheda video).
+$script:MaxPerfExtra = @(
+    'chkKernelDpc','chkTimer','chkVisualFX',
+    'chkGpuMsi','chkNvDynPstate','chkNvLatency','chkAmdPowerGating','chkAmdDma',
+    'chkTaskExtra','chkSvcSysMain','chkSvcDiag','chkSvcPca','chkSvcSensors','chkSvcParental',
+    'chkPrefetch','chkFth','chkAppCompat','chkMemCompression','chkBootDynTick','chkBootTsc',
+    'chkSecSmartScreen','chkSecSpectre','chkSecDownfall','chkVBS','chkMitigations','chkSecDefenderIdle')
+$script:SecurityChecks = @('chkSecSmartScreen','chkSecSpectre','chkSecDownfall','chkVBS','chkMitigations','chkSecDefenderIdle')
+
+function Test-MaxPerfWanted($cb) {
+    $n = [string]$cb.Name
+    if ($script:MaxPerfExtra -notcontains $n) { return $false }
+    if (-not $cb.IsEnabled -or -not (Test-CheckVendor $cb) -or -not (Test-CheckPcType $cb)) { return $false }
+    if ($n -eq 'chkSecDownfall') { return ($script:CpuVendor -eq 'Intel') }
+    if ($n -eq 'chkMemCompression') {
+        # Senza compressione la memoria finisce prima: solo con almeno 16 GB.
+        if ($null -eq $script:RamGb) { $script:RamGb = [math]::Round((Get-CimInstance Win32_ComputerSystem -ErrorAction SilentlyContinue).TotalPhysicalMemory / 1GB) }
+        return ($script:RamGb -ge 16)
+    }
+    return $true
+}
+
+function Set-MaxPerfValues([array]$boxes) {
+    $r = Set-RecommendedValues $boxes
+    $script:Syncing = $true; $script:SectionSync = $true
+    try {
+        foreach ($cb in $boxes) {
+            if ((Test-MaxPerfWanted $cb) -and $cb.IsChecked -ne $true) { $cb.IsChecked = $true; $r.On++; if ((Get-RecTarget $cb) -eq $false) { $r.Off-- } }
+        }
+    } finally { $script:Syncing = $false; $script:SectionSync = $false }
+    Update-ApplyButton
+    return $r
+}
+
+# Chiede conferma solo se tra le voci ce n'e' una che abbassa la sicurezza.
+function Confirm-MaxPerf([array]$boxes) {
+    $sec = @($boxes | Where-Object { ($script:SecurityChecks -contains [string]$_.Name) -and (Test-MaxPerfWanted $_) -and $_.IsChecked -ne $true })
+    if ($sec.Count -eq 0) { return $true }
+    return (Show-Dialog (T 'maxPerfTitle') (T 'maxPerfAsk') 'danger')
 }
 
 # La pagina Priorita' non ha caselle: i valori consigliati si preparano nei due
@@ -1738,37 +1790,30 @@ function Confirm-LaptopSelection([array]$list) {
 }
 
 $btnSelectAll.Add_Click({
-    $r = Set-RecommendedValues @($script:AllCheckBoxes)
-    $txtProgressLabel.Text = (T 'recAllDone') -f $r.On, $r.Off
+    $boxes = @($script:AllCheckBoxes)
+    if (-not (Confirm-MaxPerf $boxes)) { return }
+    $r = Set-MaxPerfValues $boxes
+    $txtProgressLabel.Text = (T 'maxPerfDone') -f $r.On, $r.Off
 })
 
 $btnSelectPage.Add_Click({
     $page = Get-CurrentPage
-    $boxes = if ($page) { @(Get-CheckBoxesFromTree $page) } else { @() }
-    $r = Set-RecommendedValues $boxes
-    $txtProgressLabel.Text = if (($r.On + $r.Off) -eq 0) { T 'selPageNone' } else { (T 'recAllDone') -f $r.On, $r.Off }
+    $boxes = if ($page) { @(Get-CheckBoxesFromTree $page | Where-Object { $script:AllCheckBoxes -contains $_ }) } else { @() }
+    if (-not (Confirm-MaxPerf $boxes)) { return }
+    $r = Set-MaxPerfValues $boxes
+    $txtProgressLabel.Text = if (($r.On + $r.Off) -eq 0) { T 'selPageNone' } else { (T 'maxPerfDone') -f $r.On, $r.Off }
 })
 
+# «Consigliati»: la via di mezzo, su tutte le pagine. Nella pagina Priorita'
+# prepara anche i due pannelli.
 $btnRecommended.Add_Click({
     $page = Get-CurrentPage
-    if ($null -eq $page) { return }
-    $name = [string]$page.Name
-    if ($name -eq 'pageSched') {
-        Set-SchedRecommended
-        $txtProgressLabel.Text = T 'recSched'
-        return
-    }
-    $names = $script:RecommendedChecks[$name]
-    if (-not $names) { $txtProgressLabel.Text = T 'recNone'; return }
-    $n = 0
-    foreach ($cb in @(Get-SelectableChecks -CurrentPageOnly -ByPcType)) {
-        if ($names -contains [string]$cb.Name) { $cb.IsChecked = $true; $n++ }
-    }
-    $txtProgressLabel.Text = (T 'recSelected') -f $n
-    Update-ApplyButton
+    if ($null -ne $page -and [string]$page.Name -eq 'pageSched') { Set-SchedRecommended }
+    $r = Set-RecommendedValues @($script:AllCheckBoxes)
+    $txtProgressLabel.Text = (T 'recAllDone') -f $r.On, $r.Off
 })
 
-# «Annulla scelte»: ogni interruttore torna allo stato del sistema.
+# «Deseleziona»: ogni interruttore torna allo stato del sistema.
 $btnDeselectAll.Add_Click({
     $script:Syncing = $true
     try { foreach ($cb in $script:AllCheckBoxes) { $cb.IsChecked = ($script:Baseline[[string]$cb.Name] -eq $true) } }

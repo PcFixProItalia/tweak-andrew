@@ -29,8 +29,8 @@ quello consigliato. `tools\gen_catalog.py` controlla il formato e scrive
 La Home riassume hardware e sistema, letti in un runspace a parte per non
 bloccare la finestra. Il tipo di PC (fisso o portatile) si rileva dal telaio e
 dalla batteria e si puo' correggere a mano: la scelta resta in
-`HKCU\Software\TweakAndrew`. Su un portatile «Consigliati» salta le voci che
-consumano batteria; «Seleziona tutto» le prende dopo un avviso.
+`HKCU\Software\TweakAndrew`. Su un portatile «Consigliati» e «Seleziona tutto»
+saltano le voci che consumano batteria.
 
 ## App e software
 
@@ -66,16 +66,26 @@ avvisi in arancio, sicurezza ridotta in rosso, marchi NVIDIA, AMD e Intel.
 
 ## Selezione
 
-«Seleziona tutto», «Questa pagina» e «Tutta la sezione» portano ogni voce al
-suo valore consigliato: accese le consigliate, spente le altre. Nulla cambia
-finché non si preme «Applica modifiche».
+«Consigliati» e «Tutta la sezione» portano ogni voce al suo valore
+consigliato: accese le consigliate, spente le altre. È la via di mezzo: sulla
+sicurezza tocca solo l'isolamento del kernel e gli orari delle scansioni di
+Defender.
+
+«Seleziona tutto» e «Questa pagina» sono il profilo prestazioni massime: ai
+consigliati aggiungono tutto ciò che toglie lavoro al processore o latenza,
+comprese le voci di «Sicurezza ridotta» (Spectre, exploit, SmartScreen), dopo
+una conferma. Restano fuori le voci che rompono una funzione senza dare
+prestazioni (stampa, ricerca, desktop remoto, HDCP) e quelle che su molti PC
+peggiorano (stati di riposo spenti, prelazione della scheda video).
+
+Nulla cambia finché non si preme «Applica modifiche».
 
 ## Interruttori e ripristino
 
 Nelle pagine con «Applica» l'interruttore mostra lo stato voluto: all'avvio
 le voci già attive sul PC sono accese. «Applica modifiche» esegue solo le
 differenze: una voce accesa si attiva, una voce attiva spenta torna al valore
-di Windows. «Annulla scelte» riporta gli interruttori allo stato del sistema,
+di Windows. «Deseleziona» riporta gli interruttori allo stato del sistema,
 «Ripristina selezionati» riporta ai valori di Windows le voci cambiate, in
 qualunque pagina. «Ripristino totale», in alto, riporta tutto il programma ai
 valori di Windows appena installato, dopo un punto di ripristino e due conferme.

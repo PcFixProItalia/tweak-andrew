@@ -6,13 +6,29 @@ $t = $text -replace '(?s)if \(-not \$principal\.IsInRole.*?\r?\n    Exit\r?\n\}'
 $harness = @'
 function Click($b) { $b.RaiseEvent((New-Object System.Windows.RoutedEventArgs ([System.Windows.Controls.Primitives.ButtonBase]::ClickEvent))) }
 function Checked { @($script:AllCheckBoxes | Where-Object { $_.IsChecked -eq $true } | ForEach-Object { $_.Name }) }
-$window.Add_ContentRendered({
+# Dopo il rilevamento iniziale, che parte quando la finestra e' ferma.
+$window.Add_ContentRendered({ [void]$window.Dispatcher.BeginInvoke([Action]{
     $script:UiReady = $true
     Write-Host "--- SELEZIONE ---" -ForegroundColor Cyan
     Write-Host ("Schede video rilevate: " + ($script:GpuVendors -join ', '))
+    $script:DialogCalls = 0
+    function global:Show-Dialog { $script:DialogCalls++; return $true }
+    Write-Host ("Deseleziona all'avvio abilitato: " + $btnDeselectAll.IsEnabled)
     Click $btnSelectAll
     $sel = Checked
-    Write-Host ("Seleziona tutto: " + $sel.Count + " voci")
+    Write-Host ("Seleziona tutto: " + $sel.Count + " voci, conferme chieste: " + $script:DialogCalls)
+    Write-Host ("  sicurezza accesa: " + (@($sel | Where-Object { $script:SecurityChecks -contains $_ }) -join ' '))
+    Write-Host ("  escluse apposta accese: " + (@($sel | Where-Object { $_ -in 'chkCpuIdleOff','chkNvPreempt','chkAmdPreempt','chkNvHdcp','chkSvcPrint','chkSvcSearch','chkSvcRemote' }) -join ' '))
+    Write-Host ("  Deseleziona abilitato: " + $btnDeselectAll.IsEnabled + "  Applica abilitato: " + $btnRun.IsEnabled)
+    Click $btnDeselectAll
+    Write-Host ("  dopo Deseleziona abilitato: " + $btnDeselectAll.IsEnabled + "  voci da fare: " + @($script:AllCheckBoxes | Where-Object { Test-Pending $_ }).Count)
+    Click $btnRecommended
+    $rec = Checked
+    Write-Host ("Consigliati: " + $rec.Count + " voci, sicurezza accesa: " + (@($rec | Where-Object { $script:SecurityChecks -contains $_ }) -join ' '))
+    Write-Host ("  solo in Seleziona tutto: " + (@($sel | Where-Object { $rec -notcontains $_ }) -join ' '))
+    Click $btnDeselectAll
+    Click $btnSelectAll
+    $sel = Checked
     Write-Host ("  spooler di stampa selezionato: " + ($sel -contains 'chkSvcPrint'))
     Write-Host ("  voci AMD selezionate: " + @($sel | Where-Object { $_ -like 'chkAmd*' }).Count)
     Write-Host ("  voci NVIDIA selezionate: " + @($sel | Where-Object { $_ -like 'chkNv*' }).Count)
@@ -33,7 +49,6 @@ $window.Add_ContentRendered({
     Write-Host ("  dopo Deseleziona, casella=" + $sp.Box.IsChecked)
     # Portatile simulato: avviso su «Seleziona tutto», Consigliati senza voci da batteria
     $script:DialogCalls = 0
-    function global:Show-Dialog { $script:DialogCalls++; return $true }
     $keepType = Get-PcType; $script:PcTypeDetected = 'laptop'
     Click $btnSelectAll
     Write-Host ("Portatile - Seleziona tutto: " + @(Checked).Count + " voci, avvisi mostrati: " + $script:DialogCalls)
@@ -65,7 +80,7 @@ $window.Add_ContentRendered({
     Write-Host ("  messaggio: " + $txtProgressLabel.Text)
     Write-Host ("Coda finale: " + @(Checked).Count + " voci")
     $window.Close()
-})
+}, [System.Windows.Threading.DispatcherPriority]::ApplicationIdle) })
 [void]$window.ShowDialog()
 '@
 $t = $t.Replace('[void]$window.ShowDialog()', $harness)

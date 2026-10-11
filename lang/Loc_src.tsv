@@ -193,7 +193,7 @@ chkReservedStorage	Windows reserved storage (7 GB) — disable
 lblSelected	Selected:
 chkRestorePoint	Restore point
 btnSelectAll	Select all
-btnDeselectAll	Undo choices
+btnDeselectAll	Deselect
 btnDetectActive	Detect applied
 btnRun	Apply changes
 btnUndo	Reset selected
@@ -242,7 +242,7 @@ chkAppxBloat	Non-essential apps (news, weather, maps, Skype...)
 chkAppxXbox	Xbox apps and game overlay
 chkAppxProvision	Do not restore them for new users
 ttlSec	REDUCED SECURITY
-lblSecHint	All risky and never part of «Select all». They genuinely lower the computer's defenses: use them only on a machine that does not browse the web or open attachments.
+lblSecHint	All risky: they genuinely lower the computer's defenses. «Recommended» turns on two of them, «Select all» turns on all of them after a confirmation.
 chkSecSmartScreen	SmartScreen — checking downloaded files
 chkSecSpectre	Spectre and Meltdown mitigations
 chkSecDefenderIdle	Defender: scan only when idle, CPU capped at 20%

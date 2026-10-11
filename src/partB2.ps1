@@ -2192,7 +2192,7 @@
                                             <StackPanel>
                                                 <TextBlock x:Name="ttlSec" Text="SICUREZZA RIDOTTA" Style="{StaticResource CardTitle}" Foreground="#FFFF6B6B"/>
                                                 <TextBlock x:Name="lblSecHint" Style="{StaticResource SubTitle}" Margin="0,0,0,10"
-                                                           Text="Tutte rischiose e mai incluse in «Seleziona tutto». Abbassano davvero le difese del computer: usale solo su una macchina che non naviga e non apre allegati."/>
+                                                           Text="Tutte rischiose: abbassano davvero le difese del computer. «Consigliati» ne accende due, «Seleziona tutto» le accende tutte dopo una conferma."/>
                                                 <CheckBox x:Name="chkSecSmartScreen" Tag="risky" Content="SmartScreen — controllo dei file scaricati"/>
                                                 <CheckBox x:Name="chkSecSpectre" Tag="risky" Content="Mitigazioni Spectre e Meltdown"/>
                                                 <CheckBox x:Name="chkSecDownfall" Tag="risky" Content="Mitigazione Downfall (Intel)"/>
@@ -2577,7 +2577,7 @@
                                         <Button x:Name="btnSelectAll" Style="{StaticResource GhostBtn}" Height="40" Margin="0,0,8,4" Content="Seleziona tutto"/>
                                         <Button x:Name="btnSelectPage" Style="{StaticResource GhostBtn}" Height="40" Margin="0,0,8,4" Content="Questa pagina"/>
                                         <Button x:Name="btnRecommended" Style="{StaticResource GhostBtn}" Height="40" Margin="0,0,8,4" Content="Consigliati"/>
-                                        <Button x:Name="btnDeselectAll" Style="{StaticResource GhostBtn}" Height="40" Margin="0,0,8,4" Content="Deseleziona"/>
+                                        <Button x:Name="btnDeselectAll" Style="{StaticResource GhostBtn}" Height="40" Margin="0,0,8,4" Content="Deseleziona" IsEnabled="False"/>
                                     </WrapPanel>
                                     <StackPanel Grid.Column="1" Orientation="Horizontal">
                                         <Button x:Name="btnUndo" Style="{StaticResource UndoBtn}" Height="40" MinWidth="150" Margin="0,0,8,0" Content="Reimposta predefiniti"/>
