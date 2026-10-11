@@ -214,8 +214,6 @@ win.tSqm	Tareas SQM
 g.priv.uPriv	Privacidad
 pv.timeline	Sin sugerencias en la escala de tiempo
 pv.startSugg	Sin sugerencias en Inicio
-pv.settingsSugg	Sin contenido sugerido en Configuración
-pv.silentApps	Sin apps instaladas en silencio
 pv.accountNotif	Sin avisos de cuenta en Configuración
 pv.langList	No compartir la lista de idiomas con los sitios web
 pv.textPred	Sin sugerencias de texto en el teclado táctil
@@ -270,7 +268,6 @@ pv.spotSettings	Sin Spotlight en Configuración
 pv.spotAll	Desactivar todas las funciones de Spotlight
 pv.wmp	Windows Media Player no rastrea el uso
 g.priv.uLock	Pantalla de bloqueo
-pv.lockSpot	Sin imágenes Spotlight en la pantalla de bloqueo
 g.priv.uSearch	Búsqueda
 pv.searchHist	No guardar el historial de búsqueda
 pv.searchHigh	Sin destacados en la búsqueda
@@ -294,10 +291,8 @@ pv.diagViewer	Desactivar el visor de datos de diagnóstico
 pv.ceip	Salir del Programa de mejora de la experiencia
 pv.handErr	No enviar errores de reconocimiento de escritura
 pv.handShare	No compartir datos del lápiz
-pv.inputPers	Desactivar la personalización de la entrada
 pv.onlineTips	Sin consejos en línea en Configuración
 pv.helpFb	Sin valoraciones de la Ayuda
-pv.wer	Desactivar el informe de errores
 pv.cloudContent	Sin contenido optimizado desde la nube
 pv.softLanding	Sin consejos de Windows
 pv.consumerAcct	Sin contenido vinculado a la cuenta de consumo
@@ -358,7 +353,6 @@ pv.eBuiltinAi	Sin API de IA integradas para los sitios
 g.priv.mSearch	Cortana y búsqueda
 pv.cortana	Desactivar Cortana
 pv.cloudSearch	Sin búsqueda en la nube
-pv.webSearch	Sin búsqueda web desde Inicio
 pv.searchLoc	La búsqueda no usa la ubicación
 pv.mHighlights	Sin destacados de búsqueda para todos
 g.priv.mAi	IA de Windows
@@ -414,8 +408,6 @@ pw.epp#0	Máximo rendimiento (0)
 pw.epp#25	Rendimiento (25)
 pw.epp#50	Equilibrado (50)
 pw.epp#80	Eficiencia (80)
-pw.parkMin	Núcleos siempre activos (estacionamiento)
-pw.parkMin#100	100% (sin estacionamiento)
 pw.cooling	Directiva de refrigeración
 pw.cooling#0	Pasiva (primero frena)
 pw.cooling#1	Activa (primero ventiladores)
@@ -497,6 +489,12 @@ pw.videoPlay	Al reproducir vídeo
 pw.videoPlay#0	Optimizar la calidad
 pw.videoPlay#1	Equilibrado
 pw.videoPlay#2	Optimizar el consumo
+pw.sata	Ahorro del enlace SATA
+pw.sata#0	Apagado (siempre activo)
+pw.sata#1	Gestionado por el PC (HIPM)
+pw.sata#2	PC y disco (HIPM+DIPM)
+pw.sata#3	Gestionado por el disco (DIPM)
+pw.sata#4	Ahorro máximo
 pw.nvme1	SSD NVMe: primer reposo tras
 pw.nvme1#0	Nunca (siempre listo)
 pw.nvme1#1000	1 segundo

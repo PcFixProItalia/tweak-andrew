@@ -214,8 +214,6 @@ win.tSqm	Zadania SQM
 g.priv.uPriv	Prywatność
 pv.timeline	Bez sugestii na osi czasu
 pv.startSugg	Bez sugestii w Start
-pv.settingsSugg	Bez sugerowanej zawartości w Ustawieniach
-pv.silentApps	Bez cicho instalowanych aplikacji
 pv.accountNotif	Bez komunikatów o koncie w Ustawieniach
 pv.langList	Nie udostępniaj listy języków stronom
 pv.textPred	Bez podpowiedzi na klawiaturze dotykowej
@@ -270,7 +268,6 @@ pv.spotSettings	Bez Spotlight w Ustawieniach
 pv.spotAll	Wyłącz wszystkie funkcje Spotlight
 pv.wmp	Windows Media Player nie śledzi użycia
 g.priv.uLock	Ekran blokady
-pv.lockSpot	Bez obrazów Spotlight na ekranie blokady
 g.priv.uSearch	Wyszukiwanie
 pv.searchHist	Nie przechowuj historii wyszukiwania
 pv.searchHigh	Bez wyróżnień w wyszukiwaniu
@@ -294,10 +291,8 @@ pv.diagViewer	Wyłącz podgląd danych diagnostycznych
 pv.ceip	Opuść program poprawy jakości obsługi
 pv.handErr	Nie wysyłaj błędów rozpoznawania pisma
 pv.handShare	Nie udostępniaj danych pióra
-pv.inputPers	Wyłącz personalizację wprowadzania
 pv.onlineTips	Bez porad online w Ustawieniach
 pv.helpFb	Bez ocen Pomocy
-pv.wer	Wyłącz raportowanie błędów
 pv.cloudContent	Bez treści optymalizowanych w chmurze
 pv.softLanding	Bez porad Windows
 pv.consumerAcct	Bez treści powiązanych z kontem konsumenckim
@@ -358,7 +353,6 @@ pv.eBuiltinAi	Bez wbudowanych API AI dla witryn
 g.priv.mSearch	Cortana i wyszukiwanie
 pv.cortana	Wyłącz Cortanę
 pv.cloudSearch	Bez wyszukiwania w chmurze
-pv.webSearch	Bez wyszukiwania w sieci ze Start
 pv.searchLoc	Wyszukiwanie nie używa lokalizacji
 pv.mHighlights	Bez wyróżnień wyszukiwania dla wszystkich
 g.priv.mAi	Sztuczna inteligencja Windows
@@ -414,8 +408,6 @@ pw.epp#0	Maksymalna wydajność (0)
 pw.epp#25	Wydajność (25)
 pw.epp#50	Zrównoważony (50)
 pw.epp#80	Oszczędność (80)
-pw.parkMin	Rdzenie zawsze aktywne (parkowanie)
-pw.parkMin#100	100% (bez parkowania)
 pw.cooling	Zasady chłodzenia
 pw.cooling#0	Pasywne (najpierw zwalnia)
 pw.cooling#1	Aktywne (najpierw wentylatory)
@@ -497,6 +489,12 @@ pw.videoPlay	Podczas odtwarzania wideo
 pw.videoPlay#0	Optymalizuj jakość
 pw.videoPlay#1	Zrównoważony
 pw.videoPlay#2	Optymalizuj zużycie energii
+pw.sata	Oszczędzanie łącza SATA
+pw.sata#0	Wyłączone (zawsze aktywne)
+pw.sata#1	Sterowane przez komputer (HIPM)
+pw.sata#2	Komputer i dysk (HIPM+DIPM)
+pw.sata#3	Sterowane przez dysk (DIPM)
+pw.sata#4	Maksymalne oszczędzanie
 pw.nvme1	SSD NVMe: pierwszy stan uśpienia po
 pw.nvme1#0	Nigdy (zawsze gotowy)
 pw.nvme1#1000	1 sekunda

@@ -1391,7 +1391,6 @@ $script:PlanData = @{
                                                 <CheckBox x:Name="chkKernelDpc" Content="Kernel e latenza DPC"/>
                                                 <CheckBox x:Name="chkTimer" Content="Timer di sistema"/>
                                                 <CheckBox x:Name="chkPowerThrottling" Content="Power Throttling"/>
-                                                <CheckBox x:Name="chkUSBSuspend" Content="Sospensione selettiva USB"/>
                                                 <CheckBox x:Name="chkNtfsPerf" Content="NTFS"/>
                                             </StackPanel>
                                         </Border>
@@ -1982,7 +1981,6 @@ $script:PlanData = @{
                                                 <CheckBox x:Name="chkHibernation" Content="Ibernazione"/>
                                                 <CheckBox x:Name="chkS0Sleep" Content="Standby moderno"/>
                                                 <CheckBox x:Name="chkS3Sleep" Content="Sospensione S3"/>
-                                                <CheckBox x:Name="chkDiskNoSleep" Content="Dischi e SSD sempre attivi"/>
                                             </StackPanel>
                                         </Border>
 
@@ -2711,7 +2709,6 @@ $script:Loc = @{
     chkKernelDpc       = @{ it = "Kernel e latenza DPC"; en = "Kernel and DPC latency" }
     chkTimer           = @{ it = "Timer di sistema — massima precisione"; en = "System timer — precision policy" }
     chkPowerThrottling = @{ it = "Power Throttling — disattiva"; en = "Power throttling — disable" }
-    chkUSBSuspend      = @{ it = "Sospensione selettiva USB — disattiva"; en = "USB selective suspend — disable" }
     chkNtfsPerf        = @{ it = "NTFS — niente data ultimo accesso, cache ampia"; en = "NTFS — disable last access time, large cache" }
 
     ttlRam             = @{ it = "MEMORIA"; en = "MEMORY" }
@@ -3090,7 +3087,6 @@ $script:Loc = @{
     chkAdvRazer        = @{ it = "Niente installazione automatica del software Razer"; en = "No automatic Razer software install" }
     chkAdvLogi         = @{ it = "Niente assistente download Logitech"; en = "No Logitech download assistant" }
     chkIPv4Pref        = @{ it = "IPv4 prima di IPv6"; en = "IPv4 before IPv6" }
-    chkDiskNoSleep     = @{ it = "Dischi e SSD sempre attivi (con alimentazione collegata)"; en = "Disks and SSDs always on (while plugged in)" }
     btnEmergency       = @{ it = "Ripristino totale"; en = "Full reset" }
     lblPersonal        = @{ it = "PERSONALIZZAZIONE"; en = "PERSONALIZATION" }
 }
@@ -3561,7 +3557,7 @@ $chkRestorePoint = E 'chkRestorePoint'
 # Prestazioni
 $chkMMCSS = E 'chkMMCSS'; $chkPriority = E 'chkPriority'; $chkKernelMem = E 'chkKernelMem'
 $chkKernelDpc = E 'chkKernelDpc'; $chkTimer = E 'chkTimer'; $chkPowerThrottling = E 'chkPowerThrottling'
-$chkUSBSuspend = E 'chkUSBSuspend'; $chkNtfsPerf = E 'chkNtfsPerf'
+$chkNtfsPerf = E 'chkNtfsPerf'
 $chkRamTweak = E 'chkRamTweak'; $cmbRamAmount = E 'cmbRamAmount'
 $chkGameMode = E 'chkGameMode'; $chkFSO = E 'chkFSO'; $chkGameDVR = E 'chkGameDVR'
 $chkHAGS = E 'chkHAGS'; $chkVisualFX = E 'chkVisualFX'
@@ -3613,7 +3609,7 @@ $chkStartNoWeb = E 'chkStartNoWeb'; $chkStartNoAccount = E 'chkStartNoAccount'
 $txtFeatId = E 'txtFeatId'; $cmbFeatState = E 'cmbFeatState'
 $btnFeatApply = E 'btnFeatApply'; $btnFeatList = E 'btnFeatList'; $txtFeatList = E 'txtFeatList'
 $chkFastStartup = E 'chkFastStartup'; $chkHibernation = E 'chkHibernation'
-$chkS0Sleep = E 'chkS0Sleep'; $chkS3Sleep = E 'chkS3Sleep'; $chkDiskNoSleep = E 'chkDiskNoSleep'
+$chkS0Sleep = E 'chkS0Sleep'; $chkS3Sleep = E 'chkS3Sleep'
 
 # Privacy
 $chkTelemetry = E 'chkTelemetry'; $chkTelemetryTasks = E 'chkTelemetryTasks'
@@ -4342,7 +4338,7 @@ function Get-SelectableChecks([switch]$CurrentPageOnly, [switch]$ByPcType) {
 # Avanzate non ne ha: li' si tolgono pezzi di Windows e la scelta resta una
 # per una.
 $script:RecommendedChecks = @{
-    pagePerf    = @('chkMMCSS','chkPriority','chkKernelMem','chkPowerThrottling','chkUSBSuspend','chkNtfsPerf','chkRamTweak','chkGameMode','chkGameDVR',
+    pagePerf    = @('chkMMCSS','chkPriority','chkKernelMem','chkPowerThrottling','chkNtfsPerf','chkRamTweak','chkGameMode','chkGameDVR',
                     'chkCpuIntelBoostPol','chkCpuAmdParking')
     pagePrivacy = @('chkTelemetry','chkTelemetryTasks','chkActivityHistory','chkAdvertisingID','chkTailoredExp','chkFeedback','chkErrorReporting',
                     'chkInkingTyping','chkWiFiSense','chkConsumerFeatures','chkSuggestedContent','chkLockScreenAds','chkStartBing',
@@ -4351,7 +4347,7 @@ $script:RecommendedChecks = @{
     pageUi      = @('chkDarkTheme','chkFileExt','chkLongPaths','chkExplorerThisPC','chkRemove3D','chkRecycleConfirm','chkMenuDelay','chkMouseAccel','chkNumLock','chkStickyKeys')
     pageNet     = @('chkNetPowerSave')
     pageStorage = @('chkReservedStorage')
-    pagePower   = @('chkFastStartup','chkHibernation','chkS0Sleep','chkS3Sleep','chkDiskNoSleep')
+    pagePower   = @('chkFastStartup','chkHibernation','chkS0Sleep','chkS3Sleep')
     pageGpu     = @('chkGpuTdr','chkNvTelemetry','chkNvGfe','chkNvPerfMode','chkNvUpdates','chkNvP2','chkNvDrsPower','chkNvLowLatency',
                     'chkNvShaderCache','chkNvDisplayPower','chkAmdUx','chkAmdBloat','chkAmdUlps','chkAmdAntiLag','chkAmdShaderCache','chkIntelBloat',
                     'chkIntelTelemetry','chkIntelGfxPower')
@@ -4438,7 +4434,6 @@ $script:Tips = @{
     chkKernelDpc = @{ it = "Riduce i ritardi nella gestione di schede e periferiche. Utile contro micro-scatti e crepitii audio."; en = "Reduces delays in handling cards and devices. Helps against micro-stutter and audio crackles." }
     chkTimer = @{ it = "Fa scattare i timer di sistema con più precisione. Tempi di risposta più regolari nei giochi."; en = "Makes system timers fire more precisely. More consistent response times in games." }
     chkPowerThrottling = @{ it = "Impedisce a Windows di rallentare i programmi in background per risparmiare energia. Prestazioni costanti, consumi un po' più alti."; en = "Stops Windows from slowing down background programs to save power. Steady performance, slightly higher power draw." }
-    chkUSBSuspend = @{ it = "Tiene sempre attive le porte USB. Evita mouse, tastiere e schede audio che si scollegano o rispondono in ritardo."; en = "Keeps USB ports always active. Prevents mice, keyboards and audio interfaces from dropping out or lagging." }
     chkNtfsPerf = @{ it = "Il disco smette di annotare ogni lettura di file e usa più memoria per i dati di sistema. Meno scritture e accessi più veloci."; en = "The disk stops recording every file read and uses more memory for system data. Fewer writes and faster access." }
     chkRamTweak = @{ it = "Raggruppa i servizi di Windows in funzione della RAM installata. Meno processi aperti e memoria usata meglio."; en = "Groups Windows services according to the installed RAM. Fewer running processes and better memory use." }
     chkGameMode = @{ it = "Attiva la Modalità gioco: Windows mette in secondo piano aggiornamenti e attività mentre giochi."; en = "Turns on Game Mode: Windows holds back updates and background work while you play." }
@@ -4604,7 +4599,6 @@ $script:Tips = @{
     chkAdvRazer = @{ it = "Blocca i co-installer dei driver e la cartella in cui Razer Synapse si copia quando colleghi una periferica. Blocca anche i co-installer di altri produttori."; en = "Blocks driver co-installers and the folder Razer Synapse copies itself into when you plug in a device. It also blocks other vendors' co-installers." }
     chkAdvLogi = @{ it = "Chiude l'assistente download Logitech e gli impedisce di reinstallarsi a ogni avvio."; en = "Closes the Logitech download assistant and stops it from reinstalling at every startup." }
     chkIPv4Pref = @{ it = "IPv6 resta attivo, ma Windows prova prima IPv4. Utile con reti o router che gestiscono male IPv6."; en = "IPv6 stays on, but Windows tries IPv4 first. Useful with networks or routers that handle IPv6 poorly." }
-    chkDiskNoSleep = @{ it = "Con l'alimentazione collegata dischi, collegamento SATA e SSD NVMe non entrano mai in risparmio: niente attese al risveglio. A batteria resta tutto com'era."; en = "While plugged in, disks, the SATA link and NVMe SSDs never enter power saving: no wake-up delays. On battery everything stays as before." }
 }
 
 $script:Tr = @{
@@ -4622,7 +4616,6 @@ $script:Tr = @{
         'L:chkKernelDpc' = "Kernel y latencia DPC"
         'L:chkTimer' = "Temporizador del sistema — máxima precisión"
         'L:chkPowerThrottling' = "Power Throttling — desactivar"
-        'L:chkUSBSuspend' = "Suspensión selectiva USB — desactivar"
         'L:chkNtfsPerf' = "NTFS — sin fecha de último acceso, caché amplia"
         'L:ttlRam' = "MEMORIA"
         'L:chkRamTweak' = "Umbral de división de SvcHost (según la RAM)"
@@ -4892,7 +4885,6 @@ $script:Tr = @{
         'H:chkKernelDpc' = "Reduce los retrasos al atender tarjetas y dispositivos. Ayuda contra microtirones y chasquidos de audio."
         'H:chkTimer' = "Hace que los temporizadores del sistema sean más precisos. Tiempos de respuesta más regulares en los juegos."
         'H:chkPowerThrottling' = "Impide que Windows frene los programas en segundo plano para ahorrar energía. Rendimiento constante, algo más de consumo."
-        'H:chkUSBSuspend' = "Mantiene siempre activos los puertos USB. Evita que ratones, teclados y tarjetas de sonido se desconecten o respondan tarde."
         'H:chkNtfsPerf' = "El disco deja de anotar cada lectura de archivo y usa más memoria para datos del sistema. Menos escrituras y accesos más rápidos."
         'H:chkRamTweak' = "Agrupa los servicios de Windows según la RAM instalada. Menos procesos abiertos y mejor uso de la memoria."
         'H:chkGameMode' = "Activa el Modo de juego: Windows aparca actualizaciones y tareas mientras juegas."
@@ -5318,7 +5310,6 @@ $script:Tr = @{
         'L:chkAdvRazer' = "Sin instalación automática del software Razer"
         'L:chkAdvLogi' = "Sin asistente de descargas de Logitech"
         'L:chkIPv4Pref' = "IPv4 antes que IPv6"
-        'L:chkDiskNoSleep' = "Discos y SSD siempre activos (enchufado)"
         'M:actRun' = "Cambios: {0}"
         'M:jobWorking' = "En curso..."
         'M:badgeActive' = "Activo"
@@ -5494,7 +5485,6 @@ $script:Tr = @{
         'H:chkAdvRazer' = "Bloquea los coinstaladores de controladores y la carpeta en la que Razer Synapse se copia al conectar un dispositivo. También bloquea los coinstaladores de otros fabricantes."
         'H:chkAdvLogi' = "Cierra el asistente de descargas de Logitech e impide que se reinstale en cada inicio."
         'H:chkIPv4Pref' = "IPv6 sigue activo, pero Windows prueba primero IPv4. Útil con redes o routers que gestionan mal IPv6."
-        'H:chkDiskNoSleep' = "Con el cargador conectado, discos, enlace SATA y SSD NVMe nunca entran en ahorro de energía: sin retrasos al despertar. Con batería todo queda como antes."
         'M:pwRecBtn' = "Usar los valores recomendados"
         'M:pwDefBtn' = "Volver a los valores de Windows"
         'M:pwAskRec' = "Pongo los valores recomendados en el plan en uso. Los cambios se aplican al instante. ¿Continúo?"
@@ -5533,7 +5523,6 @@ $script:Tr = @{
         'L:chkKernelDpc' = "Kernel- und DPC-Latenz"
         'L:chkTimer' = "Systemtimer — höchste Genauigkeit"
         'L:chkPowerThrottling' = "Power Throttling — deaktivieren"
-        'L:chkUSBSuspend' = "Selektives USB-Energiesparen — deaktivieren"
         'L:chkNtfsPerf' = "NTFS — kein letzter Zugriffszeitpunkt, großer Cache"
         'L:ttlRam' = "ARBEITSSPEICHER"
         'L:chkRamTweak' = "SvcHost-Aufteilungsschwelle (nach RAM)"
@@ -5803,7 +5792,6 @@ $script:Tr = @{
         'H:chkKernelDpc' = "Verringert Verzögerungen bei der Bedienung von Karten und Geräten. Hilft gegen Mikroruckler und Knacksen im Ton."
         'H:chkTimer' = "Lässt Systemtimer genauer auslösen. Gleichmäßigere Reaktionszeiten in Spielen."
         'H:chkPowerThrottling' = "Verhindert, dass Windows Hintergrundprogramme zum Energiesparen ausbremst. Gleichmäßige Leistung, etwas höherer Verbrauch."
-        'H:chkUSBSuspend' = "Hält USB-Anschlüsse immer aktiv. Mäuse, Tastaturen und Soundkarten fallen nicht mehr aus und reagieren ohne Verzögerung."
         'H:chkNtfsPerf' = "Die Festplatte vermerkt nicht mehr jeden Dateizugriff und nutzt mehr Speicher für Systemdaten. Weniger Schreibvorgänge, schnellerer Zugriff."
         'H:chkRamTweak' = "Bündelt Windows-Dienste passend zum installierten RAM. Weniger laufende Prozesse und besser genutzter Speicher."
         'H:chkGameMode' = "Schaltet den Spielmodus ein: Windows stellt Updates und Hintergrundarbeit zurück, während du spielst."
@@ -6229,7 +6217,6 @@ $script:Tr = @{
         'L:chkAdvRazer' = "Keine automatische Razer-Softwareinstallation"
         'L:chkAdvLogi' = "Kein Logitech-Download-Assistent"
         'L:chkIPv4Pref' = "IPv4 vor IPv6"
-        'L:chkDiskNoSleep' = "Festplatten und SSDs immer aktiv (am Netz)"
         'M:actRun' = "Änderungen: {0}"
         'M:jobWorking' = "Läuft..."
         'M:badgeActive' = "Aktiv"
@@ -6405,7 +6392,6 @@ $script:Tr = @{
         'H:chkAdvRazer' = "Blockiert Treiber-Co-Installer und den Ordner, in den sich Razer Synapse beim Anschließen eines Geräts kopiert. Blockiert auch Co-Installer anderer Hersteller."
         'H:chkAdvLogi' = "Beendet den Logitech-Download-Assistenten und verhindert, dass er sich bei jedem Start neu installiert."
         'H:chkIPv4Pref' = "IPv6 bleibt aktiv, aber Windows versucht zuerst IPv4. Nützlich bei Netzen oder Routern, die IPv6 schlecht handhaben."
-        'H:chkDiskNoSleep' = "Am Netz gehen Festplatten, SATA-Verbindung und NVMe-SSDs nie in den Energiesparmodus: keine Aufwachverzögerungen. Im Akkubetrieb bleibt alles wie vorher."
         'M:pwRecBtn' = "Empfohlene Werte verwenden"
         'M:pwDefBtn' = "Zurück zu den Windows-Werten"
         'M:pwAskRec' = "Ich setze die empfohlenen Werte im aktiven Plan. Die Änderungen gelten sofort. Fortfahren?"
@@ -6444,7 +6430,6 @@ $script:Tr = @{
         'L:chkKernelDpc' = "Noyau et latence DPC"
         'L:chkTimer' = "Minuterie système — précision maximale"
         'L:chkPowerThrottling' = "Power Throttling — désactiver"
-        'L:chkUSBSuspend' = "Suspension sélective USB — désactiver"
         'L:chkNtfsPerf' = "NTFS — sans date de dernier accès, grand cache"
         'L:ttlRam' = "MÉMOIRE"
         'L:chkRamTweak' = "Seuil de séparation SvcHost (selon la RAM)"
@@ -6717,7 +6702,6 @@ $script:Tr = @{
         'H:chkKernelDpc' = "Réduit les délais de traitement des cartes et périphériques. Aide contre les micro-saccades et les craquements audio."
         'H:chkTimer' = "Rend les minuteries du système plus précises. Des temps de réponse plus réguliers en jeu."
         'H:chkPowerThrottling' = "Empêche Windows de ralentir les programmes en arrière-plan pour économiser l'énergie. Performances constantes, consommation un peu plus élevée."
-        'H:chkUSBSuspend' = "Garde les ports USB toujours actifs. Souris, claviers et cartes son ne décrochent plus et répondent sans retard."
         'H:chkNtfsPerf' = "Le disque ne note plus chaque lecture de fichier et utilise plus de mémoire pour les données système. Moins d'écritures, accès plus rapides."
         'H:chkRamTweak' = "Regroupe les services de Windows selon la RAM installée. Moins de processus ouverts et une mémoire mieux utilisée."
         'H:chkGameMode' = "Active le Mode Jeu : Windows met en retrait mises à jour et tâches pendant que vous jouez."
@@ -7143,7 +7127,6 @@ $script:Tr = @{
         'L:chkAdvRazer' = "Pas d'installation automatique du logiciel Razer"
         'L:chkAdvLogi' = "Pas d'assistant de téléchargement Logitech"
         'L:chkIPv4Pref' = "IPv4 avant IPv6"
-        'L:chkDiskNoSleep' = "Disques et SSD toujours actifs (sur secteur)"
         'M:actRun' = "Modifications : {0}"
         'M:jobWorking' = "En cours..."
         'M:badgeActive' = "Actif"
@@ -7319,7 +7302,6 @@ $script:Tr = @{
         'H:chkAdvRazer' = "Bloque les co-installeurs de pilotes et le dossier où Razer Synapse se copie quand on branche un périphérique. Bloque aussi les co-installeurs des autres fabricants."
         'H:chkAdvLogi' = "Ferme l'assistant de téléchargement Logitech et l'empêche de se réinstaller à chaque démarrage."
         'H:chkIPv4Pref' = "IPv6 reste actif, mais Windows essaie d'abord IPv4. Utile avec les réseaux ou routeurs qui gèrent mal IPv6."
-        'H:chkDiskNoSleep' = "Sur secteur, disques, lien SATA et SSD NVMe n'entrent jamais en économie d'énergie : aucun délai de réveil. Sur batterie, rien ne change."
         'M:pwRecBtn' = "Utiliser les valeurs recommandées"
         'M:pwDefBtn' = "Revenir aux valeurs de Windows"
         'M:pwAskRec' = "Je règle les valeurs recommandées sur le mode utilisé. Les changements s'appliquent tout de suite. Je continue ?"
@@ -7358,7 +7340,6 @@ $script:Tr = @{
         'L:chkKernelDpc' = "Jądro i opóźnienia DPC"
         'L:chkTimer' = "Zegar systemowy — maksymalna precyzja"
         'L:chkPowerThrottling' = "Power Throttling — wyłącz"
-        'L:chkUSBSuspend' = "Selektywne wstrzymywanie USB — wyłącz"
         'L:chkNtfsPerf' = "NTFS — bez daty ostatniego dostępu, duża pamięć podręczna"
         'L:ttlRam' = "PAMIĘĆ"
         'L:chkRamTweak' = "Próg podziału SvcHost (według RAM)"
@@ -7628,7 +7609,6 @@ $script:Tr = @{
         'H:chkKernelDpc' = "Zmniejsza opóźnienia w obsłudze kart i urządzeń. Pomaga na mikroprzycięcia i trzaski dźwięku."
         'H:chkTimer' = "Sprawia, że zegary systemowe działają precyzyjniej. Bardziej równe czasy reakcji w grach."
         'H:chkPowerThrottling' = "Nie pozwala Windows spowalniać programów w tle dla oszczędności energii. Stała wydajność, nieco większy pobór prądu."
-        'H:chkUSBSuspend' = "Porty USB są zawsze aktywne. Myszy, klawiatury i karty dźwiękowe nie rozłączają się i nie reagują z opóźnieniem."
         'H:chkNtfsPerf' = "Dysk przestaje zapisywać każdy odczyt pliku i używa więcej pamięci na dane systemowe. Mniej zapisów, szybszy dostęp."
         'H:chkRamTweak' = "Grupuje usługi Windows według ilości RAM. Mniej procesów i lepsze wykorzystanie pamięci."
         'H:chkGameMode' = "Włącza Tryb gry: Windows odkłada aktualizacje i pracę w tle, gdy grasz."
@@ -8054,7 +8034,6 @@ $script:Tr = @{
         'L:chkAdvRazer' = "Bez automatycznej instalacji oprogramowania Razer"
         'L:chkAdvLogi' = "Bez asystenta pobierania Logitech"
         'L:chkIPv4Pref' = "IPv4 przed IPv6"
-        'L:chkDiskNoSleep' = "Dyski i SSD zawsze aktywne (na zasilaniu)"
         'M:actRun' = "Zmiany: {0}"
         'M:jobWorking' = "W toku..."
         'M:badgeActive' = "Aktywne"
@@ -8230,7 +8209,6 @@ $script:Tr = @{
         'H:chkAdvRazer' = "Blokuje współinstalatory sterowników i folder, do którego Razer Synapse kopiuje się po podłączeniu urządzenia. Blokuje też współinstalatory innych producentów."
         'H:chkAdvLogi' = "Zamyka asystenta pobierania Logitech i nie pozwala mu instalować się przy każdym uruchomieniu."
         'H:chkIPv4Pref' = "IPv6 pozostaje włączony, ale Windows najpierw próbuje IPv4. Przydatne z sieciami lub routerami, które źle obsługują IPv6."
-        'H:chkDiskNoSleep' = "Na zasilaczu dyski, łącze SATA i dyski NVMe nigdy nie przechodzą w oszczędzanie energii: brak opóźnień wybudzania. Na baterii bez zmian."
         'M:pwRecBtn' = "Użyj zalecanych wartości"
         'M:pwDefBtn' = "Wróć do wartości Windows"
         'M:pwAskRec' = "Ustawię zalecane wartości w używanym planie. Zmiany działają od razu. Kontynuować?"
@@ -8269,7 +8247,6 @@ $script:Tr = @{
         'L:chkKernelDpc' = "Kernel e latência DPC"
         'L:chkTimer' = "Temporizador do sistema — precisão máxima"
         'L:chkPowerThrottling' = "Power Throttling — desativar"
-        'L:chkUSBSuspend' = "Suspensão seletiva USB — desativar"
         'L:chkNtfsPerf' = "NTFS — sem data de último acesso, cache maior"
         'L:ttlRam' = "MEMÓRIA"
         'L:chkRamTweak' = "Limite de divisão do SvcHost (conforme a RAM)"
@@ -8539,7 +8516,6 @@ $script:Tr = @{
         'H:chkKernelDpc' = "Reduz atrasos no atendimento de placas e dispositivos. Ajuda contra microtravadas e estalos no áudio."
         'H:chkTimer' = "Deixa os temporizadores do sistema mais precisos. Tempos de resposta mais regulares nos jogos."
         'H:chkPowerThrottling' = "Impede que o Windows desacelere programas em segundo plano para economizar energia. Desempenho constante, consumo um pouco maior."
-        'H:chkUSBSuspend' = "Mantém as portas USB sempre ativas. Mouses, teclados e placas de som não se desconectam nem respondem com atraso."
         'H:chkNtfsPerf' = "O disco para de anotar cada leitura de arquivo e usa mais memória para dados do sistema. Menos gravações e acessos mais rápidos."
         'H:chkRamTweak' = "Agrupa os serviços do Windows de acordo com a RAM instalada. Menos processos abertos e memória mais bem usada."
         'H:chkGameMode' = "Ativa o Modo de Jogo: o Windows segura atualizações e tarefas enquanto você joga."
@@ -8965,7 +8941,6 @@ $script:Tr = @{
         'L:chkAdvRazer' = "Sem instalação automática do software Razer"
         'L:chkAdvLogi' = "Sem assistente de download da Logitech"
         'L:chkIPv4Pref' = "IPv4 antes do IPv6"
-        'L:chkDiskNoSleep' = "Discos e SSDs sempre ativos (na tomada)"
         'M:actRun' = "Alterações: {0}"
         'M:jobWorking' = "Em andamento..."
         'M:badgeActive' = "Ativo"
@@ -9141,7 +9116,6 @@ $script:Tr = @{
         'H:chkAdvRazer' = "Bloqueia os coinstaladores de drivers e a pasta onde o Razer Synapse se copia ao conectar um dispositivo. Também bloqueia coinstaladores de outros fabricantes."
         'H:chkAdvLogi' = "Fecha o assistente de download da Logitech e impede que se reinstale a cada inicialização."
         'H:chkIPv4Pref' = "O IPv6 continua ativo, mas o Windows tenta primeiro o IPv4. Útil com redes ou roteadores que lidam mal com IPv6."
-        'H:chkDiskNoSleep' = "Na tomada, discos, link SATA e SSDs NVMe nunca entram em economia de energia: sem atrasos ao despertar. Na bateria tudo fica como antes."
         'M:pwRecBtn' = "Usar os valores recomendados"
         'M:pwDefBtn' = "Voltar aos valores do Windows"
         'M:pwAskRec' = "Vou definir os valores recomendados no plano em uso. As mudanças valem na hora. Continuo?"
@@ -9180,7 +9154,6 @@ $script:Tr = @{
         'L:chkKernelDpc' = "Nucleu și latență DPC"
         'L:chkTimer' = "Temporizator de sistem — precizie maximă"
         'L:chkPowerThrottling' = "Power Throttling — dezactivează"
-        'L:chkUSBSuspend' = "Suspendare selectivă USB — dezactivează"
         'L:chkNtfsPerf' = "NTFS — fără data ultimului acces, cache mare"
         'L:ttlRam' = "MEMORIE"
         'L:chkRamTweak' = "Prag de separare SvcHost (după RAM)"
@@ -9450,7 +9423,6 @@ $script:Tr = @{
         'H:chkKernelDpc' = "Reduce întârzierile în servirea plăcilor și dispozitivelor. Ajută împotriva micro-sacadărilor și pocniturilor audio."
         'H:chkTimer' = "Face temporizatoarele sistemului mai precise. Timpi de răspuns mai constanți în jocuri."
         'H:chkPowerThrottling' = "Împiedică Windows să încetinească programele din fundal pentru a economisi energie. Performanță constantă, consum puțin mai mare."
-        'H:chkUSBSuspend' = "Ține porturile USB mereu active. Mouse-urile, tastaturile și plăcile de sunet nu se mai deconectează și nu mai răspund cu întârziere."
         'H:chkNtfsPerf' = "Discul nu mai notează fiecare citire de fișier și folosește mai multă memorie pentru datele de sistem. Mai puține scrieri, acces mai rapid."
         'H:chkRamTweak' = "Grupează serviciile Windows după memoria RAM instalată. Mai puține procese și memorie folosită mai bine."
         'H:chkGameMode' = "Pornește Modul joc: Windows amână actualizările și activitățile cât timp joci."
@@ -9876,7 +9848,6 @@ $script:Tr = @{
         'L:chkAdvRazer' = "Fără instalare automată a software-ului Razer"
         'L:chkAdvLogi' = "Fără asistentul de descărcare Logitech"
         'L:chkIPv4Pref' = "IPv4 înaintea IPv6"
-        'L:chkDiskNoSleep' = "Discuri și SSD mereu active (la priză)"
         'M:actRun' = "Modificări: {0}"
         'M:jobWorking' = "În curs..."
         'M:badgeActive' = "Activ"
@@ -10052,7 +10023,6 @@ $script:Tr = @{
         'H:chkAdvRazer' = "Blochează co-instalatoarele de drivere și folderul în care Razer Synapse se copiază când conectezi un dispozitiv. Blochează și co-instalatoarele altor producători."
         'H:chkAdvLogi' = "Închide asistentul de descărcare Logitech și îl împiedică să se reinstaleze la fiecare pornire."
         'H:chkIPv4Pref' = "IPv6 rămâne activ, dar Windows încearcă întâi IPv4. Util cu rețele sau routere care gestionează prost IPv6."
-        'H:chkDiskNoSleep' = "La priză, discurile, legătura SATA și SSD-urile NVMe nu intră niciodată în economisire: fără întârzieri la trezire. Pe baterie totul rămâne ca înainte."
         'M:pwRecBtn' = "Folosește valorile recomandate"
         'M:pwDefBtn' = "Revino la valorile Windows"
         'M:pwAskRec' = "Setez valorile recomandate pe planul folosit. Modificările se aplică imediat. Continui?"
@@ -10091,7 +10061,6 @@ $script:Tr = @{
         'L:chkKernelDpc' = "Ядро и задержки DPC"
         'L:chkTimer' = "Системный таймер — максимальная точность"
         'L:chkPowerThrottling' = "Power Throttling — отключить"
-        'L:chkUSBSuspend' = "Выборочная приостановка USB — отключить"
         'L:chkNtfsPerf' = "NTFS — без времени последнего доступа, большой кэш"
         'L:ttlRam' = "ПАМЯТЬ"
         'L:chkRamTweak' = "Порог разделения SvcHost (по объёму ОЗУ)"
@@ -10361,7 +10330,6 @@ $script:Tr = @{
         'H:chkKernelDpc' = "Уменьшает задержки при обслуживании плат и устройств. Помогает против микрофризов и треска в звуке."
         'H:chkTimer' = "Делает системные таймеры точнее. Более ровное время отклика в играх."
         'H:chkPowerThrottling' = "Не даёт Windows замедлять фоновые программы ради экономии энергии. Стабильная производительность, чуть выше расход."
-        'H:chkUSBSuspend' = "Порты USB всегда активны. Мыши, клавиатуры и звуковые карты не отваливаются и не отвечают с задержкой."
         'H:chkNtfsPerf' = "Диск перестаёт записывать каждое чтение файла и использует больше памяти под системные данные. Меньше записей, быстрее доступ."
         'H:chkRamTweak' = "Группирует службы Windows с учётом объёма ОЗУ. Меньше процессов и лучшее использование памяти."
         'H:chkGameMode' = "Включает игровой режим: Windows откладывает обновления и фоновые задачи, пока вы играете."
@@ -10787,7 +10755,6 @@ $script:Tr = @{
         'L:chkAdvRazer' = "Без автоустановки ПО Razer"
         'L:chkAdvLogi' = "Без помощника загрузки Logitech"
         'L:chkIPv4Pref' = "IPv4 раньше IPv6"
-        'L:chkDiskNoSleep' = "Диски и SSD всегда активны (от сети)"
         'M:actRun' = "Изменения: {0}"
         'M:jobWorking' = "Выполняется..."
         'M:badgeActive' = "Активно"
@@ -10963,7 +10930,6 @@ $script:Tr = @{
         'H:chkAdvRazer' = "Блокирует соустановщики драйверов и папку, куда Razer Synapse копирует себя при подключении устройства. Также блокирует соустановщики других производителей."
         'H:chkAdvLogi' = "Закрывает помощник загрузки Logitech и не даёт ему переустанавливаться при каждом запуске."
         'H:chkIPv4Pref' = "IPv6 остаётся включённым, но Windows сначала пробует IPv4. Полезно с сетями или роутерами, плохо работающими с IPv6."
-        'H:chkDiskNoSleep' = "От сети диски, канал SATA и NVMe SSD никогда не переходят в энергосбережение: без задержек пробуждения. От батареи всё как раньше."
         'M:pwRecBtn' = "Рекомендуемые значения"
         'M:pwDefBtn' = "Вернуть значения Windows"
         'M:pwAskRec' = "Установить рекомендуемые значения в текущей схеме? Изменения вступят в силу сразу."
@@ -11002,7 +10968,7 @@ foreach ($lang in $script:Tr.Keys) {
 # 27. CATALOGO DELLE IMPOSTAZIONI A INTERRUTTORE (generato da tools/gen_catalog.py)
 # ------------------------------------------------------------------------------
 $script:Catalog = @(
-    @{ Id = 'exp.icoPc'; Page = 'exp'; Group = 'desk'; Kind = 'T'; Flags = ''; Def = '0'; Rec = '1'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel', '{20D04FE0-3AEA-1069-A2D8-08002B30309D}', 'D', '0', '1,-'), ,@('HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\ClassicStartMenu', '{20D04FE0-3AEA-1069-A2D8-08002B30309D}', 'D', '0', '1,-')) },
+    @{ Id = 'exp.icoPc'; Page = 'exp'; Group = 'desk'; Kind = 'T'; Flags = ''; Def = '0'; Rec = '1'; Ops = @(@('HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel', '{20D04FE0-3AEA-1069-A2D8-08002B30309D}', 'D', '0', '1,-'), @('HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\ClassicStartMenu', '{20D04FE0-3AEA-1069-A2D8-08002B30309D}', 'D', '0', '1,-')) },
     @{ Id = 'exp.icoBin'; Page = 'exp'; Group = 'desk'; Kind = 'T'; Flags = ''; Def = '1'; Rec = '1'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel', '{645FF040-5081-101B-9F08-00AA002F954E}', 'D', '0,-', '1')) },
     @{ Id = 'exp.icoUser'; Page = 'exp'; Group = 'desk'; Kind = 'T'; Flags = ''; Def = '0'; Rec = '0'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel', '{59031A47-3F72-44A7-89C5-5595FE6B30EE}', 'D', '0', '1,-')) },
     @{ Id = 'exp.icoCpl'; Page = 'exp'; Group = 'desk'; Kind = 'T'; Flags = ''; Def = '0'; Rec = '0'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel', '{5399E694-6CE5-4D6C-8FCE-1D8870FDCBA0}', 'D', '0', '1,-')) },
@@ -11010,10 +10976,10 @@ $script:Catalog = @(
     @{ Id = 'exp.lnkSuffix'; Page = 'exp'; Group = 'desk'; Kind = 'S'; Flags = 'X'; Def = 'keep'; Rec = 'drop'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer', 'link', 'B')); Opts = @(@{ Key = 'keep'; Vals = @('-') }, @{ Key = 'drop'; Vals = @('00 00 00 00') }) },
     @{ Id = 'exp.lnkArrow'; Page = 'exp'; Group = 'desk'; Kind = 'S'; Flags = 'X'; Def = 'show'; Rec = '-'; Ops = @(,@('HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Shell Icons', '29', 'S')); Opts = @(@{ Key = 'show'; Vals = @('-') }, @{ Key = 'hide'; Vals = @('%windir%\System32\shell32.dll,-50') }) },
     @{ Id = 'exp.ctxTerminal'; Page = 'exp'; Group = 'ctx'; Kind = 'T'; Flags = 'X'; Def = '1'; Rec = '-'; Ops = @(,@('HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Shell Extensions\Blocked', '{9F156763-7844-4DC4-B2B1-901F640F5155}', 'S', '-', '""')) },
-    @{ Id = 'exp.ctxOwner'; Page = 'exp'; Group = 'ctx'; Kind = 'T'; Flags = ''; Def = '0'; Rec = '-'; Ops = @(,@('HKCR\*\shell\TakeOwnership', '', 'S', 'Prendi possesso', '-'), ,@('HKCR\*\shell\TakeOwnership', 'HasLUAShield', 'S', '""', '-'), ,@('HKCR\*\shell\TakeOwnership', 'NoWorkingDirectory', 'S', '""', '-'), ,@('HKCR\*\shell\TakeOwnership\command', '', 'S', 'powershell -WindowStyle Hidden -Command "Start-Process cmd -ArgumentList ''/c takeown /f \"%1\" && icacls \"%1\" /grant *S-1-3-4:F /c /l'' -Verb RunAs"', '-'), ,@('HKCR\*\shell\TakeOwnership\command', 'IsolatedCommand', 'S', 'powershell -WindowStyle Hidden -Command "Start-Process cmd -ArgumentList ''/c takeown /f \"%1\" && icacls \"%1\" /grant *S-1-3-4:F /c /l'' -Verb RunAs"', '-'), ,@('HKCR\Directory\shell\TakeOwnership', '', 'S', 'Prendi possesso', '-'), ,@('HKCR\Directory\shell\TakeOwnership', 'HasLUAShield', 'S', '""', '-'), ,@('HKCR\Directory\shell\TakeOwnership', 'NoWorkingDirectory', 'S', '""', '-'), ,@('HKCR\Directory\shell\TakeOwnership\command', '', 'S', 'powershell -WindowStyle Hidden -Command "Start-Process cmd -ArgumentList ''/c takeown /f \"%1\" /r /d y && icacls \"%1\" /grant *S-1-3-4:F /t /c /l'' -Verb RunAs"', '-'), ,@('HKCR\Directory\shell\TakeOwnership\command', 'IsolatedCommand', 'S', 'powershell -WindowStyle Hidden -Command "Start-Process cmd -ArgumentList ''/c takeown /f \"%1\" /r /d y && icacls \"%1\" /grant *S-1-3-4:F /t /c /l'' -Verb RunAs"', '-'), ,@('HKCR\*\shell\TakeOwnership', '', 'Key', '+', '-'), ,@('HKCR\Directory\shell\TakeOwnership', '', 'Key', '+', '-')) },
-    @{ Id = 'exp.ctxSfc'; Page = 'exp'; Group = 'ctx'; Kind = 'T'; Flags = ''; Def = '0'; Rec = '-'; Ops = @(,@('HKCR\Directory\Background\shell\TweakSfc', 'MUIVerb', 'S', 'Controllo file di sistema (SFC)', '-'), ,@('HKCR\Directory\Background\shell\TweakSfc', 'HasLUAShield', 'S', '""', '-'), ,@('HKCR\Directory\Background\shell\TweakSfc', 'Icon', 'S', 'imageres.dll,-78', '-'), ,@('HKCR\Directory\Background\shell\TweakSfc\command', '', 'S', 'powershell -WindowStyle Hidden -Command "Start-Process cmd -ArgumentList ''/k sfc /scannow'' -Verb RunAs"', '-'), ,@('HKCR\Directory\Background\shell\TweakSfc', '', 'Key', '+', '-')) },
-    @{ Id = 'exp.ctxDism'; Page = 'exp'; Group = 'ctx'; Kind = 'T'; Flags = ''; Def = '0'; Rec = '-'; Ops = @(,@('HKCR\Directory\Background\shell\TweakDism', 'MUIVerb', 'S', 'Ripara immagine di Windows (DISM)', '-'), ,@('HKCR\Directory\Background\shell\TweakDism', 'HasLUAShield', 'S', '""', '-'), ,@('HKCR\Directory\Background\shell\TweakDism', 'Icon', 'S', 'imageres.dll,-5323', '-'), ,@('HKCR\Directory\Background\shell\TweakDism\command', '', 'S', 'powershell -WindowStyle Hidden -Command "Start-Process cmd -ArgumentList ''/k DISM /Online /Cleanup-Image /RestoreHealth'' -Verb RunAs"', '-'), ,@('HKCR\Directory\Background\shell\TweakDism', '', 'Key', '+', '-')) },
-    @{ Id = 'exp.ctxExt'; Page = 'exp'; Group = 'ctx'; Kind = 'T'; Flags = ''; Def = '0'; Rec = '-'; Ops = @(,@('HKCR\AllFilesystemObjects\shell\Windows.ShowFileExtensions', 'ExplorerCommandHandler', 'S', '{4ac6c205-2853-4bf5-b47c-919a42a48a16}', '-'), ,@('HKCR\AllFilesystemObjects\shell\Windows.ShowFileExtensions', '', 'Key', '+', '-')) },
+    @{ Id = 'exp.ctxOwner'; Page = 'exp'; Group = 'ctx'; Kind = 'T'; Flags = ''; Def = '0'; Rec = '-'; Ops = @(@('HKCR\*\shell\TakeOwnership', '', 'S', 'Prendi possesso', '-'), @('HKCR\*\shell\TakeOwnership', 'HasLUAShield', 'S', '""', '-'), @('HKCR\*\shell\TakeOwnership', 'NoWorkingDirectory', 'S', '""', '-'), @('HKCR\*\shell\TakeOwnership\command', '', 'S', 'powershell -WindowStyle Hidden -Command "Start-Process cmd -ArgumentList ''/c takeown /f \"%1\" && icacls \"%1\" /grant *S-1-3-4:F /c /l'' -Verb RunAs"', '-'), @('HKCR\*\shell\TakeOwnership\command', 'IsolatedCommand', 'S', 'powershell -WindowStyle Hidden -Command "Start-Process cmd -ArgumentList ''/c takeown /f \"%1\" && icacls \"%1\" /grant *S-1-3-4:F /c /l'' -Verb RunAs"', '-'), @('HKCR\Directory\shell\TakeOwnership', '', 'S', 'Prendi possesso', '-'), @('HKCR\Directory\shell\TakeOwnership', 'HasLUAShield', 'S', '""', '-'), @('HKCR\Directory\shell\TakeOwnership', 'NoWorkingDirectory', 'S', '""', '-'), @('HKCR\Directory\shell\TakeOwnership\command', '', 'S', 'powershell -WindowStyle Hidden -Command "Start-Process cmd -ArgumentList ''/c takeown /f \"%1\" /r /d y && icacls \"%1\" /grant *S-1-3-4:F /t /c /l'' -Verb RunAs"', '-'), @('HKCR\Directory\shell\TakeOwnership\command', 'IsolatedCommand', 'S', 'powershell -WindowStyle Hidden -Command "Start-Process cmd -ArgumentList ''/c takeown /f \"%1\" /r /d y && icacls \"%1\" /grant *S-1-3-4:F /t /c /l'' -Verb RunAs"', '-'), @('HKCR\*\shell\TakeOwnership', '', 'Key', '+', '-'), @('HKCR\Directory\shell\TakeOwnership', '', 'Key', '+', '-')) },
+    @{ Id = 'exp.ctxSfc'; Page = 'exp'; Group = 'ctx'; Kind = 'T'; Flags = ''; Def = '0'; Rec = '-'; Ops = @(@('HKCR\Directory\Background\shell\TweakSfc', 'MUIVerb', 'S', 'Controllo file di sistema (SFC)', '-'), @('HKCR\Directory\Background\shell\TweakSfc', 'HasLUAShield', 'S', '""', '-'), @('HKCR\Directory\Background\shell\TweakSfc', 'Icon', 'S', 'imageres.dll,-78', '-'), @('HKCR\Directory\Background\shell\TweakSfc\command', '', 'S', 'powershell -WindowStyle Hidden -Command "Start-Process cmd -ArgumentList ''/k sfc /scannow'' -Verb RunAs"', '-'), @('HKCR\Directory\Background\shell\TweakSfc', '', 'Key', '+', '-')) },
+    @{ Id = 'exp.ctxDism'; Page = 'exp'; Group = 'ctx'; Kind = 'T'; Flags = ''; Def = '0'; Rec = '-'; Ops = @(@('HKCR\Directory\Background\shell\TweakDism', 'MUIVerb', 'S', 'Ripara immagine di Windows (DISM)', '-'), @('HKCR\Directory\Background\shell\TweakDism', 'HasLUAShield', 'S', '""', '-'), @('HKCR\Directory\Background\shell\TweakDism', 'Icon', 'S', 'imageres.dll,-5323', '-'), @('HKCR\Directory\Background\shell\TweakDism\command', '', 'S', 'powershell -WindowStyle Hidden -Command "Start-Process cmd -ArgumentList ''/k DISM /Online /Cleanup-Image /RestoreHealth'' -Verb RunAs"', '-'), @('HKCR\Directory\Background\shell\TweakDism', '', 'Key', '+', '-')) },
+    @{ Id = 'exp.ctxExt'; Page = 'exp'; Group = 'ctx'; Kind = 'T'; Flags = ''; Def = '0'; Rec = '-'; Ops = @(@('HKCR\AllFilesystemObjects\shell\Windows.ShowFileExtensions', 'ExplorerCommandHandler', 'S', '{4ac6c205-2853-4bf5-b47c-919a42a48a16}', '-'), @('HKCR\AllFilesystemObjects\shell\Windows.ShowFileExtensions', '', 'Key', '+', '-')) },
     @{ Id = 'exp.recent'; Page = 'exp'; Group = 'gen'; Kind = 'T'; Flags = ''; Def = '1'; Rec = '0'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer', 'ShowRecent', 'D', '1,-', '0')) },
     @{ Id = 'exp.frequent'; Page = 'exp'; Group = 'gen'; Kind = 'T'; Flags = ''; Def = '1'; Rec = '0'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer', 'ShowFrequent', 'D', '1,-', '0')) },
     @{ Id = 'exp.office'; Page = 'exp'; Group = 'gen'; Kind = 'T'; Flags = ''; Def = '1'; Rec = '0'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer', 'ShowCloudFilesInQuickAccess', 'D', '1,-', '0')) },
@@ -11038,7 +11004,7 @@ $script:Catalog = @(
     @{ Id = 'exp.sharingWiz'; Page = 'exp'; Group = 'gen'; Kind = 'T'; Flags = ''; Def = '1'; Rec = '-'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced', 'SharingWizardOn', 'D', '1,-', '0')) },
     @{ Id = 'exp.lnkExt'; Page = 'exp'; Group = 'gen'; Kind = 'T'; Flags = 'X'; Def = '0'; Rec = '0'; Ops = @(,@('HKCR\lnkfile', 'NeverShowExt', 'S', '-', '""')) },
     @{ Id = 'exp.iconCache'; Page = 'exp'; Group = 'gen'; Kind = 'S'; Flags = 'R'; Def = 'def'; Rec = '4096'; Ops = @(,@('HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer', 'Max Cached Icons', 'S')); Opts = @(@{ Key = 'def'; Vals = @('-') }, @{ Key = '4096'; Vals = @('4096') }, @{ Key = '8192'; Vals = @('8192') }) },
-    @{ Id = 'exp.thumbClean'; Page = 'exp'; Group = 'gen'; Kind = 'T'; Flags = ''; Def = '1'; Rec = '0'; Ops = @(,@('HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\VolumeCaches\Thumbnail Cache', 'Autorun', 'D', '1,-', '0'), ,@('HKLM\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Explorer\VolumeCaches\Thumbnail Cache', 'Autorun', 'D', '1,-', '0')) },
+    @{ Id = 'exp.thumbClean'; Page = 'exp'; Group = 'gen'; Kind = 'T'; Flags = ''; Def = '1'; Rec = '0'; Ops = @(@('HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\VolumeCaches\Thumbnail Cache', 'Autorun', 'D', '1,-', '0'), @('HKLM\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Explorer\VolumeCaches\Thumbnail Cache', 'Autorun', 'D', '1,-', '0')) },
     @{ Id = 'exp.pcDesktop'; Page = 'exp'; Group = 'thispc'; Kind = 'T'; Flags = 'X'; Def = '0'; Rec = '-'; Ops = @(,@('HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{B4BFCC3A-DB2C-424C-B029-7FE99A87C641}', 'HiddenByDefault', 'D', '0', '1,-')) },
     @{ Id = 'exp.pcDocs'; Page = 'exp'; Group = 'thispc'; Kind = 'T'; Flags = 'X'; Def = '0'; Rec = '-'; Ops = @(,@('HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{D3162B92-9365-467A-956B-92703ACA08AF}', 'HiddenByDefault', 'D', '0', '1,-')) },
     @{ Id = 'exp.pcDown'; Page = 'exp'; Group = 'thispc'; Kind = 'T'; Flags = 'X'; Def = '0'; Rec = '-'; Ops = @(,@('HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{088E3905-0323-4B02-9826-5D99428E115F}', 'HiddenByDefault', 'D', '0', '1,-')) },
@@ -11051,7 +11017,7 @@ $script:Catalog = @(
     @{ Id = 'exp.navExpand'; Page = 'exp'; Group = 'nav'; Kind = 'T'; Flags = ''; Def = '0'; Rec = '-'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced', 'NavPaneExpandToCurrentFolder', 'D', '1', '0,-')) },
     @{ Id = 'exp.navAll'; Page = 'exp'; Group = 'nav'; Kind = 'T'; Flags = ''; Def = '0'; Rec = '-'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced', 'NavPaneShowAllFolders', 'D', '1', '0,-')) },
     @{ Id = 'exp.navCloud'; Page = 'exp'; Group = 'nav'; Kind = 'T'; Flags = ''; Def = '0'; Rec = '-'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced', 'NavPaneShowAllCloudStates', 'D', '1', '0,-')) },
-    @{ Id = 'exp.navDupDrives'; Page = 'exp'; Group = 'nav'; Kind = 'T'; Flags = 'X'; Def = '1'; Rec = '0'; Ops = @(,@('HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace\DelegateFolders\{F5FB2C77-0E2F-4A16-A381-3E560C68BC83}', '', 'Key', '+', '-'), ,@('HKLM\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace\DelegateFolders\{F5FB2C77-0E2F-4A16-A381-3E560C68BC83}', '', 'Key', '+', '-')) },
+    @{ Id = 'exp.navDupDrives'; Page = 'exp'; Group = 'nav'; Kind = 'T'; Flags = 'X'; Def = '1'; Rec = '0'; Ops = @(@('HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace\DelegateFolders\{F5FB2C77-0E2F-4A16-A381-3E560C68BC83}', '', 'Key', '+', '-'), @('HKLM\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace\DelegateFolders\{F5FB2C77-0E2F-4A16-A381-3E560C68BC83}', '', 'Key', '+', '-')) },
     @{ Id = 'exp.autoplay'; Page = 'exp'; Group = 'dev'; Kind = 'T'; Flags = ''; Def = '1'; Rec = '0'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers', 'DisableAutoplay', 'D', '0,-', '1')) },
     @{ Id = 'exp.lighting'; Page = 'exp'; Group = 'dev'; Kind = 'T'; Flags = ''; Def = '1'; Rec = '0'; Ops = @(,@('HKCU\Software\Microsoft\Lighting', 'AmbientLightingEnabled', 'D', '1,-', '0')) },
     @{ Id = 'exp.lightingApp'; Page = 'exp'; Group = 'dev'; Kind = 'T'; Flags = ''; Def = '1'; Rec = '-'; Ops = @(,@('HKCU\Software\Microsoft\Lighting', 'ControlledByForegroundApp', 'D', '1,-', '0')) },
@@ -11078,7 +11044,7 @@ $script:Catalog = @(
     @{ Id = 'notif.toast'; Page = 'notif'; Group = 'toast'; Kind = 'T'; Flags = ''; Def = '1'; Rec = '-'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\PushNotifications', 'ToastEnabled', 'D', '1,-', '0')) },
     @{ Id = 'notif.center'; Page = 'notif'; Group = 'toast'; Kind = 'T'; Flags = 'X'; Def = '1'; Rec = '-'; Ops = @(,@('HKCU\Software\Policies\Microsoft\Windows\Explorer', 'DisableNotificationCenter', 'D', '0,-', '1')) },
     @{ Id = 'notif.sound'; Page = 'notif'; Group = 'toast'; Kind = 'T'; Flags = ''; Def = '1'; Rec = '-'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\Notifications\Settings', 'NOC_GLOBAL_SETTING_ALLOW_NOTIFICATION_SOUND', 'D', '1,-', '0')) },
-    @{ Id = 'notif.lock'; Page = 'notif'; Group = 'toast'; Kind = 'T'; Flags = ''; Def = '1'; Rec = '0'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\Notifications\Settings', 'NOC_GLOBAL_SETTING_ALLOW_TOASTS_ABOVE_LOCK', 'D', '1,-', '0'), ,@('HKCU\Software\Microsoft\Windows\CurrentVersion\PushNotifications', 'LockScreenToastEnabled', 'D', '1,-', '0')) },
+    @{ Id = 'notif.lock'; Page = 'notif'; Group = 'toast'; Kind = 'T'; Flags = ''; Def = '1'; Rec = '0'; Ops = @(@('HKCU\Software\Microsoft\Windows\CurrentVersion\Notifications\Settings', 'NOC_GLOBAL_SETTING_ALLOW_TOASTS_ABOVE_LOCK', 'D', '1,-', '0'), @('HKCU\Software\Microsoft\Windows\CurrentVersion\PushNotifications', 'LockScreenToastEnabled', 'D', '1,-', '0')) },
     @{ Id = 'notif.lockVoip'; Page = 'notif'; Group = 'toast'; Kind = 'T'; Flags = ''; Def = '1'; Rec = '-'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\Notifications\Settings', 'NOC_GLOBAL_SETTING_ALLOW_CRITICAL_TOASTS_ABOVE_LOCK', 'D', '1,-', '0')) },
     @{ Id = 'notif.welcome'; Page = 'notif'; Group = 'tips'; Kind = 'T'; Flags = ''; Def = '1'; Rec = '0'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager', 'SubscribedContent-310093Enabled', 'D', '1,-', '0')) },
     @{ Id = 'notif.scoobe'; Page = 'notif'; Group = 'tips'; Kind = 'T'; Flags = ''; Def = '1'; Rec = '0'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\UserProfileEngagement', 'ScoobeSystemSettingEnabled', 'D', '1,-', '0')) },
@@ -11088,7 +11054,7 @@ $script:Catalog = @(
     @{ Id = 'notif.locPrompt'; Page = 'notif'; Group = 'sys'; Kind = 'T'; Flags = ''; Def = '1'; Rec = '1'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\location', 'ShowGlobalPrompts', 'D', '1,-', '0')) },
     @{ Id = 'notif.secMaint'; Page = 'notif'; Group = 'sys'; Kind = 'T'; Flags = ''; Def = '1'; Rec = '1'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\Notifications\Settings\Windows.SystemToast.SecurityAndMaintenance', 'Enabled', 'D', '1,-', '0')) },
     @{ Id = 'notif.defender'; Page = 'notif'; Group = 'sys'; Kind = 'T'; Flags = ''; Def = '1'; Rec = '1'; Ops = @(,@('HKLM\SOFTWARE\Microsoft\Windows Defender Security Center\Notifications', 'DisableNotifications', 'D', '0,-', '1')) },
-    @{ Id = 'notif.bootSound'; Page = 'notif'; Group = 'sound'; Kind = 'T'; Flags = ''; Def = '1'; Rec = '-'; Ops = @(,@('HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Authentication\LogonUI\BootAnimation', 'DisableStartupSound', 'D', '0,-', '1'), ,@('HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\EditionOverrides', 'UserSetting_DisableStartupSound', 'D', '0,-', '1')) },
+    @{ Id = 'notif.bootSound'; Page = 'notif'; Group = 'sound'; Kind = 'T'; Flags = ''; Def = '1'; Rec = '-'; Ops = @(@('HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Authentication\LogonUI\BootAnimation', 'DisableStartupSound', 'D', '0,-', '1'), @('HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\EditionOverrides', 'UserSetting_DisableStartupSound', 'D', '0,-', '1')) },
     @{ Id = 'notif.ducking'; Page = 'notif'; Group = 'sound'; Kind = 'S'; Flags = ''; Def = '80'; Rec = 'none'; Ops = @(,@('HKCU\Software\Microsoft\Multimedia\Audio', 'UserDuckingPreference', 'D')); Opts = @(@{ Key = 'mute'; Vals = @('0') }, @{ Key = '80'; Vals = @('1,-') }, @{ Key = '50'; Vals = @('2') }, @{ Key = 'none'; Vals = @('3') }) },
     @{ Id = 'notif.accSounds'; Page = 'notif'; Group = 'sound'; Kind = 'T'; Flags = ''; Def = '1'; Rec = '-'; Ops = @(,@('HKCU\Control Panel\Accessibility', 'Sound on Activation', 'D', '1,-', '0')) },
     @{ Id = 'notif.accWarn'; Page = 'notif'; Group = 'sound'; Kind = 'T'; Flags = ''; Def = '1'; Rec = '-'; Ops = @(,@('HKCU\Control Panel\Accessibility', 'Warning Sounds', 'D', '1,-', '0')) },
@@ -11122,11 +11088,11 @@ $script:Catalog = @(
     @{ Id = 'game.fxFonts'; Page = 'game'; Group = 'vfx'; Kind = 'T'; Flags = 'L'; Def = '1'; Rec = '1'; Ops = @(,@('HKCU\Control Panel\Desktop', 'FontSmoothing', 'S', '2,-', '0')) },
     @{ Id = 'game.fxIconShadow'; Page = 'game'; Group = 'vfx'; Kind = 'T'; Flags = 'L'; Def = '1'; Rec = '0'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced', 'ListviewShadow', 'D', '1,-', '0')) },
     @{ Id = 'game.fxThumbCache'; Page = 'game'; Group = 'vfx'; Kind = 'T'; Flags = 'L'; Def = '0'; Rec = '0'; Ops = @(,@('HKCU\Software\Microsoft\Windows\DWM', 'AlwaysHibernateThumbnails', 'D', '1', '0,-')) },
-    @{ Id = 'win.uac'; Page = 'win'; Group = 'sec'; Kind = 'S'; Flags = 'W'; Def = 'notify'; Rec = '-'; Ops = @(,@('HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System', 'ConsentPromptBehaviorAdmin', 'D'), ,@('HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System', 'PromptOnSecureDesktop', 'D')); Opts = @(@{ Key = 'always'; Vals = @('2', '1') }, @{ Key = 'notify'; Vals = @('5', '1') }, @{ Key = 'nodim'; Vals = @('5', '0') }, @{ Key = 'never'; Vals = @('0', '0') }) },
+    @{ Id = 'win.uac'; Page = 'win'; Group = 'sec'; Kind = 'S'; Flags = 'W'; Def = 'notify'; Rec = '-'; Ops = @(@('HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System', 'ConsentPromptBehaviorAdmin', 'D'), @('HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System', 'PromptOnSecureDesktop', 'D')); Opts = @(@{ Key = 'always'; Vals = @('2', '1') }, @{ Key = 'notify'; Vals = @('5', '1') }, @{ Key = 'nodim'; Vals = @('5', '0') }, @{ Key = 'never'; Vals = @('0', '0') }) },
     @{ Id = 'win.psPolicy'; Page = 'win'; Group = 'sec'; Kind = 'S'; Flags = ''; Def = 'restricted'; Rec = 'remote'; Ops = @(,@('HKLM\SOFTWARE\Microsoft\PowerShell\1\ShellIds\Microsoft.PowerShell', 'ExecutionPolicy', 'S')); Opts = @(@{ Key = 'restricted'; Vals = @('Restricted,-') }, @{ Key = 'remote'; Vals = @('RemoteSigned') }, @{ Key = 'signed'; Vals = @('AllSigned') }, @{ Key = 'all'; Vals = @('Unrestricted') }, @{ Key = 'bypass'; Vals = @('Bypass') }) },
     @{ Id = 'win.devMode'; Page = 'win'; Group = 'sec'; Kind = 'T'; Flags = ''; Def = '0'; Rec = '-'; Ops = @(,@('HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\AppModelUnlock', 'AllowDevelopmentWithoutDevLicense', 'D', '1', '0,-')) },
     @{ Id = 'win.workplace'; Page = 'win'; Group = 'sec'; Kind = 'T'; Flags = ''; Def = '1'; Rec = '0'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\WorkplaceJoin', 'BlockAADWorkplaceJoin', 'D', '0,-', '1')) },
-    @{ Id = 'win.brave'; Page = 'win'; Group = 'browser'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = '-'; Ops = @(,@('HKLM\SOFTWARE\Policies\BraveSoftware\Brave', 'BraveRewardsDisabled', 'D', '1', '-'), ,@('HKLM\SOFTWARE\Policies\BraveSoftware\Brave', 'BraveWalletDisabled', 'D', '1', '-'), ,@('HKLM\SOFTWARE\Policies\BraveSoftware\Brave', 'BraveVPNDisabled', 'D', '1', '-'), ,@('HKLM\SOFTWARE\Policies\BraveSoftware\Brave', 'BraveAIChatEnabled', 'D', '0', '-'), ,@('HKLM\SOFTWARE\Policies\BraveSoftware\Brave', 'BraveStatsPingEnabled', 'D', '0', '-'), ,@('HKLM\SOFTWARE\Policies\BraveSoftware\Brave', 'BraveNewsDisabled', 'D', '1', '-'), ,@('HKLM\SOFTWARE\Policies\BraveSoftware\Brave', 'BraveTalkDisabled', 'D', '1', '-'), ,@('HKLM\SOFTWARE\Policies\BraveSoftware\Brave', 'TorDisabled', 'D', '1', '-'), ,@('HKLM\SOFTWARE\Policies\BraveSoftware\Brave', 'BraveP3AEnabled', 'D', '0', '-'), ,@('HKLM\SOFTWARE\Policies\BraveSoftware\Brave', 'UrlKeyedAnonymizedDataCollectionEnabled', 'D', '0', '-'), ,@('HKLM\SOFTWARE\Policies\BraveSoftware\Brave', 'SafeBrowsingExtendedReportingEnabled', 'D', '0', '-'), ,@('HKLM\SOFTWARE\Policies\BraveSoftware\Brave', 'MetricsReportingEnabled', 'D', '0', '-')) },
+    @{ Id = 'win.brave'; Page = 'win'; Group = 'browser'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = '-'; Ops = @(@('HKLM\SOFTWARE\Policies\BraveSoftware\Brave', 'BraveRewardsDisabled', 'D', '1', '-'), @('HKLM\SOFTWARE\Policies\BraveSoftware\Brave', 'BraveWalletDisabled', 'D', '1', '-'), @('HKLM\SOFTWARE\Policies\BraveSoftware\Brave', 'BraveVPNDisabled', 'D', '1', '-'), @('HKLM\SOFTWARE\Policies\BraveSoftware\Brave', 'BraveAIChatEnabled', 'D', '0', '-'), @('HKLM\SOFTWARE\Policies\BraveSoftware\Brave', 'BraveStatsPingEnabled', 'D', '0', '-'), @('HKLM\SOFTWARE\Policies\BraveSoftware\Brave', 'BraveNewsDisabled', 'D', '1', '-'), @('HKLM\SOFTWARE\Policies\BraveSoftware\Brave', 'BraveTalkDisabled', 'D', '1', '-'), @('HKLM\SOFTWARE\Policies\BraveSoftware\Brave', 'TorDisabled', 'D', '1', '-'), @('HKLM\SOFTWARE\Policies\BraveSoftware\Brave', 'BraveP3AEnabled', 'D', '0', '-'), @('HKLM\SOFTWARE\Policies\BraveSoftware\Brave', 'UrlKeyedAnonymizedDataCollectionEnabled', 'D', '0', '-'), @('HKLM\SOFTWARE\Policies\BraveSoftware\Brave', 'SafeBrowsingExtendedReportingEnabled', 'D', '0', '-'), @('HKLM\SOFTWARE\Policies\BraveSoftware\Brave', 'MetricsReportingEnabled', 'D', '0', '-')) },
     @{ Id = 'win.wuLatest'; Page = 'win'; Group = 'upd'; Kind = 'T'; Flags = ''; Def = '0'; Rec = '0'; Ops = @(,@('HKLM\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings', 'IsContinuousInnovationOptedIn', 'D', '1', '0,-')) },
     @{ Id = 'win.wuOther'; Page = 'win'; Group = 'upd'; Kind = 'T'; Flags = ''; Def = '0'; Rec = '-'; Ops = @(,@('HKLM\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings', 'AllowMUUpdateService', 'D', '1', '0,-')) },
     @{ Id = 'win.wuExpedite'; Page = 'win'; Group = 'upd'; Kind = 'T'; Flags = ''; Def = '0'; Rec = '0'; Ops = @(,@('HKLM\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings', 'IsExpedited', 'D', '1', '0,-')) },
@@ -11154,8 +11120,6 @@ $script:Catalog = @(
     @{ Id = 'win.tSqm'; Page = 'win'; Group = 'tasks'; Kind = 'J'; Flags = ''; Def = '1'; Rec = '0'; Tasks = @('\Microsoft\Windows\PI\Sqm-Tasks') },
     @{ Id = 'pv.timeline'; Page = 'priv'; Group = 'uPriv'; Kind = 'T'; Flags = 'U'; Def = '0'; Rec = 'y'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager', 'SubscribedContent-353698Enabled', 'D', '0', '1,-')) },
     @{ Id = 'pv.startSugg'; Page = 'priv'; Group = 'uPriv'; Kind = 'T'; Flags = 'U'; Def = '0'; Rec = 'y'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager', 'SubscribedContent-338388Enabled', 'D', '0', '1,-')) },
-    @{ Id = 'pv.settingsSugg'; Page = 'priv'; Group = 'uPriv'; Kind = 'T'; Flags = 'U'; Def = '0'; Rec = 'y'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager', 'SubscribedContent-338393Enabled', 'D', '0', '1,-'), ,@('HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager', 'SubscribedContent-353694Enabled', 'D', '0', '1,-'), ,@('HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager', 'SubscribedContent-353696Enabled', 'D', '0', '1,-')) },
-    @{ Id = 'pv.silentApps'; Page = 'priv'; Group = 'uPriv'; Kind = 'T'; Flags = 'U'; Def = '0'; Rec = 'y'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager', 'SilentInstalledAppsEnabled', 'D', '0', '1,-')) },
     @{ Id = 'pv.accountNotif'; Page = 'priv'; Group = 'uPriv'; Kind = 'T'; Flags = 'U'; Def = '0'; Rec = 'y'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\SystemSettings\AccountNotifications', 'EnableAccountNotifications', 'D', '0', '1,-')) },
     @{ Id = 'pv.langList'; Page = 'priv'; Group = 'uPriv'; Kind = 'T'; Flags = 'U'; Def = '0'; Rec = 'l'; Ops = @(,@('HKCU\Control Panel\International\User Profile', 'HttpAcceptLanguageOptOut', 'D', '1', '0,-')) },
     @{ Id = 'pv.textPred'; Page = 'priv'; Group = 'uPriv'; Kind = 'T'; Flags = 'U'; Def = '0'; Rec = 'l'; Ops = @(,@('HKCU\Software\Microsoft\TabletTip\1.7', 'EnableTextPrediction', 'D', '0', '1,-')) },
@@ -11198,12 +11162,11 @@ $script:Catalog = @(
     @{ Id = 'pv.copilotMic'; Page = 'priv'; Group = 'uAi'; Kind = 'T'; Flags = 'UA'; Def = '0'; Rec = 'l'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\microphone\Microsoft.Copilot_8wekyb3d8bbwe', 'Value', 'S', 'Deny', 'Allow,-')) },
     @{ Id = 'pv.wordCopilot'; Page = 'priv'; Group = 'uAi'; Kind = 'T'; Flags = 'UA'; Def = '0'; Rec = 'l'; Ops = @(,@('HKCU\Software\Microsoft\Office\16.0\Word\Options', 'EnableCopilot', 'D', '0', '1,-')) },
     @{ Id = 'pv.excelCopilot'; Page = 'priv'; Group = 'uAi'; Kind = 'T'; Flags = 'UA'; Def = '0'; Rec = 'l'; Ops = @(,@('HKCU\Software\Microsoft\Office\16.0\Excel\Options', 'EnableCopilot', 'D', '0', '1,-')) },
-    @{ Id = 'pv.officeCloud'; Page = 'priv'; Group = 'uAi'; Kind = 'T'; Flags = 'UA'; Def = '0'; Rec = 'l'; Ops = @(,@('HKCU\Software\Policies\Microsoft\office\16.0\common\privacy', 'controllerconnectedservicesenabled', 'D', '2', '-'), ,@('HKCU\Software\Policies\Microsoft\office\16.0\common\privacy', 'usercontentdisabled', 'D', '2', '-')) },
+    @{ Id = 'pv.officeCloud'; Page = 'priv'; Group = 'uAi'; Kind = 'T'; Flags = 'UA'; Def = '0'; Rec = 'l'; Ops = @(@('HKCU\Software\Policies\Microsoft\office\16.0\common\privacy', 'controllerconnectedservicesenabled', 'D', '2', '-'), @('HKCU\Software\Policies\Microsoft\office\16.0\common\privacy', 'usercontentdisabled', 'D', '2', '-')) },
     @{ Id = 'pv.thirdParty'; Page = 'priv'; Group = 'uBehav'; Kind = 'T'; Flags = 'U'; Def = '0'; Rec = 'y'; Ops = @(,@('HKCU\Software\Policies\Microsoft\Windows\CloudContent', 'DisableThirdPartySuggestions', 'D', '1', '0,-')) },
     @{ Id = 'pv.spotSettings'; Page = 'priv'; Group = 'uBehav'; Kind = 'T'; Flags = 'U'; Def = '0'; Rec = 'y'; Ops = @(,@('HKCU\Software\Policies\Microsoft\Windows\CloudContent', 'DisableWindowsSpotlightOnSettings', 'D', '1', '0,-')) },
     @{ Id = 'pv.spotAll'; Page = 'priv'; Group = 'uBehav'; Kind = 'T'; Flags = 'U'; Def = '0'; Rec = 'l'; Ops = @(,@('HKCU\Software\Policies\Microsoft\Windows\CloudContent', 'DisableWindowsSpotlightFeatures', 'D', '1', '0,-')) },
     @{ Id = 'pv.wmp'; Page = 'priv'; Group = 'uBehav'; Kind = 'T'; Flags = 'U'; Def = '0'; Rec = 'y'; Ops = @(,@('HKCU\Software\Microsoft\MediaPlayer\Preferences', 'UsageTracking', 'D', '0', '1,-')) },
-    @{ Id = 'pv.lockSpot'; Page = 'priv'; Group = 'uLock'; Kind = 'T'; Flags = 'U'; Def = '0'; Rec = 'l'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager', 'RotatingLockScreenEnabled', 'D', '0', '1,-')) },
     @{ Id = 'pv.searchHist'; Page = 'priv'; Group = 'uSearch'; Kind = 'T'; Flags = 'U'; Def = '0'; Rec = 'y'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\SearchSettings', 'IsDeviceSearchHistoryEnabled', 'D', '0', '1,-')) },
     @{ Id = 'pv.searchHigh'; Page = 'priv'; Group = 'uSearch'; Kind = 'T'; Flags = 'U'; Def = '0'; Rec = 'y'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\SearchSettings', 'IsDynamicSearchBoxEnabled', 'D', '0', '1,-')) },
     @{ Id = 'pv.searchMsa'; Page = 'priv'; Group = 'uSearch'; Kind = 'T'; Flags = 'U'; Def = '0'; Rec = 'l'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\SearchSettings', 'IsMSACloudSearchEnabled', 'D', '0', '1,-')) },
@@ -11222,10 +11185,8 @@ $script:Catalog = @(
     @{ Id = 'pv.ceip'; Page = 'priv'; Group = 'mPriv'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\SQMClient\Windows', 'CEIPEnable', 'D', '0', '-')) },
     @{ Id = 'pv.handErr'; Page = 'priv'; Group = 'mPriv'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\HandwritingErrorReports', 'PreventHandwritingErrorReports', 'D', '1', '0,-')) },
     @{ Id = 'pv.handShare'; Page = 'priv'; Group = 'mPriv'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\TabletPC', 'PreventHandwritingDataSharing', 'D', '1', '0,-')) },
-    @{ Id = 'pv.inputPers'; Page = 'priv'; Group = 'mPriv'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\InputPersonalization', 'AllowInputPersonalization', 'D', '0', '-')) },
     @{ Id = 'pv.onlineTips'; Page = 'priv'; Group = 'mPriv'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer', 'AllowOnlineTips', 'D', '0', '-')) },
     @{ Id = 'pv.helpFb'; Page = 'priv'; Group = 'mPriv'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Assistance\Client\1.0', 'NoExplicitFeedback', 'D', '1', '0,-')) },
-    @{ Id = 'pv.wer'; Page = 'priv'; Group = 'mPriv'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'l'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting', 'Disabled', 'D', '1', '0,-')) },
     @{ Id = 'pv.cloudContent'; Page = 'priv'; Group = 'mPriv'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\CloudContent', 'DisableCloudOptimizedContent', 'D', '1', '0,-')) },
     @{ Id = 'pv.softLanding'; Page = 'priv'; Group = 'mPriv'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\CloudContent', 'DisableSoftLanding', 'D', '1', '0,-')) },
     @{ Id = 'pv.consumerAcct'; Page = 'priv'; Group = 'mPriv'; Kind = 'T'; Flags = 'MA'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\CloudContent', 'DisableConsumerAccountStateContent', 'D', '1', '0,-')) },
@@ -11238,7 +11199,7 @@ $script:Catalog = @(
     @{ Id = 'pv.mSync'; Page = 'priv'; Group = 'mApps'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy', 'LetAppsSyncWithDevices', 'D', '2', '-')) },
     @{ Id = 'pv.mGaze'; Page = 'priv'; Group = 'mApps'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy', 'LetAppsAccessGazeInput', 'D', '2', '-')) },
     @{ Id = 'pv.mSpatial'; Page = 'priv'; Group = 'mApps'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy', 'LetAppsAccessBackgroundSpatialPerception', 'D', '2', '-')) },
-    @{ Id = 'pv.mVoice'; Page = 'priv'; Group = 'mApps'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy', 'LetAppsActivateWithVoice', 'D', '2', '-'), ,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy', 'LetAppsActivateWithVoiceAboveLock', 'D', '2', '-')) },
+    @{ Id = 'pv.mVoice'; Page = 'priv'; Group = 'mApps'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(@('HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy', 'LetAppsActivateWithVoice', 'D', '2', '-'), @('HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy', 'LetAppsActivateWithVoiceAboveLock', 'D', '2', '-')) },
     @{ Id = 'pv.mContacts'; Page = 'priv'; Group = 'mApps'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'l'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy', 'LetAppsAccessContacts', 'D', '2', '-')) },
     @{ Id = 'pv.mCalendar'; Page = 'priv'; Group = 'mApps'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'l'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy', 'LetAppsAccessCalendar', 'D', '2', '-')) },
     @{ Id = 'pv.mCallHist'; Page = 'priv'; Group = 'mApps'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'l'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy', 'LetAppsAccessCallHistory', 'D', '2', '-')) },
@@ -11258,7 +11219,7 @@ $script:Catalog = @(
     @{ Id = 'pv.eLocalProv'; Page = 'priv'; Group = 'mEdge'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Edge', 'LocalProvidersEnabled', 'D', '0', '-')) },
     @{ Id = 'pv.eShopping'; Page = 'priv'; Group = 'mEdge'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Edge', 'EdgeShoppingAssistantEnabled', 'D', '0', '-')) },
     @{ Id = 'pv.eBar'; Page = 'priv'; Group = 'mEdge'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Edge', 'WebWidgetAllowed', 'D', '0', '-')) },
-    @{ Id = 'pv.eNavErr'; Page = 'priv'; Group = 'mEdge'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Edge', 'ResolveNavigationErrorsUseWebService', 'D', '0', '-'), ,@('HKLM\SOFTWARE\Policies\Microsoft\Edge', 'AlternateErrorPagesEnabled', 'D', '0', '-')) },
+    @{ Id = 'pv.eNavErr'; Page = 'priv'; Group = 'mEdge'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(@('HKLM\SOFTWARE\Policies\Microsoft\Edge', 'ResolveNavigationErrorsUseWebService', 'D', '0', '-'), @('HKLM\SOFTWARE\Policies\Microsoft\Edge', 'AlternateErrorPagesEnabled', 'D', '0', '-')) },
     @{ Id = 'pv.ePreload'; Page = 'priv'; Group = 'mEdge'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Edge', 'NetworkPredictionOptions', 'D', '2', '-')) },
     @{ Id = 'pv.eDiag'; Page = 'priv'; Group = 'mEdge'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Edge', 'DiagnosticData', 'D', '0', '-')) },
     @{ Id = 'pv.eRewards'; Page = 'priv'; Group = 'mEdge'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Edge', 'ShowMicrosoftRewards', 'D', '0', '-')) },
@@ -11272,29 +11233,28 @@ $script:Catalog = @(
     @{ Id = 'pv.ePwd'; Page = 'priv'; Group = 'mEdge'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'n'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Edge', 'PasswordManagerEnabled', 'D', '0', '-')) },
     @{ Id = 'pv.eSmartScreen'; Page = 'priv'; Group = 'mEdge'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'n'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Edge', 'SmartScreenEnabled', 'D', '0', '-')) },
     @{ Id = 'pv.eTypo'; Page = 'priv'; Group = 'mEdge'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'n'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Edge', 'TyposquattingCheckerEnabled', 'D', '0', '-')) },
-    @{ Id = 'pv.ePageCtx'; Page = 'priv'; Group = 'mEdgeAi'; Kind = 'T'; Flags = 'MA'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Edge', 'CopilotPageContext', 'D', '0', '-'), ,@('HKLM\SOFTWARE\Policies\Microsoft\Edge', 'CopilotCDPPageContext', 'D', '0', '-')) },
+    @{ Id = 'pv.ePageCtx'; Page = 'priv'; Group = 'mEdgeAi'; Kind = 'T'; Flags = 'MA'; Def = '0'; Rec = 'y'; Ops = @(@('HKLM\SOFTWARE\Policies\Microsoft\Edge', 'CopilotPageContext', 'D', '0', '-'), @('HKLM\SOFTWARE\Policies\Microsoft\Edge', 'CopilotCDPPageContext', 'D', '0', '-')) },
     @{ Id = 'pv.eCompose'; Page = 'priv'; Group = 'mEdgeAi'; Kind = 'T'; Flags = 'MA'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Edge', 'ComposeInlineEnabled', 'D', '0', '-')) },
     @{ Id = 'pv.eHistAi'; Page = 'priv'; Group = 'mEdgeAi'; Kind = 'T'; Flags = 'MA'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Edge', 'EdgeHistoryAISearchEnabled', 'D', '0', '-')) },
     @{ Id = 'pv.eShareHist'; Page = 'priv'; Group = 'mEdgeAi'; Kind = 'T'; Flags = 'MA'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Edge', 'ShareBrowsingHistoryWithCopilotSearchAllowed', 'D', '0', '-')) },
     @{ Id = 'pv.eThemes'; Page = 'priv'; Group = 'mEdgeAi'; Kind = 'T'; Flags = 'MA'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Edge', 'AIGenThemesEnabled', 'D', '0', '-')) },
     @{ Id = 'pv.eM365'; Page = 'priv'; Group = 'mEdgeAi'; Kind = 'T'; Flags = 'MA'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Edge', 'Microsoft365CopilotChatIconEnabled', 'D', '0', '-')) },
     @{ Id = 'pv.eBuiltinAi'; Page = 'priv'; Group = 'mEdgeAi'; Kind = 'T'; Flags = 'MA'; Def = '0'; Rec = 'l'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Edge', 'BuiltInAIAPIsEnabled', 'D', '0', '-')) },
-    @{ Id = 'pv.cortana'; Page = 'priv'; Group = 'mSearch'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search', 'AllowCortana', 'D', '0', '-'), ,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search', 'AllowCortanaAboveLock', 'D', '0', '-')) },
+    @{ Id = 'pv.cortana'; Page = 'priv'; Group = 'mSearch'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(@('HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search', 'AllowCortana', 'D', '0', '-'), @('HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search', 'AllowCortanaAboveLock', 'D', '0', '-')) },
     @{ Id = 'pv.cloudSearch'; Page = 'priv'; Group = 'mSearch'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search', 'AllowCloudSearch', 'D', '0', '-')) },
-    @{ Id = 'pv.webSearch'; Page = 'priv'; Group = 'mSearch'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search', 'DisableWebSearch', 'D', '1', '-'), ,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search', 'ConnectedSearchUseWeb', 'D', '0', '-'), ,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\Explorer', 'DisableSearchBoxSuggestions', 'D', '1', '-')) },
     @{ Id = 'pv.searchLoc'; Page = 'priv'; Group = 'mSearch'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search', 'AllowSearchToUseLocation', 'D', '0', '-')) },
     @{ Id = 'pv.mHighlights'; Page = 'priv'; Group = 'mSearch'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search', 'EnableDynamicContentInWSB', 'D', '0', '-')) },
     @{ Id = 'pv.mClickToDo'; Page = 'priv'; Group = 'mAi'; Kind = 'T'; Flags = 'MA'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsAI', 'DisableClickToDo', 'D', '1', '-')) },
-    @{ Id = 'pv.agents'; Page = 'priv'; Group = 'mAi'; Kind = 'T'; Flags = 'MA'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsAI', 'DisableAgentConnectors', 'D', '1', '-'), ,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsAI', 'DisableAgentWorkspaces', 'D', '1', '-'), ,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsAI', 'DisableRemoteAgentConnectors', 'D', '1', '-')) },
+    @{ Id = 'pv.agents'; Page = 'priv'; Group = 'mAi'; Kind = 'T'; Flags = 'MA'; Def = '0'; Rec = 'y'; Ops = @(@('HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsAI', 'DisableAgentConnectors', 'D', '1', '-'), @('HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsAI', 'DisableAgentWorkspaces', 'D', '1', '-'), @('HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsAI', 'DisableRemoteAgentConnectors', 'D', '1', '-')) },
     @{ Id = 'pv.settingsAgent'; Page = 'priv'; Group = 'mAi'; Kind = 'T'; Flags = 'MA'; Def = '0'; Rec = 'l'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsAI', 'DisableSettingsAgent', 'D', '1', '-')) },
     @{ Id = 'pv.copilotRt'; Page = 'priv'; Group = 'mAi'; Kind = 'T'; Flags = 'MA'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsAI', 'AllowCopilotRuntime', 'D', '0', '-')) },
-    @{ Id = 'pv.genAi'; Page = 'priv'; Group = 'mAi'; Kind = 'T'; Flags = 'MA'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy', 'LetAppsAccessGenerativeAI', 'D', '2', '-'), ,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy', 'LetAppsAccessSystemAIModels', 'D', '2', '-')) },
+    @{ Id = 'pv.genAi'; Page = 'priv'; Group = 'mAi'; Kind = 'T'; Flags = 'MA'; Def = '0'; Rec = 'y'; Ops = @(@('HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy', 'LetAppsAccessGenerativeAI', 'D', '2', '-'), @('HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy', 'LetAppsAccessSystemAIModels', 'D', '2', '-')) },
     @{ Id = 'pv.notepadAi'; Page = 'priv'; Group = 'mAi'; Kind = 'T'; Flags = 'MA'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\WindowsNotepad', 'DisableAIFeatures', 'D', '1', '-')) },
-    @{ Id = 'pv.paintAi'; Page = 'priv'; Group = 'mAi'; Kind = 'T'; Flags = 'MA'; Def = '0'; Rec = 'l'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Paint', 'DisableImageCreator', 'D', '1', '-'), ,@('HKLM\SOFTWARE\Policies\Microsoft\Paint', 'DisableCocreator', 'D', '1', '-'), ,@('HKLM\SOFTWARE\Policies\Microsoft\Paint', 'DisableGenerativeFill', 'D', '1', '-'), ,@('HKLM\SOFTWARE\Policies\Microsoft\Paint', 'DisableGenerativeErase', 'D', '1', '-')) },
+    @{ Id = 'pv.paintAi'; Page = 'priv'; Group = 'mAi'; Kind = 'T'; Flags = 'MA'; Def = '0'; Rec = 'l'; Ops = @(@('HKLM\SOFTWARE\Policies\Microsoft\Paint', 'DisableImageCreator', 'D', '1', '-'), @('HKLM\SOFTWARE\Policies\Microsoft\Paint', 'DisableCocreator', 'D', '1', '-'), @('HKLM\SOFTWARE\Policies\Microsoft\Paint', 'DisableGenerativeFill', 'D', '1', '-'), @('HKLM\SOFTWARE\Policies\Microsoft\Paint', 'DisableGenerativeErase', 'D', '1', '-')) },
     @{ Id = 'pv.paintBg'; Page = 'priv'; Group = 'mAi'; Kind = 'T'; Flags = 'MA'; Def = '0'; Rec = 'n'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Paint', 'DisableRemoveBackground', 'D', '1', '-')) },
     @{ Id = 'pv.winLocProv'; Page = 'priv'; Group = 'mLoc'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\LocationAndSensors', 'DisableWindowsLocationProvider', 'D', '1', '-')) },
     @{ Id = 'pv.locScript'; Page = 'priv'; Group = 'mLoc'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\LocationAndSensors', 'DisableLocationScripting', 'D', '1', '-')) },
-    @{ Id = 'pv.mapsAuto'; Page = 'priv'; Group = 'mLoc'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\Maps', 'AutoDownloadAndUpdateMapData', 'D', '0', '-'), ,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\Maps', 'AllowUntriggeredNetworkTrafficOnSettingsPage', 'D', '0', '-')) },
+    @{ Id = 'pv.mapsAuto'; Page = 'priv'; Group = 'mLoc'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(@('HKLM\SOFTWARE\Policies\Microsoft\Windows\Maps', 'AutoDownloadAndUpdateMapData', 'D', '0', '-'), @('HKLM\SOFTWARE\Policies\Microsoft\Windows\Maps', 'AllowUntriggeredNetworkTrafficOnSettingsPage', 'D', '0', '-')) },
     @{ Id = 'pv.sensors'; Page = 'priv'; Group = 'mLoc'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'l'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\LocationAndSensors', 'DisableSensors', 'D', '1', '-')) },
     @{ Id = 'pv.findDevice'; Page = 'priv'; Group = 'mLoc'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'l'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\FindMyDevice', 'AllowFindMyDevice', 'D', '0', '-')) },
     @{ Id = 'pv.speechUpd'; Page = 'priv'; Group = 'mUpd'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Speech', 'AllowSpeechModelUpdate', 'D', '0', '-')) },
@@ -11311,13 +11271,12 @@ $script:Catalog = @(
     @{ Id = 'pv.cdp'; Page = 'priv'; Group = 'mMobile'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'l'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\System', 'EnableCdp', 'D', '0', '-')) },
     @{ Id = 'pv.mMeetNow'; Page = 'priv'; Group = 'mBar'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer', 'HideSCAMeetNow', 'D', '1', '-')) },
     @{ Id = 'pv.chatIcon'; Page = 'priv'; Group = 'mBar'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Chat', 'ChatIcon', 'D', '3', '-')) },
-    @{ Id = 'pv.credSync'; Page = 'priv'; Group = 'mSync'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\SettingSync', 'DisableCredentialsSettingSync', 'D', '2', '-'), ,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\SettingSync', 'DisableCredentialsSettingSyncUserOverride', 'D', '1', '-')) },
-    @{ Id = 'pv.allSync'; Page = 'priv'; Group = 'mSync'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'l'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\SettingSync', 'DisableSettingSync', 'D', '2', '-'), ,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\SettingSync', 'DisableSettingSyncUserOverride', 'D', '1', '-')) },
+    @{ Id = 'pv.credSync'; Page = 'priv'; Group = 'mSync'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(@('HKLM\SOFTWARE\Policies\Microsoft\Windows\SettingSync', 'DisableCredentialsSettingSync', 'D', '2', '-'), @('HKLM\SOFTWARE\Policies\Microsoft\Windows\SettingSync', 'DisableCredentialsSettingSyncUserOverride', 'D', '1', '-')) },
+    @{ Id = 'pv.allSync'; Page = 'priv'; Group = 'mSync'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'l'; Ops = @(@('HKLM\SOFTWARE\Policies\Microsoft\Windows\SettingSync', 'DisableSettingSync', 'D', '2', '-'), @('HKLM\SOFTWARE\Policies\Microsoft\Windows\SettingSync', 'DisableSettingSyncUserOverride', 'D', '1', '-')) },
     @{ Id = 'pw.cpuMin'; Page = 'power'; Group = 'cpu'; Kind = 'N'; Flags = ''; Def = '5'; Rec = '-'; Opts = @(@{ Key = '5'; Vals = @() }, @{ Key = '50'; Vals = @() }, @{ Key = '100'; Vals = @() }); Sub = '54533251-82be-4824-96c1-47b60b740d00'; Set = '893dee8e-2bef-41e0-89c6-b55d0929964c' },
     @{ Id = 'pw.cpuMax'; Page = 'power'; Group = 'cpu'; Kind = 'N'; Flags = ''; Def = '100'; Rec = '100'; Opts = @(@{ Key = '99'; Vals = @() }, @{ Key = '100'; Vals = @() }); Sub = '54533251-82be-4824-96c1-47b60b740d00'; Set = 'bc5038f7-23e0-4960-96da-33abaf5935ec' },
     @{ Id = 'pw.boost'; Page = 'power'; Group = 'cpu'; Kind = 'N'; Flags = ''; Def = '2'; Rec = '2'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '1'; Vals = @() }, @{ Key = '2'; Vals = @() }, @{ Key = '3'; Vals = @() }, @{ Key = '4'; Vals = @() }); Sub = '54533251-82be-4824-96c1-47b60b740d00'; Set = 'be337238-0d82-4146-a960-4f3749d470c7' },
     @{ Id = 'pw.epp'; Page = 'power'; Group = 'cpu'; Kind = 'N'; Flags = ''; Def = '50'; Rec = '0'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '25'; Vals = @() }, @{ Key = '50'; Vals = @() }, @{ Key = '80'; Vals = @() }); Sub = '54533251-82be-4824-96c1-47b60b740d00'; Set = '36687f9e-e3a5-4dbf-b1dc-15eb381c6863' },
-    @{ Id = 'pw.parkMin'; Page = 'power'; Group = 'cpu'; Kind = 'N'; Flags = ''; Def = '10'; Rec = '100'; Opts = @(@{ Key = '10'; Vals = @() }, @{ Key = '50'; Vals = @() }, @{ Key = '100'; Vals = @() }); Sub = '54533251-82be-4824-96c1-47b60b740d00'; Set = '0cc5b647-c1df-4637-891a-dec35c318583' },
     @{ Id = 'pw.cooling'; Page = 'power'; Group = 'cpu'; Kind = 'N'; Flags = ''; Def = '1'; Rec = '1'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '1'; Vals = @() }); Sub = '54533251-82be-4824-96c1-47b60b740d00'; Set = '94d3a615-a899-4ac5-ae2b-e4d8f634367f' },
     @{ Id = 'pw.incPolicy'; Page = 'power'; Group = 'cpu'; Kind = 'N'; Flags = ''; Def = '0'; Rec = '2'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '1'; Vals = @() }, @{ Key = '2'; Vals = @() }, @{ Key = '3'; Vals = @() }); Sub = '54533251-82be-4824-96c1-47b60b740d00'; Set = '465e1f50-b610-473a-ab58-00d1077dc418' },
     @{ Id = 'pw.decPolicy'; Page = 'power'; Group = 'cpu'; Kind = 'N'; Flags = ''; Def = '0'; Rec = '1'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '1'; Vals = @() }, @{ Key = '2'; Vals = @() }); Sub = '54533251-82be-4824-96c1-47b60b740d00'; Set = '40fbefc7-2e9d-4d25-a185-0cfd8574bac6' },
@@ -11326,6 +11285,7 @@ $script:Catalog = @(
     @{ Id = 'pw.usb3Lpm'; Page = 'power'; Group = 'dev'; Kind = 'N'; Flags = ''; Def = '3'; Rec = '0'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '1'; Vals = @() }, @{ Key = '2'; Vals = @() }, @{ Key = '3'; Vals = @() }); Sub = '2a737441-1930-4402-8d77-b2bebba308a3'; Set = 'd4e98f31-5ffe-4ce1-be31-1b38b384c009' },
     @{ Id = 'pw.wifi'; Page = 'power'; Group = 'dev'; Kind = 'N'; Flags = ''; Def = '0'; Rec = '0'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '1'; Vals = @() }, @{ Key = '2'; Vals = @() }, @{ Key = '3'; Vals = @() }); Sub = '19cbb8fa-5279-450e-9fac-8a3d5fedd0c1'; Set = '12bbebe6-58d6-4636-95bb-3217ef867c1a' },
     @{ Id = 'pw.disk'; Page = 'power'; Group = 'dev'; Kind = 'N'; Flags = ''; Def = '1200'; Rec = '0'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '300'; Vals = @() }, @{ Key = '1200'; Vals = @() }, @{ Key = '3600'; Vals = @() }); Sub = '0012ee47-9041-4b5d-9b77-535fba8b1442'; Set = '6738e2c4-e8a5-4a42-b16a-e040e769756e' },
+    @{ Id = 'pw.sata'; Page = 'power'; Group = 'dev'; Kind = 'N'; Flags = ''; Def = '1'; Rec = '0'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '1'; Vals = @() }, @{ Key = '2'; Vals = @() }, @{ Key = '3'; Vals = @() }, @{ Key = '4'; Vals = @() }); Sub = '0012ee47-9041-4b5d-9b77-535fba8b1442'; Set = '0b2d69d7-a2a1-449c-9680-f91c70521c60' },
     @{ Id = 'pw.nvme1'; Page = 'power'; Group = 'dev'; Kind = 'N'; Flags = ''; Def = '200'; Rec = '-'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '100'; Vals = @() }, @{ Key = '200'; Vals = @() }, @{ Key = '1000'; Vals = @() }); Sub = '0012ee47-9041-4b5d-9b77-535fba8b1442'; Set = 'd639518a-e56d-4345-8af2-b9f32fb26109' },
     @{ Id = 'pw.nvme2'; Page = 'power'; Group = 'dev'; Kind = 'N'; Flags = ''; Def = '2000'; Rec = '-'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '1000'; Vals = @() }, @{ Key = '2000'; Vals = @() }, @{ Key = '5000'; Vals = @() }); Sub = '0012ee47-9041-4b5d-9b77-535fba8b1442'; Set = 'd3d55efd-c1ff-424e-9dc3-441be7833010' },
     @{ Id = 'pw.display'; Page = 'power'; Group = 'sleep'; Kind = 'N'; Flags = ''; Def = '600'; Rec = '-'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '300'; Vals = @() }, @{ Key = '600'; Vals = @() }, @{ Key = '900'; Vals = @() }, @{ Key = '1800'; Vals = @() }, @{ Key = '3600'; Vals = @() }); Sub = '7516b95f-f776-4464-8c53-06167f40cc99'; Set = '3c0bc021-c8a8-4e07-a973-6b14cbcb2b7e' },
@@ -11560,8 +11520,6 @@ $script:CatText = @{
     'g.priv.uPriv' = @{ it = 'Privacy'; en = 'Privacy'; es = 'Privacidad'; de = 'Datenschutz'; fr = 'Confidentialité'; pl = 'Prywatność'; pt = 'Privacidade'; ro = 'Confidențialitate'; ru = 'Конфиденциальность' }
     'pv.timeline' = @{ it = 'Niente suggerimenti nella sequenza temporale'; en = 'No suggestions in the timeline'; es = 'Sin sugerencias en la escala de tiempo'; de = 'Keine Vorschläge in der Zeitachse'; fr = 'Pas de suggestions dans la chronologie'; pl = 'Bez sugestii na osi czasu'; pt = 'Sem sugestões na linha do tempo'; ro = 'Fără sugestii în cronologie'; ru = 'Без предложений на временной шкале' }
     'pv.startSugg' = @{ it = 'Niente suggerimenti in Start'; en = 'No suggestions in Start'; es = 'Sin sugerencias en Inicio'; de = 'Keine Vorschläge in Start'; fr = 'Pas de suggestions dans Démarrer'; pl = 'Bez sugestii w Start'; pt = 'Sem sugestões no Iniciar'; ro = 'Fără sugestii în Start'; ru = 'Без предложений в «Пуске»' }
-    'pv.settingsSugg' = @{ it = 'Niente contenuti suggeriti in Impostazioni'; en = 'No suggested content in Settings'; es = 'Sin contenido sugerido en Configuración'; de = 'Keine vorgeschlagenen Inhalte in Einstellungen'; fr = 'Pas de contenu suggéré dans Paramètres'; pl = 'Bez sugerowanej zawartości w Ustawieniach'; pt = 'Sem conteúdo sugerido em Configurações'; ro = 'Fără conținut sugerat în Setări'; ru = 'Без рекомендуемого содержимого в «Параметрах»' }
-    'pv.silentApps' = @{ it = 'Niente app installate in silenzio'; en = 'No silently installed apps'; es = 'Sin apps instaladas en silencio'; de = 'Keine still installierten Apps'; fr = 'Pas d''apps installées en silence'; pl = 'Bez cicho instalowanych aplikacji'; pt = 'Sem apps instalados silenciosamente'; ro = 'Fără aplicații instalate în tăcere'; ru = 'Без тихо устанавливаемых приложений' }
     'pv.accountNotif' = @{ it = 'Niente notifiche sull''account in Impostazioni'; en = 'No account notices in Settings'; es = 'Sin avisos de cuenta en Configuración'; de = 'Keine Kontohinweise in Einstellungen'; fr = 'Pas d''avis de compte dans Paramètres'; pl = 'Bez komunikatów o koncie w Ustawieniach'; pt = 'Sem avisos de conta em Configurações'; ro = 'Fără anunțuri de cont în Setări'; ru = 'Без уведомлений об учётной записи в «Параметрах»' }
     'pv.langList' = @{ it = 'Non condividere l''elenco delle lingue con i siti'; en = 'Don''t share the language list with websites'; es = 'No compartir la lista de idiomas con los sitios web'; de = 'Sprachliste nicht mit Websites teilen'; fr = 'Ne pas partager la liste des langues avec les sites'; pl = 'Nie udostępniaj listy języków stronom'; pt = 'Não compartilhar a lista de idiomas com sites'; ro = 'Nu partaja lista de limbi cu site-urile'; ru = 'Не сообщать сайтам список языков' }
     'pv.textPred' = @{ it = 'Niente suggerimenti di testo sulla tastiera virtuale'; en = 'No text suggestions on the touch keyboard'; es = 'Sin sugerencias de texto en el teclado táctil'; de = 'Keine Textvorschläge auf der Bildschirmtastatur'; fr = 'Pas de suggestions sur le clavier tactile'; pl = 'Bez podpowiedzi na klawiaturze dotykowej'; pt = 'Sem sugestões de texto no teclado virtual'; ro = 'Fără sugestii de text pe tastatura tactilă'; ru = 'Без подсказок на сенсорной клавиатуре' }
@@ -11616,7 +11574,6 @@ $script:CatText = @{
     'pv.spotAll' = @{ it = 'Disattiva tutte le funzioni Spotlight'; en = 'Disable all Spotlight features'; es = 'Desactivar todas las funciones de Spotlight'; de = 'Alle Spotlight-Funktionen deaktivieren'; fr = 'Désactiver toutes les fonctions Spotlight'; pl = 'Wyłącz wszystkie funkcje Spotlight'; pt = 'Desativar todos os recursos Spotlight'; ro = 'Dezactivează toate funcțiile Spotlight'; ru = 'Отключить все функции Spotlight' }
     'pv.wmp' = @{ it = 'Windows Media Player non traccia l''uso'; en = 'Windows Media Player doesn''t track usage'; es = 'Windows Media Player no rastrea el uso'; de = 'Windows Media Player verfolgt die Nutzung nicht'; fr = 'Le Lecteur Windows Media ne suit pas l''utilisation'; pl = 'Windows Media Player nie śledzi użycia'; pt = 'O Windows Media Player não rastreia o uso'; ro = 'Windows Media Player nu urmărește utilizarea'; ru = 'Windows Media Player не отслеживает использование' }
     'g.priv.uLock' = @{ it = 'Schermata di blocco'; en = 'Lock screen'; es = 'Pantalla de bloqueo'; de = 'Sperrbildschirm'; fr = 'Écran de verrouillage'; pl = 'Ekran blokady'; pt = 'Tela de bloqueio'; ro = 'Ecran de blocare'; ru = 'Экран блокировки' }
-    'pv.lockSpot' = @{ it = 'Niente immagini Spotlight sulla schermata di blocco'; en = 'No Spotlight pictures on the lock screen'; es = 'Sin imágenes Spotlight en la pantalla de bloqueo'; de = 'Keine Spotlight-Bilder auf dem Sperrbildschirm'; fr = 'Pas d''images Spotlight sur l''écran de verrouillage'; pl = 'Bez obrazów Spotlight na ekranie blokady'; pt = 'Sem imagens Spotlight na tela de bloqueio'; ro = 'Fără imagini Spotlight pe ecranul de blocare'; ru = 'Без картинок Spotlight на экране блокировки' }
     'g.priv.uSearch' = @{ it = 'Ricerca'; en = 'Search'; es = 'Búsqueda'; de = 'Suche'; fr = 'Recherche'; pl = 'Wyszukiwanie'; pt = 'Pesquisa'; ro = 'Căutare'; ru = 'Поиск' }
     'pv.searchHist' = @{ it = 'Non conservare la cronologia delle ricerche'; en = 'Don''t keep search history'; es = 'No guardar el historial de búsqueda'; de = 'Keinen Suchverlauf speichern'; fr = 'Ne pas garder l''historique de recherche'; pl = 'Nie przechowuj historii wyszukiwania'; pt = 'Não manter o histórico de pesquisa'; ro = 'Nu păstra istoricul căutărilor'; ru = 'Не хранить журнал поиска' }
     'pv.searchHigh' = @{ it = 'Niente contenuti in evidenza nella ricerca'; en = 'No search highlights'; es = 'Sin destacados en la búsqueda'; de = 'Keine Suchhighlights'; fr = 'Pas de temps forts dans la recherche'; pl = 'Bez wyróżnień w wyszukiwaniu'; pt = 'Sem destaques da pesquisa'; ro = 'Fără evidențieri în căutare'; ru = 'Без основных моментов в поиске' }
@@ -11640,10 +11597,8 @@ $script:CatText = @{
     'pv.ceip' = @{ it = 'Esci dal programma di miglioramento dell''esperienza'; en = 'Leave the Customer Experience Improvement Program'; es = 'Salir del Programa de mejora de la experiencia'; de = 'Programm zur Verbesserung der Benutzerfreundlichkeit verlassen'; fr = 'Quitter le Programme d''amélioration de l''expérience'; pl = 'Opuść program poprawy jakości obsługi'; pt = 'Sair do Programa de Aperfeiçoamento da Experiência'; ro = 'Ieși din Programul de îmbunătățire a experienței'; ru = 'Выйти из программы улучшения качества' }
     'pv.handErr' = @{ it = 'Non inviare errori di riconoscimento della scrittura'; en = 'Don''t send handwriting recognition errors'; es = 'No enviar errores de reconocimiento de escritura'; de = 'Keine Handschrift-Erkennungsfehler senden'; fr = 'Ne pas envoyer les erreurs de reconnaissance d''écriture'; pl = 'Nie wysyłaj błędów rozpoznawania pisma'; pt = 'Não enviar erros de reconhecimento de escrita'; ro = 'Nu trimite erorile de recunoaștere a scrisului'; ru = 'Не отправлять ошибки распознавания почерка' }
     'pv.handShare' = @{ it = 'Non condividere i dati della penna'; en = 'Don''t share pen data'; es = 'No compartir datos del lápiz'; de = 'Keine Stiftdaten teilen'; fr = 'Ne pas partager les données du stylet'; pl = 'Nie udostępniaj danych pióra'; pt = 'Não compartilhar dados da caneta'; ro = 'Nu partaja datele creionului'; ru = 'Не передавать данные пера' }
-    'pv.inputPers' = @{ it = 'Disattiva la personalizzazione dell''input'; en = 'Disable input personalization'; es = 'Desactivar la personalización de la entrada'; de = 'Eingabepersonalisierung deaktivieren'; fr = 'Désactiver la personnalisation de la saisie'; pl = 'Wyłącz personalizację wprowadzania'; pt = 'Desativar a personalização da entrada'; ro = 'Dezactivează personalizarea introducerii'; ru = 'Отключить персонализацию ввода' }
     'pv.onlineTips' = @{ it = 'Niente suggerimenti online in Impostazioni'; en = 'No online tips in Settings'; es = 'Sin consejos en línea en Configuración'; de = 'Keine Onlinetipps in Einstellungen'; fr = 'Pas de conseils en ligne dans Paramètres'; pl = 'Bez porad online w Ustawieniach'; pt = 'Sem dicas online em Configurações'; ro = 'Fără sfaturi online în Setări'; ru = 'Без онлайн-советов в «Параметрах»' }
     'pv.helpFb' = @{ it = 'Niente valutazioni della Guida'; en = 'No Help ratings'; es = 'Sin valoraciones de la Ayuda'; de = 'Keine Bewertungen der Hilfe'; fr = 'Pas d''évaluations de l''aide'; pl = 'Bez ocen Pomocy'; pt = 'Sem avaliações da Ajuda'; ro = 'Fără evaluări ale Ajutorului'; ru = 'Без оценок справки' }
-    'pv.wer' = @{ it = 'Disattiva la segnalazione errori'; en = 'Disable error reporting'; es = 'Desactivar el informe de errores'; de = 'Fehlerberichterstattung deaktivieren'; fr = 'Désactiver le rapport d''erreurs'; pl = 'Wyłącz raportowanie błędów'; pt = 'Desativar o relatório de erros'; ro = 'Dezactivează raportarea erorilor'; ru = 'Отключить отчёты об ошибках' }
     'pv.cloudContent' = @{ it = 'Niente contenuti ottimizzati dal cloud'; en = 'No cloud-optimized content'; es = 'Sin contenido optimizado desde la nube'; de = 'Keine cloudoptimierten Inhalte'; fr = 'Pas de contenu optimisé depuis le cloud'; pl = 'Bez treści optymalizowanych w chmurze'; pt = 'Sem conteúdo otimizado pela nuvem'; ro = 'Fără conținut optimizat din cloud'; ru = 'Без содержимого, оптимизированного облаком' }
     'pv.softLanding' = @{ it = 'Niente consigli su Windows'; en = 'No Windows tips'; es = 'Sin consejos de Windows'; de = 'Keine Windows-Tipps'; fr = 'Pas de conseils Windows'; pl = 'Bez porad Windows'; pt = 'Sem dicas do Windows'; ro = 'Fără sfaturi Windows'; ru = 'Без советов Windows' }
     'pv.consumerAcct' = @{ it = 'Niente contenuti legati all''account consumer'; en = 'No consumer account content'; es = 'Sin contenido vinculado a la cuenta de consumo'; de = 'Keine Inhalte zum Verbraucherkonto'; fr = 'Pas de contenu lié au compte grand public'; pl = 'Bez treści powiązanych z kontem konsumenckim'; pt = 'Sem conteúdo ligado à conta pessoal'; ro = 'Fără conținut legat de contul personal'; ru = 'Без содержимого личной учётной записи' }
@@ -11704,7 +11659,6 @@ $script:CatText = @{
     'g.priv.mSearch' = @{ it = 'Cortana e ricerca'; en = 'Cortana and search'; es = 'Cortana y búsqueda'; de = 'Cortana und Suche'; fr = 'Cortana et recherche'; pl = 'Cortana i wyszukiwanie'; pt = 'Cortana e pesquisa'; ro = 'Cortana și căutare'; ru = 'Cortana и поиск' }
     'pv.cortana' = @{ it = 'Disattiva Cortana'; en = 'Disable Cortana'; es = 'Desactivar Cortana'; de = 'Cortana deaktivieren'; fr = 'Désactiver Cortana'; pl = 'Wyłącz Cortanę'; pt = 'Desativar a Cortana'; ro = 'Dezactivează Cortana'; ru = 'Отключить Cortana' }
     'pv.cloudSearch' = @{ it = 'Niente ricerca nel cloud'; en = 'No cloud search'; es = 'Sin búsqueda en la nube'; de = 'Keine Cloudsuche'; fr = 'Pas de recherche dans le cloud'; pl = 'Bez wyszukiwania w chmurze'; pt = 'Sem pesquisa na nuvem'; ro = 'Fără căutare în cloud'; ru = 'Без облачного поиска' }
-    'pv.webSearch' = @{ it = 'Niente ricerca web da Start'; en = 'No web search from Start'; es = 'Sin búsqueda web desde Inicio'; de = 'Keine Websuche aus Start'; fr = 'Pas de recherche web depuis Démarrer'; pl = 'Bez wyszukiwania w sieci ze Start'; pt = 'Sem pesquisa web pelo Iniciar'; ro = 'Fără căutare web din Start'; ru = 'Без веб-поиска из «Пуска»' }
     'pv.searchLoc' = @{ it = 'La ricerca non usa la posizione'; en = 'Search doesn''t use location'; es = 'La búsqueda no usa la ubicación'; de = 'Suche nutzt keinen Standort'; fr = 'La recherche n''utilise pas la position'; pl = 'Wyszukiwanie nie używa lokalizacji'; pt = 'A pesquisa não usa a localização'; ro = 'Căutarea nu folosește locația'; ru = 'Поиск не использует местоположение' }
     'pv.mHighlights' = @{ it = 'Niente contenuti in evidenza per tutti'; en = 'No search highlights for everyone'; es = 'Sin destacados de búsqueda para todos'; de = 'Keine Suchhighlights für alle'; fr = 'Pas de temps forts de recherche pour tous'; pl = 'Bez wyróżnień wyszukiwania dla wszystkich'; pt = 'Sem destaques da pesquisa para todos'; ro = 'Fără evidențieri în căutare pentru toți'; ru = 'Без основных моментов поиска для всех' }
     'g.priv.mAi' = @{ it = 'Windows AI'; en = 'Windows AI'; es = 'IA de Windows'; de = 'Windows-KI'; fr = 'IA de Windows'; pl = 'Sztuczna inteligencja Windows'; pt = 'IA do Windows'; ro = 'IA Windows'; ru = 'ИИ в Windows' }
@@ -11764,10 +11718,6 @@ $script:CatText = @{
     'pw.epp#25' = @{ it = 'Prestazioni (25)'; en = 'Performance (25)'; es = 'Rendimiento (25)'; de = 'Leistung (25)'; fr = 'Performances (25)'; pl = 'Wydajność (25)'; pt = 'Desempenho (25)'; ro = 'Performanță (25)'; ru = 'Производительность (25)' }
     'pw.epp#50' = @{ it = 'Bilanciato (50)'; en = 'Balanced (50)'; es = 'Equilibrado (50)'; de = 'Ausgewogen (50)'; fr = 'Équilibré (50)'; pl = 'Zrównoważony (50)'; pt = 'Equilibrado (50)'; ro = 'Echilibrat (50)'; ru = 'Сбалансированный (50)' }
     'pw.epp#80' = @{ it = 'Risparmio (80)'; en = 'Efficiency (80)'; es = 'Eficiencia (80)'; de = 'Effizienz (80)'; fr = 'Efficacité (80)'; pl = 'Oszczędność (80)'; pt = 'Eficiência (80)'; ro = 'Eficiență (80)'; ru = 'Экономия (80)' }
-    'pw.parkMin' = @{ it = 'Core sempre attivi (parcheggio)'; en = 'Cores kept awake (parking)'; es = 'Núcleos siempre activos (estacionamiento)'; de = 'Immer aktive Kerne (Parking)'; fr = 'Cœurs toujours actifs (parking)'; pl = 'Rdzenie zawsze aktywne (parkowanie)'; pt = 'Núcleos sempre ativos (estacionamento)'; ro = 'Nuclee mereu active (parcare)'; ru = 'Всегда активные ядра (парковка)' }
-    'pw.parkMin#10' = @{ it = '10%'; en = '10%' }
-    'pw.parkMin#50' = @{ it = '50%'; en = '50%' }
-    'pw.parkMin#100' = @{ it = '100% (niente parcheggio)'; en = '100% (no parking)'; es = '100% (sin estacionamiento)'; de = '100% (kein Parking)'; fr = '100% (sans parking)'; pl = '100% (bez parkowania)'; pt = '100% (sem estacionamento)'; ro = '100% (fără parcare)'; ru = '100% (без парковки)' }
     'pw.cooling' = @{ it = 'Raffreddamento'; en = 'Cooling policy'; es = 'Directiva de refrigeración'; de = 'Kühlungsrichtlinie'; fr = 'Stratégie de refroidissement'; pl = 'Zasady chłodzenia'; pt = 'Política de resfriamento'; ro = 'Politica de răcire'; ru = 'Политика охлаждения' }
     'pw.cooling#0' = @{ it = 'Passivo (rallenta prima)'; en = 'Passive (slow down first)'; es = 'Pasiva (primero frena)'; de = 'Passiv (zuerst drosseln)'; fr = 'Passive (ralentir d''abord)'; pl = 'Pasywne (najpierw zwalnia)'; pt = 'Passiva (desacelera primeiro)'; ro = 'Pasivă (încetinește întâi)'; ru = 'Пассивная (сначала замедление)' }
     'pw.cooling#1' = @{ it = 'Attivo (ventole prima)'; en = 'Active (fans first)'; es = 'Activa (primero ventiladores)'; de = 'Aktiv (zuerst Lüfter)'; fr = 'Active (ventilateurs d''abord)'; pl = 'Aktywne (najpierw wentylatory)'; pt = 'Ativa (ventoinhas primeiro)'; ro = 'Activă (ventilatoare întâi)'; ru = 'Активная (сначала вентиляторы)' }
@@ -11803,6 +11753,12 @@ $script:CatText = @{
     'pw.disk#300' = @{ it = '5 minuti'; en = '5 minutes'; es = '5 minutos'; de = '5 Minuten'; fr = '5 minutes'; pl = '5 minut'; pt = '5 minutos'; ro = '5 minute'; ru = '5 минут' }
     'pw.disk#1200' = @{ it = '20 minuti'; en = '20 minutes'; es = '20 minutos'; de = '20 Minuten'; fr = '20 minutes'; pl = '20 minut'; pt = '20 minutos'; ro = '20 de minute'; ru = '20 минут' }
     'pw.disk#3600' = @{ it = '1 ora'; en = '1 hour'; es = '1 hora'; de = '1 Stunde'; fr = '1 heure'; pl = '1 godzinie'; pt = '1 hora'; ro = '1 oră'; ru = '1 час' }
+    'pw.sata' = @{ it = 'Risparmio del collegamento SATA'; en = 'SATA link power saving'; es = 'Ahorro del enlace SATA'; de = 'Energiesparen der SATA-Verbindung'; fr = 'Économie du lien SATA'; pl = 'Oszczędzanie łącza SATA'; pt = 'Economia do link SATA'; ro = 'Economisirea legăturii SATA'; ru = 'Энергосбережение канала SATA' }
+    'pw.sata#0' = @{ it = 'Spento (sempre attivo)'; en = 'Off (always active)'; es = 'Apagado (siempre activo)'; de = 'Aus (immer aktiv)'; fr = 'Désactivée (toujours actif)'; pl = 'Wyłączone (zawsze aktywne)'; pt = 'Desligada (sempre ativo)'; ro = 'Oprită (mereu activă)'; ru = 'Выключено (всегда активен)' }
+    'pw.sata#1' = @{ it = 'Gestito dal PC (HIPM)'; en = 'Host managed (HIPM)'; es = 'Gestionado por el PC (HIPM)'; de = 'Vom PC gesteuert (HIPM)'; fr = 'Gérée par le PC (HIPM)'; pl = 'Sterowane przez komputer (HIPM)'; pt = 'Gerida pelo PC (HIPM)'; ro = 'Gestionată de PC (HIPM)'; ru = 'Управляет ПК (HIPM)' }
+    'pw.sata#2' = @{ it = 'PC e disco (HIPM+DIPM)'; en = 'Host and device (HIPM+DIPM)'; es = 'PC y disco (HIPM+DIPM)'; de = 'PC und Laufwerk (HIPM+DIPM)'; fr = 'PC et disque (HIPM+DIPM)'; pl = 'Komputer i dysk (HIPM+DIPM)'; pt = 'PC e disco (HIPM+DIPM)'; ro = 'PC și disc (HIPM+DIPM)'; ru = 'ПК и диск (HIPM+DIPM)' }
+    'pw.sata#3' = @{ it = 'Gestito dal disco (DIPM)'; en = 'Device managed (DIPM)'; es = 'Gestionado por el disco (DIPM)'; de = 'Vom Laufwerk gesteuert (DIPM)'; fr = 'Gérée par le disque (DIPM)'; pl = 'Sterowane przez dysk (DIPM)'; pt = 'Gerida pelo disco (DIPM)'; ro = 'Gestionată de disc (DIPM)'; ru = 'Управляет диск (DIPM)' }
+    'pw.sata#4' = @{ it = 'Massimo risparmio'; en = 'Lowest power'; es = 'Ahorro máximo'; de = 'Maximales Sparen'; fr = 'Économie maximale'; pl = 'Maksymalne oszczędzanie'; pt = 'Economia máxima'; ro = 'Economisire maximă'; ru = 'Максимальное сбережение' }
     'pw.nvme1' = @{ it = 'SSD NVMe: primo riposo dopo'; en = 'NVMe SSD: first idle state after'; es = 'SSD NVMe: primer reposo tras'; de = 'NVMe-SSD: erster Ruhezustand nach'; fr = 'SSD NVMe : premier repos après'; pl = 'SSD NVMe: pierwszy stan uśpienia po'; pt = 'SSD NVMe: primeiro repouso após'; ro = 'SSD NVMe: prima stare de repaus după'; ru = 'SSD NVMe: первый режим простоя через' }
     'pw.nvme1#0' = @{ it = 'Mai (sempre pronto)'; en = 'Never (always ready)'; es = 'Nunca (siempre listo)'; de = 'Nie (immer bereit)'; fr = 'Jamais (toujours prêt)'; pl = 'Nigdy (zawsze gotowy)'; pt = 'Nunca (sempre pronto)'; ro = 'Niciodată (mereu gata)'; ru = 'Никогда (всегда готов)' }
     'pw.nvme1#100' = @{ it = '100 ms'; en = '100 ms' }
@@ -12014,8 +11970,6 @@ $script:CatTip = @{
     'win.tSqm' = @{ it = 'Misurazioni della qualità del software inviate a Microsoft.'; en = 'Software quality measurements sent to Microsoft.' }
     'pv.timeline' = @{ it = 'La cronologia delle attività non propone contenuti promozionali.'; en = 'The activity timeline stops offering promoted content.' }
     'pv.startSugg' = @{ it = 'Start smette di proporre app da installare.'; en = 'Start stops proposing apps to install.' }
-    'pv.settingsSugg' = @{ it = 'L''app Impostazioni mostra solo impostazioni, senza proposte.'; en = 'The Settings app shows settings only, without offers.' }
-    'pv.silentApps' = @{ it = 'Windows non aggiunge più giochi e app promozionali senza chiedere.'; en = 'Windows stops adding promotional games and apps without asking.' }
     'pv.accountNotif' = @{ it = 'Spariscono gli inviti a usare un account Microsoft e i servizi collegati.'; en = 'Invitations to use a Microsoft account and linked services go away.' }
     'pv.langList' = @{ it = 'I siti non ricevono le tue lingue. Alcuni potrebbero aprirsi in inglese.'; en = 'Websites don''t get your languages. Some may open in English.' }
     'pv.textPred' = @{ it = 'La tastiera su schermo non analizza quello che scrivi per suggerire parole.'; en = 'The on-screen keyboard stops analyzing what you type to suggest words.' }
@@ -12063,7 +12017,6 @@ $script:CatTip = @{
     'pv.spotSettings' = @{ it = 'L''app Impostazioni non mostra contenuti Spotlight.'; en = 'The Settings app shows no Spotlight content.' }
     'pv.spotAll' = @{ it = 'Niente immagini e curiosità di Spotlight, anche su desktop e schermata di blocco.'; en = 'No Spotlight pictures and facts, desktop and lock screen included.' }
     'pv.wmp' = @{ it = 'Il lettore classico non registra cosa ascolti.'; en = 'The classic player doesn''t record what you listen to.' }
-    'pv.lockSpot' = @{ it = 'Lo sfondo resta fisso e non viene scaricato da Microsoft.'; en = 'The picture stays fixed and isn''t downloaded from Microsoft.' }
     'pv.searchHist' = @{ it = 'Le ricerche fatte in Start non vengono ricordate.'; en = 'Searches made in Start aren''t remembered.' }
     'pv.searchHigh' = @{ it = 'Il riquadro di ricerca non mostra ricorrenze e notizie.'; en = 'The search box doesn''t show events and news.' }
     'pv.searchMsa' = @{ it = 'La ricerca non interroga OneDrive e Outlook del tuo account.'; en = 'Search doesn''t query your account''s OneDrive and Outlook.' }
@@ -12082,10 +12035,8 @@ $script:CatTip = @{
     'pv.ceip' = @{ it = 'Niente statistiche d''uso anonime inviate a Microsoft.'; en = 'No anonymous usage statistics sent to Microsoft.' }
     'pv.handErr' = @{ it = 'I campioni di scrittura a mano non lasciano il PC.'; en = 'Handwriting samples don''t leave the PC.' }
     'pv.handShare' = @{ it = 'La personalizzazione della penna non viene condivisa.'; en = 'Pen personalization isn''t shared.' }
-    'pv.inputPers' = @{ it = 'Voce e scrittura non vengono usate per addestrare i modelli di Microsoft.'; en = 'Voice and writing aren''t used to train Microsoft models.' }
     'pv.onlineTips' = @{ it = 'Impostazioni non scarica suggerimenti e video da Internet.'; en = 'Settings doesn''t download tips and videos from the Internet.' }
     'pv.helpFb' = @{ it = 'La Guida di Windows non chiede se l''articolo ti è stato utile.'; en = 'Windows Help doesn''t ask whether the article was useful.' }
-    'pv.wer' = @{ it = 'I rapporti sui blocchi non vengono inviati. Microsoft non potrà proporre soluzioni.'; en = 'Crash reports aren''t sent. Microsoft can''t offer fixes.' }
     'pv.cloudContent' = @{ it = 'Start e barra non scaricano contenuti promozionali.'; en = 'Start and taskbar don''t download promotional content.' }
     'pv.softLanding' = @{ it = 'Windows non presenta le sue funzioni con fumetti e schede.'; en = 'Windows doesn''t introduce its features with pop-ups and cards.' }
     'pv.consumerAcct' = @{ it = 'Windows non mostra offerte e funzioni IA legate all''account Microsoft personale.'; en = 'Windows doesn''t show offers and AI features tied to the personal Microsoft account.' }
@@ -12141,7 +12092,6 @@ $script:CatTip = @{
     'pv.eBuiltinAi' = @{ it = 'I siti non possono usare il modello di IA locale di Edge.'; en = 'Sites can''t use Edge''s local AI model.' }
     'pv.cortana' = @{ it = 'Spegne l''assistente anche sulla schermata di blocco.'; en = 'Turns the assistant off, lock screen included.' }
     'pv.cloudSearch' = @{ it = 'La ricerca di Windows resta sul PC.'; en = 'Windows search stays on the PC.' }
-    'pv.webSearch' = @{ it = 'Per tutti gli account la ricerca in Start non passa da Bing.'; en = 'For every account Start search doesn''t go through Bing.' }
     'pv.searchLoc' = @{ it = 'I risultati non vengono adattati a dove ti trovi.'; en = 'Results aren''t tailored to where you are.' }
     'pv.mHighlights' = @{ it = 'Il riquadro di ricerca resta pulito su ogni account.'; en = 'The search box stays clean on every account.' }
     'pv.mClickToDo' = @{ it = 'L''IA non propone azioni su ciò che vedi a schermo.'; en = 'AI doesn''t offer actions on what you see on screen.' }
@@ -12177,7 +12127,6 @@ $script:CatTip = @{
     'pw.cpuMax' = @{ it = 'Al 99% il turbo resta spento: portatile più fresco e silenzioso, un po'' meno veloce.'; en = 'At 99% turbo stays off: a cooler, quieter laptop, a bit slower.' }
     'pw.boost' = @{ it = 'Con quanta decisione il processore sale in turbo quando serve potenza.'; en = 'How eagerly the processor jumps into turbo when power is needed.' }
     'pw.epp' = @{ it = 'Suggerisce al processore se privilegiare la reattività o i consumi.'; en = 'Tells the processor whether to favor responsiveness or power draw.' }
-    'pw.parkMin' = @{ it = 'Al 100% nessun core viene messo a riposo: meno scatti quando il carico cambia di colpo.'; en = 'At 100% no core is put to sleep: fewer stutters when load changes suddenly.' }
     'pw.cooling' = @{ it = 'Quando scalda, Windows alza le ventole oppure rallenta il processore.'; en = 'When it heats up, Windows spins up the fans or slows the processor.' }
     'pw.incPolicy' = @{ it = 'Con Immediata il processore va subito al massimo quando il carico sale.'; en = 'With Rocket the processor jumps straight to maximum when load rises.' }
     'pw.decPolicy' = @{ it = 'Un passo alla volta tiene alta la frequenza più a lungo tra un picco e l''altro.'; en = 'Single step keeps the frequency high longer between spikes.' }
@@ -12186,6 +12135,7 @@ $script:CatTip = @{
     'pw.usb3Lpm' = @{ it = 'Spento, i dispositivi USB 3 rispondono senza ritardi di risveglio.'; en = 'Off, USB 3 devices respond without wake-up delays.' }
     'pw.wifi' = @{ it = 'Prestazioni massime evita cali di ping dovuti al risparmio della scheda.'; en = 'Maximum performance avoids ping spikes caused by adapter power saving.' }
     'pw.disk' = @{ it = 'Su Mai i dischi meccanici non si fermano: niente attesa quando li riapri.'; en = 'On Never, hard drives don''t spin down: no wait when you open them again.' }
+    'pw.sata' = @{ it = 'Il collegamento tra scheda madre e dischi SATA può andare a riposo. Spento, il disco risponde subito: niente brevi blocchi quando lo riapri.'; en = 'The link between motherboard and SATA drives can go idle. Off, the drive answers at once: no short freezes when you open it again.' }
     'pw.nvme1' = @{ it = 'Dopo quanto tempo di inattività l''SSD NVMe entra nel primo stato di risparmio. Su Mai risponde sempre subito, ma consuma e scalda un po'' di più.'; en = 'How long the NVMe SSD waits idle before its first power-saving state. On Never it always answers at once, but draws and heats a little more.'; es = 'Tiempo de inactividad antes del primer estado de ahorro del SSD NVMe. En Nunca responde siempre al instante, pero consume y calienta algo más.'; de = 'Leerlaufzeit bis zum ersten Energiesparzustand der NVMe-SSD. Bei Nie antwortet sie sofort, verbraucht und erwärmt sich aber etwas mehr.'; fr = 'Délai d''inactivité avant le premier état d''économie du SSD NVMe. Sur Jamais il répond toujours aussitôt, mais consomme et chauffe un peu plus.'; pl = 'Czas bezczynności przed pierwszym stanem oszczędzania SSD NVMe. Przy Nigdy odpowiada od razu, ale zużywa i grzeje się nieco bardziej.'; pt = 'Tempo ocioso antes do primeiro estado de economia do SSD NVMe. Em Nunca responde sempre na hora, mas consome e aquece um pouco mais.'; ro = 'Timpul de inactivitate până la prima stare de economisire a SSD-ului NVMe. Pe Niciodată răspunde imediat, dar consumă și se încălzește puțin mai mult.'; ru = 'Время простоя до первого энергосберегающего режима SSD NVMe. При «Никогда» отвечает сразу, но потребляет и греется чуть больше.' }
     'pw.nvme2' = @{ it = 'Il secondo stato di risparmio, più profondo: il risveglio richiede qualche millisecondo in più. Su un portatile conviene lasciarlo attivo.'; en = 'The second, deeper power-saving state: waking up takes a few more milliseconds. On a laptop it is best left on.'; es = 'El segundo estado de ahorro, más profundo: despertar tarda unos milisegundos más. En un portátil conviene dejarlo activo.'; de = 'Der zweite, tiefere Energiesparzustand: das Aufwachen dauert ein paar Millisekunden länger. Auf einem Laptop besser eingeschaltet lassen.'; fr = 'Le second état d''économie, plus profond : le réveil prend quelques millisecondes de plus. Sur un portable, mieux vaut le laisser actif.'; pl = 'Drugi, głębszy stan oszczędzania: wybudzenie trwa kilka milisekund dłużej. W laptopie lepiej zostawić włączony.'; pt = 'O segundo estado de economia, mais profundo: acordar leva alguns milissegundos a mais. Em um notebook é melhor deixá-lo ativo.'; ro = 'A doua stare de economisire, mai profundă: trezirea durează câteva milisecunde în plus. Pe laptop e mai bine să rămână activă.'; ru = 'Второй, более глубокий режим: пробуждение занимает на несколько миллисекунд дольше. На ноутбуке лучше оставить включённым.' }
     'pw.display' = @{ it = 'Dopo quanto tempo di inattività si spegne il monitor.'; en = 'How long without activity before the monitor turns off.' }
@@ -12530,10 +12480,6 @@ function Build-Actions {
         Set-Reg 'HKLM:\SYSTEM\CurrentControlSet\Control\Power\PowerThrottling' 'PowerThrottlingOff' 1 'DWord' 'Power Throttling'
     }
 
-    Add-IfChecked $chkUSBSuspend {
-        Set-Reg 'HKLM:\SYSTEM\CurrentControlSet\Services\USB' 'DisableSelectiveSuspend' 1 'DWord' 'USB Selective Suspend'
-    }
-
     Add-IfChecked $chkNtfsPerf {
         try {
             fsutil behavior set disablelastaccess 1 | Out-Null
@@ -12582,7 +12528,6 @@ function Build-Actions {
 
     Add-IfChecked $chkVisualFX {
         Set-Reg 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects' 'VisualFXSetting' 2 'DWord' 'Effetti visivi su prestazioni'
-        Set-Reg 'HKCU:\Control Panel\Desktop' 'DragFullWindows' '0' 'String' 'Trascinamento finestre semplificato'
     }
 
     Add-IfChecked $chkApplyMPO {
@@ -12627,14 +12572,6 @@ function Build-Actions {
         Set-Reg 'HKLM:\SYSTEM\CurrentControlSet\Control\Power' 'PlatformAoAcOverride' 0 'DWord' 'Sospensione S3'
     }
     # Dischi, SSD SATA e NVMe senza stati di risparmio, solo con l'alimentazione collegata.
-    Add-IfChecked $chkDiskNoSleep {
-        $d = '0012ee47-9041-4b5d-9b77-535fba8b1442'
-        Set-PowerAc $d '6738e2c4-e8a5-4a42-b16a-e040e769756e' 0 'Spegni i dischi: mai'
-        Set-PowerAc $d '0b2d69d7-a2a1-449c-9680-f91c70521c60' 0 'Collegamento SATA sempre attivo'
-        Set-PowerAc $d 'd639518a-e56d-4345-8af2-b9f32fb26109' 0 'NVMe: nessun riposo'
-        Set-PowerAc $d 'd3d55efd-c1ff-424e-9dc3-441be7833010' 0 'NVMe: nessun riposo profondo'
-    }
-
     # ---------- PRIVACY ----------
     Add-IfChecked $chkTelemetry {
         Set-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\DataCollection' 'AllowTelemetry' 0 'DWord' 'Telemetria'
@@ -12694,6 +12631,7 @@ function Build-Actions {
 
     Add-IfChecked $chkErrorReporting {
         Set-Reg 'HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting' 'Disabled' 1 'DWord' 'Segnalazione errori'
+        Set-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting' 'Disabled' 1 'DWord' 'Segnalazione errori (criterio)'
         Set-Svc 'WerSvc' 'Disabled' 'Servizio segnalazione errori'
     }
 
@@ -12703,6 +12641,7 @@ function Build-Actions {
         Set-Reg 'HKCU:\Software\Microsoft\InputPersonalization' 'RestrictImplicitInkCollection' 1 'DWord' 'Raccolta scrittura a mano'
         Set-Reg 'HKCU:\Software\Microsoft\InputPersonalization' 'RestrictImplicitTextCollection' 1 'DWord' 'Raccolta testo digitato'
         Set-Reg 'HKCU:\Software\Microsoft\InputPersonalization\TrainedDataStore' 'HarvestContacts' 0 'DWord' 'Raccolta contatti'
+        Set-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\InputPersonalization' 'AllowInputPersonalization' 0 'DWord' 'Personalizzazione input (criterio)'
     }
 
     Add-IfChecked $chkWiFiSense {
@@ -12726,12 +12665,17 @@ function Build-Actions {
     Add-IfChecked $chkLockScreenAds {
         $c = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager'
         Set-Reg $c 'RotatingLockScreenOverlayEnabled' 0 'DWord' 'Spotlight schermata di blocco'
+        Set-Reg $c 'RotatingLockScreenEnabled' 0 'DWord' 'Immagini Spotlight schermata di blocco'
         Set-Reg $c 'SubscribedContent-338387Enabled' 0 'DWord' 'Annunci schermata di blocco'
     }
 
     Add-IfChecked $chkStartBing {
         Set-Reg 'HKCU:\Software\Policies\Microsoft\Windows\Explorer' 'DisableSearchBoxSuggestions' 1 'DWord' 'Bing nel menu Start'
         Set-Reg 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Search' 'BingSearchEnabled' 0 'DWord' 'Ricerca Bing'
+        # Criteri per tutti gli account: prima stavano in una voce a parte della Privacy avanzata.
+        Set-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Search' 'DisableWebSearch' 1 'DWord' 'Ricerca web (criterio)'
+        Set-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Search' 'ConnectedSearchUseWeb' 0 'DWord' 'Ricerca connessa (criterio)'
+        Set-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\Explorer' 'DisableSearchBoxSuggestions' 1 'DWord' 'Suggerimenti di ricerca (criterio)'
     }
 
 
@@ -13305,7 +13249,7 @@ function Build-Actions {
         }
     }
     Add-IfChecked $chkSvcSensors {
-        foreach ($s in @('SensorService','SensrSvc','SensorDataService','lfsvc')) { Set-Svc $s 'Disabled' $s }
+        foreach ($s in @('SensorService','SensrSvc','SensorDataService')) { Set-Svc $s 'Disabled' $s }
     }
     Add-IfChecked $chkSvcSmartCard {
         foreach ($s in @('SCardSvr','ScDeviceEnum','SCPolicySvc')) { Set-Svc $s 'Disabled' $s }
@@ -13340,23 +13284,15 @@ function Build-Actions {
     # ---------- AVANZATE: attivita' pianificate ----------
     Add-IfChecked $chkTaskExtra {
         Disable-Tasks @(
-            '\Microsoft\Windows\Application Experience\StartupAppTask',
             '\Microsoft\Windows\Application Experience\PcaPatchDbTask',
             '\Microsoft\Windows\Application Experience\MareBackup',
             '\Microsoft\Windows\CloudExperienceHost\CreateObjectTask',
-            '\Microsoft\Windows\Maps\MapsToastTask',
-            '\Microsoft\Windows\Maps\MapsUpdateTask',
-            '\Microsoft\Windows\Windows Error Reporting\QueueReporting',
             '\Microsoft\Windows\Speech\SpeechModelDownloadTask',
             '\Microsoft\Windows\Retail Demo\CleanupOfflineContent',
-            '\Microsoft\Windows\PI\Sqm-Tasks',
             '\Microsoft\Windows\DiskFootprint\Diagnostics',
             '\Microsoft\Windows\DiskDiagnostic\Microsoft-Windows-DiskDiagnosticResolver',
             '\Microsoft\Windows\FileHistory\File History (maintenance mode)',
             '\Microsoft\Windows\License Manager\TempSignedLicenseExchange',
-            '\Microsoft\Windows\Shell\FamilySafetyMonitor',
-            '\Microsoft\Windows\Shell\FamilySafetyRefreshTask',
-            '\Microsoft\Windows\Power Efficiency Diagnostics\AnalyzeSystem',
             '\Microsoft\Windows\Chkdsk\ProactiveScan',
             '\Microsoft\Windows\Offline Files\Background Synchronization',
             '\Microsoft\Windows\Offline Files\Logon Synchronization'
@@ -13708,7 +13644,6 @@ function Build-UndoActions {
         Reset-Reg 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager' 'TimerInterval'
     }
     Add-UndoIfChecked $chkPowerThrottling { Reset-Reg 'HKLM:\SYSTEM\CurrentControlSet\Control\Power\PowerThrottling' 'PowerThrottlingOff' }
-    Add-UndoIfChecked $chkUSBSuspend { Reset-Reg 'HKLM:\SYSTEM\CurrentControlSet\Services\USB' 'DisableSelectiveSuspend' }
     Add-UndoIfChecked $chkNtfsPerf {
         # 2 = gestito dal sistema, il valore di fabbrica da Windows 10 1803.
         fsutil behavior set disablelastaccess 2 | Out-Null
@@ -13735,7 +13670,6 @@ function Build-UndoActions {
     Add-UndoIfChecked $chkHAGS { Reset-Reg 'HKLM:\SYSTEM\CurrentControlSet\Control\GraphicsDrivers' 'HwSchMode' }
     Add-UndoIfChecked $chkVisualFX {
         Reset-Reg 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects' 'VisualFXSetting' 0
-        Reset-Reg 'HKCU:\Control Panel\Desktop' 'DragFullWindows' '1' 'String'
     }
     Add-UndoIfChecked $chkApplyMPO { Reset-Reg 'HKLM:\SOFTWARE\Microsoft\Windows\DWM' 'OverlayTestMode' }
     Add-UndoIfChecked $chkVBS {
@@ -13756,11 +13690,6 @@ function Build-UndoActions {
     Add-UndoIfChecked $chkS0Sleep {
         $p = 'HKLM:\SOFTWARE\Policies\Microsoft\Power\PowerSettings\f15576e8-98b7-4186-b944-eafa664402d9'
         Reset-Reg $p 'ACSettingIndex'; Reset-Reg $p 'DCSettingIndex'
-    }
-    Add-UndoIfChecked $chkDiskNoSleep {
-        foreach ($s in '6738e2c4-e8a5-4a42-b16a-e040e769756e','0b2d69d7-a2a1-449c-9680-f91c70521c60','d639518a-e56d-4345-8af2-b9f32fb26109','d3d55efd-c1ff-424e-9dc3-441be7833010') {
-            Reset-PowerAc $s 'Risparmio dei dischi'
-        }
     }
     Add-UndoIfChecked $chkS3Sleep { Reset-Reg 'HKLM:\SYSTEM\CurrentControlSet\Control\Power' 'PlatformAoAcOverride' }
 
@@ -13803,6 +13732,7 @@ function Build-UndoActions {
     }
     Add-UndoIfChecked $chkErrorReporting {
         Reset-Reg 'HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting' 'Disabled'
+        Reset-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting' 'Disabled'
         Reset-Svc @('WerSvc')
     }
     Add-UndoIfChecked $chkInkingTyping {
@@ -13811,6 +13741,7 @@ function Build-UndoActions {
         Reset-Reg 'HKCU:\Software\Microsoft\InputPersonalization' 'RestrictImplicitInkCollection' 0
         Reset-Reg 'HKCU:\Software\Microsoft\InputPersonalization' 'RestrictImplicitTextCollection' 0
         Reset-Reg 'HKCU:\Software\Microsoft\InputPersonalization\TrainedDataStore' 'HarvestContacts' 1
+        Reset-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\InputPersonalization' 'AllowInputPersonalization'
     }
     Add-UndoIfChecked $chkWiFiSense {
         $b = 'HKLM:\SOFTWARE\Microsoft\PolicyManager\default\WiFi'
@@ -13827,11 +13758,15 @@ function Build-UndoActions {
     Add-UndoIfChecked $chkLockScreenAds {
         $c = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager'
         Reset-Reg $c 'RotatingLockScreenOverlayEnabled' 1
+        Reset-Reg $c 'RotatingLockScreenEnabled' 1
         Reset-Reg $c 'SubscribedContent-338387Enabled' 1
     }
     Add-UndoIfChecked $chkStartBing {
         Reset-Reg 'HKCU:\Software\Policies\Microsoft\Windows\Explorer' 'DisableSearchBoxSuggestions'
         Reset-Reg 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Search' 'BingSearchEnabled'
+        Reset-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Search' 'DisableWebSearch'
+        Reset-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Search' 'ConnectedSearchUseWeb'
+        Reset-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\Explorer' 'DisableSearchBoxSuggestions'
     }
     Add-UndoIfChecked $chkStartTracking { Reset-Reg $adv 'Start_TrackProgs' 1; Reset-Reg $adv 'Start_TrackDocs' 1 }
     Add-UndoIfChecked $chkFolderDiscovery { Reset-Reg 'HKCU:\Software\Classes\Local Settings\Software\Microsoft\Windows\Shell\Bags\AllFolders\Shell' 'FolderType' }
@@ -14093,7 +14028,7 @@ function Build-UndoActions {
     Add-UndoIfChecked $chkSvcDiag { Reset-Svc @('DPS','WdiServiceHost','WdiSystemHost','diagnosticshub.standardcollector.service','diagsvc','DusmSvc') }
     Add-UndoIfChecked $chkSvcPca { Reset-Svc @('PcaSvc') }
     Add-UndoIfChecked $chkSvcDiscovery { Reset-Svc @('SSDPSRV','upnphost','fdPHost','FDResPub','lltdsvc','Browser','NetTcpPortSharing') }
-    Add-UndoIfChecked $chkSvcSensors { Reset-Svc @('SensorService','SensrSvc','SensorDataService','lfsvc') }
+    Add-UndoIfChecked $chkSvcSensors { Reset-Svc @('SensorService','SensrSvc','SensorDataService') }
     Add-UndoIfChecked $chkSvcSmartCard { Reset-Svc @('SCardSvr','ScDeviceEnum','SCPolicySvc') }
     Add-UndoIfChecked $chkSvcParental { Reset-Svc @('WpcMonSvc','wisvc') }
     Add-UndoIfChecked $chkSvcHyperV { Reset-Svc @('HvHost','vmickvpexchange','vmicguestinterface','vmicshutdown','vmicheartbeat','vmicvmsession','vmicrdv','vmictimesync','vmcompute','vmms') }
@@ -14105,23 +14040,15 @@ function Build-UndoActions {
 
     Add-UndoIfChecked $chkTaskExtra {
         Enable-Tasks @(
-            '\Microsoft\Windows\Application Experience\StartupAppTask',
             '\Microsoft\Windows\Application Experience\PcaPatchDbTask',
             '\Microsoft\Windows\Application Experience\MareBackup',
             '\Microsoft\Windows\CloudExperienceHost\CreateObjectTask',
-            '\Microsoft\Windows\Maps\MapsToastTask',
-            '\Microsoft\Windows\Maps\MapsUpdateTask',
-            '\Microsoft\Windows\Windows Error Reporting\QueueReporting',
             '\Microsoft\Windows\Speech\SpeechModelDownloadTask',
             '\Microsoft\Windows\Retail Demo\CleanupOfflineContent',
-            '\Microsoft\Windows\PI\Sqm-Tasks',
             '\Microsoft\Windows\DiskFootprint\Diagnostics',
             '\Microsoft\Windows\DiskDiagnostic\Microsoft-Windows-DiskDiagnosticResolver',
             '\Microsoft\Windows\FileHistory\File History (maintenance mode)',
             '\Microsoft\Windows\License Manager\TempSignedLicenseExchange',
-            '\Microsoft\Windows\Shell\FamilySafetyMonitor',
-            '\Microsoft\Windows\Shell\FamilySafetyRefreshTask',
-            '\Microsoft\Windows\Power Efficiency Diagnostics\AnalyzeSystem',
             '\Microsoft\Windows\Chkdsk\ProactiveScan',
             '\Microsoft\Windows\Offline Files\Background Synchronization',
             '\Microsoft\Windows\Offline Files\Logon Synchronization'
@@ -17289,7 +17216,7 @@ $script:LaptopChassis = @(8, 9, 10, 11, 12, 14, 18, 21, 30, 31, 32)
 $script:DesktopChassis = @(3, 4, 5, 6, 7, 13, 15, 16, 35)
 # Voci che su un portatile costano batteria: «Consigliati» le lascia stare,
 # «Seleziona tutto» le prende dopo un avviso.
-$script:LaptopSkip = @('chkPowerThrottling', 'chkUSBSuspend', 'chkNetPowerSave', 'chkHibernation', 'chkS3Sleep', 'chkDiskNoSleep',
+$script:LaptopSkip = @('chkPowerThrottling', 'chkNetPowerSave', 'chkHibernation', 'chkS3Sleep',
                        'chkNvPerfMode', 'chkNvDrsPower', 'chkNvDisplayPower', 'chkAmdUlps', 'chkAmdAspm',
                        'chkIntelGfxPower', 'chkIntelDpst', 'chkCpuIntelBoostPol', 'chkCpuAmdParking', 'chkCpuIdleOff')
 # Voci utili solo con la batteria: su un fisso si saltano.

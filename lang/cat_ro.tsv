@@ -214,8 +214,6 @@ win.tSqm	Activități SQM
 g.priv.uPriv	Confidențialitate
 pv.timeline	Fără sugestii în cronologie
 pv.startSugg	Fără sugestii în Start
-pv.settingsSugg	Fără conținut sugerat în Setări
-pv.silentApps	Fără aplicații instalate în tăcere
 pv.accountNotif	Fără anunțuri de cont în Setări
 pv.langList	Nu partaja lista de limbi cu site-urile
 pv.textPred	Fără sugestii de text pe tastatura tactilă
@@ -270,7 +268,6 @@ pv.spotSettings	Fără Spotlight în Setări
 pv.spotAll	Dezactivează toate funcțiile Spotlight
 pv.wmp	Windows Media Player nu urmărește utilizarea
 g.priv.uLock	Ecran de blocare
-pv.lockSpot	Fără imagini Spotlight pe ecranul de blocare
 g.priv.uSearch	Căutare
 pv.searchHist	Nu păstra istoricul căutărilor
 pv.searchHigh	Fără evidențieri în căutare
@@ -294,10 +291,8 @@ pv.diagViewer	Dezactivează vizualizatorul datelor de diagnostic
 pv.ceip	Ieși din Programul de îmbunătățire a experienței
 pv.handErr	Nu trimite erorile de recunoaștere a scrisului
 pv.handShare	Nu partaja datele creionului
-pv.inputPers	Dezactivează personalizarea introducerii
 pv.onlineTips	Fără sfaturi online în Setări
 pv.helpFb	Fără evaluări ale Ajutorului
-pv.wer	Dezactivează raportarea erorilor
 pv.cloudContent	Fără conținut optimizat din cloud
 pv.softLanding	Fără sfaturi Windows
 pv.consumerAcct	Fără conținut legat de contul personal
@@ -358,7 +353,6 @@ pv.eBuiltinAi	Fără API-uri IA integrate pentru site-uri
 g.priv.mSearch	Cortana și căutare
 pv.cortana	Dezactivează Cortana
 pv.cloudSearch	Fără căutare în cloud
-pv.webSearch	Fără căutare web din Start
 pv.searchLoc	Căutarea nu folosește locația
 pv.mHighlights	Fără evidențieri în căutare pentru toți
 g.priv.mAi	IA Windows
@@ -414,8 +408,6 @@ pw.epp#0	Performanță maximă (0)
 pw.epp#25	Performanță (25)
 pw.epp#50	Echilibrat (50)
 pw.epp#80	Eficiență (80)
-pw.parkMin	Nuclee mereu active (parcare)
-pw.parkMin#100	100% (fără parcare)
 pw.cooling	Politica de răcire
 pw.cooling#0	Pasivă (încetinește întâi)
 pw.cooling#1	Activă (ventilatoare întâi)
@@ -497,6 +489,12 @@ pw.videoPlay	La redarea video
 pw.videoPlay#0	Optimizează calitatea
 pw.videoPlay#1	Echilibrat
 pw.videoPlay#2	Optimizează consumul
+pw.sata	Economisirea legăturii SATA
+pw.sata#0	Oprită (mereu activă)
+pw.sata#1	Gestionată de PC (HIPM)
+pw.sata#2	PC și disc (HIPM+DIPM)
+pw.sata#3	Gestionată de disc (DIPM)
+pw.sata#4	Economisire maximă
 pw.nvme1	SSD NVMe: prima stare de repaus după
 pw.nvme1#0	Niciodată (mereu gata)
 pw.nvme1#1000	1 secundă

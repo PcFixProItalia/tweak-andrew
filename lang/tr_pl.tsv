@@ -11,7 +11,6 @@ L:chkKernelMem	Pamięć jądra — bez stronicowania
 L:chkKernelDpc	Jądro i opóźnienia DPC
 L:chkTimer	Zegar systemowy — maksymalna precyzja
 L:chkPowerThrottling	Power Throttling — wyłącz
-L:chkUSBSuspend	Selektywne wstrzymywanie USB — wyłącz
 L:chkNtfsPerf	NTFS — bez daty ostatniego dostępu, duża pamięć podręczna
 L:ttlRam	PAMIĘĆ
 L:chkRamTweak	Próg podziału SvcHost (według RAM)
@@ -281,7 +280,6 @@ H:chkKernelMem	Trzyma rdzeń Windows w pamięci zamiast przenosić go na dysk. S
 H:chkKernelDpc	Zmniejsza opóźnienia w obsłudze kart i urządzeń. Pomaga na mikroprzycięcia i trzaski dźwięku.
 H:chkTimer	Sprawia, że zegary systemowe działają precyzyjniej. Bardziej równe czasy reakcji w grach.
 H:chkPowerThrottling	Nie pozwala Windows spowalniać programów w tle dla oszczędności energii. Stała wydajność, nieco większy pobór prądu.
-H:chkUSBSuspend	Porty USB są zawsze aktywne. Myszy, klawiatury i karty dźwiękowe nie rozłączają się i nie reagują z opóźnieniem.
 H:chkNtfsPerf	Dysk przestaje zapisywać każdy odczyt pliku i używa więcej pamięci na dane systemowe. Mniej zapisów, szybszy dostęp.
 H:chkRamTweak	Grupuje usługi Windows według ilości RAM. Mniej procesów i lepsze wykorzystanie pamięci.
 H:chkGameMode	Włącza Tryb gry: Windows odkłada aktualizacje i pracę w tle, gdy grasz.
@@ -707,7 +705,6 @@ L:chkAdvUtc	Zegar BIOS w UTC (dual boot z Linuksem)
 L:chkAdvRazer	Bez automatycznej instalacji oprogramowania Razer
 L:chkAdvLogi	Bez asystenta pobierania Logitech
 L:chkIPv4Pref	IPv4 przed IPv6
-L:chkDiskNoSleep	Dyski i SSD zawsze aktywne (na zasilaniu)
 M:actRun	Zmiany: {0}
 M:jobWorking	W toku...
 M:badgeActive	Aktywne
@@ -883,7 +880,6 @@ H:chkAdvUtc	Windows odczytuje czas BIOS jako UTC, jak Linux: przy podwójnym roz
 H:chkAdvRazer	Blokuje współinstalatory sterowników i folder, do którego Razer Synapse kopiuje się po podłączeniu urządzenia. Blokuje też współinstalatory innych producentów.
 H:chkAdvLogi	Zamyka asystenta pobierania Logitech i nie pozwala mu instalować się przy każdym uruchomieniu.
 H:chkIPv4Pref	IPv6 pozostaje włączony, ale Windows najpierw próbuje IPv4. Przydatne z sieciami lub routerami, które źle obsługują IPv6.
-H:chkDiskNoSleep	Na zasilaczu dyski, łącze SATA i dyski NVMe nigdy nie przechodzą w oszczędzanie energii: brak opóźnień wybudzania. Na baterii bez zmian.
 M:pwRecBtn	Użyj zalecanych wartości
 M:pwDefBtn	Wróć do wartości Windows
 M:pwAskRec	Ustawię zalecane wartości w używanym planie. Zmiany działają od razu. Kontynuować?

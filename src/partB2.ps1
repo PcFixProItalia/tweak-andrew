@@ -1324,7 +1324,6 @@
                                                 <CheckBox x:Name="chkKernelDpc" Content="Kernel e latenza DPC"/>
                                                 <CheckBox x:Name="chkTimer" Content="Timer di sistema"/>
                                                 <CheckBox x:Name="chkPowerThrottling" Content="Power Throttling"/>
-                                                <CheckBox x:Name="chkUSBSuspend" Content="Sospensione selettiva USB"/>
                                                 <CheckBox x:Name="chkNtfsPerf" Content="NTFS"/>
                                             </StackPanel>
                                         </Border>
@@ -1915,7 +1914,6 @@
                                                 <CheckBox x:Name="chkHibernation" Content="Ibernazione"/>
                                                 <CheckBox x:Name="chkS0Sleep" Content="Standby moderno"/>
                                                 <CheckBox x:Name="chkS3Sleep" Content="Sospensione S3"/>
-                                                <CheckBox x:Name="chkDiskNoSleep" Content="Dischi e SSD sempre attivi"/>
                                             </StackPanel>
                                         </Border>
 

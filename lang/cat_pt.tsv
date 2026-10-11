@@ -214,8 +214,6 @@ win.tSqm	Tarefas SQM
 g.priv.uPriv	Privacidade
 pv.timeline	Sem sugestões na linha do tempo
 pv.startSugg	Sem sugestões no Iniciar
-pv.settingsSugg	Sem conteúdo sugerido em Configurações
-pv.silentApps	Sem apps instalados silenciosamente
 pv.accountNotif	Sem avisos de conta em Configurações
 pv.langList	Não compartilhar a lista de idiomas com sites
 pv.textPred	Sem sugestões de texto no teclado virtual
@@ -270,7 +268,6 @@ pv.spotSettings	Sem Spotlight em Configurações
 pv.spotAll	Desativar todos os recursos Spotlight
 pv.wmp	O Windows Media Player não rastreia o uso
 g.priv.uLock	Tela de bloqueio
-pv.lockSpot	Sem imagens Spotlight na tela de bloqueio
 g.priv.uSearch	Pesquisa
 pv.searchHist	Não manter o histórico de pesquisa
 pv.searchHigh	Sem destaques da pesquisa
@@ -294,10 +291,8 @@ pv.diagViewer	Desativar o visualizador de dados de diagnóstico
 pv.ceip	Sair do Programa de Aperfeiçoamento da Experiência
 pv.handErr	Não enviar erros de reconhecimento de escrita
 pv.handShare	Não compartilhar dados da caneta
-pv.inputPers	Desativar a personalização da entrada
 pv.onlineTips	Sem dicas online em Configurações
 pv.helpFb	Sem avaliações da Ajuda
-pv.wer	Desativar o relatório de erros
 pv.cloudContent	Sem conteúdo otimizado pela nuvem
 pv.softLanding	Sem dicas do Windows
 pv.consumerAcct	Sem conteúdo ligado à conta pessoal
@@ -358,7 +353,6 @@ pv.eBuiltinAi	Sem APIs de IA integradas para sites
 g.priv.mSearch	Cortana e pesquisa
 pv.cortana	Desativar a Cortana
 pv.cloudSearch	Sem pesquisa na nuvem
-pv.webSearch	Sem pesquisa web pelo Iniciar
 pv.searchLoc	A pesquisa não usa a localização
 pv.mHighlights	Sem destaques da pesquisa para todos
 g.priv.mAi	IA do Windows
@@ -414,8 +408,6 @@ pw.epp#0	Desempenho máximo (0)
 pw.epp#25	Desempenho (25)
 pw.epp#50	Equilibrado (50)
 pw.epp#80	Eficiência (80)
-pw.parkMin	Núcleos sempre ativos (estacionamento)
-pw.parkMin#100	100% (sem estacionamento)
 pw.cooling	Política de resfriamento
 pw.cooling#0	Passiva (desacelera primeiro)
 pw.cooling#1	Ativa (ventoinhas primeiro)
@@ -497,6 +489,12 @@ pw.videoPlay	Ao reproduzir vídeo
 pw.videoPlay#0	Otimizar a qualidade
 pw.videoPlay#1	Equilibrado
 pw.videoPlay#2	Otimizar o consumo
+pw.sata	Economia do link SATA
+pw.sata#0	Desligada (sempre ativo)
+pw.sata#1	Gerida pelo PC (HIPM)
+pw.sata#2	PC e disco (HIPM+DIPM)
+pw.sata#3	Gerida pelo disco (DIPM)
+pw.sata#4	Economia máxima
 pw.nvme1	SSD NVMe: primeiro repouso após
 pw.nvme1#0	Nunca (sempre pronto)
 pw.nvme1#1000	1 segundo

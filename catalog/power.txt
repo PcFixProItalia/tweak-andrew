@@ -26,11 +26,6 @@ O|25|Prestazioni (25)|Performance (25)
 O|50|Bilanciato (50)|Balanced (50)
 O|80|Risparmio (80)|Efficiency (80)
 H|pw.epp|Suggerisce al processore se privilegiare la reattività o i consumi.|Tells the processor whether to favor responsiveness or power draw.
-N|pw.parkMin||54533251-82be-4824-96c1-47b60b740d00|0cc5b647-c1df-4637-891a-dec35c318583|10|100|Core sempre attivi (parcheggio)|Cores kept awake (parking)
-O|10|10%|10%
-O|50|50%|50%
-O|100|100% (niente parcheggio)|100% (no parking)
-H|pw.parkMin|Al 100% nessun core viene messo a riposo: meno scatti quando il carico cambia di colpo.|At 100% no core is put to sleep: fewer stutters when load changes suddenly.
 N|pw.cooling||54533251-82be-4824-96c1-47b60b740d00|94d3a615-a899-4ac5-ae2b-e4d8f634367f|1|1|Raffreddamento|Cooling policy
 O|0|Passivo (rallenta prima)|Passive (slow down first)
 O|1|Attivo (ventole prima)|Active (fans first)
@@ -75,6 +70,13 @@ O|300|5 minuti|5 minutes
 O|1200|20 minuti|20 minutes
 O|3600|1 ora|1 hour
 H|pw.disk|Su Mai i dischi meccanici non si fermano: niente attesa quando li riapri.|On Never, hard drives don't spin down: no wait when you open them again.
+N|pw.sata||0012ee47-9041-4b5d-9b77-535fba8b1442|0b2d69d7-a2a1-449c-9680-f91c70521c60|1|0|Risparmio del collegamento SATA|SATA link power saving
+O|0|Spento (sempre attivo)|Off (always active)
+O|1|Gestito dal PC (HIPM)|Host managed (HIPM)
+O|2|PC e disco (HIPM+DIPM)|Host and device (HIPM+DIPM)
+O|3|Gestito dal disco (DIPM)|Device managed (DIPM)
+O|4|Massimo risparmio|Lowest power
+H|pw.sata|Il collegamento tra scheda madre e dischi SATA può andare a riposo. Spento, il disco risponde subito: niente brevi blocchi quando lo riapri.|The link between motherboard and SATA drives can go idle. Off, the drive answers at once: no short freezes when you open it again.
 N|pw.nvme1||0012ee47-9041-4b5d-9b77-535fba8b1442|d639518a-e56d-4345-8af2-b9f32fb26109|200|-|SSD NVMe: primo riposo dopo|NVMe SSD: first idle state after
 O|0|Mai (sempre pronto)|Never (always ready)
 O|100|100 ms|100 ms

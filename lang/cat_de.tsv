@@ -214,8 +214,6 @@ win.tSqm	SQM-Aufgaben
 g.priv.uPriv	Datenschutz
 pv.timeline	Keine Vorschläge in der Zeitachse
 pv.startSugg	Keine Vorschläge in Start
-pv.settingsSugg	Keine vorgeschlagenen Inhalte in Einstellungen
-pv.silentApps	Keine still installierten Apps
 pv.accountNotif	Keine Kontohinweise in Einstellungen
 pv.langList	Sprachliste nicht mit Websites teilen
 pv.textPred	Keine Textvorschläge auf der Bildschirmtastatur
@@ -270,7 +268,6 @@ pv.spotSettings	Kein Spotlight in Einstellungen
 pv.spotAll	Alle Spotlight-Funktionen deaktivieren
 pv.wmp	Windows Media Player verfolgt die Nutzung nicht
 g.priv.uLock	Sperrbildschirm
-pv.lockSpot	Keine Spotlight-Bilder auf dem Sperrbildschirm
 g.priv.uSearch	Suche
 pv.searchHist	Keinen Suchverlauf speichern
 pv.searchHigh	Keine Suchhighlights
@@ -294,10 +291,8 @@ pv.diagViewer	Diagnosedatenanzeige deaktivieren
 pv.ceip	Programm zur Verbesserung der Benutzerfreundlichkeit verlassen
 pv.handErr	Keine Handschrift-Erkennungsfehler senden
 pv.handShare	Keine Stiftdaten teilen
-pv.inputPers	Eingabepersonalisierung deaktivieren
 pv.onlineTips	Keine Onlinetipps in Einstellungen
 pv.helpFb	Keine Bewertungen der Hilfe
-pv.wer	Fehlerberichterstattung deaktivieren
 pv.cloudContent	Keine cloudoptimierten Inhalte
 pv.softLanding	Keine Windows-Tipps
 pv.consumerAcct	Keine Inhalte zum Verbraucherkonto
@@ -358,7 +353,6 @@ pv.eBuiltinAi	Keine integrierten KI-APIs für Websites
 g.priv.mSearch	Cortana und Suche
 pv.cortana	Cortana deaktivieren
 pv.cloudSearch	Keine Cloudsuche
-pv.webSearch	Keine Websuche aus Start
 pv.searchLoc	Suche nutzt keinen Standort
 pv.mHighlights	Keine Suchhighlights für alle
 g.priv.mAi	Windows-KI
@@ -414,8 +408,6 @@ pw.epp#0	Maximale Leistung (0)
 pw.epp#25	Leistung (25)
 pw.epp#50	Ausgewogen (50)
 pw.epp#80	Effizienz (80)
-pw.parkMin	Immer aktive Kerne (Parking)
-pw.parkMin#100	100% (kein Parking)
 pw.cooling	Kühlungsrichtlinie
 pw.cooling#0	Passiv (zuerst drosseln)
 pw.cooling#1	Aktiv (zuerst Lüfter)
@@ -497,6 +489,12 @@ pw.videoPlay	Bei der Videowiedergabe
 pw.videoPlay#0	Qualität optimieren
 pw.videoPlay#1	Ausgewogen
 pw.videoPlay#2	Energieverbrauch optimieren
+pw.sata	Energiesparen der SATA-Verbindung
+pw.sata#0	Aus (immer aktiv)
+pw.sata#1	Vom PC gesteuert (HIPM)
+pw.sata#2	PC und Laufwerk (HIPM+DIPM)
+pw.sata#3	Vom Laufwerk gesteuert (DIPM)
+pw.sata#4	Maximales Sparen
 pw.nvme1	NVMe-SSD: erster Ruhezustand nach
 pw.nvme1#0	Nie (immer bereit)
 pw.nvme1#1000	1 Sekunde

@@ -214,8 +214,6 @@ win.tSqm	Tâches SQM
 g.priv.uPriv	Confidentialité
 pv.timeline	Pas de suggestions dans la chronologie
 pv.startSugg	Pas de suggestions dans Démarrer
-pv.settingsSugg	Pas de contenu suggéré dans Paramètres
-pv.silentApps	Pas d'apps installées en silence
 pv.accountNotif	Pas d'avis de compte dans Paramètres
 pv.langList	Ne pas partager la liste des langues avec les sites
 pv.textPred	Pas de suggestions sur le clavier tactile
@@ -270,7 +268,6 @@ pv.spotSettings	Pas de Spotlight dans Paramètres
 pv.spotAll	Désactiver toutes les fonctions Spotlight
 pv.wmp	Le Lecteur Windows Media ne suit pas l'utilisation
 g.priv.uLock	Écran de verrouillage
-pv.lockSpot	Pas d'images Spotlight sur l'écran de verrouillage
 g.priv.uSearch	Recherche
 pv.searchHist	Ne pas garder l'historique de recherche
 pv.searchHigh	Pas de temps forts dans la recherche
@@ -294,10 +291,8 @@ pv.diagViewer	Désactiver la visionneuse des données de diagnostic
 pv.ceip	Quitter le Programme d'amélioration de l'expérience
 pv.handErr	Ne pas envoyer les erreurs de reconnaissance d'écriture
 pv.handShare	Ne pas partager les données du stylet
-pv.inputPers	Désactiver la personnalisation de la saisie
 pv.onlineTips	Pas de conseils en ligne dans Paramètres
 pv.helpFb	Pas d'évaluations de l'aide
-pv.wer	Désactiver le rapport d'erreurs
 pv.cloudContent	Pas de contenu optimisé depuis le cloud
 pv.softLanding	Pas de conseils Windows
 pv.consumerAcct	Pas de contenu lié au compte grand public
@@ -358,7 +353,6 @@ pv.eBuiltinAi	Pas d'API d'IA intégrées pour les sites
 g.priv.mSearch	Cortana et recherche
 pv.cortana	Désactiver Cortana
 pv.cloudSearch	Pas de recherche dans le cloud
-pv.webSearch	Pas de recherche web depuis Démarrer
 pv.searchLoc	La recherche n'utilise pas la position
 pv.mHighlights	Pas de temps forts de recherche pour tous
 g.priv.mAi	IA de Windows
@@ -414,8 +408,6 @@ pw.epp#0	Performances maximales (0)
 pw.epp#25	Performances (25)
 pw.epp#50	Équilibré (50)
 pw.epp#80	Efficacité (80)
-pw.parkMin	Cœurs toujours actifs (parking)
-pw.parkMin#100	100% (sans parking)
 pw.cooling	Stratégie de refroidissement
 pw.cooling#0	Passive (ralentir d'abord)
 pw.cooling#1	Active (ventilateurs d'abord)
@@ -497,6 +489,12 @@ pw.videoPlay	Pendant la lecture vidéo
 pw.videoPlay#0	Optimiser la qualité
 pw.videoPlay#1	Équilibré
 pw.videoPlay#2	Optimiser la consommation
+pw.sata	Économie du lien SATA
+pw.sata#0	Désactivée (toujours actif)
+pw.sata#1	Gérée par le PC (HIPM)
+pw.sata#2	PC et disque (HIPM+DIPM)
+pw.sata#3	Gérée par le disque (DIPM)
+pw.sata#4	Économie maximale
 pw.nvme1	SSD NVMe : premier repos après
 pw.nvme1#0	Jamais (toujours prêt)
 pw.nvme1#1000	1 seconde

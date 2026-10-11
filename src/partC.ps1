@@ -46,7 +46,6 @@ $script:Loc = @{
     chkKernelDpc       = @{ it = "Kernel e latenza DPC"; en = "Kernel and DPC latency" }
     chkTimer           = @{ it = "Timer di sistema — massima precisione"; en = "System timer — precision policy" }
     chkPowerThrottling = @{ it = "Power Throttling — disattiva"; en = "Power throttling — disable" }
-    chkUSBSuspend      = @{ it = "Sospensione selettiva USB — disattiva"; en = "USB selective suspend — disable" }
     chkNtfsPerf        = @{ it = "NTFS — niente data ultimo accesso, cache ampia"; en = "NTFS — disable last access time, large cache" }
 
     ttlRam             = @{ it = "MEMORIA"; en = "MEMORY" }
@@ -425,7 +424,6 @@ $script:Loc = @{
     chkAdvRazer        = @{ it = "Niente installazione automatica del software Razer"; en = "No automatic Razer software install" }
     chkAdvLogi         = @{ it = "Niente assistente download Logitech"; en = "No Logitech download assistant" }
     chkIPv4Pref        = @{ it = "IPv4 prima di IPv6"; en = "IPv4 before IPv6" }
-    chkDiskNoSleep     = @{ it = "Dischi e SSD sempre attivi (con alimentazione collegata)"; en = "Disks and SSDs always on (while plugged in)" }
     btnEmergency       = @{ it = "Ripristino totale"; en = "Full reset" }
     lblPersonal        = @{ it = "PERSONALIZZAZIONE"; en = "PERSONALIZATION" }
 }
@@ -896,7 +894,7 @@ $chkRestorePoint = E 'chkRestorePoint'
 # Prestazioni
 $chkMMCSS = E 'chkMMCSS'; $chkPriority = E 'chkPriority'; $chkKernelMem = E 'chkKernelMem'
 $chkKernelDpc = E 'chkKernelDpc'; $chkTimer = E 'chkTimer'; $chkPowerThrottling = E 'chkPowerThrottling'
-$chkUSBSuspend = E 'chkUSBSuspend'; $chkNtfsPerf = E 'chkNtfsPerf'
+$chkNtfsPerf = E 'chkNtfsPerf'
 $chkRamTweak = E 'chkRamTweak'; $cmbRamAmount = E 'cmbRamAmount'
 $chkGameMode = E 'chkGameMode'; $chkFSO = E 'chkFSO'; $chkGameDVR = E 'chkGameDVR'
 $chkHAGS = E 'chkHAGS'; $chkVisualFX = E 'chkVisualFX'
@@ -948,7 +946,7 @@ $chkStartNoWeb = E 'chkStartNoWeb'; $chkStartNoAccount = E 'chkStartNoAccount'
 $txtFeatId = E 'txtFeatId'; $cmbFeatState = E 'cmbFeatState'
 $btnFeatApply = E 'btnFeatApply'; $btnFeatList = E 'btnFeatList'; $txtFeatList = E 'txtFeatList'
 $chkFastStartup = E 'chkFastStartup'; $chkHibernation = E 'chkHibernation'
-$chkS0Sleep = E 'chkS0Sleep'; $chkS3Sleep = E 'chkS3Sleep'; $chkDiskNoSleep = E 'chkDiskNoSleep'
+$chkS0Sleep = E 'chkS0Sleep'; $chkS3Sleep = E 'chkS3Sleep'
 
 # Privacy
 $chkTelemetry = E 'chkTelemetry'; $chkTelemetryTasks = E 'chkTelemetryTasks'
@@ -1677,7 +1675,7 @@ function Get-SelectableChecks([switch]$CurrentPageOnly, [switch]$ByPcType) {
 # Avanzate non ne ha: li' si tolgono pezzi di Windows e la scelta resta una
 # per una.
 $script:RecommendedChecks = @{
-    pagePerf    = @('chkMMCSS','chkPriority','chkKernelMem','chkPowerThrottling','chkUSBSuspend','chkNtfsPerf','chkRamTweak','chkGameMode','chkGameDVR',
+    pagePerf    = @('chkMMCSS','chkPriority','chkKernelMem','chkPowerThrottling','chkNtfsPerf','chkRamTweak','chkGameMode','chkGameDVR',
                     'chkCpuIntelBoostPol','chkCpuAmdParking')
     pagePrivacy = @('chkTelemetry','chkTelemetryTasks','chkActivityHistory','chkAdvertisingID','chkTailoredExp','chkFeedback','chkErrorReporting',
                     'chkInkingTyping','chkWiFiSense','chkConsumerFeatures','chkSuggestedContent','chkLockScreenAds','chkStartBing',
@@ -1686,7 +1684,7 @@ $script:RecommendedChecks = @{
     pageUi      = @('chkDarkTheme','chkFileExt','chkLongPaths','chkExplorerThisPC','chkRemove3D','chkRecycleConfirm','chkMenuDelay','chkMouseAccel','chkNumLock','chkStickyKeys')
     pageNet     = @('chkNetPowerSave')
     pageStorage = @('chkReservedStorage')
-    pagePower   = @('chkFastStartup','chkHibernation','chkS0Sleep','chkS3Sleep','chkDiskNoSleep')
+    pagePower   = @('chkFastStartup','chkHibernation','chkS0Sleep','chkS3Sleep')
     pageGpu     = @('chkGpuTdr','chkNvTelemetry','chkNvGfe','chkNvPerfMode','chkNvUpdates','chkNvP2','chkNvDrsPower','chkNvLowLatency',
                     'chkNvShaderCache','chkNvDisplayPower','chkAmdUx','chkAmdBloat','chkAmdUlps','chkAmdAntiLag','chkAmdShaderCache','chkIntelBloat',
                     'chkIntelTelemetry','chkIntelGfxPower')

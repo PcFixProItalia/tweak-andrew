@@ -13,7 +13,7 @@ $script:LaptopChassis = @(8, 9, 10, 11, 12, 14, 18, 21, 30, 31, 32)
 $script:DesktopChassis = @(3, 4, 5, 6, 7, 13, 15, 16, 35)
 # Voci che su un portatile costano batteria: «Consigliati» le lascia stare,
 # «Seleziona tutto» le prende dopo un avviso.
-$script:LaptopSkip = @('chkPowerThrottling', 'chkUSBSuspend', 'chkNetPowerSave', 'chkHibernation', 'chkS3Sleep', 'chkDiskNoSleep',
+$script:LaptopSkip = @('chkPowerThrottling', 'chkNetPowerSave', 'chkHibernation', 'chkS3Sleep',
                        'chkNvPerfMode', 'chkNvDrsPower', 'chkNvDisplayPower', 'chkAmdUlps', 'chkAmdAspm',
                        'chkIntelGfxPower', 'chkIntelDpst', 'chkCpuIntelBoostPol', 'chkCpuAmdParking', 'chkCpuIdleOff')
 # Voci utili solo con la batteria: su un fisso si saltano.

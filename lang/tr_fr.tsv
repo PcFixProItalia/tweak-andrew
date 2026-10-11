@@ -11,7 +11,6 @@ L:chkKernelMem	Mémoire du noyau — pas de pagination de l'exécutif
 L:chkKernelDpc	Noyau et latence DPC
 L:chkTimer	Minuterie système — précision maximale
 L:chkPowerThrottling	Power Throttling — désactiver
-L:chkUSBSuspend	Suspension sélective USB — désactiver
 L:chkNtfsPerf	NTFS — sans date de dernier accès, grand cache
 L:ttlRam	MÉMOIRE
 L:chkRamTweak	Seuil de séparation SvcHost (selon la RAM)
@@ -284,7 +283,6 @@ H:chkKernelMem	Garde le cœur de Windows en mémoire au lieu de le déplacer sur
 H:chkKernelDpc	Réduit les délais de traitement des cartes et périphériques. Aide contre les micro-saccades et les craquements audio.
 H:chkTimer	Rend les minuteries du système plus précises. Des temps de réponse plus réguliers en jeu.
 H:chkPowerThrottling	Empêche Windows de ralentir les programmes en arrière-plan pour économiser l'énergie. Performances constantes, consommation un peu plus élevée.
-H:chkUSBSuspend	Garde les ports USB toujours actifs. Souris, claviers et cartes son ne décrochent plus et répondent sans retard.
 H:chkNtfsPerf	Le disque ne note plus chaque lecture de fichier et utilise plus de mémoire pour les données système. Moins d'écritures, accès plus rapides.
 H:chkRamTweak	Regroupe les services de Windows selon la RAM installée. Moins de processus ouverts et une mémoire mieux utilisée.
 H:chkGameMode	Active le Mode Jeu : Windows met en retrait mises à jour et tâches pendant que vous jouez.
@@ -710,7 +708,6 @@ L:chkAdvUtc	Horloge du BIOS en UTC (double démarrage avec Linux)
 L:chkAdvRazer	Pas d'installation automatique du logiciel Razer
 L:chkAdvLogi	Pas d'assistant de téléchargement Logitech
 L:chkIPv4Pref	IPv4 avant IPv6
-L:chkDiskNoSleep	Disques et SSD toujours actifs (sur secteur)
 M:actRun	Modifications : {0}
 M:jobWorking	En cours...
 M:badgeActive	Actif
@@ -886,7 +883,6 @@ H:chkAdvUtc	Windows lit l'heure du BIOS en UTC, comme Linux : en double démarra
 H:chkAdvRazer	Bloque les co-installeurs de pilotes et le dossier où Razer Synapse se copie quand on branche un périphérique. Bloque aussi les co-installeurs des autres fabricants.
 H:chkAdvLogi	Ferme l'assistant de téléchargement Logitech et l'empêche de se réinstaller à chaque démarrage.
 H:chkIPv4Pref	IPv6 reste actif, mais Windows essaie d'abord IPv4. Utile avec les réseaux ou routeurs qui gèrent mal IPv6.
-H:chkDiskNoSleep	Sur secteur, disques, lien SATA et SSD NVMe n'entrent jamais en économie d'énergie : aucun délai de réveil. Sur batterie, rien ne change.
 M:pwRecBtn	Utiliser les valeurs recommandées
 M:pwDefBtn	Revenir aux valeurs de Windows
 M:pwAskRec	Je règle les valeurs recommandées sur le mode utilisé. Les changements s'appliquent tout de suite. Je continue ?

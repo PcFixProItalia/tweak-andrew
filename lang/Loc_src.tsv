@@ -11,7 +11,6 @@ chkKernelMem	Kernel memory — disable executive paging
 chkKernelDpc	Kernel and DPC latency
 chkTimer	System timer — precision policy
 chkPowerThrottling	Power throttling — disable
-chkUSBSuspend	USB selective suspend — disable
 chkNtfsPerf	NTFS — disable last access time, large cache
 ttlRam	MEMORY
 chkRamTweak	SvcHost split threshold (based on RAM)
@@ -359,6 +358,5 @@ chkAdvUtc	BIOS clock in UTC (dual boot with Linux)
 chkAdvRazer	No automatic Razer software install
 chkAdvLogi	No Logitech download assistant
 chkIPv4Pref	IPv4 before IPv6
-chkDiskNoSleep	Disks and SSDs always on (while plugged in)
 btnEmergency	Full reset
 lblPersonal	PERSONALIZATION

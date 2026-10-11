@@ -12,14 +12,6 @@ H|pv.timeline|La cronologia delle attività non propone contenuti promozionali.|
 T|pv.startSugg|U|0|y|Niente suggerimenti in Start|No suggestions in Start
 R|HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager|SubscribedContent-338388Enabled|D|0|1,-
 H|pv.startSugg|Start smette di proporre app da installare.|Start stops proposing apps to install.
-T|pv.settingsSugg|U|0|y|Niente contenuti suggeriti in Impostazioni|No suggested content in Settings
-R|HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager|SubscribedContent-338393Enabled|D|0|1,-
-R|HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager|SubscribedContent-353694Enabled|D|0|1,-
-R|HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager|SubscribedContent-353696Enabled|D|0|1,-
-H|pv.settingsSugg|L'app Impostazioni mostra solo impostazioni, senza proposte.|The Settings app shows settings only, without offers.
-T|pv.silentApps|U|0|y|Niente app installate in silenzio|No silently installed apps
-R|HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager|SilentInstalledAppsEnabled|D|0|1,-
-H|pv.silentApps|Windows non aggiunge più giochi e app promozionali senza chiedere.|Windows stops adding promotional games and apps without asking.
 T|pv.accountNotif|U|0|y|Niente notifiche sull'account in Impostazioni|No account notices in Settings
 R|HKCU\Software\Microsoft\Windows\CurrentVersion\SystemSettings\AccountNotifications|EnableAccountNotifications|D|0|1,-
 H|pv.accountNotif|Spariscono gli inviti a usare un account Microsoft e i servizi collegati.|Invitations to use a Microsoft account and linked services go away.
@@ -174,9 +166,6 @@ R|HKCU\Software\Microsoft\MediaPlayer\Preferences|UsageTracking|D|0|1,-
 H|pv.wmp|Il lettore classico non registra cosa ascolti.|The classic player doesn't record what you listen to.
 
 G|uLock|Schermata di blocco|Lock screen
-T|pv.lockSpot|U|0|l|Niente immagini Spotlight sulla schermata di blocco|No Spotlight pictures on the lock screen
-R|HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager|RotatingLockScreenEnabled|D|0|1,-
-H|pv.lockSpot|Lo sfondo resta fisso e non viene scaricato da Microsoft.|The picture stays fixed and isn't downloaded from Microsoft.
 G|uSearch|Ricerca|Search
 T|pv.searchHist|U|0|y|Non conservare la cronologia delle ricerche|Don't keep search history
 R|HKCU\Software\Microsoft\Windows\CurrentVersion\SearchSettings|IsDeviceSearchHistoryEnabled|D|0|1,-
@@ -239,18 +228,12 @@ H|pv.handErr|I campioni di scrittura a mano non lasciano il PC.|Handwriting samp
 T|pv.handShare|M|0|y|Non condividere i dati della penna|Don't share pen data
 R|HKLM\SOFTWARE\Policies\Microsoft\Windows\TabletPC|PreventHandwritingDataSharing|D|1|0,-
 H|pv.handShare|La personalizzazione della penna non viene condivisa.|Pen personalization isn't shared.
-T|pv.inputPers|M|0|y|Disattiva la personalizzazione dell'input|Disable input personalization
-R|HKLM\SOFTWARE\Policies\Microsoft\InputPersonalization|AllowInputPersonalization|D|0|-
-H|pv.inputPers|Voce e scrittura non vengono usate per addestrare i modelli di Microsoft.|Voice and writing aren't used to train Microsoft models.
 T|pv.onlineTips|M|0|y|Niente suggerimenti online in Impostazioni|No online tips in Settings
 R|HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer|AllowOnlineTips|D|0|-
 H|pv.onlineTips|Impostazioni non scarica suggerimenti e video da Internet.|Settings doesn't download tips and videos from the Internet.
 T|pv.helpFb|M|0|y|Niente valutazioni della Guida|No Help ratings
 R|HKLM\SOFTWARE\Policies\Microsoft\Assistance\Client\1.0|NoExplicitFeedback|D|1|0,-
 H|pv.helpFb|La Guida di Windows non chiede se l'articolo ti è stato utile.|Windows Help doesn't ask whether the article was useful.
-T|pv.wer|M|0|l|Disattiva la segnalazione errori|Disable error reporting
-R|HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting|Disabled|D|1|0,-
-H|pv.wer|I rapporti sui blocchi non vengono inviati. Microsoft non potrà proporre soluzioni.|Crash reports aren't sent. Microsoft can't offer fixes.
 T|pv.cloudContent|M|0|y|Niente contenuti ottimizzati dal cloud|No cloud-optimized content
 R|HKLM\SOFTWARE\Policies\Microsoft\Windows\CloudContent|DisableCloudOptimizedContent|D|1|0,-
 H|pv.cloudContent|Start e barra non scaricano contenuti promozionali.|Start and taskbar don't download promotional content.
@@ -430,11 +413,6 @@ H|pv.cortana|Spegne l'assistente anche sulla schermata di blocco.|Turns the assi
 T|pv.cloudSearch|M|0|y|Niente ricerca nel cloud|No cloud search
 R|HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search|AllowCloudSearch|D|0|-
 H|pv.cloudSearch|La ricerca di Windows resta sul PC.|Windows search stays on the PC.
-T|pv.webSearch|M|0|y|Niente ricerca web da Start|No web search from Start
-R|HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search|DisableWebSearch|D|1|-
-R|HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search|ConnectedSearchUseWeb|D|0|-
-R|HKLM\SOFTWARE\Policies\Microsoft\Windows\Explorer|DisableSearchBoxSuggestions|D|1|-
-H|pv.webSearch|Per tutti gli account la ricerca in Start non passa da Bing.|For every account Start search doesn't go through Bing.
 T|pv.searchLoc|M|0|y|La ricerca non usa la posizione|Search doesn't use location
 R|HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search|AllowSearchToUseLocation|D|0|-
 H|pv.searchLoc|I risultati non vengono adattati a dove ti trovi.|Results aren't tailored to where you are.

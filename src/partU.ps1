@@ -168,7 +168,6 @@ function Build-UndoActions {
         Reset-Reg 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager' 'TimerInterval'
     }
     Add-UndoIfChecked $chkPowerThrottling { Reset-Reg 'HKLM:\SYSTEM\CurrentControlSet\Control\Power\PowerThrottling' 'PowerThrottlingOff' }
-    Add-UndoIfChecked $chkUSBSuspend { Reset-Reg 'HKLM:\SYSTEM\CurrentControlSet\Services\USB' 'DisableSelectiveSuspend' }
     Add-UndoIfChecked $chkNtfsPerf {
         # 2 = gestito dal sistema, il valore di fabbrica da Windows 10 1803.
         fsutil behavior set disablelastaccess 2 | Out-Null
@@ -195,7 +194,6 @@ function Build-UndoActions {
     Add-UndoIfChecked $chkHAGS { Reset-Reg 'HKLM:\SYSTEM\CurrentControlSet\Control\GraphicsDrivers' 'HwSchMode' }
     Add-UndoIfChecked $chkVisualFX {
         Reset-Reg 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects' 'VisualFXSetting' 0
-        Reset-Reg 'HKCU:\Control Panel\Desktop' 'DragFullWindows' '1' 'String'
     }
     Add-UndoIfChecked $chkApplyMPO { Reset-Reg 'HKLM:\SOFTWARE\Microsoft\Windows\DWM' 'OverlayTestMode' }
     Add-UndoIfChecked $chkVBS {
@@ -216,11 +214,6 @@ function Build-UndoActions {
     Add-UndoIfChecked $chkS0Sleep {
         $p = 'HKLM:\SOFTWARE\Policies\Microsoft\Power\PowerSettings\f15576e8-98b7-4186-b944-eafa664402d9'
         Reset-Reg $p 'ACSettingIndex'; Reset-Reg $p 'DCSettingIndex'
-    }
-    Add-UndoIfChecked $chkDiskNoSleep {
-        foreach ($s in '6738e2c4-e8a5-4a42-b16a-e040e769756e','0b2d69d7-a2a1-449c-9680-f91c70521c60','d639518a-e56d-4345-8af2-b9f32fb26109','d3d55efd-c1ff-424e-9dc3-441be7833010') {
-            Reset-PowerAc $s 'Risparmio dei dischi'
-        }
     }
     Add-UndoIfChecked $chkS3Sleep { Reset-Reg 'HKLM:\SYSTEM\CurrentControlSet\Control\Power' 'PlatformAoAcOverride' }
 
@@ -263,6 +256,7 @@ function Build-UndoActions {
     }
     Add-UndoIfChecked $chkErrorReporting {
         Reset-Reg 'HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting' 'Disabled'
+        Reset-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting' 'Disabled'
         Reset-Svc @('WerSvc')
     }
     Add-UndoIfChecked $chkInkingTyping {
@@ -271,6 +265,7 @@ function Build-UndoActions {
         Reset-Reg 'HKCU:\Software\Microsoft\InputPersonalization' 'RestrictImplicitInkCollection' 0
         Reset-Reg 'HKCU:\Software\Microsoft\InputPersonalization' 'RestrictImplicitTextCollection' 0
         Reset-Reg 'HKCU:\Software\Microsoft\InputPersonalization\TrainedDataStore' 'HarvestContacts' 1
+        Reset-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\InputPersonalization' 'AllowInputPersonalization'
     }
     Add-UndoIfChecked $chkWiFiSense {
         $b = 'HKLM:\SOFTWARE\Microsoft\PolicyManager\default\WiFi'
@@ -287,11 +282,15 @@ function Build-UndoActions {
     Add-UndoIfChecked $chkLockScreenAds {
         $c = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager'
         Reset-Reg $c 'RotatingLockScreenOverlayEnabled' 1
+        Reset-Reg $c 'RotatingLockScreenEnabled' 1
         Reset-Reg $c 'SubscribedContent-338387Enabled' 1
     }
     Add-UndoIfChecked $chkStartBing {
         Reset-Reg 'HKCU:\Software\Policies\Microsoft\Windows\Explorer' 'DisableSearchBoxSuggestions'
         Reset-Reg 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Search' 'BingSearchEnabled'
+        Reset-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Search' 'DisableWebSearch'
+        Reset-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Search' 'ConnectedSearchUseWeb'
+        Reset-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\Explorer' 'DisableSearchBoxSuggestions'
     }
     Add-UndoIfChecked $chkStartTracking { Reset-Reg $adv 'Start_TrackProgs' 1; Reset-Reg $adv 'Start_TrackDocs' 1 }
     Add-UndoIfChecked $chkFolderDiscovery { Reset-Reg 'HKCU:\Software\Classes\Local Settings\Software\Microsoft\Windows\Shell\Bags\AllFolders\Shell' 'FolderType' }
@@ -553,7 +552,7 @@ function Build-UndoActions {
     Add-UndoIfChecked $chkSvcDiag { Reset-Svc @('DPS','WdiServiceHost','WdiSystemHost','diagnosticshub.standardcollector.service','diagsvc','DusmSvc') }
     Add-UndoIfChecked $chkSvcPca { Reset-Svc @('PcaSvc') }
     Add-UndoIfChecked $chkSvcDiscovery { Reset-Svc @('SSDPSRV','upnphost','fdPHost','FDResPub','lltdsvc','Browser','NetTcpPortSharing') }
-    Add-UndoIfChecked $chkSvcSensors { Reset-Svc @('SensorService','SensrSvc','SensorDataService','lfsvc') }
+    Add-UndoIfChecked $chkSvcSensors { Reset-Svc @('SensorService','SensrSvc','SensorDataService') }
     Add-UndoIfChecked $chkSvcSmartCard { Reset-Svc @('SCardSvr','ScDeviceEnum','SCPolicySvc') }
     Add-UndoIfChecked $chkSvcParental { Reset-Svc @('WpcMonSvc','wisvc') }
     Add-UndoIfChecked $chkSvcHyperV { Reset-Svc @('HvHost','vmickvpexchange','vmicguestinterface','vmicshutdown','vmicheartbeat','vmicvmsession','vmicrdv','vmictimesync','vmcompute','vmms') }
@@ -565,23 +564,15 @@ function Build-UndoActions {
 
     Add-UndoIfChecked $chkTaskExtra {
         Enable-Tasks @(
-            '\Microsoft\Windows\Application Experience\StartupAppTask',
             '\Microsoft\Windows\Application Experience\PcaPatchDbTask',
             '\Microsoft\Windows\Application Experience\MareBackup',
             '\Microsoft\Windows\CloudExperienceHost\CreateObjectTask',
-            '\Microsoft\Windows\Maps\MapsToastTask',
-            '\Microsoft\Windows\Maps\MapsUpdateTask',
-            '\Microsoft\Windows\Windows Error Reporting\QueueReporting',
             '\Microsoft\Windows\Speech\SpeechModelDownloadTask',
             '\Microsoft\Windows\Retail Demo\CleanupOfflineContent',
-            '\Microsoft\Windows\PI\Sqm-Tasks',
             '\Microsoft\Windows\DiskFootprint\Diagnostics',
             '\Microsoft\Windows\DiskDiagnostic\Microsoft-Windows-DiskDiagnosticResolver',
             '\Microsoft\Windows\FileHistory\File History (maintenance mode)',
             '\Microsoft\Windows\License Manager\TempSignedLicenseExchange',
-            '\Microsoft\Windows\Shell\FamilySafetyMonitor',
-            '\Microsoft\Windows\Shell\FamilySafetyRefreshTask',
-            '\Microsoft\Windows\Power Efficiency Diagnostics\AnalyzeSystem',
             '\Microsoft\Windows\Chkdsk\ProactiveScan',
             '\Microsoft\Windows\Offline Files\Background Synchronization',
             '\Microsoft\Windows\Offline Files\Logon Synchronization'

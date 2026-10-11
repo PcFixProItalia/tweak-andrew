@@ -112,7 +112,11 @@ for i in items:
          "Kind = %s" % q(i['Kind']), "Flags = %s" % q(i['Flags']), "Def = %s" % q(i['Def']), "Rec = %s" % q(i['Rec'])]
     if i['Ops']:
         # La virgola davanti impedisce a PowerShell di appiattire un elenco con un solo registro.
-        f.append('Ops = @(' + ', '.join(',@(' + ', '.join(q(x) for x in op) + ')' for op in i['Ops']) + ')')
+        # Una sola riga vuole la virgola davanti, altrimenti PowerShell la appiattisce;
+        # con piu' righe la virgola in piu' le annidava di un livello e la voce non
+        # leggeva ne' scriveva nulla.
+        ops = ['@(' + ', '.join(q(x) for x in op) + ')' for op in i['Ops']]
+        f.append('Ops = @(' + (',' + ops[0] if len(ops) == 1 else ', '.join(ops)) + ')')
     if i['Opts']:
         f.append('Opts = @(' + ', '.join('@{ Key = %s; Vals = @(%s) }' % (q(o['Key']), ', '.join(q(v) for v in o['Vals'])) for o in i['Opts']) + ')')
     if i['Tasks']:

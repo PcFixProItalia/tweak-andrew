@@ -163,10 +163,6 @@ function Build-Actions {
         Set-Reg 'HKLM:\SYSTEM\CurrentControlSet\Control\Power\PowerThrottling' 'PowerThrottlingOff' 1 'DWord' 'Power Throttling'
     }
 
-    Add-IfChecked $chkUSBSuspend {
-        Set-Reg 'HKLM:\SYSTEM\CurrentControlSet\Services\USB' 'DisableSelectiveSuspend' 1 'DWord' 'USB Selective Suspend'
-    }
-
     Add-IfChecked $chkNtfsPerf {
         try {
             fsutil behavior set disablelastaccess 1 | Out-Null
@@ -215,7 +211,6 @@ function Build-Actions {
 
     Add-IfChecked $chkVisualFX {
         Set-Reg 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects' 'VisualFXSetting' 2 'DWord' 'Effetti visivi su prestazioni'
-        Set-Reg 'HKCU:\Control Panel\Desktop' 'DragFullWindows' '0' 'String' 'Trascinamento finestre semplificato'
     }
 
     Add-IfChecked $chkApplyMPO {
@@ -260,14 +255,6 @@ function Build-Actions {
         Set-Reg 'HKLM:\SYSTEM\CurrentControlSet\Control\Power' 'PlatformAoAcOverride' 0 'DWord' 'Sospensione S3'
     }
     # Dischi, SSD SATA e NVMe senza stati di risparmio, solo con l'alimentazione collegata.
-    Add-IfChecked $chkDiskNoSleep {
-        $d = '0012ee47-9041-4b5d-9b77-535fba8b1442'
-        Set-PowerAc $d '6738e2c4-e8a5-4a42-b16a-e040e769756e' 0 'Spegni i dischi: mai'
-        Set-PowerAc $d '0b2d69d7-a2a1-449c-9680-f91c70521c60' 0 'Collegamento SATA sempre attivo'
-        Set-PowerAc $d 'd639518a-e56d-4345-8af2-b9f32fb26109' 0 'NVMe: nessun riposo'
-        Set-PowerAc $d 'd3d55efd-c1ff-424e-9dc3-441be7833010' 0 'NVMe: nessun riposo profondo'
-    }
-
     # ---------- PRIVACY ----------
     Add-IfChecked $chkTelemetry {
         Set-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\DataCollection' 'AllowTelemetry' 0 'DWord' 'Telemetria'
@@ -327,6 +314,7 @@ function Build-Actions {
 
     Add-IfChecked $chkErrorReporting {
         Set-Reg 'HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting' 'Disabled' 1 'DWord' 'Segnalazione errori'
+        Set-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting' 'Disabled' 1 'DWord' 'Segnalazione errori (criterio)'
         Set-Svc 'WerSvc' 'Disabled' 'Servizio segnalazione errori'
     }
 
@@ -336,6 +324,7 @@ function Build-Actions {
         Set-Reg 'HKCU:\Software\Microsoft\InputPersonalization' 'RestrictImplicitInkCollection' 1 'DWord' 'Raccolta scrittura a mano'
         Set-Reg 'HKCU:\Software\Microsoft\InputPersonalization' 'RestrictImplicitTextCollection' 1 'DWord' 'Raccolta testo digitato'
         Set-Reg 'HKCU:\Software\Microsoft\InputPersonalization\TrainedDataStore' 'HarvestContacts' 0 'DWord' 'Raccolta contatti'
+        Set-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\InputPersonalization' 'AllowInputPersonalization' 0 'DWord' 'Personalizzazione input (criterio)'
     }
 
     Add-IfChecked $chkWiFiSense {
@@ -359,12 +348,17 @@ function Build-Actions {
     Add-IfChecked $chkLockScreenAds {
         $c = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager'
         Set-Reg $c 'RotatingLockScreenOverlayEnabled' 0 'DWord' 'Spotlight schermata di blocco'
+        Set-Reg $c 'RotatingLockScreenEnabled' 0 'DWord' 'Immagini Spotlight schermata di blocco'
         Set-Reg $c 'SubscribedContent-338387Enabled' 0 'DWord' 'Annunci schermata di blocco'
     }
 
     Add-IfChecked $chkStartBing {
         Set-Reg 'HKCU:\Software\Policies\Microsoft\Windows\Explorer' 'DisableSearchBoxSuggestions' 1 'DWord' 'Bing nel menu Start'
         Set-Reg 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Search' 'BingSearchEnabled' 0 'DWord' 'Ricerca Bing'
+        # Criteri per tutti gli account: prima stavano in una voce a parte della Privacy avanzata.
+        Set-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Search' 'DisableWebSearch' 1 'DWord' 'Ricerca web (criterio)'
+        Set-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Search' 'ConnectedSearchUseWeb' 0 'DWord' 'Ricerca connessa (criterio)'
+        Set-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\Explorer' 'DisableSearchBoxSuggestions' 1 'DWord' 'Suggerimenti di ricerca (criterio)'
     }
 
 
@@ -938,7 +932,7 @@ function Build-Actions {
         }
     }
     Add-IfChecked $chkSvcSensors {
-        foreach ($s in @('SensorService','SensrSvc','SensorDataService','lfsvc')) { Set-Svc $s 'Disabled' $s }
+        foreach ($s in @('SensorService','SensrSvc','SensorDataService')) { Set-Svc $s 'Disabled' $s }
     }
     Add-IfChecked $chkSvcSmartCard {
         foreach ($s in @('SCardSvr','ScDeviceEnum','SCPolicySvc')) { Set-Svc $s 'Disabled' $s }
@@ -973,23 +967,15 @@ function Build-Actions {
     # ---------- AVANZATE: attivita' pianificate ----------
     Add-IfChecked $chkTaskExtra {
         Disable-Tasks @(
-            '\Microsoft\Windows\Application Experience\StartupAppTask',
             '\Microsoft\Windows\Application Experience\PcaPatchDbTask',
             '\Microsoft\Windows\Application Experience\MareBackup',
             '\Microsoft\Windows\CloudExperienceHost\CreateObjectTask',
-            '\Microsoft\Windows\Maps\MapsToastTask',
-            '\Microsoft\Windows\Maps\MapsUpdateTask',
-            '\Microsoft\Windows\Windows Error Reporting\QueueReporting',
             '\Microsoft\Windows\Speech\SpeechModelDownloadTask',
             '\Microsoft\Windows\Retail Demo\CleanupOfflineContent',
-            '\Microsoft\Windows\PI\Sqm-Tasks',
             '\Microsoft\Windows\DiskFootprint\Diagnostics',
             '\Microsoft\Windows\DiskDiagnostic\Microsoft-Windows-DiskDiagnosticResolver',
             '\Microsoft\Windows\FileHistory\File History (maintenance mode)',
             '\Microsoft\Windows\License Manager\TempSignedLicenseExchange',
-            '\Microsoft\Windows\Shell\FamilySafetyMonitor',
-            '\Microsoft\Windows\Shell\FamilySafetyRefreshTask',
-            '\Microsoft\Windows\Power Efficiency Diagnostics\AnalyzeSystem',
             '\Microsoft\Windows\Chkdsk\ProactiveScan',
             '\Microsoft\Windows\Offline Files\Background Synchronization',
             '\Microsoft\Windows\Offline Files\Logon Synchronization'
