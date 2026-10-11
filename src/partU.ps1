@@ -632,8 +632,9 @@ function Build-UndoActions {
         Reset-Reg 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\AppHost' 'EnableWebContentEvaluation'
     }
     Add-UndoIfChecked $chkSecSpectre {
-        Reset-Reg $mm 'FeatureSettingsOverride'; Reset-Reg $mm 'FeatureSettingsOverrideMask'
+        Set-MitigationBits 3 $false 'Mitigazioni Spectre/Meltdown'
     }
+    Add-UndoIfChecked $chkSecDownfall { Set-MitigationBits 0x2000000 $false 'Mitigazione Downfall' }
     Add-UndoIfChecked $chkSecDefenderIdle {
         $s = 'HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender\Scan'
         foreach ($v in @('ScanOnlyIfIdle','AvgCPULoadFactor','DisableScanningNetworkFiles')) { Reset-Reg $s $v }

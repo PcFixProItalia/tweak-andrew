@@ -360,3 +360,4 @@ chkAdvLogi	No Logitech download assistant
 chkIPv4Pref	IPv4 before IPv6
 btnEmergency	Full reset
 lblPersonal	PERSONALIZATION
+chkSecDownfall	Downfall mitigation (Intel only)

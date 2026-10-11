@@ -512,3 +512,9 @@ H:notif.center	Panoul care se deschide la clic pe dată și oră. Dezactivat, cl
 g.win.browser	Browsere
 win.brave	Brave fără Rewards, Wallet, VPN, AI și statistici
 H:win.brave	Politici Brave: oprește funcțiile auxiliare și trimiterea de statistici. Se aplică și dacă Brave e instalat mai târziu.
+win.tmMonitor	Rețea și GPU în Managerul de activități
+win.ntfs83	Nume scurte 8.3 pe discurile NTFS
+game.bgInput	Actualizări ale mouse-ului pentru ferestrele din fundal
+game.bgInput#win	125 Hz (Windows)
+game.bgInput#hz50	50 Hz
+game.bgInput#off	Fără limită

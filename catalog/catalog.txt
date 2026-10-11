@@ -399,6 +399,13 @@ G|gfx|Grafica e giochi|Graphics and games
 T|game.windowed||1|1|Ottimizzazioni per i giochi in finestra|Optimizations for windowed games
 R|HKCU\Software\Microsoft\DirectX\UserGpuPreferences|DirectXUserGlobalSettings|Kv:SwapEffectUpgradeEnable|1,-|0
 H|game.windowed|I giochi in finestra o senza bordi usano il modello di presentazione moderno: meno latenza.|Windowed and borderless games use the modern presentation model: lower latency.
+S|game.bgInput|L|win|-|Aggiornamenti del mouse alle finestre in secondo piano|Mouse updates to background windows
+R|HKCU\Control Panel\Mouse|RawMouseThrottleEnabled|D
+R|HKCU\Control Panel\Mouse|RawMouseThrottleDuration|D
+O|win|125 Hz (Windows)|125 Hz (Windows)|1,-|8,-
+O|hz50|50 Hz|50 Hz|1|20
+O|off|Nessun limite|No limit|0|8,20,-
+H|game.bgInput|Quante volte al secondo le app non in primo piano ricevono i movimenti del mouse. 50 Hz toglie lavoro al processore mentre giochi; può disturbare scorciatoie e programmi che seguono il mouse.|How many times per second apps in the background receive mouse movement. 50 Hz saves processor work while you play; it can affect hotkeys and programs that track the mouse.
 T|game.vrr||0|-|Frequenza variabile per i giochi non compatibili|Variable refresh rate for unsupported games
 R|HKCU\Software\Microsoft\DirectX\UserGpuPreferences|DirectXUserGlobalSettings|Kv:VRROptimizeEnable|1|0,-
 H|game.vrr|Estende G-Sync e FreeSync anche ai giochi DirectX 10 e 11 che non lo supportano.|Extends G-Sync and FreeSync to DirectX 10 and 11 games that lack it.
@@ -533,6 +540,13 @@ T|win.wuMetered||0|0|Scarica anche su connessioni a consumo|Download over metere
 R|HKLM\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings|AllowAutoWindowsUpdateDownloadOverMeteredNetwork|D|1|0,-
 H|win.wuMetered|Spento, gli aggiornamenti non consumano i giga dell'hotspot del telefono.|Off, updates don't eat your phone hotspot data.
 G|svc|Servizi|Services
+T|win.tmMonitor|R|1|-|Rete e GPU in Gestione attività|Network and GPU in Task Manager
+R|HKLM\SYSTEM\CurrentControlSet\Services\Ndu|Start|D|2|4
+R|HKLM\SYSTEM\CurrentControlSet\Services\GraphicsPerfSvc|Start|D|3|4
+H|win.tmMonitor|I due servizi che misurano il traffico di rete per app e l'uso della scheda video. Spenti, Gestione attività non mostra più quei dati.|The two services that measure per-app network traffic and graphics card usage. Off, Task Manager no longer shows that data.
+T|win.ntfs83|R|1|0|Nomi brevi 8.3 sui dischi NTFS|Short 8.3 names on NTFS drives
+R|HKLM\SYSTEM\CurrentControlSet\Control\FileSystem|NtfsDisable8dot3NameCreation|D|2,0,-|1
+H|win.ntfs83|Per ogni file Windows crea anche un nome corto in stile DOS. Spento, le cartelle con molti file si leggono più in fretta. Serve solo a programmi molto vecchi.|For every file Windows also creates a short DOS-style name. Off, folders with many files read faster. Only very old programs need it.
 V|win.svcCdp||CDPSvc|AD|M|Piattaforma dispositivi connessi|Connected Devices Platform
 H|win.svcCdp|Collega il PC a telefono e altri dispositivi. Serve per Collegamento al telefono.|Links the PC to your phone and other devices. Needed for Phone Link.
 V|win.svcWmpShare||WMPNetworkSvc|M|X|Condivisione di Windows Media Player|Windows Media Player sharing

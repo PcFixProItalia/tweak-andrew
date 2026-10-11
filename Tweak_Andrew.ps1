@@ -2262,6 +2262,7 @@ $script:PlanData = @{
                                                            Text="Tutte rischiose e mai incluse in «Seleziona tutto». Abbassano davvero le difese del computer: usale solo su una macchina che non naviga e non apre allegati."/>
                                                 <CheckBox x:Name="chkSecSmartScreen" Tag="risky" Content="SmartScreen — controllo dei file scaricati"/>
                                                 <CheckBox x:Name="chkSecSpectre" Tag="risky" Content="Mitigazioni Spectre e Meltdown"/>
+                                                <CheckBox x:Name="chkSecDownfall" Tag="risky" Content="Mitigazione Downfall (Intel)"/>
                                                 <CheckBox x:Name="chkVBS" Tag="risky" Content="VBS"/>
                                                 <CheckBox x:Name="chkMitigations" Tag="risky" Content="Mitigazioni exploit"/>
                                                 <CheckBox x:Name="chkSecDefenderIdle" Tag="risky" Content="Defender: scansioni solo a computer fermo, CPU al 20%"/>
@@ -3089,6 +3090,7 @@ $script:Loc = @{
     chkIPv4Pref        = @{ it = "IPv4 prima di IPv6"; en = "IPv4 before IPv6" }
     btnEmergency       = @{ it = "Ripristino totale"; en = "Full reset" }
     lblPersonal        = @{ it = "PERSONALIZZAZIONE"; en = "PERSONALIZATION" }
+    chkSecDownfall     = @{ it = "Mitigazione Downfall (solo Intel)"; en = "Downfall mitigation (Intel only)" }
 }
 
 # Messaggi non legati a un controllo: log, finestre di dialogo, etichette dinamiche.
@@ -3478,6 +3480,8 @@ $script:Msg = @{
     recAllDone         = @{ it = "Valori consigliati pronti: {0} da attivare, {1} da lasciare o riportare come Windows. Premi «Applica modifiche»."; en = "Recommended values ready: {0} to enable, {1} to keep or put back as Windows. Press «Apply changes»." }
     catBulkNothing     = @{ it = "Nessuna modifica: le voci di questa pagina sono già su questi valori."; en = "No changes: the entries on this page already have these values." }
     catBulkCount       = @{ it = "Voci da cambiare: {0}"; en = "Entries to change: {0}" }
+    tool_rootCerts     = @{ it = "Certificati radice: aggiorna"; en = "Root certificates: update" }
+    toolDesc_rootCerts = @{ it = "Scarica l'elenco aggiornato da Windows Update. Risolve gli errori di certificato su siti e programmi."; en = "Downloads the current list from Windows Update. Fixes certificate errors on websites and in programs." }
 }
 
 $script:LangCode = "it"
@@ -3678,7 +3682,7 @@ $chkAdvUtc = E 'chkAdvUtc'; $chkAdvRazer = E 'chkAdvRazer'; $chkAdvLogi = E 'chk
 $chkBootQuiet = E 'chkBootQuiet'; $chkBootMenu = E 'chkBootMenu'; $chkBootTimeout = E 'chkBootTimeout'
 $chkBootDynTick = E 'chkBootDynTick'; $chkBootTsc = E 'chkBootTsc'; $btnBootReset = E 'btnBootReset'
 $chkAppxBloat = E 'chkAppxBloat'; $chkAppxXbox = E 'chkAppxXbox'; $chkAppxProvision = E 'chkAppxProvision'
-$chkSecSmartScreen = E 'chkSecSmartScreen'; $chkSecSpectre = E 'chkSecSpectre'; $chkSecDefenderIdle = E 'chkSecDefenderIdle'
+$chkSecSmartScreen = E 'chkSecSmartScreen'; $chkSecSpectre = E 'chkSecSpectre'; $chkSecDownfall = E 'chkSecDownfall'; $chkSecDefenderIdle = E 'chkSecDefenderIdle'
 
 # ------------------------------------------------------------------------------
 # 5. REGISTRO DELLE OPERAZIONI E AVANZAMENTO
@@ -3791,6 +3795,27 @@ function Set-RegAllInterfaces {
         try { New-ItemProperty -LiteralPath $_.PSPath -Name $Name -Value $Value -PropertyType DWord -Force -ErrorAction Stop | Out-Null; $n++ } catch {}
     }
     Write-Log "[OK] $Label - $n interfacce aggiornate."
+}
+
+# Le mitigazioni delle vulnerabilita' speculative stanno tutte in un solo
+# valore, un bit per ciascuna: si cambia solo il proprio, senza toccare gli altri.
+$script:MitKey = 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management'
+function Test-MitigationBits([int]$Bits) {
+    $v = Get-RegOrNull $script:MitKey 'FeatureSettingsOverride'
+    if ($null -eq $v) { return $false }
+    return (([int64]$v -band $Bits) -eq $Bits)
+}
+function Set-MitigationBits([int]$Bits, [bool]$Off, [string]$Label) {
+    $v = Get-RegOrNull $script:MitKey 'FeatureSettingsOverride'
+    $cur = if ($null -eq $v) { 0 } else { [int]$v }
+    $new = if ($Off) { $cur -bor $Bits } else { $cur -band (-bnot $Bits) }
+    if ($new -eq 0) {
+        Remove-Reg $script:MitKey 'FeatureSettingsOverride' $Label
+        Remove-Reg $script:MitKey 'FeatureSettingsOverrideMask' "$Label (maschera)"
+        return
+    }
+    Set-Reg $script:MitKey 'FeatureSettingsOverride' $new 'DWord' $Label | Out-Null
+    Set-Reg $script:MitKey 'FeatureSettingsOverrideMask' 3 'DWord' "$Label (maschera)" | Out-Null
 }
 
 function Get-RegOrNull {
@@ -4599,6 +4624,7 @@ $script:Tips = @{
     chkAdvRazer = @{ it = "Blocca i co-installer dei driver e la cartella in cui Razer Synapse si copia quando colleghi una periferica. Blocca anche i co-installer di altri produttori."; en = "Blocks driver co-installers and the folder Razer Synapse copies itself into when you plug in a device. It also blocks other vendors' co-installers." }
     chkAdvLogi = @{ it = "Chiude l'assistente download Logitech e gli impedisce di reinstallarsi a ogni avvio."; en = "Closes the Logitech download assistant and stops it from reinstalling at every startup." }
     chkIPv4Pref = @{ it = "IPv6 resta attivo, ma Windows prova prima IPv4. Utile con reti o router che gestiscono male IPv6."; en = "IPv6 stays on, but Windows tries IPv4 first. Useful with networks or routers that handle IPv6 poorly." }
+    chkSecDownfall = @{ it = "Spegne la protezione contro Downfall sui processori Intel dalla 6ª all'11ª generazione: recupera prestazioni nei carichi AVX, ma un programma malevolo può leggere dati di altri programmi. Con Hyper-V o VBS attivi Windows la tiene accesa comunque."; en = "Turns off the Downfall protection on 6th to 11th generation Intel processors: it recovers performance in AVX workloads, but a malicious program can read data from other programs. With Hyper-V or VBS on, Windows keeps it enabled anyway." }
 }
 
 $script:Tr = @{
@@ -5508,6 +5534,10 @@ $script:Tr = @{
         'L:lblPersonal' = "PERSONALIZACIÓN"
         'M:catBulkNothing' = "Sin cambios: las opciones de esta página ya tienen estos valores."
         'M:catBulkCount' = "Opciones a cambiar: {0}"
+        'L:chkSecDownfall' = "Mitigación Downfall (solo Intel)"
+        'H:chkSecDownfall' = "Desactiva la protección contra Downfall en procesadores Intel de 6.ª a 11.ª generación: recupera rendimiento en cargas AVX, pero un programa malicioso puede leer datos de otros programas. Con Hyper-V o VBS activos, Windows la mantiene activada."
+        'M:tool_rootCerts' = "Certificados raíz: actualizar"
+        'M:toolDesc_rootCerts' = "Descarga la lista actual desde Windows Update. Corrige errores de certificado en webs y programas."
     }
     de = @{
         'L:lblSubtitle' = "Windows-Optimierung und -Steuerung — PcFixPro Italia"
@@ -6415,6 +6445,10 @@ $script:Tr = @{
         'L:lblPersonal' = "PERSONALISIERUNG"
         'M:catBulkNothing' = "Keine Änderungen: Die Einträge dieser Seite haben bereits diese Werte."
         'M:catBulkCount' = "Zu ändernde Einträge: {0}"
+        'L:chkSecDownfall' = "Downfall-Schutz (nur Intel)"
+        'H:chkSecDownfall' = "Schaltet den Schutz gegen Downfall auf Intel-Prozessoren der 6. bis 11. Generation ab: bringt Leistung bei AVX-Lasten zurück, aber ein Schadprogramm kann Daten anderer Programme lesen. Mit Hyper-V oder VBS lässt Windows ihn trotzdem an."
+        'M:tool_rootCerts' = "Stammzertifikate: aktualisieren"
+        'M:toolDesc_rootCerts' = "Lädt die aktuelle Liste von Windows Update. Behebt Zertifikatsfehler auf Websites und in Programmen."
     }
     fr = @{
         'L:lblSubtitle' = "Optimisation et contrôle de Windows — PcFixPro Italia"
@@ -7325,6 +7359,10 @@ $script:Tr = @{
         'L:lblPersonal' = "PERSONNALISATION"
         'M:catBulkNothing' = "Aucune modification : les éléments de cette page ont déjà ces valeurs."
         'M:catBulkCount' = "Éléments à modifier : {0}"
+        'L:chkSecDownfall' = "Atténuation Downfall (Intel uniquement)"
+        'H:chkSecDownfall' = "Désactive la protection contre Downfall sur les processeurs Intel de la 6e à la 11e génération : récupère des performances en charge AVX, mais un programme malveillant peut lire les données d'autres programmes. Avec Hyper-V ou VBS, Windows la garde active."
+        'M:tool_rootCerts' = "Certificats racine : mettre à jour"
+        'M:toolDesc_rootCerts' = "Télécharge la liste à jour depuis Windows Update. Corrige les erreurs de certificat sur les sites et dans les programmes."
     }
     pl = @{
         'L:lblSubtitle' = "Optymalizacja i kontrola systemu Windows — PcFixPro Italia"
@@ -8232,6 +8270,10 @@ $script:Tr = @{
         'L:lblPersonal' = "PERSONALIZACJA"
         'M:catBulkNothing' = "Brak zmian: pozycje na tej stronie mają już te wartości."
         'M:catBulkCount' = "Pozycje do zmiany: {0}"
+        'L:chkSecDownfall' = "Zabezpieczenie Downfall (tylko Intel)"
+        'H:chkSecDownfall' = "Wyłącza ochronę przed Downfall na procesorach Intel od 6. do 11. generacji: odzyskuje wydajność w obciążeniach AVX, ale złośliwy program może odczytać dane innych programów. Z Hyper-V lub VBS system i tak ją zostawia."
+        'M:tool_rootCerts' = "Certyfikaty główne: aktualizuj"
+        'M:toolDesc_rootCerts' = "Pobiera aktualną listę z Windows Update. Naprawia błędy certyfikatów na stronach i w programach."
     }
     pt = @{
         'L:lblSubtitle' = "Otimização e controle do Windows — PcFixPro Italia"
@@ -9139,6 +9181,10 @@ $script:Tr = @{
         'L:lblPersonal' = "PERSONALIZAÇÃO"
         'M:catBulkNothing' = "Nenhuma alteração: os itens desta página já têm esses valores."
         'M:catBulkCount' = "Itens a alterar: {0}"
+        'L:chkSecDownfall' = "Mitigação Downfall (só Intel)"
+        'H:chkSecDownfall' = "Desliga a proteção contra o Downfall em processadores Intel da 6ª à 11ª geração: recupera desempenho em cargas AVX, mas um programa malicioso pode ler dados de outros programas. Com Hyper-V ou VBS ativos, o Windows a mantém ligada."
+        'M:tool_rootCerts' = "Certificados raiz: atualizar"
+        'M:toolDesc_rootCerts' = "Baixa a lista atual do Windows Update. Corrige erros de certificado em sites e programas."
     }
     ro = @{
         'L:lblSubtitle' = "Optimizarea și controlul Windows — PcFixPro Italia"
@@ -10046,6 +10092,10 @@ $script:Tr = @{
         'L:lblPersonal' = "PERSONALIZARE"
         'M:catBulkNothing' = "Nicio modificare: elementele acestei pagini au deja aceste valori."
         'M:catBulkCount' = "Elemente de schimbat: {0}"
+        'L:chkSecDownfall' = "Protecția Downfall (doar Intel)"
+        'H:chkSecDownfall' = "Oprește protecția împotriva Downfall pe procesoarele Intel din generațiile 6–11: recuperează performanță în sarcini AVX, dar un program rău-intenționat poate citi datele altor programe. Cu Hyper-V sau VBS active, Windows o păstrează pornită."
+        'M:tool_rootCerts' = "Certificate rădăcină: actualizează"
+        'M:toolDesc_rootCerts' = "Descarcă lista actuală de la Windows Update. Repară erorile de certificat pe site-uri și în programe."
     }
     ru = @{
         'L:lblSubtitle' = "Оптимизация и управление Windows — PcFixPro Italia"
@@ -10953,6 +11003,10 @@ $script:Tr = @{
         'L:lblPersonal' = "ПЕРСОНАЛИЗАЦИЯ"
         'M:catBulkNothing' = "Изменений нет: пункты этой страницы уже имеют эти значения."
         'M:catBulkCount' = "Пунктов к изменению: {0}"
+        'L:chkSecDownfall' = "Защита от Downfall (только Intel)"
+        'H:chkSecDownfall' = "Отключает защиту от Downfall на процессорах Intel с 6-го по 11-е поколение: возвращает производительность в нагрузках AVX, но вредоносная программа сможет читать данные других программ. При включённых Hyper-V или VBS Windows оставляет защиту."
+        'M:tool_rootCerts' = "Корневые сертификаты: обновить"
+        'M:toolDesc_rootCerts' = "Загружает актуальный список из Windows Update. Исправляет ошибки сертификатов на сайтах и в программах."
     }
 }
 
@@ -11065,6 +11119,7 @@ $script:Catalog = @(
     @{ Id = 'notif.narrator'; Page = 'notif'; Group = 'access'; Kind = 'T'; Flags = ''; Def = '1'; Rec = '0'; Ops = @(,@('HKCU\Software\Microsoft\Narrator\NoRoam', 'WinEnterLaunchEnabled', 'D', '1,-', '0')) },
     @{ Id = 'notif.hoverTime'; Page = 'notif'; Group = 'access'; Kind = 'S'; Flags = ''; Def = 'def'; Rec = '100'; Ops = @(,@('HKCU\Control Panel\Mouse', 'MouseHoverTime', 'S')); Opts = @(@{ Key = '10'; Vals = @('10') }, @{ Key = '100'; Vals = @('100') }, @{ Key = '200'; Vals = @('200') }, @{ Key = 'def'; Vals = @('400,-') }) },
     @{ Id = 'game.windowed'; Page = 'game'; Group = 'gfx'; Kind = 'T'; Flags = ''; Def = '1'; Rec = '1'; Ops = @(,@('HKCU\Software\Microsoft\DirectX\UserGpuPreferences', 'DirectXUserGlobalSettings', 'Kv:SwapEffectUpgradeEnable', '1,-', '0')) },
+    @{ Id = 'game.bgInput'; Page = 'game'; Group = 'gfx'; Kind = 'S'; Flags = 'L'; Def = 'win'; Rec = '-'; Ops = @(@('HKCU\Control Panel\Mouse', 'RawMouseThrottleEnabled', 'D'), @('HKCU\Control Panel\Mouse', 'RawMouseThrottleDuration', 'D')); Opts = @(@{ Key = 'win'; Vals = @('1,-', '8,-') }, @{ Key = 'hz50'; Vals = @('1', '20') }, @{ Key = 'off'; Vals = @('0', '8,20,-') }) },
     @{ Id = 'game.vrr'; Page = 'game'; Group = 'gfx'; Kind = 'T'; Flags = ''; Def = '0'; Rec = '-'; Ops = @(,@('HKCU\Software\Microsoft\DirectX\UserGpuPreferences', 'DirectXUserGlobalSettings', 'Kv:VRROptimizeEnable', '1', '0,-')) },
     @{ Id = 'game.autoHdr'; Page = 'game'; Group = 'gfx'; Kind = 'T'; Flags = ''; Def = '0'; Rec = '0'; Ops = @(,@('HKCU\Software\Microsoft\DirectX\UserGpuPreferences', 'DirectXUserGlobalSettings', 'Kv:AutoHDREnable', '1', '0,-')) },
     @{ Id = 'game.gbController'; Page = 'game'; Group = 'gfx'; Kind = 'T'; Flags = ''; Def = '1'; Rec = '0'; Ops = @(,@('HKCU\Software\Microsoft\GameBar', 'UseNexusForGameBarEnabled', 'D', '1,-', '0')) },
@@ -11098,6 +11153,8 @@ $script:Catalog = @(
     @{ Id = 'win.wuExpedite'; Page = 'win'; Group = 'upd'; Kind = 'T'; Flags = ''; Def = '0'; Rec = '0'; Ops = @(,@('HKLM\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings', 'IsExpedited', 'D', '1', '0,-')) },
     @{ Id = 'win.wuRestartNote'; Page = 'win'; Group = 'upd'; Kind = 'T'; Flags = ''; Def = '0'; Rec = '1'; Ops = @(,@('HKLM\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings', 'RestartNotificationsAllowed2', 'D', '1', '0,-')) },
     @{ Id = 'win.wuMetered'; Page = 'win'; Group = 'upd'; Kind = 'T'; Flags = ''; Def = '0'; Rec = '0'; Ops = @(,@('HKLM\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings', 'AllowAutoWindowsUpdateDownloadOverMeteredNetwork', 'D', '1', '0,-')) },
+    @{ Id = 'win.tmMonitor'; Page = 'win'; Group = 'svc'; Kind = 'T'; Flags = 'R'; Def = '1'; Rec = '-'; Ops = @(@('HKLM\SYSTEM\CurrentControlSet\Services\Ndu', 'Start', 'D', '2', '4'), @('HKLM\SYSTEM\CurrentControlSet\Services\GraphicsPerfSvc', 'Start', 'D', '3', '4')) },
+    @{ Id = 'win.ntfs83'; Page = 'win'; Group = 'svc'; Kind = 'T'; Flags = 'R'; Def = '1'; Rec = '0'; Ops = @(,@('HKLM\SYSTEM\CurrentControlSet\Control\FileSystem', 'NtfsDisable8dot3NameCreation', 'D', '2,0,-', '1')) },
     @{ Id = 'win.svcCdp'; Page = 'win'; Group = 'svc'; Kind = 'V'; Flags = ''; Def = 'AD'; Rec = 'M'; Svcs = @('CDPSvc') },
     @{ Id = 'win.svcWmpShare'; Page = 'win'; Group = 'svc'; Kind = 'V'; Flags = ''; Def = 'M'; Rec = 'X'; Svcs = @('WMPNetworkSvc') },
     @{ Id = 'win.svcMixed'; Page = 'win'; Group = 'svc'; Kind = 'V'; Flags = ''; Def = 'M'; Rec = 'X'; Svcs = @('MixedRealityOpenXRSvc') },
@@ -11445,6 +11502,10 @@ $script:CatText = @{
     'notif.hoverTime#def' = @{ it = 'Predefinito (400 ms)'; en = 'Default (400 ms)'; es = 'Predeterminado (400 ms)'; de = 'Standard (400 ms)'; fr = 'Par défaut (400 ms)'; pl = 'Domyślnie (400 ms)'; pt = 'Padrão (400 ms)'; ro = 'Implicit (400 ms)'; ru = 'По умолчанию (400 мс)' }
     'g.game.gfx' = @{ it = 'Grafica e giochi'; en = 'Graphics and games'; es = 'Gráficos y juegos'; de = 'Grafik und Spiele'; fr = 'Graphismes et jeux'; pl = 'Grafika i gry'; pt = 'Gráficos e jogos'; ro = 'Grafică și jocuri'; ru = 'Графика и игры' }
     'game.windowed' = @{ it = 'Ottimizzazioni per i giochi in finestra'; en = 'Optimizations for windowed games'; es = 'Optimizaciones para juegos en ventana'; de = 'Optimierungen für Spiele im Fenstermodus'; fr = 'Optimisations pour les jeux fenêtrés'; pl = 'Optymalizacje gier w oknie'; pt = 'Otimizações para jogos em janela'; ro = 'Optimizări pentru jocurile în fereastră'; ru = 'Оптимизации для игр в окне' }
+    'game.bgInput' = @{ it = 'Aggiornamenti del mouse alle finestre in secondo piano'; en = 'Mouse updates to background windows'; es = 'Actualizaciones del ratón a ventanas en segundo plano'; de = 'Mausaktualisierungen für Hintergrundfenster'; fr = 'Mises à jour de la souris pour les fenêtres en arrière-plan'; pl = 'Aktualizacje myszy dla okien w tle'; pt = 'Atualizações do mouse para janelas em segundo plano'; ro = 'Actualizări ale mouse-ului pentru ferestrele din fundal'; ru = 'Обновления мыши для фоновых окон' }
+    'game.bgInput#win' = @{ it = '125 Hz (Windows)'; en = '125 Hz (Windows)'; es = '125 Hz (Windows)'; de = '125 Hz (Windows)'; fr = '125 Hz (Windows)'; pl = '125 Hz (Windows)'; pt = '125 Hz (Windows)'; ro = '125 Hz (Windows)'; ru = '125 Hz (Windows)' }
+    'game.bgInput#hz50' = @{ it = '50 Hz'; en = '50 Hz'; es = '50 Hz'; de = '50 Hz'; fr = '50 Hz'; pl = '50 Hz'; pt = '50 Hz'; ro = '50 Hz'; ru = '50 Hz' }
+    'game.bgInput#off' = @{ it = 'Nessun limite'; en = 'No limit'; es = 'Sin límite'; de = 'Kein Limit'; fr = 'Aucune limite'; pl = 'Bez limitu'; pt = 'Sem limite'; ro = 'Fără limită'; ru = 'Без ограничения' }
     'game.vrr' = @{ it = 'Frequenza variabile per i giochi non compatibili'; en = 'Variable refresh rate for unsupported games'; es = 'Frecuencia variable para juegos no compatibles'; de = 'Variable Bildwiederholrate für nicht unterstützte Spiele'; fr = 'Fréquence variable pour les jeux non compatibles'; pl = 'Zmienna częstotliwość dla niewspieranych gier'; pt = 'Taxa variável para jogos não compatíveis'; ro = 'Frecvență variabilă pentru jocuri necompatibile'; ru = 'Переменная частота для неподдерживаемых игр' }
     'game.autoHdr' = @{ it = 'HDR automatico'; en = 'Auto HDR'; es = 'HDR automático'; de = 'Auto HDR'; fr = 'HDR automatique'; pl = 'Auto HDR'; pt = 'HDR automático'; ro = 'HDR automat'; ru = 'Auto HDR' }
     'game.gbController' = @{ it = 'Game Bar dal tasto Xbox del controller'; en = 'Game Bar from the controller''s Xbox button'; es = 'Game Bar con el botón Xbox del mando'; de = 'Game Bar über die Xbox-Taste des Controllers'; fr = 'Game Bar avec le bouton Xbox de la manette'; pl = 'Game Bar z przycisku Xbox kontrolera'; pt = 'Game Bar pelo botão Xbox do controle'; ro = 'Game Bar din butonul Xbox al controlerului'; ru = 'Game Bar по кнопке Xbox геймпада' }
@@ -11496,6 +11557,8 @@ $script:CatText = @{
     'win.wuRestartNote' = @{ it = 'Avvisa quando serve un riavvio'; en = 'Notify when a restart is needed'; es = 'Avisar cuando haga falta reiniciar'; de = 'Benachrichtigen, wenn ein Neustart nötig ist'; fr = 'Avertir quand un redémarrage est nécessaire'; pl = 'Powiadamiaj, gdy potrzebny jest restart'; pt = 'Avisar quando precisar reiniciar'; ro = 'Anunță când e nevoie de repornire'; ru = 'Уведомлять о необходимости перезагрузки' }
     'win.wuMetered' = @{ it = 'Scarica anche su connessioni a consumo'; en = 'Download over metered connections'; es = 'Descargar en conexiones de uso medido'; de = 'Über getaktete Verbindungen herunterladen'; fr = 'Télécharger sur les connexions limitées'; pl = 'Pobieraj przez połączenia taryfowe'; pt = 'Baixar em conexões limitadas'; ro = 'Descarcă pe conexiuni contorizate'; ru = 'Загружать через лимитные подключения' }
     'g.win.svc' = @{ it = 'Servizi'; en = 'Services'; es = 'Servicios'; de = 'Dienste'; fr = 'Services'; pl = 'Usługi'; pt = 'Serviços'; ro = 'Servicii'; ru = 'Службы' }
+    'win.tmMonitor' = @{ it = 'Rete e GPU in Gestione attività'; en = 'Network and GPU in Task Manager'; es = 'Red y GPU en el Administrador de tareas'; de = 'Netzwerk und GPU im Task-Manager'; fr = 'Réseau et GPU dans le Gestionnaire des tâches'; pl = 'Sieć i GPU w Menedżerze zadań'; pt = 'Rede e GPU no Gerenciador de Tarefas'; ro = 'Rețea și GPU în Managerul de activități'; ru = 'Сеть и GPU в диспетчере задач' }
+    'win.ntfs83' = @{ it = 'Nomi brevi 8.3 sui dischi NTFS'; en = 'Short 8.3 names on NTFS drives'; es = 'Nombres cortos 8.3 en discos NTFS'; de = 'Kurze 8.3-Namen auf NTFS-Laufwerken'; fr = 'Noms courts 8.3 sur les disques NTFS'; pl = 'Krótkie nazwy 8.3 na dyskach NTFS'; pt = 'Nomes curtos 8.3 em discos NTFS'; ro = 'Nume scurte 8.3 pe discurile NTFS'; ru = 'Короткие имена 8.3 на дисках NTFS' }
     'win.svcCdp' = @{ it = 'Piattaforma dispositivi connessi'; en = 'Connected Devices Platform'; es = 'Plataforma de dispositivos conectados'; de = 'Plattform für verbundene Geräte'; fr = 'Plateforme des appareils connectés'; pl = 'Platforma urządzeń połączonych'; pt = 'Plataforma de dispositivos conectados'; ro = 'Platforma dispozitivelor conectate'; ru = 'Платформа подключённых устройств' }
     'win.svcWmpShare' = @{ it = 'Condivisione di Windows Media Player'; en = 'Windows Media Player sharing'; es = 'Uso compartido de Windows Media Player'; de = 'Windows Media Player-Freigabe'; fr = 'Partage du Lecteur Windows Media'; pl = 'Udostępnianie Windows Media Player'; pt = 'Compartilhamento do Windows Media Player'; ro = 'Partajare Windows Media Player'; ru = 'Общий доступ Windows Media Player' }
     'win.svcMixed' = @{ it = 'Realtà mista OpenXR'; en = 'Mixed Reality OpenXR'; es = 'Realidad mixta OpenXR'; de = 'Mixed Reality OpenXR'; fr = 'Réalité mixte OpenXR'; pl = 'Rzeczywistość mieszana OpenXR'; pt = 'Realidade misturada OpenXR'; ro = 'Realitate mixtă OpenXR'; ru = 'Смешанная реальность OpenXR' }
@@ -11915,6 +11978,7 @@ $script:CatTip = @{
     'notif.narrator' = @{ it = 'Evita di avviare per sbaglio l''Assistente vocale con la sua scorciatoia.'; en = 'Avoids starting Narrator by mistake with its shortcut.' }
     'notif.hoverTime' = @{ it = 'Quanto fermarsi su un elemento prima che si apra la sua descrizione o il sottomenu.'; en = 'How long to hover an item before its description or submenu opens.' }
     'game.windowed' = @{ it = 'I giochi in finestra o senza bordi usano il modello di presentazione moderno: meno latenza.'; en = 'Windowed and borderless games use the modern presentation model: lower latency.' }
+    'game.bgInput' = @{ it = 'Quante volte al secondo le app non in primo piano ricevono i movimenti del mouse. 50 Hz toglie lavoro al processore mentre giochi; può disturbare scorciatoie e programmi che seguono il mouse.'; en = 'How many times per second apps in the background receive mouse movement. 50 Hz saves processor work while you play; it can affect hotkeys and programs that track the mouse.' }
     'game.vrr' = @{ it = 'Estende G-Sync e FreeSync anche ai giochi DirectX 10 e 11 che non lo supportano.'; en = 'Extends G-Sync and FreeSync to DirectX 10 and 11 games that lack it.' }
     'game.autoHdr' = @{ it = 'Converte in HDR i giochi che non lo prevedono. Utile solo su monitor HDR.'; en = 'Converts games without HDR to HDR. Only useful on HDR monitors.' }
     'game.gbController' = @{ it = 'Spento, il tasto Xbox non apre la Game Bar sopra il gioco.'; en = 'Off, the Xbox button doesn''t open Game Bar over the game.' }
@@ -11948,6 +12012,8 @@ $script:CatTip = @{
     'win.wuExpedite' = @{ it = 'Windows riavvia appena può per finire gli aggiornamenti, anche fuori orario.'; en = 'Windows restarts as soon as it can to finish updates, even outside active hours.' }
     'win.wuRestartNote' = @{ it = 'Una notifica ti avvisa prima del riavvio, così salvi il lavoro.'; en = 'A notification warns you before the restart so you can save your work.' }
     'win.wuMetered' = @{ it = 'Spento, gli aggiornamenti non consumano i giga dell''hotspot del telefono.'; en = 'Off, updates don''t eat your phone hotspot data.' }
+    'win.tmMonitor' = @{ it = 'I due servizi che misurano il traffico di rete per app e l''uso della scheda video. Spenti, Gestione attività non mostra più quei dati.'; en = 'The two services that measure per-app network traffic and graphics card usage. Off, Task Manager no longer shows that data.' }
+    'win.ntfs83' = @{ it = 'Per ogni file Windows crea anche un nome corto in stile DOS. Spento, le cartelle con molti file si leggono più in fretta. Serve solo a programmi molto vecchi.'; en = 'For every file Windows also creates a short DOS-style name. Off, folders with many files read faster. Only very old programs need it.' }
     'win.svcCdp' = @{ it = 'Collega il PC a telefono e altri dispositivi. Serve per Collegamento al telefono.'; en = 'Links the PC to your phone and other devices. Needed for Phone Link.' }
     'win.svcWmpShare' = @{ it = 'Condivide la raccolta multimediale con TV e dispositivi della rete.'; en = 'Shares your media library with TVs and devices on the network.' }
     'win.svcMixed' = @{ it = 'Serve solo con i visori di realtà mista.'; en = 'Only needed with mixed reality headsets.' }
@@ -13403,9 +13469,12 @@ function Build-Actions {
     Add-IfChecked $chkSecSpectre {
         # Valori documentati da Microsoft per disattivare le mitigazioni delle
         # vulnerabilita' speculative. Restituiscono prestazioni sulle CPU vecchie.
-        $m = "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management"
-        Set-Reg $m 'FeatureSettingsOverride' 3 'DWord' 'Mitigazioni Spectre/Meltdown'
-        Set-Reg $m 'FeatureSettingsOverrideMask' 3 'DWord' 'Maschera mitigazioni'
+        Set-MitigationBits 3 $true 'Mitigazioni Spectre/Meltdown'
+    }
+    Add-IfChecked $chkSecDownfall {
+        # Bit 25: Gather Data Sampling. Riguarda solo i processori Intel dalla 6a all'11a generazione.
+        if ($script:CpuVendor -and $script:CpuVendor -ne 'Intel') { Write-Log "[SALTATO] Mitigazione Downfall - riguarda solo i processori Intel."; return }
+        Set-MitigationBits 0x2000000 $true 'Mitigazione Downfall'
     }
     Add-IfChecked $chkSecDefenderIdle {
         # Non spegne Defender: la protezione antimanomissione lo rimetterebbe in
@@ -14108,8 +14177,9 @@ function Build-UndoActions {
         Reset-Reg 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\AppHost' 'EnableWebContentEvaluation'
     }
     Add-UndoIfChecked $chkSecSpectre {
-        Reset-Reg $mm 'FeatureSettingsOverride'; Reset-Reg $mm 'FeatureSettingsOverrideMask'
+        Set-MitigationBits 3 $false 'Mitigazioni Spectre/Meltdown'
     }
+    Add-UndoIfChecked $chkSecDownfall { Set-MitigationBits 0x2000000 $false 'Mitigazione Downfall' }
     Add-UndoIfChecked $chkSecDefenderIdle {
         $s = 'HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender\Scan'
         foreach ($v in @('ScanOnlyIfIdle','AvgCPULoadFactor','DisableScanningNetworkFiles')) { Reset-Reg $s $v }
@@ -17946,6 +18016,17 @@ Write-Host '@@PCT 60'; Write-Host '@@STEP Sincronizzazione'
 w32tm /resync /force | Out-Null
 exit $LASTEXITCODE
 '@
+    rootCerts = @'
+Write-Host '@@STEP Scarico l''elenco da Windows Update'
+$f = Join-Path $env:TEMP 'TweakAndrew_roots.sst'
+& certutil.exe -generateSSTFromWU $f | Out-Null
+if ($LASTEXITCODE -ne 0 -or -not (Test-Path -LiteralPath $f)) { Write-Host 'ERRORE: elenco dei certificati non scaricato.'; exit 1 }
+Write-Host '@@PCT 60'; Write-Host '@@STEP Importo i certificati'
+try { $n = @(Import-Certificate -FilePath $f -CertStoreLocation Cert:\LocalMachine\Root -ErrorAction Stop).Count; Write-Host "OK: $n certificati radice aggiornati." }
+catch { Write-Host "ERRORE: $($_.Exception.Message)"; Remove-Item -LiteralPath $f -Force -ErrorAction SilentlyContinue; exit 1 }
+Remove-Item -LiteralPath $f -Force -ErrorAction SilentlyContinue
+exit 0
+'@
     winget = @'
 Write-Host '@@STEP App Installer'
 try { Add-AppxPackage -RegisterByFamilyName -MainPackage Microsoft.DesktopAppInstaller_8wekyb3d8bbwe -ErrorAction Stop } catch { Write-Host $_.Exception.Message }
@@ -18104,6 +18185,7 @@ function Show-ToolsPage {
     [void]$c.Panel.Children.Add((New-ToolRow 'wuReset' { if (Confirm-Tool 'wuReset' 'warn') { Add-ToolJob (T 'tool_wuReset') $script:ToolScripts.wuReset -Reboot } }))
     [void]$c.Panel.Children.Add((New-ToolRow 'repair' { if (Confirm-Tool 'repair') { Add-ToolJob (T 'tool_repair') $script:ToolScripts.repair } }))
     [void]$c.Panel.Children.Add((New-ToolRow 'ntp' { Add-ToolJob (T 'tool_ntp') $script:ToolScripts.ntp }))
+    [void]$c.Panel.Children.Add((New-ToolRow 'rootCerts' { Add-ToolJob (T 'tool_rootCerts') $script:ToolScripts.rootCerts }))
     [void]$c.Panel.Children.Add((New-ToolRow 'winget' { Add-ToolJob (T 'tool_winget') $script:ToolScripts.winget }))
     [void]$c.Panel.Children.Add((New-ToolRow 'regBackup' { Add-ToolJob (T 'tool_regBackup') $script:ToolScripts.regBackup }))
     [void]$c.Panel.Children.Add((New-ToolRow 'store' {
@@ -18508,6 +18590,8 @@ function Get-ExplicitActive {
         chkWuProfile   = $null
         chkMenuSleep     = (Get-ShutdownMenuState).Sleep
         chkMenuHibernate = (Get-ShutdownMenuState).Hibernate
+        chkSecSpectre    = (Test-MitigationBits 3)
+        chkSecDownfall   = (Test-MitigationBits 0x2000000)
     }
 }
 

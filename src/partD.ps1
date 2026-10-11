@@ -1086,9 +1086,12 @@ function Build-Actions {
     Add-IfChecked $chkSecSpectre {
         # Valori documentati da Microsoft per disattivare le mitigazioni delle
         # vulnerabilita' speculative. Restituiscono prestazioni sulle CPU vecchie.
-        $m = "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management"
-        Set-Reg $m 'FeatureSettingsOverride' 3 'DWord' 'Mitigazioni Spectre/Meltdown'
-        Set-Reg $m 'FeatureSettingsOverrideMask' 3 'DWord' 'Maschera mitigazioni'
+        Set-MitigationBits 3 $true 'Mitigazioni Spectre/Meltdown'
+    }
+    Add-IfChecked $chkSecDownfall {
+        # Bit 25: Gather Data Sampling. Riguarda solo i processori Intel dalla 6a all'11a generazione.
+        if ($script:CpuVendor -and $script:CpuVendor -ne 'Intel') { Write-Log "[SALTATO] Mitigazione Downfall - riguarda solo i processori Intel."; return }
+        Set-MitigationBits 0x2000000 $true 'Mitigazione Downfall'
     }
     Add-IfChecked $chkSecDefenderIdle {
         # Non spegne Defender: la protezione antimanomissione lo rimetterebbe in

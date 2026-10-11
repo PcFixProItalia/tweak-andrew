@@ -512,3 +512,9 @@ H:notif.center	El panel que se abre al hacer clic en la fecha y hora. Desactivad
 g.win.browser	Navegadores
 win.brave	Brave sin Rewards, Wallet, VPN, IA ni estadísticas
 H:win.brave	Directivas de Brave: desactiva las funciones accesorias y el envío de estadísticas. También se aplica si Brave se instala después.
+win.tmMonitor	Red y GPU en el Administrador de tareas
+win.ntfs83	Nombres cortos 8.3 en discos NTFS
+game.bgInput	Actualizaciones del ratón a ventanas en segundo plano
+game.bgInput#win	125 Hz (Windows)
+game.bgInput#hz50	50 Hz
+game.bgInput#off	Sin límite

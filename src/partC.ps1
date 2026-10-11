@@ -426,6 +426,7 @@ $script:Loc = @{
     chkIPv4Pref        = @{ it = "IPv4 prima di IPv6"; en = "IPv4 before IPv6" }
     btnEmergency       = @{ it = "Ripristino totale"; en = "Full reset" }
     lblPersonal        = @{ it = "PERSONALIZZAZIONE"; en = "PERSONALIZATION" }
+    chkSecDownfall     = @{ it = "Mitigazione Downfall (solo Intel)"; en = "Downfall mitigation (Intel only)" }
 }
 
 # Messaggi non legati a un controllo: log, finestre di dialogo, etichette dinamiche.
@@ -815,6 +816,8 @@ $script:Msg = @{
     recAllDone         = @{ it = "Valori consigliati pronti: {0} da attivare, {1} da lasciare o riportare come Windows. Premi «Applica modifiche»."; en = "Recommended values ready: {0} to enable, {1} to keep or put back as Windows. Press «Apply changes»." }
     catBulkNothing     = @{ it = "Nessuna modifica: le voci di questa pagina sono già su questi valori."; en = "No changes: the entries on this page already have these values." }
     catBulkCount       = @{ it = "Voci da cambiare: {0}"; en = "Entries to change: {0}" }
+    tool_rootCerts     = @{ it = "Certificati radice: aggiorna"; en = "Root certificates: update" }
+    toolDesc_rootCerts = @{ it = "Scarica l'elenco aggiornato da Windows Update. Risolve gli errori di certificato su siti e programmi."; en = "Downloads the current list from Windows Update. Fixes certificate errors on websites and in programs." }
 }
 
 $script:LangCode = "it"
@@ -1015,7 +1018,7 @@ $chkAdvUtc = E 'chkAdvUtc'; $chkAdvRazer = E 'chkAdvRazer'; $chkAdvLogi = E 'chk
 $chkBootQuiet = E 'chkBootQuiet'; $chkBootMenu = E 'chkBootMenu'; $chkBootTimeout = E 'chkBootTimeout'
 $chkBootDynTick = E 'chkBootDynTick'; $chkBootTsc = E 'chkBootTsc'; $btnBootReset = E 'btnBootReset'
 $chkAppxBloat = E 'chkAppxBloat'; $chkAppxXbox = E 'chkAppxXbox'; $chkAppxProvision = E 'chkAppxProvision'
-$chkSecSmartScreen = E 'chkSecSmartScreen'; $chkSecSpectre = E 'chkSecSpectre'; $chkSecDefenderIdle = E 'chkSecDefenderIdle'
+$chkSecSmartScreen = E 'chkSecSmartScreen'; $chkSecSpectre = E 'chkSecSpectre'; $chkSecDownfall = E 'chkSecDownfall'; $chkSecDefenderIdle = E 'chkSecDefenderIdle'
 
 # ------------------------------------------------------------------------------
 # 5. REGISTRO DELLE OPERAZIONI E AVANZAMENTO
@@ -1128,6 +1131,27 @@ function Set-RegAllInterfaces {
         try { New-ItemProperty -LiteralPath $_.PSPath -Name $Name -Value $Value -PropertyType DWord -Force -ErrorAction Stop | Out-Null; $n++ } catch {}
     }
     Write-Log "[OK] $Label - $n interfacce aggiornate."
+}
+
+# Le mitigazioni delle vulnerabilita' speculative stanno tutte in un solo
+# valore, un bit per ciascuna: si cambia solo il proprio, senza toccare gli altri.
+$script:MitKey = 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management'
+function Test-MitigationBits([int]$Bits) {
+    $v = Get-RegOrNull $script:MitKey 'FeatureSettingsOverride'
+    if ($null -eq $v) { return $false }
+    return (([int64]$v -band $Bits) -eq $Bits)
+}
+function Set-MitigationBits([int]$Bits, [bool]$Off, [string]$Label) {
+    $v = Get-RegOrNull $script:MitKey 'FeatureSettingsOverride'
+    $cur = if ($null -eq $v) { 0 } else { [int]$v }
+    $new = if ($Off) { $cur -bor $Bits } else { $cur -band (-bnot $Bits) }
+    if ($new -eq 0) {
+        Remove-Reg $script:MitKey 'FeatureSettingsOverride' $Label
+        Remove-Reg $script:MitKey 'FeatureSettingsOverrideMask' "$Label (maschera)"
+        return
+    }
+    Set-Reg $script:MitKey 'FeatureSettingsOverride' $new 'DWord' $Label | Out-Null
+    Set-Reg $script:MitKey 'FeatureSettingsOverrideMask' 3 'DWord' "$Label (maschera)" | Out-Null
 }
 
 function Get-RegOrNull {

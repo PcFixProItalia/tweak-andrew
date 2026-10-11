@@ -512,3 +512,9 @@ H:notif.center	Le panneau qui s'ouvre en cliquant sur la date et l'heure. Désac
 g.win.browser	Navigateurs
 win.brave	Brave sans Rewards, Wallet, VPN, IA ni statistiques
 H:win.brave	Stratégies de Brave : désactive les fonctions annexes et l'envoi de statistiques. S'applique aussi si Brave est installé plus tard.
+win.tmMonitor	Réseau et GPU dans le Gestionnaire des tâches
+win.ntfs83	Noms courts 8.3 sur les disques NTFS
+game.bgInput	Mises à jour de la souris pour les fenêtres en arrière-plan
+game.bgInput#win	125 Hz (Windows)
+game.bgInput#hz50	50 Hz
+game.bgInput#off	Aucune limite

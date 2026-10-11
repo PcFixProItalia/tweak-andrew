@@ -512,3 +512,9 @@ H:notif.center	Das Fenster, das sich per Klick auf Datum und Uhrzeit öffnet. Au
 g.win.browser	Browser
 win.brave	Brave ohne Rewards, Wallet, VPN, KI und Statistiken
 H:win.brave	Brave-Richtlinien: schaltet Zusatzfunktionen und das Senden von Statistiken ab. Gilt auch, wenn Brave später installiert wird.
+win.tmMonitor	Netzwerk und GPU im Task-Manager
+win.ntfs83	Kurze 8.3-Namen auf NTFS-Laufwerken
+game.bgInput	Mausaktualisierungen für Hintergrundfenster
+game.bgInput#win	125 Hz (Windows)
+game.bgInput#hz50	50 Hz
+game.bgInput#off	Kein Limit

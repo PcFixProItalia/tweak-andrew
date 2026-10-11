@@ -338,6 +338,17 @@ Write-Host '@@PCT 60'; Write-Host '@@STEP Sincronizzazione'
 w32tm /resync /force | Out-Null
 exit $LASTEXITCODE
 '@
+    rootCerts = @'
+Write-Host '@@STEP Scarico l''elenco da Windows Update'
+$f = Join-Path $env:TEMP 'TweakAndrew_roots.sst'
+& certutil.exe -generateSSTFromWU $f | Out-Null
+if ($LASTEXITCODE -ne 0 -or -not (Test-Path -LiteralPath $f)) { Write-Host 'ERRORE: elenco dei certificati non scaricato.'; exit 1 }
+Write-Host '@@PCT 60'; Write-Host '@@STEP Importo i certificati'
+try { $n = @(Import-Certificate -FilePath $f -CertStoreLocation Cert:\LocalMachine\Root -ErrorAction Stop).Count; Write-Host "OK: $n certificati radice aggiornati." }
+catch { Write-Host "ERRORE: $($_.Exception.Message)"; Remove-Item -LiteralPath $f -Force -ErrorAction SilentlyContinue; exit 1 }
+Remove-Item -LiteralPath $f -Force -ErrorAction SilentlyContinue
+exit 0
+'@
     winget = @'
 Write-Host '@@STEP App Installer'
 try { Add-AppxPackage -RegisterByFamilyName -MainPackage Microsoft.DesktopAppInstaller_8wekyb3d8bbwe -ErrorAction Stop } catch { Write-Host $_.Exception.Message }
@@ -496,6 +507,7 @@ function Show-ToolsPage {
     [void]$c.Panel.Children.Add((New-ToolRow 'wuReset' { if (Confirm-Tool 'wuReset' 'warn') { Add-ToolJob (T 'tool_wuReset') $script:ToolScripts.wuReset -Reboot } }))
     [void]$c.Panel.Children.Add((New-ToolRow 'repair' { if (Confirm-Tool 'repair') { Add-ToolJob (T 'tool_repair') $script:ToolScripts.repair } }))
     [void]$c.Panel.Children.Add((New-ToolRow 'ntp' { Add-ToolJob (T 'tool_ntp') $script:ToolScripts.ntp }))
+    [void]$c.Panel.Children.Add((New-ToolRow 'rootCerts' { Add-ToolJob (T 'tool_rootCerts') $script:ToolScripts.rootCerts }))
     [void]$c.Panel.Children.Add((New-ToolRow 'winget' { Add-ToolJob (T 'tool_winget') $script:ToolScripts.winget }))
     [void]$c.Panel.Children.Add((New-ToolRow 'regBackup' { Add-ToolJob (T 'tool_regBackup') $script:ToolScripts.regBackup }))
     [void]$c.Panel.Children.Add((New-ToolRow 'store' {
@@ -900,6 +912,8 @@ function Get-ExplicitActive {
         chkWuProfile   = $null
         chkMenuSleep     = (Get-ShutdownMenuState).Sleep
         chkMenuHibernate = (Get-ShutdownMenuState).Hibernate
+        chkSecSpectre    = (Test-MitigationBits 3)
+        chkSecDownfall   = (Test-MitigationBits 0x2000000)
     }
 }
 

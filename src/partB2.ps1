@@ -2195,6 +2195,7 @@
                                                            Text="Tutte rischiose e mai incluse in «Seleziona tutto». Abbassano davvero le difese del computer: usale solo su una macchina che non naviga e non apre allegati."/>
                                                 <CheckBox x:Name="chkSecSmartScreen" Tag="risky" Content="SmartScreen — controllo dei file scaricati"/>
                                                 <CheckBox x:Name="chkSecSpectre" Tag="risky" Content="Mitigazioni Spectre e Meltdown"/>
+                                                <CheckBox x:Name="chkSecDownfall" Tag="risky" Content="Mitigazione Downfall (Intel)"/>
                                                 <CheckBox x:Name="chkVBS" Tag="risky" Content="VBS"/>
                                                 <CheckBox x:Name="chkMitigations" Tag="risky" Content="Mitigazioni exploit"/>
                                                 <CheckBox x:Name="chkSecDefenderIdle" Tag="risky" Content="Defender: scansioni solo a computer fermo, CPU al 20%"/>

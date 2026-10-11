@@ -177,6 +177,7 @@ $script:Tips = @{
     chkAdvRazer = @{ it = "Blocca i co-installer dei driver e la cartella in cui Razer Synapse si copia quando colleghi una periferica. Blocca anche i co-installer di altri produttori."; en = "Blocks driver co-installers and the folder Razer Synapse copies itself into when you plug in a device. It also blocks other vendors' co-installers." }
     chkAdvLogi = @{ it = "Chiude l'assistente download Logitech e gli impedisce di reinstallarsi a ogni avvio."; en = "Closes the Logitech download assistant and stops it from reinstalling at every startup." }
     chkIPv4Pref = @{ it = "IPv6 resta attivo, ma Windows prova prima IPv4. Utile con reti o router che gestiscono male IPv6."; en = "IPv6 stays on, but Windows tries IPv4 first. Useful with networks or routers that handle IPv6 poorly." }
+    chkSecDownfall = @{ it = "Spegne la protezione contro Downfall sui processori Intel dalla 6ª all'11ª generazione: recupera prestazioni nei carichi AVX, ma un programma malevolo può leggere dati di altri programmi. Con Hyper-V o VBS attivi Windows la tiene accesa comunque."; en = "Turns off the Downfall protection on 6th to 11th generation Intel processors: it recovers performance in AVX workloads, but a malicious program can read data from other programs. With Hyper-V or VBS on, Windows keeps it enabled anyway." }
 }
 
 $script:Tr = @{
@@ -1086,6 +1087,10 @@ $script:Tr = @{
         'L:lblPersonal' = "PERSONALIZACIÓN"
         'M:catBulkNothing' = "Sin cambios: las opciones de esta página ya tienen estos valores."
         'M:catBulkCount' = "Opciones a cambiar: {0}"
+        'L:chkSecDownfall' = "Mitigación Downfall (solo Intel)"
+        'H:chkSecDownfall' = "Desactiva la protección contra Downfall en procesadores Intel de 6.ª a 11.ª generación: recupera rendimiento en cargas AVX, pero un programa malicioso puede leer datos de otros programas. Con Hyper-V o VBS activos, Windows la mantiene activada."
+        'M:tool_rootCerts' = "Certificados raíz: actualizar"
+        'M:toolDesc_rootCerts' = "Descarga la lista actual desde Windows Update. Corrige errores de certificado en webs y programas."
     }
     de = @{
         'L:lblSubtitle' = "Windows-Optimierung und -Steuerung — PcFixPro Italia"
@@ -1993,6 +1998,10 @@ $script:Tr = @{
         'L:lblPersonal' = "PERSONALISIERUNG"
         'M:catBulkNothing' = "Keine Änderungen: Die Einträge dieser Seite haben bereits diese Werte."
         'M:catBulkCount' = "Zu ändernde Einträge: {0}"
+        'L:chkSecDownfall' = "Downfall-Schutz (nur Intel)"
+        'H:chkSecDownfall' = "Schaltet den Schutz gegen Downfall auf Intel-Prozessoren der 6. bis 11. Generation ab: bringt Leistung bei AVX-Lasten zurück, aber ein Schadprogramm kann Daten anderer Programme lesen. Mit Hyper-V oder VBS lässt Windows ihn trotzdem an."
+        'M:tool_rootCerts' = "Stammzertifikate: aktualisieren"
+        'M:toolDesc_rootCerts' = "Lädt die aktuelle Liste von Windows Update. Behebt Zertifikatsfehler auf Websites und in Programmen."
     }
     fr = @{
         'L:lblSubtitle' = "Optimisation et contrôle de Windows — PcFixPro Italia"
@@ -2903,6 +2912,10 @@ $script:Tr = @{
         'L:lblPersonal' = "PERSONNALISATION"
         'M:catBulkNothing' = "Aucune modification : les éléments de cette page ont déjà ces valeurs."
         'M:catBulkCount' = "Éléments à modifier : {0}"
+        'L:chkSecDownfall' = "Atténuation Downfall (Intel uniquement)"
+        'H:chkSecDownfall' = "Désactive la protection contre Downfall sur les processeurs Intel de la 6e à la 11e génération : récupère des performances en charge AVX, mais un programme malveillant peut lire les données d'autres programmes. Avec Hyper-V ou VBS, Windows la garde active."
+        'M:tool_rootCerts' = "Certificats racine : mettre à jour"
+        'M:toolDesc_rootCerts' = "Télécharge la liste à jour depuis Windows Update. Corrige les erreurs de certificat sur les sites et dans les programmes."
     }
     pl = @{
         'L:lblSubtitle' = "Optymalizacja i kontrola systemu Windows — PcFixPro Italia"
@@ -3810,6 +3823,10 @@ $script:Tr = @{
         'L:lblPersonal' = "PERSONALIZACJA"
         'M:catBulkNothing' = "Brak zmian: pozycje na tej stronie mają już te wartości."
         'M:catBulkCount' = "Pozycje do zmiany: {0}"
+        'L:chkSecDownfall' = "Zabezpieczenie Downfall (tylko Intel)"
+        'H:chkSecDownfall' = "Wyłącza ochronę przed Downfall na procesorach Intel od 6. do 11. generacji: odzyskuje wydajność w obciążeniach AVX, ale złośliwy program może odczytać dane innych programów. Z Hyper-V lub VBS system i tak ją zostawia."
+        'M:tool_rootCerts' = "Certyfikaty główne: aktualizuj"
+        'M:toolDesc_rootCerts' = "Pobiera aktualną listę z Windows Update. Naprawia błędy certyfikatów na stronach i w programach."
     }
     pt = @{
         'L:lblSubtitle' = "Otimização e controle do Windows — PcFixPro Italia"
@@ -4717,6 +4734,10 @@ $script:Tr = @{
         'L:lblPersonal' = "PERSONALIZAÇÃO"
         'M:catBulkNothing' = "Nenhuma alteração: os itens desta página já têm esses valores."
         'M:catBulkCount' = "Itens a alterar: {0}"
+        'L:chkSecDownfall' = "Mitigação Downfall (só Intel)"
+        'H:chkSecDownfall' = "Desliga a proteção contra o Downfall em processadores Intel da 6ª à 11ª geração: recupera desempenho em cargas AVX, mas um programa malicioso pode ler dados de outros programas. Com Hyper-V ou VBS ativos, o Windows a mantém ligada."
+        'M:tool_rootCerts' = "Certificados raiz: atualizar"
+        'M:toolDesc_rootCerts' = "Baixa a lista atual do Windows Update. Corrige erros de certificado em sites e programas."
     }
     ro = @{
         'L:lblSubtitle' = "Optimizarea și controlul Windows — PcFixPro Italia"
@@ -5624,6 +5645,10 @@ $script:Tr = @{
         'L:lblPersonal' = "PERSONALIZARE"
         'M:catBulkNothing' = "Nicio modificare: elementele acestei pagini au deja aceste valori."
         'M:catBulkCount' = "Elemente de schimbat: {0}"
+        'L:chkSecDownfall' = "Protecția Downfall (doar Intel)"
+        'H:chkSecDownfall' = "Oprește protecția împotriva Downfall pe procesoarele Intel din generațiile 6–11: recuperează performanță în sarcini AVX, dar un program rău-intenționat poate citi datele altor programe. Cu Hyper-V sau VBS active, Windows o păstrează pornită."
+        'M:tool_rootCerts' = "Certificate rădăcină: actualizează"
+        'M:toolDesc_rootCerts' = "Descarcă lista actuală de la Windows Update. Repară erorile de certificat pe site-uri și în programe."
     }
     ru = @{
         'L:lblSubtitle' = "Оптимизация и управление Windows — PcFixPro Italia"
@@ -6531,6 +6556,10 @@ $script:Tr = @{
         'L:lblPersonal' = "ПЕРСОНАЛИЗАЦИЯ"
         'M:catBulkNothing' = "Изменений нет: пункты этой страницы уже имеют эти значения."
         'M:catBulkCount' = "Пунктов к изменению: {0}"
+        'L:chkSecDownfall' = "Защита от Downfall (только Intel)"
+        'H:chkSecDownfall' = "Отключает защиту от Downfall на процессорах Intel с 6-го по 11-е поколение: возвращает производительность в нагрузках AVX, но вредоносная программа сможет читать данные других программ. При включённых Hyper-V или VBS Windows оставляет защиту."
+        'M:tool_rootCerts' = "Корневые сертификаты: обновить"
+        'M:toolDesc_rootCerts' = "Загружает актуальный список из Windows Update. Исправляет ошибки сертификатов на сайтах и в программах."
     }
 }
 

@@ -903,3 +903,7 @@ M:recAllDone	Valores recomendados prontos: {0} para ativar, {1} para manter ou v
 L:lblPersonal	PERSONALIZAÇÃO
 M:catBulkNothing	Nenhuma alteração: os itens desta página já têm esses valores.
 M:catBulkCount	Itens a alterar: {0}
+L:chkSecDownfall	Mitigação Downfall (só Intel)
+H:chkSecDownfall	Desliga a proteção contra o Downfall em processadores Intel da 6ª à 11ª geração: recupera desempenho em cargas AVX, mas um programa malicioso pode ler dados de outros programas. Com Hyper-V ou VBS ativos, o Windows a mantém ligada.
+M:tool_rootCerts	Certificados raiz: atualizar
+M:toolDesc_rootCerts	Baixa a lista atual do Windows Update. Corrige erros de certificado em sites e programas.
