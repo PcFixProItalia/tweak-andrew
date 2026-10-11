@@ -273,16 +273,7 @@ function Build-Actions {
             '\Microsoft\Windows\Feedback\Siuf\DmClient',
             '\Microsoft\Windows\Feedback\Siuf\DmClientOnScenarioDownload'
         )
-        $n = 0
-        foreach ($t in $tasks) {
-            try {
-                $path = Split-Path $t -Parent
-                $name = Split-Path $t -Leaf
-                Disable-ScheduledTask -TaskPath "$path\" -TaskName $name -ErrorAction Stop | Out-Null
-                $n++
-            } catch {}
-        }
-        Write-Log "[OK] Attivita' pianificate di telemetria disattivate: $n."
+        Disable-Tasks $tasks 'Attivita pianificate di telemetria'
     }
 
     Add-IfChecked $chkActivityHistory {
@@ -409,8 +400,8 @@ function Build-Actions {
         }
     }
     Add-IfChecked $chkDeliveryOpt {
+        # Solo il criterio: Windows protegge il servizio DoSvc e nega la modifica.
         Set-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\DeliveryOptimization' 'DODownloadMode' 0 'DWord' 'Ottimizzazione recapito'
-        Set-Svc 'DoSvc' 'Disabled' 'DoSvc'
     }
     Add-IfChecked $chkBitLocker { Set-Svc 'BDESVC' 'Manual' 'BitLocker (BDESVC)' }
     Add-IfChecked $chkWPBT {
@@ -1010,6 +1001,10 @@ function Build-Actions {
         Set-Reg $a 'AITEnable' 0 'DWord' 'Application Impact Telemetry'
     }
     Add-IfChecked $chkMemCompression {
+        if ((Get-Service -Name SysMain -ErrorAction SilentlyContinue).StartType -eq 'Disabled') {
+            Write-Log "[SALTATO] Compressione della memoria - gia' spenta: il servizio SysMain e' disattivato."
+            return
+        }
         try {
             Disable-MMAgent -MemoryCompression -ErrorAction Stop
             Write-Log "[OK] Compressione della memoria disattivata."

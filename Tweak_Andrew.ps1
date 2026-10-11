@@ -11234,15 +11234,9 @@ $script:Catalog = @(
     @{ Id = 'win.svcNfc'; Page = 'win'; Group = 'svc'; Kind = 'V'; Flags = ''; Def = 'M'; Rec = 'X'; Svcs = @('SEMgrSvc') },
     @{ Id = 'win.svcSpot'; Page = 'win'; Group = 'svc'; Kind = 'V'; Flags = ''; Def = 'M'; Rec = '-'; Svcs = @('svsvc') },
     @{ Id = 'win.svcTapi'; Page = 'win'; Group = 'svc'; Kind = 'V'; Flags = ''; Def = 'M'; Rec = '-'; Svcs = @('TapiSrv') },
-    @{ Id = 'win.tAppraiser'; Page = 'win'; Group = 'tasks'; Kind = 'J'; Flags = ''; Def = '1'; Rec = '0'; Tasks = @('\Microsoft\Windows\Application Experience\Microsoft Compatibility Appraiser', '\Microsoft\Windows\Application Experience\Microsoft Compatibility Appraiser Exp') },
-    @{ Id = 'win.tPdu'; Page = 'win'; Group = 'tasks'; Kind = 'J'; Flags = ''; Def = '1'; Rec = '0'; Tasks = @('\Microsoft\Windows\Application Experience\ProgramDataUpdater') },
     @{ Id = 'win.tStartupApp'; Page = 'win'; Group = 'tasks'; Kind = 'J'; Flags = ''; Def = '1'; Rec = '-'; Tasks = @('\Microsoft\Windows\Application Experience\StartupAppTask') },
-    @{ Id = 'win.tCeip'; Page = 'win'; Group = 'tasks'; Kind = 'J'; Flags = ''; Def = '1'; Rec = '0'; Tasks = @('\Microsoft\Windows\Customer Experience Improvement Program\Consolidator', '\Microsoft\Windows\Customer Experience Improvement Program\UsbCeip') },
-    @{ Id = 'win.tDiskDiag'; Page = 'win'; Group = 'tasks'; Kind = 'J'; Flags = ''; Def = '1'; Rec = '0'; Tasks = @('\Microsoft\Windows\DiskDiagnostic\Microsoft-Windows-DiskDiagnosticDataCollector') },
-    @{ Id = 'win.tFeedback'; Page = 'win'; Group = 'tasks'; Kind = 'J'; Flags = ''; Def = '1'; Rec = '0'; Tasks = @('\Microsoft\Windows\Feedback\Siuf\DmClient', '\Microsoft\Windows\Feedback\Siuf\DmClientOnScenarioDownload') },
     @{ Id = 'win.tWer'; Page = 'win'; Group = 'tasks'; Kind = 'J'; Flags = ''; Def = '1'; Rec = '0'; Tasks = @('\Microsoft\Windows\Windows Error Reporting\QueueReporting') },
     @{ Id = 'win.tMaps'; Page = 'win'; Group = 'tasks'; Kind = 'J'; Flags = ''; Def = '1'; Rec = '0'; Tasks = @('\Microsoft\Windows\Maps\MapsUpdateTask', '\Microsoft\Windows\Maps\MapsToastTask') },
-    @{ Id = 'win.tAutochk'; Page = 'win'; Group = 'tasks'; Kind = 'J'; Flags = ''; Def = '1'; Rec = '0'; Tasks = @('\Microsoft\Windows\Autochk\Proxy') },
     @{ Id = 'win.tFamily'; Page = 'win'; Group = 'tasks'; Kind = 'J'; Flags = ''; Def = '1'; Rec = '-'; Tasks = @('\Microsoft\Windows\Shell\FamilySafetyMonitor', '\Microsoft\Windows\Shell\FamilySafetyRefreshTask') },
     @{ Id = 'win.tPowerDiag'; Page = 'win'; Group = 'tasks'; Kind = 'J'; Flags = ''; Def = '1'; Rec = '0'; Tasks = @('\Microsoft\Windows\Power Efficiency Diagnostics\AnalyzeSystem') },
     @{ Id = 'win.tSqm'; Page = 'win'; Group = 'tasks'; Kind = 'J'; Flags = ''; Def = '1'; Rec = '0'; Tasks = @('\Microsoft\Windows\PI\Sqm-Tasks') },
@@ -11639,15 +11633,9 @@ $script:CatText = @{
     'win.svcSpot' = @{ it = 'Verifica spot'; en = 'Spot Verifier'; es = 'Comprobador puntual'; de = 'Stichprobenüberprüfung'; fr = 'Vérificateur ponctuel'; pl = 'Weryfikator punktowy'; pt = 'Verificador pontual'; ro = 'Verificator punctual'; ru = 'Точечная проверка' }
     'win.svcTapi' = @{ it = 'Telefonia (TAPI)'; en = 'Telephony (TAPI)'; es = 'Telefonía (TAPI)'; de = 'Telefonie (TAPI)'; fr = 'Téléphonie (TAPI)'; pl = 'Telefonia (TAPI)'; pt = 'Telefonia (TAPI)'; ro = 'Telefonie (TAPI)'; ru = 'Телефония (TAPI)' }
     'g.win.tasks' = @{ it = 'Attività pianificate'; en = 'Scheduled tasks'; es = 'Tareas programadas'; de = 'Geplante Aufgaben'; fr = 'Tâches planifiées'; pl = 'Zaplanowane zadania'; pt = 'Tarefas agendadas'; ro = 'Activități programate'; ru = 'Запланированные задачи' }
-    'win.tAppraiser' = @{ it = 'Valutazione compatibilità Microsoft'; en = 'Microsoft Compatibility Appraiser'; es = 'Evaluador de compatibilidad de Microsoft'; de = 'Microsoft-Kompatibilitätsbewertung'; fr = 'Évaluateur de compatibilité Microsoft'; pl = 'Ocena zgodności Microsoft'; pt = 'Avaliador de compatibilidade da Microsoft'; ro = 'Evaluatorul de compatibilitate Microsoft'; ru = 'Оценщик совместимости Microsoft' }
-    'win.tPdu' = @{ it = 'Aggiornamento dati dei programmi'; en = 'Program Data Updater'; es = 'Actualizador de datos de programas'; de = 'Programmdaten-Aktualisierung'; fr = 'Mise à jour des données de programmes'; pl = 'Aktualizator danych programów'; pt = 'Atualizador de dados de programas'; ro = 'Actualizarea datelor programelor'; ru = 'Обновление данных программ' }
     'win.tStartupApp' = @{ it = 'Analisi delle app all''avvio'; en = 'Startup app analysis'; es = 'Análisis de apps de inicio'; de = 'Analyse der Autostart-Apps'; fr = 'Analyse des apps au démarrage'; pl = 'Analiza aplikacji autostartu'; pt = 'Análise dos apps de inicialização'; ro = 'Analiza aplicațiilor de pornire'; ru = 'Анализ приложений автозапуска' }
-    'win.tCeip' = @{ it = 'Programma di miglioramento dell''esperienza'; en = 'Customer Experience Improvement'; es = 'Programa de mejora de la experiencia'; de = 'Programm zur Verbesserung der Benutzerfreundlichkeit'; fr = 'Programme d''amélioration de l''expérience'; pl = 'Program poprawy jakości obsługi'; pt = 'Programa de aperfeiçoamento da experiência'; ro = 'Programul de îmbunătățire a experienței'; ru = 'Программа улучшения качества' }
-    'win.tDiskDiag' = @{ it = 'Raccolta dati diagnostici del disco'; en = 'Disk diagnostic data collector'; es = 'Recopilador de diagnóstico de disco'; de = 'Sammler für Datenträgerdiagnose'; fr = 'Collecteur de diagnostic de disque'; pl = 'Zbieranie diagnostyki dysków'; pt = 'Coletor de diagnóstico de disco'; ro = 'Colectorul de diagnostic al discului'; ru = 'Сбор диагностики дисков' }
-    'win.tFeedback' = @{ it = 'Richieste di feedback'; en = 'Feedback requests'; es = 'Solicitudes de comentarios'; de = 'Feedback-Anfragen'; fr = 'Demandes de commentaires'; pl = 'Prośby o opinie'; pt = 'Pedidos de comentários'; ro = 'Solicitări de feedback'; ru = 'Запросы отзывов' }
     'win.tWer' = @{ it = 'Coda della segnalazione errori'; en = 'Error reporting queue'; es = 'Cola de informes de errores'; de = 'Warteschlange der Fehlerberichte'; fr = 'File d''attente des rapports d''erreurs'; pl = 'Kolejka raportów błędów'; pt = 'Fila de relatórios de erros'; ro = 'Coada rapoartelor de erori'; ru = 'Очередь отчётов об ошибках' }
     'win.tMaps' = @{ it = 'Aggiornamento e avvisi delle mappe'; en = 'Maps update and notices'; es = 'Actualización y avisos de mapas'; de = 'Kartenaktualisierung und Hinweise'; fr = 'Mise à jour et avis des cartes'; pl = 'Aktualizacja i komunikaty map'; pt = 'Atualização e avisos de mapas'; ro = 'Actualizarea și anunțurile hărților'; ru = 'Обновление и уведомления карт' }
-    'win.tAutochk' = @{ it = 'Proxy di Autochk'; en = 'Autochk proxy'; es = 'Proxy de Autochk'; de = 'Autochk-Proxy'; fr = 'Proxy Autochk'; pl = 'Serwer proxy Autochk'; pt = 'Proxy do Autochk'; ro = 'Proxy Autochk'; ru = 'Прокси Autochk' }
     'win.tFamily' = @{ it = 'Monitoraggio Family Safety'; en = 'Family Safety monitor'; es = 'Supervisión de Family Safety'; de = 'Family-Safety-Überwachung'; fr = 'Surveillance Family Safety'; pl = 'Monitor Family Safety'; pt = 'Monitor do Family Safety'; ro = 'Monitorizare Family Safety'; ru = 'Мониторинг Family Safety' }
     'win.tPowerDiag' = @{ it = 'Diagnostica dell''efficienza energetica'; en = 'Power efficiency diagnostics'; es = 'Diagnóstico de eficiencia energética'; de = 'Diagnose der Energieeffizienz'; fr = 'Diagnostic d''efficacité énergétique'; pl = 'Diagnostyka wydajności energetycznej'; pt = 'Diagnóstico de eficiência energética'; ro = 'Diagnosticul eficienței energetice'; ru = 'Диагностика энергоэффективности' }
     'win.tSqm' = @{ it = 'Attività SQM'; en = 'SQM tasks'; es = 'Tareas SQM'; de = 'SQM-Aufgaben'; fr = 'Tâches SQM'; pl = 'Zadania SQM'; pt = 'Tarefas SQM'; ro = 'Activități SQM'; ru = 'Задачи SQM' }
@@ -12093,15 +12081,9 @@ $script:CatTip = @{
     'win.svcNfc' = @{ it = 'Pagamenti contactless dal PC tramite NFC.'; en = 'Contactless payments from the PC through NFC.' }
     'win.svcSpot' = @{ it = 'Controlla i danni al file system segnalati dal disco.'; en = 'Checks file system damage reported by the disk.' }
     'win.svcTapi' = @{ it = 'Supporto telefonico per vecchi modem e centralini.'; en = 'Telephony support for old modems and PBXs.' }
-    'win.tAppraiser' = @{ it = 'Analizza i programmi installati e invia l''elenco a Microsoft. Pesante sul disco.'; en = 'Scans installed programs and sends the list to Microsoft. Heavy on the disk.' }
-    'win.tPdu' = @{ it = 'Raccoglie dati sull''uso dei programmi per il programma di miglioramento.'; en = 'Collects program usage data for the improvement program.' }
     'win.tStartupApp' = @{ it = 'Misura quanto rallentano l''avvio le app che partono con Windows.'; en = 'Measures how much startup apps slow down sign-in.' }
-    'win.tCeip' = @{ it = 'Raccoglie e invia statistiche d''uso a Microsoft.'; en = 'Collects and sends usage statistics to Microsoft.' }
-    'win.tDiskDiag' = @{ it = 'Invia a Microsoft i dati SMART dei dischi.'; en = 'Sends Microsoft the disks'' SMART data.' }
-    'win.tFeedback' = @{ it = 'Le attività che preparano i sondaggi di Windows.'; en = 'The tasks that prepare Windows surveys.' }
     'win.tWer' = @{ it = 'Invia i rapporti di errore rimasti in coda.'; en = 'Sends queued error reports.' }
     'win.tMaps' = @{ it = 'Aggiorna le mappe offline e mostra le relative notifiche.'; en = 'Updates offline maps and shows related notifications.' }
-    'win.tAutochk' = @{ it = 'Raccoglie dati del controllo disco per il programma di miglioramento.'; en = 'Collects disk check data for the improvement program.' }
     'win.tFamily' = @{ it = 'Controlla i limiti di Microsoft Family. Inutile senza account per bambini.'; en = 'Checks Microsoft Family limits. Useless without child accounts.' }
     'win.tPowerDiag' = @{ it = 'Analizza periodicamente il consumo del sistema.'; en = 'Periodically analyzes system power use.' }
     'win.tSqm' = @{ it = 'Misurazioni della qualità del software inviate a Microsoft.'; en = 'Software quality measurements sent to Microsoft.' }
@@ -12727,16 +12709,7 @@ function Build-Actions {
             '\Microsoft\Windows\Feedback\Siuf\DmClient',
             '\Microsoft\Windows\Feedback\Siuf\DmClientOnScenarioDownload'
         )
-        $n = 0
-        foreach ($t in $tasks) {
-            try {
-                $path = Split-Path $t -Parent
-                $name = Split-Path $t -Leaf
-                Disable-ScheduledTask -TaskPath "$path\" -TaskName $name -ErrorAction Stop | Out-Null
-                $n++
-            } catch {}
-        }
-        Write-Log "[OK] Attivita' pianificate di telemetria disattivate: $n."
+        Disable-Tasks $tasks 'Attivita pianificate di telemetria'
     }
 
     Add-IfChecked $chkActivityHistory {
@@ -12863,8 +12836,8 @@ function Build-Actions {
         }
     }
     Add-IfChecked $chkDeliveryOpt {
+        # Solo il criterio: Windows protegge il servizio DoSvc e nega la modifica.
         Set-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\DeliveryOptimization' 'DODownloadMode' 0 'DWord' 'Ottimizzazione recapito'
-        Set-Svc 'DoSvc' 'Disabled' 'DoSvc'
     }
     Add-IfChecked $chkBitLocker { Set-Svc 'BDESVC' 'Manual' 'BitLocker (BDESVC)' }
     Add-IfChecked $chkWPBT {
@@ -13464,6 +13437,10 @@ function Build-Actions {
         Set-Reg $a 'AITEnable' 0 'DWord' 'Application Impact Telemetry'
     }
     Add-IfChecked $chkMemCompression {
+        if ((Get-Service -Name SysMain -ErrorAction SilentlyContinue).StartType -eq 'Disabled') {
+            Write-Log "[SALTATO] Compressione della memoria - gia' spenta: il servizio SysMain e' disattivato."
+            return
+        }
         try {
             Disable-MMAgent -MemoryCompression -ErrorAction Stop
             Write-Log "[OK] Compressione della memoria disattivata."
@@ -15294,7 +15271,11 @@ function Set-NvProfile([string]$set, [string]$label) {
         try {
             [TweakAndrew.NvDrs]::Set([uint32]$pair[0], [uint32]$pair[1])
             Write-Log ("[OK] $label - 0x{0:X8} = {1}" -f $pair[0], $pair[1])
-        } catch { Write-Log "[ERRORE] $label - $($_.Exception.Message)" }
+        } catch {
+            # -160: questa versione del driver non ha l'impostazione.
+            if ($_.Exception.Message -match 'NVAPI -160') { Write-Log ("[SALTATO] $label - 0x{0:X8} non esiste in questo driver." -f $pair[0]) }
+            else { Write-Log "[ERRORE] $label - $($_.Exception.Message)" }
+        }
     }
 }
 
@@ -18513,9 +18494,32 @@ function Show-WuProfiles {
 # ogni valore con quello presente sul sistema: una voce e' attiva quando tutti
 # coincidono. Le voci con passaggi che non si possono verificare restano senza
 # etichetta, invece di mostrarne una sbagliata.
-$script:ProbeSafe = @('Write-Log', 'Test-Gpu', 'Out-Null', 'Test-Path', 'Join-Path', 'Stop-Process')
+$script:ProbeSafe = @('Write-Log', 'Test-Gpu', 'Out-Null', 'Test-Path', 'Join-Path', 'Stop-Process', 'Get-Process')
 
 function Resolve-ProbeArg($ast, $vars) {
+    if ($ast -is [System.Management.Automation.Language.ExpandableStringExpressionAst]) {
+        $s = $ast.Value
+        foreach ($n in $ast.NestedExpressions) {
+            if ($n -isnot [System.Management.Automation.Language.VariableExpressionAst]) { return ,[System.DBNull]::Value }
+            $k = $n.VariablePath.UserPath
+            if (-not $vars.ContainsKey($k)) { return ,[System.DBNull]::Value }
+            $s = $s.Replace($n.Extent.Text, [string]$vars[$k])
+        }
+        return ,$s
+    }
+    if ($ast -is [System.Management.Automation.Language.ArrayExpressionAst]) {
+        $st = $ast.SubExpression.Statements
+        if ($st.Count -ne 1 -or $st[0] -isnot [System.Management.Automation.Language.PipelineAst] -or $st[0].PipelineElements.Count -ne 1 -or
+            $st[0].PipelineElements[0] -isnot [System.Management.Automation.Language.CommandExpressionAst]) { return ,[System.DBNull]::Value }
+        $inner = Resolve-ProbeArg $st[0].PipelineElements[0].Expression $vars
+        if ($inner -is [System.DBNull]) { return ,[System.DBNull]::Value }
+        return ,@($inner)
+    }
+    if ($ast -is [System.Management.Automation.Language.ArrayLiteralAst]) {
+        $o = @()
+        foreach ($e in $ast.Elements) { $v = Resolve-ProbeArg $e $vars; if ($v -is [System.DBNull] -or $v -is [array]) { return ,[System.DBNull]::Value }; $o += $v }
+        return ,$o
+    }
     if ($ast -is [System.Management.Automation.Language.StringConstantExpressionAst]) { return ,$ast.Value }
     if ($ast -is [System.Management.Automation.Language.ConstantExpressionAst]) { return ,$ast.Value }
     if ($ast -is [System.Management.Automation.Language.VariableExpressionAst]) {
@@ -18564,6 +18568,12 @@ function Get-ProbeList($statements, $vars) {
             continue
         }
         if ($st -is [System.Management.Automation.Language.ReturnStatementAst]) { continue }
+        if ($st -is [System.Management.Automation.Language.TryStatementAst]) {
+            $inner = Get-ProbeList $st.Body.Statements $vars
+            if ($null -eq $inner) { return $null }
+            foreach ($p in $inner) { [void]$probes.Add($p) }
+            continue
+        }
         if ($st -isnot [System.Management.Automation.Language.PipelineAst]) { return $null }
         foreach ($el in $st.PipelineElements) {
             if ($el -isnot [System.Management.Automation.Language.CommandAst]) { return $null }
@@ -18578,6 +18588,9 @@ function Get-ProbeList($statements, $vars) {
                 'Set-AmdUmdValue'    { if ($a.Count -lt 2 -or @($a[0..1] | Where-Object { $_ -is [System.DBNull] }).Count) { return $null }; [void]$probes.Add(@{ T = 'umd'; A = $a }) }
                 'Set-NvProfile'      { if ($a.Count -lt 1 -or $a[0] -is [System.DBNull]) { return $null }; [void]$probes.Add(@{ T = 'nv'; A = $a }) }
                 'Set-IntelFeatureBit'{ if ($a.Count -lt 1 -or $a[0] -is [System.DBNull]) { return $null }; [void]$probes.Add(@{ T = 'bit'; A = $a }) }
+                'Disable-Tasks'      { if ($a.Count -lt 1 -or $a[0] -is [System.DBNull]) { return $null }; [void]$probes.Add(@{ T = 'task'; A = @(,@($a[0])) }) }
+                'Remove-Reg'         { if ($a.Count -lt 2 -or @($a[0..1] | Where-Object { $_ -is [System.DBNull] }).Count) { return $null }; [void]$probes.Add(@{ T = 'noreg'; A = $a }) }
+                'Set-Bcd'            { if ($a.Count -lt 1 -or $a[0] -is [System.DBNull]) { return $null }; [void]$probes.Add(@{ T = 'bcd'; A = $a }) }
                 default              { if ($script:ProbeSafe -notcontains $name) { return $null } }
             }
         }
@@ -18634,10 +18647,50 @@ function Test-Probe($p) {
         }
         'nv' {
             try { if (-not [TweakAndrew.NvDrs]::Available()) { return $null } } catch { return $null }
+            # -1 = impostazione che questo driver non ha: non conta.
+            $seen = 0
             foreach ($pair in $script:NvProfileSets[[string]$a[0]]) {
-                if ([TweakAndrew.NvDrs]::Get([uint32]$pair[0]) -ne [long]$pair[1]) { return $false }
+                $v = [TweakAndrew.NvDrs]::Get([uint32]$pair[0])
+                if ($v -eq -1) { continue }
+                $seen++
+                if ($v -ne [long]$pair[1]) { return $false }
             }
+            if ($seen -eq 0) { return $null }
             return $true
+        }
+        'task' {
+            $seen = 0
+            foreach ($tk in @($a[0])) {
+                $task = Get-CatTask ([string]$tk)
+                if ($null -eq $task) { continue }
+                $seen++
+                if ($task.Enabled) { return $false }
+            }
+            # Nessuna attivita' presente: non c'e' nulla da spegnere, la voce e' a posto.
+            return $true
+        }
+        'noreg' {
+            if (-not (Test-Path -LiteralPath $a[0])) { return $true }
+            return ($null -eq (Get-ItemProperty -LiteralPath $a[0] -Name $a[1] -ErrorAction SilentlyContinue))
+        }
+        'bcd' {
+            if ($null -eq $script:BcdText) {
+                $script:BcdText = @(& "$env:SystemRoot\System32\bcdedit.exe" /enum '{current}' 2>$null) + @('---bootmgr---') + @(& "$env:SystemRoot\System32\bcdedit.exe" /enum '{bootmgr}' 2>$null)
+            }
+            $split = [array]::IndexOf($script:BcdText, '---bootmgr---')
+            if ($split -le 0) { return $null }
+            if ([string]$a[0] -match '^/timeout\s+(\d+)$') {
+                $want = $Matches[1]
+                $line = $script:BcdText[($split + 1)..($script:BcdText.Count - 1)] | Where-Object { $_ -match '^timeout\s+(\d+)' } | Select-Object -First 1
+                if (-not $line) { return $null }
+                return (($line -replace '^timeout\s+', '').Trim() -eq $want)
+            }
+            if ([string]$a[0] -notmatch '^/set\s+(?:\{\w+\}\s+)?(\S+)\s+(\S+)$') { return $null }
+            $key = $Matches[1]; $want = $Matches[2]
+            $line = $script:BcdText[0..($split - 1)] | Where-Object { $_ -match ('^' + [regex]::Escape($key) + '\s+') } | Select-Object -First 1
+            # Una voce assente vale «no»: e' il comportamento predefinito.
+            if (-not $line) { return ($want -eq 'no') }
+            return ((($line -replace '^\S+\s+', '').Trim()) -eq $want)
         }
         'bit' {
             $keys = @(Get-GpuClassKeys 'Intel'); if ($keys.Count -eq 0) { return $null }
@@ -18661,6 +18714,36 @@ function Get-ExplicitActive {
         chkWuProfile   = $null
         chkMenuSleep     = (Get-ShutdownMenuState).Sleep
         chkMenuHibernate = (Get-ShutdownMenuState).Hibernate
+        chkNtfsPerf      = $(
+            $fs = 'HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem'
+            $la = Get-RegOrNull $fs 'NtfsDisableLastAccessUpdate'
+            ($null -ne $la) -and (([int64]$la -band 1) -eq 1) -and ((Get-RegOrNull $fs 'NtfsMemoryUsage') -eq 2))
+        chkRamTweak      = $(
+            $v = Get-RegOrNull 'HKLM:\SYSTEM\CurrentControlSet\Control' 'SvcHostSplitThresholdInKB'
+            ($null -ne $v) -and ([int64]$v -ne 3670016))
+        chkMitigations   = $(try {
+            $m = Get-ProcessMitigation -System -ErrorAction Stop
+            ([string]$m.CFG.Enable -eq 'OFF') -and ([string]$m.ASLR.BottomUp -eq 'OFF') -and ([string]$m.ASLR.HighEntropy -eq 'OFF') -and ([string]$m.SEHOP.Enable -eq 'OFF')
+        } catch { $null })
+        chkTeredo        = $(try { [bool](@(& netsh.exe interface teredo show state 2>$null) -match ':\s*disabled\s*$') } catch { $null })
+        chkRemove3D      = (-not (Test-Path -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{0DB7E03F-FC29-4DC6-9020-FF41B59E513A}') -and
+                            -not (Test-Path -LiteralPath 'HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{0DB7E03F-FC29-4DC6-9020-FF41B59E513A}'))
+        chkNetPowerSave  = $(
+            $keys = @(Get-ChildItem 'HKLM:\SYSTEM\CurrentControlSet\Control\Class\{4D36E972-E325-11CE-BFC1-08002BE10318}' -ErrorAction SilentlyContinue | Where-Object { $_.PSChildName -match '^\d{4}$' })
+            if ($keys.Count -eq 0) { $null } else { @($keys | Where-Object { $_.GetValue('PnPCapabilities') -ne 24 }).Count -eq 0 })
+        chkGpuMsi        = $(try {
+            $gpus = @(Get-CimInstance Win32_VideoController -ErrorAction Stop | Where-Object { $_.PNPDeviceID -and $_.PNPDeviceID -notmatch '^ROOT\\' })
+            if ($gpus.Count -eq 0) { $null } else {
+                @($gpus | Where-Object { (Get-RegOrNull "HKLM:\SYSTEM\CurrentControlSet\Enum\$($_.PNPDeviceID)\Device Parameters\Interrupt Management\MessageSignaledInterruptProperties" 'MSISupported') -ne 1 }).Count -eq 0 }
+        } catch { $null })
+        chkNvLatency     = $(
+            $keys = @(Get-GpuClassKeys 'NVIDIA')
+            if ($keys.Count -eq 0 -or $null -eq $script:NvLatencyValues) { $null } else {
+                $bad = 0
+                foreach ($k in $keys) { foreach ($n in $script:NvLatencyValues.Keys) { if (-not (Test-Reg $k.PSPath $n $script:NvLatencyValues[$n])) { $bad++ } } }
+                $bad -eq 0 })
+        chkReservedStorage = ((Get-RegOrNull 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\ReserveManager' 'ShippedWithReserves') -eq 0)
+        chkMemCompression = (Test-MemCompressionOff)
         chkSecSpectre    = (Test-MitigationBits 3)
         chkSecDownfall   = (Test-MitigationBits 0x2000000)
     }
@@ -18682,7 +18765,17 @@ function Sync-ChecksToSystem([hashtable]$Before = @{}, [switch]$All) {
     Update-ApplyButton
 }
 
+# La compressione la gestisce SysMain: con il servizio disattivato e' spenta
+# e Get-MMAgent non risponde.
+function Test-MemCompressionOff {
+    try {
+        if ((Get-Service -Name SysMain -ErrorAction Stop).StartType -eq 'Disabled') { return $true }
+        return (-not (Get-MMAgent -ErrorAction Stop).MemoryCompression)
+    } catch { return $null }
+}
+
 function Update-ActiveBadges {
+    $script:BcdText = $null
     if ($null -eq $script:ProbePlans) { $script:ProbePlans = Get-ProbePlans }
     $script:BaselineBefore = $script:Baseline.Clone()
     $explicit = Get-ExplicitActive

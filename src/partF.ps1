@@ -747,7 +747,11 @@ function Set-NvProfile([string]$set, [string]$label) {
         try {
             [TweakAndrew.NvDrs]::Set([uint32]$pair[0], [uint32]$pair[1])
             Write-Log ("[OK] $label - 0x{0:X8} = {1}" -f $pair[0], $pair[1])
-        } catch { Write-Log "[ERRORE] $label - $($_.Exception.Message)" }
+        } catch {
+            # -160: questa versione del driver non ha l'impostazione.
+            if ($_.Exception.Message -match 'NVAPI -160') { Write-Log ("[SALTATO] $label - 0x{0:X8} non esiste in questo driver." -f $pair[0]) }
+            else { Write-Log "[ERRORE] $label - $($_.Exception.Message)" }
+        }
     }
 }
 

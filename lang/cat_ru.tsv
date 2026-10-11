@@ -199,15 +199,9 @@ win.svcNfc	Платежи и NFC
 win.svcSpot	Точечная проверка
 win.svcTapi	Телефония (TAPI)
 g.win.tasks	Запланированные задачи
-win.tAppraiser	Оценщик совместимости Microsoft
-win.tPdu	Обновление данных программ
 win.tStartupApp	Анализ приложений автозапуска
-win.tCeip	Программа улучшения качества
-win.tDiskDiag	Сбор диагностики дисков
-win.tFeedback	Запросы отзывов
 win.tWer	Очередь отчётов об ошибках
 win.tMaps	Обновление и уведомления карт
-win.tAutochk	Прокси Autochk
 win.tFamily	Мониторинг Family Safety
 win.tPowerDiag	Диагностика энергоэффективности
 win.tSqm	Задачи SQM

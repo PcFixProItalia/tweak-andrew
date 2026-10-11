@@ -564,27 +564,9 @@ H|win.svcSpot|Controlla i danni al file system segnalati dal disco.|Checks file 
 V|win.svcTapi||TapiSrv|M|-|Telefonia (TAPI)|Telephony (TAPI)
 H|win.svcTapi|Supporto telefonico per vecchi modem e centralini.|Telephony support for old modems and PBXs.
 G|tasks|Attività pianificate|Scheduled tasks
-J|win.tAppraiser||1|0|Valutazione compatibilità Microsoft|Microsoft Compatibility Appraiser
-Q|\Microsoft\Windows\Application Experience\Microsoft Compatibility Appraiser
-Q|\Microsoft\Windows\Application Experience\Microsoft Compatibility Appraiser Exp
-H|win.tAppraiser|Analizza i programmi installati e invia l'elenco a Microsoft. Pesante sul disco.|Scans installed programs and sends the list to Microsoft. Heavy on the disk.
-J|win.tPdu||1|0|Aggiornamento dati dei programmi|Program Data Updater
-Q|\Microsoft\Windows\Application Experience\ProgramDataUpdater
-H|win.tPdu|Raccoglie dati sull'uso dei programmi per il programma di miglioramento.|Collects program usage data for the improvement program.
 J|win.tStartupApp||1|-|Analisi delle app all'avvio|Startup app analysis
 Q|\Microsoft\Windows\Application Experience\StartupAppTask
 H|win.tStartupApp|Misura quanto rallentano l'avvio le app che partono con Windows.|Measures how much startup apps slow down sign-in.
-J|win.tCeip||1|0|Programma di miglioramento dell'esperienza|Customer Experience Improvement
-Q|\Microsoft\Windows\Customer Experience Improvement Program\Consolidator
-Q|\Microsoft\Windows\Customer Experience Improvement Program\UsbCeip
-H|win.tCeip|Raccoglie e invia statistiche d'uso a Microsoft.|Collects and sends usage statistics to Microsoft.
-J|win.tDiskDiag||1|0|Raccolta dati diagnostici del disco|Disk diagnostic data collector
-Q|\Microsoft\Windows\DiskDiagnostic\Microsoft-Windows-DiskDiagnosticDataCollector
-H|win.tDiskDiag|Invia a Microsoft i dati SMART dei dischi.|Sends Microsoft the disks' SMART data.
-J|win.tFeedback||1|0|Richieste di feedback|Feedback requests
-Q|\Microsoft\Windows\Feedback\Siuf\DmClient
-Q|\Microsoft\Windows\Feedback\Siuf\DmClientOnScenarioDownload
-H|win.tFeedback|Le attività che preparano i sondaggi di Windows.|The tasks that prepare Windows surveys.
 J|win.tWer||1|0|Coda della segnalazione errori|Error reporting queue
 Q|\Microsoft\Windows\Windows Error Reporting\QueueReporting
 H|win.tWer|Invia i rapporti di errore rimasti in coda.|Sends queued error reports.
@@ -592,9 +574,6 @@ J|win.tMaps||1|0|Aggiornamento e avvisi delle mappe|Maps update and notices
 Q|\Microsoft\Windows\Maps\MapsUpdateTask
 Q|\Microsoft\Windows\Maps\MapsToastTask
 H|win.tMaps|Aggiorna le mappe offline e mostra le relative notifiche.|Updates offline maps and shows related notifications.
-J|win.tAutochk||1|0|Proxy di Autochk|Autochk proxy
-Q|\Microsoft\Windows\Autochk\Proxy
-H|win.tAutochk|Raccoglie dati del controllo disco per il programma di miglioramento.|Collects disk check data for the improvement program.
 J|win.tFamily||1|-|Monitoraggio Family Safety|Family Safety monitor
 Q|\Microsoft\Windows\Shell\FamilySafetyMonitor
 Q|\Microsoft\Windows\Shell\FamilySafetyRefreshTask

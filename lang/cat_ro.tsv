@@ -199,15 +199,9 @@ win.svcNfc	Plăți și NFC
 win.svcSpot	Verificator punctual
 win.svcTapi	Telefonie (TAPI)
 g.win.tasks	Activități programate
-win.tAppraiser	Evaluatorul de compatibilitate Microsoft
-win.tPdu	Actualizarea datelor programelor
 win.tStartupApp	Analiza aplicațiilor de pornire
-win.tCeip	Programul de îmbunătățire a experienței
-win.tDiskDiag	Colectorul de diagnostic al discului
-win.tFeedback	Solicitări de feedback
 win.tWer	Coada rapoartelor de erori
 win.tMaps	Actualizarea și anunțurile hărților
-win.tAutochk	Proxy Autochk
 win.tFamily	Monitorizare Family Safety
 win.tPowerDiag	Diagnosticul eficienței energetice
 win.tSqm	Activități SQM

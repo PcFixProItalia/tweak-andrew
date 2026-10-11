@@ -199,15 +199,9 @@ win.svcNfc	Paiements et NFC
 win.svcSpot	Vérificateur ponctuel
 win.svcTapi	Téléphonie (TAPI)
 g.win.tasks	Tâches planifiées
-win.tAppraiser	Évaluateur de compatibilité Microsoft
-win.tPdu	Mise à jour des données de programmes
 win.tStartupApp	Analyse des apps au démarrage
-win.tCeip	Programme d'amélioration de l'expérience
-win.tDiskDiag	Collecteur de diagnostic de disque
-win.tFeedback	Demandes de commentaires
 win.tWer	File d'attente des rapports d'erreurs
 win.tMaps	Mise à jour et avis des cartes
-win.tAutochk	Proxy Autochk
 win.tFamily	Surveillance Family Safety
 win.tPowerDiag	Diagnostic d'efficacité énergétique
 win.tSqm	Tâches SQM

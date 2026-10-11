@@ -764,9 +764,32 @@ function Show-WuProfiles {
 # ogni valore con quello presente sul sistema: una voce e' attiva quando tutti
 # coincidono. Le voci con passaggi che non si possono verificare restano senza
 # etichetta, invece di mostrarne una sbagliata.
-$script:ProbeSafe = @('Write-Log', 'Test-Gpu', 'Out-Null', 'Test-Path', 'Join-Path', 'Stop-Process')
+$script:ProbeSafe = @('Write-Log', 'Test-Gpu', 'Out-Null', 'Test-Path', 'Join-Path', 'Stop-Process', 'Get-Process')
 
 function Resolve-ProbeArg($ast, $vars) {
+    if ($ast -is [System.Management.Automation.Language.ExpandableStringExpressionAst]) {
+        $s = $ast.Value
+        foreach ($n in $ast.NestedExpressions) {
+            if ($n -isnot [System.Management.Automation.Language.VariableExpressionAst]) { return ,[System.DBNull]::Value }
+            $k = $n.VariablePath.UserPath
+            if (-not $vars.ContainsKey($k)) { return ,[System.DBNull]::Value }
+            $s = $s.Replace($n.Extent.Text, [string]$vars[$k])
+        }
+        return ,$s
+    }
+    if ($ast -is [System.Management.Automation.Language.ArrayExpressionAst]) {
+        $st = $ast.SubExpression.Statements
+        if ($st.Count -ne 1 -or $st[0] -isnot [System.Management.Automation.Language.PipelineAst] -or $st[0].PipelineElements.Count -ne 1 -or
+            $st[0].PipelineElements[0] -isnot [System.Management.Automation.Language.CommandExpressionAst]) { return ,[System.DBNull]::Value }
+        $inner = Resolve-ProbeArg $st[0].PipelineElements[0].Expression $vars
+        if ($inner -is [System.DBNull]) { return ,[System.DBNull]::Value }
+        return ,@($inner)
+    }
+    if ($ast -is [System.Management.Automation.Language.ArrayLiteralAst]) {
+        $o = @()
+        foreach ($e in $ast.Elements) { $v = Resolve-ProbeArg $e $vars; if ($v -is [System.DBNull] -or $v -is [array]) { return ,[System.DBNull]::Value }; $o += $v }
+        return ,$o
+    }
     if ($ast -is [System.Management.Automation.Language.StringConstantExpressionAst]) { return ,$ast.Value }
     if ($ast -is [System.Management.Automation.Language.ConstantExpressionAst]) { return ,$ast.Value }
     if ($ast -is [System.Management.Automation.Language.VariableExpressionAst]) {
@@ -815,6 +838,12 @@ function Get-ProbeList($statements, $vars) {
             continue
         }
         if ($st -is [System.Management.Automation.Language.ReturnStatementAst]) { continue }
+        if ($st -is [System.Management.Automation.Language.TryStatementAst]) {
+            $inner = Get-ProbeList $st.Body.Statements $vars
+            if ($null -eq $inner) { return $null }
+            foreach ($p in $inner) { [void]$probes.Add($p) }
+            continue
+        }
         if ($st -isnot [System.Management.Automation.Language.PipelineAst]) { return $null }
         foreach ($el in $st.PipelineElements) {
             if ($el -isnot [System.Management.Automation.Language.CommandAst]) { return $null }
@@ -829,6 +858,9 @@ function Get-ProbeList($statements, $vars) {
                 'Set-AmdUmdValue'    { if ($a.Count -lt 2 -or @($a[0..1] | Where-Object { $_ -is [System.DBNull] }).Count) { return $null }; [void]$probes.Add(@{ T = 'umd'; A = $a }) }
                 'Set-NvProfile'      { if ($a.Count -lt 1 -or $a[0] -is [System.DBNull]) { return $null }; [void]$probes.Add(@{ T = 'nv'; A = $a }) }
                 'Set-IntelFeatureBit'{ if ($a.Count -lt 1 -or $a[0] -is [System.DBNull]) { return $null }; [void]$probes.Add(@{ T = 'bit'; A = $a }) }
+                'Disable-Tasks'      { if ($a.Count -lt 1 -or $a[0] -is [System.DBNull]) { return $null }; [void]$probes.Add(@{ T = 'task'; A = @(,@($a[0])) }) }
+                'Remove-Reg'         { if ($a.Count -lt 2 -or @($a[0..1] | Where-Object { $_ -is [System.DBNull] }).Count) { return $null }; [void]$probes.Add(@{ T = 'noreg'; A = $a }) }
+                'Set-Bcd'            { if ($a.Count -lt 1 -or $a[0] -is [System.DBNull]) { return $null }; [void]$probes.Add(@{ T = 'bcd'; A = $a }) }
                 default              { if ($script:ProbeSafe -notcontains $name) { return $null } }
             }
         }
@@ -885,10 +917,50 @@ function Test-Probe($p) {
         }
         'nv' {
             try { if (-not [TweakAndrew.NvDrs]::Available()) { return $null } } catch { return $null }
+            # -1 = impostazione che questo driver non ha: non conta.
+            $seen = 0
             foreach ($pair in $script:NvProfileSets[[string]$a[0]]) {
-                if ([TweakAndrew.NvDrs]::Get([uint32]$pair[0]) -ne [long]$pair[1]) { return $false }
+                $v = [TweakAndrew.NvDrs]::Get([uint32]$pair[0])
+                if ($v -eq -1) { continue }
+                $seen++
+                if ($v -ne [long]$pair[1]) { return $false }
             }
+            if ($seen -eq 0) { return $null }
             return $true
+        }
+        'task' {
+            $seen = 0
+            foreach ($tk in @($a[0])) {
+                $task = Get-CatTask ([string]$tk)
+                if ($null -eq $task) { continue }
+                $seen++
+                if ($task.Enabled) { return $false }
+            }
+            # Nessuna attivita' presente: non c'e' nulla da spegnere, la voce e' a posto.
+            return $true
+        }
+        'noreg' {
+            if (-not (Test-Path -LiteralPath $a[0])) { return $true }
+            return ($null -eq (Get-ItemProperty -LiteralPath $a[0] -Name $a[1] -ErrorAction SilentlyContinue))
+        }
+        'bcd' {
+            if ($null -eq $script:BcdText) {
+                $script:BcdText = @(& "$env:SystemRoot\System32\bcdedit.exe" /enum '{current}' 2>$null) + @('---bootmgr---') + @(& "$env:SystemRoot\System32\bcdedit.exe" /enum '{bootmgr}' 2>$null)
+            }
+            $split = [array]::IndexOf($script:BcdText, '---bootmgr---')
+            if ($split -le 0) { return $null }
+            if ([string]$a[0] -match '^/timeout\s+(\d+)$') {
+                $want = $Matches[1]
+                $line = $script:BcdText[($split + 1)..($script:BcdText.Count - 1)] | Where-Object { $_ -match '^timeout\s+(\d+)' } | Select-Object -First 1
+                if (-not $line) { return $null }
+                return (($line -replace '^timeout\s+', '').Trim() -eq $want)
+            }
+            if ([string]$a[0] -notmatch '^/set\s+(?:\{\w+\}\s+)?(\S+)\s+(\S+)$') { return $null }
+            $key = $Matches[1]; $want = $Matches[2]
+            $line = $script:BcdText[0..($split - 1)] | Where-Object { $_ -match ('^' + [regex]::Escape($key) + '\s+') } | Select-Object -First 1
+            # Una voce assente vale «no»: e' il comportamento predefinito.
+            if (-not $line) { return ($want -eq 'no') }
+            return ((($line -replace '^\S+\s+', '').Trim()) -eq $want)
         }
         'bit' {
             $keys = @(Get-GpuClassKeys 'Intel'); if ($keys.Count -eq 0) { return $null }
@@ -912,6 +984,36 @@ function Get-ExplicitActive {
         chkWuProfile   = $null
         chkMenuSleep     = (Get-ShutdownMenuState).Sleep
         chkMenuHibernate = (Get-ShutdownMenuState).Hibernate
+        chkNtfsPerf      = $(
+            $fs = 'HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem'
+            $la = Get-RegOrNull $fs 'NtfsDisableLastAccessUpdate'
+            ($null -ne $la) -and (([int64]$la -band 1) -eq 1) -and ((Get-RegOrNull $fs 'NtfsMemoryUsage') -eq 2))
+        chkRamTweak      = $(
+            $v = Get-RegOrNull 'HKLM:\SYSTEM\CurrentControlSet\Control' 'SvcHostSplitThresholdInKB'
+            ($null -ne $v) -and ([int64]$v -ne 3670016))
+        chkMitigations   = $(try {
+            $m = Get-ProcessMitigation -System -ErrorAction Stop
+            ([string]$m.CFG.Enable -eq 'OFF') -and ([string]$m.ASLR.BottomUp -eq 'OFF') -and ([string]$m.ASLR.HighEntropy -eq 'OFF') -and ([string]$m.SEHOP.Enable -eq 'OFF')
+        } catch { $null })
+        chkTeredo        = $(try { [bool](@(& netsh.exe interface teredo show state 2>$null) -match ':\s*disabled\s*$') } catch { $null })
+        chkRemove3D      = (-not (Test-Path -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{0DB7E03F-FC29-4DC6-9020-FF41B59E513A}') -and
+                            -not (Test-Path -LiteralPath 'HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{0DB7E03F-FC29-4DC6-9020-FF41B59E513A}'))
+        chkNetPowerSave  = $(
+            $keys = @(Get-ChildItem 'HKLM:\SYSTEM\CurrentControlSet\Control\Class\{4D36E972-E325-11CE-BFC1-08002BE10318}' -ErrorAction SilentlyContinue | Where-Object { $_.PSChildName -match '^\d{4}$' })
+            if ($keys.Count -eq 0) { $null } else { @($keys | Where-Object { $_.GetValue('PnPCapabilities') -ne 24 }).Count -eq 0 })
+        chkGpuMsi        = $(try {
+            $gpus = @(Get-CimInstance Win32_VideoController -ErrorAction Stop | Where-Object { $_.PNPDeviceID -and $_.PNPDeviceID -notmatch '^ROOT\\' })
+            if ($gpus.Count -eq 0) { $null } else {
+                @($gpus | Where-Object { (Get-RegOrNull "HKLM:\SYSTEM\CurrentControlSet\Enum\$($_.PNPDeviceID)\Device Parameters\Interrupt Management\MessageSignaledInterruptProperties" 'MSISupported') -ne 1 }).Count -eq 0 }
+        } catch { $null })
+        chkNvLatency     = $(
+            $keys = @(Get-GpuClassKeys 'NVIDIA')
+            if ($keys.Count -eq 0 -or $null -eq $script:NvLatencyValues) { $null } else {
+                $bad = 0
+                foreach ($k in $keys) { foreach ($n in $script:NvLatencyValues.Keys) { if (-not (Test-Reg $k.PSPath $n $script:NvLatencyValues[$n])) { $bad++ } } }
+                $bad -eq 0 })
+        chkReservedStorage = ((Get-RegOrNull 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\ReserveManager' 'ShippedWithReserves') -eq 0)
+        chkMemCompression = (Test-MemCompressionOff)
         chkSecSpectre    = (Test-MitigationBits 3)
         chkSecDownfall   = (Test-MitigationBits 0x2000000)
     }
@@ -933,7 +1035,17 @@ function Sync-ChecksToSystem([hashtable]$Before = @{}, [switch]$All) {
     Update-ApplyButton
 }
 
+# La compressione la gestisce SysMain: con il servizio disattivato e' spenta
+# e Get-MMAgent non risponde.
+function Test-MemCompressionOff {
+    try {
+        if ((Get-Service -Name SysMain -ErrorAction Stop).StartType -eq 'Disabled') { return $true }
+        return (-not (Get-MMAgent -ErrorAction Stop).MemoryCompression)
+    } catch { return $null }
+}
+
 function Update-ActiveBadges {
+    $script:BcdText = $null
     if ($null -eq $script:ProbePlans) { $script:ProbePlans = Get-ProbePlans }
     $script:BaselineBefore = $script:Baseline.Clone()
     $explicit = Get-ExplicitActive
