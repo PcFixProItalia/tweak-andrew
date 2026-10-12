@@ -202,7 +202,6 @@ ttlAdvIntro	BEFORE YOU START
 lblAdvIntro	These options strip out parts of Windows that most computers never use. The gain is real on a machine dedicated to gaming or work, but some things stop working: read each entry. Create a restore point before applying, and reboot afterwards.
 ttlSvc	SERVICES TO STOP
 lblSvcHint	Missing services are skipped. They can always be turned back on from services.msc.
-chkSvcSysMain	SysMain — preloading apps into memory
 chkSvcDiag	Diagnostics and event tracing
 chkSvcPca	Program Compatibility Assistant
 chkSvcDiscovery	Network device discovery (UPnP, SSDP)
@@ -211,7 +210,7 @@ chkSvcSmartCard	Smart cards
 chkSvcParental	Parental controls and Insider program
 chkSvcHyperV	Hyper-V services (if you run no virtual machines)
 chkSvcPrint	Print spooler — risky: no printing
-chkSvcSearch	Windows Search — risky: no Start menu search
+chkSvcSearch	Windows Search — no indexing, slower search
 chkSvcRemote	Remote Desktop and Remote Registry — risky if you connect from outside
 chkSvcBiometric	Biometrics — risky: no Windows Hello
 chkSvcTouch	Pen and on-screen keyboard — risky on touch laptops
@@ -220,7 +219,7 @@ chkTaskExtra	Non-essential Microsoft tasks
 chkTaskMaint	Nightly automatic maintenance
 chkTaskDefrag	Scheduled drive optimization — risky: it also issues TRIM on SSDs
 ttlMem	MEMORY AND PROCESSES
-chkPrefetch	Prefetch and Superfetch registry values
+chkPrefetch	Prefetch and SysMain — no app preloading
 chkFth	Fault Tolerant Heap — no automatic patching
 chkAppCompat	Compatibility engine and program inventory
 chkMemCompression	Memory compression — risky below 16 GB of RAM
@@ -361,3 +360,9 @@ chkIPv4Pref	IPv4 before IPv6
 btnEmergency	Full reset
 lblPersonal	PERSONALIZATION
 chkSecDownfall	Downfall mitigation (Intel only)
+ttlDiskPerf	DISK PERFORMANCE
+lblDiskPerfHint	With Windows on an SSD, «Recommended» and «Select all» turn on the suitable items. On a mechanical disk they stay off.
+chkNtfs83	Short 8.3 names — don't create them on NTFS drives
+chkBootDefrag	Boot files defragmentation — turn off
+chkThumbCache	Thumbnail cache — don't create it
+chkTrim	TRIM — make sure it is on

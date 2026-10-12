@@ -507,7 +507,6 @@ g.win.browser	Браузеры
 win.brave	Brave без Rewards, Wallet, VPN, ИИ и статистики
 H:win.brave	Политики Brave: отключают дополнительные функции и отправку статистики. Действуют и при установке Brave позже.
 win.tmMonitor	Сеть и GPU в диспетчере задач
-win.ntfs83	Короткие имена 8.3 на дисках NTFS
 game.bgInput	Обновления мыши для фоновых окон
 game.bgInput#win	125 Hz (Windows)
 game.bgInput#hz50	50 Hz

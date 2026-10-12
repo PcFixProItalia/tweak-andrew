@@ -192,7 +192,6 @@ L:ttlAdvIntro	ANTES DE COMEÇAR
 L:lblAdvIntro	Estas opções removem partes do Windows que a maioria dos computadores nunca usa. O ganho é real numa máquina dedicada a jogos ou trabalho, mas algumas coisas deixam de funcionar: leia cada item. Crie um ponto de restauração antes de aplicar e reinicie depois.
 L:ttlSvc	SERVIÇOS A PARAR
 L:lblSvcHint	Serviços ausentes são ignorados. Sempre podem ser reativados em services.msc.
-L:chkSvcSysMain	SysMain — pré-carregamento de apps na memória
 L:chkSvcDiag	Diagnóstico e rastreamento de eventos
 L:chkSvcPca	Assistente de Compatibilidade de Programas
 L:chkSvcDiscovery	Descoberta de dispositivos na rede (UPnP, SSDP)
@@ -201,7 +200,7 @@ L:chkSvcSmartCard	Cartões inteligentes
 L:chkSvcParental	Controle dos pais e programa Insider
 L:chkSvcHyperV	Serviços do Hyper-V (se não usa máquinas virtuais)
 L:chkSvcPrint	Spooler de impressão — arriscado: sem impressoras
-L:chkSvcSearch	Windows Search — arriscado: sem pesquisa no Iniciar
+L:chkSvcSearch	Windows Search — sem indexação, pesquisa mais lenta
 L:chkSvcRemote	Área de Trabalho Remota e registro remoto — arriscado se você acessa de fora
 L:chkSvcBiometric	Biometria — arriscado: sem Windows Hello
 L:chkSvcTouch	Caneta e teclado virtual — arriscado em notebooks touch
@@ -210,7 +209,7 @@ L:chkTaskExtra	Tarefas não essenciais da Microsoft
 L:chkTaskMaint	Manutenção automática noturna
 L:chkTaskDefrag	Otimização agendada de unidades — arriscado: em SSD também envia TRIM
 L:ttlMem	MEMÓRIA E PROCESSOS
-L:chkPrefetch	Valores de Prefetch e Superfetch no registro
+L:chkPrefetch	Prefetch e SysMain — sem pré-carregamento de apps
 L:chkFth	Fault Tolerant Heap — sem correções automáticas
 L:chkAppCompat	Mecanismo de compatibilidade e inventário de programas
 L:chkMemCompression	Compressão de memória — arriscado com menos de 16 GB de RAM
@@ -372,7 +371,6 @@ H:chkNvUpdates	O driver da NVIDIA para de procurar atualizações sozinho.
 H:chkAmdUx	Para o envio de dados de uso para a AMD.
 H:chkAmdBloat	Impede que os programas extras da AMD iniciem com o Windows. Inicialização mais leve.
 H:chkIntelBloat	Os serviços extras da placa Intel só iniciam quando necessários.
-H:chkSvcSysMain	O Windows para de pré-carregar na memória os apps que você usa com frequência. Útil em SSDs rápidos, onde não é necessário.
 H:chkSvcDiag	Para os serviços que analisam problemas e desempenho em segundo plano.
 H:chkSvcPca	Para o serviço que verifica a compatibilidade de programas antigos.
 H:chkSvcDiscovery	O PC para de procurar dispositivos na rede local. Menos tráfego, mas impressoras e TVs de rede podem não aparecer.
@@ -388,7 +386,7 @@ H:chkSvcTouch	Para a caneta e o teclado virtual. Evite em tablets e notebooks to
 H:chkTaskExtra	Desliga cerca de vinte tarefas automáticas da Microsoft que não são necessárias. Menos trabalho escondido.
 H:chkTaskMaint	O Windows não roda mais a manutenção automática de madrugada. O PC não acorda nem fica lento de surpresa.
 H:chkTaskDefrag	Para a otimização automática das unidades. Em SSD, ela deve ser feita à mão pela página Armazenamento.
-H:chkPrefetch	O Windows para de preparar com antecedência os arquivos dos programas. Menos gravações no SSD.
+H:chkPrefetch	O Windows para de pré-carregar na memória os apps que você usa com frequência e de preparar com antecedência os arquivos dos programas: desliga os valores Prefetch e Superfetch e para o serviço SysMain. Útil em SSD, onde não é necessário e só gera gravações. Em disco mecânico, convém deixar ligado.
 H:chkFth	O Windows para de aplicar correções automáticas aos programas que travam. Comportamento mais previsível.
 H:chkAppCompat	Desliga as verificações de compatibilidade dos programas. Os programas abrem um pouco mais rápido.
 H:chkMemCompression	O Windows para de comprimir a memória. Menos trabalho do processador, mas é preciso bastante RAM.
@@ -910,3 +908,13 @@ M:toolDesc_rootCerts	Baixa a lista atual do Windows Update. Corrige erros de cer
 M:maxPerfTitle	Desempenho máximo
 M:maxPerfAsk	«Selecionar tudo» liga tudo o que dá desempenho, inclusive o que reduz a segurança: mitigações Spectre, isolamento do núcleo, proteções contra exploits, SmartScreen. Serve para um PC só de jogos. Para o dia a dia escolha «Recomendados». Continuar?
 M:maxPerfDone	Desempenho máximo pronto: {0} para ativar, {1} para manter ou voltar ao padrão do Windows. Pressione «Aplicar alterações».
+L:ttlDiskPerf	DESEMPENHO DO DISCO
+L:lblDiskPerfHint	Com o Windows em um SSD, «Recomendados» e «Selecionar tudo» ativam os itens adequados. Em disco mecânico, ficam desligados.
+L:chkNtfs83	Nomes curtos 8.3 — não criar em discos NTFS
+H:chkNtfs83	Para cada arquivo o Windows cria também um nome curto no estilo DOS. Desligado, as pastas com muitos arquivos são lidas mais rápido. Só programas muito antigos precisam dele.
+L:chkBootDefrag	Desfragmentação dos arquivos de inicialização — desativar
+H:chkBootDefrag	O Windows deixa de reorganizar os arquivos de inicialização no disco. Em SSD não serve para nada e só gasta gravações.
+L:chkThumbCache	Cache de miniaturas — não criar
+H:chkThumbCache	O Windows deixa de guardar as miniaturas em um arquivo no disco. Menos gravações, mas as pastas de fotos e vídeos mostram as prévias mais devagar.
+L:chkTrim	TRIM — garantir que esteja ativo
+H:chkTrim	Informa ao SSD quais blocos não são mais usados, para que continue rápido com o tempo. No Windows já vem ativo: este item o reativa se alguém o desligou.

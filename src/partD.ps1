@@ -877,6 +877,22 @@ function Build-Actions {
         }
     }
 
+    Add-IfChecked $chkNtfs83 {
+        Set-Reg 'HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem' 'NtfsDisable8dot3NameCreation' 1 'DWord' 'Nomi brevi 8.3'
+    }
+    Add-IfChecked $chkBootDefrag {
+        Set-Reg 'HKLM:\SOFTWARE\Microsoft\Dfrg\BootOptimizeFunction' 'Enable' 'N' 'String' 'Deframmentazione file di avvio'
+    }
+    Add-IfChecked $chkThumbCache {
+        Set-Reg 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer' 'DisableThumbnailCache' 1 'DWord' 'Cache delle miniature'
+    }
+    Add-IfChecked $chkTrim {
+        try {
+            fsutil behavior set DisableDeleteNotify 0 | Out-Null
+            Write-Log "[OK] TRIM attivo."
+        } catch { Write-Log "[ERRORE] TRIM: $($_.Exception.Message)" }
+    }
+
     Add-IfChecked $chkDiskCleanup {
         $sage = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\VolumeCaches"
         Get-ChildItem $sage -ErrorAction SilentlyContinue | ForEach-Object {
@@ -906,9 +922,6 @@ function Build-Actions {
     # ---------- AVANZATE: servizi ----------
     # Ogni voce spegne un gruppo di servizi. Set-Svc salta da solo quelli che
     # su questa installazione non esistono, quindi l'elenco puo' essere ampio.
-    Add-IfChecked $chkSvcSysMain {
-        Set-Svc 'SysMain' 'Disabled' 'SysMain'
-    }
     Add-IfChecked $chkSvcDiag {
         foreach ($s in @('DPS','WdiServiceHost','WdiSystemHost','diagnosticshub.standardcollector.service','diagsvc','DusmSvc')) {
             Set-Svc $s 'Disabled' $s
@@ -942,6 +955,7 @@ function Build-Actions {
     }
     Add-IfChecked $chkSvcSearch {
         Set-Svc 'WSearch' 'Disabled' 'Ricerca di Windows'
+        Stop-Service -Name WSearch -Force -ErrorAction SilentlyContinue
     }
     Add-IfChecked $chkSvcRemote {
         foreach ($s in @('RemoteRegistry','RemoteAccess','SessionEnv','TermService','UmRdpService','RasMan','RasAuto')) {
@@ -988,8 +1002,8 @@ function Build-Actions {
         $pf = "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management\PrefetchParameters"
         Set-Reg $pf 'EnablePrefetcher' 0 'DWord' 'Prefetcher'
         Set-Reg $pf 'EnableSuperfetch' 0 'DWord' 'Superfetch'
-        # Con il servizio SysMain acceso Windows continua a precaricare le app:
-        # i soli valori del registro non bastano.
+        # SysMain e' il servizio che fa Prefetch e Superfetch: con i soli valori
+        # del registro Windows continuava a precaricare le app.
         Set-Svc 'SysMain' 'Disabled' 'SysMain'
         Stop-Service -Name SysMain -Force -ErrorAction SilentlyContinue
     }

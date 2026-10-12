@@ -507,7 +507,6 @@ g.win.browser	Przeglądarki
 win.brave	Brave bez Rewards, Wallet, VPN, AI i statystyk
 H:win.brave	Zasady Brave: wyłącza funkcje dodatkowe i wysyłanie statystyk. Działa też, jeśli Brave zostanie zainstalowany później.
 win.tmMonitor	Sieć i GPU w Menedżerze zadań
-win.ntfs83	Krótkie nazwy 8.3 na dyskach NTFS
 game.bgInput	Aktualizacje myszy dla okien w tle
 game.bgInput#win	125 Hz (Windows)
 game.bgInput#hz50	50 Hz

@@ -1012,6 +1012,10 @@ function Get-ExplicitActive {
                 $bad = 0
                 foreach ($k in $keys) { foreach ($n in $script:NvLatencyValues.Keys) { if (-not (Test-Reg $k.PSPath $n $script:NvLatencyValues[$n])) { $bad++ } } }
                 $bad -eq 0 })
+        chkTrim          = $(try {
+            $o = (@(& fsutil.exe behavior query DisableDeleteNotify 2>$null) -join ' ')
+            if ($o -match 'NTFS\s+DisableDeleteNotify\s*=\s*(\d)') { $Matches[1] -eq '0' } else { $null }
+        } catch { $null })
         chkReservedStorage = ((Get-RegOrNull 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\ReserveManager' 'ShippedWithReserves') -eq 0)
         chkMemCompression = (Test-MemCompressionOff)
         chkSecSpectre    = (Test-MitigationBits 3)

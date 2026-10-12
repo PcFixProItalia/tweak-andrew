@@ -1391,7 +1391,6 @@ $script:PlanData = @{
                                                 <CheckBox x:Name="chkKernelDpc" Content="Kernel e latenza DPC"/>
                                                 <CheckBox x:Name="chkTimer" Content="Timer di sistema"/>
                                                 <CheckBox x:Name="chkPowerThrottling" Content="Power Throttling"/>
-                                                <CheckBox x:Name="chkNtfsPerf" Content="NTFS"/>
                                             </StackPanel>
                                         </Border>
 
@@ -1898,6 +1897,22 @@ $script:PlanData = @{
                                             <CheckBox x:Name="chkReservedStorage" Content="Spazio riservato"/>
                                         </StackPanel>
                                     </Border>
+
+                                    <Border Style="{StaticResource Glass}">
+                                        <StackPanel>
+                                            <TextBlock x:Name="ttlDiskPerf" Text="PRESTAZIONI DEL DISCO" Style="{StaticResource CardTitle}"/>
+                                            <TextBlock x:Name="lblDiskPerfHint" Style="{StaticResource SubTitle}" Margin="0,0,0,10" TextWrapping="Wrap"
+                                                       Text="Con Windows su SSD, «Consigliati» e «Seleziona tutto» accendono le voci adatte. Su disco meccanico restano spente."/>
+                                            <CheckBox x:Name="chkNtfsPerf" Content="NTFS"/>
+                                            <CheckBox x:Name="chkNtfs83" Content="Nomi brevi 8.3"/>
+                                            <CheckBox x:Name="chkPrefetch" Content="Prefetch e SysMain"/>
+                                            <CheckBox x:Name="chkSvcSearch" Content="Ricerca di Windows"/>
+                                            <CheckBox x:Name="chkBootDefrag" Content="Deframmentazione file di avvio"/>
+                                            <CheckBox x:Name="chkThumbCache" Content="Cache delle miniature"/>
+                                            <CheckBox x:Name="chkTrim" Content="TRIM"/>
+                                            <CheckBox x:Name="chkTaskDefrag" Tag="risky" Content="Ottimizzazione unita pianificata"/>
+                                        </StackPanel>
+                                    </Border>
                                 </StackPanel>
                                 </ScrollViewer>
                             </Grid>
@@ -2167,7 +2182,6 @@ $script:PlanData = @{
                                                 <TextBlock x:Name="ttlTasks" Text="ATTIVITA PIANIFICATE" Style="{StaticResource CardTitle}"/>
                                                 <CheckBox x:Name="chkTaskExtra" Content="Attivita non essenziali di Microsoft"/>
                                                 <CheckBox x:Name="chkTaskMaint" Content="Manutenzione automatica notturna"/>
-                                                <CheckBox x:Name="chkTaskDefrag" Tag="risky" Content="Ottimizzazione unita pianificata — rischioso: su SSD manda anche il TRIM"/>
                                             </StackPanel>
                                         </Border>
 
@@ -2187,7 +2201,6 @@ $script:PlanData = @{
                                                 <TextBlock x:Name="ttlSvc" Text="SERVIZI DA FERMARE" Style="{StaticResource CardTitle}"/>
                                                 <TextBlock x:Name="lblSvcHint" Style="{StaticResource SubTitle}" Margin="0,0,0,10"
                                                            Text="I servizi assenti vengono ignorati. Si possono sempre riattivare da services.msc."/>
-                                                <CheckBox x:Name="chkSvcSysMain" Content="SysMain — precaricamento delle app in memoria"/>
                                                 <CheckBox x:Name="chkSvcDiag" Content="Diagnostica e tracciamento eventi"/>
                                                 <CheckBox x:Name="chkSvcPca" Content="Assistente compatibilità programmi"/>
                                                 <CheckBox x:Name="chkSvcDiscovery" Content="Rilevamento dispositivi in rete (UPnP, SSDP)"/>
@@ -2196,7 +2209,6 @@ $script:PlanData = @{
                                                 <CheckBox x:Name="chkSvcParental" Content="Controllo genitori e programma Insider"/>
                                                 <CheckBox x:Name="chkSvcHyperV" Content="Servizi Hyper-V (se non usi macchine virtuali)"/>
                                                 <CheckBox x:Name="chkSvcPrint" Tag="risky" Content="Spooler di stampa — rischioso: niente stampanti"/>
-                                                <CheckBox x:Name="chkSvcSearch" Tag="risky" Content="Ricerca di Windows — rischioso: niente ricerca nel menu Start"/>
                                                 <CheckBox x:Name="chkSvcRemote" Tag="risky" Content="Desktop remoto e registro remoto — rischioso se ti colleghi da fuori"/>
                                                 <CheckBox x:Name="chkSvcBiometric" Tag="risky" Content="Biometria — rischioso: niente Windows Hello"/>
                                                 <CheckBox x:Name="chkSvcTouch" Tag="risky" Content="Penna e tastiera su schermo — rischioso sui portatili touch"/>
@@ -2206,7 +2218,6 @@ $script:PlanData = @{
                                         <Border Style="{StaticResource Glass}">
                                             <StackPanel>
                                                 <TextBlock x:Name="ttlMem" Text="MEMORIA E PROCESSI" Style="{StaticResource CardTitle}"/>
-                                                <CheckBox x:Name="chkPrefetch" Content="Prefetch e Superfetch nel registro"/>
                                                 <CheckBox x:Name="chkFth" Content="Fault Tolerant Heap — niente correzioni automatiche"/>
                                                 <CheckBox x:Name="chkAppCompat" Content="Motore di compatibilità e inventario programmi"/>
                                                 <CheckBox x:Name="chkMemCompression" Tag="risky" Content="Compressione della memoria — rischioso sotto 16 GB di RAM"/>
@@ -2928,7 +2939,6 @@ $script:Loc = @{
 
     ttlSvc             = @{ it = "SERVIZI DA FERMARE"; en = "SERVICES TO STOP" }
     lblSvcHint         = @{ it = "I servizi assenti vengono ignorati. Si possono sempre riattivare da services.msc."; en = "Missing services are skipped. They can always be turned back on from services.msc." }
-    chkSvcSysMain      = @{ it = "SysMain — precaricamento delle app in memoria"; en = "SysMain — preloading apps into memory" }
     chkSvcDiag         = @{ it = "Diagnostica e tracciamento eventi"; en = "Diagnostics and event tracing" }
     chkSvcPca          = @{ it = "Assistente compatibilità programmi"; en = "Program Compatibility Assistant" }
     chkSvcDiscovery    = @{ it = "Rilevamento dispositivi in rete (UPnP, SSDP)"; en = "Network device discovery (UPnP, SSDP)" }
@@ -2937,7 +2947,7 @@ $script:Loc = @{
     chkSvcParental     = @{ it = "Controllo genitori e programma Insider"; en = "Parental controls and Insider program" }
     chkSvcHyperV       = @{ it = "Servizi Hyper-V (se non usi macchine virtuali)"; en = "Hyper-V services (if you run no virtual machines)" }
     chkSvcPrint        = @{ it = "Spooler di stampa — rischioso: niente stampanti"; en = "Print spooler — risky: no printing" }
-    chkSvcSearch       = @{ it = "Ricerca di Windows — rischioso: niente ricerca nel menu Start"; en = "Windows Search — risky: no Start menu search" }
+    chkSvcSearch       = @{ it = "Ricerca di Windows — niente indicizzazione, ricerca più lenta"; en = "Windows Search — no indexing, slower search" }
     chkSvcRemote       = @{ it = "Desktop remoto e registro remoto — rischioso se ti colleghi da fuori"; en = "Remote Desktop and Remote Registry — risky if you connect from outside" }
     chkSvcBiometric    = @{ it = "Biometria — rischioso: niente Windows Hello"; en = "Biometrics — risky: no Windows Hello" }
     chkSvcTouch        = @{ it = "Penna e tastiera su schermo — rischioso sui portatili touch"; en = "Pen and on-screen keyboard — risky on touch laptops" }
@@ -2948,7 +2958,7 @@ $script:Loc = @{
     chkTaskDefrag      = @{ it = "Ottimizzazione unità pianificata — rischioso: su SSD manda anche il TRIM"; en = "Scheduled drive optimization — risky: it also issues TRIM on SSDs" }
 
     ttlMem             = @{ it = "MEMORIA E PROCESSI"; en = "MEMORY AND PROCESSES" }
-    chkPrefetch        = @{ it = "Prefetch e Superfetch nel registro"; en = "Prefetch and Superfetch registry values" }
+    chkPrefetch        = @{ it = "Prefetch e SysMain — niente precaricamento delle app"; en = "Prefetch and SysMain — no app preloading" }
     chkFth             = @{ it = "Fault Tolerant Heap — niente correzioni automatiche"; en = "Fault Tolerant Heap — no automatic patching" }
     chkAppCompat       = @{ it = "Motore di compatibilità e inventario programmi"; en = "Compatibility engine and program inventory" }
     chkMemCompression  = @{ it = "Compressione della memoria — rischioso sotto 16 GB di RAM"; en = "Memory compression — risky below 16 GB of RAM" }
@@ -3091,6 +3101,12 @@ $script:Loc = @{
     btnEmergency       = @{ it = "Ripristino totale"; en = "Full reset" }
     lblPersonal        = @{ it = "PERSONALIZZAZIONE"; en = "PERSONALIZATION" }
     chkSecDownfall     = @{ it = "Mitigazione Downfall (solo Intel)"; en = "Downfall mitigation (Intel only)" }
+    ttlDiskPerf        = @{ it = "PRESTAZIONI DEL DISCO"; en = "DISK PERFORMANCE" }
+    lblDiskPerfHint    = @{ it = "Con Windows su SSD, «Consigliati» e «Seleziona tutto» accendono le voci adatte. Su disco meccanico restano spente."; en = "With Windows on an SSD, «Recommended» and «Select all» turn on the suitable items. On a mechanical disk they stay off." }
+    chkNtfs83          = @{ it = "Nomi brevi 8.3 — non crearli sui dischi NTFS"; en = "Short 8.3 names — don't create them on NTFS drives" }
+    chkBootDefrag      = @{ it = "Deframmentazione dei file di avvio — disattiva"; en = "Boot files defragmentation — turn off" }
+    chkThumbCache      = @{ it = "Cache delle miniature — non crearla"; en = "Thumbnail cache — don't create it" }
+    chkTrim            = @{ it = "TRIM — assicurati che sia attivo"; en = "TRIM — make sure it is on" }
 }
 
 # Messaggi non legati a un controllo: log, finestre di dialogo, etichette dinamiche.
@@ -3565,6 +3581,7 @@ $chkRestorePoint = E 'chkRestorePoint'
 $chkMMCSS = E 'chkMMCSS'; $chkPriority = E 'chkPriority'; $chkKernelMem = E 'chkKernelMem'
 $chkKernelDpc = E 'chkKernelDpc'; $chkTimer = E 'chkTimer'; $chkPowerThrottling = E 'chkPowerThrottling'
 $chkNtfsPerf = E 'chkNtfsPerf'
+$chkNtfs83 = E 'chkNtfs83'; $chkBootDefrag = E 'chkBootDefrag'; $chkThumbCache = E 'chkThumbCache'; $chkTrim = E 'chkTrim'
 $chkRamTweak = E 'chkRamTweak'; $cmbRamAmount = E 'cmbRamAmount'
 $chkGameMode = E 'chkGameMode'; $chkFSO = E 'chkFSO'; $chkGameDVR = E 'chkGameDVR'
 $chkHAGS = E 'chkHAGS'; $chkVisualFX = E 'chkVisualFX'
@@ -3672,7 +3689,7 @@ $chkDiskCleanup = E 'chkDiskCleanup'; $chkSmartChkdsk = E 'chkSmartChkdsk'
 $chkStorageSense = E 'chkStorageSense'; $chkReservedStorage = E 'chkReservedStorage'
 
 # Avanzate
-$chkSvcSysMain = E 'chkSvcSysMain'; $chkSvcDiag = E 'chkSvcDiag'
+$chkSvcDiag = E 'chkSvcDiag'
 $chkSvcPca = E 'chkSvcPca'; $chkSvcDiscovery = E 'chkSvcDiscovery'; $chkSvcSensors = E 'chkSvcSensors'
 $chkSvcSmartCard = E 'chkSvcSmartCard'; $chkSvcParental = E 'chkSvcParental'; $chkSvcHyperV = E 'chkSvcHyperV'
 $chkSvcPrint = E 'chkSvcPrint'; $chkSvcSearch = E 'chkSvcSearch'; $chkSvcRemote = E 'chkSvcRemote'
@@ -4372,7 +4389,7 @@ function Get-SelectableChecks([switch]$CurrentPageOnly, [switch]$ByPcType) {
 # Avanzate non ne ha: li' si tolgono pezzi di Windows e la scelta resta una
 # per una.
 $script:RecommendedChecks = @{
-    pagePerf    = @('chkMMCSS','chkPriority','chkKernelMem','chkPowerThrottling','chkNtfsPerf','chkRamTweak','chkGameMode','chkGameDVR','chkHAGS',
+    pagePerf    = @('chkMMCSS','chkPriority','chkKernelMem','chkPowerThrottling','chkRamTweak','chkGameMode','chkGameDVR','chkHAGS',
                     'chkCpuIntelBoostPol','chkCpuAmdParking')
     pagePrivacy = @('chkTelemetry','chkTelemetryTasks','chkActivityHistory','chkAdvertisingID','chkTailoredExp','chkFeedback','chkErrorReporting',
                     'chkInkingTyping','chkWiFiSense','chkConsumerFeatures','chkSuggestedContent','chkLockScreenAds','chkStartBing',
@@ -4380,7 +4397,7 @@ $script:RecommendedChecks = @{
                     'chkRemoteAssistance','chkCompanionApps','chkServicesManual','chkTeredo')
     pageUi      = @('chkDarkTheme','chkFileExt','chkLongPaths','chkExplorerThisPC','chkRemove3D','chkRecycleConfirm','chkMenuDelay','chkMouseAccel','chkNumLock','chkStickyKeys')
     pageNet     = @('chkNetPowerSave')
-    pageStorage = @('chkReservedStorage')
+    pageStorage = @('chkReservedStorage','chkNtfsPerf','chkNtfs83')
     pagePower   = @('chkFastStartup','chkHibernation','chkS0Sleep','chkS3Sleep')
     # Via di mezzo sulla sicurezza: Defender resta acceso e scansiona a PC fermo,
     # l'isolamento del kernel si spegne. Spectre, exploit e SmartScreen restano.
@@ -4391,11 +4408,12 @@ $script:RecommendedChecks = @{
 }
 
 # Con Windows installato su un SSD o NVMe «Consigliati» e «Seleziona tutto»
-# aggiungono le voci che su un disco meccanico servirebbero: niente
-# precaricamento (Prefetch e SysMain) e niente indicizzazione della ricerca.
-# Memoria kernel, ultimo accesso, nomi 8.3 e ibernazione sono gia' consigliati
-# per tutti.
-$script:SsdRecommended = @('chkPrefetch','chkSvcSysMain','chkSvcSearch')
+# aggiungono le voci della pagina Archiviazione che su un disco meccanico
+# servirebbero: niente precaricamento (Prefetch e SysMain), indicizzazione,
+# deframmentazione dei file di avvio e cache delle miniature, TRIM acceso.
+# Nessuna abbassa la sicurezza. Ultimo accesso e nomi 8.3 sono gia'
+# consigliati per tutti i dischi.
+$script:SsdRecommended = @('chkPrefetch','chkSvcSearch','chkBootDefrag','chkThumbCache','chkTrim')
 
 function Test-SystemSsd { return ($script:SystemDiskKind -in @('NVMe','SSD')) }
 
@@ -4412,8 +4430,8 @@ $script:MaxPerfExtra = @(
     # risparmio con fotogrammi in piu'.
     'chkNvThreaded','chkNvTexPerf','chkNvAniso','chkNvNoAnsel',
     'chkAmdTexPerf','chkAmdTess','chkAmdFlipQueue','chkAmdNoFrtc','chkAmdStutter','chkAmdAspm','chkIntelDpst',
-    'chkTaskExtra','chkSvcSysMain','chkSvcDiag','chkSvcPca','chkSvcSensors','chkSvcParental',
-    'chkPrefetch','chkFth','chkAppCompat','chkMemCompression','chkBootDynTick','chkBootTsc',
+    'chkTaskExtra','chkSvcDiag','chkSvcPca','chkSvcSensors','chkSvcParental',
+    'chkFth','chkAppCompat','chkMemCompression','chkBootDynTick','chkBootTsc',
     'chkSecSmartScreen','chkSecSpectre','chkSecDownfall','chkVBS','chkMitigations','chkSecDefenderIdle')
 $script:SecurityChecks = @('chkSecSmartScreen','chkSecSpectre','chkSecDownfall','chkVBS','chkMitigations','chkSecDefenderIdle')
 
@@ -4615,7 +4633,6 @@ $script:Tips = @{
     chkAmdUx = @{ it = "Ferma l'invio dei dati di utilizzo ad AMD."; en = "Stops usage data being sent to AMD." }
     chkAmdBloat = @{ it = "Evita che i programmi accessori AMD partano con Windows. Avvio più leggero."; en = "Keeps AMD companion programs from starting with Windows. A lighter startup." }
     chkIntelBloat = @{ it = "I servizi accessori della grafica Intel partono solo quando servono."; en = "Intel graphics companion services start only when needed." }
-    chkSvcSysMain = @{ it = "Windows smette di precaricare in memoria le app che usi spesso. Utile su SSD veloci, dove non serve."; en = "Windows stops preloading your frequent apps into memory. Useful on fast SSDs, where it is not needed." }
     chkSvcDiag = @{ it = "Ferma i servizi che analizzano problemi e prestazioni in background."; en = "Stops the services that analyse problems and performance in the background." }
     chkSvcPca = @{ it = "Ferma il servizio che controlla la compatibilità dei vecchi programmi."; en = "Stops the service that checks old programs for compatibility." }
     chkSvcDiscovery = @{ it = "Il PC smette di cercare dispositivi sulla rete locale. Meno traffico, ma stampanti e TV di rete potrebbero non comparire."; en = "The PC stops searching for devices on the local network. Less traffic, but network printers and TVs may not show up." }
@@ -4631,7 +4648,7 @@ $script:Tips = @{
     chkTaskExtra = @{ it = "Spegne una ventina di attività automatiche di Microsoft che non servono. Meno lavoro nascosto."; en = "Turns off about twenty automatic Microsoft tasks you do not need. Less hidden work." }
     chkTaskMaint = @{ it = "Windows non avvia più la manutenzione automatica di notte. Il PC non si sveglia e non rallenta a sorpresa."; en = "Windows no longer runs automatic maintenance at night. The PC does not wake up or slow down unexpectedly." }
     chkTaskDefrag = @{ it = "Ferma l'ottimizzazione automatica dei dischi. Sugli SSD va poi fatta a mano dalla pagina Archiviazione."; en = "Stops automatic drive optimization. On SSDs it then has to be run by hand from the Storage page." }
-    chkPrefetch = @{ it = "Windows smette di preparare in anticipo i file dei programmi. Meno scritture sugli SSD."; en = "Windows stops preparing program files in advance. Fewer writes on SSDs." }
+    chkPrefetch = @{ it = "Windows smette di precaricare in memoria le app che usi spesso e di preparare in anticipo i file dei programmi: spegne i valori Prefetch e Superfetch e ferma il servizio SysMain. Utile su SSD, dove non serve e fa solo scritture inutili. Su disco meccanico conviene lasciarlo acceso."; en = "Windows stops preloading your frequent apps into memory and preparing program files in advance: it turns off the Prefetch and Superfetch values and stops the SysMain service. Useful on SSDs, where it isn't needed and only adds writes. On a mechanical disk, leave it on." }
     chkFth = @{ it = "Windows smette di applicare correzioni automatiche ai programmi che si bloccano. Comportamento più prevedibile."; en = "Windows stops applying automatic fixes to programs that crash. More predictable behaviour." }
     chkAppCompat = @{ it = "Spegne i controlli di compatibilità sui programmi. Avvio dei programmi un po' più rapido."; en = "Turns off compatibility checks on programs. Programs start slightly faster." }
     chkMemCompression = @{ it = "Windows smette di comprimere la memoria. Meno lavoro del processore, ma serve molta RAM."; en = "Windows stops compressing memory. Less processor work, but you need plenty of RAM." }
@@ -4689,6 +4706,10 @@ $script:Tips = @{
     chkAdvLogi = @{ it = "Chiude l'assistente download Logitech e gli impedisce di reinstallarsi a ogni avvio."; en = "Closes the Logitech download assistant and stops it from reinstalling at every startup." }
     chkIPv4Pref = @{ it = "IPv6 resta attivo, ma Windows prova prima IPv4. Utile con reti o router che gestiscono male IPv6."; en = "IPv6 stays on, but Windows tries IPv4 first. Useful with networks or routers that handle IPv6 poorly." }
     chkSecDownfall = @{ it = "Spegne la protezione contro Downfall sui processori Intel dalla 6ª all'11ª generazione: recupera prestazioni nei carichi AVX, ma un programma malevolo può leggere dati di altri programmi. Con Hyper-V o VBS attivi Windows la tiene accesa comunque."; en = "Turns off the Downfall protection on 6th to 11th generation Intel processors: it recovers performance in AVX workloads, but a malicious program can read data from other programs. With Hyper-V or VBS on, Windows keeps it enabled anyway." }
+    chkNtfs83 = @{ it = "Per ogni file Windows crea anche un nome corto in stile DOS. Spento, le cartelle con molti file si leggono più in fretta. Serve solo a programmi molto vecchi."; en = "For every file Windows also creates a short DOS-style name. Off, folders with many files read faster. Only very old programs need it." }
+    chkBootDefrag = @{ it = "Windows non riordina più i file di avvio sul disco. Su un SSD non serve a nulla e consuma solo scritture."; en = "Windows no longer reorders the boot files on the disk. On an SSD it does nothing useful and only costs writes." }
+    chkThumbCache = @{ it = "Windows non salva più le miniature in un file su disco. Meno scritture, ma le cartelle di foto e video mostrano le anteprime più lentamente."; en = "Windows stops saving thumbnails to a file on disk. Fewer writes, but folders of photos and videos show previews more slowly." }
+    chkTrim = @{ it = "Dice all'SSD quali blocchi non servono più, così resta veloce nel tempo. Su Windows è già attivo di serie: questa voce lo riaccende se qualcuno lo ha spento."; en = "Tells the SSD which blocks are no longer used, so it stays fast over time. It is on by default in Windows: this item turns it back on if someone switched it off." }
 }
 
 $script:Tr = @{
@@ -4887,7 +4908,6 @@ $script:Tr = @{
         'L:lblAdvIntro' = "Estas opciones quitan partes de Windows que la mayoría de equipos no usa. La ganancia es real en una máquina dedicada a juegos o trabajo, pero algunas cosas dejan de funcionar: lee cada opción. Crea un punto de restauración antes de aplicar y reinicia después."
         'L:ttlSvc' = "SERVICIOS A DETENER"
         'L:lblSvcHint' = "Los servicios que no existen se omiten. Siempre se pueden reactivar desde services.msc."
-        'L:chkSvcSysMain' = "SysMain — precarga de aplicaciones en memoria"
         'L:chkSvcDiag' = "Diagnóstico y seguimiento de eventos"
         'L:chkSvcPca' = "Asistente para la compatibilidad de programas"
         'L:chkSvcDiscovery' = "Detección de dispositivos en red (UPnP, SSDP)"
@@ -4896,7 +4916,7 @@ $script:Tr = @{
         'L:chkSvcParental' = "Control parental y programa Insider"
         'L:chkSvcHyperV' = "Servicios de Hyper-V (si no usas máquinas virtuales)"
         'L:chkSvcPrint' = "Cola de impresión — arriesgado: sin impresoras"
-        'L:chkSvcSearch' = "Windows Search — arriesgado: sin búsqueda en Inicio"
+        'L:chkSvcSearch' = "Windows Search — sin indexación, búsqueda más lenta"
         'L:chkSvcRemote' = "Escritorio remoto y registro remoto — arriesgado si te conectas desde fuera"
         'L:chkSvcBiometric' = "Biometría — arriesgado: sin Windows Hello"
         'L:chkSvcTouch' = "Lápiz y teclado en pantalla — arriesgado en portátiles táctiles"
@@ -4905,7 +4925,7 @@ $script:Tr = @{
         'L:chkTaskMaint' = "Mantenimiento automático nocturno"
         'L:chkTaskDefrag' = "Optimización de unidades programada — arriesgado: en SSD también envía TRIM"
         'L:ttlMem' = "MEMORIA Y PROCESOS"
-        'L:chkPrefetch' = "Prefetch y Superfetch en el registro"
+        'L:chkPrefetch' = "Prefetch y SysMain — sin precarga de aplicaciones"
         'L:chkFth' = "Fault Tolerant Heap — sin correcciones automáticas"
         'L:chkAppCompat' = "Motor de compatibilidad e inventario de programas"
         'L:chkMemCompression' = "Compresión de memoria — arriesgado con menos de 16 GB de RAM"
@@ -5067,7 +5087,6 @@ $script:Tr = @{
         'H:chkAmdUx' = "Detiene el envío de datos de uso a AMD."
         'H:chkAmdBloat' = "Evita que los programas accesorios de AMD arranquen con Windows. Inicio más ligero."
         'H:chkIntelBloat' = "Los servicios accesorios de gráficos Intel arrancan solo cuando hacen falta."
-        'H:chkSvcSysMain' = "Windows deja de precargar en memoria las aplicaciones que usas a menudo. Útil en SSD rápidos, donde no hace falta."
         'H:chkSvcDiag' = "Detiene los servicios que analizan problemas y rendimiento en segundo plano."
         'H:chkSvcPca' = "Detiene el servicio que revisa la compatibilidad de programas antiguos."
         'H:chkSvcDiscovery' = "El equipo deja de buscar dispositivos en la red local. Menos tráfico, pero impresoras y TV de red podrían no aparecer."
@@ -5083,7 +5102,7 @@ $script:Tr = @{
         'H:chkTaskExtra' = "Apaga una veintena de tareas automáticas de Microsoft que no hacen falta. Menos trabajo oculto."
         'H:chkTaskMaint' = "Windows deja de lanzar el mantenimiento automático por la noche. El equipo no se despierta ni se ralentiza por sorpresa."
         'H:chkTaskDefrag' = "Detiene la optimización automática de las unidades. En SSD habrá que hacerla a mano desde la página Almacenamiento."
-        'H:chkPrefetch' = "Windows deja de preparar por adelantado los archivos de los programas. Menos escrituras en SSD."
+        'H:chkPrefetch' = "Windows deja de precargar en memoria las aplicaciones que usas a menudo y de preparar por adelantado los archivos de los programas: desactiva los valores Prefetch y Superfetch y detiene el servicio SysMain. Útil en SSD, donde no hace falta y solo añade escrituras. En un disco mecánico conviene dejarlo activado."
         'H:chkFth' = "Windows deja de aplicar correcciones automáticas a los programas que fallan. Comportamiento más predecible."
         'H:chkAppCompat' = "Apaga las comprobaciones de compatibilidad de los programas. Los programas arrancan algo más rápido."
         'H:chkMemCompression' = "Windows deja de comprimir la memoria. Menos trabajo del procesador, pero hace falta mucha RAM."
@@ -5605,6 +5624,16 @@ $script:Tr = @{
         'M:maxPerfTitle' = "Rendimiento máximo"
         'M:maxPerfAsk' = "«Seleccionar todo» activa todo lo que da rendimiento, incluido lo que reduce la seguridad: mitigaciones Spectre, aislamiento del núcleo, protecciones contra exploits, SmartScreen. Vale para un PC solo de juegos. Para el uso diario elige «Recomendados». ¿Continuar?"
         'M:maxPerfDone' = "Rendimiento máximo listo: {0} para activar, {1} para dejar o devolver como Windows. Pulsa «Aplicar cambios»."
+        'L:ttlDiskPerf' = "RENDIMIENTO DEL DISCO"
+        'L:lblDiskPerfHint' = "Con Windows en un SSD, «Recomendados» y «Seleccionar todo» activan las opciones adecuadas. En un disco mecánico quedan desactivadas."
+        'L:chkNtfs83' = "Nombres cortos 8.3 — no crearlos en discos NTFS"
+        'H:chkNtfs83' = "Para cada archivo Windows crea también un nombre corto al estilo DOS. Desactivado, las carpetas con muchos archivos se leen más rápido. Solo lo necesitan programas muy antiguos."
+        'L:chkBootDefrag' = "Desfragmentación de los archivos de arranque — desactivar"
+        'H:chkBootDefrag' = "Windows ya no reordena los archivos de arranque en el disco. En un SSD no sirve de nada y solo gasta escrituras."
+        'L:chkThumbCache' = "Caché de miniaturas — no crearla"
+        'H:chkThumbCache' = "Windows deja de guardar las miniaturas en un archivo del disco. Menos escrituras, pero las carpetas de fotos y vídeos muestran las vistas previas más despacio."
+        'L:chkTrim' = "TRIM — asegurarse de que esté activo"
+        'H:chkTrim' = "Indica al SSD qué bloques ya no se usan, para que siga siendo rápido con el tiempo. En Windows ya viene activo: esta opción lo reactiva si alguien lo desactivó."
     }
     de = @{
         'L:lblSubtitle' = "Windows-Optimierung und -Steuerung — PcFixPro Italia"
@@ -5801,7 +5830,6 @@ $script:Tr = @{
         'L:lblAdvIntro' = "Diese Optionen entfernen Teile von Windows, die die meisten Computer nie nutzen. Der Gewinn ist auf einem reinen Spiele- oder Arbeitsrechner echt, aber manches funktioniert danach nicht mehr: lies jeden Eintrag. Erstelle vorher einen Wiederherstellungspunkt und starte danach neu."
         'L:ttlSvc' = "ZU STOPPENDE DIENSTE"
         'L:lblSvcHint' = "Fehlende Dienste werden übersprungen. Sie lassen sich jederzeit über services.msc wieder einschalten."
-        'L:chkSvcSysMain' = "SysMain — Apps vorab in den Speicher laden"
         'L:chkSvcDiag' = "Diagnose und Ereignisablaufverfolgung"
         'L:chkSvcPca' = "Programmkompatibilitäts-Assistent"
         'L:chkSvcDiscovery' = "Geräteerkennung im Netzwerk (UPnP, SSDP)"
@@ -5810,7 +5838,7 @@ $script:Tr = @{
         'L:chkSvcParental' = "Jugendschutz und Insider-Programm"
         'L:chkSvcHyperV' = "Hyper-V-Dienste (wenn du keine virtuellen Maschinen nutzt)"
         'L:chkSvcPrint' = "Druckwarteschlange — riskant: kein Drucken"
-        'L:chkSvcSearch' = "Windows Search — riskant: keine Suche im Startmenü"
+        'L:chkSvcSearch' = "Windows Search — keine Indizierung, langsamere Suche"
         'L:chkSvcRemote' = "Remotedesktop und Remoteregistrierung — riskant bei Zugriff von außen"
         'L:chkSvcBiometric' = "Biometrie — riskant: kein Windows Hello"
         'L:chkSvcTouch' = "Stift und Bildschirmtastatur — riskant auf Touch-Laptops"
@@ -5819,7 +5847,7 @@ $script:Tr = @{
         'L:chkTaskMaint' = "Nächtliche automatische Wartung"
         'L:chkTaskDefrag' = "Geplante Laufwerksoptimierung — riskant: sendet auf SSDs auch TRIM"
         'L:ttlMem' = "SPEICHER UND PROZESSE"
-        'L:chkPrefetch' = "Prefetch- und Superfetch-Werte in der Registrierung"
+        'L:chkPrefetch' = "Prefetch und SysMain — kein Vorladen von Apps"
         'L:chkFth' = "Fault Tolerant Heap — keine automatischen Korrekturen"
         'L:chkAppCompat' = "Kompatibilitäts-Engine und Programminventar"
         'L:chkMemCompression' = "Speicherkomprimierung — riskant unter 16 GB RAM"
@@ -5981,7 +6009,6 @@ $script:Tr = @{
         'H:chkAmdUx' = "Stoppt das Senden von Nutzungsdaten an AMD."
         'H:chkAmdBloat' = "Verhindert, dass AMD-Zusatzprogramme mit Windows starten. Schlankerer Start."
         'H:chkIntelBloat' = "Die Zusatzdienste der Intel-Grafik starten nur bei Bedarf."
-        'H:chkSvcSysMain' = "Windows lädt häufig genutzte Apps nicht mehr vorab in den Speicher. Sinnvoll bei schnellen SSDs, wo es nicht nötig ist."
         'H:chkSvcDiag' = "Stoppt die Dienste, die Probleme und Leistung im Hintergrund analysieren."
         'H:chkSvcPca' = "Stoppt den Dienst, der alte Programme auf Kompatibilität prüft."
         'H:chkSvcDiscovery' = "Der PC sucht nicht mehr nach Geräten im lokalen Netzwerk. Weniger Datenverkehr, aber Netzwerkdrucker und Fernseher erscheinen eventuell nicht."
@@ -5997,7 +6024,7 @@ $script:Tr = @{
         'H:chkTaskExtra' = "Schaltet rund zwanzig automatische Microsoft-Aufgaben ab, die du nicht brauchst. Weniger versteckte Arbeit."
         'H:chkTaskMaint' = "Windows startet nachts keine automatische Wartung mehr. Der PC wacht nicht auf und wird nicht überraschend langsam."
         'H:chkTaskDefrag' = "Stoppt die automatische Laufwerksoptimierung. Bei SSDs musst du sie dann auf der Seite Speicher von Hand starten."
-        'H:chkPrefetch' = "Windows bereitet Programmdateien nicht mehr im Voraus vor. Weniger Schreibvorgänge auf SSDs."
+        'H:chkPrefetch' = "Windows lädt häufig genutzte Apps nicht mehr vorab in den Speicher und bereitet Programmdateien nicht mehr im Voraus vor: Die Werte Prefetch und Superfetch werden ausgeschaltet und der Dienst SysMain wird gestoppt. Sinnvoll bei SSDs, wo es unnötig ist und nur Schreibvorgänge verursacht. Bei einer Festplatte besser eingeschaltet lassen."
         'H:chkFth' = "Windows wendet keine automatischen Korrekturen mehr auf abstürzende Programme an. Vorhersehbareres Verhalten."
         'H:chkAppCompat' = "Schaltet Kompatibilitätsprüfungen für Programme ab. Programme starten etwas schneller."
         'H:chkMemCompression' = "Windows komprimiert den Speicher nicht mehr. Weniger Arbeit für den Prozessor, aber du brauchst viel RAM."
@@ -6519,6 +6546,16 @@ $script:Tr = @{
         'M:maxPerfTitle' = "Maximale Leistung"
         'M:maxPerfAsk' = "«Alles auswählen» schaltet alles ein, was Leistung bringt, auch was die Sicherheit senkt: Spectre-Schutz, Kernisolierung, Exploit-Schutz, SmartScreen. In Ordnung für einen reinen Spiele-PC. Für den Alltag «Empfohlene» wählen. Fortfahren?"
         'M:maxPerfDone' = "Maximale Leistung bereit: {0} zu aktivieren, {1} bleiben oder gehen auf Windows-Standard zurück. «Änderungen übernehmen» drücken."
+        'L:ttlDiskPerf' = "LAUFWERKSLEISTUNG"
+        'L:lblDiskPerfHint' = "Ist Windows auf einer SSD installiert, schalten «Empfohlene» und «Alle auswählen» die passenden Optionen ein. Bei einer Festplatte bleiben sie aus."
+        'L:chkNtfs83' = "Kurze 8.3-Namen — auf NTFS-Laufwerken nicht erstellen"
+        'H:chkNtfs83' = "Für jede Datei erstellt Windows auch einen kurzen Namen im DOS-Stil. Ausgeschaltet werden Ordner mit vielen Dateien schneller gelesen. Nur sehr alte Programme brauchen ihn."
+        'L:chkBootDefrag' = "Defragmentierung der Startdateien — ausschalten"
+        'H:chkBootDefrag' = "Windows ordnet die Startdateien auf dem Laufwerk nicht mehr neu an. Auf einer SSD bringt das nichts und kostet nur Schreibvorgänge."
+        'L:chkThumbCache' = "Miniaturansicht-Cache — nicht anlegen"
+        'H:chkThumbCache' = "Windows speichert Miniaturansichten nicht mehr in einer Datei auf dem Laufwerk. Weniger Schreibvorgänge, aber Ordner mit Fotos und Videos zeigen Vorschauen langsamer an."
+        'L:chkTrim' = "TRIM — sicherstellen, dass es aktiv ist"
+        'H:chkTrim' = "Teilt der SSD mit, welche Blöcke nicht mehr benötigt werden, damit sie dauerhaft schnell bleibt. Unter Windows ist es standardmäßig aktiv: Diese Option schaltet es wieder ein, falls es jemand ausgeschaltet hat."
     }
     fr = @{
         'L:lblSubtitle' = "Optimisation et contrôle de Windows — PcFixPro Italia"
@@ -6718,7 +6755,6 @@ $script:Tr = @{
         'L:lblAdvIntro' = "Ces options retirent des parties de Windows que la plupart des ordinateurs n'utilisent jamais. Le gain est réel sur une machine dédiée au jeu ou au travail, mais certaines choses cessent de fonctionner : lisez chaque option. Créez un point de restauration avant d'appliquer et redémarrez ensuite."
         'L:ttlSvc' = "SERVICES À ARRÊTER"
         'L:lblSvcHint' = "Les services absents sont ignorés. On peut toujours les réactiver depuis services.msc."
-        'L:chkSvcSysMain' = "SysMain — préchargement des applications en mémoire"
         'L:chkSvcDiag' = "Diagnostic et suivi d'événements"
         'L:chkSvcPca' = "Assistant Compatibilité des programmes"
         'L:chkSvcDiscovery' = "Découverte d'appareils réseau (UPnP, SSDP)"
@@ -6727,7 +6763,7 @@ $script:Tr = @{
         'L:chkSvcParental' = "Contrôle parental et programme Insider"
         'L:chkSvcHyperV' = "Services Hyper-V (si vous n'utilisez pas de machines virtuelles)"
         'L:chkSvcPrint' = "Spouleur d'impression — risqué : plus d'impression"
-        'L:chkSvcSearch' = "Windows Search — risqué : plus de recherche dans Démarrer"
+        'L:chkSvcSearch' = "Windows Search — sans indexation, recherche plus lente"
         'L:chkSvcRemote' = "Bureau à distance et registre à distance — risqué si vous vous connectez de l'extérieur"
         'L:chkSvcBiometric' = "Biométrie — risqué : plus de Windows Hello"
         'L:chkSvcTouch' = "Stylet et clavier tactile — risqué sur les portables tactiles"
@@ -6736,7 +6772,7 @@ $script:Tr = @{
         'L:chkTaskMaint' = "Maintenance automatique nocturne"
         'L:chkTaskDefrag' = "Optimisation planifiée des lecteurs — risqué : sur SSD elle envoie aussi TRIM"
         'L:ttlMem' = "MÉMOIRE ET PROCESSUS"
-        'L:chkPrefetch' = "Valeurs Prefetch et Superfetch du registre"
+        'L:chkPrefetch' = "Prefetch et SysMain — pas de préchargement des applications"
         'L:chkFth' = "Fault Tolerant Heap — pas de corrections automatiques"
         'L:chkAppCompat' = "Moteur de compatibilité et inventaire des programmes"
         'L:chkMemCompression' = "Compression de la mémoire — risqué sous 16 Go de RAM"
@@ -6898,7 +6934,6 @@ $script:Tr = @{
         'H:chkAmdUx' = "Arrête l'envoi des données d'utilisation à AMD."
         'H:chkAmdBloat' = "Empêche les programmes annexes AMD de démarrer avec Windows. Démarrage plus léger."
         'H:chkIntelBloat' = "Les services annexes des graphismes Intel démarrent seulement quand il le faut."
-        'H:chkSvcSysMain' = "Windows ne précharge plus en mémoire les applications que vous utilisez souvent. Utile sur les SSD rapides, où ce n'est pas nécessaire."
         'H:chkSvcDiag' = "Arrête les services qui analysent problèmes et performances en arrière-plan."
         'H:chkSvcPca' = "Arrête le service qui vérifie la compatibilité des anciens programmes."
         'H:chkSvcDiscovery' = "Le PC ne cherche plus d'appareils sur le réseau local. Moins de trafic, mais imprimantes et TV réseau peuvent ne plus apparaître."
@@ -6914,7 +6949,7 @@ $script:Tr = @{
         'H:chkTaskExtra' = "Coupe une vingtaine de tâches automatiques de Microsoft inutiles. Moins de travail caché."
         'H:chkTaskMaint' = "Windows ne lance plus la maintenance automatique la nuit. Le PC ne se réveille pas et ne ralentit pas par surprise."
         'H:chkTaskDefrag' = "Arrête l'optimisation automatique des lecteurs. Sur SSD, il faudra la lancer à la main depuis la page Stockage."
-        'H:chkPrefetch' = "Windows ne prépare plus à l'avance les fichiers des programmes. Moins d'écritures sur les SSD."
+        'H:chkPrefetch' = "Windows ne précharge plus en mémoire les applications que vous utilisez souvent ni les fichiers des programmes : les valeurs Prefetch et Superfetch sont désactivées et le service SysMain est arrêté. Utile sur SSD, où ce n'est pas nécessaire et ne fait qu'ajouter des écritures. Sur un disque mécanique, mieux vaut le laisser actif."
         'H:chkFth' = "Windows n'applique plus de corrections automatiques aux programmes qui plantent. Comportement plus prévisible."
         'H:chkAppCompat' = "Coupe les contrôles de compatibilité des programmes. Les programmes démarrent un peu plus vite."
         'H:chkMemCompression' = "Windows ne compresse plus la mémoire. Moins de travail pour le processeur, mais il faut beaucoup de RAM."
@@ -7436,6 +7471,16 @@ $script:Tr = @{
         'M:maxPerfTitle' = "Performances maximales"
         'M:maxPerfAsk' = "«Tout sélectionner» active tout ce qui apporte des performances, y compris ce qui réduit la sécurité : atténuations Spectre, isolation du noyau, protections contre les exploits, SmartScreen. Convient à un PC réservé au jeu. Pour un usage quotidien, choisissez «Recommandés». Continuer ?"
         'M:maxPerfDone' = "Performances maximales prêtes : {0} à activer, {1} à laisser ou à remettre comme Windows. Appuyez sur «Appliquer les modifications»."
+        'L:ttlDiskPerf' = "PERFORMANCES DU DISQUE"
+        'L:lblDiskPerfHint' = "Avec Windows sur un SSD, « Recommandés » et « Tout sélectionner » activent les options adaptées. Sur un disque mécanique, elles restent désactivées."
+        'L:chkNtfs83' = "Noms courts 8.3 — ne pas les créer sur les disques NTFS"
+        'H:chkNtfs83' = "Pour chaque fichier, Windows crée aussi un nom court de style DOS. Désactivé, les dossiers contenant beaucoup de fichiers se lisent plus vite. Seuls de très vieux programmes en ont besoin."
+        'L:chkBootDefrag' = "Défragmentation des fichiers de démarrage — désactiver"
+        'H:chkBootDefrag' = "Windows ne réorganise plus les fichiers de démarrage sur le disque. Sur un SSD, cela ne sert à rien et consomme seulement des écritures."
+        'L:chkThumbCache' = "Cache des miniatures — ne pas le créer"
+        'H:chkThumbCache' = "Windows n'enregistre plus les miniatures dans un fichier sur le disque. Moins d'écritures, mais les dossiers de photos et de vidéos affichent les aperçus plus lentement."
+        'L:chkTrim' = "TRIM — s'assurer qu'il est actif"
+        'H:chkTrim' = "Indique au SSD quels blocs ne servent plus, pour qu'il reste rapide dans le temps. Il est actif par défaut sous Windows : cette option le réactive si quelqu'un l'a désactivé."
     }
     pl = @{
         'L:lblSubtitle' = "Optymalizacja i kontrola systemu Windows — PcFixPro Italia"
@@ -7632,7 +7677,6 @@ $script:Tr = @{
         'L:lblAdvIntro' = "Te opcje usuwają części Windows, których większość komputerów nigdy nie używa. Zysk jest realny na maszynie do gier lub pracy, ale niektóre rzeczy przestają działać: przeczytaj każdą pozycję. Przed zastosowaniem utwórz punkt przywracania, a potem uruchom ponownie."
         'L:ttlSvc' = "USŁUGI DO ZATRZYMANIA"
         'L:lblSvcHint' = "Brakujące usługi są pomijane. Zawsze można je włączyć ponownie w services.msc."
-        'L:chkSvcSysMain' = "SysMain — wstępne ładowanie aplikacji do pamięci"
         'L:chkSvcDiag' = "Diagnostyka i śledzenie zdarzeń"
         'L:chkSvcPca' = "Asystent zgodności programów"
         'L:chkSvcDiscovery' = "Wykrywanie urządzeń w sieci (UPnP, SSDP)"
@@ -7641,7 +7685,7 @@ $script:Tr = @{
         'L:chkSvcParental' = "Kontrola rodzicielska i program Insider"
         'L:chkSvcHyperV' = "Usługi Hyper-V (jeśli nie używasz maszyn wirtualnych)"
         'L:chkSvcPrint' = "Bufor wydruku — ryzykowne: brak drukowania"
-        'L:chkSvcSearch' = "Windows Search — ryzykowne: brak wyszukiwania w Start"
+        'L:chkSvcSearch' = "Windows Search — bez indeksowania, wolniejsze wyszukiwanie"
         'L:chkSvcRemote' = "Pulpit zdalny i rejestr zdalny — ryzykowne, jeśli łączysz się z zewnątrz"
         'L:chkSvcBiometric' = "Biometria — ryzykowne: brak Windows Hello"
         'L:chkSvcTouch' = "Pióro i klawiatura ekranowa — ryzykowne na laptopach dotykowych"
@@ -7650,7 +7694,7 @@ $script:Tr = @{
         'L:chkTaskMaint' = "Nocna automatyczna konserwacja"
         'L:chkTaskDefrag' = "Zaplanowana optymalizacja dysków — ryzykowne: na SSD wysyła też TRIM"
         'L:ttlMem' = "PAMIĘĆ I PROCESY"
-        'L:chkPrefetch' = "Wartości Prefetch i Superfetch w rejestrze"
+        'L:chkPrefetch' = "Prefetch i SysMain — bez wstępnego ładowania aplikacji"
         'L:chkFth' = "Fault Tolerant Heap — bez automatycznych poprawek"
         'L:chkAppCompat' = "Mechanizm zgodności i spis programów"
         'L:chkMemCompression' = "Kompresja pamięci — ryzykowne poniżej 16 GB RAM"
@@ -7812,7 +7856,6 @@ $script:Tr = @{
         'H:chkAmdUx' = "Zatrzymuje wysyłanie danych o użytkowaniu do AMD."
         'H:chkAmdBloat' = "Nie pozwala dodatkowym programom AMD startować z Windows. Lżejszy start."
         'H:chkIntelBloat' = "Dodatkowe usługi grafiki Intel startują tylko wtedy, gdy są potrzebne."
-        'H:chkSvcSysMain' = "Windows przestaje wstępnie ładować do pamięci często używane aplikacje. Przydatne na szybkich SSD, gdzie nie jest to potrzebne."
         'H:chkSvcDiag' = "Zatrzymuje usługi analizujące problemy i wydajność w tle."
         'H:chkSvcPca' = "Zatrzymuje usługę sprawdzającą zgodność starych programów."
         'H:chkSvcDiscovery' = "Komputer przestaje szukać urządzeń w sieci lokalnej. Mniejszy ruch, ale drukarki i telewizory sieciowe mogą się nie pojawiać."
@@ -7828,7 +7871,7 @@ $script:Tr = @{
         'H:chkTaskExtra' = "Wyłącza około dwudziestu zbędnych automatycznych zadań Microsoft. Mniej ukrytej pracy."
         'H:chkTaskMaint' = "Windows nie uruchamia już nocnej automatycznej konserwacji. Komputer nie budzi się i nie zwalnia niespodziewanie."
         'H:chkTaskDefrag' = "Zatrzymuje automatyczną optymalizację dysków. Na SSD trzeba ją potem uruchamiać ręcznie ze strony Magazyn."
-        'H:chkPrefetch' = "Windows przestaje przygotowywać z wyprzedzeniem pliki programów. Mniej zapisów na SSD."
+        'H:chkPrefetch' = "Windows przestaje wstępnie ładować do pamięci często używane aplikacje i przygotowywać z wyprzedzeniem pliki programów: wyłącza wartości Prefetch i Superfetch oraz zatrzymuje usługę SysMain. Przydatne na SSD, gdzie nie jest potrzebne i tylko dodaje zapisy. Na dysku mechanicznym lepiej zostawić włączone."
         'H:chkFth' = "Windows przestaje nakładać automatyczne poprawki na zawieszające się programy. Bardziej przewidywalne działanie."
         'H:chkAppCompat' = "Wyłącza sprawdzanie zgodności programów. Programy uruchamiają się nieco szybciej."
         'H:chkMemCompression' = "Windows przestaje kompresować pamięć. Mniej pracy procesora, ale potrzeba dużo RAM."
@@ -8350,6 +8393,16 @@ $script:Tr = @{
         'M:maxPerfTitle' = "Maksymalna wydajność"
         'M:maxPerfAsk' = "«Zaznacz wszystko» włącza wszystko, co daje wydajność, także to, co obniża bezpieczeństwo: zabezpieczenia Spectre, izolację jądra, ochronę przed exploitami, SmartScreen. Dobre dla komputera tylko do gier. Do codziennej pracy wybierz «Zalecane». Kontynuować?"
         'M:maxPerfDone' = "Maksymalna wydajność gotowa: {0} do włączenia, {1} zostaje lub wraca do ustawień Windows. Naciśnij «Zastosuj zmiany»."
+        'L:ttlDiskPerf' = "WYDAJNOŚĆ DYSKU"
+        'L:lblDiskPerfHint' = "Gdy Windows jest na dysku SSD, «Zalecane» i «Zaznacz wszystko» włączają odpowiednie opcje. Na dysku mechanicznym pozostają wyłączone."
+        'L:chkNtfs83' = "Krótkie nazwy 8.3 — nie twórz na dyskach NTFS"
+        'H:chkNtfs83' = "Dla każdego pliku Windows tworzy też krótką nazwę w stylu DOS. Po wyłączeniu foldery z wieloma plikami wczytują się szybciej. Potrzebują jej tylko bardzo stare programy."
+        'L:chkBootDefrag' = "Defragmentacja plików rozruchowych — wyłącz"
+        'H:chkBootDefrag' = "Windows nie porządkuje już plików rozruchowych na dysku. Na SSD nic to nie daje i tylko zużywa zapisy."
+        'L:chkThumbCache' = "Pamięć podręczna miniatur — nie twórz"
+        'H:chkThumbCache' = "Windows nie zapisuje już miniatur w pliku na dysku. Mniej zapisów, ale foldery ze zdjęciami i filmami wyświetlają podglądy wolniej."
+        'L:chkTrim' = "TRIM — upewnij się, że jest włączony"
+        'H:chkTrim' = "Informuje dysk SSD, które bloki nie są już używane, dzięki czemu z czasem pozostaje szybki. W Windows jest domyślnie włączony: ta opcja włącza go ponownie, jeśli ktoś go wyłączył."
     }
     pt = @{
         'L:lblSubtitle' = "Otimização e controle do Windows — PcFixPro Italia"
@@ -8546,7 +8599,6 @@ $script:Tr = @{
         'L:lblAdvIntro' = "Estas opções removem partes do Windows que a maioria dos computadores nunca usa. O ganho é real numa máquina dedicada a jogos ou trabalho, mas algumas coisas deixam de funcionar: leia cada item. Crie um ponto de restauração antes de aplicar e reinicie depois."
         'L:ttlSvc' = "SERVIÇOS A PARAR"
         'L:lblSvcHint' = "Serviços ausentes são ignorados. Sempre podem ser reativados em services.msc."
-        'L:chkSvcSysMain' = "SysMain — pré-carregamento de apps na memória"
         'L:chkSvcDiag' = "Diagnóstico e rastreamento de eventos"
         'L:chkSvcPca' = "Assistente de Compatibilidade de Programas"
         'L:chkSvcDiscovery' = "Descoberta de dispositivos na rede (UPnP, SSDP)"
@@ -8555,7 +8607,7 @@ $script:Tr = @{
         'L:chkSvcParental' = "Controle dos pais e programa Insider"
         'L:chkSvcHyperV' = "Serviços do Hyper-V (se não usa máquinas virtuais)"
         'L:chkSvcPrint' = "Spooler de impressão — arriscado: sem impressoras"
-        'L:chkSvcSearch' = "Windows Search — arriscado: sem pesquisa no Iniciar"
+        'L:chkSvcSearch' = "Windows Search — sem indexação, pesquisa mais lenta"
         'L:chkSvcRemote' = "Área de Trabalho Remota e registro remoto — arriscado se você acessa de fora"
         'L:chkSvcBiometric' = "Biometria — arriscado: sem Windows Hello"
         'L:chkSvcTouch' = "Caneta e teclado virtual — arriscado em notebooks touch"
@@ -8564,7 +8616,7 @@ $script:Tr = @{
         'L:chkTaskMaint' = "Manutenção automática noturna"
         'L:chkTaskDefrag' = "Otimização agendada de unidades — arriscado: em SSD também envia TRIM"
         'L:ttlMem' = "MEMÓRIA E PROCESSOS"
-        'L:chkPrefetch' = "Valores de Prefetch e Superfetch no registro"
+        'L:chkPrefetch' = "Prefetch e SysMain — sem pré-carregamento de apps"
         'L:chkFth' = "Fault Tolerant Heap — sem correções automáticas"
         'L:chkAppCompat' = "Mecanismo de compatibilidade e inventário de programas"
         'L:chkMemCompression' = "Compressão de memória — arriscado com menos de 16 GB de RAM"
@@ -8726,7 +8778,6 @@ $script:Tr = @{
         'H:chkAmdUx' = "Para o envio de dados de uso para a AMD."
         'H:chkAmdBloat' = "Impede que os programas extras da AMD iniciem com o Windows. Inicialização mais leve."
         'H:chkIntelBloat' = "Os serviços extras da placa Intel só iniciam quando necessários."
-        'H:chkSvcSysMain' = "O Windows para de pré-carregar na memória os apps que você usa com frequência. Útil em SSDs rápidos, onde não é necessário."
         'H:chkSvcDiag' = "Para os serviços que analisam problemas e desempenho em segundo plano."
         'H:chkSvcPca' = "Para o serviço que verifica a compatibilidade de programas antigos."
         'H:chkSvcDiscovery' = "O PC para de procurar dispositivos na rede local. Menos tráfego, mas impressoras e TVs de rede podem não aparecer."
@@ -8742,7 +8793,7 @@ $script:Tr = @{
         'H:chkTaskExtra' = "Desliga cerca de vinte tarefas automáticas da Microsoft que não são necessárias. Menos trabalho escondido."
         'H:chkTaskMaint' = "O Windows não roda mais a manutenção automática de madrugada. O PC não acorda nem fica lento de surpresa."
         'H:chkTaskDefrag' = "Para a otimização automática das unidades. Em SSD, ela deve ser feita à mão pela página Armazenamento."
-        'H:chkPrefetch' = "O Windows para de preparar com antecedência os arquivos dos programas. Menos gravações no SSD."
+        'H:chkPrefetch' = "O Windows para de pré-carregar na memória os apps que você usa com frequência e de preparar com antecedência os arquivos dos programas: desliga os valores Prefetch e Superfetch e para o serviço SysMain. Útil em SSD, onde não é necessário e só gera gravações. Em disco mecânico, convém deixar ligado."
         'H:chkFth' = "O Windows para de aplicar correções automáticas aos programas que travam. Comportamento mais previsível."
         'H:chkAppCompat' = "Desliga as verificações de compatibilidade dos programas. Os programas abrem um pouco mais rápido."
         'H:chkMemCompression' = "O Windows para de comprimir a memória. Menos trabalho do processador, mas é preciso bastante RAM."
@@ -9264,6 +9315,16 @@ $script:Tr = @{
         'M:maxPerfTitle' = "Desempenho máximo"
         'M:maxPerfAsk' = "«Selecionar tudo» liga tudo o que dá desempenho, inclusive o que reduz a segurança: mitigações Spectre, isolamento do núcleo, proteções contra exploits, SmartScreen. Serve para um PC só de jogos. Para o dia a dia escolha «Recomendados». Continuar?"
         'M:maxPerfDone' = "Desempenho máximo pronto: {0} para ativar, {1} para manter ou voltar ao padrão do Windows. Pressione «Aplicar alterações»."
+        'L:ttlDiskPerf' = "DESEMPENHO DO DISCO"
+        'L:lblDiskPerfHint' = "Com o Windows em um SSD, «Recomendados» e «Selecionar tudo» ativam os itens adequados. Em disco mecânico, ficam desligados."
+        'L:chkNtfs83' = "Nomes curtos 8.3 — não criar em discos NTFS"
+        'H:chkNtfs83' = "Para cada arquivo o Windows cria também um nome curto no estilo DOS. Desligado, as pastas com muitos arquivos são lidas mais rápido. Só programas muito antigos precisam dele."
+        'L:chkBootDefrag' = "Desfragmentação dos arquivos de inicialização — desativar"
+        'H:chkBootDefrag' = "O Windows deixa de reorganizar os arquivos de inicialização no disco. Em SSD não serve para nada e só gasta gravações."
+        'L:chkThumbCache' = "Cache de miniaturas — não criar"
+        'H:chkThumbCache' = "O Windows deixa de guardar as miniaturas em um arquivo no disco. Menos gravações, mas as pastas de fotos e vídeos mostram as prévias mais devagar."
+        'L:chkTrim' = "TRIM — garantir que esteja ativo"
+        'H:chkTrim' = "Informa ao SSD quais blocos não são mais usados, para que continue rápido com o tempo. No Windows já vem ativo: este item o reativa se alguém o desligou."
     }
     ro = @{
         'L:lblSubtitle' = "Optimizarea și controlul Windows — PcFixPro Italia"
@@ -9460,7 +9521,6 @@ $script:Tr = @{
         'L:lblAdvIntro' = "Aceste opțiuni elimină părți din Windows pe care majoritatea computerelor nu le folosesc. Câștigul e real pe o mașină dedicată jocurilor sau muncii, dar unele lucruri nu mai funcționează: citește fiecare opțiune. Creează un punct de restaurare înainte și repornește după."
         'L:ttlSvc' = "SERVICII DE OPRIT"
         'L:lblSvcHint' = "Serviciile absente sunt omise. Pot fi oricând reactivate din services.msc."
-        'L:chkSvcSysMain' = "SysMain — preîncărcarea aplicațiilor în memorie"
         'L:chkSvcDiag' = "Diagnosticare și urmărirea evenimentelor"
         'L:chkSvcPca' = "Asistentul de compatibilitate a programelor"
         'L:chkSvcDiscovery' = "Descoperirea dispozitivelor din rețea (UPnP, SSDP)"
@@ -9469,7 +9529,7 @@ $script:Tr = @{
         'L:chkSvcParental' = "Control parental și programul Insider"
         'L:chkSvcHyperV' = "Servicii Hyper-V (dacă nu folosești mașini virtuale)"
         'L:chkSvcPrint' = "Spooler de imprimare — riscant: fără imprimante"
-        'L:chkSvcSearch' = "Windows Search — riscant: fără căutare în Start"
+        'L:chkSvcSearch' = "Windows Search — fără indexare, căutare mai lentă"
         'L:chkSvcRemote' = "Desktop la distanță și registru la distanță — riscant dacă te conectezi din afară"
         'L:chkSvcBiometric' = "Biometrie — riscant: fără Windows Hello"
         'L:chkSvcTouch' = "Stilou și tastatură pe ecran — riscant pe laptopuri touch"
@@ -9478,7 +9538,7 @@ $script:Tr = @{
         'L:chkTaskMaint' = "Întreținere automată nocturnă"
         'L:chkTaskDefrag' = "Optimizarea programată a unităților — riscant: pe SSD trimite și TRIM"
         'L:ttlMem' = "MEMORIE ȘI PROCESE"
-        'L:chkPrefetch' = "Valorile Prefetch și Superfetch din registru"
+        'L:chkPrefetch' = "Prefetch și SysMain — fără preîncărcarea aplicațiilor"
         'L:chkFth' = "Fault Tolerant Heap — fără corecții automate"
         'L:chkAppCompat' = "Motorul de compatibilitate și inventarul programelor"
         'L:chkMemCompression' = "Comprimarea memoriei — riscant sub 16 GB RAM"
@@ -9640,7 +9700,6 @@ $script:Tr = @{
         'H:chkAmdUx' = "Oprește trimiterea datelor de utilizare către AMD."
         'H:chkAmdBloat' = "Împiedică programele suplimentare AMD să pornească odată cu Windows. Pornire mai ușoară."
         'H:chkIntelBloat' = "Serviciile suplimentare ale plăcii Intel pornesc doar când e nevoie."
-        'H:chkSvcSysMain' = "Windows nu mai preîncarcă în memorie aplicațiile folosite des. Util pe SSD-uri rapide, unde nu e nevoie."
         'H:chkSvcDiag' = "Oprește serviciile care analizează problemele și performanța în fundal."
         'H:chkSvcPca' = "Oprește serviciul care verifică compatibilitatea programelor vechi."
         'H:chkSvcDiscovery' = "PC-ul nu mai caută dispozitive în rețeaua locală. Mai puțin trafic, dar imprimantele și televizoarele din rețea pot să nu mai apară."
@@ -9656,7 +9715,7 @@ $script:Tr = @{
         'H:chkTaskExtra' = "Oprește vreo douăzeci de activități automate Microsoft care nu sunt necesare. Mai puțină muncă ascunsă."
         'H:chkTaskMaint' = "Windows nu mai pornește întreținerea automată noaptea. PC-ul nu se trezește și nu încetinește pe neașteptate."
         'H:chkTaskDefrag' = "Oprește optimizarea automată a unităților. Pe SSD va trebui pornită manual din pagina Stocare."
-        'H:chkPrefetch' = "Windows nu mai pregătește din timp fișierele programelor. Mai puține scrieri pe SSD."
+        'H:chkPrefetch' = "Windows nu mai preîncarcă în memorie aplicațiile folosite des și nu mai pregătește din timp fișierele programelor: oprește valorile Prefetch și Superfetch și serviciul SysMain. Util pe SSD, unde nu e nevoie și doar adaugă scrieri. Pe un disc mecanic e mai bine să rămână pornit."
         'H:chkFth' = "Windows nu mai aplică corecții automate programelor care se blochează. Comportament mai previzibil."
         'H:chkAppCompat' = "Oprește verificările de compatibilitate ale programelor. Programele pornesc puțin mai repede."
         'H:chkMemCompression' = "Windows nu mai comprimă memoria. Mai puțină muncă pentru procesor, dar e nevoie de multă RAM."
@@ -10178,6 +10237,16 @@ $script:Tr = @{
         'M:maxPerfTitle' = "Performanță maximă"
         'M:maxPerfAsk' = "«Selectează tot» pornește tot ce aduce performanță, inclusiv ce scade securitatea: protecțiile Spectre, izolarea nucleului, protecțiile anti-exploit, SmartScreen. Potrivit pentru un PC folosit doar la jocuri. Pentru uz zilnic alege «Recomandate». Continui?"
         'M:maxPerfDone' = "Performanță maximă pregătită: {0} de activat, {1} rămân sau revin la valorile Windows. Apasă «Aplică modificările»."
+        'L:ttlDiskPerf' = "PERFORMANȚA DISCULUI"
+        'L:lblDiskPerfHint' = "Cu Windows pe un SSD, «Recomandate» și «Selectează tot» activează opțiunile potrivite. Pe un disc mecanic rămân oprite."
+        'L:chkNtfs83' = "Nume scurte 8.3 — nu le crea pe discurile NTFS"
+        'H:chkNtfs83' = "Pentru fiecare fișier, Windows creează și un nume scurt în stil DOS. Oprit, folderele cu multe fișiere se citesc mai repede. Doar programele foarte vechi au nevoie de el."
+        'L:chkBootDefrag' = "Defragmentarea fișierelor de pornire — dezactivează"
+        'H:chkBootDefrag' = "Windows nu mai reordonează fișierele de pornire pe disc. Pe un SSD nu ajută la nimic și consumă doar scrieri."
+        'L:chkThumbCache' = "Cache-ul miniaturilor — nu îl crea"
+        'H:chkThumbCache' = "Windows nu mai salvează miniaturile într-un fișier pe disc. Mai puține scrieri, dar folderele cu fotografii și videoclipuri afișează previzualizările mai lent."
+        'L:chkTrim' = "TRIM — asigură-te că este activ"
+        'H:chkTrim' = "Spune SSD-ului ce blocuri nu mai sunt folosite, ca să rămână rapid în timp. În Windows este activ implicit: această opțiune îl repornește dacă cineva l-a oprit."
     }
     ru = @{
         'L:lblSubtitle' = "Оптимизация и управление Windows — PcFixPro Italia"
@@ -10374,7 +10443,6 @@ $script:Tr = @{
         'L:lblAdvIntro' = "Эти параметры убирают части Windows, которыми большинство компьютеров не пользуется. Выигрыш реален на машине для игр или работы, но кое-что перестаёт работать: читайте описание каждого пункта. Перед применением создайте точку восстановления, а после — перезагрузитесь."
         'L:ttlSvc' = "ОСТАНАВЛИВАЕМЫЕ СЛУЖБЫ"
         'L:lblSvcHint' = "Отсутствующие службы пропускаются. Их всегда можно включить снова через services.msc."
-        'L:chkSvcSysMain' = "SysMain — предзагрузка приложений в память"
         'L:chkSvcDiag' = "Диагностика и трассировка событий"
         'L:chkSvcPca' = "Помощник по совместимости программ"
         'L:chkSvcDiscovery' = "Обнаружение устройств в сети (UPnP, SSDP)"
@@ -10383,7 +10451,7 @@ $script:Tr = @{
         'L:chkSvcParental' = "Родительский контроль и программа Insider"
         'L:chkSvcHyperV' = "Службы Hyper-V (если вы не используете виртуальные машины)"
         'L:chkSvcPrint' = "Диспетчер печати — рискованно: печать не работает"
-        'L:chkSvcSearch' = "Windows Search — рискованно: нет поиска в «Пуске»"
+        'L:chkSvcSearch' = "Windows Search — без индексации, поиск медленнее"
         'L:chkSvcRemote' = "Удалённый рабочий стол и удалённый реестр — рискованно, если подключаетесь извне"
         'L:chkSvcBiometric' = "Биометрия — рискованно: нет Windows Hello"
         'L:chkSvcTouch' = "Перо и экранная клавиатура — рискованно на сенсорных ноутбуках"
@@ -10392,7 +10460,7 @@ $script:Tr = @{
         'L:chkTaskMaint' = "Ночное автоматическое обслуживание"
         'L:chkTaskDefrag' = "Плановая оптимизация дисков — рискованно: на SSD она же выполняет TRIM"
         'L:ttlMem' = "ПАМЯТЬ И ПРОЦЕССЫ"
-        'L:chkPrefetch' = "Значения Prefetch и Superfetch в реестре"
+        'L:chkPrefetch' = "Prefetch и SysMain — без предзагрузки приложений"
         'L:chkFth' = "Fault Tolerant Heap — без автоисправлений"
         'L:chkAppCompat' = "Механизм совместимости и учёт программ"
         'L:chkMemCompression' = "Сжатие памяти — рискованно при ОЗУ меньше 16 ГБ"
@@ -10554,7 +10622,6 @@ $script:Tr = @{
         'H:chkAmdUx' = "Останавливает отправку данных об использовании в AMD."
         'H:chkAmdBloat' = "Не даёт вспомогательным программам AMD запускаться вместе с Windows. Загрузка легче."
         'H:chkIntelBloat' = "Вспомогательные службы графики Intel запускаются только по необходимости."
-        'H:chkSvcSysMain' = "Windows перестаёт заранее загружать в память часто используемые приложения. Полезно на быстрых SSD, где это не нужно."
         'H:chkSvcDiag' = "Останавливает службы, которые в фоне анализируют проблемы и производительность."
         'H:chkSvcPca' = "Останавливает службу, проверяющую совместимость старых программ."
         'H:chkSvcDiscovery' = "Компьютер перестаёт искать устройства в локальной сети. Меньше трафика, но сетевые принтеры и ТВ могут не появиться."
@@ -10570,7 +10637,7 @@ $script:Tr = @{
         'H:chkTaskExtra' = "Отключает около двадцати ненужных автоматических задач Microsoft. Меньше скрытой работы."
         'H:chkTaskMaint' = "Windows больше не запускает автоматическое обслуживание ночью. ПК не просыпается и не тормозит внезапно."
         'H:chkTaskDefrag' = "Останавливает автоматическую оптимизацию дисков. На SSD её придётся запускать вручную со страницы «Накопители»."
-        'H:chkPrefetch' = "Windows перестаёт заранее готовить файлы программ. Меньше записей на SSD."
+        'H:chkPrefetch' = "Windows перестаёт заранее загружать в память часто используемые приложения и готовить файлы программ: отключаются значения Prefetch и Superfetch и останавливается служба SysMain. Полезно на SSD, где это не нужно и лишь добавляет записи. На обычном жёстком диске лучше оставить включённым."
         'H:chkFth' = "Windows перестаёт автоматически «лечить» падающие программы. Поведение предсказуемее."
         'H:chkAppCompat' = "Отключает проверки совместимости программ. Программы запускаются чуть быстрее."
         'H:chkMemCompression' = "Windows перестаёт сжимать память. Меньше работы процессору, но нужно много ОЗУ."
@@ -11092,6 +11159,16 @@ $script:Tr = @{
         'M:maxPerfTitle' = "Максимальная производительность"
         'M:maxPerfAsk' = "«Выбрать всё» включает всё, что даёт производительность, в том числе то, что снижает безопасность: защиту от Spectre, изоляцию ядра, защиту от эксплойтов, SmartScreen. Подходит для ПК только для игр. Для повседневной работы выберите «Рекомендуемые». Продолжить?"
         'M:maxPerfDone' = "Максимальная производительность готова: {0} включить, {1} оставить или вернуть как в Windows. Нажмите «Применить изменения»."
+        'L:ttlDiskPerf' = "ПРОИЗВОДИТЕЛЬНОСТЬ ДИСКА"
+        'L:lblDiskPerfHint' = "Если Windows установлена на SSD, «Рекомендуемые» и «Выбрать всё» включают подходящие пункты. На обычном жёстком диске они остаются выключенными."
+        'L:chkNtfs83' = "Короткие имена 8.3 — не создавать на дисках NTFS"
+        'H:chkNtfs83' = "Для каждого файла Windows создаёт ещё и короткое имя в стиле DOS. Если отключить, папки с множеством файлов читаются быстрее. Оно нужно только очень старым программам."
+        'L:chkBootDefrag' = "Дефрагментация загрузочных файлов — отключить"
+        'H:chkBootDefrag' = "Windows больше не переупорядочивает загрузочные файлы на диске. На SSD это бесполезно и лишь тратит ресурс записи."
+        'L:chkThumbCache' = "Кэш эскизов — не создавать"
+        'H:chkThumbCache' = "Windows больше не сохраняет эскизы в файл на диске. Меньше записей, но папки с фото и видео показывают превью медленнее."
+        'L:chkTrim' = "TRIM — убедиться, что он включён"
+        'H:chkTrim' = "Сообщает SSD, какие блоки больше не используются, чтобы он оставался быстрым со временем. В Windows он включён по умолчанию: этот пункт включает его снова, если кто-то отключил."
     }
 }
 
@@ -11239,7 +11316,6 @@ $script:Catalog = @(
     @{ Id = 'win.wuRestartNote'; Page = 'win'; Group = 'upd'; Kind = 'T'; Flags = ''; Def = '0'; Rec = '1'; Ops = @(,@('HKLM\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings', 'RestartNotificationsAllowed2', 'D', '1', '0,-')) },
     @{ Id = 'win.wuMetered'; Page = 'win'; Group = 'upd'; Kind = 'T'; Flags = ''; Def = '0'; Rec = '0'; Ops = @(,@('HKLM\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings', 'AllowAutoWindowsUpdateDownloadOverMeteredNetwork', 'D', '1', '0,-')) },
     @{ Id = 'win.tmMonitor'; Page = 'win'; Group = 'svc'; Kind = 'T'; Flags = 'R'; Def = '1'; Rec = '-'; Ops = @(@('HKLM\SYSTEM\CurrentControlSet\Services\Ndu', 'Start', 'D', '2', '4'), @('HKLM\SYSTEM\CurrentControlSet\Services\GraphicsPerfSvc', 'Start', 'D', '3', '4')) },
-    @{ Id = 'win.ntfs83'; Page = 'win'; Group = 'svc'; Kind = 'T'; Flags = 'R'; Def = '1'; Rec = '0'; Ops = @(,@('HKLM\SYSTEM\CurrentControlSet\Control\FileSystem', 'NtfsDisable8dot3NameCreation', 'D', '2,0,-', '1')) },
     @{ Id = 'win.svcCdp'; Page = 'win'; Group = 'svc'; Kind = 'V'; Flags = ''; Def = 'AD'; Rec = 'M'; Svcs = @('CDPSvc') },
     @{ Id = 'win.svcWmpShare'; Page = 'win'; Group = 'svc'; Kind = 'V'; Flags = ''; Def = 'M'; Rec = 'X'; Svcs = @('WMPNetworkSvc') },
     @{ Id = 'win.svcMixed'; Page = 'win'; Group = 'svc'; Kind = 'V'; Flags = ''; Def = 'M'; Rec = 'X'; Svcs = @('MixedRealityOpenXRSvc') },
@@ -11637,7 +11713,6 @@ $script:CatText = @{
     'win.wuMetered' = @{ it = 'Scarica anche su connessioni a consumo'; en = 'Download over metered connections'; es = 'Descargar en conexiones de uso medido'; de = 'Über getaktete Verbindungen herunterladen'; fr = 'Télécharger sur les connexions limitées'; pl = 'Pobieraj przez połączenia taryfowe'; pt = 'Baixar em conexões limitadas'; ro = 'Descarcă pe conexiuni contorizate'; ru = 'Загружать через лимитные подключения' }
     'g.win.svc' = @{ it = 'Servizi'; en = 'Services'; es = 'Servicios'; de = 'Dienste'; fr = 'Services'; pl = 'Usługi'; pt = 'Serviços'; ro = 'Servicii'; ru = 'Службы' }
     'win.tmMonitor' = @{ it = 'Rete e GPU in Gestione attività'; en = 'Network and GPU in Task Manager'; es = 'Red y GPU en el Administrador de tareas'; de = 'Netzwerk und GPU im Task-Manager'; fr = 'Réseau et GPU dans le Gestionnaire des tâches'; pl = 'Sieć i GPU w Menedżerze zadań'; pt = 'Rede e GPU no Gerenciador de Tarefas'; ro = 'Rețea și GPU în Managerul de activități'; ru = 'Сеть и GPU в диспетчере задач' }
-    'win.ntfs83' = @{ it = 'Nomi brevi 8.3 sui dischi NTFS'; en = 'Short 8.3 names on NTFS drives'; es = 'Nombres cortos 8.3 en discos NTFS'; de = 'Kurze 8.3-Namen auf NTFS-Laufwerken'; fr = 'Noms courts 8.3 sur les disques NTFS'; pl = 'Krótkie nazwy 8.3 na dyskach NTFS'; pt = 'Nomes curtos 8.3 em discos NTFS'; ro = 'Nume scurte 8.3 pe discurile NTFS'; ru = 'Короткие имена 8.3 на дисках NTFS' }
     'win.svcCdp' = @{ it = 'Piattaforma dispositivi connessi'; en = 'Connected Devices Platform'; es = 'Plataforma de dispositivos conectados'; de = 'Plattform für verbundene Geräte'; fr = 'Plateforme des appareils connectés'; pl = 'Platforma urządzeń połączonych'; pt = 'Plataforma de dispositivos conectados'; ro = 'Platforma dispozitivelor conectate'; ru = 'Платформа подключённых устройств' }
     'win.svcWmpShare' = @{ it = 'Condivisione di Windows Media Player'; en = 'Windows Media Player sharing'; es = 'Uso compartido de Windows Media Player'; de = 'Windows Media Player-Freigabe'; fr = 'Partage du Lecteur Windows Media'; pl = 'Udostępnianie Windows Media Player'; pt = 'Compartilhamento do Windows Media Player'; ro = 'Partajare Windows Media Player'; ru = 'Общий доступ Windows Media Player' }
     'win.svcMixed' = @{ it = 'Realtà mista OpenXR'; en = 'Mixed Reality OpenXR'; es = 'Realidad mixta OpenXR'; de = 'Mixed Reality OpenXR'; fr = 'Réalité mixte OpenXR'; pl = 'Rzeczywistość mieszana OpenXR'; pt = 'Realidade misturada OpenXR'; ro = 'Realitate mixtă OpenXR'; ru = 'Смешанная реальность OpenXR' }
@@ -12086,7 +12161,6 @@ $script:CatTip = @{
     'win.wuRestartNote' = @{ it = 'Una notifica ti avvisa prima del riavvio, così salvi il lavoro.'; en = 'A notification warns you before the restart so you can save your work.' }
     'win.wuMetered' = @{ it = 'Spento, gli aggiornamenti non consumano i giga dell''hotspot del telefono.'; en = 'Off, updates don''t eat your phone hotspot data.' }
     'win.tmMonitor' = @{ it = 'I due servizi che misurano il traffico di rete per app e l''uso della scheda video. Spenti, Gestione attività non mostra più quei dati.'; en = 'The two services that measure per-app network traffic and graphics card usage. Off, Task Manager no longer shows that data.' }
-    'win.ntfs83' = @{ it = 'Per ogni file Windows crea anche un nome corto in stile DOS. Spento, le cartelle con molti file si leggono più in fretta. Serve solo a programmi molto vecchi.'; en = 'For every file Windows also creates a short DOS-style name. Off, folders with many files read faster. Only very old programs need it.' }
     'win.svcCdp' = @{ it = 'Collega il PC a telefono e altri dispositivi. Serve per Collegamento al telefono.'; en = 'Links the PC to your phone and other devices. Needed for Phone Link.' }
     'win.svcWmpShare' = @{ it = 'Condivide la raccolta multimediale con TV e dispositivi della rete.'; en = 'Shares your media library with TVs and devices on the network.' }
     'win.svcMixed' = @{ it = 'Serve solo con i visori di realtà mista.'; en = 'Only needed with mixed reality headsets.' }
@@ -13327,6 +13401,22 @@ function Build-Actions {
         }
     }
 
+    Add-IfChecked $chkNtfs83 {
+        Set-Reg 'HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem' 'NtfsDisable8dot3NameCreation' 1 'DWord' 'Nomi brevi 8.3'
+    }
+    Add-IfChecked $chkBootDefrag {
+        Set-Reg 'HKLM:\SOFTWARE\Microsoft\Dfrg\BootOptimizeFunction' 'Enable' 'N' 'String' 'Deframmentazione file di avvio'
+    }
+    Add-IfChecked $chkThumbCache {
+        Set-Reg 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer' 'DisableThumbnailCache' 1 'DWord' 'Cache delle miniature'
+    }
+    Add-IfChecked $chkTrim {
+        try {
+            fsutil behavior set DisableDeleteNotify 0 | Out-Null
+            Write-Log "[OK] TRIM attivo."
+        } catch { Write-Log "[ERRORE] TRIM: $($_.Exception.Message)" }
+    }
+
     Add-IfChecked $chkDiskCleanup {
         $sage = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\VolumeCaches"
         Get-ChildItem $sage -ErrorAction SilentlyContinue | ForEach-Object {
@@ -13356,9 +13446,6 @@ function Build-Actions {
     # ---------- AVANZATE: servizi ----------
     # Ogni voce spegne un gruppo di servizi. Set-Svc salta da solo quelli che
     # su questa installazione non esistono, quindi l'elenco puo' essere ampio.
-    Add-IfChecked $chkSvcSysMain {
-        Set-Svc 'SysMain' 'Disabled' 'SysMain'
-    }
     Add-IfChecked $chkSvcDiag {
         foreach ($s in @('DPS','WdiServiceHost','WdiSystemHost','diagnosticshub.standardcollector.service','diagsvc','DusmSvc')) {
             Set-Svc $s 'Disabled' $s
@@ -13392,6 +13479,7 @@ function Build-Actions {
     }
     Add-IfChecked $chkSvcSearch {
         Set-Svc 'WSearch' 'Disabled' 'Ricerca di Windows'
+        Stop-Service -Name WSearch -Force -ErrorAction SilentlyContinue
     }
     Add-IfChecked $chkSvcRemote {
         foreach ($s in @('RemoteRegistry','RemoteAccess','SessionEnv','TermService','UmRdpService','RasMan','RasAuto')) {
@@ -13438,8 +13526,8 @@ function Build-Actions {
         $pf = "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management\PrefetchParameters"
         Set-Reg $pf 'EnablePrefetcher' 0 'DWord' 'Prefetcher'
         Set-Reg $pf 'EnableSuperfetch' 0 'DWord' 'Superfetch'
-        # Con il servizio SysMain acceso Windows continua a precaricare le app:
-        # i soli valori del registro non bastano.
+        # SysMain e' il servizio che fa Prefetch e Superfetch: con i soli valori
+        # del registro Windows continuava a precaricare le app.
         Set-Svc 'SysMain' 'Disabled' 'SysMain'
         Stop-Service -Name SysMain -Force -ErrorAction SilentlyContinue
     }
@@ -14159,7 +14247,6 @@ function Build-UndoActions {
     }
 
     # ---------- AVANZATE ----------
-    Add-UndoIfChecked $chkSvcSysMain { Reset-Svc @('SysMain') }
     Add-UndoIfChecked $chkSvcDiag { Reset-Svc @('DPS','WdiServiceHost','WdiSystemHost','diagnosticshub.standardcollector.service','diagsvc','DusmSvc') }
     Add-UndoIfChecked $chkSvcPca { Reset-Svc @('PcaSvc') }
     Add-UndoIfChecked $chkSvcDiscovery { Reset-Svc @('SSDPSRV','upnphost','fdPHost','FDResPub','lltdsvc','Browser','NetTcpPortSharing') }
@@ -14168,7 +14255,10 @@ function Build-UndoActions {
     Add-UndoIfChecked $chkSvcParental { Reset-Svc @('WpcMonSvc','wisvc') }
     Add-UndoIfChecked $chkSvcHyperV { Reset-Svc @('HvHost','vmickvpexchange','vmicguestinterface','vmicshutdown','vmicheartbeat','vmicvmsession','vmicrdv','vmictimesync','vmcompute','vmms') }
     Add-UndoIfChecked $chkSvcPrint { Reset-Svc @('Spooler','PrintNotify','PrintWorkflowUserSvc') }
-    Add-UndoIfChecked $chkSvcSearch { Reset-Svc @('WSearch') }
+    Add-UndoIfChecked $chkSvcSearch {
+        Reset-Svc @('WSearch')
+        Start-Service -Name WSearch -ErrorAction SilentlyContinue
+    }
     Add-UndoIfChecked $chkSvcRemote { Reset-Svc @('RemoteRegistry','RemoteAccess','SessionEnv','TermService','UmRdpService','RasMan','RasAuto') }
     Add-UndoIfChecked $chkSvcBiometric { Reset-Svc @('WbioSrvc') }
     Add-UndoIfChecked $chkSvcTouch { Reset-Svc @('TabletInputService','TextInputManagementService') }
@@ -14195,6 +14285,10 @@ function Build-UndoActions {
                        '\Microsoft\Windows\TaskScheduler\Regular Maintenance',
                        '\Microsoft\Windows\TaskScheduler\Maintenance Configurator') 'Attivita di manutenzione'
     }
+    Add-UndoIfChecked $chkNtfs83 { Reset-Reg 'HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem' 'NtfsDisable8dot3NameCreation' 2 }
+    Add-UndoIfChecked $chkBootDefrag { Reset-Reg 'HKLM:\SOFTWARE\Microsoft\Dfrg\BootOptimizeFunction' 'Enable' 'Y' 'String' }
+    Add-UndoIfChecked $chkThumbCache { Reset-Reg 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer' 'DisableThumbnailCache' }
+    Add-NoUndo $chkTrim "Il TRIM e' gia' il comportamento predefinito di Windows."
     Add-UndoIfChecked $chkTaskDefrag { Enable-Tasks @('\Microsoft\Windows\Defrag\ScheduledDefrag') 'Ottimizzazione unita pianificata' }
 
     Add-UndoIfChecked $chkPrefetch {
@@ -18762,6 +18856,10 @@ function Get-ExplicitActive {
                 $bad = 0
                 foreach ($k in $keys) { foreach ($n in $script:NvLatencyValues.Keys) { if (-not (Test-Reg $k.PSPath $n $script:NvLatencyValues[$n])) { $bad++ } } }
                 $bad -eq 0 })
+        chkTrim          = $(try {
+            $o = (@(& fsutil.exe behavior query DisableDeleteNotify 2>$null) -join ' ')
+            if ($o -match 'NTFS\s+DisableDeleteNotify\s*=\s*(\d)') { $Matches[1] -eq '0' } else { $null }
+        } catch { $null })
         chkReservedStorage = ((Get-RegOrNull 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\ReserveManager' 'ShippedWithReserves') -eq 0)
         chkMemCompression = (Test-MemCompressionOff)
         chkSecSpectre    = (Test-MitigationBits 3)

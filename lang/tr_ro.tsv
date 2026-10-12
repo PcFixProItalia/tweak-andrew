@@ -192,7 +192,6 @@ L:ttlAdvIntro	ÎNAINTE DE A ÎNCEPE
 L:lblAdvIntro	Aceste opțiuni elimină părți din Windows pe care majoritatea computerelor nu le folosesc. Câștigul e real pe o mașină dedicată jocurilor sau muncii, dar unele lucruri nu mai funcționează: citește fiecare opțiune. Creează un punct de restaurare înainte și repornește după.
 L:ttlSvc	SERVICII DE OPRIT
 L:lblSvcHint	Serviciile absente sunt omise. Pot fi oricând reactivate din services.msc.
-L:chkSvcSysMain	SysMain — preîncărcarea aplicațiilor în memorie
 L:chkSvcDiag	Diagnosticare și urmărirea evenimentelor
 L:chkSvcPca	Asistentul de compatibilitate a programelor
 L:chkSvcDiscovery	Descoperirea dispozitivelor din rețea (UPnP, SSDP)
@@ -201,7 +200,7 @@ L:chkSvcSmartCard	Carduri inteligente
 L:chkSvcParental	Control parental și programul Insider
 L:chkSvcHyperV	Servicii Hyper-V (dacă nu folosești mașini virtuale)
 L:chkSvcPrint	Spooler de imprimare — riscant: fără imprimante
-L:chkSvcSearch	Windows Search — riscant: fără căutare în Start
+L:chkSvcSearch	Windows Search — fără indexare, căutare mai lentă
 L:chkSvcRemote	Desktop la distanță și registru la distanță — riscant dacă te conectezi din afară
 L:chkSvcBiometric	Biometrie — riscant: fără Windows Hello
 L:chkSvcTouch	Stilou și tastatură pe ecran — riscant pe laptopuri touch
@@ -210,7 +209,7 @@ L:chkTaskExtra	Activități Microsoft neesențiale
 L:chkTaskMaint	Întreținere automată nocturnă
 L:chkTaskDefrag	Optimizarea programată a unităților — riscant: pe SSD trimite și TRIM
 L:ttlMem	MEMORIE ȘI PROCESE
-L:chkPrefetch	Valorile Prefetch și Superfetch din registru
+L:chkPrefetch	Prefetch și SysMain — fără preîncărcarea aplicațiilor
 L:chkFth	Fault Tolerant Heap — fără corecții automate
 L:chkAppCompat	Motorul de compatibilitate și inventarul programelor
 L:chkMemCompression	Comprimarea memoriei — riscant sub 16 GB RAM
@@ -372,7 +371,6 @@ H:chkNvUpdates	Driverul NVIDIA nu mai caută singur actualizări.
 H:chkAmdUx	Oprește trimiterea datelor de utilizare către AMD.
 H:chkAmdBloat	Împiedică programele suplimentare AMD să pornească odată cu Windows. Pornire mai ușoară.
 H:chkIntelBloat	Serviciile suplimentare ale plăcii Intel pornesc doar când e nevoie.
-H:chkSvcSysMain	Windows nu mai preîncarcă în memorie aplicațiile folosite des. Util pe SSD-uri rapide, unde nu e nevoie.
 H:chkSvcDiag	Oprește serviciile care analizează problemele și performanța în fundal.
 H:chkSvcPca	Oprește serviciul care verifică compatibilitatea programelor vechi.
 H:chkSvcDiscovery	PC-ul nu mai caută dispozitive în rețeaua locală. Mai puțin trafic, dar imprimantele și televizoarele din rețea pot să nu mai apară.
@@ -388,7 +386,7 @@ H:chkSvcTouch	Oprește stiloul și tastatura pe ecran. Evită pe tablete și lap
 H:chkTaskExtra	Oprește vreo douăzeci de activități automate Microsoft care nu sunt necesare. Mai puțină muncă ascunsă.
 H:chkTaskMaint	Windows nu mai pornește întreținerea automată noaptea. PC-ul nu se trezește și nu încetinește pe neașteptate.
 H:chkTaskDefrag	Oprește optimizarea automată a unităților. Pe SSD va trebui pornită manual din pagina Stocare.
-H:chkPrefetch	Windows nu mai pregătește din timp fișierele programelor. Mai puține scrieri pe SSD.
+H:chkPrefetch	Windows nu mai preîncarcă în memorie aplicațiile folosite des și nu mai pregătește din timp fișierele programelor: oprește valorile Prefetch și Superfetch și serviciul SysMain. Util pe SSD, unde nu e nevoie și doar adaugă scrieri. Pe un disc mecanic e mai bine să rămână pornit.
 H:chkFth	Windows nu mai aplică corecții automate programelor care se blochează. Comportament mai previzibil.
 H:chkAppCompat	Oprește verificările de compatibilitate ale programelor. Programele pornesc puțin mai repede.
 H:chkMemCompression	Windows nu mai comprimă memoria. Mai puțină muncă pentru procesor, dar e nevoie de multă RAM.
@@ -910,3 +908,13 @@ M:toolDesc_rootCerts	Descarcă lista actuală de la Windows Update. Repară eror
 M:maxPerfTitle	Performanță maximă
 M:maxPerfAsk	«Selectează tot» pornește tot ce aduce performanță, inclusiv ce scade securitatea: protecțiile Spectre, izolarea nucleului, protecțiile anti-exploit, SmartScreen. Potrivit pentru un PC folosit doar la jocuri. Pentru uz zilnic alege «Recomandate». Continui?
 M:maxPerfDone	Performanță maximă pregătită: {0} de activat, {1} rămân sau revin la valorile Windows. Apasă «Aplică modificările».
+L:ttlDiskPerf	PERFORMANȚA DISCULUI
+L:lblDiskPerfHint	Cu Windows pe un SSD, «Recomandate» și «Selectează tot» activează opțiunile potrivite. Pe un disc mecanic rămân oprite.
+L:chkNtfs83	Nume scurte 8.3 — nu le crea pe discurile NTFS
+H:chkNtfs83	Pentru fiecare fișier, Windows creează și un nume scurt în stil DOS. Oprit, folderele cu multe fișiere se citesc mai repede. Doar programele foarte vechi au nevoie de el.
+L:chkBootDefrag	Defragmentarea fișierelor de pornire — dezactivează
+H:chkBootDefrag	Windows nu mai reordonează fișierele de pornire pe disc. Pe un SSD nu ajută la nimic și consumă doar scrieri.
+L:chkThumbCache	Cache-ul miniaturilor — nu îl crea
+H:chkThumbCache	Windows nu mai salvează miniaturile într-un fișier pe disc. Mai puține scrieri, dar folderele cu fotografii și videoclipuri afișează previzualizările mai lent.
+L:chkTrim	TRIM — asigură-te că este activ
+H:chkTrim	Spune SSD-ului ce blocuri nu mai sunt folosite, ca să rămână rapid în timp. În Windows este activ implicit: această opțiune îl repornește dacă cineva l-a oprit.

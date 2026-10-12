@@ -1324,7 +1324,6 @@
                                                 <CheckBox x:Name="chkKernelDpc" Content="Kernel e latenza DPC"/>
                                                 <CheckBox x:Name="chkTimer" Content="Timer di sistema"/>
                                                 <CheckBox x:Name="chkPowerThrottling" Content="Power Throttling"/>
-                                                <CheckBox x:Name="chkNtfsPerf" Content="NTFS"/>
                                             </StackPanel>
                                         </Border>
 
@@ -1831,6 +1830,22 @@
                                             <CheckBox x:Name="chkReservedStorage" Content="Spazio riservato"/>
                                         </StackPanel>
                                     </Border>
+
+                                    <Border Style="{StaticResource Glass}">
+                                        <StackPanel>
+                                            <TextBlock x:Name="ttlDiskPerf" Text="PRESTAZIONI DEL DISCO" Style="{StaticResource CardTitle}"/>
+                                            <TextBlock x:Name="lblDiskPerfHint" Style="{StaticResource SubTitle}" Margin="0,0,0,10" TextWrapping="Wrap"
+                                                       Text="Con Windows su SSD, «Consigliati» e «Seleziona tutto» accendono le voci adatte. Su disco meccanico restano spente."/>
+                                            <CheckBox x:Name="chkNtfsPerf" Content="NTFS"/>
+                                            <CheckBox x:Name="chkNtfs83" Content="Nomi brevi 8.3"/>
+                                            <CheckBox x:Name="chkPrefetch" Content="Prefetch e SysMain"/>
+                                            <CheckBox x:Name="chkSvcSearch" Content="Ricerca di Windows"/>
+                                            <CheckBox x:Name="chkBootDefrag" Content="Deframmentazione file di avvio"/>
+                                            <CheckBox x:Name="chkThumbCache" Content="Cache delle miniature"/>
+                                            <CheckBox x:Name="chkTrim" Content="TRIM"/>
+                                            <CheckBox x:Name="chkTaskDefrag" Tag="risky" Content="Ottimizzazione unita pianificata"/>
+                                        </StackPanel>
+                                    </Border>
                                 </StackPanel>
                                 </ScrollViewer>
                             </Grid>
@@ -2100,7 +2115,6 @@
                                                 <TextBlock x:Name="ttlTasks" Text="ATTIVITA PIANIFICATE" Style="{StaticResource CardTitle}"/>
                                                 <CheckBox x:Name="chkTaskExtra" Content="Attivita non essenziali di Microsoft"/>
                                                 <CheckBox x:Name="chkTaskMaint" Content="Manutenzione automatica notturna"/>
-                                                <CheckBox x:Name="chkTaskDefrag" Tag="risky" Content="Ottimizzazione unita pianificata — rischioso: su SSD manda anche il TRIM"/>
                                             </StackPanel>
                                         </Border>
 
@@ -2120,7 +2134,6 @@
                                                 <TextBlock x:Name="ttlSvc" Text="SERVIZI DA FERMARE" Style="{StaticResource CardTitle}"/>
                                                 <TextBlock x:Name="lblSvcHint" Style="{StaticResource SubTitle}" Margin="0,0,0,10"
                                                            Text="I servizi assenti vengono ignorati. Si possono sempre riattivare da services.msc."/>
-                                                <CheckBox x:Name="chkSvcSysMain" Content="SysMain — precaricamento delle app in memoria"/>
                                                 <CheckBox x:Name="chkSvcDiag" Content="Diagnostica e tracciamento eventi"/>
                                                 <CheckBox x:Name="chkSvcPca" Content="Assistente compatibilità programmi"/>
                                                 <CheckBox x:Name="chkSvcDiscovery" Content="Rilevamento dispositivi in rete (UPnP, SSDP)"/>
@@ -2129,7 +2142,6 @@
                                                 <CheckBox x:Name="chkSvcParental" Content="Controllo genitori e programma Insider"/>
                                                 <CheckBox x:Name="chkSvcHyperV" Content="Servizi Hyper-V (se non usi macchine virtuali)"/>
                                                 <CheckBox x:Name="chkSvcPrint" Tag="risky" Content="Spooler di stampa — rischioso: niente stampanti"/>
-                                                <CheckBox x:Name="chkSvcSearch" Tag="risky" Content="Ricerca di Windows — rischioso: niente ricerca nel menu Start"/>
                                                 <CheckBox x:Name="chkSvcRemote" Tag="risky" Content="Desktop remoto e registro remoto — rischioso se ti colleghi da fuori"/>
                                                 <CheckBox x:Name="chkSvcBiometric" Tag="risky" Content="Biometria — rischioso: niente Windows Hello"/>
                                                 <CheckBox x:Name="chkSvcTouch" Tag="risky" Content="Penna e tastiera su schermo — rischioso sui portatili touch"/>
@@ -2139,7 +2151,6 @@
                                         <Border Style="{StaticResource Glass}">
                                             <StackPanel>
                                                 <TextBlock x:Name="ttlMem" Text="MEMORIA E PROCESSI" Style="{StaticResource CardTitle}"/>
-                                                <CheckBox x:Name="chkPrefetch" Content="Prefetch e Superfetch nel registro"/>
                                                 <CheckBox x:Name="chkFth" Content="Fault Tolerant Heap — niente correzioni automatiche"/>
                                                 <CheckBox x:Name="chkAppCompat" Content="Motore di compatibilità e inventario programmi"/>
                                                 <CheckBox x:Name="chkMemCompression" Tag="risky" Content="Compressione della memoria — rischioso sotto 16 GB di RAM"/>

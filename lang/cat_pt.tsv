@@ -507,7 +507,6 @@ g.win.browser	Navegadores
 win.brave	Brave sem Rewards, Wallet, VPN, IA e estatísticas
 H:win.brave	Políticas do Brave: desliga as funções acessórias e o envio de estatísticas. Vale também se o Brave for instalado depois.
 win.tmMonitor	Rede e GPU no Gerenciador de Tarefas
-win.ntfs83	Nomes curtos 8.3 em discos NTFS
 game.bgInput	Atualizações do mouse para janelas em segundo plano
 game.bgInput#win	125 Hz (Windows)
 game.bgInput#hz50	50 Hz

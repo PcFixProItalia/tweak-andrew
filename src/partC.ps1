@@ -264,7 +264,6 @@ $script:Loc = @{
 
     ttlSvc             = @{ it = "SERVIZI DA FERMARE"; en = "SERVICES TO STOP" }
     lblSvcHint         = @{ it = "I servizi assenti vengono ignorati. Si possono sempre riattivare da services.msc."; en = "Missing services are skipped. They can always be turned back on from services.msc." }
-    chkSvcSysMain      = @{ it = "SysMain — precaricamento delle app in memoria"; en = "SysMain — preloading apps into memory" }
     chkSvcDiag         = @{ it = "Diagnostica e tracciamento eventi"; en = "Diagnostics and event tracing" }
     chkSvcPca          = @{ it = "Assistente compatibilità programmi"; en = "Program Compatibility Assistant" }
     chkSvcDiscovery    = @{ it = "Rilevamento dispositivi in rete (UPnP, SSDP)"; en = "Network device discovery (UPnP, SSDP)" }
@@ -273,7 +272,7 @@ $script:Loc = @{
     chkSvcParental     = @{ it = "Controllo genitori e programma Insider"; en = "Parental controls and Insider program" }
     chkSvcHyperV       = @{ it = "Servizi Hyper-V (se non usi macchine virtuali)"; en = "Hyper-V services (if you run no virtual machines)" }
     chkSvcPrint        = @{ it = "Spooler di stampa — rischioso: niente stampanti"; en = "Print spooler — risky: no printing" }
-    chkSvcSearch       = @{ it = "Ricerca di Windows — rischioso: niente ricerca nel menu Start"; en = "Windows Search — risky: no Start menu search" }
+    chkSvcSearch       = @{ it = "Ricerca di Windows — niente indicizzazione, ricerca più lenta"; en = "Windows Search — no indexing, slower search" }
     chkSvcRemote       = @{ it = "Desktop remoto e registro remoto — rischioso se ti colleghi da fuori"; en = "Remote Desktop and Remote Registry — risky if you connect from outside" }
     chkSvcBiometric    = @{ it = "Biometria — rischioso: niente Windows Hello"; en = "Biometrics — risky: no Windows Hello" }
     chkSvcTouch        = @{ it = "Penna e tastiera su schermo — rischioso sui portatili touch"; en = "Pen and on-screen keyboard — risky on touch laptops" }
@@ -284,7 +283,7 @@ $script:Loc = @{
     chkTaskDefrag      = @{ it = "Ottimizzazione unità pianificata — rischioso: su SSD manda anche il TRIM"; en = "Scheduled drive optimization — risky: it also issues TRIM on SSDs" }
 
     ttlMem             = @{ it = "MEMORIA E PROCESSI"; en = "MEMORY AND PROCESSES" }
-    chkPrefetch        = @{ it = "Prefetch e Superfetch nel registro"; en = "Prefetch and Superfetch registry values" }
+    chkPrefetch        = @{ it = "Prefetch e SysMain — niente precaricamento delle app"; en = "Prefetch and SysMain — no app preloading" }
     chkFth             = @{ it = "Fault Tolerant Heap — niente correzioni automatiche"; en = "Fault Tolerant Heap — no automatic patching" }
     chkAppCompat       = @{ it = "Motore di compatibilità e inventario programmi"; en = "Compatibility engine and program inventory" }
     chkMemCompression  = @{ it = "Compressione della memoria — rischioso sotto 16 GB di RAM"; en = "Memory compression — risky below 16 GB of RAM" }
@@ -427,6 +426,12 @@ $script:Loc = @{
     btnEmergency       = @{ it = "Ripristino totale"; en = "Full reset" }
     lblPersonal        = @{ it = "PERSONALIZZAZIONE"; en = "PERSONALIZATION" }
     chkSecDownfall     = @{ it = "Mitigazione Downfall (solo Intel)"; en = "Downfall mitigation (Intel only)" }
+    ttlDiskPerf        = @{ it = "PRESTAZIONI DEL DISCO"; en = "DISK PERFORMANCE" }
+    lblDiskPerfHint    = @{ it = "Con Windows su SSD, «Consigliati» e «Seleziona tutto» accendono le voci adatte. Su disco meccanico restano spente."; en = "With Windows on an SSD, «Recommended» and «Select all» turn on the suitable items. On a mechanical disk they stay off." }
+    chkNtfs83          = @{ it = "Nomi brevi 8.3 — non crearli sui dischi NTFS"; en = "Short 8.3 names — don't create them on NTFS drives" }
+    chkBootDefrag      = @{ it = "Deframmentazione dei file di avvio — disattiva"; en = "Boot files defragmentation — turn off" }
+    chkThumbCache      = @{ it = "Cache delle miniature — non crearla"; en = "Thumbnail cache — don't create it" }
+    chkTrim            = @{ it = "TRIM — assicurati che sia attivo"; en = "TRIM — make sure it is on" }
 }
 
 # Messaggi non legati a un controllo: log, finestre di dialogo, etichette dinamiche.
@@ -901,6 +906,7 @@ $chkRestorePoint = E 'chkRestorePoint'
 $chkMMCSS = E 'chkMMCSS'; $chkPriority = E 'chkPriority'; $chkKernelMem = E 'chkKernelMem'
 $chkKernelDpc = E 'chkKernelDpc'; $chkTimer = E 'chkTimer'; $chkPowerThrottling = E 'chkPowerThrottling'
 $chkNtfsPerf = E 'chkNtfsPerf'
+$chkNtfs83 = E 'chkNtfs83'; $chkBootDefrag = E 'chkBootDefrag'; $chkThumbCache = E 'chkThumbCache'; $chkTrim = E 'chkTrim'
 $chkRamTweak = E 'chkRamTweak'; $cmbRamAmount = E 'cmbRamAmount'
 $chkGameMode = E 'chkGameMode'; $chkFSO = E 'chkFSO'; $chkGameDVR = E 'chkGameDVR'
 $chkHAGS = E 'chkHAGS'; $chkVisualFX = E 'chkVisualFX'
@@ -1008,7 +1014,7 @@ $chkDiskCleanup = E 'chkDiskCleanup'; $chkSmartChkdsk = E 'chkSmartChkdsk'
 $chkStorageSense = E 'chkStorageSense'; $chkReservedStorage = E 'chkReservedStorage'
 
 # Avanzate
-$chkSvcSysMain = E 'chkSvcSysMain'; $chkSvcDiag = E 'chkSvcDiag'
+$chkSvcDiag = E 'chkSvcDiag'
 $chkSvcPca = E 'chkSvcPca'; $chkSvcDiscovery = E 'chkSvcDiscovery'; $chkSvcSensors = E 'chkSvcSensors'
 $chkSvcSmartCard = E 'chkSvcSmartCard'; $chkSvcParental = E 'chkSvcParental'; $chkSvcHyperV = E 'chkSvcHyperV'
 $chkSvcPrint = E 'chkSvcPrint'; $chkSvcSearch = E 'chkSvcSearch'; $chkSvcRemote = E 'chkSvcRemote'
@@ -1708,7 +1714,7 @@ function Get-SelectableChecks([switch]$CurrentPageOnly, [switch]$ByPcType) {
 # Avanzate non ne ha: li' si tolgono pezzi di Windows e la scelta resta una
 # per una.
 $script:RecommendedChecks = @{
-    pagePerf    = @('chkMMCSS','chkPriority','chkKernelMem','chkPowerThrottling','chkNtfsPerf','chkRamTweak','chkGameMode','chkGameDVR','chkHAGS',
+    pagePerf    = @('chkMMCSS','chkPriority','chkKernelMem','chkPowerThrottling','chkRamTweak','chkGameMode','chkGameDVR','chkHAGS',
                     'chkCpuIntelBoostPol','chkCpuAmdParking')
     pagePrivacy = @('chkTelemetry','chkTelemetryTasks','chkActivityHistory','chkAdvertisingID','chkTailoredExp','chkFeedback','chkErrorReporting',
                     'chkInkingTyping','chkWiFiSense','chkConsumerFeatures','chkSuggestedContent','chkLockScreenAds','chkStartBing',
@@ -1716,7 +1722,7 @@ $script:RecommendedChecks = @{
                     'chkRemoteAssistance','chkCompanionApps','chkServicesManual','chkTeredo')
     pageUi      = @('chkDarkTheme','chkFileExt','chkLongPaths','chkExplorerThisPC','chkRemove3D','chkRecycleConfirm','chkMenuDelay','chkMouseAccel','chkNumLock','chkStickyKeys')
     pageNet     = @('chkNetPowerSave')
-    pageStorage = @('chkReservedStorage')
+    pageStorage = @('chkReservedStorage','chkNtfsPerf','chkNtfs83')
     pagePower   = @('chkFastStartup','chkHibernation','chkS0Sleep','chkS3Sleep')
     # Via di mezzo sulla sicurezza: Defender resta acceso e scansiona a PC fermo,
     # l'isolamento del kernel si spegne. Spectre, exploit e SmartScreen restano.
@@ -1727,11 +1733,12 @@ $script:RecommendedChecks = @{
 }
 
 # Con Windows installato su un SSD o NVMe «Consigliati» e «Seleziona tutto»
-# aggiungono le voci che su un disco meccanico servirebbero: niente
-# precaricamento (Prefetch e SysMain) e niente indicizzazione della ricerca.
-# Memoria kernel, ultimo accesso, nomi 8.3 e ibernazione sono gia' consigliati
-# per tutti.
-$script:SsdRecommended = @('chkPrefetch','chkSvcSysMain','chkSvcSearch')
+# aggiungono le voci della pagina Archiviazione che su un disco meccanico
+# servirebbero: niente precaricamento (Prefetch e SysMain), indicizzazione,
+# deframmentazione dei file di avvio e cache delle miniature, TRIM acceso.
+# Nessuna abbassa la sicurezza. Ultimo accesso e nomi 8.3 sono gia'
+# consigliati per tutti i dischi.
+$script:SsdRecommended = @('chkPrefetch','chkSvcSearch','chkBootDefrag','chkThumbCache','chkTrim')
 
 function Test-SystemSsd { return ($script:SystemDiskKind -in @('NVMe','SSD')) }
 
@@ -1748,8 +1755,8 @@ $script:MaxPerfExtra = @(
     # risparmio con fotogrammi in piu'.
     'chkNvThreaded','chkNvTexPerf','chkNvAniso','chkNvNoAnsel',
     'chkAmdTexPerf','chkAmdTess','chkAmdFlipQueue','chkAmdNoFrtc','chkAmdStutter','chkAmdAspm','chkIntelDpst',
-    'chkTaskExtra','chkSvcSysMain','chkSvcDiag','chkSvcPca','chkSvcSensors','chkSvcParental',
-    'chkPrefetch','chkFth','chkAppCompat','chkMemCompression','chkBootDynTick','chkBootTsc',
+    'chkTaskExtra','chkSvcDiag','chkSvcPca','chkSvcSensors','chkSvcParental',
+    'chkFth','chkAppCompat','chkMemCompression','chkBootDynTick','chkBootTsc',
     'chkSecSmartScreen','chkSecSpectre','chkSecDownfall','chkVBS','chkMitigations','chkSecDefenderIdle')
 $script:SecurityChecks = @('chkSecSmartScreen','chkSecSpectre','chkSecDownfall','chkVBS','chkMitigations','chkSecDefenderIdle')
 

@@ -548,7 +548,6 @@ function Build-UndoActions {
     }
 
     # ---------- AVANZATE ----------
-    Add-UndoIfChecked $chkSvcSysMain { Reset-Svc @('SysMain') }
     Add-UndoIfChecked $chkSvcDiag { Reset-Svc @('DPS','WdiServiceHost','WdiSystemHost','diagnosticshub.standardcollector.service','diagsvc','DusmSvc') }
     Add-UndoIfChecked $chkSvcPca { Reset-Svc @('PcaSvc') }
     Add-UndoIfChecked $chkSvcDiscovery { Reset-Svc @('SSDPSRV','upnphost','fdPHost','FDResPub','lltdsvc','Browser','NetTcpPortSharing') }
@@ -557,7 +556,10 @@ function Build-UndoActions {
     Add-UndoIfChecked $chkSvcParental { Reset-Svc @('WpcMonSvc','wisvc') }
     Add-UndoIfChecked $chkSvcHyperV { Reset-Svc @('HvHost','vmickvpexchange','vmicguestinterface','vmicshutdown','vmicheartbeat','vmicvmsession','vmicrdv','vmictimesync','vmcompute','vmms') }
     Add-UndoIfChecked $chkSvcPrint { Reset-Svc @('Spooler','PrintNotify','PrintWorkflowUserSvc') }
-    Add-UndoIfChecked $chkSvcSearch { Reset-Svc @('WSearch') }
+    Add-UndoIfChecked $chkSvcSearch {
+        Reset-Svc @('WSearch')
+        Start-Service -Name WSearch -ErrorAction SilentlyContinue
+    }
     Add-UndoIfChecked $chkSvcRemote { Reset-Svc @('RemoteRegistry','RemoteAccess','SessionEnv','TermService','UmRdpService','RasMan','RasAuto') }
     Add-UndoIfChecked $chkSvcBiometric { Reset-Svc @('WbioSrvc') }
     Add-UndoIfChecked $chkSvcTouch { Reset-Svc @('TabletInputService','TextInputManagementService') }
@@ -584,6 +586,10 @@ function Build-UndoActions {
                        '\Microsoft\Windows\TaskScheduler\Regular Maintenance',
                        '\Microsoft\Windows\TaskScheduler\Maintenance Configurator') 'Attivita di manutenzione'
     }
+    Add-UndoIfChecked $chkNtfs83 { Reset-Reg 'HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem' 'NtfsDisable8dot3NameCreation' 2 }
+    Add-UndoIfChecked $chkBootDefrag { Reset-Reg 'HKLM:\SOFTWARE\Microsoft\Dfrg\BootOptimizeFunction' 'Enable' 'Y' 'String' }
+    Add-UndoIfChecked $chkThumbCache { Reset-Reg 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer' 'DisableThumbnailCache' }
+    Add-NoUndo $chkTrim "Il TRIM e' gia' il comportamento predefinito di Windows."
     Add-UndoIfChecked $chkTaskDefrag { Enable-Tasks @('\Microsoft\Windows\Defrag\ScheduledDefrag') 'Ottimizzazione unita pianificata' }
 
     Add-UndoIfChecked $chkPrefetch {

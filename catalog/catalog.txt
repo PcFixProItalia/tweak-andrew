@@ -544,9 +544,6 @@ T|win.tmMonitor|R|1|-|Rete e GPU in Gestione attività|Network and GPU in Task M
 R|HKLM\SYSTEM\CurrentControlSet\Services\Ndu|Start|D|2|4
 R|HKLM\SYSTEM\CurrentControlSet\Services\GraphicsPerfSvc|Start|D|3|4
 H|win.tmMonitor|I due servizi che misurano il traffico di rete per app e l'uso della scheda video. Spenti, Gestione attività non mostra più quei dati.|The two services that measure per-app network traffic and graphics card usage. Off, Task Manager no longer shows that data.
-T|win.ntfs83|R|1|0|Nomi brevi 8.3 sui dischi NTFS|Short 8.3 names on NTFS drives
-R|HKLM\SYSTEM\CurrentControlSet\Control\FileSystem|NtfsDisable8dot3NameCreation|D|2,0,-|1
-H|win.ntfs83|Per ogni file Windows crea anche un nome corto in stile DOS. Spento, le cartelle con molti file si leggono più in fretta. Serve solo a programmi molto vecchi.|For every file Windows also creates a short DOS-style name. Off, folders with many files read faster. Only very old programs need it.
 V|win.svcCdp||CDPSvc|AD|M|Piattaforma dispositivi connessi|Connected Devices Platform
 H|win.svcCdp|Collega il PC a telefono e altri dispositivi. Serve per Collegamento al telefono.|Links the PC to your phone and other devices. Needed for Phone Link.
 V|win.svcWmpShare||WMPNetworkSvc|M|X|Condivisione di Windows Media Player|Windows Media Player sharing

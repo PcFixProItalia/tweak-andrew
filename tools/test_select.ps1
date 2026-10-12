@@ -18,7 +18,7 @@ $window.Add_ContentRendered({ [void]$window.Dispatcher.BeginInvoke([Action]{
     $sel = Checked
     Write-Host ("Seleziona tutto: " + $sel.Count + " voci, conferme chieste: " + $script:DialogCalls)
     Write-Host ("  sicurezza accesa: " + (@($sel | Where-Object { $script:SecurityChecks -contains $_ }) -join ' '))
-    Write-Host ("  escluse apposta accese: " + (@($sel | Where-Object { $_ -in 'chkCpuIdleOff','chkNvPreempt','chkAmdPreempt','chkNvHdcp','chkSvcPrint','chkSvcSearch','chkSvcRemote' }) -join ' '))
+    Write-Host ("  escluse apposta accese: " + (@($sel | Where-Object { $_ -in 'chkCpuIdleOff','chkNvPreempt','chkAmdPreempt','chkNvHdcp','chkSvcPrint','chkSvcRemote' }) -join ' '))
     Write-Host ("  Deseleziona abilitato: " + $btnDeselectAll.IsEnabled + "  Applica abilitato: " + $btnRun.IsEnabled)
     Click $btnDeselectAll
     Write-Host ("  dopo Deseleziona abilitato: " + $btnDeselectAll.IsEnabled + "  voci da fare: " + @($script:AllCheckBoxes | Where-Object { Test-Pending $_ }).Count)
