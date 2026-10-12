@@ -988,6 +988,10 @@ function Build-Actions {
         $pf = "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management\PrefetchParameters"
         Set-Reg $pf 'EnablePrefetcher' 0 'DWord' 'Prefetcher'
         Set-Reg $pf 'EnableSuperfetch' 0 'DWord' 'Superfetch'
+        # Con il servizio SysMain acceso Windows continua a precaricare le app:
+        # i soli valori del registro non bastano.
+        Set-Svc 'SysMain' 'Disabled' 'SysMain'
+        Stop-Service -Name SysMain -Force -ErrorAction SilentlyContinue
     }
     Add-IfChecked $chkFth {
         Set-Reg 'HKLM:\SOFTWARE\Microsoft\FTH' 'Enabled' 0 'DWord' 'Fault Tolerant Heap'

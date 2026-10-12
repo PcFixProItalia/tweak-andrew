@@ -3863,6 +3863,10 @@ function Get-DiskKind($d) {
     if ($d.BusType -eq 'NVMe') { return 'NVMe' }
     if ($d.MediaType -eq 'SSD') { return 'SSD' }
     if ($d.MediaType -eq 'HDD') { return 'HDD' }
+    # Dietro un controller RAID/AHCI Windows puo' non dichiarare il tipo:
+    # un disco senza rotazione, o con SSD/NVMe nel nome, e' a stato solido.
+    if ($null -ne $d.SpindleSpeed -and [uint32]$d.SpindleSpeed -eq 0) { return 'SSD' }
+    if ([string]$d.FriendlyName -match '(?i)\b(SSD|NVMe)\b') { return 'SSD' }
     return '?'
 }
 
@@ -3992,6 +3996,7 @@ foreach ($rb in @($radStorageSSD, $radStorageHDD)) {
 
 $btnDetectStorage.Add_Click({
     Show-StorageInventory
+    if (Get-Command Update-RecStars -ErrorAction SilentlyContinue) { Update-RecStars }
     Write-Log "[INFO] Rilevamento archiviazione: $($script:DetectedStorageType)."
 })
 
@@ -4384,6 +4389,15 @@ $script:RecommendedChecks = @{
                     'chkNvShaderCache','chkNvDisplayPower','chkAmdUx','chkAmdBloat','chkAmdUlps','chkAmdAntiLag','chkAmdShaderCache','chkIntelBloat',
                     'chkIntelTelemetry','chkIntelGfxPower')
 }
+
+# Con Windows installato su un SSD o NVMe «Consigliati» e «Seleziona tutto»
+# aggiungono le voci che su un disco meccanico servirebbero: niente
+# precaricamento (Prefetch e SysMain) e niente indicizzazione della ricerca.
+# Memoria kernel, ultimo accesso, nomi 8.3 e ibernazione sono gia' consigliati
+# per tutti.
+$script:SsdRecommended = @('chkPrefetch','chkSvcSysMain','chkSvcSearch')
+
+function Test-SystemSsd { return ($script:SystemDiskKind -in @('NVMe','SSD')) }
 
 # «Seleziona tutto»: oltre ai consigliati accende tutto cio' che toglie lavoro
 # al processore o latenza, sicurezza compresa. Restano fuori le voci che
@@ -13424,6 +13438,10 @@ function Build-Actions {
         $pf = "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management\PrefetchParameters"
         Set-Reg $pf 'EnablePrefetcher' 0 'DWord' 'Prefetcher'
         Set-Reg $pf 'EnableSuperfetch' 0 'DWord' 'Superfetch'
+        # Con il servizio SysMain acceso Windows continua a precaricare le app:
+        # i soli valori del registro non bastano.
+        Set-Svc 'SysMain' 'Disabled' 'SysMain'
+        Stop-Service -Name SysMain -Force -ErrorAction SilentlyContinue
     }
     Add-IfChecked $chkFth {
         Set-Reg 'HKLM:\SOFTWARE\Microsoft\FTH' 'Enabled' 0 'DWord' 'Fault Tolerant Heap'
@@ -14182,6 +14200,8 @@ function Build-UndoActions {
     Add-UndoIfChecked $chkPrefetch {
         $pf = "$mm\PrefetchParameters"
         Reset-Reg $pf 'EnablePrefetcher' 3; Reset-Reg $pf 'EnableSuperfetch' 3
+        Reset-Svc @('SysMain')
+        Start-Service -Name SysMain -ErrorAction SilentlyContinue
     }
     Add-UndoIfChecked $chkFth { Reset-Reg 'HKLM:\SOFTWARE\Microsoft\FTH' 'Enabled' 1 }
     Add-UndoIfChecked $chkAppCompat {
@@ -18494,7 +18514,7 @@ function Show-WuProfiles {
 # ogni valore con quello presente sul sistema: una voce e' attiva quando tutti
 # coincidono. Le voci con passaggi che non si possono verificare restano senza
 # etichetta, invece di mostrarne una sbagliata.
-$script:ProbeSafe = @('Write-Log', 'Test-Gpu', 'Out-Null', 'Test-Path', 'Join-Path', 'Stop-Process', 'Get-Process')
+$script:ProbeSafe = @('Write-Log', 'Test-Gpu', 'Out-Null', 'Test-Path', 'Join-Path', 'Stop-Process', 'Get-Process', 'Stop-Service')
 
 function Resolve-ProbeArg($ast, $vars) {
     if ($ast -is [System.Management.Automation.Language.ExpandableStringExpressionAst]) {
@@ -18832,6 +18852,7 @@ $script:NoRecChecks = @('chkRestorePoint', 'chkStorageProfile', 'chkWuProfile', 
                         'chkStartMorePins', 'chkStartHideRec', 'chkStartNoWeb', 'chkStartNoAccount', 'chkMenuSleep', 'chkMenuHibernate')
 function Update-RecStars {
     $names = @($script:RecommendedChecks.Values | ForEach-Object { $_ })
+    if (Test-SystemSsd) { $names += $script:SsdRecommended }
     foreach ($cb in $script:AllCheckBoxes) {
         $show = $cb.IsEnabled -and ($script:NoRecChecks -notcontains [string]$cb.Name) -and (Test-CheckVendor $cb)
         $on = ($names -contains [string]$cb.Name) -and (Test-CheckPcType $cb)

@@ -1199,6 +1199,10 @@ function Get-DiskKind($d) {
     if ($d.BusType -eq 'NVMe') { return 'NVMe' }
     if ($d.MediaType -eq 'SSD') { return 'SSD' }
     if ($d.MediaType -eq 'HDD') { return 'HDD' }
+    # Dietro un controller RAID/AHCI Windows puo' non dichiarare il tipo:
+    # un disco senza rotazione, o con SSD/NVMe nel nome, e' a stato solido.
+    if ($null -ne $d.SpindleSpeed -and [uint32]$d.SpindleSpeed -eq 0) { return 'SSD' }
+    if ([string]$d.FriendlyName -match '(?i)\b(SSD|NVMe)\b') { return 'SSD' }
     return '?'
 }
 
@@ -1328,6 +1332,7 @@ foreach ($rb in @($radStorageSSD, $radStorageHDD)) {
 
 $btnDetectStorage.Add_Click({
     Show-StorageInventory
+    if (Get-Command Update-RecStars -ErrorAction SilentlyContinue) { Update-RecStars }
     Write-Log "[INFO] Rilevamento archiviazione: $($script:DetectedStorageType)."
 })
 
@@ -1720,6 +1725,15 @@ $script:RecommendedChecks = @{
                     'chkNvShaderCache','chkNvDisplayPower','chkAmdUx','chkAmdBloat','chkAmdUlps','chkAmdAntiLag','chkAmdShaderCache','chkIntelBloat',
                     'chkIntelTelemetry','chkIntelGfxPower')
 }
+
+# Con Windows installato su un SSD o NVMe «Consigliati» e «Seleziona tutto»
+# aggiungono le voci che su un disco meccanico servirebbero: niente
+# precaricamento (Prefetch e SysMain) e niente indicizzazione della ricerca.
+# Memoria kernel, ultimo accesso, nomi 8.3 e ibernazione sono gia' consigliati
+# per tutti.
+$script:SsdRecommended = @('chkPrefetch','chkSvcSysMain','chkSvcSearch')
+
+function Test-SystemSsd { return ($script:SystemDiskKind -in @('NVMe','SSD')) }
 
 # «Seleziona tutto»: oltre ai consigliati accende tutto cio' che toglie lavoro
 # al processore o latenza, sicurezza compresa. Restano fuori le voci che

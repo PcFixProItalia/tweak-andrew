@@ -589,6 +589,8 @@ function Build-UndoActions {
     Add-UndoIfChecked $chkPrefetch {
         $pf = "$mm\PrefetchParameters"
         Reset-Reg $pf 'EnablePrefetcher' 3; Reset-Reg $pf 'EnableSuperfetch' 3
+        Reset-Svc @('SysMain')
+        Start-Service -Name SysMain -ErrorAction SilentlyContinue
     }
     Add-UndoIfChecked $chkFth { Reset-Reg 'HKLM:\SOFTWARE\Microsoft\FTH' 'Enabled' 1 }
     Add-UndoIfChecked $chkAppCompat {

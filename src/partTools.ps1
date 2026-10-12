@@ -764,7 +764,7 @@ function Show-WuProfiles {
 # ogni valore con quello presente sul sistema: una voce e' attiva quando tutti
 # coincidono. Le voci con passaggi che non si possono verificare restano senza
 # etichetta, invece di mostrarne una sbagliata.
-$script:ProbeSafe = @('Write-Log', 'Test-Gpu', 'Out-Null', 'Test-Path', 'Join-Path', 'Stop-Process', 'Get-Process')
+$script:ProbeSafe = @('Write-Log', 'Test-Gpu', 'Out-Null', 'Test-Path', 'Join-Path', 'Stop-Process', 'Get-Process', 'Stop-Service')
 
 function Resolve-ProbeArg($ast, $vars) {
     if ($ast -is [System.Management.Automation.Language.ExpandableStringExpressionAst]) {
@@ -1102,6 +1102,7 @@ $script:NoRecChecks = @('chkRestorePoint', 'chkStorageProfile', 'chkWuProfile', 
                         'chkStartMorePins', 'chkStartHideRec', 'chkStartNoWeb', 'chkStartNoAccount', 'chkMenuSleep', 'chkMenuHibernate')
 function Update-RecStars {
     $names = @($script:RecommendedChecks.Values | ForEach-Object { $_ })
+    if (Test-SystemSsd) { $names += $script:SsdRecommended }
     foreach ($cb in $script:AllCheckBoxes) {
         $show = $cb.IsEnabled -and ($script:NoRecChecks -notcontains [string]$cb.Name) -and (Test-CheckVendor $cb)
         $on = ($names -contains [string]$cb.Name) -and (Test-CheckPcType $cb)
