@@ -626,10 +626,10 @@ M:homeUptimeD	{0} z {1} h {2} min
 M:homeUptimeH	{0} h {1} min
 M:homeInstalledOn	Windows instalat pe {0}
 M:homePcType	TIPUL COMPUTERULUI
-M:homeTypeAuto	Detectare automată: {0}
+M:homeTypeAuto	Automat ({0})
 M:homeTypeDesktop	Computer desktop
 M:homeTypeLaptop	Laptop
-M:homeTypeHint	Pe laptop, «Recomandate» exclude opțiunile care consumă cel mai mult bateria. Le poți selecta totuși manual.
+M:homeTypeHint	Decide ce aleg «Recomandate» și «Selectează tot». Fiecare element se poate alege oricând manual.
 M:homeCpu	Procesor
 M:homeRam	Memorie
 M:homeGpu	Placă video
@@ -917,3 +917,10 @@ H:chkThumbCache	Windows nu mai salvează miniaturile într-un fișier pe disc. M
 L:chkTrim	TRIM — asigură-te că este activ
 H:chkTrim	Spune SSD-ului ce blocuri nu mai sunt folosite, ca să rămână rapid în timp. În Windows este activ implicit: această opțiune îl repornește dacă cineva l-a oprit.
 M:catBulkReady	Valori pregătite pentru {0} elemente: apasă «Aplică modificările».
+M:homeTypeServer	Server
+M:homeTypeInUse	Folosit: {0}
+M:homeTypeDescAuto	Programul îl recunoaște după hardware și Windows.
+M:homeTypeDescDesktop	Performanță maximă: fără economisirea energiei.
+M:homeTypeDescLaptop	Sare peste elementele care consumă bateria.
+M:homeTypeDescServer	Păstrează securitatea, serviciile și diagnosticarea: performanță mai bună fără a slăbi serverul.
+M:homePhysDisks	Discuri

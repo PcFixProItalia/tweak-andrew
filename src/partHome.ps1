@@ -18,15 +18,30 @@ $script:LaptopSkip = @('chkPowerThrottling', 'chkNetPowerSave', 'chkHibernation'
                        'chkIntelGfxPower', 'chkIntelDpst', 'chkCpuIntelBoostPol', 'chkCpuAmdParking', 'chkCpuIdleOff')
 # Voci utili solo con la batteria: su un fisso si saltano.
 $script:DesktopSkip = @('chkBatteryPct')
+# Su un server «Consigliati» e «Seleziona tutto» lasciano stare:
+# - le difese del kernel (VBS, Spectre, Downfall, exploit, SmartScreen): un
+#   server e' esposto in rete e spesso ospita macchine virtuali;
+# - priorita' al primo piano, MMCSS, modalita' gioco: su un server lavorano i
+#   servizi in secondo piano, ed e' Windows Server a favorirli;
+# - servizi che un server puo' usare davvero: ricerca (indicizza le
+#   condivisioni), fax, diagnostica, attivita' di manutenzione e controllo disco;
+# - tick dinamico, TSC, timer e DPC: su una macchina virtuale possono rendere
+#   instabile l'orologio.
+$script:ServerSkip = @('chkVBS', 'chkSecSpectre', 'chkSecDownfall', 'chkMitigations', 'chkSecSmartScreen',
+                       'chkPriority', 'chkMMCSS', 'chkGameMode', 'chkGameDVR', 'chkHAGS', 'chkFSO', 'chkVisualFX',
+                       'chkSvcSearch', 'chkServicesManual', 'chkSvcDiag', 'chkTaskExtra', 'chkTaskMaint',
+                       'chkBootDynTick', 'chkBootTsc', 'chkTimer', 'chkKernelDpc', 'chkCpuIdleOff', 'chkBatteryPct')
 $script:SettingsKey = 'HKCU:\Software\TweakAndrew'
 
 function Get-PcTypeSetting {
     try { $v = [string](Get-ItemProperty -LiteralPath $script:SettingsKey -Name PcType -ErrorAction Stop).PcType } catch { $v = '' }
-    if ($v -in @('desktop', 'laptop')) { return $v }
+    if ($v -in @('desktop', 'laptop', 'server')) { return $v }
     return 'auto'
 }
 
-function Get-DetectedPcType([array]$chassis, $systemType, [bool]$battery) {
+function Get-DetectedPcType([array]$chassis, $systemType, [bool]$battery, $productType = 1) {
+    # Windows Server (controller di dominio o server membro).
+    if ([int]$productType -in @(2, 3)) { return 'server' }
     if (@($chassis | Where-Object { $script:LaptopChassis -contains [int]$_ }).Count -gt 0) { return 'laptop' }
     if ($systemType -eq 2) { return 'laptop' }
     if (@($chassis | Where-Object { $script:DesktopChassis -contains [int]$_ }).Count -gt 0) { return 'desktop' }
@@ -46,7 +61,8 @@ function Get-PcType {
                 $ch = @((Get-CimInstance Win32_SystemEnclosure -ErrorAction Stop).ChassisTypes)
                 $st = (Get-CimInstance Win32_ComputerSystem -ErrorAction Stop).PCSystemType
                 $bat = @(Get-CimInstance Win32_Battery -ErrorAction SilentlyContinue).Count -gt 0
-                $script:PcTypeDetected = Get-DetectedPcType $ch $st $bat
+                $pt = (Get-CimInstance Win32_OperatingSystem -ErrorAction Stop).ProductType
+                $script:PcTypeDetected = Get-DetectedPcType $ch $st $bat $pt
             } catch { $script:PcTypeDetected = 'desktop' }
         }
     }
@@ -55,9 +71,10 @@ function Get-PcType {
 
 function Test-CheckPcType($cb) {
     $n = [string]$cb.Name
-    if ($script:LaptopSkip -notcontains $n -and $script:DesktopSkip -notcontains $n) { return $true }
+    if ($script:LaptopSkip -notcontains $n -and $script:DesktopSkip -notcontains $n -and $script:ServerSkip -notcontains $n) { return $true }
     $type = Get-PcType
     if ($type -eq 'laptop') { return ($script:LaptopSkip -notcontains $n) }
+    if ($type -eq 'server') { return ($script:ServerSkip -notcontains $n) }
     return ($script:DesktopSkip -notcontains $n)
 }
 
@@ -68,6 +85,9 @@ function Set-PcTypeSetting([string]$value) {
     } catch { Write-Log "[AVVISO] Tipo di PC non salvato: $($_.Exception.Message)" }
     Write-Log "[OK] Tipo di PC: $value (in uso: $(Get-PcType))"
     if (Get-Command Update-RecStars -ErrorAction SilentlyContinue) { Update-RecStars }
+    # I consigli del catalogo dipendono dal tipo: i sigilli si ridisegnano.
+    foreach ($pg in @($script:CatBuilt.Keys)) { $script:CatBuilt[$pg] = $null }
+    if ($script:HomeInfo) { Show-HomeInfo }
 }
 
 # Letture dell'hardware: gira nel runspace, quindi niente T e niente controlli.
@@ -160,6 +180,7 @@ if ($i.HasBattery) {
     $i.Health = if ($design -and $full) { [Math]::Min(100, [Math]::Round(100 * $full / $design)) } else { $null }
 }
 $i.Chassis = @((Q Win32_SystemEnclosure | Select-Object -First 1).ChassisTypes)
+$i.ProductType = [int]$os.ProductType
 $i.SystemType = $cs.PCSystemType
 $i
 '@
@@ -178,7 +199,7 @@ function Start-HomeInfo {
         $script:HomeJob.Ps.Dispose()
         $info = @($res | Where-Object { $_ -is [hashtable] }) | Select-Object -First 1
         if ($null -eq $info) { $info = @{ Pc = $env:COMPUTERNAME } }
-        $info.PcType = Get-DetectedPcType $info.Chassis $info.SystemType ([bool]$info.HasBattery)
+        $info.PcType = Get-DetectedPcType $info.Chassis $info.SystemType ([bool]$info.HasBattery) $info.ProductType
         $script:HomeInfo = $info
         $script:PcTypeDetected = $info.PcType
         Show-HomeInfo
@@ -227,7 +248,9 @@ function Format-HomeDate($d) {
     try { return ([datetime]$d).ToString('dd/MM/yyyy') } catch { return '' }
 }
 
-function Get-PcTypeName([string]$t) { if ($t -eq 'laptop') { T 'homeTypeLaptop' } else { T 'homeTypeDesktop' } }
+function Get-PcTypeName([string]$t) {
+    switch ($t) { 'laptop' { T 'homeTypeLaptop' } 'server' { T 'homeTypeServer' } default { T 'homeTypeDesktop' } }
+}
 
 function New-HomeHero($i) {
     $card = New-Object System.Windows.Controls.Border
@@ -267,30 +290,137 @@ function New-HomeHero($i) {
     [void]$left.Children.Add($chips)
     [void]$g.Children.Add($left)
 
-    # Tipo di PC: rilevato da solo, correggibile a mano.
-    $box = New-Object System.Windows.Controls.Border
-    $box.Style = $window.FindResource('GlassInner'); $box.Width = 330; $box.Margin = '18,0,0,0'; $box.Padding = '16,14,16,14'
-    [System.Windows.Controls.Grid]::SetColumn($box, 1)
-    $bs = New-Object System.Windows.Controls.StackPanel
-    $bt = New-Object System.Windows.Controls.TextBlock; $bt.Text = T 'homePcType'; $bt.Style = $window.FindResource('CardTitle'); $bt.Margin = '0,0,0,8'
-    [void]$bs.Children.Add($bt)
-    $set = Get-PcTypeSetting
-    foreach ($o in @(
-        @{ V = 'auto'; L = ((T 'homeTypeAuto') -f (Get-PcTypeName $i.PcType)) },
-        @{ V = 'desktop'; L = (T 'homeTypeDesktop') },
-        @{ V = 'laptop'; L = (T 'homeTypeLaptop') })) {
-        $rb = New-Object System.Windows.Controls.RadioButton
-        $rb.GroupName = 'PcType'; $rb.Content = $o.L; $rb.Tag = $o.V; $rb.Margin = '0,0,0,6'
-        $rb.IsChecked = ($set -eq $o.V)
-        $rb.Add_Checked({ Set-PcTypeSetting ([string]$this.Tag) })
-        [void]$bs.Children.Add($rb)
-    }
-    $hint = New-Object System.Windows.Controls.TextBlock; $hint.Text = T 'homeTypeHint'; $hint.Style = $window.FindResource('SubTitle'); $hint.Margin = '2,4,0,0'
-    [void]$bs.Children.Add($hint)
-    $box.Child = $bs
-    [void]$g.Children.Add($box)
     $card.Child = $g
     return $card
+}
+
+# Tipo di computer: quattro riquadri grandi, uno per scelta. Decide cosa fanno
+# «Consigliati» e «Seleziona tutto», quindi sta in cima, subito visibile.
+function New-HomeTypeTile([string]$value, [string]$title, [string]$desc, [bool]$selected) {
+    $b = New-Object System.Windows.Controls.Border
+    $b.CornerRadius = 8; $b.Padding = '14,12,14,12'; $b.Margin = '0,0,10,0'; $b.Cursor = 'Hand'
+    $b.BorderThickness = $(if ($selected) { 2 } else { 1 })
+    $b.BorderBrush = New-AppBrush $(if ($selected) { '#FF4C8DFF' } else { '#FF2A2E34' })
+    $b.Background = New-AppBrush $(if ($selected) { '#1F4C8DFF' } else { '#FF111316' })
+    $b.Tag = $value
+    $sp = New-Object System.Windows.Controls.StackPanel
+    $top = New-Object System.Windows.Controls.Grid
+    $tc0 = New-Object System.Windows.Controls.ColumnDefinition; $tc1 = New-Object System.Windows.Controls.ColumnDefinition; $tc1.Width = [System.Windows.GridLength]::Auto
+    $top.ColumnDefinitions.Add($tc0); $top.ColumnDefinitions.Add($tc1)
+    $t = New-HomeText $title 14 $(if ($selected) { '#FFFFFFFF' } else { '#FFE6E8EB' }) 'SemiBold'
+    [void]$top.Children.Add($t)
+    if ($selected) { $tk = New-AppTick '#FF4C8DFF' 12; $tk.VerticalAlignment = 'Center'; [System.Windows.Controls.Grid]::SetColumn($tk, 1); [void]$top.Children.Add($tk) }
+    [void]$sp.Children.Add($top)
+    $d = New-HomeText $desc 12 '#FF9DA3AB'; $d.Margin = '0,5,0,0'
+    [void]$sp.Children.Add($d)
+    $b.Child = $sp
+    $b.Add_MouseLeftButtonUp({ if ((Get-PcTypeSetting) -ne [string]$this.Tag) { Set-PcTypeSetting ([string]$this.Tag) } })
+    return $b
+}
+
+function New-HomeTypeCard($i) {
+    $card = New-Object System.Windows.Controls.Border
+    $card.Style = $window.FindResource('Glass')
+    $sp = New-Object System.Windows.Controls.StackPanel
+    $hg = New-Object System.Windows.Controls.Grid; $hg.Margin = '0,0,0,12'
+    $hc0 = New-Object System.Windows.Controls.ColumnDefinition; $hc0.Width = [System.Windows.GridLength]::Auto
+    $hc1 = New-Object System.Windows.Controls.ColumnDefinition
+    $hg.ColumnDefinitions.Add($hc0); $hg.ColumnDefinitions.Add($hc1)
+    $cap = New-Object System.Windows.Controls.TextBlock; $cap.Text = T 'homePcType'; $cap.Style = $window.FindResource('CardTitle'); $cap.Margin = '0'; $cap.VerticalAlignment = 'Center'
+    [void]$hg.Children.Add($cap)
+    $now = New-AppPill ((T 'homeTypeInUse') -f (Get-PcTypeName (Get-PcType))) '#FF9EC2FF' '#264C8DFF'
+    $now.Margin = '12,0,0,0'
+    [System.Windows.Controls.Grid]::SetColumn($now, 1); $now.HorizontalAlignment = 'Left'
+    [void]$hg.Children.Add($now)
+    [void]$sp.Children.Add($hg)
+    $sub = New-HomeText (T 'homeTypeHint') 12.5 '#FF9DA3AB'; $sub.Margin = '0,0,0,12'
+    [void]$sp.Children.Add($sub)
+    $grid = New-Object System.Windows.Controls.Grid
+    $set = Get-PcTypeSetting
+    $tiles = @(
+        @{ V = 'auto';    T = ((T 'homeTypeAuto') -f (Get-PcTypeName $i.PcType)); D = (T 'homeTypeDescAuto') },
+        @{ V = 'desktop'; T = (T 'homeTypeDesktop'); D = (T 'homeTypeDescDesktop') },
+        @{ V = 'laptop';  T = (T 'homeTypeLaptop');  D = (T 'homeTypeDescLaptop') },
+        @{ V = 'server';  T = (T 'homeTypeServer');  D = (T 'homeTypeDescServer') })
+    for ($k = 0; $k -lt $tiles.Count; $k++) {
+        $cd = New-Object System.Windows.Controls.ColumnDefinition
+        $cd.Width = New-Object System.Windows.GridLength(1, [System.Windows.GridUnitType]::Star)
+        $grid.ColumnDefinitions.Add($cd)
+        $tile = New-HomeTypeTile $tiles[$k].V $tiles[$k].T $tiles[$k].D ($set -eq $tiles[$k].V)
+        if ($k -eq $tiles.Count - 1) { $tile.Margin = '0' }
+        [System.Windows.Controls.Grid]::SetColumn($tile, $k)
+        [void]$grid.Children.Add($tile)
+    }
+    [void]$sp.Children.Add($grid)
+    $card.Child = $sp
+    return $card
+}
+
+# Archiviazione: a sinistra i dischi fisici, a destra le unita' con la barra
+# dello spazio occupato. Una riga per elemento, anche con molti dischi.
+function New-HomeDiskRow($d) {
+    $g = New-Object System.Windows.Controls.Grid; $g.Margin = '0,0,0,8'
+    $c0 = New-Object System.Windows.Controls.ColumnDefinition
+    $c1 = New-Object System.Windows.Controls.ColumnDefinition; $c1.Width = [System.Windows.GridLength]::Auto
+    $g.ColumnDefinitions.Add($c0); $g.ColumnDefinitions.Add($c1)
+    $n = New-HomeText $d.Name 12.5 '#FFE6E8EB'; $n.TextWrapping = 'NoWrap'; $n.TextTrimming = 'CharacterEllipsis'; $n.VerticalAlignment = 'Center'
+    [void]$g.Children.Add($n)
+    $tags = New-Object System.Windows.Controls.StackPanel; $tags.Orientation = 'Horizontal'
+    $kind = if ($d.Bus -eq 'NVMe') { 'NVMe' } elseif ($d.Media -in @('SSD', 'HDD')) { $d.Media } else { '' }
+    if ($kind) {
+        $col = switch ($kind) { 'NVMe' { '#FF9EC2FF' } 'SSD' { '#FF7FD1B9' } default { '#FFE0A25E' } }
+        [void]$tags.Children.Add((New-AppPill $kind $col '#FF1E2125'))
+    }
+    if ($d.Bus -and $d.Bus -notin @('NVMe', 'Unspecified')) { [void]$tags.Children.Add((New-AppPill $d.Bus '#FFC5C9CF' '#FF1E2125')) }
+    $sz = New-HomeText (Format-HomeSize $d.Size) 12.5 '#FFC5C9CF'; $sz.Margin = '10,0,0,0'; $sz.VerticalAlignment = 'Center'; $sz.Width = 64; $sz.TextAlignment = 'Right'
+    [void]$tags.Children.Add($sz)
+    [System.Windows.Controls.Grid]::SetColumn($tags, 1); [void]$g.Children.Add($tags)
+    return $g
+}
+
+function New-HomeVolumeRow($v) {
+    $sp = New-Object System.Windows.Controls.StackPanel; $sp.Margin = '0,0,0,9'
+    $g = New-Object System.Windows.Controls.Grid
+    $c0 = New-Object System.Windows.Controls.ColumnDefinition
+    $c1 = New-Object System.Windows.Controls.ColumnDefinition; $c1.Width = [System.Windows.GridLength]::Auto
+    $g.ColumnDefinitions.Add($c0); $g.ColumnDefinitions.Add($c1)
+    $lbl = if ($v.Label) { "$($v.Letter):  $($v.Label)" } else { "$($v.Letter):" }
+    $n = New-HomeText $lbl 12.5 '#FFE6E8EB'; $n.TextWrapping = 'NoWrap'; $n.TextTrimming = 'CharacterEllipsis'
+    [void]$g.Children.Add($n)
+    $f = New-HomeText ((T 'homeFreeFmt') -f (Format-HomeSize $v.Free), (Format-HomeSize $v.Size)) 12 '#FF9DA3AB'; $f.TextWrapping = 'NoWrap'
+    [System.Windows.Controls.Grid]::SetColumn($f, 1); [void]$g.Children.Add($f)
+    [void]$sp.Children.Add($g)
+    # Con un 1 intero [Math]::Min sceglie la versione per interi e arrotonda a 0 o 1.
+    $used = if ($v.Size -gt 0) { [Math]::Max([double]0, [Math]::Min([double]1, [double](1 - $v.Free / $v.Size))) } else { [double]0 }
+    $bar = New-Object System.Windows.Controls.Grid; $bar.Height = 5; $bar.Margin = '0,5,0,0'
+    $u = New-Object System.Windows.Controls.ColumnDefinition; $u.Width = New-Object System.Windows.GridLength([Math]::Max(0.001, $used), [System.Windows.GridUnitType]::Star)
+    $r = New-Object System.Windows.Controls.ColumnDefinition; $r.Width = New-Object System.Windows.GridLength([Math]::Max(0.001, 1 - $used), [System.Windows.GridUnitType]::Star)
+    $bar.ColumnDefinitions.Add($u); $bar.ColumnDefinitions.Add($r)
+    $bg = New-Object System.Windows.Controls.Border; $bg.CornerRadius = 3; $bg.Background = New-AppBrush '#FF22262B'
+    [System.Windows.Controls.Grid]::SetColumnSpan($bg, 2); [void]$bar.Children.Add($bg)
+    $fill = New-Object System.Windows.Controls.Border; $fill.CornerRadius = 3
+    $fill.Background = New-AppBrush $(if ($used -ge 0.9) { '#FFF87171' } elseif ($used -ge 0.75) { '#FFE0A25E' } else { '#FF4C8DFF' })
+    [void]$bar.Children.Add($fill)
+    [void]$sp.Children.Add($bar)
+    return $sp
+}
+
+function New-HomeStorageCard($i) {
+    $c = New-AppCard (T 'homeDisks')
+    $g = New-Object System.Windows.Controls.Grid
+    foreach ($w in 1, 1) { $cd = New-Object System.Windows.Controls.ColumnDefinition; $cd.Width = New-Object System.Windows.GridLength($w, [System.Windows.GridUnitType]::Star); $g.ColumnDefinitions.Add($cd) }
+    $left = New-Object System.Windows.Controls.StackPanel; $left.Margin = '0,0,14,0'
+    $right = New-Object System.Windows.Controls.StackPanel; $right.Margin = '14,0,0,0'
+    [System.Windows.Controls.Grid]::SetColumn($right, 1)
+    $h1 = New-HomeText (T 'homePhysDisks') 12 '#FF7F858D' 'SemiBold'; $h1.Margin = '0,0,0,8'
+    [void]$left.Children.Add($h1)
+    foreach ($d in $i.Disks) { [void]$left.Children.Add((New-HomeDiskRow $d)) }
+    $h2 = New-HomeText (T 'homeVolumes') 12 '#FF7F858D' 'SemiBold'; $h2.Margin = '0,0,0,8'
+    [void]$right.Children.Add($h2)
+    foreach ($v in $i.Volumes) { [void]$right.Children.Add((New-HomeVolumeRow $v)) }
+    [void]$g.Children.Add($left); [void]$g.Children.Add($right)
+    [void]$c.Panel.Children.Add($g)
+    return $c
 }
 
 function Show-HomeInfo {
@@ -298,6 +428,7 @@ function Show-HomeInfo {
     if ($null -eq $i) { return }
     $panHome.Children.Clear()
     [void]$panHome.Children.Add((New-HomeHero $i))
+    [void]$panHome.Children.Add((New-HomeTypeCard $i))
 
     $cards = New-Object System.Collections.ArrayList
     $on = T 'valOn'; $off = T 'valOff'
@@ -327,19 +458,6 @@ function Show-HomeInfo {
         $d = Format-HomeDate $p.DriverDate
         Add-HomeRow $c.Panel (T 'hkDriver') ($(if ($d) { "$($p.Driver)  ($d)" } else { $p.Driver }))
         if ($p.W) { Add-HomeRow $c.Panel (T 'hkRes') ("$($p.W) × $($p.H)" + $(if ($p.Hz) { "  ·  $($p.Hz) Hz" })) }
-    }
-    [void]$cards.Add($c)
-
-    $c = New-AppCard (T 'homeDisks')
-    foreach ($p in $i.Disks) {
-        Add-HomeItem $c.Panel $p.Name
-        $kind = (@($(if ($p.Media -in @('SSD', 'HDD')) { $p.Media }), $p.Bus, (Format-HomeSize $p.Size)) | Where-Object { $_ -and $_ -ne 'Unspecified' }) -join '  ·  '
-        Add-HomeRow $c.Panel (T 'hkType') $kind
-    }
-    if ($i.Volumes.Count -gt 0) { Add-HomeItem $c.Panel (T 'homeVolumes') }
-    foreach ($v in $i.Volumes) {
-        $lbl = if ($v.Label) { "$($v.Letter):  $($v.Label)" } else { "$($v.Letter):" }
-        Add-HomeRow $c.Panel $lbl ((T 'homeFreeFmt') -f (Format-HomeSize $v.Free), (Format-HomeSize $v.Size))
     }
     [void]$cards.Add($c)
 
@@ -388,6 +506,7 @@ function Show-HomeInfo {
         $h[$k] += $cd.Panel.Children.Count + 2
     }
     [void]$panHome.Children.Add($grid)
+    if ($i.Disks.Count -gt 0 -or $i.Volumes.Count -gt 0) { [void]$panHome.Children.Add((New-HomeStorageCard $i).Card) }
 }
 
 function Show-HomePageIfNeeded {

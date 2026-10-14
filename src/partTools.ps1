@@ -1105,10 +1105,14 @@ $script:NoRecChecks = @('chkRestorePoint', 'chkStorageProfile', 'chkWuProfile', 
                         'chkTaskbarEndTask', 'chkBatteryPct', 'chkSettingsHome', 'chkWindowSnapping',
                         'chkStartMorePins', 'chkStartHideRec', 'chkStartNoWeb', 'chkStartNoAccount', 'chkMenuSleep', 'chkMenuHibernate')
 function Update-RecStars {
+    $server = (Get-PcType) -eq 'server'
     $names = @($script:RecommendedChecks.Values | ForEach-Object { $_ })
     if (Test-SystemSsd) { $names += $script:SsdRecommended }
     foreach ($cb in $script:AllCheckBoxes) {
         $show = $cb.IsEnabled -and ($script:NoRecChecks -notcontains [string]$cb.Name) -and (Test-CheckVendor $cb)
+        # Su un server le voci escluse restano senza consiglio: «Consigliati» non le
+        # tocca in nessun verso, perche' i valori di Windows Server sono diversi.
+        if ($server -and $script:ServerSkip -contains [string]$cb.Name) { $show = $false }
         $on = ($names -contains [string]$cb.Name) -and (Test-CheckPcType $cb)
         [System.Windows.Automation.AutomationProperties]::SetItemStatus($cb, $(if (-not $show) { '' } elseif ($on) { 'rec' } else { 'recoff' }))
         if (-not $show) { continue }

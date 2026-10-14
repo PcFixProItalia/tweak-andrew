@@ -626,10 +626,10 @@ M:homeUptimeD	{0} d {1} h {2} min
 M:homeUptimeH	{0} h {1} min
 M:homeInstalledOn	Windows zainstalowany {0}
 M:homePcType	RODZAJ KOMPUTERA
-M:homeTypeAuto	Wykrywanie automatyczne: {0}
+M:homeTypeAuto	Automatycznie ({0})
 M:homeTypeDesktop	Komputer stacjonarny
 M:homeTypeLaptop	Laptop
-M:homeTypeHint	Na laptopie «Zalecane» pomija opcje najbardziej zużywające baterię. Nadal można je zaznaczyć ręcznie.
+M:homeTypeHint	Decyduje, co wybierają «Zalecane» i «Zaznacz wszystko». Pojedyncze pozycje zawsze można wybrać ręcznie.
 M:homeCpu	Procesor
 M:homeRam	Pamięć
 M:homeGpu	Karta graficzna
@@ -917,3 +917,10 @@ H:chkThumbCache	Windows nie zapisuje już miniatur w pliku na dysku. Mniej zapis
 L:chkTrim	TRIM — upewnij się, że jest włączony
 H:chkTrim	Informuje dysk SSD, które bloki nie są już używane, dzięki czemu z czasem pozostaje szybki. W Windows jest domyślnie włączony: ta opcja włącza go ponownie, jeśli ktoś go wyłączył.
 M:catBulkReady	Wartości gotowe dla {0} pozycji: naciśnij «Zastosuj zmiany».
+M:homeTypeServer	Serwer
+M:homeTypeInUse	Używany: {0}
+M:homeTypeDescAuto	Program rozpoznaje go po sprzęcie i systemie Windows.
+M:homeTypeDescDesktop	Pełna wydajność: bez oszczędzania energii.
+M:homeTypeDescLaptop	Pomija pozycje zużywające baterię.
+M:homeTypeDescServer	Zostawia bezpieczeństwo, usługi i diagnostykę: lepsza wydajność bez osłabiania serwera.
+M:homePhysDisks	Dyski

@@ -626,10 +626,10 @@ M:homeUptimeD	{0} T {1} Std. {2} Min.
 M:homeUptimeH	{0} Std. {1} Min.
 M:homeInstalledOn	Windows installiert am {0}
 M:homePcType	GERÄTETYP
-M:homeTypeAuto	Automatische Erkennung: {0}
+M:homeTypeAuto	Automatisch ({0})
 M:homeTypeDesktop	Desktop-PC
 M:homeTypeLaptop	Laptop
-M:homeTypeHint	Auf einem Laptop lässt «Empfohlen» die Einträge weg, die den Akku am stärksten belasten. Manuell kannst du sie trotzdem auswählen.
+M:homeTypeHint	Bestimmt, was «Empfohlene» und «Alles auswählen» wählen. Einzelne Einträge lassen sich immer von Hand wählen.
 M:homeCpu	Prozessor
 M:homeRam	Arbeitsspeicher
 M:homeGpu	Grafikkarte
@@ -917,3 +917,10 @@ H:chkThumbCache	Windows speichert Miniaturansichten nicht mehr in einer Datei au
 L:chkTrim	TRIM — sicherstellen, dass es aktiv ist
 H:chkTrim	Teilt der SSD mit, welche Blöcke nicht mehr benötigt werden, damit sie dauerhaft schnell bleibt. Unter Windows ist es standardmäßig aktiv: Diese Option schaltet es wieder ein, falls es jemand ausgeschaltet hat.
 M:catBulkReady	Werte für {0} Einträge bereit: «Änderungen übernehmen» drücken.
+M:homeTypeServer	Server
+M:homeTypeInUse	Aktiv: {0}
+M:homeTypeDescAuto	Das Programm erkennt ihn an Hardware und Windows.
+M:homeTypeDescDesktop	Volle Leistung: kein Energiesparen.
+M:homeTypeDescLaptop	Lässt akkuzehrende Einträge aus.
+M:homeTypeDescServer	Lässt Sicherheit, Dienste und Diagnose an: mehr Leistung, ohne den Server zu schwächen.
+M:homePhysDisks	Datenträger

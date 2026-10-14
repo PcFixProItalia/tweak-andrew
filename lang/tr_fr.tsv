@@ -629,10 +629,10 @@ M:homeUptimeD	{0} j {1} h {2} min
 M:homeUptimeH	{0} h {1} min
 M:homeInstalledOn	Windows installé le {0}
 M:homePcType	TYPE D'ORDINATEUR
-M:homeTypeAuto	Détection automatique : {0}
+M:homeTypeAuto	Automatique ({0})
 M:homeTypeDesktop	Ordinateur fixe
 M:homeTypeLaptop	Ordinateur portable
-M:homeTypeHint	Sur un portable, «Recommandés» exclut les options qui vident le plus la batterie. Vous pouvez toujours les sélectionner manuellement.
+M:homeTypeHint	Détermine ce que choisissent «Recommandés» et «Tout sélectionner». Chaque élément reste sélectionnable à la main.
 M:homeCpu	Processeur
 M:homeRam	Mémoire
 M:homeGpu	Carte graphique
@@ -920,3 +920,10 @@ H:chkThumbCache	Windows n'enregistre plus les miniatures dans un fichier sur le 
 L:chkTrim	TRIM — s'assurer qu'il est actif
 H:chkTrim	Indique au SSD quels blocs ne servent plus, pour qu'il reste rapide dans le temps. Il est actif par défaut sous Windows : cette option le réactive si quelqu'un l'a désactivé.
 M:catBulkReady	Valeurs prêtes pour {0} éléments : appuyez sur «Appliquer les modifications».
+M:homeTypeServer	Serveur
+M:homeTypeInUse	Utilisé : {0}
+M:homeTypeDescAuto	Le programme le reconnaît d'après le matériel et Windows.
+M:homeTypeDescDesktop	Performances maximales : pas d'économie d'énergie.
+M:homeTypeDescLaptop	Ignore les éléments qui vident la batterie.
+M:homeTypeDescServer	Garde sécurité, services et diagnostic : de meilleures performances sans affaiblir le serveur.
+M:homePhysDisks	Disques

@@ -166,10 +166,10 @@ homeUptimeD	{0} d {1} h {2} min
 homeUptimeH	{0} h {1} min
 homeInstalledOn	Windows installed on {0}
 homePcType	COMPUTER TYPE
-homeTypeAuto	Automatic detection: {0}
+homeTypeAuto	Automatic ({0})
 homeTypeDesktop	Desktop computer
 homeTypeLaptop	Laptop
-homeTypeHint	On a laptop «Recommended» leaves out the entries that drain the battery most. You can still select them manually.
+homeTypeHint	It decides what «Recommended» and «Select all» pick. Single entries can always be selected by hand.
 homeCpu	Processor
 homeRam	Memory
 homeGpu	Graphics card
@@ -389,3 +389,10 @@ maxPerfTitle	Maximum performance
 maxPerfAsk	«Select all» turns on every entry that gives performance, including those that lower security: Spectre mitigations, kernel isolation, exploit protections, SmartScreen. Fine on a PC used only for gaming. For everyday use pick «Recommended». Continue?
 maxPerfDone	Maximum performance ready: {0} to enable, {1} to keep or put back as Windows. Press «Apply changes».
 catBulkReady	Values ready for {0} entries: press «Apply changes».
+homeTypeServer	Server
+homeTypeInUse	In use: {0}
+homeTypeDescAuto	The program works it out from the hardware and Windows.
+homeTypeDescDesktop	Full performance: no power saving.
+homeTypeDescLaptop	Skips the entries that drain the battery.
+homeTypeDescServer	Keeps security, services and diagnostics on: better performance without weakening the server.
+homePhysDisks	Disks

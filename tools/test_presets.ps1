@@ -46,6 +46,23 @@ $window.Add_ContentRendered({ [void]$window.Dispatcher.BeginInvoke([Action]{
     Write-Host ("Rete, TTL cambiato: da applicare=" + (Test-NetPending) + " Applica=" + $btnRun.IsEnabled)
     Click $btnDeselectAll
     Write-Host ("Rete dopo Deseleziona: da applicare=" + (Test-NetPending))
+    # Server simulato: niente difese del kernel spente, niente priorita' al primo piano.
+    $keep = $script:PcTypeDetected; $script:PcTypeDetected = 'server'; Update-RecStars
+    Click $btnDeselectAll
+    $script:DialogCalls = 0
+    Click $btnSelectAll
+    $sel = @($script:AllCheckBoxes | Where-Object { $_.IsChecked -eq $true -and (Test-Pending $_ -or $script:Baseline[[string]$_.Name]) } | ForEach-Object { $_.Name })
+    $skipOn = @($script:ServerSkip | Where-Object { $n = $_; $cb = $script:AllCheckBoxes | Where-Object { $_.Name -eq $n }; $cb -and $cb.IsChecked -eq $true -and (Test-Pending $cb) })
+    Write-Host ("Server, Seleziona tutto: voci da escludere selezionate=" + ($skipOn -join ' ') + "  conferme=" + $script:DialogCalls +
+                "  cpuMin consigliato=" + (Get-CatRecTarget $script:CatById['pw.cpuMin']) + " sospensione=" + (Get-CatRecTarget $script:CatById['pw.sleep']))
+    Click $btnDeselectAll
+    Click $btnRecommended
+    $skipOn = @($script:ServerSkip | Where-Object { $n = $_; $cb = $script:AllCheckBoxes | Where-Object { $_.Name -eq $n }; $cb -and $cb.IsChecked -eq $true -and (Test-Pending $cb) })
+    Write-Host ("Server, Consigliati: voci da escludere selezionate=" + ($skipOn -join ' '))
+    Click $btnDeselectAll
+    $script:PcTypeDetected = 'laptop'; Update-RecStars
+    Write-Host ("Portatile: cpuMin consigliato=" + (Get-CatRecTarget $script:CatById['pw.cpuMin']) + " sospensione=" + (Get-CatRecTarget $script:CatById['pw.sleep']))
+    $script:PcTypeDetected = $keep; Update-RecStars
     Write-Host ("Conferme chieste: " + $script:DialogCalls)
     $window.Close()
 }, [System.Windows.Threading.DispatcherPriority]::ApplicationIdle) })

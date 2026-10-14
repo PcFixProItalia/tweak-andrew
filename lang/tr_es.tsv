@@ -626,10 +626,10 @@ M:homeUptimeD	{0} d {1} h {2} min
 M:homeUptimeH	{0} h {1} min
 M:homeInstalledOn	Windows instalado el {0}
 M:homePcType	TIPO DE EQUIPO
-M:homeTypeAuto	Detección automática: {0}
+M:homeTypeAuto	Automático ({0})
 M:homeTypeDesktop	Ordenador de sobremesa
 M:homeTypeLaptop	Portátil
-M:homeTypeHint	En un portátil «Recomendados» excluye las opciones que más batería gastan. Aun así puedes seleccionarlas manualmente.
+M:homeTypeHint	Decide qué eligen «Recomendados» y «Seleccionar todo». Cada opción se puede elegir siempre a mano.
 M:homeCpu	Procesador
 M:homeRam	Memoria
 M:homeGpu	Tarjeta gráfica
@@ -917,3 +917,10 @@ H:chkThumbCache	Windows deja de guardar las miniaturas en un archivo del disco. 
 L:chkTrim	TRIM — asegurarse de que esté activo
 H:chkTrim	Indica al SSD qué bloques ya no se usan, para que siga siendo rápido con el tiempo. En Windows ya viene activo: esta opción lo reactiva si alguien lo desactivó.
 M:catBulkReady	Valores listos para {0} opciones: pulsa «Aplicar cambios».
+M:homeTypeServer	Servidor
+M:homeTypeInUse	En uso: {0}
+M:homeTypeDescAuto	El programa lo reconoce por el hardware y Windows.
+M:homeTypeDescDesktop	Rendimiento pleno: sin ahorro de energía.
+M:homeTypeDescLaptop	Omite las opciones que gastan batería.
+M:homeTypeDescServer	Mantiene seguridad, servicios y diagnóstico: mejor rendimiento sin debilitar el servidor.
+M:homePhysDisks	Discos

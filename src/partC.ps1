@@ -602,11 +602,11 @@ $script:Msg = @{
     homeUptimeD        = @{ it = "{0} g {1} h {2} min"; en = "{0} d {1} h {2} min" }
     homeUptimeH        = @{ it = "{0} h {1} min"; en = "{0} h {1} min" }
     homeInstalledOn    = @{ it = "Windows installato il {0}"; en = "Windows installed on {0}" }
-    homePcType         = @{ it = "TIPOLOGIA DEL COMPUTER"; en = "COMPUTER TYPE" }
-    homeTypeAuto       = @{ it = "Rilevamento automatico: {0}"; en = "Automatic detection: {0}" }
+    homePcType         = @{ it = "TIPO DI COMPUTER"; en = "COMPUTER TYPE" }
+    homeTypeAuto       = @{ it = "Automatico ({0})"; en = "Automatic ({0})" }
     homeTypeDesktop    = @{ it = "Computer fisso"; en = "Desktop computer" }
     homeTypeLaptop     = @{ it = "Computer portatile"; en = "Laptop" }
-    homeTypeHint       = @{ it = "Su un portatile «Consigliati» esclude le voci che consumano più batteria. Si possono comunque selezionare manualmente."; en = "On a laptop «Recommended» leaves out the entries that drain the battery most. You can still select them manually." }
+    homeTypeHint       = @{ it = "Decide cosa scelgono «Consigliati» e «Seleziona tutto». Le singole voci restano sempre selezionabili a mano."; en = "It decides what «Recommended» and «Select all» pick. Single entries can always be selected by hand." }
     homeCpu            = @{ it = "Processore"; en = "Processor" }
     homeRam            = @{ it = "Memoria"; en = "Memory" }
     homeGpu            = @{ it = "Scheda video"; en = "Graphics card" }
@@ -826,6 +826,13 @@ $script:Msg = @{
     maxPerfAsk         = @{ it = "«Seleziona tutto» accende ogni voce che dà prestazioni, comprese quelle che abbassano la sicurezza: mitigazioni Spectre, isolamento del kernel, protezioni dagli exploit, SmartScreen. Va bene su un PC usato solo per giocare. Per l'uso di tutti i giorni scegli «Consigliati». Continuare?"; en = "«Select all» turns on every entry that gives performance, including those that lower security: Spectre mitigations, kernel isolation, exploit protections, SmartScreen. Fine on a PC used only for gaming. For everyday use pick «Recommended». Continue?" }
     maxPerfDone        = @{ it = "Prestazioni massime pronte: {0} da attivare, {1} da lasciare o riportare come Windows. Premi «Applica modifiche»."; en = "Maximum performance ready: {0} to enable, {1} to keep or put back as Windows. Press «Apply changes»." }
     catBulkReady       = @{ it = "Valori pronti per {0} voci: premi «Applica modifiche»."; en = "Values ready for {0} entries: press «Apply changes»." }
+    homeTypeServer     = @{ it = "Server"; en = "Server" }
+    homeTypeInUse      = @{ it = "In uso: {0}"; en = "In use: {0}" }
+    homeTypeDescAuto   = @{ it = "Il programma lo riconosce dall'hardware e da Windows."; en = "The program works it out from the hardware and Windows." }
+    homeTypeDescDesktop = @{ it = "Prestazioni piene: niente risparmio energetico."; en = "Full performance: no power saving." }
+    homeTypeDescLaptop = @{ it = "Salta le voci che consumano batteria."; en = "Skips the entries that drain the battery." }
+    homeTypeDescServer = @{ it = "Lascia attive sicurezza, servizi e diagnostica: migliora le prestazioni senza indebolire il server."; en = "Keeps security, services and diagnostics on: better performance without weakening the server." }
+    homePhysDisks      = @{ it = "Dischi"; en = "Disks" }
 }
 
 $script:LangCode = "it"
@@ -1894,7 +1901,7 @@ $btnSelectPage.Add_Click({
 # prepara anche i due pannelli.
 $btnRecommended.Add_Click({
     $page = Get-CurrentPage
-    if ($null -ne $page -and [string]$page.Name -eq 'pageSched') { Set-SchedRecommended }
+    if ($null -ne $page -and [string]$page.Name -eq 'pageSched' -and (Get-PcType) -ne 'server') { Set-SchedRecommended }
     $r = Set-RecommendedValues @($script:AllCheckBoxes)
     $r.On += Set-OtherPresets
     $txtProgressLabel.Text = (T 'recAllDone') -f $r.On, $r.Off

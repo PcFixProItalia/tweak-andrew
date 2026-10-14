@@ -3275,11 +3275,11 @@ $script:Msg = @{
     homeUptimeD        = @{ it = "{0} g {1} h {2} min"; en = "{0} d {1} h {2} min" }
     homeUptimeH        = @{ it = "{0} h {1} min"; en = "{0} h {1} min" }
     homeInstalledOn    = @{ it = "Windows installato il {0}"; en = "Windows installed on {0}" }
-    homePcType         = @{ it = "TIPOLOGIA DEL COMPUTER"; en = "COMPUTER TYPE" }
-    homeTypeAuto       = @{ it = "Rilevamento automatico: {0}"; en = "Automatic detection: {0}" }
+    homePcType         = @{ it = "TIPO DI COMPUTER"; en = "COMPUTER TYPE" }
+    homeTypeAuto       = @{ it = "Automatico ({0})"; en = "Automatic ({0})" }
     homeTypeDesktop    = @{ it = "Computer fisso"; en = "Desktop computer" }
     homeTypeLaptop     = @{ it = "Computer portatile"; en = "Laptop" }
-    homeTypeHint       = @{ it = "Su un portatile «Consigliati» esclude le voci che consumano più batteria. Si possono comunque selezionare manualmente."; en = "On a laptop «Recommended» leaves out the entries that drain the battery most. You can still select them manually." }
+    homeTypeHint       = @{ it = "Decide cosa scelgono «Consigliati» e «Seleziona tutto». Le singole voci restano sempre selezionabili a mano."; en = "It decides what «Recommended» and «Select all» pick. Single entries can always be selected by hand." }
     homeCpu            = @{ it = "Processore"; en = "Processor" }
     homeRam            = @{ it = "Memoria"; en = "Memory" }
     homeGpu            = @{ it = "Scheda video"; en = "Graphics card" }
@@ -3499,6 +3499,13 @@ $script:Msg = @{
     maxPerfAsk         = @{ it = "«Seleziona tutto» accende ogni voce che dà prestazioni, comprese quelle che abbassano la sicurezza: mitigazioni Spectre, isolamento del kernel, protezioni dagli exploit, SmartScreen. Va bene su un PC usato solo per giocare. Per l'uso di tutti i giorni scegli «Consigliati». Continuare?"; en = "«Select all» turns on every entry that gives performance, including those that lower security: Spectre mitigations, kernel isolation, exploit protections, SmartScreen. Fine on a PC used only for gaming. For everyday use pick «Recommended». Continue?" }
     maxPerfDone        = @{ it = "Prestazioni massime pronte: {0} da attivare, {1} da lasciare o riportare come Windows. Premi «Applica modifiche»."; en = "Maximum performance ready: {0} to enable, {1} to keep or put back as Windows. Press «Apply changes»." }
     catBulkReady       = @{ it = "Valori pronti per {0} voci: premi «Applica modifiche»."; en = "Values ready for {0} entries: press «Apply changes»." }
+    homeTypeServer     = @{ it = "Server"; en = "Server" }
+    homeTypeInUse      = @{ it = "In uso: {0}"; en = "In use: {0}" }
+    homeTypeDescAuto   = @{ it = "Il programma lo riconosce dall'hardware e da Windows."; en = "The program works it out from the hardware and Windows." }
+    homeTypeDescDesktop = @{ it = "Prestazioni piene: niente risparmio energetico."; en = "Full performance: no power saving." }
+    homeTypeDescLaptop = @{ it = "Salta le voci che consumano batteria."; en = "Skips the entries that drain the battery." }
+    homeTypeDescServer = @{ it = "Lascia attive sicurezza, servizi e diagnostica: migliora le prestazioni senza indebolire il server."; en = "Keeps security, services and diagnostics on: better performance without weakening the server." }
+    homePhysDisks      = @{ it = "Dischi"; en = "Disks" }
 }
 
 $script:LangCode = "it"
@@ -4567,7 +4574,7 @@ $btnSelectPage.Add_Click({
 # prepara anche i due pannelli.
 $btnRecommended.Add_Click({
     $page = Get-CurrentPage
-    if ($null -ne $page -and [string]$page.Name -eq 'pageSched') { Set-SchedRecommended }
+    if ($null -ne $page -and [string]$page.Name -eq 'pageSched' -and (Get-PcType) -ne 'server') { Set-SchedRecommended }
     $r = Set-RecommendedValues @($script:AllCheckBoxes)
     $r.On += Set-OtherPresets
     $txtProgressLabel.Text = (T 'recAllDone') -f $r.On, $r.Off
@@ -5403,10 +5410,10 @@ $script:Tr = @{
         'M:homeUptimeH' = "{0} h {1} min"
         'M:homeInstalledOn' = "Windows instalado el {0}"
         'M:homePcType' = "TIPO DE EQUIPO"
-        'M:homeTypeAuto' = "Detección automática: {0}"
+        'M:homeTypeAuto' = "Automático ({0})"
         'M:homeTypeDesktop' = "Ordenador de sobremesa"
         'M:homeTypeLaptop' = "Portátil"
-        'M:homeTypeHint' = "En un portátil «Recomendados» excluye las opciones que más batería gastan. Aun así puedes seleccionarlas manualmente."
+        'M:homeTypeHint' = "Decide qué eligen «Recomendados» y «Seleccionar todo». Cada opción se puede elegir siempre a mano."
         'M:homeCpu' = "Procesador"
         'M:homeRam' = "Memoria"
         'M:homeGpu' = "Tarjeta gráfica"
@@ -5694,6 +5701,13 @@ $script:Tr = @{
         'L:chkTrim' = "TRIM — asegurarse de que esté activo"
         'H:chkTrim' = "Indica al SSD qué bloques ya no se usan, para que siga siendo rápido con el tiempo. En Windows ya viene activo: esta opción lo reactiva si alguien lo desactivó."
         'M:catBulkReady' = "Valores listos para {0} opciones: pulsa «Aplicar cambios»."
+        'M:homeTypeServer' = "Servidor"
+        'M:homeTypeInUse' = "En uso: {0}"
+        'M:homeTypeDescAuto' = "El programa lo reconoce por el hardware y Windows."
+        'M:homeTypeDescDesktop' = "Rendimiento pleno: sin ahorro de energía."
+        'M:homeTypeDescLaptop' = "Omite las opciones que gastan batería."
+        'M:homeTypeDescServer' = "Mantiene seguridad, servicios y diagnóstico: mejor rendimiento sin debilitar el servidor."
+        'M:homePhysDisks' = "Discos"
     }
     de = @{
         'L:lblSubtitle' = "Windows-Optimierung und -Steuerung — PcFixPro Italia"
@@ -6324,10 +6338,10 @@ $script:Tr = @{
         'M:homeUptimeH' = "{0} Std. {1} Min."
         'M:homeInstalledOn' = "Windows installiert am {0}"
         'M:homePcType' = "GERÄTETYP"
-        'M:homeTypeAuto' = "Automatische Erkennung: {0}"
+        'M:homeTypeAuto' = "Automatisch ({0})"
         'M:homeTypeDesktop' = "Desktop-PC"
         'M:homeTypeLaptop' = "Laptop"
-        'M:homeTypeHint' = "Auf einem Laptop lässt «Empfohlen» die Einträge weg, die den Akku am stärksten belasten. Manuell kannst du sie trotzdem auswählen."
+        'M:homeTypeHint' = "Bestimmt, was «Empfohlene» und «Alles auswählen» wählen. Einzelne Einträge lassen sich immer von Hand wählen."
         'M:homeCpu' = "Prozessor"
         'M:homeRam' = "Arbeitsspeicher"
         'M:homeGpu' = "Grafikkarte"
@@ -6615,6 +6629,13 @@ $script:Tr = @{
         'L:chkTrim' = "TRIM — sicherstellen, dass es aktiv ist"
         'H:chkTrim' = "Teilt der SSD mit, welche Blöcke nicht mehr benötigt werden, damit sie dauerhaft schnell bleibt. Unter Windows ist es standardmäßig aktiv: Diese Option schaltet es wieder ein, falls es jemand ausgeschaltet hat."
         'M:catBulkReady' = "Werte für {0} Einträge bereit: «Änderungen übernehmen» drücken."
+        'M:homeTypeServer' = "Server"
+        'M:homeTypeInUse' = "Aktiv: {0}"
+        'M:homeTypeDescAuto' = "Das Programm erkennt ihn an Hardware und Windows."
+        'M:homeTypeDescDesktop' = "Volle Leistung: kein Energiesparen."
+        'M:homeTypeDescLaptop' = "Lässt akkuzehrende Einträge aus."
+        'M:homeTypeDescServer' = "Lässt Sicherheit, Dienste und Diagnose an: mehr Leistung, ohne den Server zu schwächen."
+        'M:homePhysDisks' = "Datenträger"
     }
     fr = @{
         'L:lblSubtitle' = "Optimisation et contrôle de Windows — PcFixPro Italia"
@@ -7248,10 +7269,10 @@ $script:Tr = @{
         'M:homeUptimeH' = "{0} h {1} min"
         'M:homeInstalledOn' = "Windows installé le {0}"
         'M:homePcType' = "TYPE D'ORDINATEUR"
-        'M:homeTypeAuto' = "Détection automatique : {0}"
+        'M:homeTypeAuto' = "Automatique ({0})"
         'M:homeTypeDesktop' = "Ordinateur fixe"
         'M:homeTypeLaptop' = "Ordinateur portable"
-        'M:homeTypeHint' = "Sur un portable, «Recommandés» exclut les options qui vident le plus la batterie. Vous pouvez toujours les sélectionner manuellement."
+        'M:homeTypeHint' = "Détermine ce que choisissent «Recommandés» et «Tout sélectionner». Chaque élément reste sélectionnable à la main."
         'M:homeCpu' = "Processeur"
         'M:homeRam' = "Mémoire"
         'M:homeGpu' = "Carte graphique"
@@ -7539,6 +7560,13 @@ $script:Tr = @{
         'L:chkTrim' = "TRIM — s'assurer qu'il est actif"
         'H:chkTrim' = "Indique au SSD quels blocs ne servent plus, pour qu'il reste rapide dans le temps. Il est actif par défaut sous Windows : cette option le réactive si quelqu'un l'a désactivé."
         'M:catBulkReady' = "Valeurs prêtes pour {0} éléments : appuyez sur «Appliquer les modifications»."
+        'M:homeTypeServer' = "Serveur"
+        'M:homeTypeInUse' = "Utilisé : {0}"
+        'M:homeTypeDescAuto' = "Le programme le reconnaît d'après le matériel et Windows."
+        'M:homeTypeDescDesktop' = "Performances maximales : pas d'économie d'énergie."
+        'M:homeTypeDescLaptop' = "Ignore les éléments qui vident la batterie."
+        'M:homeTypeDescServer' = "Garde sécurité, services et diagnostic : de meilleures performances sans affaiblir le serveur."
+        'M:homePhysDisks' = "Disques"
     }
     pl = @{
         'L:lblSubtitle' = "Optymalizacja i kontrola systemu Windows — PcFixPro Italia"
@@ -8169,10 +8197,10 @@ $script:Tr = @{
         'M:homeUptimeH' = "{0} h {1} min"
         'M:homeInstalledOn' = "Windows zainstalowany {0}"
         'M:homePcType' = "RODZAJ KOMPUTERA"
-        'M:homeTypeAuto' = "Wykrywanie automatyczne: {0}"
+        'M:homeTypeAuto' = "Automatycznie ({0})"
         'M:homeTypeDesktop' = "Komputer stacjonarny"
         'M:homeTypeLaptop' = "Laptop"
-        'M:homeTypeHint' = "Na laptopie «Zalecane» pomija opcje najbardziej zużywające baterię. Nadal można je zaznaczyć ręcznie."
+        'M:homeTypeHint' = "Decyduje, co wybierają «Zalecane» i «Zaznacz wszystko». Pojedyncze pozycje zawsze można wybrać ręcznie."
         'M:homeCpu' = "Procesor"
         'M:homeRam' = "Pamięć"
         'M:homeGpu' = "Karta graficzna"
@@ -8460,6 +8488,13 @@ $script:Tr = @{
         'L:chkTrim' = "TRIM — upewnij się, że jest włączony"
         'H:chkTrim' = "Informuje dysk SSD, które bloki nie są już używane, dzięki czemu z czasem pozostaje szybki. W Windows jest domyślnie włączony: ta opcja włącza go ponownie, jeśli ktoś go wyłączył."
         'M:catBulkReady' = "Wartości gotowe dla {0} pozycji: naciśnij «Zastosuj zmiany»."
+        'M:homeTypeServer' = "Serwer"
+        'M:homeTypeInUse' = "Używany: {0}"
+        'M:homeTypeDescAuto' = "Program rozpoznaje go po sprzęcie i systemie Windows."
+        'M:homeTypeDescDesktop' = "Pełna wydajność: bez oszczędzania energii."
+        'M:homeTypeDescLaptop' = "Pomija pozycje zużywające baterię."
+        'M:homeTypeDescServer' = "Zostawia bezpieczeństwo, usługi i diagnostykę: lepsza wydajność bez osłabiania serwera."
+        'M:homePhysDisks' = "Dyski"
     }
     pt = @{
         'L:lblSubtitle' = "Otimização e controle do Windows — PcFixPro Italia"
@@ -9090,10 +9125,10 @@ $script:Tr = @{
         'M:homeUptimeH' = "{0} h {1} min"
         'M:homeInstalledOn' = "Windows instalado em {0}"
         'M:homePcType' = "TIPO DE COMPUTADOR"
-        'M:homeTypeAuto' = "Detecção automática: {0}"
+        'M:homeTypeAuto' = "Automático ({0})"
         'M:homeTypeDesktop' = "Computador de mesa"
         'M:homeTypeLaptop' = "Notebook"
-        'M:homeTypeHint' = "No notebook, «Recomendados» deixa de fora as opções que mais gastam bateria. Você ainda pode selecioná-las manualmente."
+        'M:homeTypeHint' = "Decide o que «Recomendados» e «Selecionar tudo» escolhem. Cada item pode sempre ser escolhido à mão."
         'M:homeCpu' = "Processador"
         'M:homeRam' = "Memória"
         'M:homeGpu' = "Placa de vídeo"
@@ -9381,6 +9416,13 @@ $script:Tr = @{
         'L:chkTrim' = "TRIM — garantir que esteja ativo"
         'H:chkTrim' = "Informa ao SSD quais blocos não são mais usados, para que continue rápido com o tempo. No Windows já vem ativo: este item o reativa se alguém o desligou."
         'M:catBulkReady' = "Valores prontos para {0} itens: pressione «Aplicar alterações»."
+        'M:homeTypeServer' = "Servidor"
+        'M:homeTypeInUse' = "Em uso: {0}"
+        'M:homeTypeDescAuto' = "O programa o reconhece pelo hardware e pelo Windows."
+        'M:homeTypeDescDesktop' = "Desempenho total: sem economia de energia."
+        'M:homeTypeDescLaptop' = "Ignora os itens que gastam bateria."
+        'M:homeTypeDescServer' = "Mantém segurança, serviços e diagnóstico: mais desempenho sem enfraquecer o servidor."
+        'M:homePhysDisks' = "Discos"
     }
     ro = @{
         'L:lblSubtitle' = "Optimizarea și controlul Windows — PcFixPro Italia"
@@ -10011,10 +10053,10 @@ $script:Tr = @{
         'M:homeUptimeH' = "{0} h {1} min"
         'M:homeInstalledOn' = "Windows instalat pe {0}"
         'M:homePcType' = "TIPUL COMPUTERULUI"
-        'M:homeTypeAuto' = "Detectare automată: {0}"
+        'M:homeTypeAuto' = "Automat ({0})"
         'M:homeTypeDesktop' = "Computer desktop"
         'M:homeTypeLaptop' = "Laptop"
-        'M:homeTypeHint' = "Pe laptop, «Recomandate» exclude opțiunile care consumă cel mai mult bateria. Le poți selecta totuși manual."
+        'M:homeTypeHint' = "Decide ce aleg «Recomandate» și «Selectează tot». Fiecare element se poate alege oricând manual."
         'M:homeCpu' = "Procesor"
         'M:homeRam' = "Memorie"
         'M:homeGpu' = "Placă video"
@@ -10302,6 +10344,13 @@ $script:Tr = @{
         'L:chkTrim' = "TRIM — asigură-te că este activ"
         'H:chkTrim' = "Spune SSD-ului ce blocuri nu mai sunt folosite, ca să rămână rapid în timp. În Windows este activ implicit: această opțiune îl repornește dacă cineva l-a oprit."
         'M:catBulkReady' = "Valori pregătite pentru {0} elemente: apasă «Aplică modificările»."
+        'M:homeTypeServer' = "Server"
+        'M:homeTypeInUse' = "Folosit: {0}"
+        'M:homeTypeDescAuto' = "Programul îl recunoaște după hardware și Windows."
+        'M:homeTypeDescDesktop' = "Performanță maximă: fără economisirea energiei."
+        'M:homeTypeDescLaptop' = "Sare peste elementele care consumă bateria."
+        'M:homeTypeDescServer' = "Păstrează securitatea, serviciile și diagnosticarea: performanță mai bună fără a slăbi serverul."
+        'M:homePhysDisks' = "Discuri"
     }
     ru = @{
         'L:lblSubtitle' = "Оптимизация и управление Windows — PcFixPro Italia"
@@ -10932,10 +10981,10 @@ $script:Tr = @{
         'M:homeUptimeH' = "{0} ч {1} мин"
         'M:homeInstalledOn' = "Windows установлен {0}"
         'M:homePcType' = "ТИП КОМПЬЮТЕРА"
-        'M:homeTypeAuto' = "Автоопределение: {0}"
+        'M:homeTypeAuto' = "Автоматически ({0})"
         'M:homeTypeDesktop' = "Настольный компьютер"
         'M:homeTypeLaptop' = "Ноутбук"
-        'M:homeTypeHint' = "На ноутбуке «Рекомендуемые» пропускают пункты, сильнее всего расходующие батарею. Их можно выбрать вручную."
+        'M:homeTypeHint' = "Определяет, что выбирают «Рекомендуемые» и «Выбрать всё». Отдельные пункты всегда можно выбрать вручную."
         'M:homeCpu' = "Процессор"
         'M:homeRam' = "Память"
         'M:homeGpu' = "Видеокарта"
@@ -11223,6 +11272,13 @@ $script:Tr = @{
         'L:chkTrim' = "TRIM — убедиться, что он включён"
         'H:chkTrim' = "Сообщает SSD, какие блоки больше не используются, чтобы он оставался быстрым со временем. В Windows он включён по умолчанию: этот пункт включает его снова, если кто-то отключил."
         'M:catBulkReady' = "Значения готовы для {0} пунктов: нажмите «Применить изменения»."
+        'M:homeTypeServer' = "Сервер"
+        'M:homeTypeInUse' = "Используется: {0}"
+        'M:homeTypeDescAuto' = "Программа определяет его по оборудованию и Windows."
+        'M:homeTypeDescDesktop' = "Полная производительность: без энергосбережения."
+        'M:homeTypeDescLaptop' = "Пропускает пункты, расходующие батарею."
+        'M:homeTypeDescServer' = "Сохраняет защиту, службы и диагностику: выше производительность без ослабления сервера."
+        'M:homePhysDisks' = "Диски"
     }
 }
 
@@ -17561,15 +17617,30 @@ $script:LaptopSkip = @('chkPowerThrottling', 'chkNetPowerSave', 'chkHibernation'
                        'chkIntelGfxPower', 'chkIntelDpst', 'chkCpuIntelBoostPol', 'chkCpuAmdParking', 'chkCpuIdleOff')
 # Voci utili solo con la batteria: su un fisso si saltano.
 $script:DesktopSkip = @('chkBatteryPct')
+# Su un server «Consigliati» e «Seleziona tutto» lasciano stare:
+# - le difese del kernel (VBS, Spectre, Downfall, exploit, SmartScreen): un
+#   server e' esposto in rete e spesso ospita macchine virtuali;
+# - priorita' al primo piano, MMCSS, modalita' gioco: su un server lavorano i
+#   servizi in secondo piano, ed e' Windows Server a favorirli;
+# - servizi che un server puo' usare davvero: ricerca (indicizza le
+#   condivisioni), fax, diagnostica, attivita' di manutenzione e controllo disco;
+# - tick dinamico, TSC, timer e DPC: su una macchina virtuale possono rendere
+#   instabile l'orologio.
+$script:ServerSkip = @('chkVBS', 'chkSecSpectre', 'chkSecDownfall', 'chkMitigations', 'chkSecSmartScreen',
+                       'chkPriority', 'chkMMCSS', 'chkGameMode', 'chkGameDVR', 'chkHAGS', 'chkFSO', 'chkVisualFX',
+                       'chkSvcSearch', 'chkServicesManual', 'chkSvcDiag', 'chkTaskExtra', 'chkTaskMaint',
+                       'chkBootDynTick', 'chkBootTsc', 'chkTimer', 'chkKernelDpc', 'chkCpuIdleOff', 'chkBatteryPct')
 $script:SettingsKey = 'HKCU:\Software\TweakAndrew'
 
 function Get-PcTypeSetting {
     try { $v = [string](Get-ItemProperty -LiteralPath $script:SettingsKey -Name PcType -ErrorAction Stop).PcType } catch { $v = '' }
-    if ($v -in @('desktop', 'laptop')) { return $v }
+    if ($v -in @('desktop', 'laptop', 'server')) { return $v }
     return 'auto'
 }
 
-function Get-DetectedPcType([array]$chassis, $systemType, [bool]$battery) {
+function Get-DetectedPcType([array]$chassis, $systemType, [bool]$battery, $productType = 1) {
+    # Windows Server (controller di dominio o server membro).
+    if ([int]$productType -in @(2, 3)) { return 'server' }
     if (@($chassis | Where-Object { $script:LaptopChassis -contains [int]$_ }).Count -gt 0) { return 'laptop' }
     if ($systemType -eq 2) { return 'laptop' }
     if (@($chassis | Where-Object { $script:DesktopChassis -contains [int]$_ }).Count -gt 0) { return 'desktop' }
@@ -17589,7 +17660,8 @@ function Get-PcType {
                 $ch = @((Get-CimInstance Win32_SystemEnclosure -ErrorAction Stop).ChassisTypes)
                 $st = (Get-CimInstance Win32_ComputerSystem -ErrorAction Stop).PCSystemType
                 $bat = @(Get-CimInstance Win32_Battery -ErrorAction SilentlyContinue).Count -gt 0
-                $script:PcTypeDetected = Get-DetectedPcType $ch $st $bat
+                $pt = (Get-CimInstance Win32_OperatingSystem -ErrorAction Stop).ProductType
+                $script:PcTypeDetected = Get-DetectedPcType $ch $st $bat $pt
             } catch { $script:PcTypeDetected = 'desktop' }
         }
     }
@@ -17598,9 +17670,10 @@ function Get-PcType {
 
 function Test-CheckPcType($cb) {
     $n = [string]$cb.Name
-    if ($script:LaptopSkip -notcontains $n -and $script:DesktopSkip -notcontains $n) { return $true }
+    if ($script:LaptopSkip -notcontains $n -and $script:DesktopSkip -notcontains $n -and $script:ServerSkip -notcontains $n) { return $true }
     $type = Get-PcType
     if ($type -eq 'laptop') { return ($script:LaptopSkip -notcontains $n) }
+    if ($type -eq 'server') { return ($script:ServerSkip -notcontains $n) }
     return ($script:DesktopSkip -notcontains $n)
 }
 
@@ -17611,6 +17684,9 @@ function Set-PcTypeSetting([string]$value) {
     } catch { Write-Log "[AVVISO] Tipo di PC non salvato: $($_.Exception.Message)" }
     Write-Log "[OK] Tipo di PC: $value (in uso: $(Get-PcType))"
     if (Get-Command Update-RecStars -ErrorAction SilentlyContinue) { Update-RecStars }
+    # I consigli del catalogo dipendono dal tipo: i sigilli si ridisegnano.
+    foreach ($pg in @($script:CatBuilt.Keys)) { $script:CatBuilt[$pg] = $null }
+    if ($script:HomeInfo) { Show-HomeInfo }
 }
 
 # Letture dell'hardware: gira nel runspace, quindi niente T e niente controlli.
@@ -17703,6 +17779,7 @@ if ($i.HasBattery) {
     $i.Health = if ($design -and $full) { [Math]::Min(100, [Math]::Round(100 * $full / $design)) } else { $null }
 }
 $i.Chassis = @((Q Win32_SystemEnclosure | Select-Object -First 1).ChassisTypes)
+$i.ProductType = [int]$os.ProductType
 $i.SystemType = $cs.PCSystemType
 $i
 '@
@@ -17721,7 +17798,7 @@ function Start-HomeInfo {
         $script:HomeJob.Ps.Dispose()
         $info = @($res | Where-Object { $_ -is [hashtable] }) | Select-Object -First 1
         if ($null -eq $info) { $info = @{ Pc = $env:COMPUTERNAME } }
-        $info.PcType = Get-DetectedPcType $info.Chassis $info.SystemType ([bool]$info.HasBattery)
+        $info.PcType = Get-DetectedPcType $info.Chassis $info.SystemType ([bool]$info.HasBattery) $info.ProductType
         $script:HomeInfo = $info
         $script:PcTypeDetected = $info.PcType
         Show-HomeInfo
@@ -17770,7 +17847,9 @@ function Format-HomeDate($d) {
     try { return ([datetime]$d).ToString('dd/MM/yyyy') } catch { return '' }
 }
 
-function Get-PcTypeName([string]$t) { if ($t -eq 'laptop') { T 'homeTypeLaptop' } else { T 'homeTypeDesktop' } }
+function Get-PcTypeName([string]$t) {
+    switch ($t) { 'laptop' { T 'homeTypeLaptop' } 'server' { T 'homeTypeServer' } default { T 'homeTypeDesktop' } }
+}
 
 function New-HomeHero($i) {
     $card = New-Object System.Windows.Controls.Border
@@ -17810,30 +17889,137 @@ function New-HomeHero($i) {
     [void]$left.Children.Add($chips)
     [void]$g.Children.Add($left)
 
-    # Tipo di PC: rilevato da solo, correggibile a mano.
-    $box = New-Object System.Windows.Controls.Border
-    $box.Style = $window.FindResource('GlassInner'); $box.Width = 330; $box.Margin = '18,0,0,0'; $box.Padding = '16,14,16,14'
-    [System.Windows.Controls.Grid]::SetColumn($box, 1)
-    $bs = New-Object System.Windows.Controls.StackPanel
-    $bt = New-Object System.Windows.Controls.TextBlock; $bt.Text = T 'homePcType'; $bt.Style = $window.FindResource('CardTitle'); $bt.Margin = '0,0,0,8'
-    [void]$bs.Children.Add($bt)
-    $set = Get-PcTypeSetting
-    foreach ($o in @(
-        @{ V = 'auto'; L = ((T 'homeTypeAuto') -f (Get-PcTypeName $i.PcType)) },
-        @{ V = 'desktop'; L = (T 'homeTypeDesktop') },
-        @{ V = 'laptop'; L = (T 'homeTypeLaptop') })) {
-        $rb = New-Object System.Windows.Controls.RadioButton
-        $rb.GroupName = 'PcType'; $rb.Content = $o.L; $rb.Tag = $o.V; $rb.Margin = '0,0,0,6'
-        $rb.IsChecked = ($set -eq $o.V)
-        $rb.Add_Checked({ Set-PcTypeSetting ([string]$this.Tag) })
-        [void]$bs.Children.Add($rb)
-    }
-    $hint = New-Object System.Windows.Controls.TextBlock; $hint.Text = T 'homeTypeHint'; $hint.Style = $window.FindResource('SubTitle'); $hint.Margin = '2,4,0,0'
-    [void]$bs.Children.Add($hint)
-    $box.Child = $bs
-    [void]$g.Children.Add($box)
     $card.Child = $g
     return $card
+}
+
+# Tipo di computer: quattro riquadri grandi, uno per scelta. Decide cosa fanno
+# «Consigliati» e «Seleziona tutto», quindi sta in cima, subito visibile.
+function New-HomeTypeTile([string]$value, [string]$title, [string]$desc, [bool]$selected) {
+    $b = New-Object System.Windows.Controls.Border
+    $b.CornerRadius = 8; $b.Padding = '14,12,14,12'; $b.Margin = '0,0,10,0'; $b.Cursor = 'Hand'
+    $b.BorderThickness = $(if ($selected) { 2 } else { 1 })
+    $b.BorderBrush = New-AppBrush $(if ($selected) { '#FF4C8DFF' } else { '#FF2A2E34' })
+    $b.Background = New-AppBrush $(if ($selected) { '#1F4C8DFF' } else { '#FF111316' })
+    $b.Tag = $value
+    $sp = New-Object System.Windows.Controls.StackPanel
+    $top = New-Object System.Windows.Controls.Grid
+    $tc0 = New-Object System.Windows.Controls.ColumnDefinition; $tc1 = New-Object System.Windows.Controls.ColumnDefinition; $tc1.Width = [System.Windows.GridLength]::Auto
+    $top.ColumnDefinitions.Add($tc0); $top.ColumnDefinitions.Add($tc1)
+    $t = New-HomeText $title 14 $(if ($selected) { '#FFFFFFFF' } else { '#FFE6E8EB' }) 'SemiBold'
+    [void]$top.Children.Add($t)
+    if ($selected) { $tk = New-AppTick '#FF4C8DFF' 12; $tk.VerticalAlignment = 'Center'; [System.Windows.Controls.Grid]::SetColumn($tk, 1); [void]$top.Children.Add($tk) }
+    [void]$sp.Children.Add($top)
+    $d = New-HomeText $desc 12 '#FF9DA3AB'; $d.Margin = '0,5,0,0'
+    [void]$sp.Children.Add($d)
+    $b.Child = $sp
+    $b.Add_MouseLeftButtonUp({ if ((Get-PcTypeSetting) -ne [string]$this.Tag) { Set-PcTypeSetting ([string]$this.Tag) } })
+    return $b
+}
+
+function New-HomeTypeCard($i) {
+    $card = New-Object System.Windows.Controls.Border
+    $card.Style = $window.FindResource('Glass')
+    $sp = New-Object System.Windows.Controls.StackPanel
+    $hg = New-Object System.Windows.Controls.Grid; $hg.Margin = '0,0,0,12'
+    $hc0 = New-Object System.Windows.Controls.ColumnDefinition; $hc0.Width = [System.Windows.GridLength]::Auto
+    $hc1 = New-Object System.Windows.Controls.ColumnDefinition
+    $hg.ColumnDefinitions.Add($hc0); $hg.ColumnDefinitions.Add($hc1)
+    $cap = New-Object System.Windows.Controls.TextBlock; $cap.Text = T 'homePcType'; $cap.Style = $window.FindResource('CardTitle'); $cap.Margin = '0'; $cap.VerticalAlignment = 'Center'
+    [void]$hg.Children.Add($cap)
+    $now = New-AppPill ((T 'homeTypeInUse') -f (Get-PcTypeName (Get-PcType))) '#FF9EC2FF' '#264C8DFF'
+    $now.Margin = '12,0,0,0'
+    [System.Windows.Controls.Grid]::SetColumn($now, 1); $now.HorizontalAlignment = 'Left'
+    [void]$hg.Children.Add($now)
+    [void]$sp.Children.Add($hg)
+    $sub = New-HomeText (T 'homeTypeHint') 12.5 '#FF9DA3AB'; $sub.Margin = '0,0,0,12'
+    [void]$sp.Children.Add($sub)
+    $grid = New-Object System.Windows.Controls.Grid
+    $set = Get-PcTypeSetting
+    $tiles = @(
+        @{ V = 'auto';    T = ((T 'homeTypeAuto') -f (Get-PcTypeName $i.PcType)); D = (T 'homeTypeDescAuto') },
+        @{ V = 'desktop'; T = (T 'homeTypeDesktop'); D = (T 'homeTypeDescDesktop') },
+        @{ V = 'laptop';  T = (T 'homeTypeLaptop');  D = (T 'homeTypeDescLaptop') },
+        @{ V = 'server';  T = (T 'homeTypeServer');  D = (T 'homeTypeDescServer') })
+    for ($k = 0; $k -lt $tiles.Count; $k++) {
+        $cd = New-Object System.Windows.Controls.ColumnDefinition
+        $cd.Width = New-Object System.Windows.GridLength(1, [System.Windows.GridUnitType]::Star)
+        $grid.ColumnDefinitions.Add($cd)
+        $tile = New-HomeTypeTile $tiles[$k].V $tiles[$k].T $tiles[$k].D ($set -eq $tiles[$k].V)
+        if ($k -eq $tiles.Count - 1) { $tile.Margin = '0' }
+        [System.Windows.Controls.Grid]::SetColumn($tile, $k)
+        [void]$grid.Children.Add($tile)
+    }
+    [void]$sp.Children.Add($grid)
+    $card.Child = $sp
+    return $card
+}
+
+# Archiviazione: a sinistra i dischi fisici, a destra le unita' con la barra
+# dello spazio occupato. Una riga per elemento, anche con molti dischi.
+function New-HomeDiskRow($d) {
+    $g = New-Object System.Windows.Controls.Grid; $g.Margin = '0,0,0,8'
+    $c0 = New-Object System.Windows.Controls.ColumnDefinition
+    $c1 = New-Object System.Windows.Controls.ColumnDefinition; $c1.Width = [System.Windows.GridLength]::Auto
+    $g.ColumnDefinitions.Add($c0); $g.ColumnDefinitions.Add($c1)
+    $n = New-HomeText $d.Name 12.5 '#FFE6E8EB'; $n.TextWrapping = 'NoWrap'; $n.TextTrimming = 'CharacterEllipsis'; $n.VerticalAlignment = 'Center'
+    [void]$g.Children.Add($n)
+    $tags = New-Object System.Windows.Controls.StackPanel; $tags.Orientation = 'Horizontal'
+    $kind = if ($d.Bus -eq 'NVMe') { 'NVMe' } elseif ($d.Media -in @('SSD', 'HDD')) { $d.Media } else { '' }
+    if ($kind) {
+        $col = switch ($kind) { 'NVMe' { '#FF9EC2FF' } 'SSD' { '#FF7FD1B9' } default { '#FFE0A25E' } }
+        [void]$tags.Children.Add((New-AppPill $kind $col '#FF1E2125'))
+    }
+    if ($d.Bus -and $d.Bus -notin @('NVMe', 'Unspecified')) { [void]$tags.Children.Add((New-AppPill $d.Bus '#FFC5C9CF' '#FF1E2125')) }
+    $sz = New-HomeText (Format-HomeSize $d.Size) 12.5 '#FFC5C9CF'; $sz.Margin = '10,0,0,0'; $sz.VerticalAlignment = 'Center'; $sz.Width = 64; $sz.TextAlignment = 'Right'
+    [void]$tags.Children.Add($sz)
+    [System.Windows.Controls.Grid]::SetColumn($tags, 1); [void]$g.Children.Add($tags)
+    return $g
+}
+
+function New-HomeVolumeRow($v) {
+    $sp = New-Object System.Windows.Controls.StackPanel; $sp.Margin = '0,0,0,9'
+    $g = New-Object System.Windows.Controls.Grid
+    $c0 = New-Object System.Windows.Controls.ColumnDefinition
+    $c1 = New-Object System.Windows.Controls.ColumnDefinition; $c1.Width = [System.Windows.GridLength]::Auto
+    $g.ColumnDefinitions.Add($c0); $g.ColumnDefinitions.Add($c1)
+    $lbl = if ($v.Label) { "$($v.Letter):  $($v.Label)" } else { "$($v.Letter):" }
+    $n = New-HomeText $lbl 12.5 '#FFE6E8EB'; $n.TextWrapping = 'NoWrap'; $n.TextTrimming = 'CharacterEllipsis'
+    [void]$g.Children.Add($n)
+    $f = New-HomeText ((T 'homeFreeFmt') -f (Format-HomeSize $v.Free), (Format-HomeSize $v.Size)) 12 '#FF9DA3AB'; $f.TextWrapping = 'NoWrap'
+    [System.Windows.Controls.Grid]::SetColumn($f, 1); [void]$g.Children.Add($f)
+    [void]$sp.Children.Add($g)
+    # Con un 1 intero [Math]::Min sceglie la versione per interi e arrotonda a 0 o 1.
+    $used = if ($v.Size -gt 0) { [Math]::Max([double]0, [Math]::Min([double]1, [double](1 - $v.Free / $v.Size))) } else { [double]0 }
+    $bar = New-Object System.Windows.Controls.Grid; $bar.Height = 5; $bar.Margin = '0,5,0,0'
+    $u = New-Object System.Windows.Controls.ColumnDefinition; $u.Width = New-Object System.Windows.GridLength([Math]::Max(0.001, $used), [System.Windows.GridUnitType]::Star)
+    $r = New-Object System.Windows.Controls.ColumnDefinition; $r.Width = New-Object System.Windows.GridLength([Math]::Max(0.001, 1 - $used), [System.Windows.GridUnitType]::Star)
+    $bar.ColumnDefinitions.Add($u); $bar.ColumnDefinitions.Add($r)
+    $bg = New-Object System.Windows.Controls.Border; $bg.CornerRadius = 3; $bg.Background = New-AppBrush '#FF22262B'
+    [System.Windows.Controls.Grid]::SetColumnSpan($bg, 2); [void]$bar.Children.Add($bg)
+    $fill = New-Object System.Windows.Controls.Border; $fill.CornerRadius = 3
+    $fill.Background = New-AppBrush $(if ($used -ge 0.9) { '#FFF87171' } elseif ($used -ge 0.75) { '#FFE0A25E' } else { '#FF4C8DFF' })
+    [void]$bar.Children.Add($fill)
+    [void]$sp.Children.Add($bar)
+    return $sp
+}
+
+function New-HomeStorageCard($i) {
+    $c = New-AppCard (T 'homeDisks')
+    $g = New-Object System.Windows.Controls.Grid
+    foreach ($w in 1, 1) { $cd = New-Object System.Windows.Controls.ColumnDefinition; $cd.Width = New-Object System.Windows.GridLength($w, [System.Windows.GridUnitType]::Star); $g.ColumnDefinitions.Add($cd) }
+    $left = New-Object System.Windows.Controls.StackPanel; $left.Margin = '0,0,14,0'
+    $right = New-Object System.Windows.Controls.StackPanel; $right.Margin = '14,0,0,0'
+    [System.Windows.Controls.Grid]::SetColumn($right, 1)
+    $h1 = New-HomeText (T 'homePhysDisks') 12 '#FF7F858D' 'SemiBold'; $h1.Margin = '0,0,0,8'
+    [void]$left.Children.Add($h1)
+    foreach ($d in $i.Disks) { [void]$left.Children.Add((New-HomeDiskRow $d)) }
+    $h2 = New-HomeText (T 'homeVolumes') 12 '#FF7F858D' 'SemiBold'; $h2.Margin = '0,0,0,8'
+    [void]$right.Children.Add($h2)
+    foreach ($v in $i.Volumes) { [void]$right.Children.Add((New-HomeVolumeRow $v)) }
+    [void]$g.Children.Add($left); [void]$g.Children.Add($right)
+    [void]$c.Panel.Children.Add($g)
+    return $c
 }
 
 function Show-HomeInfo {
@@ -17841,6 +18027,7 @@ function Show-HomeInfo {
     if ($null -eq $i) { return }
     $panHome.Children.Clear()
     [void]$panHome.Children.Add((New-HomeHero $i))
+    [void]$panHome.Children.Add((New-HomeTypeCard $i))
 
     $cards = New-Object System.Collections.ArrayList
     $on = T 'valOn'; $off = T 'valOff'
@@ -17870,19 +18057,6 @@ function Show-HomeInfo {
         $d = Format-HomeDate $p.DriverDate
         Add-HomeRow $c.Panel (T 'hkDriver') ($(if ($d) { "$($p.Driver)  ($d)" } else { $p.Driver }))
         if ($p.W) { Add-HomeRow $c.Panel (T 'hkRes') ("$($p.W) × $($p.H)" + $(if ($p.Hz) { "  ·  $($p.Hz) Hz" })) }
-    }
-    [void]$cards.Add($c)
-
-    $c = New-AppCard (T 'homeDisks')
-    foreach ($p in $i.Disks) {
-        Add-HomeItem $c.Panel $p.Name
-        $kind = (@($(if ($p.Media -in @('SSD', 'HDD')) { $p.Media }), $p.Bus, (Format-HomeSize $p.Size)) | Where-Object { $_ -and $_ -ne 'Unspecified' }) -join '  ·  '
-        Add-HomeRow $c.Panel (T 'hkType') $kind
-    }
-    if ($i.Volumes.Count -gt 0) { Add-HomeItem $c.Panel (T 'homeVolumes') }
-    foreach ($v in $i.Volumes) {
-        $lbl = if ($v.Label) { "$($v.Letter):  $($v.Label)" } else { "$($v.Letter):" }
-        Add-HomeRow $c.Panel $lbl ((T 'homeFreeFmt') -f (Format-HomeSize $v.Free), (Format-HomeSize $v.Size))
     }
     [void]$cards.Add($c)
 
@@ -17931,6 +18105,7 @@ function Show-HomeInfo {
         $h[$k] += $cd.Panel.Children.Count + 2
     }
     [void]$panHome.Children.Add($grid)
+    if ($i.Disks.Count -gt 0 -or $i.Volumes.Count -gt 0) { [void]$panHome.Children.Add((New-HomeStorageCard $i).Card) }
 }
 
 function Show-HomePageIfNeeded {
@@ -19053,10 +19228,14 @@ $script:NoRecChecks = @('chkRestorePoint', 'chkStorageProfile', 'chkWuProfile', 
                         'chkTaskbarEndTask', 'chkBatteryPct', 'chkSettingsHome', 'chkWindowSnapping',
                         'chkStartMorePins', 'chkStartHideRec', 'chkStartNoWeb', 'chkStartNoAccount', 'chkMenuSleep', 'chkMenuHibernate')
 function Update-RecStars {
+    $server = (Get-PcType) -eq 'server'
     $names = @($script:RecommendedChecks.Values | ForEach-Object { $_ })
     if (Test-SystemSsd) { $names += $script:SsdRecommended }
     foreach ($cb in $script:AllCheckBoxes) {
         $show = $cb.IsEnabled -and ($script:NoRecChecks -notcontains [string]$cb.Name) -and (Test-CheckVendor $cb)
+        # Su un server le voci escluse restano senza consiglio: «Consigliati» non le
+        # tocca in nessun verso, perche' i valori di Windows Server sono diversi.
+        if ($server -and $script:ServerSkip -contains [string]$cb.Name) { $show = $false }
         $on = ($names -contains [string]$cb.Name) -and (Test-CheckPcType $cb)
         [System.Windows.Automation.AutomationProperties]::SetItemStatus($cb, $(if (-not $show) { '' } elseif ($on) { 'rec' } else { 'recoff' }))
         if (-not $show) { continue }
