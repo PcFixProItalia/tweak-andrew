@@ -156,8 +156,6 @@ function Build-UndoActions {
     Add-UndoIfChecked $chkPriority { Reset-Reg 'HKLM:\SYSTEM\CurrentControlSet\Control\PriorityControl' 'Win32PrioritySeparation' 2 }
     Add-UndoIfChecked $chkKernelMem {
         Reset-Reg $mm 'DisablePagingExecutive' 0
-        Reset-Reg $mm 'LargeSystemCache' 0
-        Reset-Reg $mm 'SecondLevelDataCache' 0
     }
     Add-UndoIfChecked $chkKernelDpc {
         $k = "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Kernel"

@@ -27,10 +27,16 @@ quello consigliato. `tools\gen_catalog.py` controlla il formato e scrive
 ## Home e tipo di PC
 
 La Home riassume hardware e sistema, letti in un runspace a parte per non
-bloccare la finestra. Il tipo di PC (fisso o portatile) si rileva dal telaio e
-dalla batteria e si puo' correggere a mano: la scelta resta in
-`HKCU\Software\TweakAndrew`. Su un portatile «Consigliati» e «Seleziona tutto»
-saltano le voci che consumano batteria.
+bloccare la finestra. Il tipo di computer (fisso, portatile o server) sta in
+una scheda in cima: si rileva da telaio, batteria e edizione di Windows e si
+puo' correggere a mano; la scelta resta in `HKCU\Software\TweakAndrew`.
+
+- Portatile: «Consigliati» e «Seleziona tutto» saltano le voci che consumano
+  batteria; il piano energetico resta come lo ha deciso il produttore.
+- Server: restano accese le difese del kernel (VBS, Spectre, exploit,
+  SmartScreen), la priorita' ai servizi di Windows Server, la ricerca, la
+  diagnostica e la manutenzione. Queste voci non hanno consiglio, quindi nessun
+  pulsante le cambia. La rete «Ottimale» usa la cache dei file grande.
 
 ## App e software
 
@@ -67,7 +73,9 @@ avvisi in arancio, sicurezza ridotta in rosso, marchi NVIDIA, AMD e Intel.
 ## Selezione
 
 «Consigliati» e «Tutta la sezione» portano ogni voce al suo valore
-consigliato: accese le consigliate, spente le altre. È la via di mezzo: sulla
+consigliato: accese le consigliate, spente le altre. Valgono su tutte le
+pagine: anche le voci del catalogo con un consiglio esplicito (le altre restano
+come sono), il profilo TCP ottimale e il profilo del disco di sistema. È la via di mezzo: sulla
 sicurezza tocca solo l'isolamento del kernel e gli orari delle scansioni di
 Defender.
 
@@ -78,7 +86,10 @@ una conferma. Restano fuori le voci che rompono una funzione senza dare
 prestazioni (stampa, ricerca, desktop remoto, HDCP) e quelle che su molti PC
 peggiorano (stati di riposo spenti, prelazione della scheda video).
 
-Nulla cambia finché non si preme «Applica modifiche».
+Nulla cambia finché non si preme «Applica modifiche», anche nelle pagine del
+catalogo (Privacy avanzata, Esplora file, Windows e servizi, piano energetico)
+e nella pagina Rete, dove il profilo e' da applicare quando i valori scelti
+sono diversi da quelli letti.
 
 ## Interruttori e ripristino
 

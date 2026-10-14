@@ -143,8 +143,6 @@ function Build-Actions {
     Add-IfChecked $chkKernelMem {
         $m = "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management"
         Set-Reg $m 'DisablePagingExecutive' 1 'DWord' 'DisablePagingExecutive'
-        Set-Reg $m 'LargeSystemCache' 1 'DWord' 'LargeSystemCache'
-        Set-Reg $m 'SecondLevelDataCache' 0 'DWord' 'SecondLevelDataCache'
     }
 
     Add-IfChecked $chkKernelDpc {
@@ -172,17 +170,11 @@ function Build-Actions {
     }
 
     Add-IfChecked $chkRamTweak {
+        # La soglia e' in KB: Windows raggruppa i servizi solo se la RAM non la supera.
+        # La tabella di prima scriveva valori 16 volte troppo bassi, e non cambiava nulla.
         $selectedRam = [string]$cmbRamAmount.Text
-        $svcValue = switch -Regex ($selectedRam) {
-            '^2 '   { 131072;  break }
-            '^4 '   { 262144;  break }
-            '^8 '   { 524288;  break }
-            '^16 '  { 1000000; break }
-            '^32 '  { 2000000; break }
-            '^64 '  { 4000000; break }
-            '^128 ' { 8000000; break }
-            default { 2000000 }
-        }
+        $gb = if ($selectedRam -match '^(\d+)') { [int]$Matches[1] } else { 16 }
+        $svcValue = [int64]$gb * 1048576 + 1024
         Set-Reg 'HKLM:\SYSTEM\CurrentControlSet\Control' 'SvcHostSplitThresholdInKB' $svcValue 'DWord' "SvcHostSplitThresholdInKB ($selectedRam)"
     }
 

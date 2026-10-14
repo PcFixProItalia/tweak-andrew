@@ -4176,7 +4176,10 @@ function Set-TcpOptimal {
     $cmbTTL.SelectedIndex = 0; $cmbECN.SelectedIndex = 0; $cmbTimestamps.SelectedIndex = 0
     $cmbNetThrottling.SelectedIndex = 0; $cmbSysResponsiveness.SelectedIndex = 0
     $cmbNagle.SelectedIndex = 0; $cmbHostPriority.SelectedIndex = 0
-    $cmbNetMemAlloc.SelectedIndex = 0; $cmbPortAlloc.SelectedIndex = 0; $cmbMaxConn.SelectedIndex = 0
+    # Cache dei file grande (LargeSystemCache 1, Size 3): aiuta un server che condivide file,
+    # su un PC toglie memoria ai programmi.
+    $cmbNetMemAlloc.SelectedIndex = $(if ((Get-PcType) -eq 'server') { 0 } else { 1 })
+    $cmbPortAlloc.SelectedIndex = 0; $cmbMaxConn.SelectedIndex = 0
     Update-ApplyButton
 }
 
@@ -4441,7 +4444,7 @@ $script:RecommendedChecks = @{
     # Via di mezzo sulla sicurezza: Defender resta acceso e scansiona a PC fermo,
     # l'isolamento del kernel si spegne. Spectre, exploit e SmartScreen restano.
     pageAdv     = @('chkSecDefenderIdle','chkVBS')
-    pageGpu     = @('chkGpuTdr','chkNvTelemetry','chkNvGfe','chkNvPerfMode','chkNvUpdates','chkNvP2','chkNvDrsPower','chkNvLowLatency',
+    pageGpu     = @('chkGpuTdr','chkNvTelemetry','chkNvGfe','chkNvUpdates','chkNvP2','chkNvLowLatency',
                     'chkNvShaderCache','chkNvDisplayPower','chkAmdUx','chkAmdBloat','chkAmdUlps','chkAmdAntiLag','chkAmdShaderCache','chkIntelBloat',
                     'chkIntelTelemetry','chkIntelGfxPower')
 }
@@ -4452,7 +4455,7 @@ $script:RecommendedChecks = @{
 # deframmentazione dei file di avvio e cache delle miniature, TRIM acceso.
 # Nessuna abbassa la sicurezza. Ultimo accesso e nomi 8.3 sono gia'
 # consigliati per tutti i dischi.
-$script:SsdRecommended = @('chkPrefetch','chkSvcSearch','chkBootDefrag','chkThumbCache','chkTrim')
+$script:SsdRecommended = @('chkPrefetch','chkBootDefrag','chkTrim')
 
 function Test-SystemSsd { return ($script:SystemDiskKind -in @('NVMe','SSD')) }
 
@@ -4462,15 +4465,15 @@ function Test-SystemSsd { return ($script:SystemDiskKind -in @('NVMe','SSD')) }
 # remoto, HDCP) e quelle che su molti PC peggiorano (stati di riposo spenti,
 # prelazione della scheda video).
 $script:MaxPerfExtra = @(
-    'chkKernelDpc','chkTimer','chkVisualFX',
+    'chkVisualFX','chkNvPerfMode','chkNvDrsPower','chkSvcSearch',
     'chkCpuIntelHybrid',
-    'chkGpuMsi','chkNvDynPstate','chkNvLatency','chkAmdPowerGating','chkAmdDma',
+    'chkGpuMsi','chkNvDynPstate','chkAmdPowerGating','chkAmdDma',
     # Impostazioni del driver che scambiano un po' di qualita' d'immagine o di
     # risparmio con fotogrammi in piu'.
     'chkNvThreaded','chkNvTexPerf','chkNvAniso','chkNvNoAnsel',
     'chkAmdTexPerf','chkAmdTess','chkAmdFlipQueue','chkAmdNoFrtc','chkAmdStutter','chkAmdAspm','chkIntelDpst',
     'chkTaskExtra','chkSvcDiag','chkSvcPca','chkSvcSensors','chkSvcParental',
-    'chkFth','chkAppCompat','chkMemCompression','chkBootDynTick','chkBootTsc',
+    'chkFth','chkMemCompression',
     'chkSecSmartScreen','chkSecSpectre','chkSecDownfall','chkVBS','chkMitigations','chkSecDefenderIdle')
 $script:SecurityChecks = @('chkSecSmartScreen','chkSecSpectre','chkSecDownfall','chkVBS','chkMitigations','chkSecDefenderIdle')
 
@@ -11597,17 +11600,17 @@ $script:Catalog = @(
     @{ Id = 'pv.allSync'; Page = 'priv'; Group = 'mSync'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'l'; Ops = @(@('HKLM\SOFTWARE\Policies\Microsoft\Windows\SettingSync', 'DisableSettingSync', 'D', '2', '-'), @('HKLM\SOFTWARE\Policies\Microsoft\Windows\SettingSync', 'DisableSettingSyncUserOverride', 'D', '1', '-')) },
     @{ Id = 'pw.cpuMin'; Page = 'power'; Group = 'cpu'; Kind = 'N'; Flags = ''; Def = '5'; Rec = '100/5/100'; Opts = @(@{ Key = '5'; Vals = @() }, @{ Key = '50'; Vals = @() }, @{ Key = '100'; Vals = @() }); Sub = '54533251-82be-4824-96c1-47b60b740d00'; Set = '893dee8e-2bef-41e0-89c6-b55d0929964c' },
     @{ Id = 'pw.cpuMax'; Page = 'power'; Group = 'cpu'; Kind = 'N'; Flags = ''; Def = '100'; Rec = '100'; Opts = @(@{ Key = '99'; Vals = @() }, @{ Key = '100'; Vals = @() }); Sub = '54533251-82be-4824-96c1-47b60b740d00'; Set = 'bc5038f7-23e0-4960-96da-33abaf5935ec' },
-    @{ Id = 'pw.boost'; Page = 'power'; Group = 'cpu'; Kind = 'N'; Flags = ''; Def = '2'; Rec = '2'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '1'; Vals = @() }, @{ Key = '2'; Vals = @() }, @{ Key = '3'; Vals = @() }, @{ Key = '4'; Vals = @() }); Sub = '54533251-82be-4824-96c1-47b60b740d00'; Set = 'be337238-0d82-4146-a960-4f3749d470c7' },
-    @{ Id = 'pw.epp'; Page = 'power'; Group = 'cpu'; Kind = 'N'; Flags = ''; Def = '50'; Rec = '0'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '25'; Vals = @() }, @{ Key = '50'; Vals = @() }, @{ Key = '80'; Vals = @() }); Sub = '54533251-82be-4824-96c1-47b60b740d00'; Set = '36687f9e-e3a5-4dbf-b1dc-15eb381c6863' },
-    @{ Id = 'pw.cooling'; Page = 'power'; Group = 'cpu'; Kind = 'N'; Flags = ''; Def = '1'; Rec = '1'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '1'; Vals = @() }); Sub = '54533251-82be-4824-96c1-47b60b740d00'; Set = '94d3a615-a899-4ac5-ae2b-e4d8f634367f' },
-    @{ Id = 'pw.incPolicy'; Page = 'power'; Group = 'cpu'; Kind = 'N'; Flags = ''; Def = '0'; Rec = '2'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '1'; Vals = @() }, @{ Key = '2'; Vals = @() }, @{ Key = '3'; Vals = @() }); Sub = '54533251-82be-4824-96c1-47b60b740d00'; Set = '465e1f50-b610-473a-ab58-00d1077dc418' },
-    @{ Id = 'pw.decPolicy'; Page = 'power'; Group = 'cpu'; Kind = 'N'; Flags = ''; Def = '0'; Rec = '1'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '1'; Vals = @() }, @{ Key = '2'; Vals = @() }); Sub = '54533251-82be-4824-96c1-47b60b740d00'; Set = '40fbefc7-2e9d-4d25-a185-0cfd8574bac6' },
-    @{ Id = 'pw.pcie'; Page = 'power'; Group = 'dev'; Kind = 'N'; Flags = ''; Def = '1'; Rec = '0'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '1'; Vals = @() }, @{ Key = '2'; Vals = @() }); Sub = '501a4d13-42af-4429-9fd1-a8218c268e20'; Set = 'ee12f906-d277-404b-b6da-e5fa1a576df5' },
-    @{ Id = 'pw.usbSuspend'; Page = 'power'; Group = 'dev'; Kind = 'N'; Flags = ''; Def = '1'; Rec = '0'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '1'; Vals = @() }); Sub = '2a737441-1930-4402-8d77-b2bebba308a3'; Set = '48e6b7a6-50f5-4782-a5d4-53bb8f07e226' },
-    @{ Id = 'pw.usb3Lpm'; Page = 'power'; Group = 'dev'; Kind = 'N'; Flags = ''; Def = '3'; Rec = '0'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '1'; Vals = @() }, @{ Key = '2'; Vals = @() }, @{ Key = '3'; Vals = @() }); Sub = '2a737441-1930-4402-8d77-b2bebba308a3'; Set = 'd4e98f31-5ffe-4ce1-be31-1b38b384c009' },
+    @{ Id = 'pw.boost'; Page = 'power'; Group = 'cpu'; Kind = 'N'; Flags = ''; Def = '2'; Rec = '2/-/2'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '1'; Vals = @() }, @{ Key = '2'; Vals = @() }, @{ Key = '3'; Vals = @() }, @{ Key = '4'; Vals = @() }); Sub = '54533251-82be-4824-96c1-47b60b740d00'; Set = 'be337238-0d82-4146-a960-4f3749d470c7' },
+    @{ Id = 'pw.epp'; Page = 'power'; Group = 'cpu'; Kind = 'N'; Flags = ''; Def = '50'; Rec = '0/-/0'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '25'; Vals = @() }, @{ Key = '50'; Vals = @() }, @{ Key = '80'; Vals = @() }); Sub = '54533251-82be-4824-96c1-47b60b740d00'; Set = '36687f9e-e3a5-4dbf-b1dc-15eb381c6863' },
+    @{ Id = 'pw.cooling'; Page = 'power'; Group = 'cpu'; Kind = 'N'; Flags = ''; Def = '1'; Rec = '1/-/1'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '1'; Vals = @() }); Sub = '54533251-82be-4824-96c1-47b60b740d00'; Set = '94d3a615-a899-4ac5-ae2b-e4d8f634367f' },
+    @{ Id = 'pw.incPolicy'; Page = 'power'; Group = 'cpu'; Kind = 'N'; Flags = ''; Def = '0'; Rec = '2/-/2'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '1'; Vals = @() }, @{ Key = '2'; Vals = @() }, @{ Key = '3'; Vals = @() }); Sub = '54533251-82be-4824-96c1-47b60b740d00'; Set = '465e1f50-b610-473a-ab58-00d1077dc418' },
+    @{ Id = 'pw.decPolicy'; Page = 'power'; Group = 'cpu'; Kind = 'N'; Flags = ''; Def = '0'; Rec = '1/-/1'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '1'; Vals = @() }, @{ Key = '2'; Vals = @() }); Sub = '54533251-82be-4824-96c1-47b60b740d00'; Set = '40fbefc7-2e9d-4d25-a185-0cfd8574bac6' },
+    @{ Id = 'pw.pcie'; Page = 'power'; Group = 'dev'; Kind = 'N'; Flags = ''; Def = '1'; Rec = '0/-/0'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '1'; Vals = @() }, @{ Key = '2'; Vals = @() }); Sub = '501a4d13-42af-4429-9fd1-a8218c268e20'; Set = 'ee12f906-d277-404b-b6da-e5fa1a576df5' },
+    @{ Id = 'pw.usbSuspend'; Page = 'power'; Group = 'dev'; Kind = 'N'; Flags = ''; Def = '1'; Rec = '0/-/0'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '1'; Vals = @() }); Sub = '2a737441-1930-4402-8d77-b2bebba308a3'; Set = '48e6b7a6-50f5-4782-a5d4-53bb8f07e226' },
+    @{ Id = 'pw.usb3Lpm'; Page = 'power'; Group = 'dev'; Kind = 'N'; Flags = ''; Def = '3'; Rec = '0/-/0'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '1'; Vals = @() }, @{ Key = '2'; Vals = @() }, @{ Key = '3'; Vals = @() }); Sub = '2a737441-1930-4402-8d77-b2bebba308a3'; Set = 'd4e98f31-5ffe-4ce1-be31-1b38b384c009' },
     @{ Id = 'pw.wifi'; Page = 'power'; Group = 'dev'; Kind = 'N'; Flags = ''; Def = '0'; Rec = '0'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '1'; Vals = @() }, @{ Key = '2'; Vals = @() }, @{ Key = '3'; Vals = @() }); Sub = '19cbb8fa-5279-450e-9fac-8a3d5fedd0c1'; Set = '12bbebe6-58d6-4636-95bb-3217ef867c1a' },
-    @{ Id = 'pw.disk'; Page = 'power'; Group = 'dev'; Kind = 'N'; Flags = ''; Def = '1200'; Rec = '0'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '300'; Vals = @() }, @{ Key = '1200'; Vals = @() }, @{ Key = '3600'; Vals = @() }); Sub = '0012ee47-9041-4b5d-9b77-535fba8b1442'; Set = '6738e2c4-e8a5-4a42-b16a-e040e769756e' },
-    @{ Id = 'pw.sata'; Page = 'power'; Group = 'dev'; Kind = 'N'; Flags = ''; Def = '1'; Rec = '0'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '1'; Vals = @() }, @{ Key = '2'; Vals = @() }, @{ Key = '3'; Vals = @() }, @{ Key = '4'; Vals = @() }); Sub = '0012ee47-9041-4b5d-9b77-535fba8b1442'; Set = '0b2d69d7-a2a1-449c-9680-f91c70521c60' },
+    @{ Id = 'pw.disk'; Page = 'power'; Group = 'dev'; Kind = 'N'; Flags = ''; Def = '1200'; Rec = '0/-/0'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '300'; Vals = @() }, @{ Key = '1200'; Vals = @() }, @{ Key = '3600'; Vals = @() }); Sub = '0012ee47-9041-4b5d-9b77-535fba8b1442'; Set = '6738e2c4-e8a5-4a42-b16a-e040e769756e' },
+    @{ Id = 'pw.sata'; Page = 'power'; Group = 'dev'; Kind = 'N'; Flags = ''; Def = '1'; Rec = '0/-/0'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '1'; Vals = @() }, @{ Key = '2'; Vals = @() }, @{ Key = '3'; Vals = @() }, @{ Key = '4'; Vals = @() }); Sub = '0012ee47-9041-4b5d-9b77-535fba8b1442'; Set = '0b2d69d7-a2a1-449c-9680-f91c70521c60' },
     @{ Id = 'pw.nvme1'; Page = 'power'; Group = 'dev'; Kind = 'N'; Flags = ''; Def = '200'; Rec = '0/-/0'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '100'; Vals = @() }, @{ Key = '200'; Vals = @() }, @{ Key = '1000'; Vals = @() }); Sub = '0012ee47-9041-4b5d-9b77-535fba8b1442'; Set = 'd639518a-e56d-4345-8af2-b9f32fb26109' },
     @{ Id = 'pw.nvme2'; Page = 'power'; Group = 'dev'; Kind = 'N'; Flags = ''; Def = '2000'; Rec = '0/-/0'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '1000'; Vals = @() }, @{ Key = '2000'; Vals = @() }, @{ Key = '5000'; Vals = @() }); Sub = '0012ee47-9041-4b5d-9b77-535fba8b1442'; Set = 'd3d55efd-c1ff-424e-9dc3-441be7833010' },
     @{ Id = 'pw.display'; Page = 'power'; Group = 'sleep'; Kind = 'N'; Flags = ''; Def = '600'; Rec = '900'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '300'; Vals = @() }, @{ Key = '600'; Vals = @() }, @{ Key = '900'; Vals = @() }, @{ Key = '1800'; Vals = @() }, @{ Key = '3600'; Vals = @() }); Sub = '7516b95f-f776-4464-8c53-06167f40cc99'; Set = '3c0bc021-c8a8-4e07-a973-6b14cbcb2b7e' },
@@ -11618,7 +11621,7 @@ $script:Catalog = @(
     @{ Id = 'pw.powerBtn'; Page = 'power'; Group = 'buttons'; Kind = 'N'; Flags = ''; Def = '3'; Rec = '-'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '1'; Vals = @() }, @{ Key = '2'; Vals = @() }, @{ Key = '3'; Vals = @() }, @{ Key = '4'; Vals = @() }); Sub = '4f971e89-eebd-4455-a8de-9e59040e7347'; Set = '7648efa3-dd9c-4e3e-b566-50f929386280' },
     @{ Id = 'pw.lid'; Page = 'power'; Group = 'buttons'; Kind = 'N'; Flags = ''; Def = '1'; Rec = '-'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '1'; Vals = @() }, @{ Key = '2'; Vals = @() }, @{ Key = '3'; Vals = @() }); Sub = '4f971e89-eebd-4455-a8de-9e59040e7347'; Set = '5ca83367-6e45-459f-a27b-476b1d01c936' },
     @{ Id = 'pw.videoBias'; Page = 'power'; Group = 'media'; Kind = 'N'; Flags = ''; Def = '1'; Rec = '1'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '1'; Vals = @() }); Sub = '9596fb26-9850-41fd-ac3e-f7c3c00afd4b'; Set = '10778347-1370-4ee0-8bbd-33bdacaade49' },
-    @{ Id = 'pw.videoPlay'; Page = 'power'; Group = 'media'; Kind = 'N'; Flags = ''; Def = '1'; Rec = '0'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '1'; Vals = @() }, @{ Key = '2'; Vals = @() }); Sub = '9596fb26-9850-41fd-ac3e-f7c3c00afd4b'; Set = '34c7b99f-9a6d-4b3c-8dc7-b6693b78cef4' }
+    @{ Id = 'pw.videoPlay'; Page = 'power'; Group = 'media'; Kind = 'N'; Flags = ''; Def = '1'; Rec = '0/-/0'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '1'; Vals = @() }, @{ Key = '2'; Vals = @() }); Sub = '9596fb26-9850-41fd-ac3e-f7c3c00afd4b'; Set = '34c7b99f-9a6d-4b3c-8dc7-b6693b78cef4' }
 )
 
 $script:CatText = @{
@@ -12777,8 +12780,6 @@ function Build-Actions {
     Add-IfChecked $chkKernelMem {
         $m = "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management"
         Set-Reg $m 'DisablePagingExecutive' 1 'DWord' 'DisablePagingExecutive'
-        Set-Reg $m 'LargeSystemCache' 1 'DWord' 'LargeSystemCache'
-        Set-Reg $m 'SecondLevelDataCache' 0 'DWord' 'SecondLevelDataCache'
     }
 
     Add-IfChecked $chkKernelDpc {
@@ -12806,17 +12807,11 @@ function Build-Actions {
     }
 
     Add-IfChecked $chkRamTweak {
+        # La soglia e' in KB: Windows raggruppa i servizi solo se la RAM non la supera.
+        # La tabella di prima scriveva valori 16 volte troppo bassi, e non cambiava nulla.
         $selectedRam = [string]$cmbRamAmount.Text
-        $svcValue = switch -Regex ($selectedRam) {
-            '^2 '   { 131072;  break }
-            '^4 '   { 262144;  break }
-            '^8 '   { 524288;  break }
-            '^16 '  { 1000000; break }
-            '^32 '  { 2000000; break }
-            '^64 '  { 4000000; break }
-            '^128 ' { 8000000; break }
-            default { 2000000 }
-        }
+        $gb = if ($selectedRam -match '^(\d+)') { [int]$Matches[1] } else { 16 }
+        $svcValue = [int64]$gb * 1048576 + 1024
         Set-Reg 'HKLM:\SYSTEM\CurrentControlSet\Control' 'SvcHostSplitThresholdInKB' $svcValue 'DWord' "SvcHostSplitThresholdInKB ($selectedRam)"
     }
 
@@ -13972,8 +13967,6 @@ function Build-UndoActions {
     Add-UndoIfChecked $chkPriority { Reset-Reg 'HKLM:\SYSTEM\CurrentControlSet\Control\PriorityControl' 'Win32PrioritySeparation' 2 }
     Add-UndoIfChecked $chkKernelMem {
         Reset-Reg $mm 'DisablePagingExecutive' 0
-        Reset-Reg $mm 'LargeSystemCache' 0
-        Reset-Reg $mm 'SecondLevelDataCache' 0
     }
     Add-UndoIfChecked $chkKernelDpc {
         $k = "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Kernel"
@@ -19111,9 +19104,11 @@ function Get-ExplicitActive {
             $fs = 'HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem'
             $la = Get-RegOrNull $fs 'NtfsDisableLastAccessUpdate'
             ($null -ne $la) -and (([int64]$la -band 1) -eq 1) -and ((Get-RegOrNull $fs 'NtfsMemoryUsage') -eq 2))
+        # Attiva solo se la soglia supera la RAM: sotto, Windows divide comunque i servizi.
         chkRamTweak      = $(
             $v = Get-RegOrNull 'HKLM:\SYSTEM\CurrentControlSet\Control' 'SvcHostSplitThresholdInKB'
-            ($null -ne $v) -and ([int64]$v -ne 3670016))
+            $ramKb = [int64]((Get-CimInstance Win32_ComputerSystem -ErrorAction SilentlyContinue).TotalPhysicalMemory / 1KB)
+            ($null -ne $v) -and $ramKb -gt 0 -and ([int64]$v -ge $ramKb))
         chkMitigations   = $(try {
             $m = Get-ProcessMitigation -System -ErrorAction Stop
             ([string]$m.CFG.Enable -eq 'OFF') -and ([string]$m.ASLR.BottomUp -eq 'OFF') -and ([string]$m.ASLR.HighEntropy -eq 'OFF') -and ([string]$m.SEHOP.Enable -eq 'OFF')

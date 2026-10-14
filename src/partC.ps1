@@ -1503,7 +1503,10 @@ function Set-TcpOptimal {
     $cmbTTL.SelectedIndex = 0; $cmbECN.SelectedIndex = 0; $cmbTimestamps.SelectedIndex = 0
     $cmbNetThrottling.SelectedIndex = 0; $cmbSysResponsiveness.SelectedIndex = 0
     $cmbNagle.SelectedIndex = 0; $cmbHostPriority.SelectedIndex = 0
-    $cmbNetMemAlloc.SelectedIndex = 0; $cmbPortAlloc.SelectedIndex = 0; $cmbMaxConn.SelectedIndex = 0
+    # Cache dei file grande (LargeSystemCache 1, Size 3): aiuta un server che condivide file,
+    # su un PC toglie memoria ai programmi.
+    $cmbNetMemAlloc.SelectedIndex = $(if ((Get-PcType) -eq 'server') { 0 } else { 1 })
+    $cmbPortAlloc.SelectedIndex = 0; $cmbMaxConn.SelectedIndex = 0
     Update-ApplyButton
 }
 
@@ -1768,7 +1771,7 @@ $script:RecommendedChecks = @{
     # Via di mezzo sulla sicurezza: Defender resta acceso e scansiona a PC fermo,
     # l'isolamento del kernel si spegne. Spectre, exploit e SmartScreen restano.
     pageAdv     = @('chkSecDefenderIdle','chkVBS')
-    pageGpu     = @('chkGpuTdr','chkNvTelemetry','chkNvGfe','chkNvPerfMode','chkNvUpdates','chkNvP2','chkNvDrsPower','chkNvLowLatency',
+    pageGpu     = @('chkGpuTdr','chkNvTelemetry','chkNvGfe','chkNvUpdates','chkNvP2','chkNvLowLatency',
                     'chkNvShaderCache','chkNvDisplayPower','chkAmdUx','chkAmdBloat','chkAmdUlps','chkAmdAntiLag','chkAmdShaderCache','chkIntelBloat',
                     'chkIntelTelemetry','chkIntelGfxPower')
 }
@@ -1779,7 +1782,7 @@ $script:RecommendedChecks = @{
 # deframmentazione dei file di avvio e cache delle miniature, TRIM acceso.
 # Nessuna abbassa la sicurezza. Ultimo accesso e nomi 8.3 sono gia'
 # consigliati per tutti i dischi.
-$script:SsdRecommended = @('chkPrefetch','chkSvcSearch','chkBootDefrag','chkThumbCache','chkTrim')
+$script:SsdRecommended = @('chkPrefetch','chkBootDefrag','chkTrim')
 
 function Test-SystemSsd { return ($script:SystemDiskKind -in @('NVMe','SSD')) }
 
@@ -1789,15 +1792,15 @@ function Test-SystemSsd { return ($script:SystemDiskKind -in @('NVMe','SSD')) }
 # remoto, HDCP) e quelle che su molti PC peggiorano (stati di riposo spenti,
 # prelazione della scheda video).
 $script:MaxPerfExtra = @(
-    'chkKernelDpc','chkTimer','chkVisualFX',
+    'chkVisualFX','chkNvPerfMode','chkNvDrsPower','chkSvcSearch',
     'chkCpuIntelHybrid',
-    'chkGpuMsi','chkNvDynPstate','chkNvLatency','chkAmdPowerGating','chkAmdDma',
+    'chkGpuMsi','chkNvDynPstate','chkAmdPowerGating','chkAmdDma',
     # Impostazioni del driver che scambiano un po' di qualita' d'immagine o di
     # risparmio con fotogrammi in piu'.
     'chkNvThreaded','chkNvTexPerf','chkNvAniso','chkNvNoAnsel',
     'chkAmdTexPerf','chkAmdTess','chkAmdFlipQueue','chkAmdNoFrtc','chkAmdStutter','chkAmdAspm','chkIntelDpst',
     'chkTaskExtra','chkSvcDiag','chkSvcPca','chkSvcSensors','chkSvcParental',
-    'chkFth','chkAppCompat','chkMemCompression','chkBootDynTick','chkBootTsc',
+    'chkFth','chkMemCompression',
     'chkSecSmartScreen','chkSecSpectre','chkSecDownfall','chkVBS','chkMitigations','chkSecDefenderIdle')
 $script:SecurityChecks = @('chkSecSmartScreen','chkSecSpectre','chkSecDownfall','chkVBS','chkMitigations','chkSecDefenderIdle')
 

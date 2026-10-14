@@ -988,9 +988,11 @@ function Get-ExplicitActive {
             $fs = 'HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem'
             $la = Get-RegOrNull $fs 'NtfsDisableLastAccessUpdate'
             ($null -ne $la) -and (([int64]$la -band 1) -eq 1) -and ((Get-RegOrNull $fs 'NtfsMemoryUsage') -eq 2))
+        # Attiva solo se la soglia supera la RAM: sotto, Windows divide comunque i servizi.
         chkRamTweak      = $(
             $v = Get-RegOrNull 'HKLM:\SYSTEM\CurrentControlSet\Control' 'SvcHostSplitThresholdInKB'
-            ($null -ne $v) -and ([int64]$v -ne 3670016))
+            $ramKb = [int64]((Get-CimInstance Win32_ComputerSystem -ErrorAction SilentlyContinue).TotalPhysicalMemory / 1KB)
+            ($null -ne $v) -and $ramKb -gt 0 -and ([int64]$v -ge $ramKb))
         chkMitigations   = $(try {
             $m = Get-ProcessMitigation -System -ErrorAction Stop
             ([string]$m.CFG.Enable -eq 'OFF') -and ([string]$m.ASLR.BottomUp -eq 'OFF') -and ([string]$m.ASLR.HighEntropy -eq 'OFF') -and ([string]$m.SEHOP.Enable -eq 'OFF')
