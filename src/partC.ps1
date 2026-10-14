@@ -195,12 +195,11 @@ $script:Loc = @{
     chkBSODVerbose     = @{ it = "Schermata blu dettagliata"; en = "Verbose blue screen" }
     chkLogonVerbose    = @{ it = "Messaggi dettagliati all'accesso"; en = "Verbose sign-in messages" }
 
-    chkApplyNetwork    = @{ it = "Applica le impostazioni di rete al clic su «Applica»"; en = "Apply network settings when «Apply» is clicked" }
-    lblNetHint         = @{ it = "Senza questa spunta la scheda Rete resta solo informativa e nulla viene modificato."; en = "Without this box the Network tab stays informational and nothing is changed." }
+    lblNetHint         = @{ it = "Scegli un profilo o cambia i singoli valori: si applicano con «Applica modifiche»."; en = "Pick a profile or change single values: they are applied with «Apply changes»." }
     btnFlushDns        = @{ it = "Svuota cache DNS"; en = "Flush DNS cache" }
 
     ttlTcpProfile      = @{ it = "PROFILO TCP"; en = "TCP PROFILE" }
-    radTcpOptimal      = @{ it = "Ottimale (gioco)"; en = "Optimal (gaming)" }
+    radTcpOptimal      = @{ it = "Ottimale"; en = "Optimal" }
     radTcpDefault      = @{ it = "Predefinito Windows"; en = "Windows default" }
     radTcpCurrent      = @{ it = "Profilo attuale"; en = "Current profile" }
     radTcpCustom       = @{ it = "Personalizzato"; en = "Custom" }
@@ -388,7 +387,7 @@ $script:Loc = @{
     chkAmdDma          = @{ it = "Copie DMA e scrittura a blocchi"; en = "DMA copies and block write" }
     chkAmdPreempt      = @{ it = "Prelazione dei calcoli spenta"; en = "Compute preemption off" }
     ttlPowerAdv        = @{ it = "IMPOSTAZIONI DEL PIANO IN USO"; en = "SETTINGS OF THE PLAN IN USE" }
-    lblPowerAdvHint    = @{ it = "Cambiano subito il piano attivo, sia con l'alimentatore sia a batteria: non serve premere Applica. Se attivi un altro piano, valgono le impostazioni di quello."; en = "They change the active plan right away, both plugged in and on battery: no need to press Apply. If you switch to another plan, its own settings apply." }
+    lblPowerAdvHint    = @{ it = "Valgono per il piano attivo, sia con l'alimentatore sia a batteria, e si applicano con «Applica modifiche». Se attivi un altro piano, valgono le impostazioni di quello."; en = "They apply to the active plan, both plugged in and on battery, and are applied with «Apply changes». If you switch plan, that plan's settings apply." }
     radAppsCatalog     = @{ it = "Catalogo"; en = "Catalog" }
     radAppsInstalled   = @{ it = "Installate"; en = "Installed" }
     lblAppSearchHint   = @{ it = "Cerca..."; en = "Search..." }
@@ -826,6 +825,7 @@ $script:Msg = @{
     maxPerfTitle       = @{ it = "Prestazioni massime"; en = "Maximum performance" }
     maxPerfAsk         = @{ it = "«Seleziona tutto» accende ogni voce che dà prestazioni, comprese quelle che abbassano la sicurezza: mitigazioni Spectre, isolamento del kernel, protezioni dagli exploit, SmartScreen. Va bene su un PC usato solo per giocare. Per l'uso di tutti i giorni scegli «Consigliati». Continuare?"; en = "«Select all» turns on every entry that gives performance, including those that lower security: Spectre mitigations, kernel isolation, exploit protections, SmartScreen. Fine on a PC used only for gaming. For everyday use pick «Recommended». Continue?" }
     maxPerfDone        = @{ it = "Prestazioni massime pronte: {0} da attivare, {1} da lasciare o riportare come Windows. Premi «Applica modifiche»."; en = "Maximum performance ready: {0} to enable, {1} to keep or put back as Windows. Press «Apply changes»." }
+    catBulkReady       = @{ it = "Valori pronti per {0} voci: premi «Applica modifiche»."; en = "Values ready for {0} entries: press «Apply changes»." }
 }
 
 $script:LangCode = "it"
@@ -994,7 +994,7 @@ $chkLockScreen = E 'chkLockScreen'; $chkLogonBlur = E 'chkLogonBlur'
 $chkBSODVerbose = E 'chkBSODVerbose'; $chkLogonVerbose = E 'chkLogonVerbose'
 
 # Rete
-$chkApplyNetwork = E 'chkApplyNetwork'; $chkApplyDns = E 'chkApplyDns'; $btnFlushDns = E 'btnFlushDns'
+$chkApplyDns = E 'chkApplyDns'; $btnFlushDns = E 'btnFlushDns'
 $radTcpOptimal = E 'radTcpOptimal'; $radTcpDefault = E 'radTcpDefault'
 $radTcpCurrent = E 'radTcpCurrent'; $radTcpCustom = E 'radTcpCustom'
 $cmbDnsProvider = E 'cmbDnsProvider'
@@ -1462,7 +1462,34 @@ $script:TcpCombos = @(
     $cmbNagle, $cmbHostPriority, $cmbNetMemAlloc, $cmbPortAlloc, $cmbMaxConn
 )
 
-$radTcpOptimal.Add_Click({
+# Il profilo e' «da applicare» quando i valori scelti sono diversi da quelli
+# letti dal sistema: niente interruttore, come nelle altre pagine.
+$script:TcpBaseline = $null
+$script:TcpSyncing = $false
+function Get-TcpSnapshot {
+    $h = @{}
+    foreach ($c in $script:TcpCombos) { if ($null -ne $c -and $null -ne $c.SelectedItem) { $h[[string]$c.Name] = [string]$c.SelectedItem.Content } }
+    return $h
+}
+function Test-NetPending {
+    if ($null -eq $script:TcpBaseline) { return $false }
+    $now = Get-TcpSnapshot
+    foreach ($key in $now.Keys) { if ($now[$key] -ne $script:TcpBaseline[$key]) { return $true } }
+    return $false
+}
+# Rilegge la rete e riporta la pagina allo stato del sistema.
+function Reset-TcpToSystem {
+    $script:TcpSyncing = $true
+    try {
+        Show-CurrentTcpSettings
+        $script:TcpBaseline = Get-TcpSnapshot
+        $radTcpCurrent.IsChecked = $true
+        Set-TcpControlsState $false
+    } finally { $script:TcpSyncing = $false }
+    Update-ApplyButton
+}
+function Set-TcpOptimal {
+    $radTcpOptimal.IsChecked = $true
     Set-TcpControlsState $false
     $cmbTcpAutoTuning.SelectedIndex = 0; $cmbScalingHeuristics.SelectedIndex = 0
     $cmbCongestionControl.SelectedIndex = 0; $cmbRSS.SelectedIndex = 0; $cmbRSC.SelectedIndex = 0
@@ -1470,7 +1497,10 @@ $radTcpOptimal.Add_Click({
     $cmbNetThrottling.SelectedIndex = 0; $cmbSysResponsiveness.SelectedIndex = 0
     $cmbNagle.SelectedIndex = 0; $cmbHostPriority.SelectedIndex = 0
     $cmbNetMemAlloc.SelectedIndex = 0; $cmbPortAlloc.SelectedIndex = 0; $cmbMaxConn.SelectedIndex = 0
-})
+    Update-ApplyButton
+}
+
+$radTcpOptimal.Add_Click({ Set-TcpOptimal })
 
 $radTcpDefault.Add_Click({
     Set-TcpControlsState $false
@@ -1480,11 +1510,13 @@ $radTcpDefault.Add_Click({
     $cmbNetThrottling.SelectedIndex = 1; $cmbSysResponsiveness.SelectedIndex = 2
     $cmbNagle.SelectedIndex = 1; $cmbHostPriority.SelectedIndex = 1
     $cmbNetMemAlloc.SelectedIndex = 1; $cmbPortAlloc.SelectedIndex = 1; $cmbMaxConn.SelectedIndex = 2
+    Update-ApplyButton
 })
 
-$radTcpCurrent.Add_Click({ Set-TcpControlsState $false; Show-CurrentTcpSettings })
-$radTcpCustom.Add_Click({ Show-CurrentTcpSettings; Set-TcpControlsState $true })
+$radTcpCurrent.Add_Click({ Reset-TcpToSystem })
+$radTcpCustom.Add_Click({ Set-TcpControlsState $true })
 Set-TcpControlsState $false
+foreach ($c in $script:TcpCombos) { if ($null -ne $c) { $c.Add_SelectionChanged({ if (-not $script:TcpSyncing) { Update-ApplyButton } }) } }
 
 $btnFlushDns.Add_Click({
     try {
@@ -1522,7 +1554,7 @@ $script:AdvancedCheckBoxes = @(Get-CheckBoxesFromTree (E 'pageAdv'))
 # tutta la pagina Avanzate.
 $script:ExcludedFromSelectAll = @(@(
     $chkRestorePoint, $chkDiskCleanup, $chkSmartChkdsk,
-    $chkStorageProfile, $chkWuProfile, $chkApplyNetwork, $chkApplyDns, $chkApplyMPO
+    $chkStorageProfile, $chkWuProfile, $chkApplyDns, $chkApplyMPO
 ) + $script:AdvancedCheckBoxes | Where-Object { $null -ne $_ })
 
 $script:SelectableCheckBoxes = @(
@@ -1657,6 +1689,8 @@ function Test-Pending($cb) {
 function Update-ApplyButton {
     if ($script:Syncing) { return }
     $total = @($script:AllCheckBoxes | Where-Object { Test-Pending $_ }).Count
+    if ($script:CatWant) { $total += $script:CatWant.Count }
+    if (Get-Command Test-NetPending -ErrorAction SilentlyContinue) { if (Test-NetPending) { $total++ } }
     $btnRun.IsEnabled = ($total -gt 0)
     if ($null -ne $btnUndo) { $btnUndo.IsEnabled = ($total -gt 0) }
     if ($null -ne $btnDeselectAll) { $btnDeselectAll.IsEnabled = ($total -gt 0) }
@@ -1720,7 +1754,7 @@ $script:RecommendedChecks = @{
                     'chkInkingTyping','chkWiFiSense','chkConsumerFeatures','chkSuggestedContent','chkLockScreenAds','chkStartBing',
                     'chkStartTracking','chkWindowsAI','chkEdgeDebloat','chkDeliveryOpt','chkWPBT','chkBackgroundApps',
                     'chkRemoteAssistance','chkCompanionApps','chkServicesManual','chkTeredo')
-    pageUi      = @('chkDarkTheme','chkFileExt','chkLongPaths','chkExplorerThisPC','chkRemove3D','chkRecycleConfirm','chkMenuDelay','chkMouseAccel','chkNumLock','chkStickyKeys')
+    pageUi      = @('chkClassicMenu','chkDarkTheme','chkFileExt','chkLongPaths','chkExplorerThisPC','chkRemove3D','chkRecycleConfirm','chkMenuDelay','chkMouseAccel','chkNumLock','chkStickyKeys')
     pageNet     = @('chkNetPowerSave')
     pageStorage = @('chkReservedStorage','chkNtfsPerf','chkNtfs83')
     pagePower   = @('chkFastStartup','chkHibernation','chkS0Sleep','chkS3Sleep')
@@ -1785,6 +1819,30 @@ function Set-MaxPerfValues([array]$boxes) {
     return $r
 }
 
+# Il resto delle pagine per «Consigliati» e «Seleziona tutto»: voci del
+# catalogo (Privacy avanzata, Esplora file, Windows e servizi, piano energetico
+# e le altre), profilo TCP ottimale e profilo del disco di sistema.
+# Con -Page vale solo per la pagina indicata.
+function Set-OtherPresets($Page = $null) {
+    $n = 0
+    $cat = $null
+    if ($null -ne $Page) { $cat = ($script:NavPages | Where-Object { $_.Page -eq $Page } | Select-Object -First 1).Cat }
+    if ($null -eq $Page -or $cat) {
+        $items = if ($cat) { @($script:Catalog | Where-Object { $_.Page -eq $cat }) } else { @($script:Catalog) }
+        $n += Set-CatTargets $items { param($i) Get-CatPresetTarget $i }
+    }
+    if ($null -eq $Page -or [string]$Page.Name -eq 'pageNet') {
+        Set-TcpOptimal
+        if (Test-NetPending) { $n++ }
+    }
+    if ($null -eq $Page -or [string]$Page.Name -eq 'pageStorage') {
+        if ($script:SystemDiskKind -in @('NVMe', 'SSD')) { $radStorageSSD.IsChecked = $true; $n++ }
+        elseif ($script:SystemDiskKind -eq 'HDD') { $radStorageHDD.IsChecked = $true; $n++ }
+    }
+    Update-ApplyButton
+    return $n
+}
+
 # Chiede conferma solo se tra le voci ce n'e' una che abbassa la sicurezza.
 function Confirm-MaxPerf([array]$boxes) {
     $sec = @($boxes | Where-Object { ($script:SecurityChecks -contains [string]$_.Name) -and (Test-MaxPerfWanted $_) -and $_.IsChecked -ne $true })
@@ -1819,6 +1877,7 @@ $btnSelectAll.Add_Click({
     $boxes = @($script:AllCheckBoxes)
     if (-not (Confirm-MaxPerf $boxes)) { return }
     $r = Set-MaxPerfValues $boxes
+    $r.On += Set-OtherPresets
     $txtProgressLabel.Text = (T 'maxPerfDone') -f $r.On, $r.Off
 })
 
@@ -1827,6 +1886,7 @@ $btnSelectPage.Add_Click({
     $boxes = if ($page) { @(Get-CheckBoxesFromTree $page | Where-Object { $script:AllCheckBoxes -contains $_ }) } else { @() }
     if (-not (Confirm-MaxPerf $boxes)) { return }
     $r = Set-MaxPerfValues $boxes
+    if ($page) { $r.On += Set-OtherPresets $page }
     $txtProgressLabel.Text = if (($r.On + $r.Off) -eq 0) { T 'selPageNone' } else { (T 'maxPerfDone') -f $r.On, $r.Off }
 })
 
@@ -1836,6 +1896,7 @@ $btnRecommended.Add_Click({
     $page = Get-CurrentPage
     if ($null -ne $page -and [string]$page.Name -eq 'pageSched') { Set-SchedRecommended }
     $r = Set-RecommendedValues @($script:AllCheckBoxes)
+    $r.On += Set-OtherPresets
     $txtProgressLabel.Text = (T 'recAllDone') -f $r.On, $r.Off
 })
 
@@ -1844,6 +1905,9 @@ $btnDeselectAll.Add_Click({
     $script:Syncing = $true
     try { foreach ($cb in $script:AllCheckBoxes) { $cb.IsChecked = ($script:Baseline[[string]$cb.Name] -eq $true) } }
     finally { $script:Syncing = $false }
+    $radStorageSSD.IsChecked = $false; $radStorageHDD.IsChecked = $false
+    if (Get-Command Clear-CatWant -ErrorAction SilentlyContinue) { Clear-CatWant }
+    Reset-TcpToSystem
     Update-ApplyButton
 })
 

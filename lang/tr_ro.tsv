@@ -138,11 +138,10 @@ L:chkLockScreen	Ecranul de blocare — dezactivează
 L:chkLogonBlur	Estompare la conectare — dezactivează
 L:chkBSODVerbose	Ecran albastru detaliat
 L:chkLogonVerbose	Mesaje de conectare detaliate
-L:chkApplyNetwork	Aplică setările de rețea la clic pe «Aplică»
-L:lblNetHint	Fără această casetă, fila Rețea e doar informativă și nu se schimbă nimic.
+L:lblNetHint	Alege un profil sau schimbă valorile: se aplică cu «Aplică modificările».
 L:btnFlushDns	Golește cache-ul DNS
 L:ttlTcpProfile	PROFIL TCP
-L:radTcpOptimal	Optim (jocuri)
+L:radTcpOptimal	Optim
 L:radTcpDefault	Implicit Windows
 L:radTcpCurrent	Profil actual
 L:radTcpCustom	Personalizat
@@ -349,7 +348,6 @@ H:chkLockScreen	Sare peste ecranul de blocare și duce direct la conectare.
 H:chkLogonBlur	Elimină estomparea fundalului de conectare. Imagine mai clară și conectare puțin mai rapidă.
 H:chkBSODVerbose	Ecranul albastru arată detaliile erorii. E mai ușor de aflat cauza unui blocaj.
 H:chkLogonVerbose	La pornire și oprire vezi ce face Windows. Ajută să afli ce îl încetinește.
-H:chkApplyNetwork	Aplică setările din pagina Rețea. Fără această casetă pagina e doar informativă.
 H:chkApplyDns	Folosește serverele DNS alese în meniu. Paginile se deschid mai repede și, cu unele servicii, apar mai puține reclame.
 H:chkNetPowerSave	Placa de rețea nu mai intră în economie de energie. Conexiune mai stabilă și ping mai constant.
 H:chkDisableIPv6	Oprește IPv6. Util doar dacă furnizorul nu îl folosește și ai probleme de conexiune.
@@ -506,7 +504,7 @@ L:chkAmdPowerGating	Power gating dezactivat
 L:chkAmdDma	Copii DMA și scriere în bloc
 L:chkAmdPreempt	Preempțiune calcul dezactivată
 L:ttlPowerAdv	SETĂRILE PLANULUI FOLOSIT
-L:lblPowerAdvHint	Schimbă imediat planul activ, la priză și pe baterie: nu trebuie apăsat Aplică. Dacă activezi alt plan, se folosesc setările acelui plan.
+L:lblPowerAdvHint	Se aplică planului activ, la priză și pe baterie, cu «Aplică modificările». Dacă activezi alt plan, contează setările acestuia.
 L:radAppsCatalog	Catalog
 L:radAppsInstalled	Instalate
 L:lblAppSearchHint	Caută...
@@ -918,3 +916,4 @@ L:chkThumbCache	Cache-ul miniaturilor — nu îl crea
 H:chkThumbCache	Windows nu mai salvează miniaturile într-un fișier pe disc. Mai puține scrieri, dar folderele cu fotografii și videoclipuri afișează previzualizările mai lent.
 L:chkTrim	TRIM — asigură-te că este activ
 H:chkTrim	Spune SSD-ului ce blocuri nu mai sunt folosite, ca să rămână rapid în timp. În Windows este activ implicit: această opțiune îl repornește dacă cineva l-a oprit.
+M:catBulkReady	Valori pregătite pentru {0} elemente: apasă «Aplică modificările».

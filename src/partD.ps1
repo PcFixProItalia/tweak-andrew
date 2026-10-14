@@ -535,7 +535,7 @@ function Build-Actions {
         Add-Action ([string]$chkMenuHibernate.Content) ([scriptblock]::Create("Set-MenuHibernate `$$($chkMenuHibernate.IsChecked -eq $true)"))
     }
 
-    if ($chkApplyNetwork.IsChecked -eq $true -and $radTcpCurrent.IsChecked -ne $true) {
+    if (Test-NetPending) {
         Add-Action "TCP / IP" {
             $tcpParams = "HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters"
             netsh int tcp set global autotuninglevel=$([string]$cmbTcpAutoTuning.Text) | Out-Null
@@ -1116,6 +1116,13 @@ function Build-Actions {
         Disable-Tasks @('\Microsoft\Windows\Windows Defender\Windows Defender Scheduled Scan',
                         '\Microsoft\Windows\Windows Defender\Windows Defender Cache Maintenance') 'Scansioni pianificate di Defender'
         Write-Log "[INFO] La protezione in tempo reale resta attiva: la disattiva solo l'utente da Sicurezza di Windows."
+    }
+
+    # Voci del catalogo scelte e non ancora applicate.
+    foreach ($id in @($script:CatWant.Keys)) {
+        $v = $script:CatWant[$id]
+        $lit = if ($v -is [bool]) { if ($v) { '$true' } else { '$false' } } else { "'" + ([string]$v -replace "'", "''") + "'" }
+        Add-Action (Get-CatText $id) ([scriptblock]::Create("[void](Set-CatState `$script:CatById['$id'] $lit)"))
     }
 }
 

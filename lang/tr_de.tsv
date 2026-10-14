@@ -138,11 +138,10 @@ L:chkLockScreen	Sperrbildschirm — deaktivieren
 L:chkLogonBlur	Unschärfe bei der Anmeldung — deaktivieren
 L:chkBSODVerbose	Ausführlicher Bluescreen
 L:chkLogonVerbose	Ausführliche Anmeldemeldungen
-L:chkApplyNetwork	Netzwerkeinstellungen beim Klick auf «Anwenden» übernehmen
-L:lblNetHint	Ohne dieses Kästchen dient die Seite Netzwerk nur zur Information und nichts wird geändert.
+L:lblNetHint	Wähle ein Profil oder ändere einzelne Werte: Sie werden mit «Änderungen übernehmen» angewendet.
 L:btnFlushDns	DNS-Cache leeren
 L:ttlTcpProfile	TCP-PROFIL
-L:radTcpOptimal	Optimal (Spiele)
+L:radTcpOptimal	Optimal
 L:radTcpDefault	Windows-Standard
 L:radTcpCurrent	Aktuelles Profil
 L:radTcpCustom	Benutzerdefiniert
@@ -349,7 +348,6 @@ H:chkLockScreen	Überspringt den Sperrbildschirm und führt direkt zur Anmeldung
 H:chkLogonBlur	Entfernt die Unschärfe vom Anmeldehintergrund. Schärferes Bild und etwas schnellere Anmeldung.
 H:chkBSODVerbose	Der Bluescreen zeigt die Fehlerdetails. Die Ursache eines Absturzes ist leichter zu finden.
 H:chkLogonVerbose	Beim Starten und Herunterfahren siehst du, was Windows gerade tut. Hilft, Bremsen zu finden.
-H:chkApplyNetwork	Übernimmt die Einstellungen der Seite Netzwerk. Ohne dieses Kästchen dient die Seite nur zur Information.
 H:chkApplyDns	Nutzt die im Menü gewählten DNS-Server. Seiten laden schneller und bei manchen Anbietern gibt es weniger Werbung.
 H:chkNetPowerSave	Die Netzwerkkarte geht nicht mehr in den Energiesparmodus. Stabilere Verbindung und gleichmäßigerer Ping.
 H:chkDisableIPv6	Schaltet IPv6 ab. Nur sinnvoll, wenn dein Anbieter es nicht nutzt und du Verbindungsprobleme hast.
@@ -506,7 +504,7 @@ L:chkAmdPowerGating	Power Gating aus
 L:chkAmdDma	DMA-Kopien und Blockschreiben
 L:chkAmdPreempt	Compute-Preemption aus
 L:ttlPowerAdv	EINSTELLUNGEN DES AKTIVEN PLANS
-L:lblPowerAdvHint	Sie ändern den aktiven Plan sofort, am Netz und im Akkubetrieb: Anwenden ist nicht nötig. Wenn du einen anderen Plan aktivierst, gelten dessen Einstellungen.
+L:lblPowerAdvHint	Sie gelten für den aktiven Energiesparplan, am Netz und im Akkubetrieb, und werden mit «Änderungen übernehmen» angewendet. Bei einem anderen Plan gelten dessen Einstellungen.
 L:radAppsCatalog	Katalog
 L:radAppsInstalled	Installiert
 L:lblAppSearchHint	Suchen...
@@ -918,3 +916,4 @@ L:chkThumbCache	Miniaturansicht-Cache — nicht anlegen
 H:chkThumbCache	Windows speichert Miniaturansichten nicht mehr in einer Datei auf dem Laufwerk. Weniger Schreibvorgänge, aber Ordner mit Fotos und Videos zeigen Vorschauen langsamer an.
 L:chkTrim	TRIM — sicherstellen, dass es aktiv ist
 H:chkTrim	Teilt der SSD mit, welche Blöcke nicht mehr benötigt werden, damit sie dauerhaft schnell bleibt. Unter Windows ist es standardmäßig aktiv: Diese Option schaltet es wieder ein, falls es jemand ausgeschaltet hat.
+M:catBulkReady	Werte für {0} Einträge bereit: «Änderungen übernehmen» drücken.

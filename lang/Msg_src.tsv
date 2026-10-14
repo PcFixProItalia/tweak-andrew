@@ -388,3 +388,4 @@ toolDesc_rootCerts	Downloads the current list from Windows Update. Fixes certifi
 maxPerfTitle	Maximum performance
 maxPerfAsk	«Select all» turns on every entry that gives performance, including those that lower security: Spectre mitigations, kernel isolation, exploit protections, SmartScreen. Fine on a PC used only for gaming. For everyday use pick «Recommended». Continue?
 maxPerfDone	Maximum performance ready: {0} to enable, {1} to keep or put back as Windows. Press «Apply changes».
+catBulkReady	Values ready for {0} entries: press «Apply changes».

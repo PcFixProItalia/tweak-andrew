@@ -138,11 +138,10 @@ L:chkLockScreen	Écran de verrouillage — désactiver
 L:chkLogonBlur	Flou à la connexion — désactiver
 L:chkBSODVerbose	Écran bleu détaillé
 L:chkLogonVerbose	Messages de connexion détaillés
-L:chkApplyNetwork	Appliquer les réglages réseau en cliquant sur « Appliquer »
-L:lblNetHint	Sans cette case, l'onglet Réseau reste informatif et rien n'est modifié.
+L:lblNetHint	Choisissez un profil ou modifiez des valeurs : elles s’appliquent avec «Appliquer les modifications».
 L:btnFlushDns	Vider le cache DNS
 L:ttlTcpProfile	PROFIL TCP
-L:radTcpOptimal	Optimal (jeux)
+L:radTcpOptimal	Optimal
 L:radTcpDefault	Par défaut de Windows
 L:radTcpCurrent	Profil actuel
 L:radTcpCustom	Personnalisé
@@ -352,7 +351,6 @@ H:chkLockScreen	Saute l'écran de verrouillage et mène directement à la connex
 H:chkLogonBlur	Retire le flou du fond de connexion. Image plus nette et connexion un peu plus rapide.
 H:chkBSODVerbose	L'écran bleu affiche les détails de l'erreur. Plus facile de trouver la cause d'un plantage.
 H:chkLogonVerbose	Au démarrage et à l'arrêt, vous voyez ce que fait Windows. Aide à trouver ce qui le ralentit.
-H:chkApplyNetwork	Applique les réglages de la page Réseau. Sans cette case, la page reste informative.
 H:chkApplyDns	Utilise les serveurs DNS choisis dans le menu. Pages plus rapides à s'ouvrir et, avec certains services, moins de publicité.
 H:chkNetPowerSave	La carte réseau ne passe plus en économie d'énergie. Connexion plus stable et ping plus régulier.
 H:chkDisableIPv6	Coupe IPv6. Utile seulement si votre fournisseur ne l'utilise pas et que vous avez des problèmes de connexion.
@@ -509,7 +507,7 @@ L:chkAmdPowerGating	Power gating désactivé
 L:chkAmdDma	Copies DMA et écriture par blocs
 L:chkAmdPreempt	Préemption de calcul désactivée
 L:ttlPowerAdv	PARAMÈTRES DU MODE UTILISÉ
-L:lblPowerAdvHint	Ils modifient tout de suite le mode actif, sur secteur comme sur batterie : inutile d'appuyer sur Appliquer. Si vous activez un autre mode, ce sont ses propres paramètres qui comptent.
+L:lblPowerAdvHint	Ils valent pour le mode actif, sur secteur comme sur batterie, et s’appliquent avec «Appliquer les modifications». Si vous changez de mode, ce sont ses réglages qui comptent.
 L:radAppsCatalog	Catalogue
 L:radAppsInstalled	Installées
 L:lblAppSearchHint	Rechercher...
@@ -921,3 +919,4 @@ L:chkThumbCache	Cache des miniatures — ne pas le créer
 H:chkThumbCache	Windows n'enregistre plus les miniatures dans un fichier sur le disque. Moins d'écritures, mais les dossiers de photos et de vidéos affichent les aperçus plus lentement.
 L:chkTrim	TRIM — s'assurer qu'il est actif
 H:chkTrim	Indique au SSD quels blocs ne servent plus, pour qu'il reste rapide dans le temps. Il est actif par défaut sous Windows : cette option le réactive si quelqu'un l'a désactivé.
+M:catBulkReady	Valeurs prêtes pour {0} éléments : appuyez sur «Appliquer les modifications».

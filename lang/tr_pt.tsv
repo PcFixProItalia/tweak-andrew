@@ -138,11 +138,10 @@ L:chkLockScreen	Tela de bloqueio — desativar
 L:chkLogonBlur	Desfoque na entrada — desativar
 L:chkBSODVerbose	Tela azul detalhada
 L:chkLogonVerbose	Mensagens detalhadas de entrada
-L:chkApplyNetwork	Aplicar as configurações de rede ao clicar em «Aplicar»
-L:lblNetHint	Sem esta caixa a aba Rede é só informativa e nada é alterado.
+L:lblNetHint	Escolha um perfil ou altere valores: são aplicados com «Aplicar alterações».
 L:btnFlushDns	Limpar cache DNS
 L:ttlTcpProfile	PERFIL TCP
-L:radTcpOptimal	Ideal (jogos)
+L:radTcpOptimal	Ideal
 L:radTcpDefault	Padrão do Windows
 L:radTcpCurrent	Perfil atual
 L:radTcpCustom	Personalizado
@@ -349,7 +348,6 @@ H:chkLockScreen	Pula a tela de bloqueio e vai direto para a entrada no sistema.
 H:chkLogonBlur	Remove o desfoque do fundo de entrada. Imagem mais nítida e entrada um pouco mais rápida.
 H:chkBSODVerbose	A tela azul mostra os detalhes do erro. Fica mais fácil entender a causa de um travamento.
 H:chkLogonVerbose	Ao ligar e desligar você vê o que o Windows está fazendo. Ajuda a descobrir o que o deixa lento.
-H:chkApplyNetwork	Aplica as configurações da página Rede. Sem esta caixa a página é só informativa.
 H:chkApplyDns	Usa os servidores DNS escolhidos no menu. Páginas abrem mais rápido e, com alguns serviços, há menos anúncios.
 H:chkNetPowerSave	A placa de rede não entra mais em economia de energia. Conexão mais estável e ping mais regular.
 H:chkDisableIPv6	Desliga o IPv6. Útil só se o seu provedor não o usa e você tem problemas de conexão.
@@ -506,7 +504,7 @@ L:chkAmdPowerGating	Power gating desativado
 L:chkAmdDma	Cópias DMA e gravação em bloco
 L:chkAmdPreempt	Preempção de computação desativada
 L:ttlPowerAdv	CONFIGURAÇÕES DO PLANO EM USO
-L:lblPowerAdvHint	Mudam o plano ativo na hora, na tomada e na bateria: não é preciso clicar em Aplicar. Se você ativar outro plano, valem as configurações dele.
+L:lblPowerAdvHint	Valem para o plano ativo, na tomada e na bateria, e são aplicadas com «Aplicar alterações». Se ativar outro plano, valem as configurações dele.
 L:radAppsCatalog	Catálogo
 L:radAppsInstalled	Instalados
 L:lblAppSearchHint	Pesquisar...
@@ -918,3 +916,4 @@ L:chkThumbCache	Cache de miniaturas — não criar
 H:chkThumbCache	O Windows deixa de guardar as miniaturas em um arquivo no disco. Menos gravações, mas as pastas de fotos e vídeos mostram as prévias mais devagar.
 L:chkTrim	TRIM — garantir que esteja ativo
 H:chkTrim	Informa ao SSD quais blocos não são mais usados, para que continue rápido com o tempo. No Windows já vem ativo: este item o reativa se alguém o desligou.
+M:catBulkReady	Valores prontos para {0} itens: pressione «Aplicar alterações».

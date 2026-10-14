@@ -138,11 +138,10 @@ L:chkLockScreen	Ekran blokady — wyłącz
 L:chkLogonBlur	Rozmycie przy logowaniu — wyłącz
 L:chkBSODVerbose	Szczegółowy niebieski ekran
 L:chkLogonVerbose	Szczegółowe komunikaty logowania
-L:chkApplyNetwork	Stosuj ustawienia sieci po kliknięciu «Zastosuj»
-L:lblNetHint	Bez tego pola karta Sieć jest tylko informacyjna i nic nie zostaje zmienione.
+L:lblNetHint	Wybierz profil lub zmień pojedyncze wartości: zostaną zastosowane przyciskiem «Zastosuj zmiany».
 L:btnFlushDns	Wyczyść pamięć DNS
 L:ttlTcpProfile	PROFIL TCP
-L:radTcpOptimal	Optymalny (gry)
+L:radTcpOptimal	Optymalny
 L:radTcpDefault	Domyślny Windows
 L:radTcpCurrent	Bieżący profil
 L:radTcpCustom	Własny
@@ -349,7 +348,6 @@ H:chkLockScreen	Pomija ekran blokady i od razu przechodzi do logowania.
 H:chkLogonBlur	Usuwa rozmycie tła logowania. Ostrzejszy obraz i nieco szybsze logowanie.
 H:chkBSODVerbose	Niebieski ekran pokazuje szczegóły błędu. Łatwiej ustalić przyczynę awarii.
 H:chkLogonVerbose	Przy starcie i zamykaniu widzisz, co robi Windows. Pomaga znaleźć, co go spowalnia.
-H:chkApplyNetwork	Stosuje ustawienia ze strony Sieć. Bez tego pola strona jest tylko informacyjna.
 H:chkApplyDns	Używa serwerów DNS wybranych w menu. Strony otwierają się szybciej, a z niektórymi usługami jest mniej reklam.
 H:chkNetPowerSave	Karta sieciowa nie przechodzi w oszczędzanie energii. Stabilniejsze połączenie i równiejszy ping.
 H:chkDisableIPv6	Wyłącza IPv6. Przydatne tylko, jeśli dostawca go nie używa, a masz problemy z połączeniem.
@@ -506,7 +504,7 @@ L:chkAmdPowerGating	Power gating wyłączony
 L:chkAmdDma	Kopie DMA i zapis blokowy
 L:chkAmdPreempt	Wywłaszczanie obliczeń wyłączone
 L:ttlPowerAdv	USTAWIENIA UŻYWANEGO PLANU
-L:lblPowerAdvHint	Zmieniają aktywny plan od razu, na zasilaczu i na baterii: nie trzeba naciskać Zastosuj. Po włączeniu innego planu obowiązują jego ustawienia.
+L:lblPowerAdvHint	Dotyczą aktywnego planu, na zasilaczu i na baterii, i są stosowane przyciskiem «Zastosuj zmiany». Po zmianie planu obowiązują jego ustawienia.
 L:radAppsCatalog	Katalog
 L:radAppsInstalled	Zainstalowane
 L:lblAppSearchHint	Szukaj...
@@ -918,3 +916,4 @@ L:chkThumbCache	Pamięć podręczna miniatur — nie twórz
 H:chkThumbCache	Windows nie zapisuje już miniatur w pliku na dysku. Mniej zapisów, ale foldery ze zdjęciami i filmami wyświetlają podglądy wolniej.
 L:chkTrim	TRIM — upewnij się, że jest włączony
 H:chkTrim	Informuje dysk SSD, które bloki nie są już używane, dzięki czemu z czasem pozostaje szybki. W Windows jest domyślnie włączony: ta opcja włącza go ponownie, jeśli ktoś go wyłączył.
+M:catBulkReady	Wartości gotowe dla {0} pozycji: naciśnij «Zastosuj zmiany».

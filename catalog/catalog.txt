@@ -110,7 +110,7 @@ H|exp.checkSel|Una casella accanto a ogni file: comoda per selezioni multiple se
 T|exp.menus||0|-|Mostra sempre la barra dei menu|Always show the menu bar
 R|HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced|AlwaysShowMenus|D|1|0,-
 H|exp.menus|Tiene visibile la barra dei menu classica nelle finestre che la usano.|Keeps the classic menu bar visible in windows that use it.
-T|exp.compact||0|-|Vista compatta|Compact view
+T|exp.compact||0|1|Vista compatta|Compact view
 R|HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced|UseCompactMode|D|1|0,-
 H|exp.compact|Meno spazio tra le righe: più file visibili senza scorrere.|Less space between rows: more files in view without scrolling.
 T|exp.fullPath||0|1|Percorso completo nella barra del titolo|Full path in the title bar

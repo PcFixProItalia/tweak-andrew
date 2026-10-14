@@ -4,7 +4,7 @@
 
 P|power
 G|cpu|Processore|Processor
-N|pw.cpuMin||54533251-82be-4824-96c1-47b60b740d00|893dee8e-2bef-41e0-89c6-b55d0929964c|5|-|Stato minimo del processore|Minimum processor state
+N|pw.cpuMin||54533251-82be-4824-96c1-47b60b740d00|893dee8e-2bef-41e0-89c6-b55d0929964c|5|100/5/100|Stato minimo del processore|Minimum processor state
 O|5|5%|5%
 O|50|50%|50%
 O|100|100%|100%
@@ -77,13 +77,13 @@ O|2|PC e disco (HIPM+DIPM)|Host and device (HIPM+DIPM)
 O|3|Gestito dal disco (DIPM)|Device managed (DIPM)
 O|4|Massimo risparmio|Lowest power
 H|pw.sata|Il collegamento tra scheda madre e dischi SATA può andare a riposo. Spento, il disco risponde subito: niente brevi blocchi quando lo riapri.|The link between motherboard and SATA drives can go idle. Off, the drive answers at once: no short freezes when you open it again.
-N|pw.nvme1||0012ee47-9041-4b5d-9b77-535fba8b1442|d639518a-e56d-4345-8af2-b9f32fb26109|200|-|SSD NVMe: primo riposo dopo|NVMe SSD: first idle state after
+N|pw.nvme1||0012ee47-9041-4b5d-9b77-535fba8b1442|d639518a-e56d-4345-8af2-b9f32fb26109|200|0/-/0|SSD NVMe: primo riposo dopo|NVMe SSD: first idle state after
 O|0|Mai (sempre pronto)|Never (always ready)
 O|100|100 ms|100 ms
 O|200|200 ms|200 ms
 O|1000|1 secondo|1 second
 H|pw.nvme1|Dopo quanto tempo di inattività l'SSD NVMe entra nel primo stato di risparmio. Su Mai risponde sempre subito, ma consuma e scalda un po' di più.|How long the NVMe SSD waits idle before its first power-saving state. On Never it always answers at once, but draws and heats a little more.
-N|pw.nvme2||0012ee47-9041-4b5d-9b77-535fba8b1442|d3d55efd-c1ff-424e-9dc3-441be7833010|2000|-|SSD NVMe: riposo profondo dopo|NVMe SSD: deep idle state after
+N|pw.nvme2||0012ee47-9041-4b5d-9b77-535fba8b1442|d3d55efd-c1ff-424e-9dc3-441be7833010|2000|0/-/0|SSD NVMe: riposo profondo dopo|NVMe SSD: deep idle state after
 O|0|Mai (sempre pronto)|Never (always ready)
 O|1000|1 secondo|1 second
 O|2000|2 secondi|2 seconds
@@ -91,7 +91,7 @@ O|5000|5 secondi|5 seconds
 H|pw.nvme2|Il secondo stato di risparmio, più profondo: il risveglio richiede qualche millisecondo in più. Su un portatile conviene lasciarlo attivo.|The second, deeper power-saving state: waking up takes a few more milliseconds. On a laptop it is best left on.
 
 G|sleep|Schermo e sospensione|Display and sleep
-N|pw.display||7516b95f-f776-4464-8c53-06167f40cc99|3c0bc021-c8a8-4e07-a973-6b14cbcb2b7e|600|-|Spegni lo schermo dopo|Turn off the display after
+N|pw.display||7516b95f-f776-4464-8c53-06167f40cc99|3c0bc021-c8a8-4e07-a973-6b14cbcb2b7e|600|900|Spegni lo schermo dopo|Turn off the display after
 O|0|Mai|Never
 O|300|5 minuti|5 minutes
 O|600|10 minuti|10 minutes
@@ -99,7 +99,7 @@ O|900|15 minuti|15 minutes
 O|1800|30 minuti|30 minutes
 O|3600|1 ora|1 hour
 H|pw.display|Dopo quanto tempo di inattività si spegne il monitor.|How long without activity before the monitor turns off.
-N|pw.sleep||238c9fa8-0aad-41ed-83f4-97be242c8f20|29f6c1db-86da-48c5-9fdb-f2b67b1f44da|1800|-|Sospendi dopo|Sleep after
+N|pw.sleep||238c9fa8-0aad-41ed-83f4-97be242c8f20|29f6c1db-86da-48c5-9fdb-f2b67b1f44da|1800|0/1800/0|Sospendi dopo|Sleep after
 O|0|Mai|Never
 O|900|15 minuti|15 minutes
 O|1800|30 minuti|30 minutes
@@ -116,7 +116,7 @@ N|pw.hybrid||238c9fa8-0aad-41ed-83f4-97be242c8f20|94ac6d29-73ce-41a6-809f-6363ba
 O|0|Disattivata|Off
 O|1|Attiva|On
 H|pw.hybrid|Salva la sessione anche su disco: se manca la corrente non perdi il lavoro.|Also saves the session to disk: a power cut doesn't lose your work.
-N|pw.wake||238c9fa8-0aad-41ed-83f4-97be242c8f20|bd3b718a-0680-4d9d-8ab2-e1d2b4ac806d|1|2|Timer di risveglio|Wake timers
+N|pw.wake||238c9fa8-0aad-41ed-83f4-97be242c8f20|bd3b718a-0680-4d9d-8ab2-e1d2b4ac806d|1|0|Timer di risveglio|Wake timers
 O|0|Disattivati|Disabled
 O|1|Attivi|Enabled
 O|2|Solo quelli importanti|Important only

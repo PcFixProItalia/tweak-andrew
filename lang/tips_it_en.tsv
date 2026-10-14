@@ -74,7 +74,6 @@ chkLockScreen	Salta la schermata di blocco e porta subito alla richiesta di acce
 chkLogonBlur	Toglie la sfocatura dallo sfondo di accesso. Immagine più nitida e accesso un filo più rapido.	Removes the blur from the sign-in background. A sharper image and slightly faster sign-in.
 chkBSODVerbose	La schermata blu mostra i dettagli dell'errore. Più facile capire la causa di un blocco.	The blue screen shows the error details. Easier to find what caused a crash.
 chkLogonVerbose	All'avvio e allo spegnimento vedi cosa sta facendo Windows. Utile per capire cosa lo rallenta.	At startup and shutdown you see what Windows is doing. Helps find what slows it down.
-chkApplyNetwork	Applica le impostazioni della pagina Rete. Senza questa spunta la pagina resta solo informativa.	Applies the settings on the Network page. Without this box the page is informational only.
 chkApplyDns	Usa i server DNS scelti nel menu. Pagine che si aprono più in fretta e, con alcuni servizi, meno pubblicità.	Uses the DNS servers chosen in the menu. Pages open faster and, with some providers, fewer ads.
 chkNetPowerSave	La scheda di rete non va più a risparmio energetico. Connessione più stabile e ping più regolare.	The network card no longer goes into power saving. A steadier connection and more even ping.
 chkDisableIPv6	Spegne il protocollo IPv6. Utile solo se il tuo operatore non lo usa e hai problemi di connessione.	Turns off IPv6. Useful only if your provider does not use it and you have connection issues.

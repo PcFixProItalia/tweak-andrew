@@ -62,7 +62,7 @@ foreach ($it in $script:Catalog) {
             if ($kind -eq 'N') {
                 if ($null -eq $s) { Write-Host "INFO $($it.Id): impostazione assente o valore fuori elenco su questo PC" }
                 if (@($it.Opts | Where-Object { [string]$_.Key -eq [string]$it.Def }).Count -eq 0 -and $it.Opts.Count) { Bad "$($it.Id) predefinito '$($it.Def)' non e' tra le opzioni" }
-                if ($it.Rec -ne '-' -and $it.Opts.Count -and @($it.Opts | Where-Object { [string]$_.Key -eq [string]$it.Rec }).Count -eq 0) { Bad "$($it.Id) consigliato '$($it.Rec)' non e' tra le opzioni" }
+                foreach ($rp in ([string]$it.Rec -split '/')) { if ($rp -ne '-' -and $it.Opts.Count -and @($it.Opts | Where-Object { [string]$_.Key -eq $rp }).Count -eq 0) { Bad "$($it.Id) consigliato '$rp' non e' tra le opzioni" } }
             }
             if ($kind -eq 'V') {
                 $miss = @($it.Svcs | Where-Object { -not (Get-Service -Name $_ -ErrorAction SilentlyContinue) })

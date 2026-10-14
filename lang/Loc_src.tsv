@@ -142,11 +142,10 @@ chkLockScreen	Lock screen — disable
 chkLogonBlur	Sign-in acrylic blur — disable
 chkBSODVerbose	Verbose blue screen
 chkLogonVerbose	Verbose sign-in messages
-chkApplyNetwork	Apply network settings when «Apply» is clicked
-lblNetHint	Without this box the Network tab stays informational and nothing is changed.
+lblNetHint	Pick a profile or change single values: they are applied with «Apply changes».
 btnFlushDns	Flush DNS cache
 ttlTcpProfile	TCP PROFILE
-radTcpOptimal	Optimal (gaming)
+radTcpOptimal	Optimal
 radTcpDefault	Windows default
 radTcpCurrent	Current profile
 radTcpCustom	Custom
@@ -322,7 +321,7 @@ chkAmdPowerGating	Power gating off
 chkAmdDma	DMA copies and block write
 chkAmdPreempt	Compute preemption off
 ttlPowerAdv	SETTINGS OF THE PLAN IN USE
-lblPowerAdvHint	They change the active plan right away, both plugged in and on battery: no need to press Apply. If you switch to another plan, its own settings apply.
+lblPowerAdvHint	They apply to the active plan, both plugged in and on battery, and are applied with «Apply changes». If you switch plan, that plan's settings apply.
 radAppsCatalog	Catalog
 radAppsInstalled	Installed
 lblAppSearchHint	Search...

@@ -138,11 +138,10 @@ L:chkLockScreen	Pantalla de bloqueo — desactivar
 L:chkLogonBlur	Desenfoque en el inicio de sesión — desactivar
 L:chkBSODVerbose	Pantalla azul detallada
 L:chkLogonVerbose	Mensajes detallados al iniciar sesión
-L:chkApplyNetwork	Aplicar los ajustes de red al pulsar «Aplicar»
-L:lblNetHint	Sin esta casilla la pestaña Red es solo informativa y no se cambia nada.
+L:lblNetHint	Elige un perfil o cambia valores sueltos: se aplican con «Aplicar cambios».
 L:btnFlushDns	Vaciar caché DNS
 L:ttlTcpProfile	PERFIL TCP
-L:radTcpOptimal	Óptimo (juegos)
+L:radTcpOptimal	Óptimo
 L:radTcpDefault	Predeterminado de Windows
 L:radTcpCurrent	Perfil actual
 L:radTcpCustom	Personalizado
@@ -349,7 +348,6 @@ H:chkLockScreen	Salta la pantalla de bloqueo y va directamente al inicio de sesi
 H:chkLogonBlur	Quita el desenfoque del fondo de inicio de sesión. Imagen más nítida y acceso algo más rápido.
 H:chkBSODVerbose	La pantalla azul muestra los detalles del error. Es más fácil entender la causa de un bloqueo.
 H:chkLogonVerbose	Al iniciar y apagar ves lo que está haciendo Windows. Ayuda a descubrir qué lo ralentiza.
-H:chkApplyNetwork	Aplica los ajustes de la página Red. Sin esta casilla la página es solo informativa.
 H:chkApplyDns	Usa los servidores DNS elegidos en el menú. Páginas que abren antes y, con algunos servicios, menos publicidad.
 H:chkNetPowerSave	La tarjeta de red deja de entrar en ahorro de energía. Conexión más estable y ping más regular.
 H:chkDisableIPv6	Apaga IPv6. Útil solo si tu proveedor no lo usa y tienes problemas de conexión.
@@ -506,7 +504,7 @@ L:chkAmdPowerGating	Power gating desactivado
 L:chkAmdDma	Copias DMA y escritura por bloques
 L:chkAmdPreempt	Preferencia de cálculo desactivada
 L:ttlPowerAdv	AJUSTES DEL PLAN EN USO
-L:lblPowerAdvHint	Cambian al instante el plan activo, con cargador y con batería: no hace falta pulsar Aplicar. Si activas otro plan, se usan los ajustes de ese plan.
+L:lblPowerAdvHint	Valen para el plan activo, con cargador y con batería, y se aplican con «Aplicar cambios». Si activas otro plan, valen los ajustes de ese.
 L:radAppsCatalog	Catálogo
 L:radAppsInstalled	Instaladas
 L:lblAppSearchHint	Buscar...
@@ -918,3 +916,4 @@ L:chkThumbCache	Caché de miniaturas — no crearla
 H:chkThumbCache	Windows deja de guardar las miniaturas en un archivo del disco. Menos escrituras, pero las carpetas de fotos y vídeos muestran las vistas previas más despacio.
 L:chkTrim	TRIM — asegurarse de que esté activo
 H:chkTrim	Indica al SSD qué bloques ya no se usan, para que siga siendo rápido con el tiempo. En Windows ya viene activo: esta opción lo reactiva si alguien lo desactivó.
+M:catBulkReady	Valores listos para {0} opciones: pulsa «Aplicar cambios».

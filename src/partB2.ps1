@@ -1567,11 +1567,9 @@
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="Auto"/>
                                         </Grid.ColumnDefinitions>
-                                        <StackPanel Grid.Column="0">
-                                            <CheckBox x:Name="chkApplyNetwork" Content="Applica le impostazioni di rete" FontSize="13"/>
-                                            <TextBlock x:Name="lblNetHint" Text="Senza questa spunta nulla viene modificato."
-                                                       Style="{StaticResource SubTitle}" Margin="36,2,0,0"/>
-                                        </StackPanel>
+                                        <TextBlock Grid.Column="0" x:Name="lblNetHint" VerticalAlignment="Center" TextWrapping="Wrap"
+                                                   Text="Scegli un profilo o cambia i singoli valori: si applicano con «Applica modifiche»."
+                                                   Style="{StaticResource SubTitle}" Margin="0,0,12,0"/>
                                         <Button Grid.Column="1" x:Name="btnFlushDns" Content="Svuota cache DNS" Style="{StaticResource GhostBtn}" VerticalAlignment="Center"/>
                                     </Grid>
                                 </Border>
@@ -1591,9 +1589,9 @@
                                             <StackPanel Grid.Row="0">
                                                 <TextBlock x:Name="ttlTcpProfile" Text="PROFILO TCP" Style="{StaticResource CardTitle}"/>
                                                 <WrapPanel Margin="0,0,0,4">
-                                                    <RadioButton x:Name="radTcpOptimal" Content="Ottimale" IsChecked="True" GroupName="TcpPreset"/>
+                                                    <RadioButton x:Name="radTcpOptimal" Content="Ottimale" GroupName="TcpPreset"/>
                                                     <RadioButton x:Name="radTcpDefault" Content="Predefinito" GroupName="TcpPreset"/>
-                                                    <RadioButton x:Name="radTcpCurrent" Content="Profilo attuale" GroupName="TcpPreset"/>
+                                                    <RadioButton x:Name="radTcpCurrent" Content="Profilo attuale" IsChecked="True" GroupName="TcpPreset"/>
                                                     <RadioButton x:Name="radTcpCustom" Content="Personalizzato" GroupName="TcpPreset"/>
                                                 </WrapPanel>
                                                 <Separator Style="{StaticResource SoftSep}"/>
@@ -1917,7 +1915,7 @@
                                     <StackPanel Margin="7,0,7,4">
                                         <TextBlock x:Name="ttlPowerAdv" Text="IMPOSTAZIONI DEL PIANO IN USO" Style="{StaticResource CardTitle}" Margin="0,0,0,4"/>
                                         <TextBlock x:Name="lblPowerAdvHint" Style="{StaticResource SubTitle}" TextWrapping="Wrap"
-                                                   Text="Cambiano subito il piano attivo, sia con l'alimentatore sia a batteria: non serve premere Applica. Se attivi un altro piano, valgono le impostazioni di quello."/>
+                                                   Text="Valgono per il piano attivo, sia con l'alimentatore sia a batteria, e si applicano con «Applica modifiche». Se attivi un altro piano, valgono le impostazioni di quello."/>
                                     </StackPanel>
                                     <Grid x:Name="catPower"/>
                                         <Border Style="{StaticResource Glass}">

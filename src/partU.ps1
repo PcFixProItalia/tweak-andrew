@@ -410,7 +410,9 @@ function Build-UndoActions {
         Write-Log "[OK] Risparmio energetico delle schede di rete su valore predefinito."
     }
     Add-UndoIfChecked $chkDisableIPv6 { Reset-Reg 'HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip6\Parameters' 'DisabledComponents' }
-    Add-UndoIfChecked $chkApplyNetwork {
+    # Rete: con «Ripristina selezionati» se il profilo e' stato cambiato, sempre
+    # con il ripristino totale.
+    if ($script:UndoMode -eq 'all' -or ($script:UndoMode -eq 'page' -and (Test-NetPending))) { Add-Action "$(T 'undoPrefix') TCP / IP" {
         netsh int tcp set global autotuninglevel=normal | Out-Null
         netsh int tcp set global rss=enabled | Out-Null
         netsh int tcp set global rsc=enabled | Out-Null
@@ -441,7 +443,7 @@ function Build-UndoActions {
         netsh int tcp set supplemental template=internet minrto=300 | Out-Null
         Reset-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\Psched' 'NonBestEffortLimit'
         Reset-Reg 'HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\QoS' 'Do not use NLA'
-    }
+    } }
     Add-UndoIfChecked $chkApplyDns {
         foreach ($adapter in (Get-NetAdapter -ErrorAction SilentlyContinue | Where-Object { $_.Status -eq 'Up' })) {
             Set-DnsClientServerAddress -InterfaceAlias $adapter.Name -ResetServerAddresses -ErrorAction SilentlyContinue
@@ -692,7 +694,9 @@ function Invoke-ActionQueue {
     Update-ApplyButton
     # Lo stato «Attivo» delle voci cambia dopo ogni giro: gli interruttori lo seguono.
     if (Get-Command Update-ActiveBadges -ErrorAction SilentlyContinue) { Update-ActiveBadges | Out-Null; Sync-ChecksToSystem -All }
-    foreach ($r in @($script:CatRows)) { Update-CatRow $r }
+    Clear-CatWant -Reread
+    Update-CatExplorerHint
+    Reset-TcpToSystem
 }
 
 # «Ripristina selezionati»: le voci cambiate dall'utente, in qualunque pagina
@@ -700,6 +704,14 @@ function Invoke-ActionQueue {
 $btnUndo.Add_Click({
     $script:UndoMode = 'page'
     try { Build-UndoActions } finally { $script:UndoMode = 'checked' }
+    # Voci del catalogo cambiate: tornano al valore di Windows.
+    foreach ($id in @($script:CatWant.Keys)) {
+        $it = $script:CatById[$id]
+        $def = Get-CatDefTarget $it
+        if ($null -eq $def -or -not (Test-CatOption $it $def)) { continue }
+        $lit = if ($def -is [bool]) { if ($def) { '$true' } else { '$false' } } else { "'" + ([string]$def -replace "'", "''") + "'" }
+        Add-Action ("$(T 'undoPrefix') " + (Get-CatText $id)) ([scriptblock]::Create("[void](Set-CatState `$script:CatById['$id'] $lit)"))
+    }
     $total = $script:Actions.Count
     if ($total -eq 0) {
         $txtProgressLabel.Text = T 'undoPageNone'

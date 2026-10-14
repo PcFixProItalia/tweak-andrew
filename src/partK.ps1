@@ -26,6 +26,10 @@ foreach ($it in $script:Catalog) { $script:CatById[$it.Id] = $it }
 $script:CatRows = New-Object System.Collections.ArrayList
 $script:CatBuilt = @{}
 $script:CatLoading = $false
+# Valori scelti e non ancora applicati (id -> valore) e stato letto dal sistema.
+# Le voci si applicano tutte insieme con «Applica modifiche», come nelle altre pagine.
+$script:CatWant = @{}
+$script:CatNow = @{}
 $script:CatScope = 'U'
 
 function Get-CatText([string]$key) {
@@ -298,10 +302,14 @@ function Set-CatTooltip($el, $it, $page) {
     [System.Windows.Controls.ToolTipService]::SetShowDuration($el, 30000)
 }
 
-function Update-CatRow($row) {
+function Update-CatRow($row, [switch]$Cached) {
     $script:CatLoading = $true
     try {
-        $state = Get-CatState $row.Item
+        $id = $row.Item.Id
+        if ($Cached -and $script:CatNow.ContainsKey($id)) { $state = $script:CatNow[$id] }
+        else { $state = Get-CatState $row.Item; $script:CatNow[$id] = $state }
+        # L'interruttore mostra il valore scelto, se c'e', altrimenti quello del sistema.
+        if ($null -ne $state -and $script:CatWant.ContainsKey($id)) { $state = $script:CatWant[$id] }
         if ($row.Item.Kind -in @('T','J')) {
             if ($null -eq $state) { $row.Control.IsEnabled = $false; $row.Control.IsChecked = $false }
             else { $row.Control.IsChecked = [bool]$state }
@@ -336,9 +344,11 @@ function Update-CatRow($row) {
 # del catalogo vale lo stato di Windows appena installato.
 function Get-CatRecValue($it) {
     if ($it.Page -eq 'priv') {
-        $on = $it.Rec -in @('y', 'l')
-        $text = if ($it.Rec -eq 'l') { T 'recOnLimited' } elseif ($on) { T 'recOn' } else { T 'recOff' }
-        return @{ Target = $on; Text = $text }
+        # Le voci «con limitazioni» tolgono funzioni (Appunti, notifiche delle app,
+        # Trova il mio dispositivo): restano una scelta, senza sigillo.
+        if ($it.Rec -eq 'l') { return $null }
+        $on = $it.Rec -eq 'y'
+        return @{ Target = $on; Text = $(if ($on) { T 'recOn' } else { T 'recOff' }) }
     }
     $target = Get-CatRecTarget $it; $fromDef = $false
     if ($null -eq $target) { $target = Get-CatDefTarget $it; $fromDef = $true }
@@ -405,11 +415,8 @@ function New-CatRow($it, $page) {
         $ctl = $cb
         $handler = {
             if ($script:CatLoading) { return }
-            $item = $script:CatById[[string]$this.Tag]
-            [void](Set-CatState $item ($this.IsChecked -eq $true))
-            $r = $script:CatRows | Where-Object { $_.Control -eq $this } | Select-Object -First 1
-            if ($r) { Update-CatRow $r }
-            Update-CatExplorerHint
+            Set-CatWant $script:CatById[[string]$this.Tag] ($this.IsChecked -eq $true)
+            Update-ApplyButton
         }
         $cb.Add_Checked($handler); $cb.Add_Unchecked($handler)
         $rv = Get-CatRecValue $it
@@ -472,11 +479,10 @@ function New-CatRow($it, $page) {
             if ($script:CatLoading) { return }
             $sel = $this.SelectedItem
             if ($null -eq $sel -or [string]$sel.Tag -eq '_na' -or [string]$sel.Content -like "$(T 'catCustom')*") { return }
-            $item = $script:CatById[[string]$this.Tag]
-            [void](Set-CatState $item ([string]$sel.Tag))
+            Set-CatWant $script:CatById[[string]$this.Tag] ([string]$sel.Tag)
             $r = $script:CatRows | Where-Object { $_.Control -eq $this } | Select-Object -First 1
-            if ($r) { Update-CatRow $r }
-            Update-CatExplorerHint
+            if ($r -and $r.RecBtn) { $r.RecBtn.Tag = if ([string]$sel.Tag -eq $r.RecTarget) { 'match' } else { $null } }
+            Update-ApplyButton
         })
         $tb.Tag = 'label'
     }
@@ -509,47 +515,72 @@ function New-CatButton([string]$text, [string]$dot) {
     return $b
 }
 
-# Applica lo stesso stato a molte voci, con una sola conferma.
+# Porta molte voci allo stesso tipo di valore. Non applica nulla: le voci
+# diventano «da applicare» e partono con «Applica modifiche».
 function Invoke-CatBulk([string]$page, [scriptblock]$pick, [string]$question) {
-    # Prima si conta cosa cambierebbe: se e' gia' tutto a posto lo si dice, senza
-    # chiedere conferme per un giro che non farebbe nulla.
-    $todo = 0
-    foreach ($r in @($script:CatRows | Where-Object { $_.Item.Page -eq $page })) {
-        $target = & $pick $r.Item
-        if ($null -eq $target) { continue }
-        $now = Get-CatState $r.Item
-        if ($null -ne $now -and [string]$now -ne [string]$target) { $todo++ }
-    }
-    if ($todo -eq 0) {
-        $txtProgressLabel.Text = T 'catBulkNothing'
-        $txtProgressLabel.Foreground = New-CatBrush '#FF3DBE8B'
-        Write-Log "[INFO] $(T 'catBulkNothing')"
-        return
-    }
-    if (-not (Show-Dialog -Title (T 'catBulkTitle') -Message $question -Kind 'warn' -Detail ((T 'catBulkCount') -f $todo))) { return }
-    $script:OkCount = 0; $script:WarnCount = 0; $script:SkipCount = 0
-    $rows = @($script:CatRows | Where-Object { $_.Item.Page -eq $page })
+    $n = Set-CatTargets @($script:Catalog | Where-Object { $_.Page -eq $page }) $pick
+    $txtProgressLabel.Text = if ($n -eq 0) { T 'catBulkNothing' } else { (T 'catBulkReady') -f $n }
+}
+
+# Stato del sistema, letto una volta e poi tenuto in memoria fino al prossimo «Applica».
+function Get-CatNow($it) {
+    if (-not $script:CatNow.ContainsKey($it.Id)) { $script:CatNow[$it.Id] = Get-CatState $it }
+    return $script:CatNow[$it.Id]
+}
+
+# Valore voluto per una voce: se coincide con il sistema non resta nulla da fare.
+function Set-CatWant($it, $value) {
+    $now = Get-CatNow $it
+    if ($null -eq $now -or $null -eq $value -or [string]$now -eq [string]$value) { [void]$script:CatWant.Remove($it.Id) }
+    else { $script:CatWant[$it.Id] = $value }
+}
+
+function Test-CatOption($it, $value) {
+    if ($it.Kind -in @('T', 'J')) { return ($value -is [bool]) }
+    return [bool](@(Get-CatOptions $it) | Where-Object { [string]$_.Key -eq [string]$value })
+}
+
+# Sceglie un valore per ogni voce dell'elenco; restituisce quante cambierebbero.
+function Set-CatTargets([array]$items, [scriptblock]$pick) {
     $n = 0
-    foreach ($r in $rows) {
-        $n++
-        $target = & $pick $r.Item
-        if ($null -eq $target) { continue }
-        $now = Get-CatState $r.Item
-        if ($null -eq $now) { continue }
-        if ([string]$now -eq [string]$target) { $script:SkipCount++; continue }
-        Update-Progress -Current $n -Total $rows.Count -Label (Get-CatText $r.Item.Id)
-        [void](Set-CatState $r.Item $target)
+    foreach ($it in $items) {
+        $t = & $pick $it
+        if ($null -eq $t -or -not (Test-CatOption $it $t)) { continue }
+        Set-CatWant $it $t
+        if ($script:CatWant.ContainsKey($it.Id)) { $n++ }
     }
-    foreach ($r in $rows) { Update-CatRow $r }
-    Update-Progress -Current $rows.Count -Total $rows.Count -Label ''
-    Show-RunSummary
-    Update-CatExplorerHint
+    foreach ($r in @($script:CatRows)) { Update-CatRow $r -Cached }
+    Update-ApplyButton
+    return $n
+}
+
+# Valore che «Consigliati» e «Seleziona tutto» danno a una voce. Solo le voci
+# con un consiglio vero: le altre (suoni, notifiche, gusti) restano come sono,
+# invece di tornare al valore di Windows.
+function Get-CatPresetTarget($it) {
+    if ($it.Page -eq 'priv') { $rv = Get-CatRecValue $it; if ($null -eq $rv) { return $null }; return $rv.Target }
+    return (Get-CatRecTarget $it)
+}
+
+# Dopo «Applica» o con «Deseleziona»: le scelte si azzerano e le righe tornano al sistema.
+function Clear-CatWant([switch]$Reread) {
+    $script:CatWant = @{}
+    if ($Reread) { $script:CatNow = @{} }
+    foreach ($r in @($script:CatRows)) { Update-CatRow $r -Cached:(-not $Reread) }
 }
 
 function Get-CatRecTarget($it) {
-    if ($it.Rec -eq '-' -or [string]::IsNullOrEmpty($it.Rec)) { return $null }
-    if ($it.Kind -in @('T','J')) { return ($it.Rec -eq '1') }
-    return $it.Rec
+    $rec = [string]$it.Rec
+    # «fisso/portatile/server»: il consiglio dipende dal tipo di computer.
+    if ($rec -match '/') {
+        $parts = $rec -split '/'
+        $type = if (Get-Command Get-PcType -ErrorAction SilentlyContinue) { Get-PcType } else { 'desktop' }
+        $i = switch ($type) { 'laptop' { 1 } 'server' { 2 } default { 0 } }
+        $rec = if ($i -lt $parts.Count) { $parts[$i] } else { $parts[0] }
+    }
+    if ($rec -eq '-' -or [string]::IsNullOrEmpty($rec)) { return $null }
+    if ($it.Kind -in @('T','J')) { return ($rec -eq '1') }
+    return $rec
 }
 function Get-CatDefTarget($it) {
     if ($it.Kind -in @('T','J')) { return ($it.Def -eq '1') }

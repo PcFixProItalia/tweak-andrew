@@ -1634,11 +1634,9 @@ $script:PlanData = @{
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="Auto"/>
                                         </Grid.ColumnDefinitions>
-                                        <StackPanel Grid.Column="0">
-                                            <CheckBox x:Name="chkApplyNetwork" Content="Applica le impostazioni di rete" FontSize="13"/>
-                                            <TextBlock x:Name="lblNetHint" Text="Senza questa spunta nulla viene modificato."
-                                                       Style="{StaticResource SubTitle}" Margin="36,2,0,0"/>
-                                        </StackPanel>
+                                        <TextBlock Grid.Column="0" x:Name="lblNetHint" VerticalAlignment="Center" TextWrapping="Wrap"
+                                                   Text="Scegli un profilo o cambia i singoli valori: si applicano con «Applica modifiche»."
+                                                   Style="{StaticResource SubTitle}" Margin="0,0,12,0"/>
                                         <Button Grid.Column="1" x:Name="btnFlushDns" Content="Svuota cache DNS" Style="{StaticResource GhostBtn}" VerticalAlignment="Center"/>
                                     </Grid>
                                 </Border>
@@ -1658,9 +1656,9 @@ $script:PlanData = @{
                                             <StackPanel Grid.Row="0">
                                                 <TextBlock x:Name="ttlTcpProfile" Text="PROFILO TCP" Style="{StaticResource CardTitle}"/>
                                                 <WrapPanel Margin="0,0,0,4">
-                                                    <RadioButton x:Name="radTcpOptimal" Content="Ottimale" IsChecked="True" GroupName="TcpPreset"/>
+                                                    <RadioButton x:Name="radTcpOptimal" Content="Ottimale" GroupName="TcpPreset"/>
                                                     <RadioButton x:Name="radTcpDefault" Content="Predefinito" GroupName="TcpPreset"/>
-                                                    <RadioButton x:Name="radTcpCurrent" Content="Profilo attuale" GroupName="TcpPreset"/>
+                                                    <RadioButton x:Name="radTcpCurrent" Content="Profilo attuale" IsChecked="True" GroupName="TcpPreset"/>
                                                     <RadioButton x:Name="radTcpCustom" Content="Personalizzato" GroupName="TcpPreset"/>
                                                 </WrapPanel>
                                                 <Separator Style="{StaticResource SoftSep}"/>
@@ -1984,7 +1982,7 @@ $script:PlanData = @{
                                     <StackPanel Margin="7,0,7,4">
                                         <TextBlock x:Name="ttlPowerAdv" Text="IMPOSTAZIONI DEL PIANO IN USO" Style="{StaticResource CardTitle}" Margin="0,0,0,4"/>
                                         <TextBlock x:Name="lblPowerAdvHint" Style="{StaticResource SubTitle}" TextWrapping="Wrap"
-                                                   Text="Cambiano subito il piano attivo, sia con l'alimentatore sia a batteria: non serve premere Applica. Se attivi un altro piano, valgono le impostazioni di quello."/>
+                                                   Text="Valgono per il piano attivo, sia con l'alimentatore sia a batteria, e si applicano con «Applica modifiche». Se attivi un altro piano, valgono le impostazioni di quello."/>
                                     </StackPanel>
                                     <Grid x:Name="catPower"/>
                                         <Border Style="{StaticResource Glass}">
@@ -2870,12 +2868,11 @@ $script:Loc = @{
     chkBSODVerbose     = @{ it = "Schermata blu dettagliata"; en = "Verbose blue screen" }
     chkLogonVerbose    = @{ it = "Messaggi dettagliati all'accesso"; en = "Verbose sign-in messages" }
 
-    chkApplyNetwork    = @{ it = "Applica le impostazioni di rete al clic su «Applica»"; en = "Apply network settings when «Apply» is clicked" }
-    lblNetHint         = @{ it = "Senza questa spunta la scheda Rete resta solo informativa e nulla viene modificato."; en = "Without this box the Network tab stays informational and nothing is changed." }
+    lblNetHint         = @{ it = "Scegli un profilo o cambia i singoli valori: si applicano con «Applica modifiche»."; en = "Pick a profile or change single values: they are applied with «Apply changes»." }
     btnFlushDns        = @{ it = "Svuota cache DNS"; en = "Flush DNS cache" }
 
     ttlTcpProfile      = @{ it = "PROFILO TCP"; en = "TCP PROFILE" }
-    radTcpOptimal      = @{ it = "Ottimale (gioco)"; en = "Optimal (gaming)" }
+    radTcpOptimal      = @{ it = "Ottimale"; en = "Optimal" }
     radTcpDefault      = @{ it = "Predefinito Windows"; en = "Windows default" }
     radTcpCurrent      = @{ it = "Profilo attuale"; en = "Current profile" }
     radTcpCustom       = @{ it = "Personalizzato"; en = "Custom" }
@@ -3063,7 +3060,7 @@ $script:Loc = @{
     chkAmdDma          = @{ it = "Copie DMA e scrittura a blocchi"; en = "DMA copies and block write" }
     chkAmdPreempt      = @{ it = "Prelazione dei calcoli spenta"; en = "Compute preemption off" }
     ttlPowerAdv        = @{ it = "IMPOSTAZIONI DEL PIANO IN USO"; en = "SETTINGS OF THE PLAN IN USE" }
-    lblPowerAdvHint    = @{ it = "Cambiano subito il piano attivo, sia con l'alimentatore sia a batteria: non serve premere Applica. Se attivi un altro piano, valgono le impostazioni di quello."; en = "They change the active plan right away, both plugged in and on battery: no need to press Apply. If you switch to another plan, its own settings apply." }
+    lblPowerAdvHint    = @{ it = "Valgono per il piano attivo, sia con l'alimentatore sia a batteria, e si applicano con «Applica modifiche». Se attivi un altro piano, valgono le impostazioni di quello."; en = "They apply to the active plan, both plugged in and on battery, and are applied with «Apply changes». If you switch plan, that plan's settings apply." }
     radAppsCatalog     = @{ it = "Catalogo"; en = "Catalog" }
     radAppsInstalled   = @{ it = "Installate"; en = "Installed" }
     lblAppSearchHint   = @{ it = "Cerca..."; en = "Search..." }
@@ -3501,6 +3498,7 @@ $script:Msg = @{
     maxPerfTitle       = @{ it = "Prestazioni massime"; en = "Maximum performance" }
     maxPerfAsk         = @{ it = "«Seleziona tutto» accende ogni voce che dà prestazioni, comprese quelle che abbassano la sicurezza: mitigazioni Spectre, isolamento del kernel, protezioni dagli exploit, SmartScreen. Va bene su un PC usato solo per giocare. Per l'uso di tutti i giorni scegli «Consigliati». Continuare?"; en = "«Select all» turns on every entry that gives performance, including those that lower security: Spectre mitigations, kernel isolation, exploit protections, SmartScreen. Fine on a PC used only for gaming. For everyday use pick «Recommended». Continue?" }
     maxPerfDone        = @{ it = "Prestazioni massime pronte: {0} da attivare, {1} da lasciare o riportare come Windows. Premi «Applica modifiche»."; en = "Maximum performance ready: {0} to enable, {1} to keep or put back as Windows. Press «Apply changes»." }
+    catBulkReady       = @{ it = "Valori pronti per {0} voci: premi «Applica modifiche»."; en = "Values ready for {0} entries: press «Apply changes»." }
 }
 
 $script:LangCode = "it"
@@ -3669,7 +3667,7 @@ $chkLockScreen = E 'chkLockScreen'; $chkLogonBlur = E 'chkLogonBlur'
 $chkBSODVerbose = E 'chkBSODVerbose'; $chkLogonVerbose = E 'chkLogonVerbose'
 
 # Rete
-$chkApplyNetwork = E 'chkApplyNetwork'; $chkApplyDns = E 'chkApplyDns'; $btnFlushDns = E 'btnFlushDns'
+$chkApplyDns = E 'chkApplyDns'; $btnFlushDns = E 'btnFlushDns'
 $radTcpOptimal = E 'radTcpOptimal'; $radTcpDefault = E 'radTcpDefault'
 $radTcpCurrent = E 'radTcpCurrent'; $radTcpCustom = E 'radTcpCustom'
 $cmbDnsProvider = E 'cmbDnsProvider'
@@ -4137,7 +4135,34 @@ $script:TcpCombos = @(
     $cmbNagle, $cmbHostPriority, $cmbNetMemAlloc, $cmbPortAlloc, $cmbMaxConn
 )
 
-$radTcpOptimal.Add_Click({
+# Il profilo e' «da applicare» quando i valori scelti sono diversi da quelli
+# letti dal sistema: niente interruttore, come nelle altre pagine.
+$script:TcpBaseline = $null
+$script:TcpSyncing = $false
+function Get-TcpSnapshot {
+    $h = @{}
+    foreach ($c in $script:TcpCombos) { if ($null -ne $c -and $null -ne $c.SelectedItem) { $h[[string]$c.Name] = [string]$c.SelectedItem.Content } }
+    return $h
+}
+function Test-NetPending {
+    if ($null -eq $script:TcpBaseline) { return $false }
+    $now = Get-TcpSnapshot
+    foreach ($key in $now.Keys) { if ($now[$key] -ne $script:TcpBaseline[$key]) { return $true } }
+    return $false
+}
+# Rilegge la rete e riporta la pagina allo stato del sistema.
+function Reset-TcpToSystem {
+    $script:TcpSyncing = $true
+    try {
+        Show-CurrentTcpSettings
+        $script:TcpBaseline = Get-TcpSnapshot
+        $radTcpCurrent.IsChecked = $true
+        Set-TcpControlsState $false
+    } finally { $script:TcpSyncing = $false }
+    Update-ApplyButton
+}
+function Set-TcpOptimal {
+    $radTcpOptimal.IsChecked = $true
     Set-TcpControlsState $false
     $cmbTcpAutoTuning.SelectedIndex = 0; $cmbScalingHeuristics.SelectedIndex = 0
     $cmbCongestionControl.SelectedIndex = 0; $cmbRSS.SelectedIndex = 0; $cmbRSC.SelectedIndex = 0
@@ -4145,7 +4170,10 @@ $radTcpOptimal.Add_Click({
     $cmbNetThrottling.SelectedIndex = 0; $cmbSysResponsiveness.SelectedIndex = 0
     $cmbNagle.SelectedIndex = 0; $cmbHostPriority.SelectedIndex = 0
     $cmbNetMemAlloc.SelectedIndex = 0; $cmbPortAlloc.SelectedIndex = 0; $cmbMaxConn.SelectedIndex = 0
-})
+    Update-ApplyButton
+}
+
+$radTcpOptimal.Add_Click({ Set-TcpOptimal })
 
 $radTcpDefault.Add_Click({
     Set-TcpControlsState $false
@@ -4155,11 +4183,13 @@ $radTcpDefault.Add_Click({
     $cmbNetThrottling.SelectedIndex = 1; $cmbSysResponsiveness.SelectedIndex = 2
     $cmbNagle.SelectedIndex = 1; $cmbHostPriority.SelectedIndex = 1
     $cmbNetMemAlloc.SelectedIndex = 1; $cmbPortAlloc.SelectedIndex = 1; $cmbMaxConn.SelectedIndex = 2
+    Update-ApplyButton
 })
 
-$radTcpCurrent.Add_Click({ Set-TcpControlsState $false; Show-CurrentTcpSettings })
-$radTcpCustom.Add_Click({ Show-CurrentTcpSettings; Set-TcpControlsState $true })
+$radTcpCurrent.Add_Click({ Reset-TcpToSystem })
+$radTcpCustom.Add_Click({ Set-TcpControlsState $true })
 Set-TcpControlsState $false
+foreach ($c in $script:TcpCombos) { if ($null -ne $c) { $c.Add_SelectionChanged({ if (-not $script:TcpSyncing) { Update-ApplyButton } }) } }
 
 $btnFlushDns.Add_Click({
     try {
@@ -4197,7 +4227,7 @@ $script:AdvancedCheckBoxes = @(Get-CheckBoxesFromTree (E 'pageAdv'))
 # tutta la pagina Avanzate.
 $script:ExcludedFromSelectAll = @(@(
     $chkRestorePoint, $chkDiskCleanup, $chkSmartChkdsk,
-    $chkStorageProfile, $chkWuProfile, $chkApplyNetwork, $chkApplyDns, $chkApplyMPO
+    $chkStorageProfile, $chkWuProfile, $chkApplyDns, $chkApplyMPO
 ) + $script:AdvancedCheckBoxes | Where-Object { $null -ne $_ })
 
 $script:SelectableCheckBoxes = @(
@@ -4332,6 +4362,8 @@ function Test-Pending($cb) {
 function Update-ApplyButton {
     if ($script:Syncing) { return }
     $total = @($script:AllCheckBoxes | Where-Object { Test-Pending $_ }).Count
+    if ($script:CatWant) { $total += $script:CatWant.Count }
+    if (Get-Command Test-NetPending -ErrorAction SilentlyContinue) { if (Test-NetPending) { $total++ } }
     $btnRun.IsEnabled = ($total -gt 0)
     if ($null -ne $btnUndo) { $btnUndo.IsEnabled = ($total -gt 0) }
     if ($null -ne $btnDeselectAll) { $btnDeselectAll.IsEnabled = ($total -gt 0) }
@@ -4395,7 +4427,7 @@ $script:RecommendedChecks = @{
                     'chkInkingTyping','chkWiFiSense','chkConsumerFeatures','chkSuggestedContent','chkLockScreenAds','chkStartBing',
                     'chkStartTracking','chkWindowsAI','chkEdgeDebloat','chkDeliveryOpt','chkWPBT','chkBackgroundApps',
                     'chkRemoteAssistance','chkCompanionApps','chkServicesManual','chkTeredo')
-    pageUi      = @('chkDarkTheme','chkFileExt','chkLongPaths','chkExplorerThisPC','chkRemove3D','chkRecycleConfirm','chkMenuDelay','chkMouseAccel','chkNumLock','chkStickyKeys')
+    pageUi      = @('chkClassicMenu','chkDarkTheme','chkFileExt','chkLongPaths','chkExplorerThisPC','chkRemove3D','chkRecycleConfirm','chkMenuDelay','chkMouseAccel','chkNumLock','chkStickyKeys')
     pageNet     = @('chkNetPowerSave')
     pageStorage = @('chkReservedStorage','chkNtfsPerf','chkNtfs83')
     pagePower   = @('chkFastStartup','chkHibernation','chkS0Sleep','chkS3Sleep')
@@ -4460,6 +4492,30 @@ function Set-MaxPerfValues([array]$boxes) {
     return $r
 }
 
+# Il resto delle pagine per «Consigliati» e «Seleziona tutto»: voci del
+# catalogo (Privacy avanzata, Esplora file, Windows e servizi, piano energetico
+# e le altre), profilo TCP ottimale e profilo del disco di sistema.
+# Con -Page vale solo per la pagina indicata.
+function Set-OtherPresets($Page = $null) {
+    $n = 0
+    $cat = $null
+    if ($null -ne $Page) { $cat = ($script:NavPages | Where-Object { $_.Page -eq $Page } | Select-Object -First 1).Cat }
+    if ($null -eq $Page -or $cat) {
+        $items = if ($cat) { @($script:Catalog | Where-Object { $_.Page -eq $cat }) } else { @($script:Catalog) }
+        $n += Set-CatTargets $items { param($i) Get-CatPresetTarget $i }
+    }
+    if ($null -eq $Page -or [string]$Page.Name -eq 'pageNet') {
+        Set-TcpOptimal
+        if (Test-NetPending) { $n++ }
+    }
+    if ($null -eq $Page -or [string]$Page.Name -eq 'pageStorage') {
+        if ($script:SystemDiskKind -in @('NVMe', 'SSD')) { $radStorageSSD.IsChecked = $true; $n++ }
+        elseif ($script:SystemDiskKind -eq 'HDD') { $radStorageHDD.IsChecked = $true; $n++ }
+    }
+    Update-ApplyButton
+    return $n
+}
+
 # Chiede conferma solo se tra le voci ce n'e' una che abbassa la sicurezza.
 function Confirm-MaxPerf([array]$boxes) {
     $sec = @($boxes | Where-Object { ($script:SecurityChecks -contains [string]$_.Name) -and (Test-MaxPerfWanted $_) -and $_.IsChecked -ne $true })
@@ -4494,6 +4550,7 @@ $btnSelectAll.Add_Click({
     $boxes = @($script:AllCheckBoxes)
     if (-not (Confirm-MaxPerf $boxes)) { return }
     $r = Set-MaxPerfValues $boxes
+    $r.On += Set-OtherPresets
     $txtProgressLabel.Text = (T 'maxPerfDone') -f $r.On, $r.Off
 })
 
@@ -4502,6 +4559,7 @@ $btnSelectPage.Add_Click({
     $boxes = if ($page) { @(Get-CheckBoxesFromTree $page | Where-Object { $script:AllCheckBoxes -contains $_ }) } else { @() }
     if (-not (Confirm-MaxPerf $boxes)) { return }
     $r = Set-MaxPerfValues $boxes
+    if ($page) { $r.On += Set-OtherPresets $page }
     $txtProgressLabel.Text = if (($r.On + $r.Off) -eq 0) { T 'selPageNone' } else { (T 'maxPerfDone') -f $r.On, $r.Off }
 })
 
@@ -4511,6 +4569,7 @@ $btnRecommended.Add_Click({
     $page = Get-CurrentPage
     if ($null -ne $page -and [string]$page.Name -eq 'pageSched') { Set-SchedRecommended }
     $r = Set-RecommendedValues @($script:AllCheckBoxes)
+    $r.On += Set-OtherPresets
     $txtProgressLabel.Text = (T 'recAllDone') -f $r.On, $r.Off
 })
 
@@ -4519,6 +4578,9 @@ $btnDeselectAll.Add_Click({
     $script:Syncing = $true
     try { foreach ($cb in $script:AllCheckBoxes) { $cb.IsChecked = ($script:Baseline[[string]$cb.Name] -eq $true) } }
     finally { $script:Syncing = $false }
+    $radStorageSSD.IsChecked = $false; $radStorageHDD.IsChecked = $false
+    if (Get-Command Clear-CatWant -ErrorAction SilentlyContinue) { Clear-CatWant }
+    Reset-TcpToSystem
     Update-ApplyButton
 })
 
@@ -4611,7 +4673,6 @@ $script:Tips = @{
     chkLogonBlur = @{ it = "Toglie la sfocatura dallo sfondo di accesso. Immagine più nitida e accesso un filo più rapido."; en = "Removes the blur from the sign-in background. A sharper image and slightly faster sign-in." }
     chkBSODVerbose = @{ it = "La schermata blu mostra i dettagli dell'errore. Più facile capire la causa di un blocco."; en = "The blue screen shows the error details. Easier to find what caused a crash." }
     chkLogonVerbose = @{ it = "All'avvio e allo spegnimento vedi cosa sta facendo Windows. Utile per capire cosa lo rallenta."; en = "At startup and shutdown you see what Windows is doing. Helps find what slows it down." }
-    chkApplyNetwork = @{ it = "Applica le impostazioni della pagina Rete. Senza questa spunta la pagina resta solo informativa."; en = "Applies the settings on the Network page. Without this box the page is informational only." }
     chkApplyDns = @{ it = "Usa i server DNS scelti nel menu. Pagine che si aprono più in fretta e, con alcuni servizi, meno pubblicità."; en = "Uses the DNS servers chosen in the menu. Pages open faster and, with some providers, fewer ads." }
     chkNetPowerSave = @{ it = "La scheda di rete non va più a risparmio energetico. Connessione più stabile e ping più regolare."; en = "The network card no longer goes into power saving. A steadier connection and more even ping." }
     chkDisableIPv6 = @{ it = "Spegne il protocollo IPv6. Utile solo se il tuo operatore non lo usa e hai problemi di connessione."; en = "Turns off IPv6. Useful only if your provider does not use it and you have connection issues." }
@@ -4854,11 +4915,10 @@ $script:Tr = @{
         'L:chkLogonBlur' = "Desenfoque en el inicio de sesión — desactivar"
         'L:chkBSODVerbose' = "Pantalla azul detallada"
         'L:chkLogonVerbose' = "Mensajes detallados al iniciar sesión"
-        'L:chkApplyNetwork' = "Aplicar los ajustes de red al pulsar «Aplicar»"
-        'L:lblNetHint' = "Sin esta casilla la pestaña Red es solo informativa y no se cambia nada."
+        'L:lblNetHint' = "Elige un perfil o cambia valores sueltos: se aplican con «Aplicar cambios»."
         'L:btnFlushDns' = "Vaciar caché DNS"
         'L:ttlTcpProfile' = "PERFIL TCP"
-        'L:radTcpOptimal' = "Óptimo (juegos)"
+        'L:radTcpOptimal' = "Óptimo"
         'L:radTcpDefault' = "Predeterminado de Windows"
         'L:radTcpCurrent' = "Perfil actual"
         'L:radTcpCustom' = "Personalizado"
@@ -5065,7 +5125,6 @@ $script:Tr = @{
         'H:chkLogonBlur' = "Quita el desenfoque del fondo de inicio de sesión. Imagen más nítida y acceso algo más rápido."
         'H:chkBSODVerbose' = "La pantalla azul muestra los detalles del error. Es más fácil entender la causa de un bloqueo."
         'H:chkLogonVerbose' = "Al iniciar y apagar ves lo que está haciendo Windows. Ayuda a descubrir qué lo ralentiza."
-        'H:chkApplyNetwork' = "Aplica los ajustes de la página Red. Sin esta casilla la página es solo informativa."
         'H:chkApplyDns' = "Usa los servidores DNS elegidos en el menú. Páginas que abren antes y, con algunos servicios, menos publicidad."
         'H:chkNetPowerSave' = "La tarjeta de red deja de entrar en ahorro de energía. Conexión más estable y ping más regular."
         'H:chkDisableIPv6' = "Apaga IPv6. Útil solo si tu proveedor no lo usa y tienes problemas de conexión."
@@ -5222,7 +5281,7 @@ $script:Tr = @{
         'L:chkAmdDma' = "Copias DMA y escritura por bloques"
         'L:chkAmdPreempt' = "Preferencia de cálculo desactivada"
         'L:ttlPowerAdv' = "AJUSTES DEL PLAN EN USO"
-        'L:lblPowerAdvHint' = "Cambian al instante el plan activo, con cargador y con batería: no hace falta pulsar Aplicar. Si activas otro plan, se usan los ajustes de ese plan."
+        'L:lblPowerAdvHint' = "Valen para el plan activo, con cargador y con batería, y se aplican con «Aplicar cambios». Si activas otro plan, valen los ajustes de ese."
         'L:radAppsCatalog' = "Catálogo"
         'L:radAppsInstalled' = "Instaladas"
         'L:lblAppSearchHint' = "Buscar..."
@@ -5634,6 +5693,7 @@ $script:Tr = @{
         'H:chkThumbCache' = "Windows deja de guardar las miniaturas en un archivo del disco. Menos escrituras, pero las carpetas de fotos y vídeos muestran las vistas previas más despacio."
         'L:chkTrim' = "TRIM — asegurarse de que esté activo"
         'H:chkTrim' = "Indica al SSD qué bloques ya no se usan, para que siga siendo rápido con el tiempo. En Windows ya viene activo: esta opción lo reactiva si alguien lo desactivó."
+        'M:catBulkReady' = "Valores listos para {0} opciones: pulsa «Aplicar cambios»."
     }
     de = @{
         'L:lblSubtitle' = "Windows-Optimierung und -Steuerung — PcFixPro Italia"
@@ -5776,11 +5836,10 @@ $script:Tr = @{
         'L:chkLogonBlur' = "Unschärfe bei der Anmeldung — deaktivieren"
         'L:chkBSODVerbose' = "Ausführlicher Bluescreen"
         'L:chkLogonVerbose' = "Ausführliche Anmeldemeldungen"
-        'L:chkApplyNetwork' = "Netzwerkeinstellungen beim Klick auf «Anwenden» übernehmen"
-        'L:lblNetHint' = "Ohne dieses Kästchen dient die Seite Netzwerk nur zur Information und nichts wird geändert."
+        'L:lblNetHint' = "Wähle ein Profil oder ändere einzelne Werte: Sie werden mit «Änderungen übernehmen» angewendet."
         'L:btnFlushDns' = "DNS-Cache leeren"
         'L:ttlTcpProfile' = "TCP-PROFIL"
-        'L:radTcpOptimal' = "Optimal (Spiele)"
+        'L:radTcpOptimal' = "Optimal"
         'L:radTcpDefault' = "Windows-Standard"
         'L:radTcpCurrent' = "Aktuelles Profil"
         'L:radTcpCustom' = "Benutzerdefiniert"
@@ -5987,7 +6046,6 @@ $script:Tr = @{
         'H:chkLogonBlur' = "Entfernt die Unschärfe vom Anmeldehintergrund. Schärferes Bild und etwas schnellere Anmeldung."
         'H:chkBSODVerbose' = "Der Bluescreen zeigt die Fehlerdetails. Die Ursache eines Absturzes ist leichter zu finden."
         'H:chkLogonVerbose' = "Beim Starten und Herunterfahren siehst du, was Windows gerade tut. Hilft, Bremsen zu finden."
-        'H:chkApplyNetwork' = "Übernimmt die Einstellungen der Seite Netzwerk. Ohne dieses Kästchen dient die Seite nur zur Information."
         'H:chkApplyDns' = "Nutzt die im Menü gewählten DNS-Server. Seiten laden schneller und bei manchen Anbietern gibt es weniger Werbung."
         'H:chkNetPowerSave' = "Die Netzwerkkarte geht nicht mehr in den Energiesparmodus. Stabilere Verbindung und gleichmäßigerer Ping."
         'H:chkDisableIPv6' = "Schaltet IPv6 ab. Nur sinnvoll, wenn dein Anbieter es nicht nutzt und du Verbindungsprobleme hast."
@@ -6144,7 +6202,7 @@ $script:Tr = @{
         'L:chkAmdDma' = "DMA-Kopien und Blockschreiben"
         'L:chkAmdPreempt' = "Compute-Preemption aus"
         'L:ttlPowerAdv' = "EINSTELLUNGEN DES AKTIVEN PLANS"
-        'L:lblPowerAdvHint' = "Sie ändern den aktiven Plan sofort, am Netz und im Akkubetrieb: Anwenden ist nicht nötig. Wenn du einen anderen Plan aktivierst, gelten dessen Einstellungen."
+        'L:lblPowerAdvHint' = "Sie gelten für den aktiven Energiesparplan, am Netz und im Akkubetrieb, und werden mit «Änderungen übernehmen» angewendet. Bei einem anderen Plan gelten dessen Einstellungen."
         'L:radAppsCatalog' = "Katalog"
         'L:radAppsInstalled' = "Installiert"
         'L:lblAppSearchHint' = "Suchen..."
@@ -6556,6 +6614,7 @@ $script:Tr = @{
         'H:chkThumbCache' = "Windows speichert Miniaturansichten nicht mehr in einer Datei auf dem Laufwerk. Weniger Schreibvorgänge, aber Ordner mit Fotos und Videos zeigen Vorschauen langsamer an."
         'L:chkTrim' = "TRIM — sicherstellen, dass es aktiv ist"
         'H:chkTrim' = "Teilt der SSD mit, welche Blöcke nicht mehr benötigt werden, damit sie dauerhaft schnell bleibt. Unter Windows ist es standardmäßig aktiv: Diese Option schaltet es wieder ein, falls es jemand ausgeschaltet hat."
+        'M:catBulkReady' = "Werte für {0} Einträge bereit: «Änderungen übernehmen» drücken."
     }
     fr = @{
         'L:lblSubtitle' = "Optimisation et contrôle de Windows — PcFixPro Italia"
@@ -6698,11 +6757,10 @@ $script:Tr = @{
         'L:chkLogonBlur' = "Flou à la connexion — désactiver"
         'L:chkBSODVerbose' = "Écran bleu détaillé"
         'L:chkLogonVerbose' = "Messages de connexion détaillés"
-        'L:chkApplyNetwork' = "Appliquer les réglages réseau en cliquant sur « Appliquer »"
-        'L:lblNetHint' = "Sans cette case, l'onglet Réseau reste informatif et rien n'est modifié."
+        'L:lblNetHint' = "Choisissez un profil ou modifiez des valeurs : elles s’appliquent avec «Appliquer les modifications»."
         'L:btnFlushDns' = "Vider le cache DNS"
         'L:ttlTcpProfile' = "PROFIL TCP"
-        'L:radTcpOptimal' = "Optimal (jeux)"
+        'L:radTcpOptimal' = "Optimal"
         'L:radTcpDefault' = "Par défaut de Windows"
         'L:radTcpCurrent' = "Profil actuel"
         'L:radTcpCustom' = "Personnalisé"
@@ -6912,7 +6970,6 @@ $script:Tr = @{
         'H:chkLogonBlur' = "Retire le flou du fond de connexion. Image plus nette et connexion un peu plus rapide."
         'H:chkBSODVerbose' = "L'écran bleu affiche les détails de l'erreur. Plus facile de trouver la cause d'un plantage."
         'H:chkLogonVerbose' = "Au démarrage et à l'arrêt, vous voyez ce que fait Windows. Aide à trouver ce qui le ralentit."
-        'H:chkApplyNetwork' = "Applique les réglages de la page Réseau. Sans cette case, la page reste informative."
         'H:chkApplyDns' = "Utilise les serveurs DNS choisis dans le menu. Pages plus rapides à s'ouvrir et, avec certains services, moins de publicité."
         'H:chkNetPowerSave' = "La carte réseau ne passe plus en économie d'énergie. Connexion plus stable et ping plus régulier."
         'H:chkDisableIPv6' = "Coupe IPv6. Utile seulement si votre fournisseur ne l'utilise pas et que vous avez des problèmes de connexion."
@@ -7069,7 +7126,7 @@ $script:Tr = @{
         'L:chkAmdDma' = "Copies DMA et écriture par blocs"
         'L:chkAmdPreempt' = "Préemption de calcul désactivée"
         'L:ttlPowerAdv' = "PARAMÈTRES DU MODE UTILISÉ"
-        'L:lblPowerAdvHint' = "Ils modifient tout de suite le mode actif, sur secteur comme sur batterie : inutile d'appuyer sur Appliquer. Si vous activez un autre mode, ce sont ses propres paramètres qui comptent."
+        'L:lblPowerAdvHint' = "Ils valent pour le mode actif, sur secteur comme sur batterie, et s’appliquent avec «Appliquer les modifications». Si vous changez de mode, ce sont ses réglages qui comptent."
         'L:radAppsCatalog' = "Catalogue"
         'L:radAppsInstalled' = "Installées"
         'L:lblAppSearchHint' = "Rechercher..."
@@ -7481,6 +7538,7 @@ $script:Tr = @{
         'H:chkThumbCache' = "Windows n'enregistre plus les miniatures dans un fichier sur le disque. Moins d'écritures, mais les dossiers de photos et de vidéos affichent les aperçus plus lentement."
         'L:chkTrim' = "TRIM — s'assurer qu'il est actif"
         'H:chkTrim' = "Indique au SSD quels blocs ne servent plus, pour qu'il reste rapide dans le temps. Il est actif par défaut sous Windows : cette option le réactive si quelqu'un l'a désactivé."
+        'M:catBulkReady' = "Valeurs prêtes pour {0} éléments : appuyez sur «Appliquer les modifications»."
     }
     pl = @{
         'L:lblSubtitle' = "Optymalizacja i kontrola systemu Windows — PcFixPro Italia"
@@ -7623,11 +7681,10 @@ $script:Tr = @{
         'L:chkLogonBlur' = "Rozmycie przy logowaniu — wyłącz"
         'L:chkBSODVerbose' = "Szczegółowy niebieski ekran"
         'L:chkLogonVerbose' = "Szczegółowe komunikaty logowania"
-        'L:chkApplyNetwork' = "Stosuj ustawienia sieci po kliknięciu «Zastosuj»"
-        'L:lblNetHint' = "Bez tego pola karta Sieć jest tylko informacyjna i nic nie zostaje zmienione."
+        'L:lblNetHint' = "Wybierz profil lub zmień pojedyncze wartości: zostaną zastosowane przyciskiem «Zastosuj zmiany»."
         'L:btnFlushDns' = "Wyczyść pamięć DNS"
         'L:ttlTcpProfile' = "PROFIL TCP"
-        'L:radTcpOptimal' = "Optymalny (gry)"
+        'L:radTcpOptimal' = "Optymalny"
         'L:radTcpDefault' = "Domyślny Windows"
         'L:radTcpCurrent' = "Bieżący profil"
         'L:radTcpCustom' = "Własny"
@@ -7834,7 +7891,6 @@ $script:Tr = @{
         'H:chkLogonBlur' = "Usuwa rozmycie tła logowania. Ostrzejszy obraz i nieco szybsze logowanie."
         'H:chkBSODVerbose' = "Niebieski ekran pokazuje szczegóły błędu. Łatwiej ustalić przyczynę awarii."
         'H:chkLogonVerbose' = "Przy starcie i zamykaniu widzisz, co robi Windows. Pomaga znaleźć, co go spowalnia."
-        'H:chkApplyNetwork' = "Stosuje ustawienia ze strony Sieć. Bez tego pola strona jest tylko informacyjna."
         'H:chkApplyDns' = "Używa serwerów DNS wybranych w menu. Strony otwierają się szybciej, a z niektórymi usługami jest mniej reklam."
         'H:chkNetPowerSave' = "Karta sieciowa nie przechodzi w oszczędzanie energii. Stabilniejsze połączenie i równiejszy ping."
         'H:chkDisableIPv6' = "Wyłącza IPv6. Przydatne tylko, jeśli dostawca go nie używa, a masz problemy z połączeniem."
@@ -7991,7 +8047,7 @@ $script:Tr = @{
         'L:chkAmdDma' = "Kopie DMA i zapis blokowy"
         'L:chkAmdPreempt' = "Wywłaszczanie obliczeń wyłączone"
         'L:ttlPowerAdv' = "USTAWIENIA UŻYWANEGO PLANU"
-        'L:lblPowerAdvHint' = "Zmieniają aktywny plan od razu, na zasilaczu i na baterii: nie trzeba naciskać Zastosuj. Po włączeniu innego planu obowiązują jego ustawienia."
+        'L:lblPowerAdvHint' = "Dotyczą aktywnego planu, na zasilaczu i na baterii, i są stosowane przyciskiem «Zastosuj zmiany». Po zmianie planu obowiązują jego ustawienia."
         'L:radAppsCatalog' = "Katalog"
         'L:radAppsInstalled' = "Zainstalowane"
         'L:lblAppSearchHint' = "Szukaj..."
@@ -8403,6 +8459,7 @@ $script:Tr = @{
         'H:chkThumbCache' = "Windows nie zapisuje już miniatur w pliku na dysku. Mniej zapisów, ale foldery ze zdjęciami i filmami wyświetlają podglądy wolniej."
         'L:chkTrim' = "TRIM — upewnij się, że jest włączony"
         'H:chkTrim' = "Informuje dysk SSD, które bloki nie są już używane, dzięki czemu z czasem pozostaje szybki. W Windows jest domyślnie włączony: ta opcja włącza go ponownie, jeśli ktoś go wyłączył."
+        'M:catBulkReady' = "Wartości gotowe dla {0} pozycji: naciśnij «Zastosuj zmiany»."
     }
     pt = @{
         'L:lblSubtitle' = "Otimização e controle do Windows — PcFixPro Italia"
@@ -8545,11 +8602,10 @@ $script:Tr = @{
         'L:chkLogonBlur' = "Desfoque na entrada — desativar"
         'L:chkBSODVerbose' = "Tela azul detalhada"
         'L:chkLogonVerbose' = "Mensagens detalhadas de entrada"
-        'L:chkApplyNetwork' = "Aplicar as configurações de rede ao clicar em «Aplicar»"
-        'L:lblNetHint' = "Sem esta caixa a aba Rede é só informativa e nada é alterado."
+        'L:lblNetHint' = "Escolha um perfil ou altere valores: são aplicados com «Aplicar alterações»."
         'L:btnFlushDns' = "Limpar cache DNS"
         'L:ttlTcpProfile' = "PERFIL TCP"
-        'L:radTcpOptimal' = "Ideal (jogos)"
+        'L:radTcpOptimal' = "Ideal"
         'L:radTcpDefault' = "Padrão do Windows"
         'L:radTcpCurrent' = "Perfil atual"
         'L:radTcpCustom' = "Personalizado"
@@ -8756,7 +8812,6 @@ $script:Tr = @{
         'H:chkLogonBlur' = "Remove o desfoque do fundo de entrada. Imagem mais nítida e entrada um pouco mais rápida."
         'H:chkBSODVerbose' = "A tela azul mostra os detalhes do erro. Fica mais fácil entender a causa de um travamento."
         'H:chkLogonVerbose' = "Ao ligar e desligar você vê o que o Windows está fazendo. Ajuda a descobrir o que o deixa lento."
-        'H:chkApplyNetwork' = "Aplica as configurações da página Rede. Sem esta caixa a página é só informativa."
         'H:chkApplyDns' = "Usa os servidores DNS escolhidos no menu. Páginas abrem mais rápido e, com alguns serviços, há menos anúncios."
         'H:chkNetPowerSave' = "A placa de rede não entra mais em economia de energia. Conexão mais estável e ping mais regular."
         'H:chkDisableIPv6' = "Desliga o IPv6. Útil só se o seu provedor não o usa e você tem problemas de conexão."
@@ -8913,7 +8968,7 @@ $script:Tr = @{
         'L:chkAmdDma' = "Cópias DMA e gravação em bloco"
         'L:chkAmdPreempt' = "Preempção de computação desativada"
         'L:ttlPowerAdv' = "CONFIGURAÇÕES DO PLANO EM USO"
-        'L:lblPowerAdvHint' = "Mudam o plano ativo na hora, na tomada e na bateria: não é preciso clicar em Aplicar. Se você ativar outro plano, valem as configurações dele."
+        'L:lblPowerAdvHint' = "Valem para o plano ativo, na tomada e na bateria, e são aplicadas com «Aplicar alterações». Se ativar outro plano, valem as configurações dele."
         'L:radAppsCatalog' = "Catálogo"
         'L:radAppsInstalled' = "Instalados"
         'L:lblAppSearchHint' = "Pesquisar..."
@@ -9325,6 +9380,7 @@ $script:Tr = @{
         'H:chkThumbCache' = "O Windows deixa de guardar as miniaturas em um arquivo no disco. Menos gravações, mas as pastas de fotos e vídeos mostram as prévias mais devagar."
         'L:chkTrim' = "TRIM — garantir que esteja ativo"
         'H:chkTrim' = "Informa ao SSD quais blocos não são mais usados, para que continue rápido com o tempo. No Windows já vem ativo: este item o reativa se alguém o desligou."
+        'M:catBulkReady' = "Valores prontos para {0} itens: pressione «Aplicar alterações»."
     }
     ro = @{
         'L:lblSubtitle' = "Optimizarea și controlul Windows — PcFixPro Italia"
@@ -9467,11 +9523,10 @@ $script:Tr = @{
         'L:chkLogonBlur' = "Estompare la conectare — dezactivează"
         'L:chkBSODVerbose' = "Ecran albastru detaliat"
         'L:chkLogonVerbose' = "Mesaje de conectare detaliate"
-        'L:chkApplyNetwork' = "Aplică setările de rețea la clic pe «Aplică»"
-        'L:lblNetHint' = "Fără această casetă, fila Rețea e doar informativă și nu se schimbă nimic."
+        'L:lblNetHint' = "Alege un profil sau schimbă valorile: se aplică cu «Aplică modificările»."
         'L:btnFlushDns' = "Golește cache-ul DNS"
         'L:ttlTcpProfile' = "PROFIL TCP"
-        'L:radTcpOptimal' = "Optim (jocuri)"
+        'L:radTcpOptimal' = "Optim"
         'L:radTcpDefault' = "Implicit Windows"
         'L:radTcpCurrent' = "Profil actual"
         'L:radTcpCustom' = "Personalizat"
@@ -9678,7 +9733,6 @@ $script:Tr = @{
         'H:chkLogonBlur' = "Elimină estomparea fundalului de conectare. Imagine mai clară și conectare puțin mai rapidă."
         'H:chkBSODVerbose' = "Ecranul albastru arată detaliile erorii. E mai ușor de aflat cauza unui blocaj."
         'H:chkLogonVerbose' = "La pornire și oprire vezi ce face Windows. Ajută să afli ce îl încetinește."
-        'H:chkApplyNetwork' = "Aplică setările din pagina Rețea. Fără această casetă pagina e doar informativă."
         'H:chkApplyDns' = "Folosește serverele DNS alese în meniu. Paginile se deschid mai repede și, cu unele servicii, apar mai puține reclame."
         'H:chkNetPowerSave' = "Placa de rețea nu mai intră în economie de energie. Conexiune mai stabilă și ping mai constant."
         'H:chkDisableIPv6' = "Oprește IPv6. Util doar dacă furnizorul nu îl folosește și ai probleme de conexiune."
@@ -9835,7 +9889,7 @@ $script:Tr = @{
         'L:chkAmdDma' = "Copii DMA și scriere în bloc"
         'L:chkAmdPreempt' = "Preempțiune calcul dezactivată"
         'L:ttlPowerAdv' = "SETĂRILE PLANULUI FOLOSIT"
-        'L:lblPowerAdvHint' = "Schimbă imediat planul activ, la priză și pe baterie: nu trebuie apăsat Aplică. Dacă activezi alt plan, se folosesc setările acelui plan."
+        'L:lblPowerAdvHint' = "Se aplică planului activ, la priză și pe baterie, cu «Aplică modificările». Dacă activezi alt plan, contează setările acestuia."
         'L:radAppsCatalog' = "Catalog"
         'L:radAppsInstalled' = "Instalate"
         'L:lblAppSearchHint' = "Caută..."
@@ -10247,6 +10301,7 @@ $script:Tr = @{
         'H:chkThumbCache' = "Windows nu mai salvează miniaturile într-un fișier pe disc. Mai puține scrieri, dar folderele cu fotografii și videoclipuri afișează previzualizările mai lent."
         'L:chkTrim' = "TRIM — asigură-te că este activ"
         'H:chkTrim' = "Spune SSD-ului ce blocuri nu mai sunt folosite, ca să rămână rapid în timp. În Windows este activ implicit: această opțiune îl repornește dacă cineva l-a oprit."
+        'M:catBulkReady' = "Valori pregătite pentru {0} elemente: apasă «Aplică modificările»."
     }
     ru = @{
         'L:lblSubtitle' = "Оптимизация и управление Windows — PcFixPro Italia"
@@ -10389,11 +10444,10 @@ $script:Tr = @{
         'L:chkLogonBlur' = "Размытие при входе — отключить"
         'L:chkBSODVerbose' = "Подробный синий экран"
         'L:chkLogonVerbose' = "Подробные сообщения при входе"
-        'L:chkApplyNetwork' = "Применять сетевые настройки по кнопке «Применить»"
-        'L:lblNetHint' = "Без этой галочки вкладка «Сеть» только информирует, ничего не меняется."
+        'L:lblNetHint' = "Выберите профиль или измените значения: они применяются кнопкой «Применить изменения»."
         'L:btnFlushDns' = "Очистить кэш DNS"
         'L:ttlTcpProfile' = "ПРОФИЛЬ TCP"
-        'L:radTcpOptimal' = "Оптимальный (игры)"
+        'L:radTcpOptimal' = "Оптимальный"
         'L:radTcpDefault' = "По умолчанию Windows"
         'L:radTcpCurrent' = "Текущий профиль"
         'L:radTcpCustom' = "Свой"
@@ -10600,7 +10654,6 @@ $script:Tr = @{
         'H:chkLogonBlur' = "Убирает размытие фона при входе. Картинка чётче, вход чуть быстрее."
         'H:chkBSODVerbose' = "Синий экран показывает подробности ошибки. Проще понять причину сбоя."
         'H:chkLogonVerbose' = "При загрузке и выключении видно, чем занята Windows. Помогает найти, что её тормозит."
-        'H:chkApplyNetwork' = "Применяет настройки со страницы «Сеть». Без этой галочки страница только информирует."
         'H:chkApplyDns' = "Использует DNS-серверы, выбранные в меню. Страницы открываются быстрее, а с некоторыми сервисами рекламы меньше."
         'H:chkNetPowerSave' = "Сетевая карта больше не уходит в энергосбережение. Соединение стабильнее, пинг ровнее."
         'H:chkDisableIPv6' = "Отключает IPv6. Полезно, только если провайдер его не использует и есть проблемы с подключением."
@@ -10757,7 +10810,7 @@ $script:Tr = @{
         'L:chkAmdDma' = "Копирование DMA и блочная запись"
         'L:chkAmdPreempt' = "Вытеснение вычислений выключено"
         'L:ttlPowerAdv' = "НАСТРОЙКИ ТЕКУЩЕЙ СХЕМЫ"
-        'L:lblPowerAdvHint' = "Сразу меняют активную схему — от сети и от батареи: нажимать «Применить» не нужно. Если включить другую схему, действуют её собственные настройки."
+        'L:lblPowerAdvHint' = "Действуют для активной схемы, от сети и от батареи, и применяются кнопкой «Применить изменения». При смене схемы действуют её настройки."
         'L:radAppsCatalog' = "Каталог"
         'L:radAppsInstalled' = "Установленные"
         'L:lblAppSearchHint' = "Поиск..."
@@ -11169,6 +11222,7 @@ $script:Tr = @{
         'H:chkThumbCache' = "Windows больше не сохраняет эскизы в файл на диске. Меньше записей, но папки с фото и видео показывают превью медленнее."
         'L:chkTrim' = "TRIM — убедиться, что он включён"
         'H:chkTrim' = "Сообщает SSD, какие блоки больше не используются, чтобы он оставался быстрым со временем. В Windows он включён по умолчанию: этот пункт включает его снова, если кто-то отключил."
+        'M:catBulkReady' = "Значения готовы для {0} пунктов: нажмите «Применить изменения»."
     }
 }
 
@@ -11204,7 +11258,7 @@ $script:Catalog = @(
     @{ Id = 'exp.persist'; Page = 'exp'; Group = 'gen'; Kind = 'T'; Flags = ''; Def = '0'; Rec = '-'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced', 'PersistBrowsers', 'D', '1', '0,-')) },
     @{ Id = 'exp.checkSel'; Page = 'exp'; Group = 'gen'; Kind = 'T'; Flags = ''; Def = '0'; Rec = '-'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced', 'AutoCheckSelect', 'D', '1', '0,-')) },
     @{ Id = 'exp.menus'; Page = 'exp'; Group = 'gen'; Kind = 'T'; Flags = ''; Def = '0'; Rec = '-'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced', 'AlwaysShowMenus', 'D', '1', '0,-')) },
-    @{ Id = 'exp.compact'; Page = 'exp'; Group = 'gen'; Kind = 'T'; Flags = ''; Def = '0'; Rec = '-'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced', 'UseCompactMode', 'D', '1', '0,-')) },
+    @{ Id = 'exp.compact'; Page = 'exp'; Group = 'gen'; Kind = 'T'; Flags = ''; Def = '0'; Rec = '1'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced', 'UseCompactMode', 'D', '1', '0,-')) },
     @{ Id = 'exp.fullPath'; Page = 'exp'; Group = 'gen'; Kind = 'T'; Flags = ''; Def = '0'; Rec = '1'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\CabinetState', 'FullPath', 'D', '1', '0,-')) },
     @{ Id = 'exp.statusBar'; Page = 'exp'; Group = 'gen'; Kind = 'T'; Flags = ''; Def = '1'; Rec = '1'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced', 'ShowStatusBar', 'D', '1,-', '0')) },
     @{ Id = 'exp.infoTip'; Page = 'exp'; Group = 'gen'; Kind = 'T'; Flags = ''; Def = '1'; Rec = '1'; Ops = @(,@('HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced', 'ShowInfoTip', 'D', '1,-', '0')) },
@@ -11485,7 +11539,7 @@ $script:Catalog = @(
     @{ Id = 'pv.chatIcon'; Page = 'priv'; Group = 'mBar'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(,@('HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Chat', 'ChatIcon', 'D', '3', '-')) },
     @{ Id = 'pv.credSync'; Page = 'priv'; Group = 'mSync'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'y'; Ops = @(@('HKLM\SOFTWARE\Policies\Microsoft\Windows\SettingSync', 'DisableCredentialsSettingSync', 'D', '2', '-'), @('HKLM\SOFTWARE\Policies\Microsoft\Windows\SettingSync', 'DisableCredentialsSettingSyncUserOverride', 'D', '1', '-')) },
     @{ Id = 'pv.allSync'; Page = 'priv'; Group = 'mSync'; Kind = 'T'; Flags = 'M'; Def = '0'; Rec = 'l'; Ops = @(@('HKLM\SOFTWARE\Policies\Microsoft\Windows\SettingSync', 'DisableSettingSync', 'D', '2', '-'), @('HKLM\SOFTWARE\Policies\Microsoft\Windows\SettingSync', 'DisableSettingSyncUserOverride', 'D', '1', '-')) },
-    @{ Id = 'pw.cpuMin'; Page = 'power'; Group = 'cpu'; Kind = 'N'; Flags = ''; Def = '5'; Rec = '-'; Opts = @(@{ Key = '5'; Vals = @() }, @{ Key = '50'; Vals = @() }, @{ Key = '100'; Vals = @() }); Sub = '54533251-82be-4824-96c1-47b60b740d00'; Set = '893dee8e-2bef-41e0-89c6-b55d0929964c' },
+    @{ Id = 'pw.cpuMin'; Page = 'power'; Group = 'cpu'; Kind = 'N'; Flags = ''; Def = '5'; Rec = '100/5/100'; Opts = @(@{ Key = '5'; Vals = @() }, @{ Key = '50'; Vals = @() }, @{ Key = '100'; Vals = @() }); Sub = '54533251-82be-4824-96c1-47b60b740d00'; Set = '893dee8e-2bef-41e0-89c6-b55d0929964c' },
     @{ Id = 'pw.cpuMax'; Page = 'power'; Group = 'cpu'; Kind = 'N'; Flags = ''; Def = '100'; Rec = '100'; Opts = @(@{ Key = '99'; Vals = @() }, @{ Key = '100'; Vals = @() }); Sub = '54533251-82be-4824-96c1-47b60b740d00'; Set = 'bc5038f7-23e0-4960-96da-33abaf5935ec' },
     @{ Id = 'pw.boost'; Page = 'power'; Group = 'cpu'; Kind = 'N'; Flags = ''; Def = '2'; Rec = '2'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '1'; Vals = @() }, @{ Key = '2'; Vals = @() }, @{ Key = '3'; Vals = @() }, @{ Key = '4'; Vals = @() }); Sub = '54533251-82be-4824-96c1-47b60b740d00'; Set = 'be337238-0d82-4146-a960-4f3749d470c7' },
     @{ Id = 'pw.epp'; Page = 'power'; Group = 'cpu'; Kind = 'N'; Flags = ''; Def = '50'; Rec = '0'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '25'; Vals = @() }, @{ Key = '50'; Vals = @() }, @{ Key = '80'; Vals = @() }); Sub = '54533251-82be-4824-96c1-47b60b740d00'; Set = '36687f9e-e3a5-4dbf-b1dc-15eb381c6863' },
@@ -11498,13 +11552,13 @@ $script:Catalog = @(
     @{ Id = 'pw.wifi'; Page = 'power'; Group = 'dev'; Kind = 'N'; Flags = ''; Def = '0'; Rec = '0'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '1'; Vals = @() }, @{ Key = '2'; Vals = @() }, @{ Key = '3'; Vals = @() }); Sub = '19cbb8fa-5279-450e-9fac-8a3d5fedd0c1'; Set = '12bbebe6-58d6-4636-95bb-3217ef867c1a' },
     @{ Id = 'pw.disk'; Page = 'power'; Group = 'dev'; Kind = 'N'; Flags = ''; Def = '1200'; Rec = '0'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '300'; Vals = @() }, @{ Key = '1200'; Vals = @() }, @{ Key = '3600'; Vals = @() }); Sub = '0012ee47-9041-4b5d-9b77-535fba8b1442'; Set = '6738e2c4-e8a5-4a42-b16a-e040e769756e' },
     @{ Id = 'pw.sata'; Page = 'power'; Group = 'dev'; Kind = 'N'; Flags = ''; Def = '1'; Rec = '0'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '1'; Vals = @() }, @{ Key = '2'; Vals = @() }, @{ Key = '3'; Vals = @() }, @{ Key = '4'; Vals = @() }); Sub = '0012ee47-9041-4b5d-9b77-535fba8b1442'; Set = '0b2d69d7-a2a1-449c-9680-f91c70521c60' },
-    @{ Id = 'pw.nvme1'; Page = 'power'; Group = 'dev'; Kind = 'N'; Flags = ''; Def = '200'; Rec = '-'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '100'; Vals = @() }, @{ Key = '200'; Vals = @() }, @{ Key = '1000'; Vals = @() }); Sub = '0012ee47-9041-4b5d-9b77-535fba8b1442'; Set = 'd639518a-e56d-4345-8af2-b9f32fb26109' },
-    @{ Id = 'pw.nvme2'; Page = 'power'; Group = 'dev'; Kind = 'N'; Flags = ''; Def = '2000'; Rec = '-'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '1000'; Vals = @() }, @{ Key = '2000'; Vals = @() }, @{ Key = '5000'; Vals = @() }); Sub = '0012ee47-9041-4b5d-9b77-535fba8b1442'; Set = 'd3d55efd-c1ff-424e-9dc3-441be7833010' },
-    @{ Id = 'pw.display'; Page = 'power'; Group = 'sleep'; Kind = 'N'; Flags = ''; Def = '600'; Rec = '-'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '300'; Vals = @() }, @{ Key = '600'; Vals = @() }, @{ Key = '900'; Vals = @() }, @{ Key = '1800'; Vals = @() }, @{ Key = '3600'; Vals = @() }); Sub = '7516b95f-f776-4464-8c53-06167f40cc99'; Set = '3c0bc021-c8a8-4e07-a973-6b14cbcb2b7e' },
-    @{ Id = 'pw.sleep'; Page = 'power'; Group = 'sleep'; Kind = 'N'; Flags = ''; Def = '1800'; Rec = '-'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '900'; Vals = @() }, @{ Key = '1800'; Vals = @() }, @{ Key = '3600'; Vals = @() }, @{ Key = '7200'; Vals = @() }); Sub = '238c9fa8-0aad-41ed-83f4-97be242c8f20'; Set = '29f6c1db-86da-48c5-9fdb-f2b67b1f44da' },
+    @{ Id = 'pw.nvme1'; Page = 'power'; Group = 'dev'; Kind = 'N'; Flags = ''; Def = '200'; Rec = '0/-/0'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '100'; Vals = @() }, @{ Key = '200'; Vals = @() }, @{ Key = '1000'; Vals = @() }); Sub = '0012ee47-9041-4b5d-9b77-535fba8b1442'; Set = 'd639518a-e56d-4345-8af2-b9f32fb26109' },
+    @{ Id = 'pw.nvme2'; Page = 'power'; Group = 'dev'; Kind = 'N'; Flags = ''; Def = '2000'; Rec = '0/-/0'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '1000'; Vals = @() }, @{ Key = '2000'; Vals = @() }, @{ Key = '5000'; Vals = @() }); Sub = '0012ee47-9041-4b5d-9b77-535fba8b1442'; Set = 'd3d55efd-c1ff-424e-9dc3-441be7833010' },
+    @{ Id = 'pw.display'; Page = 'power'; Group = 'sleep'; Kind = 'N'; Flags = ''; Def = '600'; Rec = '900'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '300'; Vals = @() }, @{ Key = '600'; Vals = @() }, @{ Key = '900'; Vals = @() }, @{ Key = '1800'; Vals = @() }, @{ Key = '3600'; Vals = @() }); Sub = '7516b95f-f776-4464-8c53-06167f40cc99'; Set = '3c0bc021-c8a8-4e07-a973-6b14cbcb2b7e' },
+    @{ Id = 'pw.sleep'; Page = 'power'; Group = 'sleep'; Kind = 'N'; Flags = ''; Def = '1800'; Rec = '0/1800/0'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '900'; Vals = @() }, @{ Key = '1800'; Vals = @() }, @{ Key = '3600'; Vals = @() }, @{ Key = '7200'; Vals = @() }); Sub = '238c9fa8-0aad-41ed-83f4-97be242c8f20'; Set = '29f6c1db-86da-48c5-9fdb-f2b67b1f44da' },
     @{ Id = 'pw.hibAfter'; Page = 'power'; Group = 'sleep'; Kind = 'N'; Flags = ''; Def = '0'; Rec = '-'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '3600'; Vals = @() }, @{ Key = '10800'; Vals = @() }, @{ Key = '21600'; Vals = @() }); Sub = '238c9fa8-0aad-41ed-83f4-97be242c8f20'; Set = '9d7815a6-7ee4-497e-8888-515a05f02364' },
     @{ Id = 'pw.hybrid'; Page = 'power'; Group = 'sleep'; Kind = 'N'; Flags = ''; Def = '1'; Rec = '-'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '1'; Vals = @() }); Sub = '238c9fa8-0aad-41ed-83f4-97be242c8f20'; Set = '94ac6d29-73ce-41a6-809f-6363ba21b47e' },
-    @{ Id = 'pw.wake'; Page = 'power'; Group = 'sleep'; Kind = 'N'; Flags = ''; Def = '1'; Rec = '2'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '1'; Vals = @() }, @{ Key = '2'; Vals = @() }); Sub = '238c9fa8-0aad-41ed-83f4-97be242c8f20'; Set = 'bd3b718a-0680-4d9d-8ab2-e1d2b4ac806d' },
+    @{ Id = 'pw.wake'; Page = 'power'; Group = 'sleep'; Kind = 'N'; Flags = ''; Def = '1'; Rec = '0'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '1'; Vals = @() }, @{ Key = '2'; Vals = @() }); Sub = '238c9fa8-0aad-41ed-83f4-97be242c8f20'; Set = 'bd3b718a-0680-4d9d-8ab2-e1d2b4ac806d' },
     @{ Id = 'pw.powerBtn'; Page = 'power'; Group = 'buttons'; Kind = 'N'; Flags = ''; Def = '3'; Rec = '-'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '1'; Vals = @() }, @{ Key = '2'; Vals = @() }, @{ Key = '3'; Vals = @() }, @{ Key = '4'; Vals = @() }); Sub = '4f971e89-eebd-4455-a8de-9e59040e7347'; Set = '7648efa3-dd9c-4e3e-b566-50f929386280' },
     @{ Id = 'pw.lid'; Page = 'power'; Group = 'buttons'; Kind = 'N'; Flags = ''; Def = '1'; Rec = '-'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '1'; Vals = @() }, @{ Key = '2'; Vals = @() }, @{ Key = '3'; Vals = @() }); Sub = '4f971e89-eebd-4455-a8de-9e59040e7347'; Set = '5ca83367-6e45-459f-a27b-476b1d01c936' },
     @{ Id = 'pw.videoBias'; Page = 'power'; Group = 'media'; Kind = 'N'; Flags = ''; Def = '1'; Rec = '1'; Opts = @(@{ Key = '0'; Vals = @() }, @{ Key = '1'; Vals = @() }); Sub = '9596fb26-9850-41fd-ac3e-f7c3c00afd4b'; Set = '10778347-1370-4ee0-8bbd-33bdacaade49' },
@@ -13059,7 +13113,7 @@ function Build-Actions {
         Add-Action ([string]$chkMenuHibernate.Content) ([scriptblock]::Create("Set-MenuHibernate `$$($chkMenuHibernate.IsChecked -eq $true)"))
     }
 
-    if ($chkApplyNetwork.IsChecked -eq $true -and $radTcpCurrent.IsChecked -ne $true) {
+    if (Test-NetPending) {
         Add-Action "TCP / IP" {
             $tcpParams = "HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters"
             netsh int tcp set global autotuninglevel=$([string]$cmbTcpAutoTuning.Text) | Out-Null
@@ -13641,6 +13695,13 @@ function Build-Actions {
                         '\Microsoft\Windows\Windows Defender\Windows Defender Cache Maintenance') 'Scansioni pianificate di Defender'
         Write-Log "[INFO] La protezione in tempo reale resta attiva: la disattiva solo l'utente da Sicurezza di Windows."
     }
+
+    # Voci del catalogo scelte e non ancora applicate.
+    foreach ($id in @($script:CatWant.Keys)) {
+        $v = $script:CatWant[$id]
+        $lit = if ($v -is [bool]) { if ($v) { '$true' } else { '$false' } } else { "'" + ([string]$v -replace "'", "''") + "'" }
+        Add-Action (Get-CatText $id) ([scriptblock]::Create("[void](Set-CatState `$script:CatById['$id'] $lit)"))
+    }
 }
 
 # ------------------------------------------------------------------------------
@@ -14109,7 +14170,9 @@ function Build-UndoActions {
         Write-Log "[OK] Risparmio energetico delle schede di rete su valore predefinito."
     }
     Add-UndoIfChecked $chkDisableIPv6 { Reset-Reg 'HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip6\Parameters' 'DisabledComponents' }
-    Add-UndoIfChecked $chkApplyNetwork {
+    # Rete: con «Ripristina selezionati» se il profilo e' stato cambiato, sempre
+    # con il ripristino totale.
+    if ($script:UndoMode -eq 'all' -or ($script:UndoMode -eq 'page' -and (Test-NetPending))) { Add-Action "$(T 'undoPrefix') TCP / IP" {
         netsh int tcp set global autotuninglevel=normal | Out-Null
         netsh int tcp set global rss=enabled | Out-Null
         netsh int tcp set global rsc=enabled | Out-Null
@@ -14140,7 +14203,7 @@ function Build-UndoActions {
         netsh int tcp set supplemental template=internet minrto=300 | Out-Null
         Reset-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\Psched' 'NonBestEffortLimit'
         Reset-Reg 'HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\QoS' 'Do not use NLA'
-    }
+    } }
     Add-UndoIfChecked $chkApplyDns {
         foreach ($adapter in (Get-NetAdapter -ErrorAction SilentlyContinue | Where-Object { $_.Status -eq 'Up' })) {
             Set-DnsClientServerAddress -InterfaceAlias $adapter.Name -ResetServerAddresses -ErrorAction SilentlyContinue
@@ -14391,7 +14454,9 @@ function Invoke-ActionQueue {
     Update-ApplyButton
     # Lo stato «Attivo» delle voci cambia dopo ogni giro: gli interruttori lo seguono.
     if (Get-Command Update-ActiveBadges -ErrorAction SilentlyContinue) { Update-ActiveBadges | Out-Null; Sync-ChecksToSystem -All }
-    foreach ($r in @($script:CatRows)) { Update-CatRow $r }
+    Clear-CatWant -Reread
+    Update-CatExplorerHint
+    Reset-TcpToSystem
 }
 
 # «Ripristina selezionati»: le voci cambiate dall'utente, in qualunque pagina
@@ -14399,6 +14464,14 @@ function Invoke-ActionQueue {
 $btnUndo.Add_Click({
     $script:UndoMode = 'page'
     try { Build-UndoActions } finally { $script:UndoMode = 'checked' }
+    # Voci del catalogo cambiate: tornano al valore di Windows.
+    foreach ($id in @($script:CatWant.Keys)) {
+        $it = $script:CatById[$id]
+        $def = Get-CatDefTarget $it
+        if ($null -eq $def -or -not (Test-CatOption $it $def)) { continue }
+        $lit = if ($def -is [bool]) { if ($def) { '$true' } else { '$false' } } else { "'" + ([string]$def -replace "'", "''") + "'" }
+        Add-Action ("$(T 'undoPrefix') " + (Get-CatText $id)) ([scriptblock]::Create("[void](Set-CatState `$script:CatById['$id'] $lit)"))
+    }
     $total = $script:Actions.Count
     if ($total -eq 0) {
         $txtProgressLabel.Text = T 'undoPageNone'
@@ -15826,6 +15899,10 @@ foreach ($it in $script:Catalog) { $script:CatById[$it.Id] = $it }
 $script:CatRows = New-Object System.Collections.ArrayList
 $script:CatBuilt = @{}
 $script:CatLoading = $false
+# Valori scelti e non ancora applicati (id -> valore) e stato letto dal sistema.
+# Le voci si applicano tutte insieme con «Applica modifiche», come nelle altre pagine.
+$script:CatWant = @{}
+$script:CatNow = @{}
 $script:CatScope = 'U'
 
 function Get-CatText([string]$key) {
@@ -16098,10 +16175,14 @@ function Set-CatTooltip($el, $it, $page) {
     [System.Windows.Controls.ToolTipService]::SetShowDuration($el, 30000)
 }
 
-function Update-CatRow($row) {
+function Update-CatRow($row, [switch]$Cached) {
     $script:CatLoading = $true
     try {
-        $state = Get-CatState $row.Item
+        $id = $row.Item.Id
+        if ($Cached -and $script:CatNow.ContainsKey($id)) { $state = $script:CatNow[$id] }
+        else { $state = Get-CatState $row.Item; $script:CatNow[$id] = $state }
+        # L'interruttore mostra il valore scelto, se c'e', altrimenti quello del sistema.
+        if ($null -ne $state -and $script:CatWant.ContainsKey($id)) { $state = $script:CatWant[$id] }
         if ($row.Item.Kind -in @('T','J')) {
             if ($null -eq $state) { $row.Control.IsEnabled = $false; $row.Control.IsChecked = $false }
             else { $row.Control.IsChecked = [bool]$state }
@@ -16136,9 +16217,11 @@ function Update-CatRow($row) {
 # del catalogo vale lo stato di Windows appena installato.
 function Get-CatRecValue($it) {
     if ($it.Page -eq 'priv') {
-        $on = $it.Rec -in @('y', 'l')
-        $text = if ($it.Rec -eq 'l') { T 'recOnLimited' } elseif ($on) { T 'recOn' } else { T 'recOff' }
-        return @{ Target = $on; Text = $text }
+        # Le voci «con limitazioni» tolgono funzioni (Appunti, notifiche delle app,
+        # Trova il mio dispositivo): restano una scelta, senza sigillo.
+        if ($it.Rec -eq 'l') { return $null }
+        $on = $it.Rec -eq 'y'
+        return @{ Target = $on; Text = $(if ($on) { T 'recOn' } else { T 'recOff' }) }
     }
     $target = Get-CatRecTarget $it; $fromDef = $false
     if ($null -eq $target) { $target = Get-CatDefTarget $it; $fromDef = $true }
@@ -16205,11 +16288,8 @@ function New-CatRow($it, $page) {
         $ctl = $cb
         $handler = {
             if ($script:CatLoading) { return }
-            $item = $script:CatById[[string]$this.Tag]
-            [void](Set-CatState $item ($this.IsChecked -eq $true))
-            $r = $script:CatRows | Where-Object { $_.Control -eq $this } | Select-Object -First 1
-            if ($r) { Update-CatRow $r }
-            Update-CatExplorerHint
+            Set-CatWant $script:CatById[[string]$this.Tag] ($this.IsChecked -eq $true)
+            Update-ApplyButton
         }
         $cb.Add_Checked($handler); $cb.Add_Unchecked($handler)
         $rv = Get-CatRecValue $it
@@ -16272,11 +16352,10 @@ function New-CatRow($it, $page) {
             if ($script:CatLoading) { return }
             $sel = $this.SelectedItem
             if ($null -eq $sel -or [string]$sel.Tag -eq '_na' -or [string]$sel.Content -like "$(T 'catCustom')*") { return }
-            $item = $script:CatById[[string]$this.Tag]
-            [void](Set-CatState $item ([string]$sel.Tag))
+            Set-CatWant $script:CatById[[string]$this.Tag] ([string]$sel.Tag)
             $r = $script:CatRows | Where-Object { $_.Control -eq $this } | Select-Object -First 1
-            if ($r) { Update-CatRow $r }
-            Update-CatExplorerHint
+            if ($r -and $r.RecBtn) { $r.RecBtn.Tag = if ([string]$sel.Tag -eq $r.RecTarget) { 'match' } else { $null } }
+            Update-ApplyButton
         })
         $tb.Tag = 'label'
     }
@@ -16309,47 +16388,72 @@ function New-CatButton([string]$text, [string]$dot) {
     return $b
 }
 
-# Applica lo stesso stato a molte voci, con una sola conferma.
+# Porta molte voci allo stesso tipo di valore. Non applica nulla: le voci
+# diventano «da applicare» e partono con «Applica modifiche».
 function Invoke-CatBulk([string]$page, [scriptblock]$pick, [string]$question) {
-    # Prima si conta cosa cambierebbe: se e' gia' tutto a posto lo si dice, senza
-    # chiedere conferme per un giro che non farebbe nulla.
-    $todo = 0
-    foreach ($r in @($script:CatRows | Where-Object { $_.Item.Page -eq $page })) {
-        $target = & $pick $r.Item
-        if ($null -eq $target) { continue }
-        $now = Get-CatState $r.Item
-        if ($null -ne $now -and [string]$now -ne [string]$target) { $todo++ }
-    }
-    if ($todo -eq 0) {
-        $txtProgressLabel.Text = T 'catBulkNothing'
-        $txtProgressLabel.Foreground = New-CatBrush '#FF3DBE8B'
-        Write-Log "[INFO] $(T 'catBulkNothing')"
-        return
-    }
-    if (-not (Show-Dialog -Title (T 'catBulkTitle') -Message $question -Kind 'warn' -Detail ((T 'catBulkCount') -f $todo))) { return }
-    $script:OkCount = 0; $script:WarnCount = 0; $script:SkipCount = 0
-    $rows = @($script:CatRows | Where-Object { $_.Item.Page -eq $page })
+    $n = Set-CatTargets @($script:Catalog | Where-Object { $_.Page -eq $page }) $pick
+    $txtProgressLabel.Text = if ($n -eq 0) { T 'catBulkNothing' } else { (T 'catBulkReady') -f $n }
+}
+
+# Stato del sistema, letto una volta e poi tenuto in memoria fino al prossimo «Applica».
+function Get-CatNow($it) {
+    if (-not $script:CatNow.ContainsKey($it.Id)) { $script:CatNow[$it.Id] = Get-CatState $it }
+    return $script:CatNow[$it.Id]
+}
+
+# Valore voluto per una voce: se coincide con il sistema non resta nulla da fare.
+function Set-CatWant($it, $value) {
+    $now = Get-CatNow $it
+    if ($null -eq $now -or $null -eq $value -or [string]$now -eq [string]$value) { [void]$script:CatWant.Remove($it.Id) }
+    else { $script:CatWant[$it.Id] = $value }
+}
+
+function Test-CatOption($it, $value) {
+    if ($it.Kind -in @('T', 'J')) { return ($value -is [bool]) }
+    return [bool](@(Get-CatOptions $it) | Where-Object { [string]$_.Key -eq [string]$value })
+}
+
+# Sceglie un valore per ogni voce dell'elenco; restituisce quante cambierebbero.
+function Set-CatTargets([array]$items, [scriptblock]$pick) {
     $n = 0
-    foreach ($r in $rows) {
-        $n++
-        $target = & $pick $r.Item
-        if ($null -eq $target) { continue }
-        $now = Get-CatState $r.Item
-        if ($null -eq $now) { continue }
-        if ([string]$now -eq [string]$target) { $script:SkipCount++; continue }
-        Update-Progress -Current $n -Total $rows.Count -Label (Get-CatText $r.Item.Id)
-        [void](Set-CatState $r.Item $target)
+    foreach ($it in $items) {
+        $t = & $pick $it
+        if ($null -eq $t -or -not (Test-CatOption $it $t)) { continue }
+        Set-CatWant $it $t
+        if ($script:CatWant.ContainsKey($it.Id)) { $n++ }
     }
-    foreach ($r in $rows) { Update-CatRow $r }
-    Update-Progress -Current $rows.Count -Total $rows.Count -Label ''
-    Show-RunSummary
-    Update-CatExplorerHint
+    foreach ($r in @($script:CatRows)) { Update-CatRow $r -Cached }
+    Update-ApplyButton
+    return $n
+}
+
+# Valore che «Consigliati» e «Seleziona tutto» danno a una voce. Solo le voci
+# con un consiglio vero: le altre (suoni, notifiche, gusti) restano come sono,
+# invece di tornare al valore di Windows.
+function Get-CatPresetTarget($it) {
+    if ($it.Page -eq 'priv') { $rv = Get-CatRecValue $it; if ($null -eq $rv) { return $null }; return $rv.Target }
+    return (Get-CatRecTarget $it)
+}
+
+# Dopo «Applica» o con «Deseleziona»: le scelte si azzerano e le righe tornano al sistema.
+function Clear-CatWant([switch]$Reread) {
+    $script:CatWant = @{}
+    if ($Reread) { $script:CatNow = @{} }
+    foreach ($r in @($script:CatRows)) { Update-CatRow $r -Cached:(-not $Reread) }
 }
 
 function Get-CatRecTarget($it) {
-    if ($it.Rec -eq '-' -or [string]::IsNullOrEmpty($it.Rec)) { return $null }
-    if ($it.Kind -in @('T','J')) { return ($it.Rec -eq '1') }
-    return $it.Rec
+    $rec = [string]$it.Rec
+    # «fisso/portatile/server»: il consiglio dipende dal tipo di computer.
+    if ($rec -match '/') {
+        $parts = $rec -split '/'
+        $type = if (Get-Command Get-PcType -ErrorAction SilentlyContinue) { Get-PcType } else { 'desktop' }
+        $i = switch ($type) { 'laptop' { 1 } 'server' { 2 } default { 0 } }
+        $rec = if ($i -lt $parts.Count) { $parts[$i] } else { $parts[0] }
+    }
+    if ($rec -eq '-' -or [string]::IsNullOrEmpty($rec)) { return $null }
+    if ($it.Kind -in @('T','J')) { return ($rec -eq '1') }
+    return $rec
 }
 function Get-CatDefTarget($it) {
     if ($it.Kind -in @('T','J')) { return ($it.Def -eq '1') }
@@ -18942,7 +19046,7 @@ $btnMpoStar.Add_Click({
 # consiglio senza applicarla: per quello c'e' «Applica modifiche».
 # ------------------------------------------------------------------------------
 # Interruttori di ambito e manutenzioni: non sono impostazioni da consigliare.
-$script:NoRecChecks = @('chkRestorePoint', 'chkStorageProfile', 'chkWuProfile', 'chkApplyNetwork', 'chkApplyDns',
+$script:NoRecChecks = @('chkRestorePoint', 'chkStorageProfile', 'chkWuProfile', 'chkApplyDns',
                         'chkApplyMPO', 'chkDiskCleanup', 'chkSmartChkdsk',
                         # Personalizzazione (pagina Avanzate): gusti, non ottimizzazioni.
                         'chkTaskbarCenter', 'chkTaskbarSearch', 'chkTaskbarTaskView', 'chkTaskbarWidgets', 'chkTaskbarChat',
@@ -18985,6 +19089,7 @@ $window.Add_ContentRendered({
     [void]$window.Dispatcher.BeginInvoke([Action]{
         $n = Update-ActiveBadges
         Sync-ChecksToSystem -All
+        Reset-TcpToSystem
         $txtProgressLabel.Text = (T 'scanDone') -f $n
         Write-Log "[INFO] Voci gia' attive su questo PC: $n."
     }, [System.Windows.Threading.DispatcherPriority]::ApplicationIdle)

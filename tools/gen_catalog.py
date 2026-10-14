@@ -77,7 +77,9 @@ for i in items:
     if i['Kind'] in ('S', 'N'):
         keys = [o['Key'] for o in i['Opts']]
         if i['Def'] not in keys and i['Kind'] == 'S': errors.append('predefinito assente ' + i['Id'])
-        if i['Rec'] != '-' and i['Rec'] not in keys: errors.append('consigliato assente ' + i['Id'])
+        # «fisso/portatile/server»: ogni parte deve essere un'opzione o '-'.
+        for r in i['Rec'].split('/'):
+            if r != '-' and r not in keys: errors.append('consigliato assente ' + i['Id'])
     if i['Kind'] == 'T' and not i['Ops']: errors.append('T senza R ' + i['Id'])
     if i['Kind'] == 'J' and not i['Tasks']: errors.append('J senza Q ' + i['Id'])
 

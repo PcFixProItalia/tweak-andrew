@@ -1098,7 +1098,7 @@ $btnMpoStar.Add_Click({
 # consiglio senza applicarla: per quello c'e' «Applica modifiche».
 # ------------------------------------------------------------------------------
 # Interruttori di ambito e manutenzioni: non sono impostazioni da consigliare.
-$script:NoRecChecks = @('chkRestorePoint', 'chkStorageProfile', 'chkWuProfile', 'chkApplyNetwork', 'chkApplyDns',
+$script:NoRecChecks = @('chkRestorePoint', 'chkStorageProfile', 'chkWuProfile', 'chkApplyDns',
                         'chkApplyMPO', 'chkDiskCleanup', 'chkSmartChkdsk',
                         # Personalizzazione (pagina Avanzate): gusti, non ottimizzazioni.
                         'chkTaskbarCenter', 'chkTaskbarSearch', 'chkTaskbarTaskView', 'chkTaskbarWidgets', 'chkTaskbarChat',
@@ -1141,6 +1141,7 @@ $window.Add_ContentRendered({
     [void]$window.Dispatcher.BeginInvoke([Action]{
         $n = Update-ActiveBadges
         Sync-ChecksToSystem -All
+        Reset-TcpToSystem
         $txtProgressLabel.Text = (T 'scanDone') -f $n
         Write-Log "[INFO] Voci gia' attive su questo PC: $n."
     }, [System.Windows.Threading.DispatcherPriority]::ApplicationIdle)
