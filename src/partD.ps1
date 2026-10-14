@@ -395,7 +395,10 @@ function Build-Actions {
         # Solo il criterio: Windows protegge il servizio DoSvc e nega la modifica.
         Set-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\DeliveryOptimization' 'DODownloadMode' 0 'DWord' 'Ottimizzazione recapito'
     }
-    Add-IfChecked $chkBitLocker { Set-Svc 'BDESVC' 'Manual' 'BitLocker (BDESVC)' }
+    Add-IfChecked $chkBitLocker {
+        # Blocca la cifratura automatica del disco; non tocca BitLocker gia' attivo.
+        Set-Reg 'HKLM:\SYSTEM\CurrentControlSet\Control\BitLocker' 'PreventDeviceEncryption' 1 'DWord' 'Cifratura automatica del disco'
+    }
     Add-IfChecked $chkWPBT {
         Set-Reg 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Executive' 'DisableWpbtExecution' 1 'DWord' 'WPBT'
     }

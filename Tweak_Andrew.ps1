@@ -4435,7 +4435,7 @@ $script:RecommendedChecks = @{
                     'chkCpuIntelBoostPol','chkCpuAmdParking')
     pagePrivacy = @('chkTelemetry','chkTelemetryTasks','chkActivityHistory','chkAdvertisingID','chkTailoredExp','chkFeedback','chkErrorReporting',
                     'chkInkingTyping','chkWiFiSense','chkConsumerFeatures','chkSuggestedContent','chkLockScreenAds','chkStartBing',
-                    'chkStartTracking','chkWindowsAI','chkEdgeDebloat','chkDeliveryOpt','chkWPBT','chkBackgroundApps',
+                    'chkStartTracking','chkWindowsAI','chkEdgeDebloat','chkDeliveryOpt','chkBitLocker','chkWPBT','chkBackgroundApps',
                     'chkRemoteAssistance','chkCompanionApps','chkServicesManual','chkTeredo')
     pageUi      = @('chkClassicMenu','chkDarkTheme','chkFileExt','chkLongPaths','chkExplorerThisPC','chkRemove3D','chkRecycleConfirm','chkMenuDelay','chkMouseAccel','chkNumLock','chkStickyKeys')
     pageNet     = @('chkNetPowerSave')
@@ -4444,7 +4444,7 @@ $script:RecommendedChecks = @{
     # Via di mezzo sulla sicurezza: Defender resta acceso e scansiona a PC fermo,
     # l'isolamento del kernel si spegne. Spectre, exploit e SmartScreen restano.
     pageAdv     = @('chkSecDefenderIdle','chkVBS')
-    pageGpu     = @('chkGpuTdr','chkNvTelemetry','chkNvGfe','chkNvUpdates','chkNvP2','chkNvLowLatency',
+    pageGpu     = @('chkGpuTdr','chkGpuMsi','chkNvTelemetry','chkNvGfe','chkNvUpdates','chkNvP2','chkNvLowLatency',
                     'chkNvShaderCache','chkNvDisplayPower','chkAmdUx','chkAmdBloat','chkAmdUlps','chkAmdAntiLag','chkAmdShaderCache','chkIntelBloat',
                     'chkIntelTelemetry','chkIntelGfxPower')
 }
@@ -4459,6 +4459,13 @@ $script:SsdRecommended = @('chkPrefetch','chkBootDefrag','chkTrim')
 
 function Test-SystemSsd { return ($script:SystemDiskKind -in @('NVMe','SSD')) }
 
+# Con SysMain spento (consigliato su SSD) la compressione della memoria non puo'
+# restare accesa: con almeno 16 GB di RAM la si consiglia spenta insieme a lui.
+function Test-RamAtLeast16 {
+    if ($null -eq $script:RamGb) { $script:RamGb = [math]::Round((Get-CimInstance Win32_ComputerSystem -ErrorAction SilentlyContinue).TotalPhysicalMemory / 1GB) }
+    return ($script:RamGb -ge 16)
+}
+
 # «Seleziona tutto»: oltre ai consigliati accende tutto cio' che toglie lavoro
 # al processore o latenza, sicurezza compresa. Restano fuori le voci che
 # rompono una funzione senza dare prestazioni (stampa, ricerca, desktop
@@ -4467,7 +4474,7 @@ function Test-SystemSsd { return ($script:SystemDiskKind -in @('NVMe','SSD')) }
 $script:MaxPerfExtra = @(
     'chkVisualFX','chkNvPerfMode','chkNvDrsPower','chkSvcSearch',
     'chkCpuIntelHybrid',
-    'chkGpuMsi','chkNvDynPstate','chkAmdPowerGating','chkAmdDma',
+    'chkNvDynPstate','chkAmdPowerGating','chkAmdDma',
     # Impostazioni del driver che scambiano un po' di qualita' d'immagine o di
     # risparmio con fotogrammi in piu'.
     'chkNvThreaded','chkNvTexPerf','chkNvAniso','chkNvNoAnsel',
@@ -4484,8 +4491,7 @@ function Test-MaxPerfWanted($cb) {
     if ($n -eq 'chkSecDownfall') { return ($script:CpuVendor -eq 'Intel') }
     if ($n -eq 'chkMemCompression') {
         # Senza compressione la memoria finisce prima: solo con almeno 16 GB.
-        if ($null -eq $script:RamGb) { $script:RamGb = [math]::Round((Get-CimInstance Win32_ComputerSystem -ErrorAction SilentlyContinue).TotalPhysicalMemory / 1GB) }
-        return ($script:RamGb -ge 16)
+        return (Test-RamAtLeast16)
     }
     return $true
 }
@@ -13032,7 +13038,10 @@ function Build-Actions {
         # Solo il criterio: Windows protegge il servizio DoSvc e nega la modifica.
         Set-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\DeliveryOptimization' 'DODownloadMode' 0 'DWord' 'Ottimizzazione recapito'
     }
-    Add-IfChecked $chkBitLocker { Set-Svc 'BDESVC' 'Manual' 'BitLocker (BDESVC)' }
+    Add-IfChecked $chkBitLocker {
+        # Blocca la cifratura automatica del disco; non tocca BitLocker gia' attivo.
+        Set-Reg 'HKLM:\SYSTEM\CurrentControlSet\Control\BitLocker' 'PreventDeviceEncryption' 1 'DWord' 'Cifratura automatica del disco'
+    }
     Add-IfChecked $chkWPBT {
         Set-Reg 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Executive' 'DisableWpbtExecution' 1 'DWord' 'WPBT'
     }
@@ -14131,7 +14140,7 @@ function Build-UndoActions {
         Reset-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\DeliveryOptimization' 'DODownloadMode'
         Reset-Svc @('DoSvc')
     }
-    Add-UndoIfChecked $chkBitLocker { Reset-Svc @('BDESVC') }
+    Add-UndoIfChecked $chkBitLocker { Reset-Reg 'HKLM:\SYSTEM\CurrentControlSet\Control\BitLocker' 'PreventDeviceEncryption' }
     Add-UndoIfChecked $chkWPBT { Reset-Reg 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Executive' 'DisableWpbtExecution' }
     Add-UndoIfChecked $chkBackgroundApps {
         Reset-Reg 'HKCU:\Software\Microsoft\Windows\CurrentVersion\BackgroundAccessApplications' 'GlobalUserDisabled'
@@ -14415,6 +14424,10 @@ function Build-UndoActions {
         foreach ($v in @('DisablePCA','DisableUAR','DisableInventory','DisableEngine','AITEnable')) { Reset-Reg $a $v }
     }
     Add-UndoIfChecked $chkMemCompression {
+        if ((Get-Service -Name SysMain -ErrorAction SilentlyContinue).StartType -eq 'Disabled') {
+            Write-Log "[SALTATO] Compressione della memoria - serve il servizio SysMain, che e' disattivato."
+            return
+        }
         try { Enable-MMAgent -MemoryCompression -ErrorAction Stop; Write-Log "[OK] Compressione della memoria riattivata." }
         catch { Write-Log "[ERRORE] Compressione della memoria: $($_.Exception.Message)" }
     }
@@ -19225,7 +19238,7 @@ $script:NoRecChecks = @('chkRestorePoint', 'chkStorageProfile', 'chkWuProfile', 
 function Update-RecStars {
     $server = (Get-PcType) -eq 'server'
     $names = @($script:RecommendedChecks.Values | ForEach-Object { $_ })
-    if (Test-SystemSsd) { $names += $script:SsdRecommended }
+    if (Test-SystemSsd) { $names += $script:SsdRecommended; if (Test-RamAtLeast16) { $names += 'chkMemCompression' } }
     foreach ($cb in $script:AllCheckBoxes) {
         $show = $cb.IsEnabled -and ($script:NoRecChecks -notcontains [string]$cb.Name) -and (Test-CheckVendor $cb)
         # Su un server le voci escluse restano senza consiglio: «Consigliati» non le

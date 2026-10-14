@@ -320,7 +320,7 @@ function Build-UndoActions {
         Reset-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\DeliveryOptimization' 'DODownloadMode'
         Reset-Svc @('DoSvc')
     }
-    Add-UndoIfChecked $chkBitLocker { Reset-Svc @('BDESVC') }
+    Add-UndoIfChecked $chkBitLocker { Reset-Reg 'HKLM:\SYSTEM\CurrentControlSet\Control\BitLocker' 'PreventDeviceEncryption' }
     Add-UndoIfChecked $chkWPBT { Reset-Reg 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Executive' 'DisableWpbtExecution' }
     Add-UndoIfChecked $chkBackgroundApps {
         Reset-Reg 'HKCU:\Software\Microsoft\Windows\CurrentVersion\BackgroundAccessApplications' 'GlobalUserDisabled'
@@ -604,6 +604,10 @@ function Build-UndoActions {
         foreach ($v in @('DisablePCA','DisableUAR','DisableInventory','DisableEngine','AITEnable')) { Reset-Reg $a $v }
     }
     Add-UndoIfChecked $chkMemCompression {
+        if ((Get-Service -Name SysMain -ErrorAction SilentlyContinue).StartType -eq 'Disabled') {
+            Write-Log "[SALTATO] Compressione della memoria - serve il servizio SysMain, che e' disattivato."
+            return
+        }
         try { Enable-MMAgent -MemoryCompression -ErrorAction Stop; Write-Log "[OK] Compressione della memoria riattivata." }
         catch { Write-Log "[ERRORE] Compressione della memoria: $($_.Exception.Message)" }
     }

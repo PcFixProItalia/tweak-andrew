@@ -1109,7 +1109,7 @@ $script:NoRecChecks = @('chkRestorePoint', 'chkStorageProfile', 'chkWuProfile', 
 function Update-RecStars {
     $server = (Get-PcType) -eq 'server'
     $names = @($script:RecommendedChecks.Values | ForEach-Object { $_ })
-    if (Test-SystemSsd) { $names += $script:SsdRecommended }
+    if (Test-SystemSsd) { $names += $script:SsdRecommended; if (Test-RamAtLeast16) { $names += 'chkMemCompression' } }
     foreach ($cb in $script:AllCheckBoxes) {
         $show = $cb.IsEnabled -and ($script:NoRecChecks -notcontains [string]$cb.Name) -and (Test-CheckVendor $cb)
         # Su un server le voci escluse restano senza consiglio: «Consigliati» non le

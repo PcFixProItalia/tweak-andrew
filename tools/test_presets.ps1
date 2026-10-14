@@ -26,6 +26,8 @@ $window.Add_ContentRendered({ [void]$window.Dispatcher.BeginInvoke([Action]{
     Write-Host ("  menu classico: " + $chkClassicMenu.IsChecked)
     foreach ($id in $cat) { $it = $script:CatById[$id]; Write-Host ("    " + $it.Page + " " + $id + " [" + $it.Kind + " rec=" + $it.Rec + " def=" + $it.Def + "] ora=" + $script:CatNow[$id] + " -> " + $script:CatWant[$id] + "  " + (Get-CatText $id)) }
     Write-Host ("  catalogo per pagina: " + (($cat | ForEach-Object { $script:CatById[$_].Page } | Group-Object | ForEach-Object { "$($_.Name)=$($_.Count)" }) -join ' '))
+    $off = @($script:AllCheckBoxes | Where-Object { $script:Baseline[[string]$_.Name] -eq $true -and $_.IsChecked -ne $true } | ForEach-Object { $_.Name })
+    Write-Host ("  attive che Consigliati riporta come Windows: " + ($off -join ' '))
     Click $btnDeselectAll
     [void](Report 'Deseleziona')
     Click $btnSelectAll

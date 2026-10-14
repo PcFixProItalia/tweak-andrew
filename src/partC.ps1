@@ -1762,7 +1762,7 @@ $script:RecommendedChecks = @{
                     'chkCpuIntelBoostPol','chkCpuAmdParking')
     pagePrivacy = @('chkTelemetry','chkTelemetryTasks','chkActivityHistory','chkAdvertisingID','chkTailoredExp','chkFeedback','chkErrorReporting',
                     'chkInkingTyping','chkWiFiSense','chkConsumerFeatures','chkSuggestedContent','chkLockScreenAds','chkStartBing',
-                    'chkStartTracking','chkWindowsAI','chkEdgeDebloat','chkDeliveryOpt','chkWPBT','chkBackgroundApps',
+                    'chkStartTracking','chkWindowsAI','chkEdgeDebloat','chkDeliveryOpt','chkBitLocker','chkWPBT','chkBackgroundApps',
                     'chkRemoteAssistance','chkCompanionApps','chkServicesManual','chkTeredo')
     pageUi      = @('chkClassicMenu','chkDarkTheme','chkFileExt','chkLongPaths','chkExplorerThisPC','chkRemove3D','chkRecycleConfirm','chkMenuDelay','chkMouseAccel','chkNumLock','chkStickyKeys')
     pageNet     = @('chkNetPowerSave')
@@ -1771,7 +1771,7 @@ $script:RecommendedChecks = @{
     # Via di mezzo sulla sicurezza: Defender resta acceso e scansiona a PC fermo,
     # l'isolamento del kernel si spegne. Spectre, exploit e SmartScreen restano.
     pageAdv     = @('chkSecDefenderIdle','chkVBS')
-    pageGpu     = @('chkGpuTdr','chkNvTelemetry','chkNvGfe','chkNvUpdates','chkNvP2','chkNvLowLatency',
+    pageGpu     = @('chkGpuTdr','chkGpuMsi','chkNvTelemetry','chkNvGfe','chkNvUpdates','chkNvP2','chkNvLowLatency',
                     'chkNvShaderCache','chkNvDisplayPower','chkAmdUx','chkAmdBloat','chkAmdUlps','chkAmdAntiLag','chkAmdShaderCache','chkIntelBloat',
                     'chkIntelTelemetry','chkIntelGfxPower')
 }
@@ -1786,6 +1786,13 @@ $script:SsdRecommended = @('chkPrefetch','chkBootDefrag','chkTrim')
 
 function Test-SystemSsd { return ($script:SystemDiskKind -in @('NVMe','SSD')) }
 
+# Con SysMain spento (consigliato su SSD) la compressione della memoria non puo'
+# restare accesa: con almeno 16 GB di RAM la si consiglia spenta insieme a lui.
+function Test-RamAtLeast16 {
+    if ($null -eq $script:RamGb) { $script:RamGb = [math]::Round((Get-CimInstance Win32_ComputerSystem -ErrorAction SilentlyContinue).TotalPhysicalMemory / 1GB) }
+    return ($script:RamGb -ge 16)
+}
+
 # «Seleziona tutto»: oltre ai consigliati accende tutto cio' che toglie lavoro
 # al processore o latenza, sicurezza compresa. Restano fuori le voci che
 # rompono una funzione senza dare prestazioni (stampa, ricerca, desktop
@@ -1794,7 +1801,7 @@ function Test-SystemSsd { return ($script:SystemDiskKind -in @('NVMe','SSD')) }
 $script:MaxPerfExtra = @(
     'chkVisualFX','chkNvPerfMode','chkNvDrsPower','chkSvcSearch',
     'chkCpuIntelHybrid',
-    'chkGpuMsi','chkNvDynPstate','chkAmdPowerGating','chkAmdDma',
+    'chkNvDynPstate','chkAmdPowerGating','chkAmdDma',
     # Impostazioni del driver che scambiano un po' di qualita' d'immagine o di
     # risparmio con fotogrammi in piu'.
     'chkNvThreaded','chkNvTexPerf','chkNvAniso','chkNvNoAnsel',
@@ -1811,8 +1818,7 @@ function Test-MaxPerfWanted($cb) {
     if ($n -eq 'chkSecDownfall') { return ($script:CpuVendor -eq 'Intel') }
     if ($n -eq 'chkMemCompression') {
         # Senza compressione la memoria finisce prima: solo con almeno 16 GB.
-        if ($null -eq $script:RamGb) { $script:RamGb = [math]::Round((Get-CimInstance Win32_ComputerSystem -ErrorAction SilentlyContinue).TotalPhysicalMemory / 1GB) }
-        return ($script:RamGb -ge 16)
+        return (Test-RamAtLeast16)
     }
     return $true
 }
