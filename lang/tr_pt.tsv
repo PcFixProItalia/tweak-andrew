@@ -1023,3 +1023,6 @@ M:psRowBoost	Vantagem da janela ativa
 M:psRowBoostHint	Quanto tempo a mais recebe em relação aos programas em segundo plano.
 M:psPending	A aplicar:
 M:psInUse	Já em uso
+M:psRowValue	Valor no registro
+M:psRowValueHint	Como no regedit: hexadecimal ou decimal.
+M:psInvalidRange	Valor inválido: de 0 a 3F (hex) ou de 0 a 63 (dec).

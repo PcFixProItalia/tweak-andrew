@@ -1023,3 +1023,6 @@ M:psRowBoost	Avantajul ferestrei active
 M:psRowBoostHint	Cât timp în plus primește față de programele din fundal.
 M:psPending	De aplicat:
 M:psInUse	Deja în uz
+M:psRowValue	Valoare în registru
+M:psRowValueHint	Ca în regedit: hexazecimal sau zecimal.
+M:psInvalidRange	Valoare nevalidă: de la 0 la 3F (hex) sau de la 0 la 63 (zec).

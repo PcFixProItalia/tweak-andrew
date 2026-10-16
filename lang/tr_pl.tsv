@@ -1023,3 +1023,6 @@ M:psRowBoost	Przewaga aktywnego okna
 M:psRowBoostHint	Ile więcej czasu dostaje niż programy w tle.
 M:psPending	Do zastosowania:
 M:psInUse	Już używane
+M:psRowValue	Wartość w rejestrze
+M:psRowValueHint	Jak w regedit: szesnastkowo lub dziesiętnie.
+M:psInvalidRange	Nieprawidłowa wartość: od 0 do 3F (hex) lub od 0 do 63 (dec).

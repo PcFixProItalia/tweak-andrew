@@ -140,6 +140,7 @@ function Set-MenuHibernate([bool]$Show) {
 # variabile, e quanto vantaggio dare alla finestra in primo piano.
 $script:PsPath = 'HKLM:\SYSTEM\CurrentControlSet\Control\PriorityControl'
 $cmbPsPreset = E 'cmbPsPreset'; $txtPsDecoded = E 'txtPsDecoded'; $psDot = E 'psDot'
+$txtPsHex = E 'txtPsHex'; $txtPsDec = E 'txtPsDec'
 $txtPsCurrent = E 'txtPsCurrent'; $btnPsApply = E 'btnPsApply'; $btnPsDefault = E 'btnPsDefault'
 # Tre selettori, uno per coppia di bit: valore del campo e testo del pulsante.
 $script:PsRows = @(
@@ -149,6 +150,8 @@ $script:PsRows = @(
 )
 $script:PsValue = 2
 $script:PsSyncing = $false
+$script:PsInvalid = $false
+$script:PsEditing = ''
 
 function Get-PsField([int]$v, [int]$shift) {
     $f = ($v -shr $shift) -band 3
@@ -187,6 +190,7 @@ function New-PsSegment([string]$text, [bool]$on, $tag) {
     }
     $b.Add_MouseLeftButtonUp({
         $shift = [int]$this.Tag[0]; $val = [int]$this.Tag[1]
+        $script:PsInvalid = $false
         $script:PsValue = ($script:PsValue -band (-bnot (3 -shl $shift))) -bor ($val -shl $shift)
         Sync-PsPreset
         Update-PsView
@@ -209,9 +213,20 @@ function Update-PsView {
             $panel.Children.Add((New-PsSegment $text ([int]$o[0] -eq $sel) @($row.Shift, [int]$o[0]))) | Out-Null
         }
     }
+    (E 'lblPsRowValue').Text = T 'psRowValue'
+    (E 'lblPsRowValueHint').Text = T 'psRowValueHint'
+    # Non si riscrive la casella in cui si sta scrivendo.
+    $script:PsSyncing = $true
+    if ($script:PsEditing -ne 'hex') { $txtPsHex.Text = '{0:X2}' -f $script:PsValue }
+    if ($script:PsEditing -ne 'dec') { $txtPsDec.Text = [string]$script:PsValue }
+    $script:PsSyncing = $false
     $pending = ($null -eq $cur -or [int]$cur -ne $script:PsValue)
-    $btnPsApply.IsEnabled = $pending
-    if ($pending) {
+    $btnPsApply.IsEnabled = $pending -and -not $script:PsInvalid
+    if ($script:PsInvalid) {
+        $txtPsDecoded.Text = T 'psInvalidRange'
+        $txtPsDecoded.Foreground = New-PsBrush '#FFE0A25E'
+        $psDot.Fill = New-PsBrush '#FFE0A25E'
+    } elseif ($pending) {
         $txtPsDecoded.Text = ('{0} 0x{1:X2}' -f (T 'psPending'), $script:PsValue)
         $txtPsDecoded.Foreground = New-PsBrush '#FFE9EAEE'
         $psDot.Fill = New-PsBrush '#FF2563EB'
@@ -222,10 +237,28 @@ function Update-PsView {
     }
 }
 
+# Valore scritto a mano, come in regedit: da 0 a 3F (63), solo i sei bit che Windows legge.
+function Read-PsBox($box, [int]$base, [string]$which) {
+    if ($script:PsSyncing) { return }
+    $raw = ([string]$box.Text).Trim() -replace '^0[xX]', ''
+    $n = $null
+    if ($base -eq 16 -and $raw -match '^[0-9A-Fa-f]{1,2}$') { $n = [Convert]::ToInt32($raw, 16) }
+    if ($base -eq 10 -and $raw -match '^[0-9]{1,2}$') { $n = [int]$raw }
+    if ($null -ne $n -and $n -le 63) {
+        $script:PsInvalid = $false; $script:PsValue = $n; Sync-PsPreset
+    } else { $script:PsInvalid = $true }
+    $script:PsEditing = $which; Update-PsView; $script:PsEditing = ''
+}
+$txtPsHex.Add_TextChanged({ Read-PsBox $txtPsHex 16 'hex' })
+$txtPsDec.Add_TextChanged({ Read-PsBox $txtPsDec 10 'dec' })
+# Uscendo da una casella con un valore sbagliato torna quello valido.
+$txtPsHex.Add_LostFocus({ if ($script:PsInvalid) { $script:PsInvalid = $false; Update-PsView } })
+$txtPsDec.Add_LostFocus({ if ($script:PsInvalid) { $script:PsInvalid = $false; Update-PsView } })
+
 $cmbPsPreset.Add_SelectionChanged({
     if ($script:PsSyncing) { return }
     $it = $cmbPsPreset.SelectedItem
-    if ($null -ne $it -and [int]$it.Tag -ge 0) { $script:PsValue = [int]$it.Tag }
+    if ($null -ne $it -and [int]$it.Tag -ge 0) { $script:PsValue = [int]$it.Tag; $script:PsInvalid = $false }
     Update-PsView
 })
 $btnPsApply.Add_Click({
@@ -235,7 +268,7 @@ $btnPsApply.Add_Click({
 })
 $btnPsDefault.Add_Click({
     Set-Reg $script:PsPath 'Win32PrioritySeparation' 2 'DWord' 'Win32PrioritySeparation = 0x02 (predefinito)' | Out-Null
-    $script:PsValue = 2
+    $script:PsValue = 2; $script:PsInvalid = $false
     Sync-PsPreset
     Update-PsView
 })

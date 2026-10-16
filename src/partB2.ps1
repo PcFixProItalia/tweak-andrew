@@ -2343,6 +2343,24 @@
                                                     <StackPanel x:Name="psSegBoost" Orientation="Horizontal"/>
                                                 </Border>
                                             </Grid>
+                                            <Grid Margin="0,0,0,12">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+                                                <StackPanel VerticalAlignment="Center" Margin="0,0,12,0">
+                                                    <TextBlock x:Name="lblPsRowValue" Text="-" FontSize="12.5" Foreground="#FFE9EAEE"/>
+                                                    <TextBlock x:Name="lblPsRowValueHint" Text="-" FontSize="11" Foreground="#FF8B8E99" TextWrapping="Wrap" Margin="0,2,0,0"/>
+                                                </StackPanel>
+                                                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                                                    <TextBlock Text="Hex" FontSize="11" Foreground="#FF8B8E99" VerticalAlignment="Center" Margin="0,0,7,0"/>
+                                                    <TextBox x:Name="txtPsHex" Width="62" Height="30" Padding="8,0" MaxLength="4" VerticalContentAlignment="Center"
+                                                             FontFamily="Cascadia Mono, Consolas" CharacterCasing="Upper"/>
+                                                    <TextBlock Text="Dec" FontSize="11" Foreground="#FF8B8E99" VerticalAlignment="Center" Margin="14,0,7,0"/>
+                                                    <TextBox x:Name="txtPsDec" Width="62" Height="30" Padding="8,0" MaxLength="2" VerticalContentAlignment="Center"
+                                                             FontFamily="Cascadia Mono, Consolas"/>
+                                                </StackPanel>
+                                            </Grid>
                                                 <Border Height="1" Background="#FF22252C" Margin="0,2,0,12"/>
                                                 <Grid>
                                                     <Grid.ColumnDefinitions>

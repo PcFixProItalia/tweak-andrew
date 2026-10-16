@@ -1023,3 +1023,6 @@ M:psRowBoost	Vorteil des aktiven Fensters
 M:psRowBoostHint	Wie viel mehr Zeit es als Hintergrundprogramme erhält.
 M:psPending	Anzuwenden:
 M:psInUse	Bereits aktiv
+M:psRowValue	Wert in der Registrierung
+M:psRowValueHint	Wie in regedit: hexadezimal oder dezimal.
+M:psInvalidRange	Ungültiger Wert: 0 bis 3F (hex) oder 0 bis 63 (dez).

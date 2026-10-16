@@ -503,3 +503,6 @@ psRowBoost	Active window boost
 psRowBoostHint	How much more time it gets than background programs.
 psPending	To apply:
 psInUse	Already in use
+psRowValue	Registry value
+psRowValueHint	As in regedit: hexadecimal or decimal.
+psInvalidRange	Invalid value: 0 to 3F (hex) or 0 to 63 (dec).

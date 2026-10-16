@@ -935,6 +935,9 @@ $script:Msg = @{
     psRowBoostHint     = @{ it = "Quanto tempo in più riceve rispetto ai programmi in background."; en = "How much more time it gets than background programs." }
     psPending          = @{ it = "Da applicare:"; en = "To apply:" }
     psInUse            = @{ it = "Già in uso"; en = "Already in use" }
+    psRowValue         = @{ it = "Valore nel registro"; en = "Registry value" }
+    psRowValueHint     = @{ it = "Come in regedit: in esadecimale o in decimale."; en = "As in regedit: hexadecimal or decimal." }
+    psInvalidRange     = @{ it = "Valore non valido: da 0 a 3F (hex) o da 0 a 63 (dec)."; en = "Invalid value: 0 to 3F (hex) or 0 to 63 (dec)." }
 }
 
 $script:LangCode = "it"
