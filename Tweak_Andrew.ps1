@@ -80,7 +80,7 @@ $script:PlanData = @{
         Title="Tweak Andrew v7.1 - PcFixPro Italia" Height="840" Width="1340"
         MinWidth="1180" MinHeight="700"
         WindowStartupLocation="CenterScreen" Grid.IsSharedSizeScope="True"
-        WindowStyle="None" AllowsTransparency="False" Background="#FF0F1013"
+        WindowStyle="None" AllowsTransparency="False" Background="#FF081537"
         Foreground="#F2F2F5" TextOptions.TextFormattingMode="Ideal" UseLayoutRounding="True"
         ResizeMode="CanResize">
 
@@ -96,30 +96,30 @@ $script:PlanData = @{
         <!-- Tema «Graphite»: grafite piatta, superfici appena piu' chiare, bordi
              sottili e un solo colore d'accento. Le pagine ridefiniscono PA, PASoft
              e PACard con gli stessi valori: il resto dello stile li legge da li'. -->
-        <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
-        <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-        <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
+        <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
+        <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
+        <SolidColorBrush x:Key="PACard" Color="#12FFFFFF"/>
 
-        <SolidColorBrush x:Key="Accent" Color="#FF4C8DFF"/>
+        <SolidColorBrush x:Key="Accent" Color="#FF6EA8FF"/>
         <SolidColorBrush x:Key="AccentDeep" Color="#FF2F6FE0"/>
         <SolidColorBrush x:Key="SoftBlue" Color="#FF7FC4E8"/>
-        <SolidColorBrush x:Key="TextMain" Color="#FFEDEFF2"/>
-        <SolidColorBrush x:Key="TextDim" Color="#FF9DA3AB"/>
+        <SolidColorBrush x:Key="TextMain" Color="#FFEEF3FF"/>
+        <SolidColorBrush x:Key="TextDim" Color="#FFA5B3D6"/>
         <SolidColorBrush x:Key="Success" Color="#FF3DBE8B"/>
         <SolidColorBrush x:Key="Warn" Color="#FFE0A25E"/>
-        <SolidColorBrush x:Key="Outline" Color="#FF25282D"/>
-        <SolidColorBrush x:Key="OutlineStrong" Color="#FF33373D"/>
-        <SolidColorBrush x:Key="Surface" Color="#FF131518"/>
-        <SolidColorBrush x:Key="Surface2" Color="#FF1A1C20"/>
+        <SolidColorBrush x:Key="Outline" Color="#14FFFFFF"/>
+        <SolidColorBrush x:Key="OutlineStrong" Color="#29FFFFFF"/>
+        <SolidColorBrush x:Key="Surface" Color="#12FFFFFF"/>
+        <SolidColorBrush x:Key="Surface2" Color="#17FFFFFF"/>
 
-        <SolidColorBrush x:Key="AccentGradient" Color="#FF4C8DFF"/>
+        <SolidColorBrush x:Key="AccentGradient" Color="#FF6EA8FF"/>
         <SolidColorBrush x:Key="AccentGradientHover" Color="#FF6FA4FF"/>
 
         <Style x:Key="ScrollThumb" TargetType="Thumb">
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Thumb">
-                        <Border x:Name="t" CornerRadius="3" Background="#FF2C3036" Margin="3,0"/>
+                        <Border x:Name="t" CornerRadius="3" Background="#1FFFFFFF" Margin="3,0"/>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter TargetName="t" Property="Background" Value="{DynamicResource PA}"/>
@@ -158,7 +158,7 @@ $script:PlanData = @{
             <Setter Property="ToolTipService.InitialShowDelay" Value="450"/>
             <Setter Property="ToolTipService.BetweenShowDelay" Value="150"/>
             <Setter Property="ToolTipService.ShowDuration" Value="30000"/>
-            <Setter Property="Foreground" Value="#FFC5C9CF"/>
+            <Setter Property="Foreground" Value="#FFC9D3EC"/>
             <Setter Property="FontFamily" Value="Segoe UI Variable Text, Segoe UI"/>
             <Setter Property="FontSize" Value="12.5"/>
             <Setter Property="Margin" Value="0,1"/>
@@ -197,14 +197,14 @@ $script:PlanData = @{
                                     <Viewbox Width="17" Height="17" HorizontalAlignment="Center" VerticalAlignment="Center">
                                         <Grid Width="24" Height="24">
                                             <Path x:Name="seal" StrokeThickness="1.8" StrokeLineJoin="Round"
-                                                  Stroke="#FF5D636B" Fill="Transparent" Data="M12.00,1.00 L14.41,3.02 L17.50,2.47 L18.58,5.42 L21.53,6.50 L20.98,9.59 L23.00,12.00 L20.98,14.41 L21.53,17.50 L18.58,18.58 L17.50,21.53 L14.41,20.98 L12.00,23.00 L9.59,20.98 L6.50,21.53 L5.42,18.58 L2.47,17.50 L3.02,14.41 L1.00,12.00 L3.02,9.59 L2.47,6.50 L5.42,5.42 L6.50,2.47 L9.59,3.02 Z"/>
+                                                  Stroke="#FF6A7AA3" Fill="Transparent" Data="M12.00,1.00 L14.41,3.02 L17.50,2.47 L18.58,5.42 L21.53,6.50 L20.98,9.59 L23.00,12.00 L20.98,14.41 L21.53,17.50 L18.58,18.58 L17.50,21.53 L14.41,20.98 L12.00,23.00 L9.59,20.98 L6.50,21.53 L5.42,18.58 L2.47,17.50 L3.02,14.41 L1.00,12.00 L3.02,9.59 L2.47,6.50 L5.42,5.42 L6.50,2.47 L9.59,3.02 Z"/>
                                             <Path x:Name="tick" StrokeThickness="2.3" StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeLineJoin="Round"
-                                                  Stroke="#FF5D636B" Data="M7.8,12.3 L10.7,15.1 L16.3,9.3"/>
+                                                  Stroke="#FF6A7AA3" Data="M7.8,12.3 L10.7,15.1 L16.3,9.3"/>
                                         </Grid>
                                     </Viewbox>
                                 </Border>
                                 <Border x:Name="track" Grid.Column="3" Width="36" Height="20" CornerRadius="6"
-                                        Background="#FF1B1E22" BorderBrush="#FF3A3F46" BorderThickness="1.5"
+                                        Background="#26FFFFFF" BorderBrush="#38FFFFFF" BorderThickness="1.5"
                                         VerticalAlignment="Center">
                                     <Border x:Name="thumb" Width="10" Height="10" CornerRadius="3" Background="#FF7A7A84"
                                             HorizontalAlignment="Left" VerticalAlignment="Center" Margin="4.5,0,0,0">
@@ -217,8 +217,8 @@ $script:PlanData = @{
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="row" Property="Background" Value="#FF1B1E22"/>
-                                <Setter TargetName="track" Property="BorderBrush" Value="#FF565C64"/>
+                                <Setter TargetName="row" Property="Background" Value="#26FFFFFF"/>
+                                <Setter TargetName="track" Property="BorderBrush" Value="#FF6C7CA6"/>
                             </Trigger>
                             <Trigger Property="AutomationProperties.HelpText" Value="active">
                                 <Setter TargetName="badge" Property="Visibility" Value="Visible"/>
@@ -299,13 +299,13 @@ $script:PlanData = @{
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="RadioButton">
-                        <Border x:Name="card" Background="#FF15171A" BorderBrush="#FF1F1F25" BorderThickness="1.5"
+                        <Border x:Name="card" Background="#12FFFFFF" BorderBrush="#14FFFFFF" BorderThickness="1.5"
                                 CornerRadius="7" Padding="14,12">
                             <ContentPresenter/>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="card" Property="Background" Value="#FF1B1E22"/>
+                                <Setter TargetName="card" Property="Background" Value="#26FFFFFF"/>
                             </Trigger>
                             <Trigger Property="IsChecked" Value="True">
                                 <Setter TargetName="card" Property="BorderBrush" Value="{DynamicResource PA}"/>
@@ -329,9 +329,9 @@ $script:PlanData = @{
                             <Viewbox Width="17" Height="17" HorizontalAlignment="Center" VerticalAlignment="Center">
                                 <Grid Width="24" Height="24">
                                     <Path x:Name="seal" StrokeThickness="1.8" StrokeLineJoin="Round"
-                                          Stroke="#FF5D636B" Fill="Transparent" Data="M12.00,1.00 L14.41,3.02 L17.50,2.47 L18.58,5.42 L21.53,6.50 L20.98,9.59 L23.00,12.00 L20.98,14.41 L21.53,17.50 L18.58,18.58 L17.50,21.53 L14.41,20.98 L12.00,23.00 L9.59,20.98 L6.50,21.53 L5.42,18.58 L2.47,17.50 L3.02,14.41 L1.00,12.00 L3.02,9.59 L2.47,6.50 L5.42,5.42 L6.50,2.47 L9.59,3.02 Z"/>
+                                          Stroke="#FF6A7AA3" Fill="Transparent" Data="M12.00,1.00 L14.41,3.02 L17.50,2.47 L18.58,5.42 L21.53,6.50 L20.98,9.59 L23.00,12.00 L20.98,14.41 L21.53,17.50 L18.58,18.58 L17.50,21.53 L14.41,20.98 L12.00,23.00 L9.59,20.98 L6.50,21.53 L5.42,18.58 L2.47,17.50 L3.02,14.41 L1.00,12.00 L3.02,9.59 L2.47,6.50 L5.42,5.42 L6.50,2.47 L9.59,3.02 Z"/>
                                     <Path x:Name="tick" StrokeThickness="2.3" StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeLineJoin="Round"
-                                          Stroke="#FF5D636B" Data="M7.8,12.3 L10.7,15.1 L16.3,9.3"/>
+                                          Stroke="#FF6A7AA3" Data="M7.8,12.3 L10.7,15.1 L16.3,9.3"/>
                                 </Grid>
                             </Viewbox>
                         </Border>
@@ -352,7 +352,7 @@ $script:PlanData = @{
         </Style>
 
         <Style x:Key="PickRow" TargetType="CheckBox">
-            <Setter Property="Foreground" Value="#FFC5C9CF"/>
+            <Setter Property="Foreground" Value="#FFC9D3EC"/>
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Margin" Value="0,2"/>
             <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
@@ -361,7 +361,7 @@ $script:PlanData = @{
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="CheckBox">
-                        <Border x:Name="row" Background="#FF15171A" BorderBrush="#FF25282D" BorderThickness="1"
+                        <Border x:Name="row" Background="#12FFFFFF" BorderBrush="#14FFFFFF" BorderThickness="1"
                                 CornerRadius="7" Padding="11,8" SnapsToDevicePixels="True">
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -369,7 +369,7 @@ $script:PlanData = @{
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <Border x:Name="box" Width="20" Height="20" CornerRadius="6" BorderThickness="1.6"
-                                        BorderBrush="#FF4A4F57" Background="#FF1B1E22" VerticalAlignment="Center" Margin="0,0,12,0">
+                                        BorderBrush="#47FFFFFF" Background="#26FFFFFF" VerticalAlignment="Center" Margin="0,0,12,0">
                                     <Path x:Name="tick" Data="M3.6,8.6 L7,12 L13.4,4.8" Stroke="#FF000000" StrokeThickness="2.2"
                                           StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeLineJoin="Round"
                                           Visibility="Collapsed"/>
@@ -379,7 +379,7 @@ $script:PlanData = @{
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="row" Property="Background" Value="#FF1B1E22"/>
+                                <Setter TargetName="row" Property="Background" Value="#26FFFFFF"/>
                                 <Setter TargetName="box" Property="BorderBrush" Value="{DynamicResource PA}"/>
                             </Trigger>
                             <Trigger Property="IsChecked" Value="True">
@@ -401,7 +401,7 @@ $script:PlanData = @{
         <!-- Casella piccola accanto al titolo di una scheda: sceglie tutte le voci
              della sezione. Stessa casella quadrata delle app, in formato ridotto. -->
         <Style x:Key="SectionPick" TargetType="CheckBox">
-            <Setter Property="Foreground" Value="#FF8C929A"/>
+            <Setter Property="Foreground" Value="#FF8F9DC2"/>
             <Setter Property="FontFamily" Value="Segoe UI Variable Text, Segoe UI"/>
             <Setter Property="FontSize" Value="11.5"/>
             <Setter Property="Cursor" Value="Hand"/>
@@ -414,7 +414,7 @@ $script:PlanData = @{
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock x:Name="txt" Text="{TemplateBinding Content}" VerticalAlignment="Center" Margin="0,0,6,0"/>
                                 <Border x:Name="box" Width="16" Height="16" CornerRadius="5" BorderThickness="1.5"
-                                        BorderBrush="#FF4A4F57" Background="#FF1B1E22" VerticalAlignment="Center">
+                                        BorderBrush="#47FFFFFF" Background="#26FFFFFF" VerticalAlignment="Center">
                                     <Path x:Name="tick" Data="M3,7 L5.8,9.8 L11,4" Stroke="#FF000000" StrokeThickness="2"
                                           StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeLineJoin="Round"
                                           Visibility="Collapsed"/>
@@ -424,7 +424,7 @@ $script:PlanData = @{
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter TargetName="box" Property="BorderBrush" Value="{DynamicResource PA}"/>
-                                <Setter Property="Foreground" Value="#FFE6E8EB"/>
+                                <Setter Property="Foreground" Value="#FFE8EEFC"/>
                             </Trigger>
                             <Trigger Property="IsChecked" Value="True">
                                 <Setter TargetName="box" Property="Background" Value="{DynamicResource PA}"/>
@@ -439,7 +439,7 @@ $script:PlanData = @{
         </Style>
 
         <Style TargetType="RadioButton">
-            <Setter Property="Foreground" Value="#FFC5C9CF"/>
+            <Setter Property="Foreground" Value="#FFC9D3EC"/>
             <Setter Property="FontFamily" Value="Segoe UI Variable Text, Segoe UI"/>
             <Setter Property="FontSize" Value="12.5"/>
             <Setter Property="Margin" Value="0,2,8,2"/>
@@ -447,7 +447,7 @@ $script:PlanData = @{
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="RadioButton">
-                        <Border x:Name="row" Background="#FF16181C" BorderBrush="#FF2C3036" BorderThickness="1"
+                        <Border x:Name="row" Background="#12FFFFFF" BorderBrush="#1FFFFFFF" BorderThickness="1"
                                 CornerRadius="7" Padding="12,8" SnapsToDevicePixels="True">
                             <!-- Griglia e non StackPanel orizzontale: con larghezza infinita il testo lungo non andava a capo e veniva tagliato. -->
                             <Grid>
@@ -456,7 +456,7 @@ $script:PlanData = @{
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <Grid Width="16" Height="16" Margin="0,0,10,0" VerticalAlignment="Center">
-                                    <Ellipse x:Name="ring" Stroke="#FF4A4F57" StrokeThickness="1.6"/>
+                                    <Ellipse x:Name="ring" Stroke="#47FFFFFF" StrokeThickness="1.6"/>
                                     <Ellipse x:Name="dot" Width="8" Height="8" Fill="{DynamicResource PA}" Visibility="Collapsed"/>
                                 </Grid>
                                 <ContentPresenter Grid.Column="1" VerticalAlignment="Center">
@@ -470,7 +470,7 @@ $script:PlanData = @{
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="row" Property="Background" Value="#FF1E2125"/>
+                                <Setter TargetName="row" Property="Background" Value="#1CFFFFFF"/>
                             </Trigger>
                             <Trigger Property="IsChecked" Value="True">
                                 <Setter TargetName="ring" Property="Stroke" Value="{DynamicResource PA}"/>
@@ -489,7 +489,7 @@ $script:PlanData = @{
         </Style>
 
         <Style x:Key="NavItem" TargetType="RadioButton">
-            <Setter Property="Foreground" Value="#FF8C929A"/>
+            <Setter Property="Foreground" Value="#FF8F9DC2"/>
             <Setter Property="FontFamily" Value="Segoe UI Variable Display, Segoe UI"/>
             <Setter Property="FontWeight" Value="Normal"/>
             <Setter Property="FontSize" Value="13"/>
@@ -509,7 +509,7 @@ $script:PlanData = @{
                                         Margin="-13,2,0,2" Visibility="Hidden"/>
                                 <Path x:Name="icon" Grid.Column="0" Width="17" Height="17" Stretch="Uniform"
                                       Data="{Binding Tag, RelativeSource={RelativeSource TemplatedParent}}"
-                                      Stroke="#FF6C727A" StrokeThickness="1.7" Fill="Transparent"
+                                      Stroke="#FF7887AD" StrokeThickness="1.7" Fill="Transparent"
                                       StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round"
                                       VerticalAlignment="Center" Margin="0,0,13,0"/>
                                 <TextBlock Grid.Column="1" VerticalAlignment="Center" Text="{TemplateBinding Content}"
@@ -520,12 +520,12 @@ $script:PlanData = @{
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="bg" Property="Background" Value="#FF1B1E22"/>
-                                <Setter Property="Foreground" Value="#FFE6E8EB"/>
+                                <Setter TargetName="bg" Property="Background" Value="#26FFFFFF"/>
+                                <Setter Property="Foreground" Value="#FFE8EEFC"/>
                                 <Setter TargetName="icon" Property="Stroke" Value="{DynamicResource PA}"/>
                             </Trigger>
                             <Trigger Property="IsChecked" Value="True">
-                                <Setter TargetName="bg" Property="Background" Value="#FF1C1F24"/>
+                                <Setter TargetName="bg" Property="Background" Value="#2EFFFFFF"/>
                                 <Setter Property="Foreground" Value="#FFFFFFFF"/>
                                 <Setter TargetName="icon" Property="Stroke" Value="{DynamicResource PA}"/>
                                 <Setter TargetName="bar" Property="Visibility" Value="Visible"/>
@@ -537,8 +537,8 @@ $script:PlanData = @{
         </Style>
 
         <Style TargetType="ComboBox">
-            <Setter Property="Foreground" Value="#FFEDEFF2"/>
-            <Setter Property="BorderBrush" Value="#FF2C3036"/>
+            <Setter Property="Foreground" Value="#FFEEF3FF"/>
+            <Setter Property="BorderBrush" Value="#1FFFFFFF"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="Padding" Value="12,7"/>
             <Setter Property="FontSize" Value="12"/>
@@ -554,7 +554,7 @@ $script:PlanData = @{
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
                             <Border x:Name="MainBorder" Grid.ColumnSpan="2"
-                                    Background="#FF1A1C20"
+                                    Background="#17FFFFFF"
                                     BorderBrush="{TemplateBinding BorderBrush}"
                                     BorderThickness="{TemplateBinding BorderThickness}"
                                     CornerRadius="7"/>
@@ -576,14 +576,14 @@ $script:PlanData = @{
                                               VerticalAlignment="Center" HorizontalAlignment="Left"
                                               TextBlock.Foreground="{TemplateBinding Foreground}"/>
                             <Path x:Name="Arrow" Grid.Column="1" Data="M1,1 L5.5,5.5 L10,1"
-                                  Stroke="#FF8C929A" StrokeThickness="1.6" Fill="Transparent"
+                                  Stroke="#FF8F9DC2" StrokeThickness="1.6" Fill="Transparent"
                                   StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeLineJoin="Round"
                                   Margin="0,0,13,0" VerticalAlignment="Center" HorizontalAlignment="Right"/>
                             <Popup x:Name="PART_Popup" AllowsTransparency="True"
                                    IsOpen="{TemplateBinding IsDropDownOpen}" Placement="Bottom"
                                    PopupAnimation="Fade" Focusable="False">
-                                <Border Background="#FF16181C" BorderBrush="#FF2C3036" BorderThickness="1"
-                                        CornerRadius="7" Margin="0,6,0,0" Padding="2"
+                                <Border Background="#FF102559" BorderBrush="#33FFFFFF" BorderThickness="1"
+                                        CornerRadius="10" Margin="0,6,0,0" Padding="2"
                                         MinWidth="{Binding ActualWidth, RelativeSource={RelativeSource TemplatedParent}}"
                                         MaxHeight="{TemplateBinding MaxDropDownHeight}">
                                     <ScrollViewer SnapsToDevicePixels="True" Margin="4">
@@ -600,10 +600,10 @@ $script:PlanData = @{
                                 <Setter TargetName="MainBorder" Property="BorderBrush" Value="{DynamicResource PA}"/>
                             </Trigger>
                             <Trigger Property="IsEnabled" Value="False">
-                                <Setter TargetName="MainBorder" Property="Background" Value="#FF131518"/>
-                                <Setter TargetName="MainBorder" Property="BorderBrush" Value="#FF1E2125"/>
-                                <Setter TargetName="Arrow" Property="Stroke" Value="#FF3A3F46"/>
-                                <Setter Property="Foreground" Value="#FF5D636B"/>
+                                <Setter TargetName="MainBorder" Property="Background" Value="#12FFFFFF"/>
+                                <Setter TargetName="MainBorder" Property="BorderBrush" Value="#1CFFFFFF"/>
+                                <Setter TargetName="Arrow" Property="Stroke" Value="#38FFFFFF"/>
+                                <Setter Property="Foreground" Value="#FF6A7AA3"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -612,7 +612,7 @@ $script:PlanData = @{
         </Style>
 
         <Style TargetType="ComboBoxItem">
-            <Setter Property="Foreground" Value="#FFE6E8EB"/>
+            <Setter Property="Foreground" Value="#FFE8EEFC"/>
             <Setter Property="Padding" Value="10,7"/>
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Template">
@@ -623,7 +623,7 @@ $script:PlanData = @{
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="b" Property="Background" Value="#FF1E2125"/>
+                                <Setter TargetName="b" Property="Background" Value="#1CFFFFFF"/>
                             </Trigger>
                             <Trigger Property="IsSelected" Value="True">
                                 <Setter TargetName="b" Property="Background" Value="{DynamicResource PASoft}"/>
@@ -641,14 +641,14 @@ $script:PlanData = @{
             <Setter Property="BorderBrush">
                 <Setter.Value>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                        <GradientStop Color="#40FFFFFF" Offset="0"/>
-                        <GradientStop Color="#14FFFFFF" Offset="0.25"/>
-                        <GradientStop Color="#0DFFFFFF" Offset="1"/>
+                        <GradientStop Color="#2EFFFFFF" Offset="0"/>
+                        <GradientStop Color="#08FFFFFF" Offset="0.18"/>
+                        <GradientStop Color="#00FFFFFF" Offset="1"/>
                     </LinearGradientBrush>
                 </Setter.Value>
             </Setter>
             <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="CornerRadius" Value="14"/>
             <Setter Property="Padding" Value="16,14"/>
             <Setter Property="Margin" Value="5"/>
         </Style>
@@ -672,15 +672,15 @@ $script:PlanData = @{
         </Style>
 
         <Style x:Key="Bar" TargetType="Border">
-            <Setter Property="Background" Value="#E6161920"/>
-            <Setter Property="BorderBrush" Value="#26FFFFFF"/>
+            <Setter Property="Background" Value="#0FFFFFFF"/>
+            <Setter Property="BorderBrush" Value="#14FFFFFF"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="CornerRadius" Value="10"/>
         </Style>
 
         <Style x:Key="GlassInner" TargetType="Border">
-            <Setter Property="Background" Value="#B30E1015"/>
-            <Setter Property="BorderBrush" Value="#FF25282D"/>
+            <Setter Property="Background" Value="#2E000000"/>
+            <Setter Property="BorderBrush" Value="#14FFFFFF"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="CornerRadius" Value="8"/>
             <Setter Property="Padding" Value="13"/>
@@ -697,7 +697,7 @@ $script:PlanData = @{
         <Style x:Key="SubTitle" TargetType="TextBlock">
             <Setter Property="FontFamily" Value="Segoe UI Variable Text, Segoe UI"/>
             <Setter Property="FontSize" Value="11.5"/>
-            <Setter Property="Foreground" Value="#FF7F858D"/>
+            <Setter Property="Foreground" Value="#FF8C9CC4"/>
             <Setter Property="TextWrapping" Value="Wrap"/>
             <Setter Property="LineHeight" Value="17"/>
         </Style>
@@ -705,12 +705,12 @@ $script:PlanData = @{
         <Style x:Key="FieldLabel" TargetType="TextBlock">
             <Setter Property="FontFamily" Value="Segoe UI Variable Text, Segoe UI"/>
             <Setter Property="FontSize" Value="12"/>
-            <Setter Property="Foreground" Value="#FFC5C9CF"/>
+            <Setter Property="Foreground" Value="#FFC9D3EC"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>
 
         <Style x:Key="PrimaryBtn" TargetType="Button">
-            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Foreground" Value="#FF0A1A45"/>
             <Setter Property="FontFamily" Value="Segoe UI Variable Display, Segoe UI"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="FontSize" Value="14"/>
@@ -718,19 +718,19 @@ $script:PlanData = @{
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border x:Name="b" Background="#FF4C8DFF" CornerRadius="7" Padding="16,10">
+                        <Border x:Name="b" Background="#FFF4F7FF" CornerRadius="20" Padding="18,10">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="b" Property="Background" Value="#FF6FA4FF"/>
+                                <Setter TargetName="b" Property="Background" Value="#FFFFFFFF"/>
                             </Trigger>
                             <Trigger Property="IsPressed" Value="True">
-                                <Setter TargetName="b" Property="Background" Value="#FF2F6FE0"/>
+                                <Setter TargetName="b" Property="Background" Value="#FFD6E2FF"/>
                             </Trigger>
                             <Trigger Property="IsEnabled" Value="False">
-                                <Setter TargetName="b" Property="Background" Value="#FF1E2125"/>
-                                <Setter Property="Foreground" Value="#FF4E545C"/>
+                                <Setter TargetName="b" Property="Background" Value="#14FFFFFF"/>
+                                <Setter Property="Foreground" Value="#FF5E6E96"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -739,15 +739,15 @@ $script:PlanData = @{
         </Style>
 
         <Style x:Key="GhostBtn" TargetType="Button">
-            <Setter Property="Foreground" Value="#FFD3D6DB"/>
+            <Setter Property="Foreground" Value="#FFD8E0F5"/>
             <Setter Property="FontFamily" Value="Segoe UI Variable Text, Segoe UI"/>
             <Setter Property="FontSize" Value="12.5"/>
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border x:Name="b" Background="#FF1A1C20" BorderBrush="#FF2C3036" BorderThickness="1"
-                                CornerRadius="7" Padding="14,9">
+                        <Border x:Name="b" Background="#17FFFFFF" BorderBrush="Transparent" BorderThickness="1"
+                                CornerRadius="20" Padding="14,9">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
                                 <!-- Con l'arrotondamento dei pixel l'ultima lettera usciva dal
                                      riquadro del testo e veniva tagliata: il margine interno la
@@ -761,8 +761,8 @@ $script:PlanData = @{
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="b" Property="Background" Value="#FF22252A"/>
-                                <Setter TargetName="b" Property="BorderBrush" Value="{DynamicResource PA}"/>
+                                <Setter TargetName="b" Property="Background" Value="#26FFFFFF"/>
+                                <Setter TargetName="b" Property="BorderBrush" Value="#33FFFFFF"/>
                                 <Setter Property="Foreground" Value="#FFFFFFFF"/>
                             </Trigger>
                             <Trigger Property="IsPressed" Value="True">
@@ -779,15 +779,15 @@ $script:PlanData = @{
 
         <!-- Pulsante con pallino colorato davanti al testo: il colore arriva da Tag. -->
         <Style x:Key="DotBtn" TargetType="Button">
-            <Setter Property="Foreground" Value="#FFD3D6DB"/>
+            <Setter Property="Foreground" Value="#FFD8E0F5"/>
             <Setter Property="FontFamily" Value="Segoe UI Variable Text, Segoe UI"/>
             <Setter Property="FontSize" Value="12.5"/>
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border x:Name="b" Background="#FF1A1C20" BorderBrush="#FF2C3036" BorderThickness="1"
-                                CornerRadius="7" Padding="13,9">
+                        <Border x:Name="b" Background="#17FFFFFF" BorderBrush="Transparent" BorderThickness="1"
+                                CornerRadius="20" Padding="13,9">
                             <StackPanel Orientation="Horizontal">
                                 <Ellipse x:Name="dot" Width="8" Height="8" Margin="2,0,9,0" VerticalAlignment="Center"
                                          Fill="{Binding Tag, RelativeSource={RelativeSource TemplatedParent}}"/>
@@ -799,8 +799,8 @@ $script:PlanData = @{
                                 <Setter TargetName="dot" Property="Visibility" Value="Collapsed"/>
                             </Trigger>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="b" Property="Background" Value="#FF22252A"/>
-                                <Setter TargetName="b" Property="BorderBrush" Value="{DynamicResource PA}"/>
+                                <Setter TargetName="b" Property="Background" Value="#26FFFFFF"/>
+                                <Setter TargetName="b" Property="BorderBrush" Value="#33FFFFFF"/>
                                 <Setter Property="Foreground" Value="#FFFFFFFF"/>
                             </Trigger>
                             <Trigger Property="IsPressed" Value="True">
@@ -819,7 +819,7 @@ $script:PlanData = @{
             <Setter Property="FontFamily" Value="Segoe UI Variable Display, Segoe UI"/>
             <Setter Property="FontSize" Value="10"/>
             <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Foreground" Value="#FF565C64"/>
+            <Setter Property="Foreground" Value="#FF6C7CA6"/>
             <Setter Property="Margin" Value="14,12,0,4"/>
         </Style>
 
@@ -830,7 +830,7 @@ $script:PlanData = @{
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Border x:Name="b" Background="#1FFF9F43" BorderBrush="#4DFF9F43" BorderThickness="1"
-                                CornerRadius="7" Padding="14,9">
+                                CornerRadius="20" Padding="14,9">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
                                 <!-- Con l'arrotondamento dei pixel l'ultima lettera usciva dal
                                      riquadro del testo e veniva tagliata: il margine interno la
@@ -849,9 +849,9 @@ $script:PlanData = @{
                                 <Setter Property="Foreground" Value="#FFFFD2A1"/>
                             </Trigger>
                             <Trigger Property="IsEnabled" Value="False">
-                                <Setter TargetName="b" Property="Background" Value="#FF1A1C20"/>
-                                <Setter TargetName="b" Property="BorderBrush" Value="#FF25282D"/>
-                                <Setter Property="Foreground" Value="#FF4E545C"/>
+                                <Setter TargetName="b" Property="Background" Value="#17FFFFFF"/>
+                                <Setter TargetName="b" Property="BorderBrush" Value="#14FFFFFF"/>
+                                <Setter Property="Foreground" Value="#FF5E6E96"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -860,7 +860,7 @@ $script:PlanData = @{
         </Style>
 
         <Style x:Key="LangBtn" TargetType="Button">
-            <Setter Property="Foreground" Value="#FF8C929A"/>
+            <Setter Property="Foreground" Value="#FF8F9DC2"/>
             <Setter Property="FontFamily" Value="Segoe UI Variable Display, Segoe UI"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="FontSize" Value="11"/>
@@ -875,8 +875,8 @@ $script:PlanData = @{
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="b" Property="Background" Value="#FF1E2125"/>
-                                <Setter Property="Foreground" Value="#FFE6E8EB"/>
+                                <Setter TargetName="b" Property="Background" Value="#1CFFFFFF"/>
+                                <Setter Property="Foreground" Value="#FFE8EEFC"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -888,7 +888,7 @@ $script:PlanData = @{
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border Background="#FFEDEFF2" CornerRadius="6">
+                        <Border Background="#FFEEF3FF" CornerRadius="6">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                     </ControlTemplate>
@@ -900,7 +900,7 @@ $script:PlanData = @{
             <Setter Property="Width" Value="42"/>
             <Setter Property="Height" Value="32"/>
             <Setter Property="Cursor" Value="Arrow"/>
-            <Setter Property="Foreground" Value="#FF8C929A"/>
+            <Setter Property="Foreground" Value="#FF8F9DC2"/>
             <Setter Property="shell:WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
             <Setter Property="Template">
                 <Setter.Value>
@@ -910,7 +910,7 @@ $script:PlanData = @{
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="b" Property="Background" Value="#FF1E2125"/>
+                                <Setter TargetName="b" Property="Background" Value="#1CFFFFFF"/>
                                 <Setter Property="Foreground" Value="#FFFFFFFF"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
@@ -938,7 +938,7 @@ $script:PlanData = @{
 
         <!-- Barra di avanzamento: l'unico punto con piu' colori insieme. -->
         <Style TargetType="ProgressBar">
-            <Setter Property="Background" Value="#FF1E2125"/>
+            <Setter Property="Background" Value="#1CFFFFFF"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Template">
                 <Setter.Value>
@@ -950,7 +950,7 @@ $script:PlanData = @{
                                 <Rectangle x:Name="PART_Indicator" HorizontalAlignment="Left" RadiusX="3" RadiusY="3">
                                     <Rectangle.Fill>
                                         <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                                            <GradientStop Color="#FF4C8DFF" Offset="0"/>
+                                            <GradientStop Color="#FF6EA8FF" Offset="0"/>
                                             <GradientStop Color="#FFA78BFA" Offset="0.55"/>
                                             <GradientStop Color="#FFF472B6" Offset="1"/>
                                         </LinearGradientBrush>
@@ -972,7 +972,7 @@ $script:PlanData = @{
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="TextBox">
-                        <Border x:Name="b" Background="#FF1A1C20" BorderBrush="#FF2C3036"
+                        <Border x:Name="b" Background="#17FFFFFF" BorderBrush="#1FFFFFFF"
                                 BorderThickness="1" CornerRadius="7">
                             <ScrollViewer x:Name="PART_ContentHost" Margin="{TemplateBinding Padding}"
                                           VerticalAlignment="Center"/>
@@ -991,7 +991,7 @@ $script:PlanData = @{
         </Style>
 
         <Style x:Key="SoftSep" TargetType="Separator">
-            <Setter Property="Background" Value="#FF25282D"/>
+            <Setter Property="Background" Value="#14FFFFFF"/>
             <Setter Property="Margin" Value="0,11"/>
             <Setter Property="Height" Value="1"/>
         </Style>
@@ -1001,13 +1001,13 @@ $script:PlanData = @{
         <Style TargetType="ToolTip">
             <Setter Property="OverridesDefaultStyle" Value="True"/>
             <Setter Property="HasDropShadow" Value="False"/>
-            <Setter Property="Foreground" Value="#FFE6E8EB"/>
+            <Setter Property="Foreground" Value="#FFE8EEFC"/>
             <Setter Property="FontFamily" Value="Segoe UI Variable Text, Segoe UI"/>
             <Setter Property="FontSize" Value="12"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="ToolTip">
-                        <Border Background="#F7131317" BorderBrush="#FF33373D" BorderThickness="1"
+                        <Border Background="#FA0F2150" BorderBrush="#33FFFFFF" BorderThickness="1"
                                 CornerRadius="7" MaxWidth="360" Margin="10">
                             <Border.Effect>
                                 <DropShadowEffect BlurRadius="22" ShadowDepth="3" Opacity="0.55" Color="#000000"/>
@@ -1035,7 +1035,7 @@ $script:PlanData = @{
 
     </Window.Resources>
 
-    <Border x:Name="shell" CornerRadius="0" BorderThickness="0" Background="#FF0A0B0F">
+    <Border x:Name="shell" CornerRadius="0" BorderThickness="0" Background="#FF081537">
 
         <Grid>
             <!-- Sfondo: grafite quasi nera con aloni di colore sfumati. Le schede,
@@ -1043,35 +1043,35 @@ $script:PlanData = @{
             <Grid IsHitTestVisible="False" ClipToBounds="True">
                 <Grid.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                        <GradientStop Color="#FF0B0D12" Offset="0"/>
-                        <GradientStop Color="#FF090A0E" Offset="0.55"/>
-                        <GradientStop Color="#FF0C0E14" Offset="1"/>
+                        <GradientStop Color="#FF0B1D4F" Offset="0"/>
+                        <GradientStop Color="#FF081537" Offset="0.55"/>
+                        <GradientStop Color="#FF0A1A45" Offset="1"/>
                     </LinearGradientBrush>
                 </Grid.Background>
                 <Ellipse Width="1100" Height="800" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,-360,0,0">
                     <Ellipse.Fill>
                         <RadialGradientBrush>
-                            <GradientStop Color="#664C8DFF" Offset="0"/>
-                            <GradientStop Color="#244C8DFF" Offset="0.5"/>
-                            <GradientStop Color="#004C8DFF" Offset="1"/>
+                            <GradientStop Color="#662563EB" Offset="0"/>
+                            <GradientStop Color="#262563EB" Offset="0.5"/>
+                            <GradientStop Color="#002563EB" Offset="1"/>
                         </RadialGradientBrush>
                     </Ellipse.Fill>
                 </Ellipse>
                 <Ellipse Width="1100" Height="900" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-160,-300,0">
                     <Ellipse.Fill>
                         <RadialGradientBrush>
-                            <GradientStop Color="#5A8B5CF6" Offset="0"/>
-                            <GradientStop Color="#1E8B5CF6" Offset="0.5"/>
-                            <GradientStop Color="#008B5CF6" Offset="1"/>
+                            <GradientStop Color="#3D0EA5E9" Offset="0"/>
+                            <GradientStop Color="#140EA5E9" Offset="0.5"/>
+                            <GradientStop Color="#000EA5E9" Offset="1"/>
                         </RadialGradientBrush>
                     </Ellipse.Fill>
                 </Ellipse>
                 <Ellipse Width="1100" Height="700" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,-420">
                     <Ellipse.Fill>
                         <RadialGradientBrush>
-                            <GradientStop Color="#4414B8A6" Offset="0"/>
-                            <GradientStop Color="#1614B8A6" Offset="0.5"/>
-                            <GradientStop Color="#0014B8A6" Offset="1"/>
+                            <GradientStop Color="#4D1D4ED8" Offset="0"/>
+                            <GradientStop Color="#1A1D4ED8" Offset="0.5"/>
+                            <GradientStop Color="#001D4ED8" Offset="1"/>
                         </RadialGradientBrush>
                     </Ellipse.Fill>
                 </Ellipse>
@@ -1092,14 +1092,14 @@ $script:PlanData = @{
                     </Grid.ColumnDefinitions>
 
                     <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
-                        <Border Width="28" Height="28" CornerRadius="6" Background="#FF4C8DFF" Margin="0,0,11,0">
+                        <Border Width="28" Height="28" CornerRadius="6" Background="#FF6EA8FF" Margin="0,0,11,0">
                             <TextBlock Text="A" Foreground="White" FontFamily="Segoe UI Variable Display, Segoe UI" FontWeight="Bold"
                                        FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <TextBlock Text="Tweak Andrew" FontFamily="Segoe UI Variable Display, Segoe UI"
-                                   FontSize="13.5" FontWeight="SemiBold" Foreground="#FFE6E8EB" VerticalAlignment="Center"/>
+                                   FontSize="13.5" FontWeight="SemiBold" Foreground="#FFE8EEFC" VerticalAlignment="Center"/>
                         <TextBlock Text="v7.1" FontFamily="Segoe UI Variable Text, Segoe UI" FontSize="11"
-                                   Foreground="#FF6C727A" VerticalAlignment="Center" Margin="9,1,0,0"/>
+                                   Foreground="#FF7887AD" VerticalAlignment="Center" Margin="9,1,0,0"/>
                     </StackPanel>
 
                     <ComboBox x:Name="cmbLang" Grid.Column="1" Width="138" Margin="0,0,10,0"
@@ -1135,7 +1135,7 @@ $script:PlanData = @{
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <Border Grid.Column="0" Background="#D9161920" BorderBrush="#26FFFFFF" BorderThickness="1" CornerRadius="10"
+                    <Border Grid.Column="0" Background="#0DFFFFFF" BorderBrush="#12FFFFFF" BorderThickness="1" CornerRadius="14"
                             Padding="8,10,6,8" Margin="0,0,10,0">
                         <Grid>
                             <Grid.RowDefinitions>
@@ -1146,7 +1146,7 @@ $script:PlanData = @{
 
                             <StackPanel Grid.Row="0" Margin="6,4,6,10" Visibility="Collapsed">
                                 <TextBlock Text="TWEAK ANDREW" FontFamily="Segoe UI Variable Display, Segoe UI"
-                                           FontSize="17" FontWeight="Bold" Foreground="#FFEDEFF2"/>
+                                           FontSize="17" FontWeight="Bold" Foreground="#FFEEF3FF"/>
                                 <TextBlock x:Name="lblSubtitle" Text="Ottimizzazione e controllo di Windows"
                                            Style="{StaticResource SubTitle}" Margin="0,3,0,0"/>
                             </StackPanel>
@@ -1157,9 +1157,9 @@ $script:PlanData = @{
                                              Content="Home" Margin="0,0,0,10"
                                              Tag="M3.5,11 L12,4 L20.5,11 M6,9.2 L6,20 L10,20 L10,14.5 L14,14.5 L14,20 L18,20 L18,9.2">
                                     <RadioButton.Resources>
-                                        <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
-                                        <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                        <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
+                                        <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
+                                        <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#12FFFFFF"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <TextBlock x:Name="navGrpSystem" Text="SISTEMA" Style="{StaticResource NavHeader}" Margin="14,0,0,4"/>
@@ -1167,54 +1167,54 @@ $script:PlanData = @{
                                              Content="Prestazioni"
                                              Tag="M13,2 L4,13.5 L10.5,13.5 L10,22 L19,10.5 L12.5,10.5 Z">
                                     <RadioButton.Resources>
-                                        <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
-                                        <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                        <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
+                                        <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
+                                        <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#12FFFFFF"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <RadioButton x:Name="tabSched" GroupName="Nav" Style="{StaticResource NavItem}"
                                              Content="Priorita"
                                              Tag="M4,7 L20,7 M4,12 L20,12 M4,17 L20,17 M8,5 L8,9 M15,10 L15,14 M10,15 L10,19">
                                     <RadioButton.Resources>
-                                        <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
-                                        <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                        <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
+                                        <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
+                                        <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#12FFFFFF"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <RadioButton x:Name="tabPower" GroupName="Nav" Style="{StaticResource NavItem}"
                                              Content="Alimentazione"
                                              Tag="M12,3.5 A8.5,8.5 0 1 0 12.01,3.5 M12,2.5 L12,11">
                                     <RadioButton.Resources>
-                                        <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
-                                        <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                        <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
+                                        <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
+                                        <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#12FFFFFF"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <RadioButton x:Name="tabGpu" GroupName="Nav" Style="{StaticResource NavItem}"
                                              Content="Scheda video"
                                              Tag="M3.5,7 L16,7 A3.5,3.5 0 0 1 16,16 L3.5,16 Z M7,11.5 A1.1,1.1 0 1 0 7.01,11.5 M10.5,11.5 A1.1,1.1 0 1 0 10.51,11.5 M6,16 L6,19.5 M13.5,16 L13.5,19.5">
                                     <RadioButton.Resources>
-                                        <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
-                                        <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                        <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
+                                        <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
+                                        <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#12FFFFFF"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <RadioButton x:Name="tabStorage" GroupName="Nav" Style="{StaticResource NavItem}"
                                              Content="Archiviazione"
                                              Tag="M4,6.5 A8,2.8 0 1 0 20,6.5 A8,2.8 0 1 0 4,6.5 M4,6.5 L4,17.5 A8,2.8 0 0 0 20,17.5 L20,6.5 M4,12 A8,2.8 0 0 0 20,12">
                                     <RadioButton.Resources>
-                                        <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
-                                        <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                        <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
+                                        <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
+                                        <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#12FFFFFF"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <RadioButton x:Name="tabNet" GroupName="Nav" Style="{StaticResource NavItem}"
                                              Content="Rete"
                                              Tag="M3,8.5 A13,13 0 0 1 21,8.5 M6.5,12.5 A8,8 0 0 1 17.5,12.5 M10,16.5 A3.2,3.2 0 0 1 14,16.5">
                                     <RadioButton.Resources>
-                                        <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
-                                        <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                        <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
+                                        <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
+                                        <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#12FFFFFF"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <TextBlock x:Name="navGrpPrivacy" Text="PRIVACY" Style="{StaticResource NavHeader}"/>
@@ -1222,18 +1222,18 @@ $script:PlanData = @{
                                              Content="Privacy"
                                              Tag="M12,2.5 L19.5,5.8 V11.2 C19.5,16 16.4,20.2 12,21.5 C7.6,20.2 4.5,16 4.5,11.2 V5.8 Z">
                                     <RadioButton.Resources>
-                                        <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
-                                        <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                        <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
+                                        <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
+                                        <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#12FFFFFF"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <RadioButton x:Name="tabPriv2" GroupName="Nav" Style="{StaticResource NavItem}"
                                              Content="Privacy avanzata"
                                              Tag="M12,2.5 L19.5,5.8 V11.2 C19.5,16 16.4,20.2 12,21.5 C7.6,20.2 4.5,16 4.5,11.2 V5.8 Z M8.5,11.5 L11,14 L15.5,9">
                                     <RadioButton.Resources>
-                                        <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
-                                        <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                        <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
+                                        <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
+                                        <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#12FFFFFF"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <TextBlock x:Name="navGrpCustom" Text="PERSONALIZZA" Style="{StaticResource NavHeader}"/>
@@ -1241,45 +1241,45 @@ $script:PlanData = @{
                                              Content="Interfaccia"
                                              Tag="M3.5,5 L20.5,5 L20.5,19 L3.5,19 Z M3.5,9 L20.5,9 M7.5,14 L13,14">
                                     <RadioButton.Resources>
-                                        <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
-                                        <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                        <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
+                                        <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
+                                        <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#12FFFFFF"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <RadioButton x:Name="tabExp" GroupName="Nav" Style="{StaticResource NavItem}"
                                              Content="Esplora file"
                                              Tag="M3.5,6.5 L9.5,6.5 L11.5,8.5 L20.5,8.5 L20.5,18.5 L3.5,18.5 Z">
                                     <RadioButton.Resources>
-                                        <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
-                                        <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                        <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
+                                        <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
+                                        <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#12FFFFFF"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <RadioButton x:Name="tabTask" GroupName="Nav" Style="{StaticResource NavItem}"
                                              Content="Start e barra"
                                              Tag="M3.5,4.5 L20.5,4.5 L20.5,19.5 L3.5,19.5 Z M3.5,15.5 L20.5,15.5 M7,17.5 L8,17.5 M11.5,17.5 L12.5,17.5 M16,17.5 L17,17.5">
                                     <RadioButton.Resources>
-                                        <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
-                                        <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                        <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
+                                        <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
+                                        <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#12FFFFFF"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <RadioButton x:Name="tabNotif" GroupName="Nav" Style="{StaticResource NavItem}"
                                              Content="Notifiche e suoni"
                                              Tag="M6,16.5 L6,11 A6,6 0 0 1 18,11 L18,16.5 L19.5,18 L4.5,18 Z M10,20.5 L14,20.5">
                                     <RadioButton.Resources>
-                                        <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
-                                        <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                        <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
+                                        <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
+                                        <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#12FFFFFF"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <RadioButton x:Name="tabGame" GroupName="Nav" Style="{StaticResource NavItem}"
                                              Content="Giochi ed effetti"
                                              Tag="M7,8.5 L17,8.5 A4.5,4.5 0 0 1 17,17.5 L15.5,17.5 L13.5,15 L10.5,15 L8.5,17.5 L7,17.5 A4.5,4.5 0 0 1 7,8.5 Z M7,11.5 L7,14.5 M5.5,13 L8.5,13">
                                     <RadioButton.Resources>
-                                        <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
-                                        <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                        <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
+                                        <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
+                                        <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#12FFFFFF"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <TextBlock x:Name="navGrpWindows" Text="WINDOWS E APP" Style="{StaticResource NavHeader}"/>
@@ -1287,36 +1287,36 @@ $script:PlanData = @{
                                              Content="Windows e servizi"
                                              Tag="M4,5 L11,4 L11,11.5 L4,11.5 Z M13,3.7 L20,2.8 L20,11.5 L13,11.5 Z M4,13.5 L11,13.5 L11,20 L4,19 Z M13,13.5 L20,13.5 L20,21.2 L13,20.3 Z">
                                     <RadioButton.Resources>
-                                        <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
-                                        <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                        <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
+                                        <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
+                                        <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#12FFFFFF"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <RadioButton x:Name="tabApps" GroupName="Nav" Style="{StaticResource NavItem}"
                                              Content="App e software"
                                              Tag="M4,4 L10,4 L10,10 L4,10 Z M14,4 L20,4 L20,10 L14,10 Z M4,14 L10,14 L10,20 L4,20 Z M14,17 L20,17 M17,14 L17,20">
                                     <RadioButton.Resources>
-                                        <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
-                                        <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                        <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
+                                        <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
+                                        <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#12FFFFFF"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <RadioButton x:Name="tabTools" GroupName="Nav" Style="{StaticResource NavItem}"
                                              Content="Strumenti"
                                              Tag="M14.7,6.3 A4,4 0 0 0 9.3,11.7 L3.5,17.5 L6.5,20.5 L12.3,14.7 A4,4 0 0 0 17.7,9.3 L15,12 L12,9 Z">
                                     <RadioButton.Resources>
-                                        <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
-                                        <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                        <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
+                                        <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
+                                        <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#12FFFFFF"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <RadioButton x:Name="tabAdv" GroupName="Nav" Style="{StaticResource NavItem}"
                                              Content="Avanzate"
                                              Tag="M12,3 L12,21 M3,12 L21,12 M6.5,6.5 L17.5,17.5 M17.5,6.5 L6.5,17.5">
                                     <RadioButton.Resources>
-                                        <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
-                                        <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                        <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
+                                        <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
+                                        <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#12FFFFFF"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                             </StackPanel>
@@ -1354,7 +1354,7 @@ $script:PlanData = @{
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
                             <Border x:Name="pillActivity" Grid.Column="1" Visibility="Collapsed" Cursor="Hand"
-                                    Background="#FF131518" BorderBrush="#FF2C3036" BorderThickness="1" CornerRadius="7"
+                                    Background="#12FFFFFF" BorderBrush="#1FFFFFFF" BorderThickness="1" CornerRadius="7"
                                     Padding="14,7" Margin="0,0,10,0" VerticalAlignment="Center" MaxWidth="460">
                                 <Grid>
                                     <Grid.RowDefinitions>
@@ -1367,7 +1367,7 @@ $script:PlanData = @{
                                         <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
                                     <Ellipse x:Name="dotActivity" Width="7" Height="7" Fill="#FF3DBE8B" Margin="0,0,9,0" VerticalAlignment="Center"/>
-                                    <TextBlock x:Name="txtActivity" Grid.Column="1" Foreground="#FFE6E8EB" FontSize="12"
+                                    <TextBlock x:Name="txtActivity" Grid.Column="1" Foreground="#FFE8EEFC" FontSize="12"
                                                TextTrimming="CharacterEllipsis" VerticalAlignment="Center"/>
                                     <TextBlock x:Name="txtActivityPct" Grid.Column="2" Foreground="#FF3DBE8B" FontSize="12" FontWeight="SemiBold"
                                                Margin="10,0,0,0" VerticalAlignment="Center"/>
@@ -1384,8 +1384,8 @@ $script:PlanData = @{
                                 <StackPanel Grid.Column="1" VerticalAlignment="Center">
                                     <TextBlock x:Name="lblPageTitle" Text="Prestazioni"
                                                FontFamily="Segoe UI Variable Display, Segoe UI"
-                                               FontSize="25" FontWeight="Bold" Foreground="#FFEDEFF2"/>
-                                    <TextBlock x:Name="lblPageSub" Text="" FontSize="12.5" Foreground="#FF8C929A"
+                                               FontSize="25" FontWeight="Bold" Foreground="#FFEEF3FF"/>
+                                    <TextBlock x:Name="lblPageSub" Text="" FontSize="12.5" Foreground="#FF8F9DC2"
                                                TextWrapping="Wrap" Margin="0,1,0,0" MaxWidth="640" HorizontalAlignment="Left"/>
                                 </StackPanel>
                             </Grid>
@@ -1395,10 +1395,10 @@ $script:PlanData = @{
                                     VerticalAlignment="Center" Content="Ripristino totale"/>
                             <Button x:Name="btnDetectActive" Grid.Column="3" Style="{StaticResource GhostBtn}" Height="36" Margin="0,0,10,0"
                                     VerticalAlignment="Center" Content="Rileva già attivi"/>
-                            <Border x:Name="pillSelected" Grid.Column="4" Background="#FF131518" BorderBrush="#FF25282D" BorderThickness="1"
+                            <Border x:Name="pillSelected" Grid.Column="4" Background="#12FFFFFF" BorderBrush="#14FFFFFF" BorderThickness="1"
                                     CornerRadius="7" Padding="14,8" VerticalAlignment="Center">
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock x:Name="lblSelected" Text="Selezionati:" Foreground="#FF7F858D" FontSize="12"
+                                    <TextBlock x:Name="lblSelected" Text="Selezionati:" Foreground="#FF8C9CC4" FontSize="12"
                                                VerticalAlignment="Center" Margin="0,0,9,0"/>
                                     <!-- Con la scala al 130% l'arrotondamento tagliava la cifra: una
                                          larghezza minima e un filo di margine la tengono dentro. -->
@@ -1413,9 +1413,9 @@ $script:PlanData = @{
 
                             <ScrollViewer x:Name="pageHome" Grid.IsSharedSizeScope="True" VerticalScrollBarVisibility="Auto" Padding="0,0,6,0">
                                 <ScrollViewer.Resources>
-                                    <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
-                                    <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                    <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
+                                    <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
+                                    <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#12FFFFFF"/>
                                 </ScrollViewer.Resources>
                                 <StackPanel x:Name="panHome">
                                     <TextBlock x:Name="lblHomeLoading" Text="Lettura dell'hardware..." Style="{StaticResource SubTitle}" Margin="10"/>
@@ -1424,9 +1424,9 @@ $script:PlanData = @{
 
                             <ScrollViewer x:Name="pagePerf" Grid.IsSharedSizeScope="True" Visibility="Collapsed" VerticalScrollBarVisibility="Auto" Padding="0,0,6,0">
                                 <ScrollViewer.Resources>
-                                    <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
-                                    <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                    <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
+                                    <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
+                                    <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#12FFFFFF"/>
                                 </ScrollViewer.Resources>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
@@ -1521,9 +1521,9 @@ $script:PlanData = @{
 
                             <ScrollViewer x:Name="pagePrivacy" Grid.IsSharedSizeScope="True" Visibility="Collapsed" VerticalScrollBarVisibility="Auto" Padding="0,0,6,0">
                                 <ScrollViewer.Resources>
-                                    <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
-                                    <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                    <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
+                                    <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
+                                    <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#12FFFFFF"/>
                                 </ScrollViewer.Resources>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
@@ -1595,9 +1595,9 @@ $script:PlanData = @{
 
                             <ScrollViewer x:Name="pageUi" Grid.IsSharedSizeScope="True" Visibility="Collapsed" VerticalScrollBarVisibility="Auto" Padding="0,0,6,0">
                                 <ScrollViewer.Resources>
-                                    <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
-                                    <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                    <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
+                                    <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
+                                    <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#12FFFFFF"/>
                                 </ScrollViewer.Resources>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
@@ -1673,9 +1673,9 @@ $script:PlanData = @{
 
                             <Grid x:Name="pageNet" Grid.IsSharedSizeScope="True" Visibility="Collapsed">
                                 <Grid.Resources>
-                                    <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
-                                    <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                    <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
+                                    <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
+                                    <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#12FFFFFF"/>
                                 </Grid.Resources>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
@@ -1872,9 +1872,9 @@ $script:PlanData = @{
 
                             <Grid x:Name="pageStorage" Grid.IsSharedSizeScope="True" Visibility="Collapsed">
                                 <Grid.Resources>
-                                    <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
-                                    <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                    <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
+                                    <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
+                                    <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#12FFFFFF"/>
                                 </Grid.Resources>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="1.3*"/>
@@ -1972,9 +1972,9 @@ $script:PlanData = @{
                             <!-- In cima l'avviso; a sinistra i piani in una colonna che scorre da sola, a destra il resto, una scheda sotto l'altra. -->
                             <Grid x:Name="pagePower" Grid.IsSharedSizeScope="True" Visibility="Collapsed">
                                 <Grid.Resources>
-                                    <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
-                                    <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                    <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
+                                    <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
+                                    <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#12FFFFFF"/>
                                 </Grid.Resources>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
@@ -2057,9 +2057,9 @@ $script:PlanData = @{
 
                             <ScrollViewer x:Name="pageGpu" Grid.IsSharedSizeScope="True" Visibility="Collapsed" VerticalScrollBarVisibility="Auto" Padding="0,0,6,0">
                                 <ScrollViewer.Resources>
-                                    <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
-                                    <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                    <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
+                                    <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
+                                    <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#12FFFFFF"/>
                                 </ScrollViewer.Resources>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
@@ -2191,9 +2191,9 @@ $script:PlanData = @{
                             </ScrollViewer>
                             <ScrollViewer x:Name="pageAdv" Grid.IsSharedSizeScope="True" Visibility="Collapsed" VerticalScrollBarVisibility="Auto" Padding="0,0,6,0">
                                 <ScrollViewer.Resources>
-                                    <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
-                                    <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                    <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
+                                    <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
+                                    <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#12FFFFFF"/>
                                 </ScrollViewer.Resources>
                                 <StackPanel>
                                 <Border Style="{StaticResource NoticeBar}">
@@ -2375,9 +2375,9 @@ $script:PlanData = @{
                             </ScrollViewer>
                             <ScrollViewer x:Name="pageSched" Grid.IsSharedSizeScope="True" Visibility="Collapsed" VerticalScrollBarVisibility="Auto" Padding="0,0,6,0">
                                 <ScrollViewer.Resources>
-                                    <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
-                                    <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                    <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
+                                    <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
+                                    <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#12FFFFFF"/>
                                 </ScrollViewer.Resources>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
@@ -2416,7 +2416,7 @@ $script:PlanData = @{
                                                     <TextBox x:Name="txtPsCustom" Grid.Column="1" Height="34" Padding="10,0" Text="26" IsEnabled="False"/>
                                                 </Grid>
                                                 <Border Style="{StaticResource GlassInner}" Padding="12,9" Margin="0,0,0,14">
-                                                    <TextBlock x:Name="txtPsDecoded" Text="-" Foreground="#FFC5C9CF"
+                                                    <TextBlock x:Name="txtPsDecoded" Text="-" Foreground="#FFC9D3EC"
                                                                FontFamily="Consolas, Courier New" FontSize="11.5" TextWrapping="Wrap"/>
                                                 </Border>
                                                 <Grid>
@@ -2511,63 +2511,63 @@ $script:PlanData = @{
 
                             <Grid x:Name="pagePriv2" Grid.IsSharedSizeScope="True" Visibility="Collapsed">
                                 <Grid.Resources>
-                                    <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
-                                    <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                    <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
+                                    <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
+                                    <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#12FFFFFF"/>
                                 </Grid.Resources>
                                 <Grid x:Name="catPriv"/>
                             </Grid>
 
                             <Grid x:Name="pageExp" Grid.IsSharedSizeScope="True" Visibility="Collapsed">
                                 <Grid.Resources>
-                                    <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
-                                    <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                    <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
+                                    <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
+                                    <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#12FFFFFF"/>
                                 </Grid.Resources>
                                 <Grid x:Name="catExp"/>
                             </Grid>
 
                             <Grid x:Name="pageTask" Grid.IsSharedSizeScope="True" Visibility="Collapsed">
                                 <Grid.Resources>
-                                    <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
-                                    <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                    <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
+                                    <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
+                                    <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#12FFFFFF"/>
                                 </Grid.Resources>
                                 <Grid x:Name="catTask"/>
                             </Grid>
 
                             <Grid x:Name="pageNotif" Grid.IsSharedSizeScope="True" Visibility="Collapsed">
                                 <Grid.Resources>
-                                    <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
-                                    <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                    <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
+                                    <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
+                                    <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#12FFFFFF"/>
                                 </Grid.Resources>
                                 <Grid x:Name="catNotif"/>
                             </Grid>
 
                             <Grid x:Name="pageGame" Grid.IsSharedSizeScope="True" Visibility="Collapsed">
                                 <Grid.Resources>
-                                    <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
-                                    <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                    <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
+                                    <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
+                                    <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#12FFFFFF"/>
                                 </Grid.Resources>
                                 <Grid x:Name="catGame"/>
                             </Grid>
 
                             <Grid x:Name="pageWin" Grid.IsSharedSizeScope="True" Visibility="Collapsed">
                                 <Grid.Resources>
-                                    <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
-                                    <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                    <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
+                                    <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
+                                    <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#12FFFFFF"/>
                                 </Grid.Resources>
                                 <Grid x:Name="catWin"/>
                             </Grid>
 
                             <Grid x:Name="pageTools" Grid.IsSharedSizeScope="True" Visibility="Collapsed">
                                 <Grid.Resources>
-                                    <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
-                                    <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                    <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
+                                    <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
+                                    <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#12FFFFFF"/>
                                 </Grid.Resources>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
@@ -2599,9 +2599,9 @@ $script:PlanData = @{
 
                             <Grid x:Name="pageApps" Grid.IsSharedSizeScope="True" Visibility="Collapsed">
                                 <Grid.Resources>
-                                    <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
-                                    <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                    <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
+                                    <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
+                                    <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#12FFFFFF"/>
                                 </Grid.Resources>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
@@ -2614,7 +2614,7 @@ $script:PlanData = @{
                                         <RadioButton x:Name="radAppsInstalled" GroupName="AppsView" Content="Installate" Margin="0,4,14,8"/>
                                         <Grid Margin="0,0,10,8">
                                             <TextBox x:Name="txtAppSearch" Width="220" Height="34" Padding="10,0" VerticalContentAlignment="Center"/>
-                                            <TextBlock x:Name="lblAppSearchHint" Text="Cerca..." Foreground="#FF6C727A" IsHitTestVisible="False"
+                                            <TextBlock x:Name="lblAppSearchHint" Text="Cerca..." Foreground="#FF7887AD" IsHitTestVisible="False"
                                                        Margin="12,0,0,0" VerticalAlignment="Center"/>
                                         </Grid>
                                         <ComboBox x:Name="cmbAppCategory" Width="190" Margin="0,0,10,8" VerticalAlignment="Center"/>
@@ -2676,7 +2676,7 @@ $script:PlanData = @{
                                                 <ColumnDefinition Width="*"/>
                                                 <ColumnDefinition Width="Auto"/>
                                             </Grid.ColumnDefinitions>
-                                            <TextBlock x:Name="txtProgressLabel" Grid.Column="0" Text="Pronto." Foreground="#FFEDEFF2"
+                                            <TextBlock x:Name="txtProgressLabel" Grid.Column="0" Text="Pronto." Foreground="#FFEEF3FF"
                                                        FontFamily="Segoe UI Variable Text, Segoe UI" FontSize="12.5" TextTrimming="CharacterEllipsis"/>
                                             <TextBlock x:Name="txtProgressCount" Grid.Column="1" Text="" Foreground="{DynamicResource PA}"
                                                        FontFamily="Segoe UI Variable Text, Segoe UI" FontSize="12.5" Margin="12,0,0,0"/>
@@ -4069,7 +4069,7 @@ function Show-StorageInventory {
             $cd.Width = if ($w -eq '*') { New-Object System.Windows.GridLength(1, [System.Windows.GridUnitType]::Star) } else { [System.Windows.GridLength]::Auto }
             $head.ColumnDefinitions.Add($cd)
         }
-        $pillColor = switch ($kind) { 'NVMe' { @('#FFA5B4FC', '#26818CF8') } 'SSD' { @('#FF7DD3FC', '#2638BDF8') } 'HDD' { @('#FFFCD34D', '#26F59E0B') } 'USB' { @('#FFC5C9CF', '#1FFFFFFF') } default { @('#FFC5C9CF', '#1FFFFFFF') } }
+        $pillColor = switch ($kind) { 'NVMe' { @('#FFA5B4FC', '#26818CF8') } 'SSD' { @('#FF7DD3FC', '#2638BDF8') } 'HDD' { @('#FFFCD34D', '#26F59E0B') } 'USB' { @('#FFC9D3EC', '#1FFFFFFF') } default { @('#FFC9D3EC', '#1FFFFFFF') } }
         $pills = New-Object System.Windows.Controls.StackPanel; $pills.Orientation = 'Horizontal'
         [void]$pills.Children.Add((New-DiskPill $kind $pillColor[0] $pillColor[1]))
         if ($isSys) { [void]$pills.Children.Add((New-DiskPill (T 'diskSystem') '#FF3DBE8B' '#263DBE8B')) }
@@ -4077,7 +4077,7 @@ function Show-StorageInventory {
 
         $name = New-Object System.Windows.Controls.TextBlock
         $name.Text = [string]$d.FriendlyName; $name.FontWeight = 'SemiBold'; $name.FontSize = 13
-        $name.Foreground = New-DiskBrush '#FFEDEFF2'; $name.VerticalAlignment = 'Center'; $name.TextTrimming = 'CharacterEllipsis'
+        $name.Foreground = New-DiskBrush '#FFEEF3FF'; $name.VerticalAlignment = 'Center'; $name.TextTrimming = 'CharacterEllipsis'
         [System.Windows.Controls.Grid]::SetColumn($name, 1); [void]$head.Children.Add($name)
 
         $right = New-Object System.Windows.Controls.StackPanel; $right.Orientation = 'Horizontal'; $right.VerticalAlignment = 'Center'
@@ -4086,7 +4086,7 @@ function Show-StorageInventory {
         $dot.Fill = New-DiskBrush $(if ($healthy) { '#FF3DBE8B' } else { '#FFFFB86B' })
         $dot.ToolTip = if ($healthy) { T 'diskHealthy' } else { T 'diskWarning' }
         $size = New-Object System.Windows.Controls.TextBlock
-        $size.Text = Format-DiskSize ([double]$d.Size); $size.Foreground = New-DiskBrush '#FF9DA3AB'; $size.FontSize = 12
+        $size.Text = Format-DiskSize ([double]$d.Size); $size.Foreground = New-DiskBrush '#FFA5B3D6'; $size.FontSize = 12
         [void]$right.Children.Add($size); [void]$right.Children.Add($dot)
         [System.Windows.Controls.Grid]::SetColumn($right, 2); [void]$head.Children.Add($right)
         [void]$sp.Children.Add($head)
@@ -4111,7 +4111,7 @@ function Show-StorageInventory {
             [System.Windows.Controls.Grid]::SetColumn($bar, 1); [void]$row.Children.Add($bar)
             $free = New-Object System.Windows.Controls.TextBlock
             $free.Text = (T 'volFree') -f (Format-DiskSize ([double]$v.SizeRemaining)), (Format-DiskSize ([double]$v.Size))
-            $free.Foreground = New-DiskBrush '#FF9DA3AB'; $free.FontSize = 11.5; $free.Margin = '12,0,0,0'; $free.VerticalAlignment = 'Center'
+            $free.Foreground = New-DiskBrush '#FFA5B3D6'; $free.FontSize = 11.5; $free.Margin = '12,0,0,0'; $free.VerticalAlignment = 'Center'
             [System.Windows.Controls.Grid]::SetColumn($free, 2); [void]$row.Children.Add($free)
             if ($v.FileSystemLabel) { $row.ToolTip = [string]$v.FileSystemLabel }
             [void]$sp.Children.Add($row)
@@ -4516,7 +4516,7 @@ function Update-ApplyButton {
     if ($null -ne $btnDeselectAll) { $btnDeselectAll.IsEnabled = ($total -gt 0) }
     if ($null -ne $txtSelectedCount) {
         $txtSelectedCount.Text = "$total"
-        if ($total -gt 0) { $txtSelectedCount.Foreground = "#FF3DBE8B" } else { $txtSelectedCount.Foreground = "#FF5D636B" }
+        if ($total -gt 0) { $txtSelectedCount.Foreground = "#FF3DBE8B" } else { $txtSelectedCount.Foreground = "#FF6A7AA3" }
     }
 }
 
@@ -15202,7 +15202,7 @@ function Invoke-ActionQueue {
     Set-UiLock 'run' $true
     $btnRun.IsEnabled = $false; $btnUndo.IsEnabled = $false
     $script:OkCount = 0; $script:WarnCount = 0; $script:SkipCount = 0
-    $txtProgressLabel.Foreground = New-Object System.Windows.Media.SolidColorBrush ([System.Windows.Media.ColorConverter]::ConvertFromString('#FFEDEFF2'))
+    $txtProgressLabel.Foreground = New-Object System.Windows.Media.SolidColorBrush ([System.Windows.Media.ColorConverter]::ConvertFromString('#FFEEF3FF'))
     Update-Progress 0 $total (T 'starting')
     Write-Log "======================================================="
     Write-Log "[AVVIO] $Header - $total operazioni in coda."
@@ -15659,7 +15659,7 @@ function Add-PlanRow {
     $title.FontWeight = [System.Windows.FontWeights]::SemiBold
     $title.FontSize = 13
     $title.TextWrapping = [System.Windows.TextWrapping]::Wrap
-    $title.Foreground = New-Brush "#FFEDEFF2"
+    $title.Foreground = New-Brush "#FFEEF3FF"
 
     $desc = New-Object System.Windows.Controls.TextBlock
     $desc.Text = $(if ($script:Msg.ContainsKey("pd_$($Entry.Key)")) { T "pd_$($Entry.Key)" } else { [string]$Entry.Desc })
@@ -15687,7 +15687,7 @@ function Add-PlanRow {
     if ($isActive) {
         $btn.Content = T 'planActive'
         $btn.IsEnabled = $false
-        $card.BorderBrush = New-Brush "#FF4C8DFF"
+        $card.BorderBrush = New-Brush "#FF6EA8FF"
         $card.Background = New-Brush "#1FFFC53D"
     } else {
         $btn.Content = T 'planApply'
@@ -15718,10 +15718,10 @@ function Show-PlanList {
 
     $panPlans.Children.Clear()
 
-    Add-PlanGroupTitle (T 'planTop') $panPlans "#FF4C8DFF"
+    Add-PlanGroupTitle (T 'planTop') $panPlans "#FF6EA8FF"
     foreach ($e in ($script:PlanCatalog | Where-Object { $_.Group -eq 'top' })) { Add-PlanRow $e $panPlans }
 
-    Add-PlanGroupTitle (T 'planWindows') $panPlans "#FF8C929A"
+    Add-PlanGroupTitle (T 'planWindows') $panPlans "#FF8F9DC2"
     foreach ($e in ($script:PlanCatalog | Where-Object { $_.Group -eq 'windows' })) { Add-PlanRow $e $panPlans }
 
     Add-PlanGroupTitle (T 'planTest') $panPlans "#FFE0A25E"
@@ -16301,7 +16301,7 @@ function Show-Dialog {
         [ValidateSet('ask','warn','danger')][string]$Kind = 'ask',
         [string]$Detail = ''
     )
-    $accent = switch ($Kind) { 'warn' { '#FFFFB86B' } 'danger' { '#FFF87171' } default { '#FF4C8DFF' } }
+    $accent = switch ($Kind) { 'warn' { '#FFFFB86B' } 'danger' { '#FFF87171' } default { '#FF6EA8FF' } }
     $glyph  = if ($Kind -eq 'ask') { '?' } else { '!' }
 
     [xml]$dx = @'
@@ -16310,7 +16310,7 @@ function Show-Dialog {
         WindowStyle="None" AllowsTransparency="True" Background="Transparent"
         ShowInTaskbar="False" ResizeMode="NoResize" SizeToContent="WidthAndHeight"
         WindowStartupLocation="CenterOwner" TextOptions.TextFormattingMode="Ideal" UseLayoutRounding="True">
-    <Border Margin="24" CornerRadius="20" Background="#FF101014" BorderBrush="#FF2C3036" BorderThickness="1"
+    <Border Margin="24" CornerRadius="20" Background="#FF0E1D4A" BorderBrush="#1FFFFFFF" BorderThickness="1"
             Padding="26,24,24,22" MinWidth="380" MaxWidth="480">
         <Border.Effect>
             <DropShadowEffect BlurRadius="36" ShadowDepth="6" Opacity="0.7" Color="#000000"/>
@@ -16327,7 +16327,7 @@ function Show-Dialog {
                 </Border>
                 <StackPanel Grid.Column="1">
                     <TextBlock x:Name="dTitle" FontFamily="Segoe UI Variable Display, Segoe UI" FontWeight="Bold"
-                               FontSize="16" Foreground="#FFEDEFF2" TextWrapping="Wrap" Margin="0,6,0,8"/>
+                               FontSize="16" Foreground="#FFEEF3FF" TextWrapping="Wrap" Margin="0,6,0,8"/>
                     <TextBlock x:Name="dMsg" FontFamily="Segoe UI Variable Text, Segoe UI" FontSize="13" Foreground="#FFB4B4BE"
                                TextWrapping="Wrap" LineHeight="20"/>
                     <TextBlock x:Name="dDetail" FontFamily="Segoe UI Variable Text, Segoe UI" FontSize="12" Margin="0,10,0,0"
@@ -17099,7 +17099,7 @@ function New-CatRow($it, $page) {
         $inner.ColumnDefinitions.Add($ic0); $inner.ColumnDefinitions.Add($ic2); $inner.ColumnDefinitions.Add($ic1)
         $tb = New-Object System.Windows.Controls.TextBlock
         $tb.Text = $label; $tb.TextWrapping = 'Wrap'; $tb.VerticalAlignment = 'Center'; $tb.Margin = '0,0,12,0'
-        $tb.Foreground = New-CatBrush '#FFC5C9CF'; $tb.FontSize = 12.5
+        $tb.Foreground = New-CatBrush '#FFC9D3EC'; $tb.FontSize = 12.5
         $tb.FontFamily = New-Object System.Windows.Media.FontFamily('Segoe UI Variable Text, Segoe UI')
         [void]$inner.Children.Add($tb)
         $combo = New-Object System.Windows.Controls.ComboBox
@@ -17296,7 +17296,7 @@ function Initialize-CatPage([string]$page, $hostEl, [bool]$embedded = $false) {
     $search.VerticalContentAlignment = 'Center'
     $search.Tag = $page
     $hint = New-Object System.Windows.Controls.TextBlock
-    $hint.Text = T 'catSearch'; $hint.Foreground = New-CatBrush '#FF6C727A'; $hint.IsHitTestVisible = $false
+    $hint.Text = T 'catSearch'; $hint.Foreground = New-CatBrush '#FF7887AD'; $hint.IsHitTestVisible = $false
     $hint.Margin = '12,0,0,0'; $hint.VerticalAlignment = 'Center'
     $sgrid = New-Object System.Windows.Controls.Grid
     $sgrid.Margin = '0,0,12,8'
@@ -17625,11 +17625,11 @@ function New-AppContent([string]$title, [string]$sub, [array]$pills) {
     }
     $sp = New-Object System.Windows.Controls.StackPanel; $sp.VerticalAlignment = 'Center'
     $t1 = New-Object System.Windows.Controls.TextBlock
-    $t1.Text = $title; $t1.FontSize = 13; $t1.FontWeight = 'SemiBold'; $t1.Foreground = New-AppBrush '#FFE6E8EB'; $t1.TextTrimming = 'CharacterEllipsis'
+    $t1.Text = $title; $t1.FontSize = 13; $t1.FontWeight = 'SemiBold'; $t1.Foreground = New-AppBrush '#FFE8EEFC'; $t1.TextTrimming = 'CharacterEllipsis'
     [void]$sp.Children.Add($t1)
     if ($sub) {
         $t2 = New-Object System.Windows.Controls.TextBlock
-        $t2.Text = $sub; $t2.FontSize = 11.5; $t2.Foreground = New-AppBrush '#FF8C929A'; $t2.TextWrapping = 'Wrap'; $t2.Margin = '0,2,0,0'
+        $t2.Text = $sub; $t2.FontSize = 11.5; $t2.Foreground = New-AppBrush '#FF8F9DC2'; $t2.TextWrapping = 'Wrap'; $t2.Margin = '0,2,0,0'
         [void]$sp.Children.Add($t2)
     }
     [void]$g.Children.Add($sp)
@@ -17654,7 +17654,7 @@ function New-AppPick([string]$key, $content) {
 # della casella un segno di spunta verde.
 function New-AppStatic($content) {
     $b = New-Object System.Windows.Controls.Border
-    $b.Background = New-AppBrush '#FF131518'; $b.BorderBrush = New-AppBrush '#FF16161A'; $b.BorderThickness = 1
+    $b.Background = New-AppBrush '#12FFFFFF'; $b.BorderBrush = New-AppBrush '#14FFFFFF'; $b.BorderThickness = 1
     $b.CornerRadius = 12; $b.Padding = '11,8,11,8'; $b.Margin = '0,2,0,2'
     $g = New-Object System.Windows.Controls.Grid
     $c0 = New-Object System.Windows.Controls.ColumnDefinition; $c0.Width = [System.Windows.GridLength]::Auto
@@ -17838,7 +17838,7 @@ function Show-AppInstalled {
     foreach ($a in $script:AppInstalledList) {
         if ($q -and $a.Name -notlike "*$q*" -and $a.Publisher -notlike "*$q*") { continue }
         $sub = (@($a.Version, $a.Publisher) | Where-Object { $_ }) -join '  ·  '
-        $pills = @(if ($a.Kind -eq 'Store') { New-AppPill 'Store' '#FFA5B4FC' '#26818CF8' } else { New-AppPill 'Win32' '#FFC5C9CF' '#1FFFFFFF' })
+        $pills = @(if ($a.Kind -eq 'Store') { New-AppPill 'Store' '#FFA5B4FC' '#26818CF8' } else { New-AppPill 'Win32' '#FFC9D3EC' '#1FFFFFFF' })
         if ($updNames.ContainsKey($a.Name)) { $pills = @(New-AppPill (T 'appUpdatable') '#FFFDBA74' '#26FDBA74') + $pills }
         [void]$card.Panel.Children.Add((New-AppPick $a.Key (New-AppContent $a.Name $sub $pills)))
     }
@@ -17908,11 +17908,11 @@ function New-AppJobRow($job, $Panel = $panAppJobs) {
     $c1 = New-Object System.Windows.Controls.ColumnDefinition; $c1.Width = [System.Windows.GridLength]::Auto
     $g.ColumnDefinitions.Add($c0); $g.ColumnDefinitions.Add($c1)
     $name = New-Object System.Windows.Controls.TextBlock
-    $name.Text = $job.Name; $name.FontSize = 12.5; $name.FontWeight = 'SemiBold'; $name.Foreground = New-AppBrush '#FFE6E8EB'
+    $name.Text = $job.Name; $name.FontSize = 12.5; $name.FontWeight = 'SemiBold'; $name.Foreground = New-AppBrush '#FFE8EEFC'
     $name.TextTrimming = 'CharacterEllipsis'
     [void]$g.Children.Add($name)
     $state = New-Object System.Windows.Controls.TextBlock
-    $state.FontSize = 11.5; $state.Margin = '12,0,0,0'; $state.Foreground = New-AppBrush '#FF8C929A'
+    $state.FontSize = 11.5; $state.Margin = '12,0,0,0'; $state.Foreground = New-AppBrush '#FF8F9DC2'
     [System.Windows.Controls.Grid]::SetColumn($state, 1); [void]$g.Children.Add($state)
     $track = New-Object System.Windows.Controls.Grid
     $track.Height = 4; $track.Margin = '0,6,0,0'; $track.ClipToBounds = $true
@@ -17936,7 +17936,7 @@ function New-AppJobRow($job, $Panel = $panAppJobs) {
     [void]$Panel.Children.Add($g)
 }
 
-function Set-AppJobView($job, [string]$text, [double]$pct = -1, [string]$color = '#FF8C929A') {
+function Set-AppJobView($job, [string]$text, [double]$pct = -1, [string]$color = '#FF8F9DC2') {
     $job.StateText.Text = $text
     $job.StateText.Foreground = New-AppBrush $color
     if ($pct -ge 0) {
@@ -17966,7 +17966,7 @@ function Add-AppJob([string]$kind, [string]$name, [string]$file, [string]$argume
     $job = @{ Kind = $kind; Name = $name; Label = "$prefix $name"; File = $file; Args = $arguments; Pty = $pty
               Proc = $null; Done = $false; Ok = $false; Frac = 0.0; SawDl = $false; DlDone = $false }
     New-AppJobRow $job
-    Set-AppJobView $job (T 'jobWait') 0 '#FF6C727A'
+    Set-AppJobView $job (T 'jobWait') 0 '#FF7887AD'
     [void]$script:AppJobList.Add($job)
     $script:AppJobs.Enqueue($job)
     $bdAppJobs.Visibility = 'Visible'; $btnAppJobsClose.Visibility = 'Collapsed'
@@ -17991,7 +17991,7 @@ function Start-AppJob($job) {
         }
     }
     $first = if ($job.Kind -eq 'uninstall') { T 'jobUninstall' } else { T 'jobPrep' }
-    Set-AppJobView $job $first -1 '#FFC5C9CF'
+    Set-AppJobView $job $first -1 '#FFC9D3EC'
 }
 
 function ConvertTo-AppBytes([string]$num, [string]$unit) {
@@ -18031,19 +18031,19 @@ function Update-AppJobProgress($job) {
         $pct = if ($sPct -ge 0) { $sPct } else { $oPct }
         $text = (T 'jobDownload') -f $pct
         if ($sizeText) { $text += "  ·  $sizeText" }
-        Set-AppJobView $job $text $pct '#FFE6E8EB'
+        Set-AppJobView $job $text $pct '#FFE8EEFC'
         $job.Frac = 0.7 * $pct / 100
     } elseif ($job.DlDone -or $job.SawDl) {
         if ($oState -eq 1 -and $oPct -gt 0 -and $oPct -lt 100) {
-            Set-AppJobView $job ((T 'jobInstallPct') -f $oPct) $oPct '#FFE6E8EB'
+            Set-AppJobView $job ((T 'jobInstallPct') -f $oPct) $oPct '#FFE8EEFC'
             $job.Frac = 0.7 + 0.3 * $oPct / 100
         } else {
-            Set-AppJobView $job (T 'jobInstall') -1 '#FFE6E8EB'
+            Set-AppJobView $job (T 'jobInstall') -1 '#FFE8EEFC'
             $job.Frac = 0.8
         }
     } elseif ($oState -eq 1 -and $oPct -gt 0) {
         # Pacchetti dello Store: una sola percentuale per tutto il lavoro.
-        Set-AppJobView $job ((T 'jobDownload') -f $oPct) $oPct '#FFE6E8EB'
+        Set-AppJobView $job ((T 'jobDownload') -f $oPct) $oPct '#FFE8EEFC'
         $job.Frac = $oPct / 100
     }
 }
@@ -18507,14 +18507,14 @@ function New-LeftoverCard {
     [void]$c.Panel.Children.Add((New-AppNote (T 'leftHint')))
     foreach ($res in $script:LeftoverResults) {
         $h = New-Object System.Windows.Controls.TextBlock
-        $h.Text = $res.Name; $h.FontWeight = 'SemiBold'; $h.FontSize = 13; $h.Foreground = New-AppBrush '#FFE6E8EB'; $h.Margin = '4,10,0,4'
+        $h.Text = $res.Name; $h.FontWeight = 'SemiBold'; $h.FontSize = 13; $h.Foreground = New-AppBrush '#FFE8EEFC'; $h.Margin = '4,10,0,4'
         [void]$c.Panel.Children.Add($h)
         foreach ($it in $res.Items) {
             $cb = New-Object System.Windows.Controls.CheckBox
             $cb.Tag = $it; $cb.IsChecked = $it.Sure
             $tb = New-Object System.Windows.Controls.TextBlock; $tb.TextWrapping = 'Wrap'
             $r1 = New-Object System.Windows.Documents.Run ("$(T "leftKind_$($it.Kind)")   "); $r1.Foreground = New-AppBrush '#FF7EB1FF'; $r1.FontSize = 11.5; $r1.FontWeight = 'SemiBold'
-            $r2 = New-Object System.Windows.Documents.Run $it.Label; $r2.Foreground = New-AppBrush '#FFC5C9CF'; $r2.FontSize = 12
+            $r2 = New-Object System.Windows.Documents.Run $it.Label; $r2.Foreground = New-AppBrush '#FFC9D3EC'; $r2.FontSize = 12
             [void]$tb.Inlines.Add($r1); [void]$tb.Inlines.Add($r2)
             if (-not $it.Sure) { $r3 = New-Object System.Windows.Documents.Run ("   $(T 'leftCheck')"); $r3.Foreground = New-AppBrush '#FFFDBA74'; $r3.FontSize = 11.5; [void]$tb.Inlines.Add($r3) }
             $script:LeftoverBoxes += $cb
@@ -18847,8 +18847,8 @@ function Add-HomeRow($panel, [string]$label, [string]$value) {
     $c0 = New-Object System.Windows.Controls.ColumnDefinition; $c0.Width = New-Object System.Windows.GridLength(118)
     $c1 = New-Object System.Windows.Controls.ColumnDefinition
     $g.ColumnDefinitions.Add($c0); $g.ColumnDefinitions.Add($c1)
-    $l = New-HomeText $label 12 '#FF7F858D'
-    $v = New-HomeText $value 12.5 '#FFE6E8EB'
+    $l = New-HomeText $label 12 '#FF8C9CC4'
+    $v = New-HomeText $value 12.5 '#FFE8EEFC'
     $v.Margin = '8,0,0,0'
     [System.Windows.Controls.Grid]::SetColumn($v, 1)
     [void]$g.Children.Add($l); [void]$g.Children.Add($v)
@@ -18856,7 +18856,7 @@ function Add-HomeRow($panel, [string]$label, [string]$value) {
 }
 
 function Add-HomeItem($panel, [string]$title) {
-    $t = New-HomeText $title 13 '#FFEDEFF2' 'SemiBold'
+    $t = New-HomeText $title 13 '#FFEEF3FF' 'SemiBold'
     $t.Margin = if ($panel.Children.Count -gt 1) { '0,12,0,3' } else { '0,0,0,3' }
     [void]$panel.Children.Add($t)
 }
@@ -18892,10 +18892,10 @@ function New-HomeHero($i) {
     $name = New-HomeText $i.Pc 28 '#FFFFFFFF' 'Bold'; $name.FontFamily = 'Segoe UI Variable Display, Segoe UI'
     [void]$left.Children.Add($name)
     $grp = if ($i.PartOfDomain) { T 'homeDomain' } else { T 'homeWorkgroup' }
-    $l1 = New-HomeText "$($i.User)   ·   $grp $($i.Domain)" 12.5 '#FF9DA3AB'; $l1.Margin = '0,4,0,0'
+    $l1 = New-HomeText "$($i.User)   ·   $grp $($i.Domain)" 12.5 '#FFA5B3D6'; $l1.Margin = '0,4,0,0'
     [void]$left.Children.Add($l1)
     $osLine = (@($i.Os, $i.OsVersion) | Where-Object { $_ }) -join ' '
-    $l2 = New-HomeText "$osLine   ·   build $($i.OsBuild)   ·   $($i.OsArch)" 12.5 '#FF9DA3AB'; $l2.Margin = '0,2,0,0'
+    $l2 = New-HomeText "$osLine   ·   build $($i.OsBuild)   ·   $($i.OsArch)" 12.5 '#FFA5B3D6'; $l2.Margin = '0,2,0,0'
     [void]$left.Children.Add($l2)
 
     $chips = New-Object System.Windows.Controls.WrapPanel; $chips.Margin = '0,12,0,0'
@@ -18910,7 +18910,7 @@ function New-HomeHero($i) {
         $(if ($i.InstallDate) { (T 'homeInstalledOn') -f (Format-HomeDate $i.InstallDate) }),
         $model)) {
         if (-not $c) { continue }
-        $p = New-AppPill $c '#FFC5C9CF' '#FF1E2125'; $p.Margin = '0,0,8,6'; $p.Padding = '10,4,10,4'
+        $p = New-AppPill $c '#FFC9D3EC' '#1CFFFFFF'; $p.Margin = '0,0,8,6'; $p.Padding = '10,4,10,4'
         [void]$chips.Children.Add($p)
     }
     [void]$left.Children.Add($chips)
@@ -18926,18 +18926,18 @@ function New-HomeTypeTile([string]$value, [string]$title, [string]$desc, [bool]$
     $b = New-Object System.Windows.Controls.Border
     $b.CornerRadius = 8; $b.Padding = '14,12,14,12'; $b.Margin = '0,0,10,0'; $b.Cursor = 'Hand'
     $b.BorderThickness = $(if ($selected) { 2 } else { 1 })
-    $b.BorderBrush = New-AppBrush $(if ($selected) { '#FF4C8DFF' } else { '#FF2A2E34' })
-    $b.Background = New-AppBrush $(if ($selected) { '#1F4C8DFF' } else { '#FF111316' })
+    $b.BorderBrush = New-AppBrush $(if ($selected) { '#FF6EA8FF' } else { '#1FFFFFFF' })
+    $b.Background = New-AppBrush $(if ($selected) { '#1F4C8DFF' } else { '#24000000' })
     $b.Tag = $value
     $sp = New-Object System.Windows.Controls.StackPanel
     $top = New-Object System.Windows.Controls.Grid
     $tc0 = New-Object System.Windows.Controls.ColumnDefinition; $tc1 = New-Object System.Windows.Controls.ColumnDefinition; $tc1.Width = [System.Windows.GridLength]::Auto
     $top.ColumnDefinitions.Add($tc0); $top.ColumnDefinitions.Add($tc1)
-    $t = New-HomeText $title 14 $(if ($selected) { '#FFFFFFFF' } else { '#FFE6E8EB' }) 'SemiBold'
+    $t = New-HomeText $title 14 $(if ($selected) { '#FFFFFFFF' } else { '#FFE8EEFC' }) 'SemiBold'
     [void]$top.Children.Add($t)
-    if ($selected) { $tk = New-AppTick '#FF4C8DFF' 12; $tk.VerticalAlignment = 'Center'; [System.Windows.Controls.Grid]::SetColumn($tk, 1); [void]$top.Children.Add($tk) }
+    if ($selected) { $tk = New-AppTick '#FF6EA8FF' 12; $tk.VerticalAlignment = 'Center'; [System.Windows.Controls.Grid]::SetColumn($tk, 1); [void]$top.Children.Add($tk) }
     [void]$sp.Children.Add($top)
-    $d = New-HomeText $desc 12 '#FF9DA3AB'; $d.Margin = '0,5,0,0'
+    $d = New-HomeText $desc 12 '#FFA5B3D6'; $d.Margin = '0,5,0,0'
     [void]$sp.Children.Add($d)
     $b.Child = $sp
     $b.Add_MouseLeftButtonUp({ if ((Get-PcTypeSetting) -ne [string]$this.Tag) { Set-PcTypeSetting ([string]$this.Tag) } })
@@ -18954,12 +18954,12 @@ function New-HomeTypeCard($i) {
     $hg.ColumnDefinitions.Add($hc0); $hg.ColumnDefinitions.Add($hc1)
     $cap = New-Object System.Windows.Controls.TextBlock; $cap.Text = T 'homePcType'; $cap.Style = $window.FindResource('CardTitle'); $cap.Margin = '0'; $cap.VerticalAlignment = 'Center'
     [void]$hg.Children.Add($cap)
-    $now = New-AppPill ((T 'homeTypeInUse') -f (Get-PcTypeName (Get-PcType))) '#FF9EC2FF' '#264C8DFF'
+    $now = New-AppPill ((T 'homeTypeInUse') -f (Get-PcTypeName (Get-PcType))) '#FF9EC2FF' '#266EA8FF'
     $now.Margin = '12,0,0,0'
     [System.Windows.Controls.Grid]::SetColumn($now, 1); $now.HorizontalAlignment = 'Left'
     [void]$hg.Children.Add($now)
     [void]$sp.Children.Add($hg)
-    $sub = New-HomeText (T 'homeTypeHint') 12.5 '#FF9DA3AB'; $sub.Margin = '0,0,0,12'
+    $sub = New-HomeText (T 'homeTypeHint') 12.5 '#FFA5B3D6'; $sub.Margin = '0,0,0,12'
     [void]$sp.Children.Add($sub)
     $grid = New-Object System.Windows.Controls.Grid
     $set = Get-PcTypeSetting
@@ -18989,16 +18989,16 @@ function New-HomeDiskRow($d) {
     $c0 = New-Object System.Windows.Controls.ColumnDefinition
     $c1 = New-Object System.Windows.Controls.ColumnDefinition; $c1.Width = [System.Windows.GridLength]::Auto
     $g.ColumnDefinitions.Add($c0); $g.ColumnDefinitions.Add($c1)
-    $n = New-HomeText $d.Name 12.5 '#FFE6E8EB'; $n.TextWrapping = 'NoWrap'; $n.TextTrimming = 'CharacterEllipsis'; $n.VerticalAlignment = 'Center'
+    $n = New-HomeText $d.Name 12.5 '#FFE8EEFC'; $n.TextWrapping = 'NoWrap'; $n.TextTrimming = 'CharacterEllipsis'; $n.VerticalAlignment = 'Center'
     [void]$g.Children.Add($n)
     $tags = New-Object System.Windows.Controls.StackPanel; $tags.Orientation = 'Horizontal'
     $kind = if ($d.Bus -eq 'NVMe') { 'NVMe' } elseif ($d.Media -in @('SSD', 'HDD')) { $d.Media } else { '' }
     if ($kind) {
         $col = switch ($kind) { 'NVMe' { '#FF9EC2FF' } 'SSD' { '#FF7FD1B9' } default { '#FFE0A25E' } }
-        [void]$tags.Children.Add((New-AppPill $kind $col '#FF1E2125'))
+        [void]$tags.Children.Add((New-AppPill $kind $col '#1CFFFFFF'))
     }
-    if ($d.Bus -and $d.Bus -notin @('NVMe', 'Unspecified')) { [void]$tags.Children.Add((New-AppPill $d.Bus '#FFC5C9CF' '#FF1E2125')) }
-    $sz = New-HomeText (Format-HomeSize $d.Size) 12.5 '#FFC5C9CF'; $sz.Margin = '10,0,0,0'; $sz.VerticalAlignment = 'Center'; $sz.Width = 64; $sz.TextAlignment = 'Right'
+    if ($d.Bus -and $d.Bus -notin @('NVMe', 'Unspecified')) { [void]$tags.Children.Add((New-AppPill $d.Bus '#FFC9D3EC' '#1CFFFFFF')) }
+    $sz = New-HomeText (Format-HomeSize $d.Size) 12.5 '#FFC9D3EC'; $sz.Margin = '10,0,0,0'; $sz.VerticalAlignment = 'Center'; $sz.Width = 64; $sz.TextAlignment = 'Right'
     [void]$tags.Children.Add($sz)
     [System.Windows.Controls.Grid]::SetColumn($tags, 1); [void]$g.Children.Add($tags)
     return $g
@@ -19011,9 +19011,9 @@ function New-HomeVolumeRow($v) {
     $c1 = New-Object System.Windows.Controls.ColumnDefinition; $c1.Width = [System.Windows.GridLength]::Auto
     $g.ColumnDefinitions.Add($c0); $g.ColumnDefinitions.Add($c1)
     $lbl = if ($v.Label) { "$($v.Letter):  $($v.Label)" } else { "$($v.Letter):" }
-    $n = New-HomeText $lbl 12.5 '#FFE6E8EB'; $n.TextWrapping = 'NoWrap'; $n.TextTrimming = 'CharacterEllipsis'
+    $n = New-HomeText $lbl 12.5 '#FFE8EEFC'; $n.TextWrapping = 'NoWrap'; $n.TextTrimming = 'CharacterEllipsis'
     [void]$g.Children.Add($n)
-    $f = New-HomeText ((T 'homeFreeFmt') -f (Format-HomeSize $v.Free), (Format-HomeSize $v.Size)) 12 '#FF9DA3AB'; $f.TextWrapping = 'NoWrap'
+    $f = New-HomeText ((T 'homeFreeFmt') -f (Format-HomeSize $v.Free), (Format-HomeSize $v.Size)) 12 '#FFA5B3D6'; $f.TextWrapping = 'NoWrap'
     [System.Windows.Controls.Grid]::SetColumn($f, 1); [void]$g.Children.Add($f)
     [void]$sp.Children.Add($g)
     # Con un 1 intero [Math]::Min sceglie la versione per interi e arrotonda a 0 o 1.
@@ -19022,10 +19022,10 @@ function New-HomeVolumeRow($v) {
     $u = New-Object System.Windows.Controls.ColumnDefinition; $u.Width = New-Object System.Windows.GridLength([Math]::Max(0.001, $used), [System.Windows.GridUnitType]::Star)
     $r = New-Object System.Windows.Controls.ColumnDefinition; $r.Width = New-Object System.Windows.GridLength([Math]::Max(0.001, 1 - $used), [System.Windows.GridUnitType]::Star)
     $bar.ColumnDefinitions.Add($u); $bar.ColumnDefinitions.Add($r)
-    $bg = New-Object System.Windows.Controls.Border; $bg.CornerRadius = 3; $bg.Background = New-AppBrush '#FF22262B'
+    $bg = New-Object System.Windows.Controls.Border; $bg.CornerRadius = 3; $bg.Background = New-AppBrush '#1FFFFFFF'
     [System.Windows.Controls.Grid]::SetColumnSpan($bg, 2); [void]$bar.Children.Add($bg)
     $fill = New-Object System.Windows.Controls.Border; $fill.CornerRadius = 3
-    $fill.Background = New-AppBrush $(if ($used -ge 0.9) { '#FFF87171' } elseif ($used -ge 0.75) { '#FFE0A25E' } else { '#FF4C8DFF' })
+    $fill.Background = New-AppBrush $(if ($used -ge 0.9) { '#FFF87171' } elseif ($used -ge 0.75) { '#FFE0A25E' } else { '#FF6EA8FF' })
     [void]$bar.Children.Add($fill)
     [void]$sp.Children.Add($bar)
     return $sp
@@ -19038,10 +19038,10 @@ function New-HomeStorageCard($i) {
     $left = New-Object System.Windows.Controls.StackPanel; $left.Margin = '0,0,14,0'
     $right = New-Object System.Windows.Controls.StackPanel; $right.Margin = '14,0,0,0'
     [System.Windows.Controls.Grid]::SetColumn($right, 1)
-    $h1 = New-HomeText (T 'homePhysDisks') 12 '#FF7F858D' 'SemiBold'; $h1.Margin = '0,0,0,8'
+    $h1 = New-HomeText (T 'homePhysDisks') 12 '#FF8C9CC4' 'SemiBold'; $h1.Margin = '0,0,0,8'
     [void]$left.Children.Add($h1)
     foreach ($d in $i.Disks) { [void]$left.Children.Add((New-HomeDiskRow $d)) }
-    $h2 = New-HomeText (T 'homeVolumes') 12 '#FF7F858D' 'SemiBold'; $h2.Margin = '0,0,0,8'
+    $h2 = New-HomeText (T 'homeVolumes') 12 '#FF8C9CC4' 'SemiBold'; $h2.Margin = '0,0,0,8'
     [void]$right.Children.Add($h2)
     foreach ($v in $i.Volumes) { [void]$right.Children.Add((New-HomeVolumeRow $v)) }
     [void]$g.Children.Add($left); [void]$g.Children.Add($right)
@@ -19240,7 +19240,7 @@ function Add-ToolJob([string]$Name, [string]$Script, [switch]$Reboot) {
     if (-not (Test-ToolBusy)) { $script:ToolJobList.Clear(); $panToolJobs.Children.Clear() }
     $job = @{ Name = $Name; Label = $Name; Script = $Script; Reboot = [bool]$Reboot; Proc = $null; Done = $false; Ok = $false; Frac = 0.0 }
     New-AppJobRow $job $panToolJobs
-    Set-AppJobView $job (T 'jobWait') 0 '#FF6C727A'
+    Set-AppJobView $job (T 'jobWait') 0 '#FF7887AD'
     [void]$script:ToolJobList.Add($job)
     $script:ToolJobs.Enqueue($job)
     $bdToolJobs.Visibility = 'Visible'; $btnToolJobsClose.Visibility = 'Collapsed'
@@ -19259,7 +19259,7 @@ function Start-ToolJob($job) {
         catch { Write-Log "[ERRORE] $($job.Name) - $($_.Exception.Message)"; Complete-ToolJob $job -1; return }
     }
     Write-Log "[INFO] Avvio: $($job.Name)"
-    Set-AppJobView $job (T 'jobPrep') -1 '#FFC5C9CF'
+    Set-AppJobView $job (T 'jobPrep') -1 '#FFC9D3EC'
 }
 
 function Update-ToolJobProgress($job) {
@@ -19276,8 +19276,8 @@ function Update-ToolJobProgress($job) {
     $pct = -1
     if ($own.Count -gt 0) { $pct = [int]$own[$own.Count - 1].Groups[1].Value }
     elseif ($any.Count -gt 0) { $pct = [Math]::Min(100, [int]$any[$any.Count - 1].Groups[1].Value) }
-    if ($pct -ge 0) { Set-AppJobView $job "$text  ·  $pct%" $pct '#FFE6E8EB'; $job.Frac = $pct / 100 }
-    else { Set-AppJobView $job $text -1 '#FFE6E8EB'; $job.Frac = 0.05 }
+    if ($pct -ge 0) { Set-AppJobView $job "$text  ·  $pct%" $pct '#FFE8EEFC'; $job.Frac = $pct / 100 }
+    else { Set-AppJobView $job $text -1 '#FFE8EEFC'; $job.Frac = 0.05 }
 }
 
 function Complete-ToolJob($job, [int]$code) {
@@ -19748,7 +19748,7 @@ function New-ToolHead([string]$Glyph, [string]$Color, [string]$Title, [string]$D
     return $g
 }
 
-function New-ToolCard([string]$Title, [string]$Hint, [string]$Glyph = '', [string]$Color = '#FF4C8DFF') {
+function New-ToolCard([string]$Title, [string]$Hint, [string]$Glyph = '', [string]$Color = '#FF6EA8FF') {
     $card = New-Object System.Windows.Controls.Border
     $card.Style = $window.FindResource('Glass')
     $sp = New-Object System.Windows.Controls.StackPanel
@@ -19778,7 +19778,7 @@ function New-ToolButton([string]$Text, [scriptblock]$Click, [string]$Style = 'Gh
 # se serve un riavvio ('reboot') o se va usata con cautela ('caution').
 function New-ToolTile([string]$Key, [string]$Glyph, [string]$Color, [scriptblock]$Click, [string]$Tag = '') {
     $b = New-Object System.Windows.Controls.Border
-    $b.Background = New-AppBrush '#FF111316'; $b.BorderBrush = New-AppBrush '#FF25282D'; $b.BorderThickness = 1
+    $b.Background = New-AppBrush '#24000000'; $b.BorderBrush = New-AppBrush '#14FFFFFF'; $b.BorderThickness = 1
     $b.CornerRadius = 9; $b.Padding = '14,12,14,12'; $b.Margin = '0,0,10,10'
     $g = New-Object System.Windows.Controls.Grid
     foreach ($h in 'Auto', '*', 'Auto') {
@@ -19792,7 +19792,7 @@ function New-ToolTile([string]$Key, [string]$Glyph, [string]$Color, [scriptblock
     $top.ColumnDefinitions.Add($tc0); $top.ColumnDefinitions.Add($tc1)
     [void]$top.Children.Add((New-ToolIcon $Glyph $Color 32))
     $t = New-Object System.Windows.Controls.TextBlock
-    $t.Text = T "tool_$Key"; $t.FontSize = 13; $t.FontWeight = 'SemiBold'; $t.Foreground = New-AppBrush '#FFE6E8EB'
+    $t.Text = T "tool_$Key"; $t.FontSize = 13; $t.FontWeight = 'SemiBold'; $t.Foreground = New-AppBrush '#FFE8EEFC'
     $t.TextWrapping = 'Wrap'; $t.VerticalAlignment = 'Center'; $t.Margin = '10,0,0,0'
     [System.Windows.Controls.Grid]::SetColumn($t, 1); [void]$top.Children.Add($t)
     [void]$g.Children.Add($top)
@@ -19855,7 +19855,7 @@ function New-CleanRow($it) {
     $cb.Tag = 'tool'; $cb.IsChecked = $it.On
     $t = New-Object System.Windows.Controls.TextBlock; $t.TextWrapping = 'Wrap'
     $r1 = New-Object System.Windows.Documents.Run (T "clean_$($it.Key)")
-    $r1.Foreground = New-AppBrush '#FFE6E8EB'; $r1.FontSize = 13
+    $r1.Foreground = New-AppBrush '#FFE8EEFC'; $r1.FontSize = 13
     $r2 = New-Object System.Windows.Documents.Run ''
     $r2.Foreground = New-AppBrush '#FF7EB1FF'; $r2.FontSize = 12.5; $r2.FontWeight = 'SemiBold'
     [void]$t.Inlines.Add($r1); [void]$t.Inlines.Add($r2)
@@ -19886,7 +19886,7 @@ function Show-ToolsPage {
     $row1 = New-Object System.Windows.Controls.Grid
     foreach ($i in 0..1) { $cd = New-Object System.Windows.Controls.ColumnDefinition; $cd.Width = New-Object System.Windows.GridLength(1, [System.Windows.GridUnitType]::Star); $row1.ColumnDefinitions.Add($cd) }
 
-    $c = New-ToolCard (T 'ttlCleanAll') (T 'cleanAllHint') 'E74D' '#FF4C8DFF'
+    $c = New-ToolCard (T 'ttlCleanAll') (T 'cleanAllHint') 'E74D' '#FF6EA8FF'
     $script:CleanBoxes = @{}; $script:CleanSizeText = @{}
     foreach ($it in $script:CleanItems) { [void]$c.Panel.Children.Add((New-CleanRow $it)) }
     $bar = New-Object System.Windows.Controls.Grid; $bar.Margin = '0,12,0,0'
@@ -19894,7 +19894,7 @@ function Show-ToolsPage {
     $bc1 = New-Object System.Windows.Controls.ColumnDefinition; $bc1.Width = [System.Windows.GridLength]::Auto
     $bar.ColumnDefinitions.Add($bc0); $bar.ColumnDefinitions.Add($bc1)
     $script:CleanTotalText = New-Object System.Windows.Controls.TextBlock
-    $script:CleanTotalText.FontSize = 13; $script:CleanTotalText.FontWeight = 'SemiBold'; $script:CleanTotalText.Foreground = New-AppBrush '#FFC5C9CF'
+    $script:CleanTotalText.FontSize = 13; $script:CleanTotalText.FontWeight = 'SemiBold'; $script:CleanTotalText.Foreground = New-AppBrush '#FFC9D3EC'
     $script:CleanTotalText.VerticalAlignment = 'Center'
     [void]$bar.Children.Add($script:CleanTotalText)
     $btns = New-Object System.Windows.Controls.StackPanel; $btns.Orientation = 'Horizontal'
@@ -19916,7 +19916,7 @@ function Show-ToolsPage {
     # Programmi all'avvio, sotto la pulizia.
     $c = New-ToolCard (T 'ttlStartup') (T 'startupHint') 'E7E8' '#FFFBBF24'
     $script:StartupStatus = New-Object System.Windows.Controls.TextBlock
-    $script:StartupStatus.FontSize = 13; $script:StartupStatus.Foreground = New-AppBrush '#FFC5C9CF'; $script:StartupStatus.Margin = '0,0,0,8'
+    $script:StartupStatus.FontSize = 13; $script:StartupStatus.Foreground = New-AppBrush '#FFC9D3EC'; $script:StartupStatus.Margin = '0,0,0,8'
     [void]$c.Panel.Children.Add($script:StartupStatus)
     $sv2 = New-Object System.Windows.Controls.ScrollViewer; $sv2.MaxHeight = 420; $sv2.VerticalScrollBarVisibility = 'Auto'
     $script:StartupList = New-Object System.Windows.Controls.StackPanel
@@ -19927,14 +19927,14 @@ function Show-ToolsPage {
 
     $c = New-ToolCard (T 'ttlGhost') (T 'ghostHint') 'E772' '#FF2DD4BF'
     $script:GhostStatus = New-Object System.Windows.Controls.TextBlock
-    $script:GhostStatus.FontSize = 13; $script:GhostStatus.Foreground = New-AppBrush '#FFC5C9CF'; $script:GhostStatus.TextWrapping = 'Wrap'
+    $script:GhostStatus.FontSize = 13; $script:GhostStatus.Foreground = New-AppBrush '#FFC9D3EC'; $script:GhostStatus.TextWrapping = 'Wrap'
     $script:GhostStatus.Margin = '0,0,0,8'
     [void]$c.Panel.Children.Add($script:GhostStatus)
     $script:GhostAll = New-Object System.Windows.Controls.CheckBox
     $script:GhostAll.Tag = 'tool'; $script:GhostAll.IsChecked = $true
     $script:GhostAll.Add_Checked({ foreach ($g in $script:GhostBoxes) { $g.IsChecked = $true }; Update-GhostButton })
     $script:GhostAll.Add_Unchecked({ foreach ($g in $script:GhostBoxes) { $g.IsChecked = $false }; Update-GhostButton })
-    $at = New-Object System.Windows.Controls.TextBlock; $at.Text = T 'ghostAll'; $at.FontWeight = 'SemiBold'; $at.Foreground = New-AppBrush '#FFC5C9CF'
+    $at = New-Object System.Windows.Controls.TextBlock; $at.Text = T 'ghostAll'; $at.FontWeight = 'SemiBold'; $at.Foreground = New-AppBrush '#FFC9D3EC'
     $script:GhostAllRow = New-SwitchRow $at '' $script:GhostAll
     $script:GhostAllRow.Visibility = 'Collapsed'; $script:GhostAllRow.Margin = '0,0,0,8'
     [void]$c.Panel.Children.Add($script:GhostAllRow)
@@ -19955,7 +19955,7 @@ function Show-ToolsPage {
     # App di Windows da togliere (debloat), in cima alla colonna destra.
     $c = New-ToolCard (T 'ttlDebloat') (T 'debloatHint') 'E74C' '#FFF472B6'
     $script:DebloatStatus = New-Object System.Windows.Controls.TextBlock
-    $script:DebloatStatus.FontSize = 13; $script:DebloatStatus.Foreground = New-AppBrush '#FFC5C9CF'; $script:DebloatStatus.Margin = '0,0,0,8'
+    $script:DebloatStatus.FontSize = 13; $script:DebloatStatus.Foreground = New-AppBrush '#FFC9D3EC'; $script:DebloatStatus.Margin = '0,0,0,8'
     [void]$c.Panel.Children.Add($script:DebloatStatus)
     $script:DebloatList = New-Object System.Windows.Controls.StackPanel
     [void]$c.Panel.Children.Add($script:DebloatList)
@@ -20158,8 +20158,8 @@ function Start-GhostScan {
             $cb = New-Object System.Windows.Controls.CheckBox
             $cb.Tag = $d.Id; $cb.IsChecked = $true
             $tb = New-Object System.Windows.Controls.TextBlock; $tb.TextWrapping = 'Wrap'
-            $r1 = New-Object System.Windows.Documents.Run $d.Name; $r1.Foreground = New-AppBrush '#FFE6E8EB'; $r1.FontSize = 12.5
-            $r2 = New-Object System.Windows.Documents.Run "   $($d.Class)"; $r2.Foreground = New-AppBrush '#FF7F858D'; $r2.FontSize = 11.5
+            $r1 = New-Object System.Windows.Documents.Run $d.Name; $r1.Foreground = New-AppBrush '#FFE8EEFC'; $r1.FontSize = 12.5
+            $r2 = New-Object System.Windows.Documents.Run "   $($d.Class)"; $r2.Foreground = New-AppBrush '#FF8C9CC4'; $r2.FontSize = 11.5
             [void]$tb.Inlines.Add($r1); [void]$tb.Inlines.Add($r2)
             $cb.Add_Checked({ Update-GhostButton }); $cb.Add_Unchecked({ Update-GhostButton })
             $script:GhostBoxes += $cb
@@ -20282,7 +20282,7 @@ function Start-DebloatScan {
             $cb = New-Object System.Windows.Controls.CheckBox
             $cb.Tag = 'tool'; $cb.IsChecked = $a.On
             $cb.Add_Checked({ Update-DebloatButton }); $cb.Add_Unchecked({ Update-DebloatButton })
-            $tb = New-Object System.Windows.Controls.TextBlock; $tb.Text = (T "debloat_$($a.K)"); $tb.Foreground = New-AppBrush '#FFE6E8EB'; $tb.FontSize = 12.5; $tb.TextWrapping = 'Wrap'
+            $tb = New-Object System.Windows.Controls.TextBlock; $tb.Text = (T "debloat_$($a.K)"); $tb.Foreground = New-AppBrush '#FFE8EEFC'; $tb.FontSize = 12.5; $tb.TextWrapping = 'Wrap'
             $script:DebloatBoxes[$a.K] = $cb
             $row = New-SwitchRow $tb '' $cb; $row.Margin = '0,0,0,1'
             [void]$script:DebloatList.Children.Add($row)
@@ -20371,8 +20371,8 @@ function Show-StartupList {
         $handler = { if (-not $script:StartupBuilding) { Set-StartupEntry $this.Tag ($this.IsChecked -eq $true); $this.Tag.On = ($this.IsChecked -eq $true); Update-StartupStatus } }
         $cb.Add_Checked($handler); $cb.Add_Unchecked($handler)
         $tb = New-Object System.Windows.Controls.TextBlock; $tb.TextWrapping = 'Wrap'
-        $r1 = New-Object System.Windows.Documents.Run $e.Name; $r1.Foreground = New-AppBrush '#FFE6E8EB'; $r1.FontSize = 12.5
-        $r2 = New-Object System.Windows.Documents.Run ("   " + $(if ($e.All) { T 'startupAll' } else { T 'startupUser' })); $r2.Foreground = New-AppBrush '#FF7F858D'; $r2.FontSize = 11.5
+        $r1 = New-Object System.Windows.Documents.Run $e.Name; $r1.Foreground = New-AppBrush '#FFE8EEFC'; $r1.FontSize = 12.5
+        $r2 = New-Object System.Windows.Documents.Run ("   " + $(if ($e.All) { T 'startupAll' } else { T 'startupUser' })); $r2.Foreground = New-AppBrush '#FF8C9CC4'; $r2.FontSize = 11.5
         [void]$tb.Inlines.Add($r1); [void]$tb.Inlines.Add($r2)
         $cmd = [string]$e.Cmd; if ($cmd.Length -gt 90) { $cmd = $cmd.Substring(0, 87) + '...' }
         $row = New-SwitchRow $tb $cmd $cb; $row.Margin = '0,0,0,3'
@@ -20513,14 +20513,14 @@ function Show-WuProfiles {
         $sp = New-Object System.Windows.Controls.StackPanel
         $t = New-Object System.Windows.Controls.TextBlock
         $t.Text = T "wu_$p"; $t.FontSize = 14; $t.FontWeight = 'Bold'; $t.FontFamily = 'Segoe UI Variable Display, Segoe UI'
-        $t.Foreground = New-AppBrush $(if ($p -eq 'disable') { '#FFF87171' } else { '#FFEDEFF2' })
+        $t.Foreground = New-AppBrush $(if ($p -eq 'disable') { '#FFF87171' } else { '#FFEEF3FF' })
         $s = New-Object System.Windows.Controls.TextBlock
         $s.Text = T "wuSub_$p"; $s.FontSize = 11.5; $s.Margin = '0,2,0,6'
-        $s.Foreground = New-AppBrush $(if ($p -eq 'disable') { '#FFF87171' } else { '#FF9DA3AB' })
+        $s.Foreground = New-AppBrush $(if ($p -eq 'disable') { '#FFF87171' } else { '#FFA5B3D6' })
         [void]$sp.Children.Add($t); [void]$sp.Children.Add($s)
         foreach ($line in ((T "wuList_$p") -split ';')) {
             $l = New-Object System.Windows.Controls.TextBlock
-            $l.Text = "·  $line"; $l.FontSize = 11.5; $l.Foreground = New-AppBrush '#FFC5C9CF'; $l.TextWrapping = 'Wrap'; $l.Margin = '0,1,0,0'
+            $l.Text = "·  $line"; $l.FontSize = 11.5; $l.Foreground = New-AppBrush '#FFC9D3EC'; $l.TextWrapping = 'Wrap'; $l.Margin = '0,1,0,0'
             [void]$sp.Children.Add($l)
         }
         $rb.Content = $sp

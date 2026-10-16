@@ -446,7 +446,7 @@ function New-CatRow($it, $page) {
         $inner.ColumnDefinitions.Add($ic0); $inner.ColumnDefinitions.Add($ic2); $inner.ColumnDefinitions.Add($ic1)
         $tb = New-Object System.Windows.Controls.TextBlock
         $tb.Text = $label; $tb.TextWrapping = 'Wrap'; $tb.VerticalAlignment = 'Center'; $tb.Margin = '0,0,12,0'
-        $tb.Foreground = New-CatBrush '#FFC5C9CF'; $tb.FontSize = 12.5
+        $tb.Foreground = New-CatBrush '#FFC9D3EC'; $tb.FontSize = 12.5
         $tb.FontFamily = New-Object System.Windows.Media.FontFamily('Segoe UI Variable Text, Segoe UI')
         [void]$inner.Children.Add($tb)
         $combo = New-Object System.Windows.Controls.ComboBox
@@ -643,7 +643,7 @@ function Initialize-CatPage([string]$page, $hostEl, [bool]$embedded = $false) {
     $search.VerticalContentAlignment = 'Center'
     $search.Tag = $page
     $hint = New-Object System.Windows.Controls.TextBlock
-    $hint.Text = T 'catSearch'; $hint.Foreground = New-CatBrush '#FF6C727A'; $hint.IsHitTestVisible = $false
+    $hint.Text = T 'catSearch'; $hint.Foreground = New-CatBrush '#FF7887AD'; $hint.IsHitTestVisible = $false
     $hint.Margin = '12,0,0,0'; $hint.VerticalAlignment = 'Center'
     $sgrid = New-Object System.Windows.Controls.Grid
     $sgrid.Margin = '0,0,12,8'

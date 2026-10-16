@@ -168,7 +168,7 @@ function Add-PlanRow {
     $title.FontWeight = [System.Windows.FontWeights]::SemiBold
     $title.FontSize = 13
     $title.TextWrapping = [System.Windows.TextWrapping]::Wrap
-    $title.Foreground = New-Brush "#FFEDEFF2"
+    $title.Foreground = New-Brush "#FFEEF3FF"
 
     $desc = New-Object System.Windows.Controls.TextBlock
     $desc.Text = $(if ($script:Msg.ContainsKey("pd_$($Entry.Key)")) { T "pd_$($Entry.Key)" } else { [string]$Entry.Desc })
@@ -196,7 +196,7 @@ function Add-PlanRow {
     if ($isActive) {
         $btn.Content = T 'planActive'
         $btn.IsEnabled = $false
-        $card.BorderBrush = New-Brush "#FF4C8DFF"
+        $card.BorderBrush = New-Brush "#FF6EA8FF"
         $card.Background = New-Brush "#1FFFC53D"
     } else {
         $btn.Content = T 'planApply'
@@ -227,10 +227,10 @@ function Show-PlanList {
 
     $panPlans.Children.Clear()
 
-    Add-PlanGroupTitle (T 'planTop') $panPlans "#FF4C8DFF"
+    Add-PlanGroupTitle (T 'planTop') $panPlans "#FF6EA8FF"
     foreach ($e in ($script:PlanCatalog | Where-Object { $_.Group -eq 'top' })) { Add-PlanRow $e $panPlans }
 
-    Add-PlanGroupTitle (T 'planWindows') $panPlans "#FF8C929A"
+    Add-PlanGroupTitle (T 'planWindows') $panPlans "#FF8F9DC2"
     foreach ($e in ($script:PlanCatalog | Where-Object { $_.Group -eq 'windows' })) { Add-PlanRow $e $panPlans }
 
     Add-PlanGroupTitle (T 'planTest') $panPlans "#FFE0A25E"

@@ -167,11 +167,11 @@ function New-AppContent([string]$title, [string]$sub, [array]$pills) {
     }
     $sp = New-Object System.Windows.Controls.StackPanel; $sp.VerticalAlignment = 'Center'
     $t1 = New-Object System.Windows.Controls.TextBlock
-    $t1.Text = $title; $t1.FontSize = 13; $t1.FontWeight = 'SemiBold'; $t1.Foreground = New-AppBrush '#FFE6E8EB'; $t1.TextTrimming = 'CharacterEllipsis'
+    $t1.Text = $title; $t1.FontSize = 13; $t1.FontWeight = 'SemiBold'; $t1.Foreground = New-AppBrush '#FFE8EEFC'; $t1.TextTrimming = 'CharacterEllipsis'
     [void]$sp.Children.Add($t1)
     if ($sub) {
         $t2 = New-Object System.Windows.Controls.TextBlock
-        $t2.Text = $sub; $t2.FontSize = 11.5; $t2.Foreground = New-AppBrush '#FF8C929A'; $t2.TextWrapping = 'Wrap'; $t2.Margin = '0,2,0,0'
+        $t2.Text = $sub; $t2.FontSize = 11.5; $t2.Foreground = New-AppBrush '#FF8F9DC2'; $t2.TextWrapping = 'Wrap'; $t2.Margin = '0,2,0,0'
         [void]$sp.Children.Add($t2)
     }
     [void]$g.Children.Add($sp)
@@ -196,7 +196,7 @@ function New-AppPick([string]$key, $content) {
 # della casella un segno di spunta verde.
 function New-AppStatic($content) {
     $b = New-Object System.Windows.Controls.Border
-    $b.Background = New-AppBrush '#FF131518'; $b.BorderBrush = New-AppBrush '#FF16161A'; $b.BorderThickness = 1
+    $b.Background = New-AppBrush '#12FFFFFF'; $b.BorderBrush = New-AppBrush '#14FFFFFF'; $b.BorderThickness = 1
     $b.CornerRadius = 12; $b.Padding = '11,8,11,8'; $b.Margin = '0,2,0,2'
     $g = New-Object System.Windows.Controls.Grid
     $c0 = New-Object System.Windows.Controls.ColumnDefinition; $c0.Width = [System.Windows.GridLength]::Auto
@@ -380,7 +380,7 @@ function Show-AppInstalled {
     foreach ($a in $script:AppInstalledList) {
         if ($q -and $a.Name -notlike "*$q*" -and $a.Publisher -notlike "*$q*") { continue }
         $sub = (@($a.Version, $a.Publisher) | Where-Object { $_ }) -join '  ·  '
-        $pills = @(if ($a.Kind -eq 'Store') { New-AppPill 'Store' '#FFA5B4FC' '#26818CF8' } else { New-AppPill 'Win32' '#FFC5C9CF' '#1FFFFFFF' })
+        $pills = @(if ($a.Kind -eq 'Store') { New-AppPill 'Store' '#FFA5B4FC' '#26818CF8' } else { New-AppPill 'Win32' '#FFC9D3EC' '#1FFFFFFF' })
         if ($updNames.ContainsKey($a.Name)) { $pills = @(New-AppPill (T 'appUpdatable') '#FFFDBA74' '#26FDBA74') + $pills }
         [void]$card.Panel.Children.Add((New-AppPick $a.Key (New-AppContent $a.Name $sub $pills)))
     }
@@ -450,11 +450,11 @@ function New-AppJobRow($job, $Panel = $panAppJobs) {
     $c1 = New-Object System.Windows.Controls.ColumnDefinition; $c1.Width = [System.Windows.GridLength]::Auto
     $g.ColumnDefinitions.Add($c0); $g.ColumnDefinitions.Add($c1)
     $name = New-Object System.Windows.Controls.TextBlock
-    $name.Text = $job.Name; $name.FontSize = 12.5; $name.FontWeight = 'SemiBold'; $name.Foreground = New-AppBrush '#FFE6E8EB'
+    $name.Text = $job.Name; $name.FontSize = 12.5; $name.FontWeight = 'SemiBold'; $name.Foreground = New-AppBrush '#FFE8EEFC'
     $name.TextTrimming = 'CharacterEllipsis'
     [void]$g.Children.Add($name)
     $state = New-Object System.Windows.Controls.TextBlock
-    $state.FontSize = 11.5; $state.Margin = '12,0,0,0'; $state.Foreground = New-AppBrush '#FF8C929A'
+    $state.FontSize = 11.5; $state.Margin = '12,0,0,0'; $state.Foreground = New-AppBrush '#FF8F9DC2'
     [System.Windows.Controls.Grid]::SetColumn($state, 1); [void]$g.Children.Add($state)
     $track = New-Object System.Windows.Controls.Grid
     $track.Height = 4; $track.Margin = '0,6,0,0'; $track.ClipToBounds = $true
@@ -478,7 +478,7 @@ function New-AppJobRow($job, $Panel = $panAppJobs) {
     [void]$Panel.Children.Add($g)
 }
 
-function Set-AppJobView($job, [string]$text, [double]$pct = -1, [string]$color = '#FF8C929A') {
+function Set-AppJobView($job, [string]$text, [double]$pct = -1, [string]$color = '#FF8F9DC2') {
     $job.StateText.Text = $text
     $job.StateText.Foreground = New-AppBrush $color
     if ($pct -ge 0) {
@@ -508,7 +508,7 @@ function Add-AppJob([string]$kind, [string]$name, [string]$file, [string]$argume
     $job = @{ Kind = $kind; Name = $name; Label = "$prefix $name"; File = $file; Args = $arguments; Pty = $pty
               Proc = $null; Done = $false; Ok = $false; Frac = 0.0; SawDl = $false; DlDone = $false }
     New-AppJobRow $job
-    Set-AppJobView $job (T 'jobWait') 0 '#FF6C727A'
+    Set-AppJobView $job (T 'jobWait') 0 '#FF7887AD'
     [void]$script:AppJobList.Add($job)
     $script:AppJobs.Enqueue($job)
     $bdAppJobs.Visibility = 'Visible'; $btnAppJobsClose.Visibility = 'Collapsed'
@@ -533,7 +533,7 @@ function Start-AppJob($job) {
         }
     }
     $first = if ($job.Kind -eq 'uninstall') { T 'jobUninstall' } else { T 'jobPrep' }
-    Set-AppJobView $job $first -1 '#FFC5C9CF'
+    Set-AppJobView $job $first -1 '#FFC9D3EC'
 }
 
 function ConvertTo-AppBytes([string]$num, [string]$unit) {
@@ -573,19 +573,19 @@ function Update-AppJobProgress($job) {
         $pct = if ($sPct -ge 0) { $sPct } else { $oPct }
         $text = (T 'jobDownload') -f $pct
         if ($sizeText) { $text += "  ·  $sizeText" }
-        Set-AppJobView $job $text $pct '#FFE6E8EB'
+        Set-AppJobView $job $text $pct '#FFE8EEFC'
         $job.Frac = 0.7 * $pct / 100
     } elseif ($job.DlDone -or $job.SawDl) {
         if ($oState -eq 1 -and $oPct -gt 0 -and $oPct -lt 100) {
-            Set-AppJobView $job ((T 'jobInstallPct') -f $oPct) $oPct '#FFE6E8EB'
+            Set-AppJobView $job ((T 'jobInstallPct') -f $oPct) $oPct '#FFE8EEFC'
             $job.Frac = 0.7 + 0.3 * $oPct / 100
         } else {
-            Set-AppJobView $job (T 'jobInstall') -1 '#FFE6E8EB'
+            Set-AppJobView $job (T 'jobInstall') -1 '#FFE8EEFC'
             $job.Frac = 0.8
         }
     } elseif ($oState -eq 1 -and $oPct -gt 0) {
         # Pacchetti dello Store: una sola percentuale per tutto il lavoro.
-        Set-AppJobView $job ((T 'jobDownload') -f $oPct) $oPct '#FFE6E8EB'
+        Set-AppJobView $job ((T 'jobDownload') -f $oPct) $oPct '#FFE8EEFC'
         $job.Frac = $oPct / 100
     }
 }
@@ -1049,14 +1049,14 @@ function New-LeftoverCard {
     [void]$c.Panel.Children.Add((New-AppNote (T 'leftHint')))
     foreach ($res in $script:LeftoverResults) {
         $h = New-Object System.Windows.Controls.TextBlock
-        $h.Text = $res.Name; $h.FontWeight = 'SemiBold'; $h.FontSize = 13; $h.Foreground = New-AppBrush '#FFE6E8EB'; $h.Margin = '4,10,0,4'
+        $h.Text = $res.Name; $h.FontWeight = 'SemiBold'; $h.FontSize = 13; $h.Foreground = New-AppBrush '#FFE8EEFC'; $h.Margin = '4,10,0,4'
         [void]$c.Panel.Children.Add($h)
         foreach ($it in $res.Items) {
             $cb = New-Object System.Windows.Controls.CheckBox
             $cb.Tag = $it; $cb.IsChecked = $it.Sure
             $tb = New-Object System.Windows.Controls.TextBlock; $tb.TextWrapping = 'Wrap'
             $r1 = New-Object System.Windows.Documents.Run ("$(T "leftKind_$($it.Kind)")   "); $r1.Foreground = New-AppBrush '#FF7EB1FF'; $r1.FontSize = 11.5; $r1.FontWeight = 'SemiBold'
-            $r2 = New-Object System.Windows.Documents.Run $it.Label; $r2.Foreground = New-AppBrush '#FFC5C9CF'; $r2.FontSize = 12
+            $r2 = New-Object System.Windows.Documents.Run $it.Label; $r2.Foreground = New-AppBrush '#FFC9D3EC'; $r2.FontSize = 12
             [void]$tb.Inlines.Add($r1); [void]$tb.Inlines.Add($r2)
             if (-not $it.Sure) { $r3 = New-Object System.Windows.Documents.Run ("   $(T 'leftCheck')"); $r3.Foreground = New-AppBrush '#FFFDBA74'; $r3.FontSize = 11.5; [void]$tb.Inlines.Add($r3) }
             $script:LeftoverBoxes += $cb
