@@ -196,7 +196,7 @@ function New-AppPick([string]$key, $content) {
 # della casella un segno di spunta verde.
 function New-AppStatic($content) {
     $b = New-Object System.Windows.Controls.Border
-    $b.Background = New-AppBrush '#12FFFFFF'; $b.BorderBrush = New-AppBrush '#14FFFFFF'; $b.BorderThickness = 1
+    $b.Background = New-AppBrush '#FF15161B'; $b.BorderBrush = New-AppBrush '#FF1C1E24'; $b.BorderThickness = 1
     $b.CornerRadius = 12; $b.Padding = '11,8,11,8'; $b.Margin = '0,2,0,2'
     $g = New-Object System.Windows.Controls.Grid
     $c0 = New-Object System.Windows.Controls.ColumnDefinition; $c0.Width = [System.Windows.GridLength]::Auto
@@ -380,7 +380,7 @@ function Show-AppInstalled {
     foreach ($a in $script:AppInstalledList) {
         if ($q -and $a.Name -notlike "*$q*" -and $a.Publisher -notlike "*$q*") { continue }
         $sub = (@($a.Version, $a.Publisher) | Where-Object { $_ }) -join '  ·  '
-        $pills = @(if ($a.Kind -eq 'Store') { New-AppPill 'Store' '#FFA5B4FC' '#26818CF8' } else { New-AppPill 'Win32' '#FFC9CBD2' '#1FFFFFFF' })
+        $pills = @(if ($a.Kind -eq 'Store') { New-AppPill 'Store' '#FFA5B4FC' '#26818CF8' } else { New-AppPill 'Win32' '#FFC9CBD2' '#FF24262D' })
         if ($updNames.ContainsKey($a.Name)) { $pills = @(New-AppPill (T 'appUpdatable') '#FFFDBA74' '#26FDBA74') + $pills }
         [void]$card.Panel.Children.Add((New-AppPick $a.Key (New-AppContent $a.Name $sub $pills)))
     }

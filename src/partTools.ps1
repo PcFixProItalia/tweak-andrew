@@ -628,7 +628,7 @@ function New-ToolButton([string]$Text, [scriptblock]$Click, [string]$Style = 'Gh
 # se serve un riavvio ('reboot') o se va usata con cautela ('caution').
 function New-ToolTile([string]$Key, [string]$Glyph, [string]$Color, [scriptblock]$Click, [string]$Tag = '') {
     $b = New-Object System.Windows.Controls.Border
-    $b.Background = New-AppBrush '#24000000'; $b.BorderBrush = New-AppBrush '#14FFFFFF'; $b.BorderThickness = 1
+    $b.Background = New-AppBrush '#FF0F1014'; $b.BorderBrush = New-AppBrush '#FF1C1E24'; $b.BorderThickness = 1
     $b.CornerRadius = 9; $b.Padding = '14,12,14,12'; $b.Margin = '0,0,10,10'
     $g = New-Object System.Windows.Controls.Grid
     foreach ($h in 'Auto', '*', 'Auto') {

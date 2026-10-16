@@ -23,7 +23,7 @@ function Show-Dialog {
         WindowStyle="None" AllowsTransparency="True" Background="Transparent"
         ShowInTaskbar="False" ResizeMode="NoResize" SizeToContent="WidthAndHeight"
         WindowStartupLocation="CenterOwner" TextOptions.TextFormattingMode="Ideal" UseLayoutRounding="True">
-    <Border Margin="24" CornerRadius="20" Background="#FF111318" BorderBrush="#1FFFFFFF" BorderThickness="1"
+    <Border Margin="24" CornerRadius="20" Background="#FF111318" BorderBrush="#FF24262D" BorderThickness="1"
             Padding="26,24,24,22" MinWidth="380" MaxWidth="480">
         <Border.Effect>
             <DropShadowEffect BlurRadius="36" ShadowDepth="6" Opacity="0.7" Color="#000000"/>

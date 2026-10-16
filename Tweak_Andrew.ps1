@@ -80,8 +80,8 @@ $script:PlanData = @{
         Title="Tweak Andrew v7.1 - PcFixPro Italia" Height="840" Width="1340"
         MinWidth="1180" MinHeight="700"
         WindowStartupLocation="CenterScreen" Grid.IsSharedSizeScope="True"
-        WindowStyle="None" AllowsTransparency="False" Background="#FF070A14"
-        Foreground="#F2F2F5" TextOptions.TextFormattingMode="Ideal" UseLayoutRounding="True"
+        WindowStyle="None" AllowsTransparency="False" Background="#FF0B0C0F"
+        Foreground="#F2F2F5" TextOptions.TextFormattingMode="Display" TextOptions.TextRenderingMode="ClearType" UseLayoutRounding="True"
         ResizeMode="CanResize">
 
     <shell:WindowChrome.WindowChrome>
@@ -98,7 +98,7 @@ $script:PlanData = @{
              e PACard con gli stessi valori: il resto dello stile li legge da li'. -->
         <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
         <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
-        <SolidColorBrush x:Key="PACard" Color="#0BFFFFFF"/>
+        <SolidColorBrush x:Key="PACard" Color="#FF121317"/>
 
         <SolidColorBrush x:Key="Accent" Color="#FF6EA8FF"/>
         <SolidColorBrush x:Key="AccentDeep" Color="#FF2F6FE0"/>
@@ -107,10 +107,10 @@ $script:PlanData = @{
         <SolidColorBrush x:Key="TextDim" Color="#FFA1A4AE"/>
         <SolidColorBrush x:Key="Success" Color="#FF3DBE8B"/>
         <SolidColorBrush x:Key="Warn" Color="#FFE0A25E"/>
-        <SolidColorBrush x:Key="Outline" Color="#14FFFFFF"/>
-        <SolidColorBrush x:Key="OutlineStrong" Color="#29FFFFFF"/>
-        <SolidColorBrush x:Key="Surface" Color="#12FFFFFF"/>
-        <SolidColorBrush x:Key="Surface2" Color="#17FFFFFF"/>
+        <SolidColorBrush x:Key="Outline" Color="#FF1C1E24"/>
+        <SolidColorBrush x:Key="OutlineStrong" Color="#FF2C2E35"/>
+        <SolidColorBrush x:Key="Surface" Color="#FF15161B"/>
+        <SolidColorBrush x:Key="Surface2" Color="#FF191A20"/>
 
         <SolidColorBrush x:Key="AccentGradient" Color="#FF6EA8FF"/>
         <SolidColorBrush x:Key="AccentGradientHover" Color="#FF6FA4FF"/>
@@ -119,7 +119,7 @@ $script:PlanData = @{
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Thumb">
-                        <Border x:Name="t" CornerRadius="3" Background="#1FFFFFFF" Margin="3,0"/>
+                        <Border x:Name="t" CornerRadius="3" Background="#FF24262D" Margin="3,0"/>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter TargetName="t" Property="Background" Value="{DynamicResource PA}"/>
@@ -168,7 +168,7 @@ $script:PlanData = @{
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="CheckBox">
-                        <Border x:Name="row" Background="Transparent" CornerRadius="7" Padding="10,7" SnapsToDevicePixels="True">
+                        <Border x:Name="row" Background="Transparent" CornerRadius="6" Padding="9,6" SnapsToDevicePixels="True">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
@@ -204,7 +204,7 @@ $script:PlanData = @{
                                     </Viewbox>
                                 </Border>
                                 <Border x:Name="track" Grid.Column="3" Width="36" Height="20" CornerRadius="6"
-                                        Background="#26FFFFFF" BorderBrush="#38FFFFFF" BorderThickness="1.5"
+                                        Background="#FF2A2C33" BorderBrush="#FF3A3C44" BorderThickness="1.5"
                                         VerticalAlignment="Center">
                                     <Border x:Name="thumb" Width="10" Height="10" CornerRadius="3" Background="#FF7A7A84"
                                             HorizontalAlignment="Left" VerticalAlignment="Center" Margin="4.5,0,0,0">
@@ -217,7 +217,7 @@ $script:PlanData = @{
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="row" Property="Background" Value="#26FFFFFF"/>
+                                <Setter TargetName="row" Property="Background" Value="#FF2A2C33"/>
                                 <Setter TargetName="track" Property="BorderBrush" Value="#FF6A6E79"/>
                             </Trigger>
                             <Trigger Property="AutomationProperties.HelpText" Value="active">
@@ -299,13 +299,13 @@ $script:PlanData = @{
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="RadioButton">
-                        <Border x:Name="card" Background="#12FFFFFF" BorderBrush="#14FFFFFF" BorderThickness="1.5"
+                        <Border x:Name="card" Background="#FF15161B" BorderBrush="#FF1C1E24" BorderThickness="1.5"
                                 CornerRadius="7" Padding="14,12">
                             <ContentPresenter/>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="card" Property="Background" Value="#26FFFFFF"/>
+                                <Setter TargetName="card" Property="Background" Value="#FF2A2C33"/>
                             </Trigger>
                             <Trigger Property="IsChecked" Value="True">
                                 <Setter TargetName="card" Property="BorderBrush" Value="{DynamicResource PA}"/>
@@ -361,7 +361,7 @@ $script:PlanData = @{
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="CheckBox">
-                        <Border x:Name="row" Background="#12FFFFFF" BorderBrush="#14FFFFFF" BorderThickness="1"
+                        <Border x:Name="row" Background="#FF15161B" BorderBrush="#FF1C1E24" BorderThickness="1"
                                 CornerRadius="7" Padding="11,8" SnapsToDevicePixels="True">
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -369,7 +369,7 @@ $script:PlanData = @{
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <Border x:Name="box" Width="20" Height="20" CornerRadius="6" BorderThickness="1.6"
-                                        BorderBrush="#47FFFFFF" Background="#26FFFFFF" VerticalAlignment="Center" Margin="0,0,12,0">
+                                        BorderBrush="#FF4A4C54" Background="#FF2A2C33" VerticalAlignment="Center" Margin="0,0,12,0">
                                     <Path x:Name="tick" Data="M3.6,8.6 L7,12 L13.4,4.8" Stroke="#FF000000" StrokeThickness="2.2"
                                           StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeLineJoin="Round"
                                           Visibility="Collapsed"/>
@@ -379,7 +379,7 @@ $script:PlanData = @{
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="row" Property="Background" Value="#26FFFFFF"/>
+                                <Setter TargetName="row" Property="Background" Value="#FF2A2C33"/>
                                 <Setter TargetName="box" Property="BorderBrush" Value="{DynamicResource PA}"/>
                             </Trigger>
                             <Trigger Property="IsChecked" Value="True">
@@ -414,7 +414,7 @@ $script:PlanData = @{
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock x:Name="txt" Text="{TemplateBinding Content}" VerticalAlignment="Center" Margin="0,0,6,0"/>
                                 <Border x:Name="box" Width="16" Height="16" CornerRadius="5" BorderThickness="1.5"
-                                        BorderBrush="#47FFFFFF" Background="#26FFFFFF" VerticalAlignment="Center">
+                                        BorderBrush="#FF4A4C54" Background="#FF2A2C33" VerticalAlignment="Center">
                                     <Path x:Name="tick" Data="M3,7 L5.8,9.8 L11,4" Stroke="#FF000000" StrokeThickness="2"
                                           StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeLineJoin="Round"
                                           Visibility="Collapsed"/>
@@ -447,7 +447,7 @@ $script:PlanData = @{
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="RadioButton">
-                        <Border x:Name="row" Background="#12FFFFFF" BorderBrush="#1FFFFFFF" BorderThickness="1"
+                        <Border x:Name="row" Background="#FF15161B" BorderBrush="#FF24262D" BorderThickness="1"
                                 CornerRadius="7" Padding="12,8" SnapsToDevicePixels="True">
                             <!-- Griglia e non StackPanel orizzontale: con larghezza infinita il testo lungo non andava a capo e veniva tagliato. -->
                             <Grid>
@@ -456,7 +456,7 @@ $script:PlanData = @{
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <Grid Width="16" Height="16" Margin="0,0,10,0" VerticalAlignment="Center">
-                                    <Ellipse x:Name="ring" Stroke="#47FFFFFF" StrokeThickness="1.6"/>
+                                    <Ellipse x:Name="ring" Stroke="#FF4A4C54" StrokeThickness="1.6"/>
                                     <Ellipse x:Name="dot" Width="8" Height="8" Fill="{DynamicResource PA}" Visibility="Collapsed"/>
                                 </Grid>
                                 <ContentPresenter Grid.Column="1" VerticalAlignment="Center">
@@ -470,7 +470,7 @@ $script:PlanData = @{
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="row" Property="Background" Value="#1CFFFFFF"/>
+                                <Setter TargetName="row" Property="Background" Value="#FF1B1D23"/>
                             </Trigger>
                             <Trigger Property="IsChecked" Value="True">
                                 <Setter TargetName="ring" Property="Stroke" Value="{DynamicResource PA}"/>
@@ -520,12 +520,12 @@ $script:PlanData = @{
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="bg" Property="Background" Value="#26FFFFFF"/>
+                                <Setter TargetName="bg" Property="Background" Value="#FF2A2C33"/>
                                 <Setter Property="Foreground" Value="#FFE9EAEE"/>
                                 <Setter TargetName="icon" Property="Stroke" Value="{DynamicResource PA}"/>
                             </Trigger>
                             <Trigger Property="IsChecked" Value="True">
-                                <Setter TargetName="bg" Property="Background" Value="#2EFFFFFF"/>
+                                <Setter TargetName="bg" Property="Background" Value="#FF2A2C33"/>
                                 <Setter Property="Foreground" Value="#FFFFFFFF"/>
                                 <Setter TargetName="icon" Property="Stroke" Value="{DynamicResource PA}"/>
                                 <Setter TargetName="bar" Property="Visibility" Value="Visible"/>
@@ -538,7 +538,7 @@ $script:PlanData = @{
 
         <Style TargetType="ComboBox">
             <Setter Property="Foreground" Value="#FFEEEFF2"/>
-            <Setter Property="BorderBrush" Value="#1FFFFFFF"/>
+            <Setter Property="BorderBrush" Value="#FF24262D"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="Padding" Value="12,7"/>
             <Setter Property="FontSize" Value="12"/>
@@ -554,7 +554,7 @@ $script:PlanData = @{
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
                             <Border x:Name="MainBorder" Grid.ColumnSpan="2"
-                                    Background="#17FFFFFF"
+                                    Background="#FF191A20"
                                     BorderBrush="{TemplateBinding BorderBrush}"
                                     BorderThickness="{TemplateBinding BorderThickness}"
                                     CornerRadius="7"/>
@@ -600,9 +600,9 @@ $script:PlanData = @{
                                 <Setter TargetName="MainBorder" Property="BorderBrush" Value="{DynamicResource PA}"/>
                             </Trigger>
                             <Trigger Property="IsEnabled" Value="False">
-                                <Setter TargetName="MainBorder" Property="Background" Value="#12FFFFFF"/>
-                                <Setter TargetName="MainBorder" Property="BorderBrush" Value="#1CFFFFFF"/>
-                                <Setter TargetName="Arrow" Property="Stroke" Value="#38FFFFFF"/>
+                                <Setter TargetName="MainBorder" Property="Background" Value="#FF15161B"/>
+                                <Setter TargetName="MainBorder" Property="BorderBrush" Value="#FF1B1D23"/>
+                                <Setter TargetName="Arrow" Property="Stroke" Value="#FF3A3C44"/>
                                 <Setter Property="Foreground" Value="#FF666A75"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
@@ -623,7 +623,7 @@ $script:PlanData = @{
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="b" Property="Background" Value="#1CFFFFFF"/>
+                                <Setter TargetName="b" Property="Background" Value="#FF1B1D23"/>
                             </Trigger>
                             <Trigger Property="IsSelected" Value="True">
                                 <Setter TargetName="b" Property="Background" Value="{DynamicResource PASoft}"/>
@@ -638,18 +638,10 @@ $script:PlanData = @{
              della pagina nell'angolo in alto. Nessuna ombra: sul nero non si vede. -->
         <Style x:Key="Glass" TargetType="Border">
             <Setter Property="Background" Value="{DynamicResource PACard}"/>
-            <Setter Property="BorderBrush">
-                <Setter.Value>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                        <GradientStop Color="#2EFFFFFF" Offset="0"/>
-                        <GradientStop Color="#08FFFFFF" Offset="0.18"/>
-                        <GradientStop Color="#00FFFFFF" Offset="1"/>
-                    </LinearGradientBrush>
-                </Setter.Value>
-            </Setter>
+            <Setter Property="BorderBrush" Value="#FF1F2128"/>
             <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="CornerRadius" Value="14"/>
-            <Setter Property="Padding" Value="16,14"/>
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="Padding" Value="14,12"/>
             <Setter Property="Margin" Value="5"/>
         </Style>
 
@@ -672,15 +664,15 @@ $script:PlanData = @{
         </Style>
 
         <Style x:Key="Bar" TargetType="Border">
-            <Setter Property="Background" Value="#0FFFFFFF"/>
-            <Setter Property="BorderBrush" Value="#14FFFFFF"/>
+            <Setter Property="Background" Value="#FF101115"/>
+            <Setter Property="BorderBrush" Value="#FF1F2128"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="CornerRadius" Value="10"/>
         </Style>
 
         <Style x:Key="GlassInner" TargetType="Border">
-            <Setter Property="Background" Value="#2E000000"/>
-            <Setter Property="BorderBrush" Value="#14FFFFFF"/>
+            <Setter Property="Background" Value="#FF0D0E11"/>
+            <Setter Property="BorderBrush" Value="#FF1C1E24"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="CornerRadius" Value="8"/>
             <Setter Property="Padding" Value="13"/>
@@ -718,7 +710,7 @@ $script:PlanData = @{
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border x:Name="b" Background="#FFF4F4F6" CornerRadius="20" Padding="18,10">
+                        <Border x:Name="b" Background="#FFF4F4F6" CornerRadius="7" Padding="16,9">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <ControlTemplate.Triggers>
@@ -729,7 +721,7 @@ $script:PlanData = @{
                                 <Setter TargetName="b" Property="Background" Value="#FFDADBE0"/>
                             </Trigger>
                             <Trigger Property="IsEnabled" Value="False">
-                                <Setter TargetName="b" Property="Background" Value="#14FFFFFF"/>
+                                <Setter TargetName="b" Property="Background" Value="#FF1C1E24"/>
                                 <Setter Property="Foreground" Value="#FF5A5E69"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
@@ -746,8 +738,8 @@ $script:PlanData = @{
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border x:Name="b" Background="#17FFFFFF" BorderBrush="Transparent" BorderThickness="1"
-                                CornerRadius="20" Padding="14,9">
+                        <Border x:Name="b" Background="#FF191A20" BorderBrush="Transparent" BorderThickness="1"
+                                CornerRadius="7" Padding="14,8">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
                                 <!-- Con l'arrotondamento dei pixel l'ultima lettera usciva dal
                                      riquadro del testo e veniva tagliata: il margine interno la
@@ -761,7 +753,7 @@ $script:PlanData = @{
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="b" Property="Background" Value="#26FFFFFF"/>
+                                <Setter TargetName="b" Property="Background" Value="#FF2A2C33"/>
                                 <Setter TargetName="b" Property="BorderBrush" Value="#33FFFFFF"/>
                                 <Setter Property="Foreground" Value="#FFFFFFFF"/>
                             </Trigger>
@@ -786,8 +778,8 @@ $script:PlanData = @{
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border x:Name="b" Background="#17FFFFFF" BorderBrush="Transparent" BorderThickness="1"
-                                CornerRadius="20" Padding="13,9">
+                        <Border x:Name="b" Background="#FF191A20" BorderBrush="Transparent" BorderThickness="1"
+                                CornerRadius="7" Padding="13,8">
                             <StackPanel Orientation="Horizontal">
                                 <Ellipse x:Name="dot" Width="8" Height="8" Margin="2,0,9,0" VerticalAlignment="Center"
                                          Fill="{Binding Tag, RelativeSource={RelativeSource TemplatedParent}}"/>
@@ -799,7 +791,7 @@ $script:PlanData = @{
                                 <Setter TargetName="dot" Property="Visibility" Value="Collapsed"/>
                             </Trigger>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="b" Property="Background" Value="#26FFFFFF"/>
+                                <Setter TargetName="b" Property="Background" Value="#FF2A2C33"/>
                                 <Setter TargetName="b" Property="BorderBrush" Value="#33FFFFFF"/>
                                 <Setter Property="Foreground" Value="#FFFFFFFF"/>
                             </Trigger>
@@ -830,7 +822,7 @@ $script:PlanData = @{
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Border x:Name="b" Background="#1FFF9F43" BorderBrush="#4DFF9F43" BorderThickness="1"
-                                CornerRadius="20" Padding="14,9">
+                                CornerRadius="7" Padding="14,8">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
                                 <!-- Con l'arrotondamento dei pixel l'ultima lettera usciva dal
                                      riquadro del testo e veniva tagliata: il margine interno la
@@ -849,8 +841,8 @@ $script:PlanData = @{
                                 <Setter Property="Foreground" Value="#FFFFD2A1"/>
                             </Trigger>
                             <Trigger Property="IsEnabled" Value="False">
-                                <Setter TargetName="b" Property="Background" Value="#17FFFFFF"/>
-                                <Setter TargetName="b" Property="BorderBrush" Value="#14FFFFFF"/>
+                                <Setter TargetName="b" Property="Background" Value="#FF191A20"/>
+                                <Setter TargetName="b" Property="BorderBrush" Value="#FF1C1E24"/>
                                 <Setter Property="Foreground" Value="#FF5A5E69"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
@@ -875,7 +867,7 @@ $script:PlanData = @{
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="b" Property="Background" Value="#1CFFFFFF"/>
+                                <Setter TargetName="b" Property="Background" Value="#FF1B1D23"/>
                                 <Setter Property="Foreground" Value="#FFE9EAEE"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
@@ -910,7 +902,7 @@ $script:PlanData = @{
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="b" Property="Background" Value="#1CFFFFFF"/>
+                                <Setter TargetName="b" Property="Background" Value="#FF1B1D23"/>
                                 <Setter Property="Foreground" Value="#FFFFFFFF"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
@@ -938,7 +930,7 @@ $script:PlanData = @{
 
         <!-- Barra di avanzamento: l'unico punto con piu' colori insieme. -->
         <Style TargetType="ProgressBar">
-            <Setter Property="Background" Value="#1CFFFFFF"/>
+            <Setter Property="Background" Value="#FF1B1D23"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Template">
                 <Setter.Value>
@@ -972,7 +964,7 @@ $script:PlanData = @{
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="TextBox">
-                        <Border x:Name="b" Background="#17FFFFFF" BorderBrush="#1FFFFFFF"
+                        <Border x:Name="b" Background="#FF191A20" BorderBrush="#FF24262D"
                                 BorderThickness="1" CornerRadius="7">
                             <ScrollViewer x:Name="PART_ContentHost" Margin="{TemplateBinding Padding}"
                                           VerticalAlignment="Center"/>
@@ -991,7 +983,7 @@ $script:PlanData = @{
         </Style>
 
         <Style x:Key="SoftSep" TargetType="Separator">
-            <Setter Property="Background" Value="#14FFFFFF"/>
+            <Setter Property="Background" Value="#FF1C1E24"/>
             <Setter Property="Margin" Value="0,11"/>
             <Setter Property="Height" Value="1"/>
         </Style>
@@ -1035,47 +1027,9 @@ $script:PlanData = @{
 
     </Window.Resources>
 
-    <Border x:Name="shell" CornerRadius="0" BorderThickness="0" Background="#FF070A14">
+    <Border x:Name="shell" CornerRadius="0" BorderThickness="0" Background="#FF0B0C0F">
 
         <Grid>
-            <!-- Sfondo: grafite quasi nera con aloni di colore sfumati. Le schede,
-                 piu' chiare e un po' trasparenti, ci stanno sopra come lastre di vetro. -->
-            <Grid IsHitTestVisible="False" ClipToBounds="True">
-                <Grid.Background>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                        <GradientStop Color="#FF0A0E1C" Offset="0"/>
-                        <GradientStop Color="#FF06080F" Offset="0.55"/>
-                        <GradientStop Color="#FF080B16" Offset="1"/>
-                    </LinearGradientBrush>
-                </Grid.Background>
-                <Ellipse Width="1100" Height="800" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,-360,0,0">
-                    <Ellipse.Fill>
-                        <RadialGradientBrush>
-                            <GradientStop Color="#402563EB" Offset="0"/>
-                            <GradientStop Color="#142563EB" Offset="0.5"/>
-                            <GradientStop Color="#002563EB" Offset="1"/>
-                        </RadialGradientBrush>
-                    </Ellipse.Fill>
-                </Ellipse>
-                <Ellipse Width="1100" Height="900" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-160,-300,0">
-                    <Ellipse.Fill>
-                        <RadialGradientBrush>
-                            <GradientStop Color="#331D4ED8" Offset="0"/>
-                            <GradientStop Color="#101D4ED8" Offset="0.5"/>
-                            <GradientStop Color="#001D4ED8" Offset="1"/>
-                        </RadialGradientBrush>
-                    </Ellipse.Fill>
-                </Ellipse>
-                <Ellipse Width="1100" Height="700" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,-420">
-                    <Ellipse.Fill>
-                        <RadialGradientBrush>
-                            <GradientStop Color="#2E1E3A8A" Offset="0"/>
-                            <GradientStop Color="#0F1E3A8A" Offset="0.5"/>
-                            <GradientStop Color="#001D4ED8" Offset="1"/>
-                        </RadialGradientBrush>
-                    </Ellipse.Fill>
-                </Ellipse>
-            </Grid>
             <!-- Alone morbido in alto: prende il colore della pagina aperta. -->
             <Border x:Name="glowPage" IsHitTestVisible="False" Visibility="Collapsed"/>
             <Grid x:Name="rootScale">
@@ -1135,7 +1089,7 @@ $script:PlanData = @{
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <Border Grid.Column="0" Background="#0DFFFFFF" BorderBrush="#12FFFFFF" BorderThickness="1" CornerRadius="14"
+                    <Border Grid.Column="0" Background="#FF0F1013" BorderBrush="#FF1C1E24" BorderThickness="1" CornerRadius="10"
                             Padding="8,10,6,8" Margin="0,0,10,0">
                         <Grid>
                             <Grid.RowDefinitions>
@@ -1159,7 +1113,7 @@ $script:PlanData = @{
                                     <RadioButton.Resources>
                                         <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
                                         <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
-                                        <SolidColorBrush x:Key="PACard" Color="#0BFFFFFF"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#FF121317"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <TextBlock x:Name="navGrpSystem" Text="SISTEMA" Style="{StaticResource NavHeader}" Margin="14,0,0,4"/>
@@ -1169,7 +1123,7 @@ $script:PlanData = @{
                                     <RadioButton.Resources>
                                         <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
                                         <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
-                                        <SolidColorBrush x:Key="PACard" Color="#0BFFFFFF"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#FF121317"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <RadioButton x:Name="tabSched" GroupName="Nav" Style="{StaticResource NavItem}"
@@ -1178,7 +1132,7 @@ $script:PlanData = @{
                                     <RadioButton.Resources>
                                         <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
                                         <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
-                                        <SolidColorBrush x:Key="PACard" Color="#0BFFFFFF"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#FF121317"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <RadioButton x:Name="tabPower" GroupName="Nav" Style="{StaticResource NavItem}"
@@ -1187,7 +1141,7 @@ $script:PlanData = @{
                                     <RadioButton.Resources>
                                         <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
                                         <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
-                                        <SolidColorBrush x:Key="PACard" Color="#0BFFFFFF"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#FF121317"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <RadioButton x:Name="tabGpu" GroupName="Nav" Style="{StaticResource NavItem}"
@@ -1196,7 +1150,7 @@ $script:PlanData = @{
                                     <RadioButton.Resources>
                                         <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
                                         <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
-                                        <SolidColorBrush x:Key="PACard" Color="#0BFFFFFF"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#FF121317"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <RadioButton x:Name="tabStorage" GroupName="Nav" Style="{StaticResource NavItem}"
@@ -1205,7 +1159,7 @@ $script:PlanData = @{
                                     <RadioButton.Resources>
                                         <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
                                         <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
-                                        <SolidColorBrush x:Key="PACard" Color="#0BFFFFFF"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#FF121317"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <RadioButton x:Name="tabNet" GroupName="Nav" Style="{StaticResource NavItem}"
@@ -1214,7 +1168,7 @@ $script:PlanData = @{
                                     <RadioButton.Resources>
                                         <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
                                         <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
-                                        <SolidColorBrush x:Key="PACard" Color="#0BFFFFFF"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#FF121317"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <TextBlock x:Name="navGrpPrivacy" Text="PRIVACY" Style="{StaticResource NavHeader}"/>
@@ -1224,7 +1178,7 @@ $script:PlanData = @{
                                     <RadioButton.Resources>
                                         <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
                                         <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
-                                        <SolidColorBrush x:Key="PACard" Color="#0BFFFFFF"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#FF121317"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <RadioButton x:Name="tabPriv2" GroupName="Nav" Style="{StaticResource NavItem}"
@@ -1233,7 +1187,7 @@ $script:PlanData = @{
                                     <RadioButton.Resources>
                                         <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
                                         <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
-                                        <SolidColorBrush x:Key="PACard" Color="#0BFFFFFF"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#FF121317"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <TextBlock x:Name="navGrpCustom" Text="PERSONALIZZA" Style="{StaticResource NavHeader}"/>
@@ -1243,7 +1197,7 @@ $script:PlanData = @{
                                     <RadioButton.Resources>
                                         <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
                                         <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
-                                        <SolidColorBrush x:Key="PACard" Color="#0BFFFFFF"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#FF121317"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <RadioButton x:Name="tabExp" GroupName="Nav" Style="{StaticResource NavItem}"
@@ -1252,7 +1206,7 @@ $script:PlanData = @{
                                     <RadioButton.Resources>
                                         <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
                                         <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
-                                        <SolidColorBrush x:Key="PACard" Color="#0BFFFFFF"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#FF121317"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <RadioButton x:Name="tabTask" GroupName="Nav" Style="{StaticResource NavItem}"
@@ -1261,7 +1215,7 @@ $script:PlanData = @{
                                     <RadioButton.Resources>
                                         <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
                                         <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
-                                        <SolidColorBrush x:Key="PACard" Color="#0BFFFFFF"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#FF121317"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <RadioButton x:Name="tabNotif" GroupName="Nav" Style="{StaticResource NavItem}"
@@ -1270,7 +1224,7 @@ $script:PlanData = @{
                                     <RadioButton.Resources>
                                         <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
                                         <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
-                                        <SolidColorBrush x:Key="PACard" Color="#0BFFFFFF"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#FF121317"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <RadioButton x:Name="tabGame" GroupName="Nav" Style="{StaticResource NavItem}"
@@ -1279,7 +1233,7 @@ $script:PlanData = @{
                                     <RadioButton.Resources>
                                         <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
                                         <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
-                                        <SolidColorBrush x:Key="PACard" Color="#0BFFFFFF"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#FF121317"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <TextBlock x:Name="navGrpWindows" Text="WINDOWS E APP" Style="{StaticResource NavHeader}"/>
@@ -1289,7 +1243,7 @@ $script:PlanData = @{
                                     <RadioButton.Resources>
                                         <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
                                         <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
-                                        <SolidColorBrush x:Key="PACard" Color="#0BFFFFFF"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#FF121317"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <RadioButton x:Name="tabApps" GroupName="Nav" Style="{StaticResource NavItem}"
@@ -1298,7 +1252,7 @@ $script:PlanData = @{
                                     <RadioButton.Resources>
                                         <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
                                         <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
-                                        <SolidColorBrush x:Key="PACard" Color="#0BFFFFFF"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#FF121317"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <RadioButton x:Name="tabTools" GroupName="Nav" Style="{StaticResource NavItem}"
@@ -1307,7 +1261,7 @@ $script:PlanData = @{
                                     <RadioButton.Resources>
                                         <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
                                         <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
-                                        <SolidColorBrush x:Key="PACard" Color="#0BFFFFFF"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#FF121317"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <RadioButton x:Name="tabAdv" GroupName="Nav" Style="{StaticResource NavItem}"
@@ -1316,7 +1270,7 @@ $script:PlanData = @{
                                     <RadioButton.Resources>
                                         <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
                                         <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
-                                        <SolidColorBrush x:Key="PACard" Color="#0BFFFFFF"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#FF121317"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                             </StackPanel>
@@ -1354,7 +1308,7 @@ $script:PlanData = @{
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
                             <Border x:Name="pillActivity" Grid.Column="1" Visibility="Collapsed" Cursor="Hand"
-                                    Background="#12FFFFFF" BorderBrush="#1FFFFFFF" BorderThickness="1" CornerRadius="7"
+                                    Background="#FF15161B" BorderBrush="#FF24262D" BorderThickness="1" CornerRadius="7"
                                     Padding="14,7" Margin="0,0,10,0" VerticalAlignment="Center" MaxWidth="460">
                                 <Grid>
                                     <Grid.RowDefinitions>
@@ -1384,7 +1338,7 @@ $script:PlanData = @{
                                 <StackPanel Grid.Column="1" VerticalAlignment="Center">
                                     <TextBlock x:Name="lblPageTitle" Text="Prestazioni"
                                                FontFamily="Segoe UI Variable Display, Segoe UI"
-                                               FontSize="25" FontWeight="Bold" Foreground="#FFEEEFF2"/>
+                                               FontSize="22" FontWeight="SemiBold" Foreground="#FFEEEFF2"/>
                                     <TextBlock x:Name="lblPageSub" Text="" FontSize="12.5" Foreground="#FF8E919C"
                                                TextWrapping="Wrap" Margin="0,1,0,0" MaxWidth="640" HorizontalAlignment="Left"/>
                                 </StackPanel>
@@ -1395,7 +1349,7 @@ $script:PlanData = @{
                                     VerticalAlignment="Center" Content="Ripristino totale"/>
                             <Button x:Name="btnDetectActive" Grid.Column="3" Style="{StaticResource GhostBtn}" Height="36" Margin="0,0,10,0"
                                     VerticalAlignment="Center" Content="Rileva già attivi"/>
-                            <Border x:Name="pillSelected" Grid.Column="4" Background="#12FFFFFF" BorderBrush="#14FFFFFF" BorderThickness="1"
+                            <Border x:Name="pillSelected" Grid.Column="4" Background="#FF15161B" BorderBrush="#FF1C1E24" BorderThickness="1"
                                     CornerRadius="7" Padding="14,8" VerticalAlignment="Center">
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock x:Name="lblSelected" Text="Selezionati:" Foreground="#FF8B8E99" FontSize="12"
@@ -1415,7 +1369,7 @@ $script:PlanData = @{
                                 <ScrollViewer.Resources>
                                     <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
                                     <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
-                                    <SolidColorBrush x:Key="PACard" Color="#0BFFFFFF"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#FF121317"/>
                                 </ScrollViewer.Resources>
                                 <StackPanel x:Name="panHome">
                                     <TextBlock x:Name="lblHomeLoading" Text="Lettura dell'hardware..." Style="{StaticResource SubTitle}" Margin="10"/>
@@ -1426,7 +1380,7 @@ $script:PlanData = @{
                                 <ScrollViewer.Resources>
                                     <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
                                     <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
-                                    <SolidColorBrush x:Key="PACard" Color="#0BFFFFFF"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#FF121317"/>
                                 </ScrollViewer.Resources>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
@@ -1523,7 +1477,7 @@ $script:PlanData = @{
                                 <ScrollViewer.Resources>
                                     <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
                                     <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
-                                    <SolidColorBrush x:Key="PACard" Color="#0BFFFFFF"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#FF121317"/>
                                 </ScrollViewer.Resources>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
@@ -1597,7 +1551,7 @@ $script:PlanData = @{
                                 <ScrollViewer.Resources>
                                     <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
                                     <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
-                                    <SolidColorBrush x:Key="PACard" Color="#0BFFFFFF"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#FF121317"/>
                                 </ScrollViewer.Resources>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
@@ -1675,7 +1629,7 @@ $script:PlanData = @{
                                 <Grid.Resources>
                                     <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
                                     <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
-                                    <SolidColorBrush x:Key="PACard" Color="#0BFFFFFF"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#FF121317"/>
                                 </Grid.Resources>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
@@ -1874,7 +1828,7 @@ $script:PlanData = @{
                                 <Grid.Resources>
                                     <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
                                     <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
-                                    <SolidColorBrush x:Key="PACard" Color="#0BFFFFFF"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#FF121317"/>
                                 </Grid.Resources>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="1.3*"/>
@@ -1974,7 +1928,7 @@ $script:PlanData = @{
                                 <Grid.Resources>
                                     <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
                                     <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
-                                    <SolidColorBrush x:Key="PACard" Color="#0BFFFFFF"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#FF121317"/>
                                 </Grid.Resources>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
@@ -2059,7 +2013,7 @@ $script:PlanData = @{
                                 <ScrollViewer.Resources>
                                     <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
                                     <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
-                                    <SolidColorBrush x:Key="PACard" Color="#0BFFFFFF"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#FF121317"/>
                                 </ScrollViewer.Resources>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
@@ -2193,7 +2147,7 @@ $script:PlanData = @{
                                 <ScrollViewer.Resources>
                                     <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
                                     <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
-                                    <SolidColorBrush x:Key="PACard" Color="#0BFFFFFF"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#FF121317"/>
                                 </ScrollViewer.Resources>
                                 <StackPanel>
                                 <Border Style="{StaticResource NoticeBar}">
@@ -2377,7 +2331,7 @@ $script:PlanData = @{
                                 <ScrollViewer.Resources>
                                     <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
                                     <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
-                                    <SolidColorBrush x:Key="PACard" Color="#0BFFFFFF"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#FF121317"/>
                                 </ScrollViewer.Resources>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
@@ -2513,7 +2467,7 @@ $script:PlanData = @{
                                 <Grid.Resources>
                                     <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
                                     <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
-                                    <SolidColorBrush x:Key="PACard" Color="#0BFFFFFF"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#FF121317"/>
                                 </Grid.Resources>
                                 <Grid x:Name="catPriv"/>
                             </Grid>
@@ -2522,7 +2476,7 @@ $script:PlanData = @{
                                 <Grid.Resources>
                                     <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
                                     <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
-                                    <SolidColorBrush x:Key="PACard" Color="#0BFFFFFF"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#FF121317"/>
                                 </Grid.Resources>
                                 <Grid x:Name="catExp"/>
                             </Grid>
@@ -2531,7 +2485,7 @@ $script:PlanData = @{
                                 <Grid.Resources>
                                     <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
                                     <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
-                                    <SolidColorBrush x:Key="PACard" Color="#0BFFFFFF"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#FF121317"/>
                                 </Grid.Resources>
                                 <Grid x:Name="catTask"/>
                             </Grid>
@@ -2540,7 +2494,7 @@ $script:PlanData = @{
                                 <Grid.Resources>
                                     <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
                                     <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
-                                    <SolidColorBrush x:Key="PACard" Color="#0BFFFFFF"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#FF121317"/>
                                 </Grid.Resources>
                                 <Grid x:Name="catNotif"/>
                             </Grid>
@@ -2549,7 +2503,7 @@ $script:PlanData = @{
                                 <Grid.Resources>
                                     <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
                                     <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
-                                    <SolidColorBrush x:Key="PACard" Color="#0BFFFFFF"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#FF121317"/>
                                 </Grid.Resources>
                                 <Grid x:Name="catGame"/>
                             </Grid>
@@ -2558,7 +2512,7 @@ $script:PlanData = @{
                                 <Grid.Resources>
                                     <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
                                     <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
-                                    <SolidColorBrush x:Key="PACard" Color="#0BFFFFFF"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#FF121317"/>
                                 </Grid.Resources>
                                 <Grid x:Name="catWin"/>
                             </Grid>
@@ -2567,7 +2521,7 @@ $script:PlanData = @{
                                 <Grid.Resources>
                                     <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
                                     <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
-                                    <SolidColorBrush x:Key="PACard" Color="#0BFFFFFF"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#FF121317"/>
                                 </Grid.Resources>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
@@ -2601,7 +2555,7 @@ $script:PlanData = @{
                                 <Grid.Resources>
                                     <SolidColorBrush x:Key="PA" Color="#FF6EA8FF"/>
                                     <SolidColorBrush x:Key="PASoft" Color="#266EA8FF"/>
-                                    <SolidColorBrush x:Key="PACard" Color="#0BFFFFFF"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#FF121317"/>
                                 </Grid.Resources>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
@@ -4069,7 +4023,7 @@ function Show-StorageInventory {
             $cd.Width = if ($w -eq '*') { New-Object System.Windows.GridLength(1, [System.Windows.GridUnitType]::Star) } else { [System.Windows.GridLength]::Auto }
             $head.ColumnDefinitions.Add($cd)
         }
-        $pillColor = switch ($kind) { 'NVMe' { @('#FFA5B4FC', '#26818CF8') } 'SSD' { @('#FF7DD3FC', '#2638BDF8') } 'HDD' { @('#FFFCD34D', '#26F59E0B') } 'USB' { @('#FFC9CBD2', '#1FFFFFFF') } default { @('#FFC9CBD2', '#1FFFFFFF') } }
+        $pillColor = switch ($kind) { 'NVMe' { @('#FFA5B4FC', '#26818CF8') } 'SSD' { @('#FF7DD3FC', '#2638BDF8') } 'HDD' { @('#FFFCD34D', '#26F59E0B') } 'USB' { @('#FFC9CBD2', '#FF24262D') } default { @('#FFC9CBD2', '#FF24262D') } }
         $pills = New-Object System.Windows.Controls.StackPanel; $pills.Orientation = 'Horizontal'
         [void]$pills.Children.Add((New-DiskPill $kind $pillColor[0] $pillColor[1]))
         if ($isSys) { [void]$pills.Children.Add((New-DiskPill (T 'diskSystem') '#FF3DBE8B' '#263DBE8B')) }
@@ -16310,7 +16264,7 @@ function Show-Dialog {
         WindowStyle="None" AllowsTransparency="True" Background="Transparent"
         ShowInTaskbar="False" ResizeMode="NoResize" SizeToContent="WidthAndHeight"
         WindowStartupLocation="CenterOwner" TextOptions.TextFormattingMode="Ideal" UseLayoutRounding="True">
-    <Border Margin="24" CornerRadius="20" Background="#FF111318" BorderBrush="#1FFFFFFF" BorderThickness="1"
+    <Border Margin="24" CornerRadius="20" Background="#FF111318" BorderBrush="#FF24262D" BorderThickness="1"
             Padding="26,24,24,22" MinWidth="380" MaxWidth="480">
         <Border.Effect>
             <DropShadowEffect BlurRadius="36" ShadowDepth="6" Opacity="0.7" Color="#000000"/>
@@ -17654,7 +17608,7 @@ function New-AppPick([string]$key, $content) {
 # della casella un segno di spunta verde.
 function New-AppStatic($content) {
     $b = New-Object System.Windows.Controls.Border
-    $b.Background = New-AppBrush '#12FFFFFF'; $b.BorderBrush = New-AppBrush '#14FFFFFF'; $b.BorderThickness = 1
+    $b.Background = New-AppBrush '#FF15161B'; $b.BorderBrush = New-AppBrush '#FF1C1E24'; $b.BorderThickness = 1
     $b.CornerRadius = 12; $b.Padding = '11,8,11,8'; $b.Margin = '0,2,0,2'
     $g = New-Object System.Windows.Controls.Grid
     $c0 = New-Object System.Windows.Controls.ColumnDefinition; $c0.Width = [System.Windows.GridLength]::Auto
@@ -17838,7 +17792,7 @@ function Show-AppInstalled {
     foreach ($a in $script:AppInstalledList) {
         if ($q -and $a.Name -notlike "*$q*" -and $a.Publisher -notlike "*$q*") { continue }
         $sub = (@($a.Version, $a.Publisher) | Where-Object { $_ }) -join '  ·  '
-        $pills = @(if ($a.Kind -eq 'Store') { New-AppPill 'Store' '#FFA5B4FC' '#26818CF8' } else { New-AppPill 'Win32' '#FFC9CBD2' '#1FFFFFFF' })
+        $pills = @(if ($a.Kind -eq 'Store') { New-AppPill 'Store' '#FFA5B4FC' '#26818CF8' } else { New-AppPill 'Win32' '#FFC9CBD2' '#FF24262D' })
         if ($updNames.ContainsKey($a.Name)) { $pills = @(New-AppPill (T 'appUpdatable') '#FFFDBA74' '#26FDBA74') + $pills }
         [void]$card.Panel.Children.Add((New-AppPick $a.Key (New-AppContent $a.Name $sub $pills)))
     }
@@ -18910,7 +18864,7 @@ function New-HomeHero($i) {
         $(if ($i.InstallDate) { (T 'homeInstalledOn') -f (Format-HomeDate $i.InstallDate) }),
         $model)) {
         if (-not $c) { continue }
-        $p = New-AppPill $c '#FFC9CBD2' '#1CFFFFFF'; $p.Margin = '0,0,8,6'; $p.Padding = '10,4,10,4'
+        $p = New-AppPill $c '#FFC9CBD2' '#FF1B1D23'; $p.Margin = '0,0,8,6'; $p.Padding = '10,4,10,4'
         [void]$chips.Children.Add($p)
     }
     [void]$left.Children.Add($chips)
@@ -18924,18 +18878,18 @@ function New-HomeHero($i) {
 # «Consigliati» e «Seleziona tutto», quindi sta in cima, subito visibile.
 function New-HomeTypeTile([string]$value, [string]$title, [string]$desc, [bool]$selected) {
     $b = New-Object System.Windows.Controls.Border
-    $b.CornerRadius = 8; $b.Padding = '14,12,14,12'; $b.Margin = '0,0,10,0'; $b.Cursor = 'Hand'
-    $b.BorderThickness = $(if ($selected) { 2 } else { 1 })
-    $b.BorderBrush = New-AppBrush $(if ($selected) { '#FF6EA8FF' } else { '#1FFFFFFF' })
-    $b.Background = New-AppBrush $(if ($selected) { '#1F4C8DFF' } else { '#24000000' })
+    $b.CornerRadius = 8; $b.Padding = '12,10,12,10'; $b.Margin = '0,0,10,0'; $b.Cursor = 'Hand'
+    $b.BorderThickness = 1
+    $b.BorderBrush = New-AppBrush $(if ($selected) { '#FF3A3D46' } else { '#FF1C1E24' })
+    $b.Background = New-AppBrush $(if ($selected) { '#FF1B1D23' } else { '#FF0F1014' })
     $b.Tag = $value
     $sp = New-Object System.Windows.Controls.StackPanel
     $top = New-Object System.Windows.Controls.Grid
     $tc0 = New-Object System.Windows.Controls.ColumnDefinition; $tc1 = New-Object System.Windows.Controls.ColumnDefinition; $tc1.Width = [System.Windows.GridLength]::Auto
     $top.ColumnDefinitions.Add($tc0); $top.ColumnDefinitions.Add($tc1)
-    $t = New-HomeText $title 14 $(if ($selected) { '#FFFFFFFF' } else { '#FFE9EAEE' }) 'SemiBold'
+    $t = New-HomeText $title 13 $(if ($selected) { '#FFFFFFFF' } else { '#FFA1A4AE' }) 'SemiBold'
     [void]$top.Children.Add($t)
-    if ($selected) { $tk = New-AppTick '#FF6EA8FF' 12; $tk.VerticalAlignment = 'Center'; [System.Windows.Controls.Grid]::SetColumn($tk, 1); [void]$top.Children.Add($tk) }
+    if ($selected) { $tk = New-AppTick '#FFE9EAEE' 11; $tk.VerticalAlignment = 'Center'; [System.Windows.Controls.Grid]::SetColumn($tk, 1); [void]$top.Children.Add($tk) }
     [void]$sp.Children.Add($top)
     $d = New-HomeText $desc 12 '#FFA1A4AE'; $d.Margin = '0,5,0,0'
     [void]$sp.Children.Add($d)
@@ -18995,9 +18949,9 @@ function New-HomeDiskRow($d) {
     $kind = if ($d.Bus -eq 'NVMe') { 'NVMe' } elseif ($d.Media -in @('SSD', 'HDD')) { $d.Media } else { '' }
     if ($kind) {
         $col = switch ($kind) { 'NVMe' { '#FF9EC2FF' } 'SSD' { '#FF7FD1B9' } default { '#FFE0A25E' } }
-        [void]$tags.Children.Add((New-AppPill $kind $col '#1CFFFFFF'))
+        [void]$tags.Children.Add((New-AppPill $kind $col '#FF1B1D23'))
     }
-    if ($d.Bus -and $d.Bus -notin @('NVMe', 'Unspecified')) { [void]$tags.Children.Add((New-AppPill $d.Bus '#FFC9CBD2' '#1CFFFFFF')) }
+    if ($d.Bus -and $d.Bus -notin @('NVMe', 'Unspecified')) { [void]$tags.Children.Add((New-AppPill $d.Bus '#FFC9CBD2' '#FF1B1D23')) }
     $sz = New-HomeText (Format-HomeSize $d.Size) 12.5 '#FFC9CBD2'; $sz.Margin = '10,0,0,0'; $sz.VerticalAlignment = 'Center'; $sz.Width = 64; $sz.TextAlignment = 'Right'
     [void]$tags.Children.Add($sz)
     [System.Windows.Controls.Grid]::SetColumn($tags, 1); [void]$g.Children.Add($tags)
@@ -19022,7 +18976,7 @@ function New-HomeVolumeRow($v) {
     $u = New-Object System.Windows.Controls.ColumnDefinition; $u.Width = New-Object System.Windows.GridLength([Math]::Max(0.001, $used), [System.Windows.GridUnitType]::Star)
     $r = New-Object System.Windows.Controls.ColumnDefinition; $r.Width = New-Object System.Windows.GridLength([Math]::Max(0.001, 1 - $used), [System.Windows.GridUnitType]::Star)
     $bar.ColumnDefinitions.Add($u); $bar.ColumnDefinitions.Add($r)
-    $bg = New-Object System.Windows.Controls.Border; $bg.CornerRadius = 3; $bg.Background = New-AppBrush '#1FFFFFFF'
+    $bg = New-Object System.Windows.Controls.Border; $bg.CornerRadius = 3; $bg.Background = New-AppBrush '#FF24262D'
     [System.Windows.Controls.Grid]::SetColumnSpan($bg, 2); [void]$bar.Children.Add($bg)
     $fill = New-Object System.Windows.Controls.Border; $fill.CornerRadius = 3
     $fill.Background = New-AppBrush $(if ($used -ge 0.9) { '#FFF87171' } elseif ($used -ge 0.75) { '#FFE0A25E' } else { '#FF6EA8FF' })
@@ -19778,7 +19732,7 @@ function New-ToolButton([string]$Text, [scriptblock]$Click, [string]$Style = 'Gh
 # se serve un riavvio ('reboot') o se va usata con cautela ('caution').
 function New-ToolTile([string]$Key, [string]$Glyph, [string]$Color, [scriptblock]$Click, [string]$Tag = '') {
     $b = New-Object System.Windows.Controls.Border
-    $b.Background = New-AppBrush '#24000000'; $b.BorderBrush = New-AppBrush '#14FFFFFF'; $b.BorderThickness = 1
+    $b.Background = New-AppBrush '#FF0F1014'; $b.BorderBrush = New-AppBrush '#FF1C1E24'; $b.BorderThickness = 1
     $b.CornerRadius = 9; $b.Padding = '14,12,14,12'; $b.Margin = '0,0,10,10'
     $g = New-Object System.Windows.Controls.Grid
     foreach ($h in 'Auto', '*', 'Auto') {

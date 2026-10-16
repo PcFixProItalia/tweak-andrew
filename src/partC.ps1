@@ -1353,7 +1353,7 @@ function Show-StorageInventory {
             $cd.Width = if ($w -eq '*') { New-Object System.Windows.GridLength(1, [System.Windows.GridUnitType]::Star) } else { [System.Windows.GridLength]::Auto }
             $head.ColumnDefinitions.Add($cd)
         }
-        $pillColor = switch ($kind) { 'NVMe' { @('#FFA5B4FC', '#26818CF8') } 'SSD' { @('#FF7DD3FC', '#2638BDF8') } 'HDD' { @('#FFFCD34D', '#26F59E0B') } 'USB' { @('#FFC9CBD2', '#1FFFFFFF') } default { @('#FFC9CBD2', '#1FFFFFFF') } }
+        $pillColor = switch ($kind) { 'NVMe' { @('#FFA5B4FC', '#26818CF8') } 'SSD' { @('#FF7DD3FC', '#2638BDF8') } 'HDD' { @('#FFFCD34D', '#26F59E0B') } 'USB' { @('#FFC9CBD2', '#FF24262D') } default { @('#FFC9CBD2', '#FF24262D') } }
         $pills = New-Object System.Windows.Controls.StackPanel; $pills.Orientation = 'Horizontal'
         [void]$pills.Children.Add((New-DiskPill $kind $pillColor[0] $pillColor[1]))
         if ($isSys) { [void]$pills.Children.Add((New-DiskPill (T 'diskSystem') '#FF3DBE8B' '#263DBE8B')) }

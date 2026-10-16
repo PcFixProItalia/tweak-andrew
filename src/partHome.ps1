@@ -284,7 +284,7 @@ function New-HomeHero($i) {
         $(if ($i.InstallDate) { (T 'homeInstalledOn') -f (Format-HomeDate $i.InstallDate) }),
         $model)) {
         if (-not $c) { continue }
-        $p = New-AppPill $c '#FFC9CBD2' '#1CFFFFFF'; $p.Margin = '0,0,8,6'; $p.Padding = '10,4,10,4'
+        $p = New-AppPill $c '#FFC9CBD2' '#FF1B1D23'; $p.Margin = '0,0,8,6'; $p.Padding = '10,4,10,4'
         [void]$chips.Children.Add($p)
     }
     [void]$left.Children.Add($chips)
@@ -298,18 +298,18 @@ function New-HomeHero($i) {
 # «Consigliati» e «Seleziona tutto», quindi sta in cima, subito visibile.
 function New-HomeTypeTile([string]$value, [string]$title, [string]$desc, [bool]$selected) {
     $b = New-Object System.Windows.Controls.Border
-    $b.CornerRadius = 8; $b.Padding = '14,12,14,12'; $b.Margin = '0,0,10,0'; $b.Cursor = 'Hand'
-    $b.BorderThickness = $(if ($selected) { 2 } else { 1 })
-    $b.BorderBrush = New-AppBrush $(if ($selected) { '#FF6EA8FF' } else { '#1FFFFFFF' })
-    $b.Background = New-AppBrush $(if ($selected) { '#1F4C8DFF' } else { '#24000000' })
+    $b.CornerRadius = 8; $b.Padding = '12,10,12,10'; $b.Margin = '0,0,10,0'; $b.Cursor = 'Hand'
+    $b.BorderThickness = 1
+    $b.BorderBrush = New-AppBrush $(if ($selected) { '#FF3A3D46' } else { '#FF1C1E24' })
+    $b.Background = New-AppBrush $(if ($selected) { '#FF1B1D23' } else { '#FF0F1014' })
     $b.Tag = $value
     $sp = New-Object System.Windows.Controls.StackPanel
     $top = New-Object System.Windows.Controls.Grid
     $tc0 = New-Object System.Windows.Controls.ColumnDefinition; $tc1 = New-Object System.Windows.Controls.ColumnDefinition; $tc1.Width = [System.Windows.GridLength]::Auto
     $top.ColumnDefinitions.Add($tc0); $top.ColumnDefinitions.Add($tc1)
-    $t = New-HomeText $title 14 $(if ($selected) { '#FFFFFFFF' } else { '#FFE9EAEE' }) 'SemiBold'
+    $t = New-HomeText $title 13 $(if ($selected) { '#FFFFFFFF' } else { '#FFA1A4AE' }) 'SemiBold'
     [void]$top.Children.Add($t)
-    if ($selected) { $tk = New-AppTick '#FF6EA8FF' 12; $tk.VerticalAlignment = 'Center'; [System.Windows.Controls.Grid]::SetColumn($tk, 1); [void]$top.Children.Add($tk) }
+    if ($selected) { $tk = New-AppTick '#FFE9EAEE' 11; $tk.VerticalAlignment = 'Center'; [System.Windows.Controls.Grid]::SetColumn($tk, 1); [void]$top.Children.Add($tk) }
     [void]$sp.Children.Add($top)
     $d = New-HomeText $desc 12 '#FFA1A4AE'; $d.Margin = '0,5,0,0'
     [void]$sp.Children.Add($d)
@@ -369,9 +369,9 @@ function New-HomeDiskRow($d) {
     $kind = if ($d.Bus -eq 'NVMe') { 'NVMe' } elseif ($d.Media -in @('SSD', 'HDD')) { $d.Media } else { '' }
     if ($kind) {
         $col = switch ($kind) { 'NVMe' { '#FF9EC2FF' } 'SSD' { '#FF7FD1B9' } default { '#FFE0A25E' } }
-        [void]$tags.Children.Add((New-AppPill $kind $col '#1CFFFFFF'))
+        [void]$tags.Children.Add((New-AppPill $kind $col '#FF1B1D23'))
     }
-    if ($d.Bus -and $d.Bus -notin @('NVMe', 'Unspecified')) { [void]$tags.Children.Add((New-AppPill $d.Bus '#FFC9CBD2' '#1CFFFFFF')) }
+    if ($d.Bus -and $d.Bus -notin @('NVMe', 'Unspecified')) { [void]$tags.Children.Add((New-AppPill $d.Bus '#FFC9CBD2' '#FF1B1D23')) }
     $sz = New-HomeText (Format-HomeSize $d.Size) 12.5 '#FFC9CBD2'; $sz.Margin = '10,0,0,0'; $sz.VerticalAlignment = 'Center'; $sz.Width = 64; $sz.TextAlignment = 'Right'
     [void]$tags.Children.Add($sz)
     [System.Windows.Controls.Grid]::SetColumn($tags, 1); [void]$g.Children.Add($tags)
@@ -396,7 +396,7 @@ function New-HomeVolumeRow($v) {
     $u = New-Object System.Windows.Controls.ColumnDefinition; $u.Width = New-Object System.Windows.GridLength([Math]::Max(0.001, $used), [System.Windows.GridUnitType]::Star)
     $r = New-Object System.Windows.Controls.ColumnDefinition; $r.Width = New-Object System.Windows.GridLength([Math]::Max(0.001, 1 - $used), [System.Windows.GridUnitType]::Star)
     $bar.ColumnDefinitions.Add($u); $bar.ColumnDefinitions.Add($r)
-    $bg = New-Object System.Windows.Controls.Border; $bg.CornerRadius = 3; $bg.Background = New-AppBrush '#1FFFFFFF'
+    $bg = New-Object System.Windows.Controls.Border; $bg.CornerRadius = 3; $bg.Background = New-AppBrush '#FF24262D'
     [System.Windows.Controls.Grid]::SetColumnSpan($bg, 2); [void]$bar.Children.Add($bg)
     $fill = New-Object System.Windows.Controls.Border; $fill.CornerRadius = 3
     $fill.Background = New-AppBrush $(if ($used -ge 0.9) { '#FFF87171' } elseif ($used -ge 0.75) { '#FFE0A25E' } else { '#FF6EA8FF' })
