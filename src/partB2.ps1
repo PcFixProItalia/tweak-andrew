@@ -31,7 +31,7 @@
              e PACard con gli stessi valori: il resto dello stile li legge da li'. -->
         <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
         <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-        <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
+        <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
 
         <SolidColorBrush x:Key="Accent" Color="#FF4C8DFF"/>
         <SolidColorBrush x:Key="AccentDeep" Color="#FF2F6FE0"/>
@@ -571,7 +571,15 @@
              della pagina nell'angolo in alto. Nessuna ombra: sul nero non si vede. -->
         <Style x:Key="Glass" TargetType="Border">
             <Setter Property="Background" Value="{DynamicResource PACard}"/>
-            <Setter Property="BorderBrush" Value="#FF25282D"/>
+            <Setter Property="BorderBrush">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="#40FFFFFF" Offset="0"/>
+                        <GradientStop Color="#14FFFFFF" Offset="0.25"/>
+                        <GradientStop Color="#0DFFFFFF" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="CornerRadius" Value="10"/>
             <Setter Property="Padding" Value="16,14"/>
@@ -597,14 +605,14 @@
         </Style>
 
         <Style x:Key="Bar" TargetType="Border">
-            <Setter Property="Background" Value="#FF131518"/>
-            <Setter Property="BorderBrush" Value="#FF25282D"/>
+            <Setter Property="Background" Value="#E6161920"/>
+            <Setter Property="BorderBrush" Value="#26FFFFFF"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="CornerRadius" Value="10"/>
         </Style>
 
         <Style x:Key="GlassInner" TargetType="Border">
-            <Setter Property="Background" Value="#FF111316"/>
+            <Setter Property="Background" Value="#B30E1015"/>
             <Setter Property="BorderBrush" Value="#FF25282D"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="CornerRadius" Value="8"/>
@@ -960,9 +968,47 @@
 
     </Window.Resources>
 
-    <Border x:Name="shell" CornerRadius="0" BorderThickness="0" Background="#FF0F1013">
+    <Border x:Name="shell" CornerRadius="0" BorderThickness="0" Background="#FF0A0B0F">
 
         <Grid>
+            <!-- Sfondo: grafite quasi nera con aloni di colore sfumati. Le schede,
+                 piu' chiare e un po' trasparenti, ci stanno sopra come lastre di vetro. -->
+            <Grid IsHitTestVisible="False" ClipToBounds="True">
+                <Grid.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="#FF0B0D12" Offset="0"/>
+                        <GradientStop Color="#FF090A0E" Offset="0.55"/>
+                        <GradientStop Color="#FF0C0E14" Offset="1"/>
+                    </LinearGradientBrush>
+                </Grid.Background>
+                <Ellipse Width="1100" Height="800" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,-360,0,0">
+                    <Ellipse.Fill>
+                        <RadialGradientBrush>
+                            <GradientStop Color="#664C8DFF" Offset="0"/>
+                            <GradientStop Color="#244C8DFF" Offset="0.5"/>
+                            <GradientStop Color="#004C8DFF" Offset="1"/>
+                        </RadialGradientBrush>
+                    </Ellipse.Fill>
+                </Ellipse>
+                <Ellipse Width="1100" Height="900" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-160,-300,0">
+                    <Ellipse.Fill>
+                        <RadialGradientBrush>
+                            <GradientStop Color="#5A8B5CF6" Offset="0"/>
+                            <GradientStop Color="#1E8B5CF6" Offset="0.5"/>
+                            <GradientStop Color="#008B5CF6" Offset="1"/>
+                        </RadialGradientBrush>
+                    </Ellipse.Fill>
+                </Ellipse>
+                <Ellipse Width="1100" Height="700" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,-420">
+                    <Ellipse.Fill>
+                        <RadialGradientBrush>
+                            <GradientStop Color="#4414B8A6" Offset="0"/>
+                            <GradientStop Color="#1614B8A6" Offset="0.5"/>
+                            <GradientStop Color="#0014B8A6" Offset="1"/>
+                        </RadialGradientBrush>
+                    </Ellipse.Fill>
+                </Ellipse>
+            </Grid>
             <!-- Alone morbido in alto: prende il colore della pagina aperta. -->
             <Border x:Name="glowPage" IsHitTestVisible="False" Visibility="Collapsed"/>
             <Grid x:Name="rootScale">
@@ -1022,7 +1068,7 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <Border Grid.Column="0" Background="#FF131518" BorderBrush="#FF22252A" BorderThickness="1" CornerRadius="10"
+                    <Border Grid.Column="0" Background="#D9161920" BorderBrush="#26FFFFFF" BorderThickness="1" CornerRadius="10"
                             Padding="8,10,6,8" Margin="0,0,10,0">
                         <Grid>
                             <Grid.RowDefinitions>
@@ -1046,7 +1092,7 @@
                                     <RadioButton.Resources>
                                         <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
                                         <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                        <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <TextBlock x:Name="navGrpSystem" Text="SISTEMA" Style="{StaticResource NavHeader}" Margin="14,0,0,4"/>
@@ -1056,7 +1102,7 @@
                                     <RadioButton.Resources>
                                         <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
                                         <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                        <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <RadioButton x:Name="tabSched" GroupName="Nav" Style="{StaticResource NavItem}"
@@ -1065,7 +1111,7 @@
                                     <RadioButton.Resources>
                                         <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
                                         <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                        <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <RadioButton x:Name="tabPower" GroupName="Nav" Style="{StaticResource NavItem}"
@@ -1074,7 +1120,7 @@
                                     <RadioButton.Resources>
                                         <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
                                         <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                        <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <RadioButton x:Name="tabGpu" GroupName="Nav" Style="{StaticResource NavItem}"
@@ -1083,7 +1129,7 @@
                                     <RadioButton.Resources>
                                         <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
                                         <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                        <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <RadioButton x:Name="tabStorage" GroupName="Nav" Style="{StaticResource NavItem}"
@@ -1092,7 +1138,7 @@
                                     <RadioButton.Resources>
                                         <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
                                         <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                        <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <RadioButton x:Name="tabNet" GroupName="Nav" Style="{StaticResource NavItem}"
@@ -1101,7 +1147,7 @@
                                     <RadioButton.Resources>
                                         <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
                                         <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                        <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <TextBlock x:Name="navGrpPrivacy" Text="PRIVACY" Style="{StaticResource NavHeader}"/>
@@ -1111,7 +1157,7 @@
                                     <RadioButton.Resources>
                                         <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
                                         <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                        <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <RadioButton x:Name="tabPriv2" GroupName="Nav" Style="{StaticResource NavItem}"
@@ -1120,7 +1166,7 @@
                                     <RadioButton.Resources>
                                         <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
                                         <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                        <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <TextBlock x:Name="navGrpCustom" Text="PERSONALIZZA" Style="{StaticResource NavHeader}"/>
@@ -1130,7 +1176,7 @@
                                     <RadioButton.Resources>
                                         <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
                                         <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                        <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <RadioButton x:Name="tabExp" GroupName="Nav" Style="{StaticResource NavItem}"
@@ -1139,7 +1185,7 @@
                                     <RadioButton.Resources>
                                         <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
                                         <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                        <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <RadioButton x:Name="tabTask" GroupName="Nav" Style="{StaticResource NavItem}"
@@ -1148,7 +1194,7 @@
                                     <RadioButton.Resources>
                                         <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
                                         <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                        <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <RadioButton x:Name="tabNotif" GroupName="Nav" Style="{StaticResource NavItem}"
@@ -1157,7 +1203,7 @@
                                     <RadioButton.Resources>
                                         <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
                                         <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                        <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <RadioButton x:Name="tabGame" GroupName="Nav" Style="{StaticResource NavItem}"
@@ -1166,7 +1212,7 @@
                                     <RadioButton.Resources>
                                         <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
                                         <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                        <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <TextBlock x:Name="navGrpWindows" Text="WINDOWS E APP" Style="{StaticResource NavHeader}"/>
@@ -1176,7 +1222,7 @@
                                     <RadioButton.Resources>
                                         <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
                                         <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                        <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <RadioButton x:Name="tabApps" GroupName="Nav" Style="{StaticResource NavItem}"
@@ -1185,7 +1231,7 @@
                                     <RadioButton.Resources>
                                         <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
                                         <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                        <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <RadioButton x:Name="tabTools" GroupName="Nav" Style="{StaticResource NavItem}"
@@ -1194,7 +1240,7 @@
                                     <RadioButton.Resources>
                                         <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
                                         <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                        <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                                 <RadioButton x:Name="tabAdv" GroupName="Nav" Style="{StaticResource NavItem}"
@@ -1203,7 +1249,7 @@
                                     <RadioButton.Resources>
                                         <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
                                         <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                        <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
+                                        <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
                                     </RadioButton.Resources>
                                 </RadioButton>
                             </StackPanel>
@@ -1302,7 +1348,7 @@
                                 <ScrollViewer.Resources>
                                     <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
                                     <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                    <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
                                 </ScrollViewer.Resources>
                                 <StackPanel x:Name="panHome">
                                     <TextBlock x:Name="lblHomeLoading" Text="Lettura dell'hardware..." Style="{StaticResource SubTitle}" Margin="10"/>
@@ -1313,7 +1359,7 @@
                                 <ScrollViewer.Resources>
                                     <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
                                     <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                    <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
                                 </ScrollViewer.Resources>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
@@ -1410,7 +1456,7 @@
                                 <ScrollViewer.Resources>
                                     <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
                                     <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                    <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
                                 </ScrollViewer.Resources>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
@@ -1484,7 +1530,7 @@
                                 <ScrollViewer.Resources>
                                     <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
                                     <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                    <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
                                 </ScrollViewer.Resources>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
@@ -1562,7 +1608,7 @@
                                 <Grid.Resources>
                                     <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
                                     <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                    <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
                                 </Grid.Resources>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
@@ -1761,7 +1807,7 @@
                                 <Grid.Resources>
                                     <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
                                     <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                    <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
                                 </Grid.Resources>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="1.3*"/>
@@ -1861,7 +1907,7 @@
                                 <Grid.Resources>
                                     <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
                                     <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                    <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
                                 </Grid.Resources>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
@@ -1946,7 +1992,7 @@
                                 <ScrollViewer.Resources>
                                     <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
                                     <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                    <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
                                 </ScrollViewer.Resources>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
@@ -2080,7 +2126,7 @@
                                 <ScrollViewer.Resources>
                                     <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
                                     <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                    <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
                                 </ScrollViewer.Resources>
                                 <StackPanel>
                                 <Border Style="{StaticResource NoticeBar}">
@@ -2275,7 +2321,7 @@
                                 <ScrollViewer.Resources>
                                     <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
                                     <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                    <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
                                 </ScrollViewer.Resources>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
@@ -2411,7 +2457,7 @@
                                 <Grid.Resources>
                                     <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
                                     <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                    <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
                                 </Grid.Resources>
                                 <Grid x:Name="catPriv"/>
                             </Grid>
@@ -2420,7 +2466,7 @@
                                 <Grid.Resources>
                                     <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
                                     <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                    <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
                                 </Grid.Resources>
                                 <Grid x:Name="catExp"/>
                             </Grid>
@@ -2429,7 +2475,7 @@
                                 <Grid.Resources>
                                     <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
                                     <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                    <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
                                 </Grid.Resources>
                                 <Grid x:Name="catTask"/>
                             </Grid>
@@ -2438,7 +2484,7 @@
                                 <Grid.Resources>
                                     <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
                                     <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                    <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
                                 </Grid.Resources>
                                 <Grid x:Name="catNotif"/>
                             </Grid>
@@ -2447,7 +2493,7 @@
                                 <Grid.Resources>
                                     <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
                                     <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                    <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
                                 </Grid.Resources>
                                 <Grid x:Name="catGame"/>
                             </Grid>
@@ -2456,7 +2502,7 @@
                                 <Grid.Resources>
                                     <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
                                     <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                    <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
                                 </Grid.Resources>
                                 <Grid x:Name="catWin"/>
                             </Grid>
@@ -2465,7 +2511,7 @@
                                 <Grid.Resources>
                                     <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
                                     <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                    <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
                                 </Grid.Resources>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
@@ -2499,7 +2545,7 @@
                                 <Grid.Resources>
                                     <SolidColorBrush x:Key="PA" Color="#FF4C8DFF"/>
                                     <SolidColorBrush x:Key="PASoft" Color="#264C8DFF"/>
-                                    <SolidColorBrush x:Key="PACard" Color="#FF16181C"/>
+                                    <SolidColorBrush x:Key="PACard" Color="#CC1C1F28"/>
                                 </Grid.Resources>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
