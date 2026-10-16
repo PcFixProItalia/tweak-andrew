@@ -721,7 +721,7 @@ M:clean_doCache	Pamięć podręczna optymalizacji dostarczania
 M:clean_recycle	Kosz
 M:clean_errors	Raporty błędów i zrzuty
 M:clean_thumbs	Pamięć miniatur
-M:clean_recent	Ostatnie pliki i listy szybkiego dostępu
+M:clean_recent	Ostatnie pliki i historia Uruchom
 M:clean_runHist	Historia Uruchom i wpisanych ścieżek
 M:clean_prefetch	Prefetch
 M:cleanTip_winTemp	Pliki pozostawione przez instalatory i system.
@@ -731,11 +731,11 @@ M:cleanTip_doCache	Kopie aktualizacji udostępniane innym PC.
 M:cleanTip_recycle	Opróżnia Kosz na wszystkich dyskach.
 M:cleanTip_errors	Wysłane raporty i pliki awarii.
 M:cleanTip_thumbs	Windows odtworzy je przy otwieraniu folderów: pierwsze otwarcie będzie wolniejsze.
-M:cleanTip_recent	Usuwa ostatnie pliki z Eksploratora, Startu i paska.
+M:cleanTip_recent	Listy ostatnio otwartych plików, polecenia Uruchom i wpisane ścieżki. Foldery przypięte w Szybkim dostępie zostają; elementy przypięte w listach aplikacji nie.
 M:cleanTip_runHist	Polecenia z Uruchom (Win+R) i ścieżki wpisane w Eksploratorze.
 M:cleanTip_prefetch	Windows używa go do szybszego uruchamiania: po czyszczeniu pierwsze starty będą wolniejsze.
-M:ttlFix	Naprawy
-M:fixHint	Startują od razu, po kolei. Postęp widać u góry także na innych stronach.
+M:ttlFix	Szybkie naprawy
+M:fixHint	Rozwiązują najczęstsze problemy jednym kliknięciem. Działają po kolei, a postęp widać też na innych stronach.
 M:toolRun	Uruchom
 M:tool_netQuick	Sieć: szybki reset
 M:toolDesc_netQuick	Czyści DNS i odnawia IP. Połączenie zniknie na kilka sekund.
@@ -924,3 +924,28 @@ M:homeTypeDescDesktop	Pełna wydajność: bez oszczędzania energii.
 M:homeTypeDescLaptop	Pomija pozycje zużywające baterię.
 M:homeTypeDescServer	Zostawia bezpieczeństwo, usługi i diagnostykę: lepsza wydajność bez osłabiania serwera.
 M:homePhysDisks	Dyski
+M:ttlCleanAll	Pełne czyszczenie komputera
+M:cleanAllHint	Zwalnia miejsce, usuwając niepotrzebne pliki. Hasła, pliki cookie, logowania i pliki osobiste pozostają nietknięte.
+M:clean_browserHist	Historia i pobrane w przeglądarkach
+M:cleanTip_browserHist	Odwiedzone strony i lista pobranych w Chrome, Edge, Firefox, Brave, Opera i Vivaldi. Pobrane pliki, zakładki i logowania zostają.
+M:clean_browserCache	Pamięć podręczna przeglądarek
+M:cleanTip_browserCache	Kopie stron zapisywane przez przeglądarki, by otwierać je szybciej. Nie wylogowuje; pierwsze otwarcie będzie nieco wolniejsze.
+M:cleanTotal	Miejsce do zwolnienia: {0}
+M:cleanNow	Wyczyść teraz
+M:cleanRescan	Przelicz
+M:cleanEmpty	pusto
+M:cleanBrowserOpen	Aby wyczyścić też {0}, zamknij przeglądarkę i powtórz.
+M:ttlGhost	Odłączone urządzenia
+M:ghostHint	Pendrive'y, słuchawki i urządzenia używane wcześniej zostawiają sterowniki i wpisy. Usunięcie jest bezpieczne: po podłączeniu Windows zainstaluje je ponownie.
+M:ghostSearching	Szukam odłączonych urządzeń...
+M:ghostNone	Brak odłączonych urządzeń: nie ma czego czyścić.
+M:ghostFound	Znaleziono {0} odłączonych urządzeń.
+M:ghostAll	Zaznacz wszystkie
+M:ghostRemove	Usuń
+M:ghostRescan	Szukaj ponownie
+M:ghostAsk	Usunąć {0} odłączonych urządzeń? Po podłączeniu Windows zainstaluje je ponownie.
+M:ghostOld	Wymaga Windows 10 w wersji 2004 lub nowszej.
+M:ghostDone	Usunięto {0} z {1}.
+M:ghostError	Lista niedostępna:
+M:tagReboot	Wymaga restartu
+M:tagCaution	Ostrożnie

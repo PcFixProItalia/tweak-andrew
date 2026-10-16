@@ -3352,7 +3352,7 @@ $script:Msg = @{
     clean_recycle      = @{ it = "Cestino"; en = "Recycle Bin" }
     clean_errors       = @{ it = "Segnalazioni errori e dump"; en = "Error reports and dumps" }
     clean_thumbs       = @{ it = "Cache delle miniature"; en = "Thumbnail cache" }
-    clean_recent       = @{ it = "File recenti ed elenchi di salto"; en = "Recent files and jump lists" }
+    clean_recent       = @{ it = "File recenti e cronologia di Esegui"; en = "Recent files and Run history" }
     clean_runHist      = @{ it = "Cronologia di Esegui e dei percorsi digitati"; en = "Run and typed path history" }
     clean_prefetch     = @{ it = "Prefetch"; en = "Prefetch" }
     cleanTip_winTemp   = @{ it = "File lasciati dai programmi di installazione e dal sistema."; en = "Files left behind by installers and the system." }
@@ -3362,11 +3362,11 @@ $script:Msg = @{
     cleanTip_recycle   = @{ it = "Svuota il Cestino su tutti i dischi."; en = "Empties the Recycle Bin on every drive." }
     cleanTip_errors    = @{ it = "Rapporti già inviati e file di arresto anomalo."; en = "Reports already sent and crash files." }
     cleanTip_thumbs    = @{ it = "Windows le ricrea aprendo le cartelle: la prima apertura sarà più lenta."; en = "Windows rebuilds them when you open folders: the first opening will be slower." }
-    cleanTip_recent    = @{ it = "Toglie i file recenti da Esplora file, Start e barra delle applicazioni."; en = "Removes recent files from File Explorer, Start and the taskbar." }
+    cleanTip_recent    = @{ it = "Elenchi dei file aperti di recente, comandi di Esegui e percorsi digitati. Le cartelle fissate in Accesso rapido restano; gli elementi fissati negli elenchi delle app no."; en = "Lists of recently opened files, Run commands and typed paths. Folders pinned in Quick access stay; items pinned in app jump lists don't." }
     cleanTip_runHist   = @{ it = "Comandi scritti in Esegui (Win+R) e percorsi digitati in Esplora file."; en = "Commands typed in Run (Win+R) and paths typed in File Explorer." }
     cleanTip_prefetch  = @{ it = "Windows lo usa per aprire prima i programmi: dopo la pulizia i primi avvii saranno più lenti."; en = "Windows uses it to open programs faster: after cleaning the first launches will be slower." }
-    ttlFix             = @{ it = "Riparazioni"; en = "Repairs" }
-    fixHint            = @{ it = "Partono subito, una alla volta. L'avanzamento resta visibile in alto anche dalle altre pagine."; en = "They start right away, one at a time. Progress stays visible at the top from the other pages too." }
+    ttlFix             = @{ it = "Riparazioni rapide"; en = "Quick repairs" }
+    fixHint            = @{ it = "Risolvono i problemi più comuni con un clic. Partono una alla volta e l'avanzamento resta visibile anche dalle altre pagine."; en = "They fix the most common problems with one click. They run one at a time and progress stays visible from other pages too." }
     toolRun            = @{ it = "Esegui"; en = "Run" }
     tool_netQuick      = @{ it = "Rete: ripristino rapido"; en = "Network: quick reset" }
     toolDesc_netQuick  = @{ it = "Svuota la cache DNS e rinnova l'indirizzo IP. La connessione cade per qualche secondo."; en = "Flushes the DNS cache and renews the IP address. The connection drops for a few seconds." }
@@ -3506,6 +3506,31 @@ $script:Msg = @{
     homeTypeDescLaptop = @{ it = "Salta le voci che consumano batteria."; en = "Skips the entries that drain the battery." }
     homeTypeDescServer = @{ it = "Lascia attive sicurezza, servizi e diagnostica: migliora le prestazioni senza indebolire il server."; en = "Keeps security, services and diagnostics on: better performance without weakening the server." }
     homePhysDisks      = @{ it = "Dischi"; en = "Disks" }
+    ttlCleanAll        = @{ it = "Pulizia totale del PC"; en = "Full PC cleanup" }
+    cleanAllHint       = @{ it = "Libera spazio togliendo file che non servono più. Password, cookie, accessi ai siti e file personali non si toccano."; en = "Frees space by removing files you no longer need. Passwords, cookies, site logins and personal files are not touched." }
+    clean_browserHist  = @{ it = "Cronologia e download dei browser"; en = "Browser history and downloads" }
+    cleanTip_browserHist = @{ it = "Siti visitati ed elenco dei download di Chrome, Edge, Firefox, Brave, Opera e Vivaldi. I file scaricati, i preferiti e gli accessi restano."; en = "Visited sites and the download list of Chrome, Edge, Firefox, Brave, Opera and Vivaldi. Downloaded files, bookmarks and logins stay." }
+    clean_browserCache = @{ it = "Cache dei browser"; en = "Browser cache" }
+    cleanTip_browserCache = @{ it = "Copie delle pagine che i browser salvano per aprirle prima. Non ti disconnette dai siti; la prima apertura sarà un po' più lenta."; en = "Copies of pages browsers save to open them faster. It doesn't log you out; the first visit will be a little slower." }
+    cleanTotal         = @{ it = "Spazio da liberare: {0}"; en = "Space to free: {0}" }
+    cleanNow           = @{ it = "Pulisci ora"; en = "Clean now" }
+    cleanRescan        = @{ it = "Ricalcola"; en = "Recalculate" }
+    cleanEmpty         = @{ it = "vuoto"; en = "empty" }
+    cleanBrowserOpen   = @{ it = "Per pulire anche {0} chiudi il browser e ripeti."; en = "To clean {0} too, close the browser and run it again." }
+    ttlGhost           = @{ it = "Dispositivi scollegati"; en = "Disconnected devices" }
+    ghostHint          = @{ it = "Chiavette, cuffie e periferiche usate in passato lasciano driver e voci nel sistema. Toglierle è sicuro: se le ricolleghi, Windows le reinstalla da solo."; en = "USB sticks, headsets and devices used in the past leave drivers and entries behind. Removing them is safe: plug them back in and Windows reinstalls them." }
+    ghostSearching     = @{ it = "Cerco i dispositivi scollegati..."; en = "Looking for disconnected devices..." }
+    ghostNone          = @{ it = "Nessun dispositivo scollegato: non c'è niente da pulire."; en = "No disconnected devices: nothing to clean." }
+    ghostFound         = @{ it = "{0} dispositivi scollegati trovati."; en = "{0} disconnected devices found." }
+    ghostAll           = @{ it = "Seleziona tutti"; en = "Select all" }
+    ghostRemove        = @{ it = "Rimuovi"; en = "Remove" }
+    ghostRescan        = @{ it = "Cerca di nuovo"; en = "Search again" }
+    ghostAsk           = @{ it = "Rimuovo {0} dispositivi scollegati? Se li ricolleghi, Windows li reinstalla da solo."; en = "Remove {0} disconnected devices? Plug them back in and Windows reinstalls them." }
+    ghostOld           = @{ it = "Serve Windows 10 versione 2004 o successiva."; en = "Requires Windows 10 version 2004 or later." }
+    ghostDone          = @{ it = "Rimossi {0} su {1}."; en = "Removed {0} of {1}." }
+    ghostError         = @{ it = "Elenco non disponibile:"; en = "List not available:" }
+    tagReboot          = @{ it = "Serve un riavvio"; en = "Needs a restart" }
+    tagCaution         = @{ it = "Con cautela"; en = "Use with care" }
 }
 
 $script:LangCode = "it"
@@ -5514,7 +5539,7 @@ $script:Tr = @{
         'M:clean_recycle' = "Papelera"
         'M:clean_errors' = "Informes de errores y volcados"
         'M:clean_thumbs' = "Caché de miniaturas"
-        'M:clean_recent' = "Archivos recientes y listas de accesos"
+        'M:clean_recent' = "Archivos recientes e historial de Ejecutar"
         'M:clean_runHist' = "Historial de Ejecutar y rutas escritas"
         'M:clean_prefetch' = "Prefetch"
         'M:cleanTip_winTemp' = "Archivos dejados por instaladores y el sistema."
@@ -5524,11 +5549,11 @@ $script:Tr = @{
         'M:cleanTip_recycle' = "Vacía la Papelera en todas las unidades."
         'M:cleanTip_errors' = "Informes ya enviados y archivos de bloqueo."
         'M:cleanTip_thumbs' = "Windows las recrea al abrir carpetas: la primera apertura será más lenta."
-        'M:cleanTip_recent' = "Quita los archivos recientes del Explorador, Inicio y la barra."
+        'M:cleanTip_recent' = "Listas de archivos abiertos recientemente, comandos de Ejecutar y rutas escritas. Las carpetas ancladas en Acceso rápido se quedan; los elementos anclados en las listas de las apps no."
         'M:cleanTip_runHist' = "Comandos de Ejecutar (Win+R) y rutas escritas en el Explorador."
         'M:cleanTip_prefetch' = "Windows lo usa para abrir antes los programas: tras limpiarlo los primeros inicios serán más lentos."
-        'M:ttlFix' = "Reparaciones"
-        'M:fixHint' = "Empiezan enseguida, de una en una. El progreso se ve arriba también desde otras páginas."
+        'M:ttlFix' = "Reparaciones rápidas"
+        'M:fixHint' = "Resuelven los problemas más comunes con un clic. Se ejecutan de una en una y el progreso se ve desde las otras páginas."
         'M:toolRun' = "Ejecutar"
         'M:tool_netQuick' = "Red: restablecimiento rápido"
         'M:toolDesc_netQuick' = "Vacía la caché DNS y renueva la IP. La conexión se corta unos segundos."
@@ -5717,6 +5742,31 @@ $script:Tr = @{
         'M:homeTypeDescLaptop' = "Omite las opciones que gastan batería."
         'M:homeTypeDescServer' = "Mantiene seguridad, servicios y diagnóstico: mejor rendimiento sin debilitar el servidor."
         'M:homePhysDisks' = "Discos"
+        'M:ttlCleanAll' = "Limpieza total del PC"
+        'M:cleanAllHint' = "Libera espacio quitando archivos que ya no sirven. Contraseñas, cookies, sesiones y archivos personales no se tocan."
+        'M:clean_browserHist' = "Historial y descargas de los navegadores"
+        'M:cleanTip_browserHist' = "Sitios visitados y lista de descargas de Chrome, Edge, Firefox, Brave, Opera y Vivaldi. Los archivos descargados, favoritos y sesiones se quedan."
+        'M:clean_browserCache' = "Caché de los navegadores"
+        'M:cleanTip_browserCache' = "Copias de páginas que los navegadores guardan para abrirlas antes. No cierra tus sesiones; la primera visita será algo más lenta."
+        'M:cleanTotal' = "Espacio a liberar: {0}"
+        'M:cleanNow' = "Limpiar ahora"
+        'M:cleanRescan' = "Recalcular"
+        'M:cleanEmpty' = "vacío"
+        'M:cleanBrowserOpen' = "Para limpiar también {0}, cierra el navegador y repite."
+        'M:ttlGhost' = "Dispositivos desconectados"
+        'M:ghostHint' = "Memorias, auriculares y periféricos usados antes dejan drivers y entradas. Quitarlos es seguro: si los vuelves a conectar, Windows los reinstala."
+        'M:ghostSearching' = "Buscando dispositivos desconectados..."
+        'M:ghostNone' = "Ningún dispositivo desconectado: nada que limpiar."
+        'M:ghostFound' = "{0} dispositivos desconectados encontrados."
+        'M:ghostAll' = "Seleccionar todos"
+        'M:ghostRemove' = "Quitar"
+        'M:ghostRescan' = "Buscar de nuevo"
+        'M:ghostAsk' = "¿Quito {0} dispositivos desconectados? Si los vuelves a conectar, Windows los reinstala."
+        'M:ghostOld' = "Requiere Windows 10 versión 2004 o posterior."
+        'M:ghostDone' = "Quitados {0} de {1}."
+        'M:ghostError' = "Lista no disponible:"
+        'M:tagReboot' = "Requiere reinicio"
+        'M:tagCaution' = "Con cuidado"
     }
     de = @{
         'L:lblSubtitle' = "Windows-Optimierung und -Steuerung — PcFixPro Italia"
@@ -6442,7 +6492,7 @@ $script:Tr = @{
         'M:clean_recycle' = "Papierkorb"
         'M:clean_errors' = "Fehlerberichte und Speicherabbilder"
         'M:clean_thumbs' = "Miniaturansicht-Cache"
-        'M:clean_recent' = "Zuletzt verwendete Dateien und Sprunglisten"
+        'M:clean_recent' = "Zuletzt verwendete Dateien und Ausführen-Verlauf"
         'M:clean_runHist' = "Verlauf von Ausführen und eingegebenen Pfaden"
         'M:clean_prefetch' = "Prefetch"
         'M:cleanTip_winTemp' = "Von Installationsprogrammen und System hinterlassene Dateien."
@@ -6452,11 +6502,11 @@ $script:Tr = @{
         'M:cleanTip_recycle' = "Leert den Papierkorb auf allen Laufwerken."
         'M:cleanTip_errors' = "Bereits gesendete Berichte und Absturzdateien."
         'M:cleanTip_thumbs' = "Windows erstellt sie beim Öffnen neu: das erste Öffnen ist langsamer."
-        'M:cleanTip_recent' = "Entfernt zuletzt verwendete Dateien aus Explorer, Start und Taskleiste."
+        'M:cleanTip_recent' = "Listen kürzlich geöffneter Dateien, Ausführen-Befehle und eingegebene Pfade. Im Schnellzugriff angeheftete Ordner bleiben; in Sprunglisten angeheftete Elemente nicht."
         'M:cleanTip_runHist' = "In Ausführen (Win+R) eingegebene Befehle und im Explorer eingegebene Pfade."
         'M:cleanTip_prefetch' = "Windows startet Programme damit schneller: danach sind die ersten Starts langsamer."
-        'M:ttlFix' = "Reparaturen"
-        'M:fixHint' = "Sie starten sofort, einzeln. Der Fortschritt bleibt oben auch auf anderen Seiten sichtbar."
+        'M:ttlFix' = "Schnelle Reparaturen"
+        'M:fixHint' = "Sie beheben die häufigsten Probleme mit einem Klick. Sie laufen nacheinander, der Fortschritt bleibt auf allen Seiten sichtbar."
         'M:toolRun' = "Ausführen"
         'M:tool_netQuick' = "Netzwerk: schnelles Zurücksetzen"
         'M:toolDesc_netQuick' = "Leert den DNS-Cache und erneuert die IP. Die Verbindung bricht kurz ab."
@@ -6645,6 +6695,31 @@ $script:Tr = @{
         'M:homeTypeDescLaptop' = "Lässt akkuzehrende Einträge aus."
         'M:homeTypeDescServer' = "Lässt Sicherheit, Dienste und Diagnose an: mehr Leistung, ohne den Server zu schwächen."
         'M:homePhysDisks' = "Datenträger"
+        'M:ttlCleanAll' = "Komplette PC-Reinigung"
+        'M:cleanAllHint' = "Schafft Platz, indem nicht mehr benötigte Dateien entfernt werden. Passwörter, Cookies, Anmeldungen und persönliche Dateien bleiben unberührt."
+        'M:clean_browserHist' = "Browserverlauf und Downloads"
+        'M:cleanTip_browserHist' = "Besuchte Seiten und Downloadliste von Chrome, Edge, Firefox, Brave, Opera und Vivaldi. Heruntergeladene Dateien, Lesezeichen und Anmeldungen bleiben."
+        'M:clean_browserCache' = "Browser-Cache"
+        'M:cleanTip_browserCache' = "Kopien von Seiten, die Browser zum schnelleren Öffnen speichern. Abmeldungen gibt es nicht; der erste Besuch ist etwas langsamer."
+        'M:cleanTotal' = "Freizugebender Platz: {0}"
+        'M:cleanNow' = "Jetzt bereinigen"
+        'M:cleanRescan' = "Neu berechnen"
+        'M:cleanEmpty' = "leer"
+        'M:cleanBrowserOpen' = "Um auch {0} zu bereinigen, schließe den Browser und wiederhole."
+        'M:ttlGhost' = "Getrennte Geräte"
+        'M:ghostHint' = "Früher genutzte USB-Sticks, Headsets und Geräte hinterlassen Treiber und Einträge. Entfernen ist sicher: Beim erneuten Anschließen installiert Windows sie neu."
+        'M:ghostSearching' = "Suche nach getrennten Geräten..."
+        'M:ghostNone' = "Keine getrennten Geräte: nichts zu bereinigen."
+        'M:ghostFound' = "{0} getrennte Geräte gefunden."
+        'M:ghostAll' = "Alle auswählen"
+        'M:ghostRemove' = "Entfernen"
+        'M:ghostRescan' = "Erneut suchen"
+        'M:ghostAsk' = "{0} getrennte Geräte entfernen? Beim erneuten Anschließen installiert Windows sie neu."
+        'M:ghostOld' = "Erfordert Windows 10 Version 2004 oder neuer."
+        'M:ghostDone' = "{0} von {1} entfernt."
+        'M:ghostError' = "Liste nicht verfügbar:"
+        'M:tagReboot' = "Neustart nötig"
+        'M:tagCaution' = "Mit Vorsicht"
     }
     fr = @{
         'L:lblSubtitle' = "Optimisation et contrôle de Windows — PcFixPro Italia"
@@ -7373,7 +7448,7 @@ $script:Tr = @{
         'M:clean_recycle' = "Corbeille"
         'M:clean_errors' = "Rapports d'erreurs et vidages"
         'M:clean_thumbs' = "Cache des miniatures"
-        'M:clean_recent' = "Fichiers récents et listes de raccourcis"
+        'M:clean_recent' = "Fichiers récents et historique Exécuter"
         'M:clean_runHist' = "Historique Exécuter et chemins saisis"
         'M:clean_prefetch' = "Prefetch"
         'M:cleanTip_winTemp' = "Fichiers laissés par les installateurs et le système."
@@ -7383,11 +7458,11 @@ $script:Tr = @{
         'M:cleanTip_recycle' = "Vide la Corbeille sur tous les disques."
         'M:cleanTip_errors' = "Rapports déjà envoyés et fichiers de plantage."
         'M:cleanTip_thumbs' = "Windows les recrée à l'ouverture des dossiers : la première ouverture sera plus lente."
-        'M:cleanTip_recent' = "Retire les fichiers récents de l'Explorateur, de Démarrer et de la barre."
+        'M:cleanTip_recent' = "Listes des fichiers récents, commandes Exécuter et chemins saisis. Les dossiers épinglés dans l'Accès rapide restent ; les éléments épinglés dans les listes des applis non."
         'M:cleanTip_runHist' = "Commandes tapées dans Exécuter (Win+R) et chemins saisis dans l'Explorateur."
         'M:cleanTip_prefetch' = "Windows l'utilise pour ouvrir les programmes plus vite : après nettoyage les premiers lancements seront plus lents."
-        'M:ttlFix' = "Réparations"
-        'M:fixHint' = "Elles démarrent aussitôt, une par une. La progression reste visible en haut depuis les autres pages."
+        'M:ttlFix' = "Réparations rapides"
+        'M:fixHint' = "Elles règlent les problèmes courants en un clic. Une à la fois, avec la progression visible depuis les autres pages."
         'M:toolRun' = "Exécuter"
         'M:tool_netQuick' = "Réseau : réinitialisation rapide"
         'M:toolDesc_netQuick' = "Vide le cache DNS et renouvelle l'IP. La connexion coupe quelques secondes."
@@ -7576,6 +7651,31 @@ $script:Tr = @{
         'M:homeTypeDescLaptop' = "Ignore les éléments qui vident la batterie."
         'M:homeTypeDescServer' = "Garde sécurité, services et diagnostic : de meilleures performances sans affaiblir le serveur."
         'M:homePhysDisks' = "Disques"
+        'M:ttlCleanAll' = "Nettoyage complet du PC"
+        'M:cleanAllHint' = "Libère de l'espace en supprimant les fichiers inutiles. Mots de passe, cookies, connexions et fichiers personnels ne sont pas touchés."
+        'M:clean_browserHist' = "Historique et téléchargements des navigateurs"
+        'M:cleanTip_browserHist' = "Sites visités et liste des téléchargements de Chrome, Edge, Firefox, Brave, Opera et Vivaldi. Les fichiers téléchargés, favoris et connexions restent."
+        'M:clean_browserCache' = "Cache des navigateurs"
+        'M:cleanTip_browserCache' = "Copies des pages que les navigateurs gardent pour les ouvrir plus vite. Pas de déconnexion ; la première visite sera un peu plus lente."
+        'M:cleanTotal' = "Espace à libérer : {0}"
+        'M:cleanNow' = "Nettoyer maintenant"
+        'M:cleanRescan' = "Recalculer"
+        'M:cleanEmpty' = "vide"
+        'M:cleanBrowserOpen' = "Pour nettoyer aussi {0}, fermez le navigateur et recommencez."
+        'M:ttlGhost' = "Périphériques déconnectés"
+        'M:ghostHint' = "Clés, casques et périphériques utilisés autrefois laissent pilotes et entrées. Les supprimer est sans risque : rebranchés, Windows les réinstalle."
+        'M:ghostSearching' = "Recherche des périphériques déconnectés..."
+        'M:ghostNone' = "Aucun périphérique déconnecté : rien à nettoyer."
+        'M:ghostFound' = "{0} périphériques déconnectés trouvés."
+        'M:ghostAll' = "Tout sélectionner"
+        'M:ghostRemove' = "Supprimer"
+        'M:ghostRescan' = "Rechercher à nouveau"
+        'M:ghostAsk' = "Supprimer {0} périphériques déconnectés ? Rebranchés, Windows les réinstalle."
+        'M:ghostOld' = "Nécessite Windows 10 version 2004 ou ultérieure."
+        'M:ghostDone' = "{0} sur {1} supprimés."
+        'M:ghostError' = "Liste indisponible :"
+        'M:tagReboot' = "Redémarrage requis"
+        'M:tagCaution' = "Avec prudence"
     }
     pl = @{
         'L:lblSubtitle' = "Optymalizacja i kontrola systemu Windows — PcFixPro Italia"
@@ -8301,7 +8401,7 @@ $script:Tr = @{
         'M:clean_recycle' = "Kosz"
         'M:clean_errors' = "Raporty błędów i zrzuty"
         'M:clean_thumbs' = "Pamięć miniatur"
-        'M:clean_recent' = "Ostatnie pliki i listy szybkiego dostępu"
+        'M:clean_recent' = "Ostatnie pliki i historia Uruchom"
         'M:clean_runHist' = "Historia Uruchom i wpisanych ścieżek"
         'M:clean_prefetch' = "Prefetch"
         'M:cleanTip_winTemp' = "Pliki pozostawione przez instalatory i system."
@@ -8311,11 +8411,11 @@ $script:Tr = @{
         'M:cleanTip_recycle' = "Opróżnia Kosz na wszystkich dyskach."
         'M:cleanTip_errors' = "Wysłane raporty i pliki awarii."
         'M:cleanTip_thumbs' = "Windows odtworzy je przy otwieraniu folderów: pierwsze otwarcie będzie wolniejsze."
-        'M:cleanTip_recent' = "Usuwa ostatnie pliki z Eksploratora, Startu i paska."
+        'M:cleanTip_recent' = "Listy ostatnio otwartych plików, polecenia Uruchom i wpisane ścieżki. Foldery przypięte w Szybkim dostępie zostają; elementy przypięte w listach aplikacji nie."
         'M:cleanTip_runHist' = "Polecenia z Uruchom (Win+R) i ścieżki wpisane w Eksploratorze."
         'M:cleanTip_prefetch' = "Windows używa go do szybszego uruchamiania: po czyszczeniu pierwsze starty będą wolniejsze."
-        'M:ttlFix' = "Naprawy"
-        'M:fixHint' = "Startują od razu, po kolei. Postęp widać u góry także na innych stronach."
+        'M:ttlFix' = "Szybkie naprawy"
+        'M:fixHint' = "Rozwiązują najczęstsze problemy jednym kliknięciem. Działają po kolei, a postęp widać też na innych stronach."
         'M:toolRun' = "Uruchom"
         'M:tool_netQuick' = "Sieć: szybki reset"
         'M:toolDesc_netQuick' = "Czyści DNS i odnawia IP. Połączenie zniknie na kilka sekund."
@@ -8504,6 +8604,31 @@ $script:Tr = @{
         'M:homeTypeDescLaptop' = "Pomija pozycje zużywające baterię."
         'M:homeTypeDescServer' = "Zostawia bezpieczeństwo, usługi i diagnostykę: lepsza wydajność bez osłabiania serwera."
         'M:homePhysDisks' = "Dyski"
+        'M:ttlCleanAll' = "Pełne czyszczenie komputera"
+        'M:cleanAllHint' = "Zwalnia miejsce, usuwając niepotrzebne pliki. Hasła, pliki cookie, logowania i pliki osobiste pozostają nietknięte."
+        'M:clean_browserHist' = "Historia i pobrane w przeglądarkach"
+        'M:cleanTip_browserHist' = "Odwiedzone strony i lista pobranych w Chrome, Edge, Firefox, Brave, Opera i Vivaldi. Pobrane pliki, zakładki i logowania zostają."
+        'M:clean_browserCache' = "Pamięć podręczna przeglądarek"
+        'M:cleanTip_browserCache' = "Kopie stron zapisywane przez przeglądarki, by otwierać je szybciej. Nie wylogowuje; pierwsze otwarcie będzie nieco wolniejsze."
+        'M:cleanTotal' = "Miejsce do zwolnienia: {0}"
+        'M:cleanNow' = "Wyczyść teraz"
+        'M:cleanRescan' = "Przelicz"
+        'M:cleanEmpty' = "pusto"
+        'M:cleanBrowserOpen' = "Aby wyczyścić też {0}, zamknij przeglądarkę i powtórz."
+        'M:ttlGhost' = "Odłączone urządzenia"
+        'M:ghostHint' = "Pendrive'y, słuchawki i urządzenia używane wcześniej zostawiają sterowniki i wpisy. Usunięcie jest bezpieczne: po podłączeniu Windows zainstaluje je ponownie."
+        'M:ghostSearching' = "Szukam odłączonych urządzeń..."
+        'M:ghostNone' = "Brak odłączonych urządzeń: nie ma czego czyścić."
+        'M:ghostFound' = "Znaleziono {0} odłączonych urządzeń."
+        'M:ghostAll' = "Zaznacz wszystkie"
+        'M:ghostRemove' = "Usuń"
+        'M:ghostRescan' = "Szukaj ponownie"
+        'M:ghostAsk' = "Usunąć {0} odłączonych urządzeń? Po podłączeniu Windows zainstaluje je ponownie."
+        'M:ghostOld' = "Wymaga Windows 10 w wersji 2004 lub nowszej."
+        'M:ghostDone' = "Usunięto {0} z {1}."
+        'M:ghostError' = "Lista niedostępna:"
+        'M:tagReboot' = "Wymaga restartu"
+        'M:tagCaution' = "Ostrożnie"
     }
     pt = @{
         'L:lblSubtitle' = "Otimização e controle do Windows — PcFixPro Italia"
@@ -9229,7 +9354,7 @@ $script:Tr = @{
         'M:clean_recycle' = "Lixeira"
         'M:clean_errors' = "Relatórios de erro e despejos"
         'M:clean_thumbs' = "Cache de miniaturas"
-        'M:clean_recent' = "Arquivos recentes e listas de atalhos"
+        'M:clean_recent' = "Arquivos recentes e histórico do Executar"
         'M:clean_runHist' = "Histórico do Executar e caminhos digitados"
         'M:clean_prefetch' = "Prefetch"
         'M:cleanTip_winTemp' = "Arquivos deixados por instaladores e pelo sistema."
@@ -9239,11 +9364,11 @@ $script:Tr = @{
         'M:cleanTip_recycle' = "Esvazia a Lixeira em todas as unidades."
         'M:cleanTip_errors' = "Relatórios já enviados e arquivos de falha."
         'M:cleanTip_thumbs' = "O Windows as recria ao abrir pastas: a primeira abertura será mais lenta."
-        'M:cleanTip_recent' = "Remove arquivos recentes do Explorador, Iniciar e barra."
+        'M:cleanTip_recent' = "Listas de arquivos abertos recentemente, comandos do Executar e caminhos digitados. As pastas fixadas no Acesso rápido ficam; os itens fixados nas listas dos apps não."
         'M:cleanTip_runHist' = "Comandos do Executar (Win+R) e caminhos digitados no Explorador."
         'M:cleanTip_prefetch' = "O Windows o usa para abrir programas mais rápido: depois os primeiros inícios serão mais lentos."
-        'M:ttlFix' = "Reparos"
-        'M:fixHint' = "Começam na hora, uma de cada vez. O progresso fica visível no topo nas outras páginas."
+        'M:ttlFix' = "Reparos rápidos"
+        'M:fixHint' = "Resolvem os problemas mais comuns com um clique. Rodam uma de cada vez e o progresso fica visível nas outras páginas."
         'M:toolRun' = "Executar"
         'M:tool_netQuick' = "Rede: redefinição rápida"
         'M:toolDesc_netQuick' = "Limpa o cache DNS e renova o IP. A conexão cai por alguns segundos."
@@ -9432,6 +9557,31 @@ $script:Tr = @{
         'M:homeTypeDescLaptop' = "Ignora os itens que gastam bateria."
         'M:homeTypeDescServer' = "Mantém segurança, serviços e diagnóstico: mais desempenho sem enfraquecer o servidor."
         'M:homePhysDisks' = "Discos"
+        'M:ttlCleanAll' = "Limpeza total do PC"
+        'M:cleanAllHint' = "Libera espaço removendo arquivos que não servem mais. Senhas, cookies, logins e arquivos pessoais não são tocados."
+        'M:clean_browserHist' = "Histórico e downloads dos navegadores"
+        'M:cleanTip_browserHist' = "Sites visitados e lista de downloads do Chrome, Edge, Firefox, Brave, Opera e Vivaldi. Arquivos baixados, favoritos e logins ficam."
+        'M:clean_browserCache' = "Cache dos navegadores"
+        'M:cleanTip_browserCache' = "Cópias de páginas que os navegadores salvam para abri-las mais rápido. Não desconecta dos sites; a primeira visita será um pouco mais lenta."
+        'M:cleanTotal' = "Espaço a liberar: {0}"
+        'M:cleanNow' = "Limpar agora"
+        'M:cleanRescan' = "Recalcular"
+        'M:cleanEmpty' = "vazio"
+        'M:cleanBrowserOpen' = "Para limpar também o {0}, feche o navegador e repita."
+        'M:ttlGhost' = "Dispositivos desconectados"
+        'M:ghostHint' = "Pendrives, fones e periféricos usados no passado deixam drivers e entradas. Removê-los é seguro: ao reconectar, o Windows os reinstala."
+        'M:ghostSearching' = "Procurando dispositivos desconectados..."
+        'M:ghostNone' = "Nenhum dispositivo desconectado: nada a limpar."
+        'M:ghostFound' = "{0} dispositivos desconectados encontrados."
+        'M:ghostAll' = "Selecionar todos"
+        'M:ghostRemove' = "Remover"
+        'M:ghostRescan' = "Procurar de novo"
+        'M:ghostAsk' = "Remover {0} dispositivos desconectados? Ao reconectar, o Windows os reinstala."
+        'M:ghostOld' = "Requer Windows 10 versão 2004 ou posterior."
+        'M:ghostDone' = "Removidos {0} de {1}."
+        'M:ghostError' = "Lista indisponível:"
+        'M:tagReboot' = "Requer reinício"
+        'M:tagCaution' = "Com cuidado"
     }
     ro = @{
         'L:lblSubtitle' = "Optimizarea și controlul Windows — PcFixPro Italia"
@@ -10157,7 +10307,7 @@ $script:Tr = @{
         'M:clean_recycle' = "Coș de reciclare"
         'M:clean_errors' = "Rapoarte de erori și dumpuri"
         'M:clean_thumbs' = "Cache miniaturi"
-        'M:clean_recent' = "Fișiere recente și liste de salt"
+        'M:clean_recent' = "Fișiere recente și istoricul Executare"
         'M:clean_runHist' = "Istoric Executare și căi tastate"
         'M:clean_prefetch' = "Prefetch"
         'M:cleanTip_winTemp' = "Fișiere lăsate de instalatoare și sistem."
@@ -10167,11 +10317,11 @@ $script:Tr = @{
         'M:cleanTip_recycle' = "Golește Coșul pe toate unitățile."
         'M:cleanTip_errors' = "Rapoarte deja trimise și fișiere de blocare."
         'M:cleanTip_thumbs' = "Windows le recreează la deschiderea folderelor: prima deschidere va fi mai lentă."
-        'M:cleanTip_recent' = "Elimină fișierele recente din Explorer, Start și bară."
+        'M:cleanTip_recent' = "Listele fișierelor deschise recent, comenzile Executare și căile tastate. Folderele fixate în Acces rapid rămân; elementele fixate în listele aplicațiilor nu."
         'M:cleanTip_runHist' = "Comenzi din Executare (Win+R) și căi tastate în Explorer."
         'M:cleanTip_prefetch' = "Windows îl folosește pentru pornire rapidă: după curățare primele porniri vor fi mai lente."
-        'M:ttlFix' = "Reparații"
-        'M:fixHint' = "Pornesc imediat, pe rând. Progresul rămâne vizibil sus și din alte pagini."
+        'M:ttlFix' = "Reparații rapide"
+        'M:fixHint' = "Rezolvă cele mai comune probleme cu un clic. Rulează pe rând, iar progresul se vede și din alte pagini."
         'M:toolRun' = "Rulează"
         'M:tool_netQuick' = "Rețea: resetare rapidă"
         'M:toolDesc_netQuick' = "Golește cache-ul DNS și reînnoiește IP-ul. Conexiunea cade câteva secunde."
@@ -10360,6 +10510,31 @@ $script:Tr = @{
         'M:homeTypeDescLaptop' = "Sare peste elementele care consumă bateria."
         'M:homeTypeDescServer' = "Păstrează securitatea, serviciile și diagnosticarea: performanță mai bună fără a slăbi serverul."
         'M:homePhysDisks' = "Discuri"
+        'M:ttlCleanAll' = "Curățare completă a PC-ului"
+        'M:cleanAllHint' = "Eliberează spațiu ștergând fișierele inutile. Parolele, cookie-urile, autentificările și fișierele personale nu sunt atinse."
+        'M:clean_browserHist' = "Istoricul și descărcările browserelor"
+        'M:cleanTip_browserHist' = "Site-urile vizitate și lista descărcărilor din Chrome, Edge, Firefox, Brave, Opera și Vivaldi. Fișierele descărcate, marcajele și autentificările rămân."
+        'M:clean_browserCache' = "Memoria cache a browserelor"
+        'M:cleanTip_browserCache' = "Copii ale paginilor salvate de browsere pentru a le deschide mai repede. Nu te deconectează; prima vizită va fi puțin mai lentă."
+        'M:cleanTotal' = "Spațiu de eliberat: {0}"
+        'M:cleanNow' = "Curăță acum"
+        'M:cleanRescan' = "Recalculează"
+        'M:cleanEmpty' = "gol"
+        'M:cleanBrowserOpen' = "Pentru a curăța și {0}, închide browserul și repetă."
+        'M:ttlGhost' = "Dispozitive deconectate"
+        'M:ghostHint' = "Stick-uri, căști și periferice folosite în trecut lasă drivere și intrări. Ștergerea e sigură: la reconectare, Windows le reinstalează."
+        'M:ghostSearching' = "Caut dispozitivele deconectate..."
+        'M:ghostNone' = "Niciun dispozitiv deconectat: nimic de curățat."
+        'M:ghostFound' = "{0} dispozitive deconectate găsite."
+        'M:ghostAll' = "Selectează tot"
+        'M:ghostRemove' = "Elimină"
+        'M:ghostRescan' = "Caută din nou"
+        'M:ghostAsk' = "Elimin {0} dispozitive deconectate? La reconectare, Windows le reinstalează."
+        'M:ghostOld' = "Necesită Windows 10 versiunea 2004 sau mai nouă."
+        'M:ghostDone' = "Eliminate {0} din {1}."
+        'M:ghostError' = "Listă indisponibilă:"
+        'M:tagReboot' = "Necesită repornire"
+        'M:tagCaution' = "Cu prudență"
     }
     ru = @{
         'L:lblSubtitle' = "Оптимизация и управление Windows — PcFixPro Italia"
@@ -11085,7 +11260,7 @@ $script:Tr = @{
         'M:clean_recycle' = "Корзина"
         'M:clean_errors' = "Отчёты об ошибках и дампы"
         'M:clean_thumbs' = "Кэш эскизов"
-        'M:clean_recent' = "Недавние файлы и списки переходов"
+        'M:clean_recent' = "Недавние файлы и история «Выполнить»"
         'M:clean_runHist' = "История «Выполнить» и введённых путей"
         'M:clean_prefetch' = "Prefetch"
         'M:cleanTip_winTemp' = "Файлы, оставленные установщиками и системой."
@@ -11095,11 +11270,11 @@ $script:Tr = @{
         'M:cleanTip_recycle' = "Очищает корзину на всех дисках."
         'M:cleanTip_errors' = "Отправленные отчёты и файлы сбоев."
         'M:cleanTip_thumbs' = "Windows создаст их заново: первое открытие будет медленнее."
-        'M:cleanTip_recent' = "Убирает недавние файлы из Проводника, «Пуск» и панели."
+        'M:cleanTip_recent' = "Списки недавних файлов, команды «Выполнить» и введённые пути. Папки, закреплённые в быстром доступе, остаются; закреплённые элементы в списках приложений нет."
         'M:cleanTip_runHist' = "Команды «Выполнить» (Win+R) и пути в Проводнике."
         'M:cleanTip_prefetch' = "Windows ускоряет им запуск программ: после очистки первые запуски будут медленнее."
-        'M:ttlFix' = "Исправления"
-        'M:fixHint' = "Запускаются сразу, по очереди. Ход виден вверху и на других страницах."
+        'M:ttlFix' = "Быстрые исправления"
+        'M:fixHint' = "Решают самые частые проблемы одним щелчком. Выполняются по очереди, ход виден и на других страницах."
         'M:toolRun' = "Запустить"
         'M:tool_netQuick' = "Сеть: быстрый сброс"
         'M:toolDesc_netQuick' = "Очищает кэш DNS и обновляет IP. Связь пропадёт на несколько секунд."
@@ -11288,6 +11463,31 @@ $script:Tr = @{
         'M:homeTypeDescLaptop' = "Пропускает пункты, расходующие батарею."
         'M:homeTypeDescServer' = "Сохраняет защиту, службы и диагностику: выше производительность без ослабления сервера."
         'M:homePhysDisks' = "Диски"
+        'M:ttlCleanAll' = "Полная очистка ПК"
+        'M:cleanAllHint' = "Освобождает место, удаляя ненужные файлы. Пароли, cookie, входы на сайты и личные файлы не затрагиваются."
+        'M:clean_browserHist' = "История и загрузки браузеров"
+        'M:cleanTip_browserHist' = "Посещённые сайты и список загрузок Chrome, Edge, Firefox, Brave, Opera и Vivaldi. Скачанные файлы, закладки и входы остаются."
+        'M:clean_browserCache' = "Кэш браузеров"
+        'M:cleanTip_browserCache' = "Копии страниц, которые браузеры хранят для быстрого открытия. Выхода из аккаунтов нет; первое открытие будет чуть медленнее."
+        'M:cleanTotal' = "Будет освобождено: {0}"
+        'M:cleanNow' = "Очистить"
+        'M:cleanRescan' = "Пересчитать"
+        'M:cleanEmpty' = "пусто"
+        'M:cleanBrowserOpen' = "Чтобы очистить и {0}, закройте браузер и повторите."
+        'M:ttlGhost' = "Отключённые устройства"
+        'M:ghostHint' = "Флешки, гарнитуры и устройства, подключавшиеся раньше, оставляют драйверы и записи. Удалять их безопасно: при подключении Windows установит их заново."
+        'M:ghostSearching' = "Поиск отключённых устройств..."
+        'M:ghostNone' = "Отключённых устройств нет: чистить нечего."
+        'M:ghostFound' = "Найдено отключённых устройств: {0}."
+        'M:ghostAll' = "Выбрать все"
+        'M:ghostRemove' = "Удалить"
+        'M:ghostRescan' = "Искать снова"
+        'M:ghostAsk' = "Удалить отключённые устройства ({0})? При подключении Windows установит их заново."
+        'M:ghostOld' = "Нужна Windows 10 версии 2004 или новее."
+        'M:ghostDone' = "Удалено {0} из {1}."
+        'M:ghostError' = "Список недоступен:"
+        'M:tagReboot' = "Нужна перезагрузка"
+        'M:tagCaution' = "Осторожно"
     }
 }
 
@@ -18303,6 +18503,7 @@ $script:ToolTimer.Add_Tick({
     Set-UiLock 'tools' $false
     $btnToolJobsClose.Visibility = 'Visible'
     if ($script:ToolsNeedRefresh) { $script:ToolsNeedRefresh = $false; Start-ToolScan }
+    if ($script:GhostRescan) { $script:GhostRescan = $false; Start-GhostScan }
 })
 
 $btnToolJobsClose.Add_Click({
@@ -18313,21 +18514,25 @@ $btnToolJobsClose.Add_Click({
 # ------------------------------------------------------------------------------
 # Script degli strumenti
 # ------------------------------------------------------------------------------
-# Pulizia: ogni voce ha le cartelle da svuotare e, se serve, un'azione a parte.
+# Pulizia totale: ogni voce ha le cartelle da svuotare e, se serve, un'azione a parte.
+# Dal vecchio file .bat restano fuori: Prefetch (Windows lo ricrea subito e
+# intanto programmi e avvio partono piu' lenti), i file .bak di tutto il disco C
+# (sono copie di sicurezza di programmi e utenti) e la ricreazione delle
+# cartelle Temp, che perdeva i loro permessi.
 $script:CleanItems = @(
-    @{ Key = 'winTemp';   On = $true;  Paths = @('%SystemRoot%\Temp') }
-    @{ Key = 'userTemp';  On = $true;  Paths = @('%TEMP%') }
-    @{ Key = 'wuCache';   On = $true;  Paths = @('%SystemRoot%\SoftwareDistribution\Download') }
-    @{ Key = 'doCache';   On = $true;  Paths = @('%SystemRoot%\ServiceProfiles\NetworkService\AppData\Local\Microsoft\Windows\DeliveryOptimization\Cache') }
-    @{ Key = 'recycle';   On = $true;  Paths = @() }
-    @{ Key = 'errors';    On = $true;  Paths = @('%ProgramData%\Microsoft\Windows\WER\ReportArchive', '%ProgramData%\Microsoft\Windows\WER\ReportQueue', '%LOCALAPPDATA%\CrashDumps', '%SystemRoot%\Minidump') }
-    @{ Key = 'thumbs';    On = $false; Paths = @() }
-    @{ Key = 'recent';    On = $false; Paths = @('%APPDATA%\Microsoft\Windows\Recent') }
-    @{ Key = 'runHist';   On = $false; Paths = @() }
-    @{ Key = 'prefetch';  On = $false; Paths = @('%SystemRoot%\Prefetch') }
+    @{ Key = 'winTemp';      On = $true;  Paths = @('%SystemRoot%\Temp') }
+    @{ Key = 'userTemp';     On = $true;  Paths = @('%TEMP%') }
+    @{ Key = 'wuCache';      On = $true;  Paths = @('%SystemRoot%\SoftwareDistribution\Download') }
+    @{ Key = 'doCache';      On = $true;  Paths = @('%SystemRoot%\ServiceProfiles\NetworkService\AppData\Local\Microsoft\Windows\DeliveryOptimization\Cache') }
+    @{ Key = 'recycle';      On = $true;  Paths = @() }
+    @{ Key = 'errors';       On = $true;  Paths = @('%ProgramData%\Microsoft\Windows\WER\ReportArchive', '%ProgramData%\Microsoft\Windows\WER\ReportQueue', '%LOCALAPPDATA%\CrashDumps', '%SystemRoot%\Minidump') }
+    @{ Key = 'browserHist';  On = $true;  Paths = @() }
+    @{ Key = 'browserCache'; On = $true;  Paths = @() }
+    @{ Key = 'recent';       On = $false; Paths = @() }
+    @{ Key = 'thumbs';       On = $false; Paths = @() }
 )
 
-# Funzioni comuni agli script: cartella svuotata senza toccare la cartella stessa.
+# Funzioni comuni agli script: girano in un processo a parte, quindi niente T.
 $script:ToolHelpers = @'
 function Clear-Dir([string]$p) {
     $p = [Environment]::ExpandEnvironmentVariables($p)
@@ -18342,12 +18547,146 @@ function Clear-Dir([string]$p) {
     return $size
 }
 function Size-Text([double]$b) { if ($b -ge 1GB) { '{0:0.0} GB' -f ($b / 1GB) } else { '{0:0} MB' -f ($b / 1MB) } }
+function Get-PathSize([string]$p) {
+    $p = [Environment]::ExpandEnvironmentVariables($p)
+    if (-not (Test-Path -LiteralPath $p)) { return 0 }
+    $item = Get-Item -LiteralPath $p -Force -ErrorAction SilentlyContinue
+    if ($item -and -not $item.PSIsContainer) { return [double]$item.Length }
+    return [double](Get-ChildItem -LiteralPath $p -Force -Recurse -File -ErrorAction SilentlyContinue | Measure-Object Length -Sum).Sum
+}
+
+# Browser basati su Chromium: la cronologia e l'elenco dei download stanno nel
+# file History del profilo. Cookie (Network\Cookies), password (Login Data) e
+# accessi stanno in altri file e non si toccano.
+# Cartelle base dei profili: variabili, cosi' la prova le punta su una cartella finta.
+$LocalApp = $env:LOCALAPPDATA
+$RoamingApp = $env:APPDATA
+$Browsers = @(
+    @{ Name = 'Chrome';   Proc = 'chrome';  Base = 'L'; Root = 'Google\Chrome\User Data';            Multi = $true }
+    @{ Name = 'Edge';     Proc = 'msedge';  Base = 'L'; Root = 'Microsoft\Edge\User Data';           Multi = $true }
+    @{ Name = 'Brave';    Proc = 'brave';   Base = 'L'; Root = 'BraveSoftware\Brave-Browser\User Data'; Multi = $true }
+    @{ Name = 'Vivaldi';  Proc = 'vivaldi'; Base = 'L'; Root = 'Vivaldi\User Data';                  Multi = $true }
+    @{ Name = 'Opera';    Proc = 'opera';   Base = 'R'; Root = 'Opera Software\Opera Stable';         Multi = $false }
+    @{ Name = 'Opera GX'; Proc = 'opera';   Base = 'R'; Root = 'Opera Software\Opera GX Stable';      Multi = $false }
+)
+$HistoryFiles = @('History', 'History-journal', 'Visited Links', 'Top Sites', 'Top Sites-journal', 'Shortcuts', 'Shortcuts-journal')
+$CacheDirs = @('Cache', 'Code Cache', 'GPUCache')
+
+function Get-BrowserProfiles($b) {
+    $root = Join-Path $(if ($b.Base -eq 'L') { $LocalApp } else { $RoamingApp }) $b.Root
+    if (-not (Test-Path -LiteralPath $root)) { return @() }
+    if (-not $b.Multi) { return @($root) }
+    return @(Get-ChildItem -LiteralPath $root -Directory -ErrorAction SilentlyContinue |
+             Where-Object { $_.Name -eq 'Default' -or $_.Name -like 'Profile *' } | ForEach-Object { $_.FullName })
+}
+function Get-FirefoxProfiles([switch]$Local) {
+    $base = if ($Local) { "$LocalApp\Mozilla\Firefox\Profiles" } else { "$RoamingApp\Mozilla\Firefox\Profiles" }
+    if (-not (Test-Path -LiteralPath $base)) { return @() }
+    return @(Get-ChildItem -LiteralPath $base -Directory -ErrorAction SilentlyContinue | ForEach-Object { $_.FullName })
+}
+function Test-BrowserOpen([string]$proc) { return [bool](Get-Process -Name $proc -ErrorAction SilentlyContinue) }
+
+# SQLite di Windows (winsqlite3.dll, presente da Windows 10): serve per Firefox,
+# che tiene cronologia e segnalibri nello stesso file.
+function Invoke-Sqlite([string]$db, [string]$sql) {
+    if (-not ('TweakAndrewSql.Lite' -as [type])) {
+        Add-Type -Namespace TweakAndrewSql -Name Lite -MemberDefinition @"
+[System.Runtime.InteropServices.DllImport("winsqlite3.dll", EntryPoint = "sqlite3_open_v2")] public static extern int Open(byte[] file, out System.IntPtr db, int flags, System.IntPtr vfs);
+[System.Runtime.InteropServices.DllImport("winsqlite3.dll", EntryPoint = "sqlite3_exec")] public static extern int Exec(System.IntPtr db, byte[] sql, System.IntPtr cb, System.IntPtr arg, out System.IntPtr err);
+[System.Runtime.InteropServices.DllImport("winsqlite3.dll", EntryPoint = "sqlite3_busy_timeout")] public static extern int Busy(System.IntPtr db, int ms);
+[System.Runtime.InteropServices.DllImport("winsqlite3.dll", EntryPoint = "sqlite3_close")] public static extern int Close(System.IntPtr db);
+"@
+    }
+    $h = [IntPtr]::Zero; $e = [IntPtr]::Zero
+    $r = [TweakAndrewSql.Lite]::Open([Text.Encoding]::UTF8.GetBytes($db + [char]0), [ref]$h, 2, [IntPtr]::Zero)
+    if ($r -ne 0) { if ($h -ne [IntPtr]::Zero) { [void][TweakAndrewSql.Lite]::Close($h) }; return $r }
+    [void][TweakAndrewSql.Lite]::Busy($h, 2000)
+    $r = [TweakAndrewSql.Lite]::Exec($h, [Text.Encoding]::UTF8.GetBytes($sql + [char]0), [IntPtr]::Zero, [IntPtr]::Zero, [ref]$e)
+    [void][TweakAndrewSql.Lite]::Close($h)
+    return $r
+}
+# Firefox: si cancellano le visite, gli indirizzi digitati e l'elenco dei
+# download; le pagine restano solo come voci senza visite, cosi' i segnalibri
+# (che puntano a quelle righe) non si toccano. Tutto in una transazione: se
+# qualcosa va storto non cambia nulla.
+$FirefoxSql = "BEGIN; DELETE FROM moz_historyvisits; DELETE FROM moz_inputhistory; " +
+              "DELETE FROM moz_annos WHERE anno_attribute_id IN (SELECT id FROM moz_anno_attributes WHERE name LIKE 'downloads/%'); " +
+              "UPDATE moz_places SET visit_count = 0, last_visit_date = NULL, frecency = 0; COMMIT;"
+
+# Cronologia dei browser. Restituisce lo spazio liberato; i browser aperti si
+# saltano e finiscono nell'elenco $script:BrowserOpen.
+function Clear-BrowserHistory {
+    $freed = 0
+    foreach ($b in $Browsers) {
+        $profiles = @(Get-BrowserProfiles $b)
+        if ($profiles.Count -eq 0) { continue }
+        if (Test-BrowserOpen $b.Proc) { $script:BrowserOpen += $b.Name; continue }
+        foreach ($p in $profiles) {
+            foreach ($f in $HistoryFiles) {
+                $x = Join-Path $p $f
+                if (Test-Path -LiteralPath $x) { try { $len = (Get-Item -LiteralPath $x -Force).Length; Remove-Item -LiteralPath $x -Force -ErrorAction Stop; $freed += $len } catch {} }
+            }
+        }
+    }
+    $ff = @(Get-FirefoxProfiles | Where-Object { Test-Path -LiteralPath (Join-Path $_ 'places.sqlite') })
+    if ($ff.Count -gt 0) {
+        if (Test-BrowserOpen 'firefox') { $script:BrowserOpen += 'Firefox' }
+        elseif (-not (Test-Path "$env:SystemRoot\System32\winsqlite3.dll")) { Write-Host 'ATTENZIONE: SQLite di Windows assente, cronologia di Firefox non pulita.' }
+        else {
+            foreach ($p in $ff) {
+                $r = Invoke-Sqlite (Join-Path $p 'places.sqlite') $FirefoxSql
+                if ($r -ne 0) { Write-Host "ATTENZIONE: cronologia di Firefox non pulita (codice SQLite $r)." }
+            }
+        }
+    }
+    return $freed
+}
+function Clear-BrowserCache {
+    $freed = 0
+    foreach ($b in $Browsers) {
+        $profiles = @(Get-BrowserProfiles $b)
+        if ($profiles.Count -eq 0) { continue }
+        if (Test-BrowserOpen $b.Proc) { if ($script:BrowserOpen -notcontains $b.Name) { $script:BrowserOpen += $b.Name }; continue }
+        foreach ($p in $profiles) { foreach ($d in $CacheDirs) { $freed += Clear-Dir (Join-Path $p $d) } }
+    }
+    $ff = @(Get-FirefoxProfiles -Local)
+    if ($ff.Count -gt 0) {
+        if (Test-BrowserOpen 'firefox') { if ($script:BrowserOpen -notcontains 'Firefox') { $script:BrowserOpen += 'Firefox' } }
+        else { foreach ($p in $ff) { $freed += Clear-Dir (Join-Path $p 'cache2') } }
+    }
+    return $freed
+}
+function Get-BrowserSize([switch]$Cache) {
+    $sum = 0
+    foreach ($b in $Browsers) {
+        foreach ($p in @(Get-BrowserProfiles $b)) {
+            if ($Cache) { foreach ($d in $CacheDirs) { $sum += Get-PathSize (Join-Path $p $d) } }
+            else { foreach ($f in $HistoryFiles) { $sum += Get-PathSize (Join-Path $p $f) } }
+        }
+    }
+    if ($Cache) { foreach ($p in @(Get-FirefoxProfiles -Local)) { $sum += Get-PathSize (Join-Path $p 'cache2') } }
+    return $sum
+}
+
+# Elementi recenti ed elenchi di salto. Resta il file delle cartelle fissate in
+# Accesso rapido: cancellarlo toglieva anche quelle.
+$QuickAccessPins = 'f01b4d95cf55d32a.automaticDestinations-ms'
+function Clear-Recent {
+    $freed = 0
+    $r = "$RoamingApp\Microsoft\Windows\Recent"
+    foreach ($f in @(Get-ChildItem -LiteralPath $r -Force -Recurse -File -ErrorAction SilentlyContinue | Where-Object { $_.Name -ne $QuickAccessPins })) {
+        try { $len = $f.Length; Remove-Item -LiteralPath $f.FullName -Force -ErrorAction Stop; $freed += $len } catch {}
+    }
+    Remove-ItemProperty 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU' -Name * -ErrorAction SilentlyContinue
+    Remove-ItemProperty 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\TypedPaths' -Name * -ErrorAction SilentlyContinue
+    return $freed
+}
 '@
 
 function Get-CleanScript([string[]]$Keys) {
     $sb = New-Object System.Text.StringBuilder
     [void]$sb.AppendLine($script:ToolHelpers)
-    [void]$sb.AppendLine('$freed = 0')
+    [void]$sb.AppendLine('$freed = 0; $script:BrowserOpen = @()')
     $i = 0
     foreach ($k in $Keys) {
         $item = $script:CleanItems | Where-Object { $_.Key -eq $k }
@@ -18358,29 +18697,30 @@ function Get-CleanScript([string[]]$Keys) {
             'wuCache' {
                 [void]$sb.AppendLine("Stop-Service wuauserv, bits -Force -ErrorAction SilentlyContinue")
                 [void]$sb.AppendLine("`$freed += Clear-Dir '%SystemRoot%\SoftwareDistribution\Download'")
-                [void]$sb.AppendLine("Start-Service wuauserv -ErrorAction SilentlyContinue")
+                [void]$sb.AppendLine("Start-Service bits, wuauserv -ErrorAction SilentlyContinue")
             }
             'doCache' {
                 [void]$sb.AppendLine("try { Delete-DeliveryOptimizationCache -Force -ErrorAction Stop } catch { `$freed += Clear-Dir '$($item.Paths[0])' }")
             }
             'recycle' {
-                [void]$sb.AppendLine("foreach (`$d in [IO.DriveInfo]::GetDrives() | Where-Object { `$_.DriveType -eq 'Fixed' -and `$_.IsReady }) { `$freed += Clear-Dir (Join-Path `$d.RootDirectory '`$Recycle.Bin') }")
+                [void]$sb.AppendLine("foreach (`$d in [IO.DriveInfo]::GetDrives() | Where-Object { `$_.DriveType -eq 'Fixed' -and `$_.IsReady }) { `$freed += Get-PathSize (Join-Path `$d.RootDirectory '`$Recycle.Bin') }")
                 [void]$sb.AppendLine("Clear-RecycleBin -Force -ErrorAction SilentlyContinue")
             }
             'thumbs' {
                 [void]$sb.AppendLine("Get-ChildItem `"`$env:LOCALAPPDATA\Microsoft\Windows\Explorer`" -Filter 'thumbcache_*.db' -Force -ErrorAction SilentlyContinue | ForEach-Object { try { `$l = `$_.Length; Remove-Item -LiteralPath `$_.FullName -Force -ErrorAction Stop; `$freed += `$l } catch {} }")
             }
-            'runHist' {
-                [void]$sb.AppendLine("Remove-ItemProperty 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU' -Name * -ErrorAction SilentlyContinue")
-                [void]$sb.AppendLine("Remove-ItemProperty 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\TypedPaths' -Name * -ErrorAction SilentlyContinue")
-            }
+            'browserHist'  { [void]$sb.AppendLine('$freed += Clear-BrowserHistory') }
+            'browserCache' { [void]$sb.AppendLine('$freed += Clear-BrowserCache') }
+            'recent'       { [void]$sb.AppendLine('$freed += Clear-Recent') }
             default {
                 foreach ($p in $item.Paths) { [void]$sb.AppendLine("`$freed += Clear-Dir '$p'") }
             }
         }
     }
     [void]$sb.AppendLine("Write-Host '@@PCT 100'")
-    [void]$sb.AppendLine("Write-Host ('@@DONE ' + '$((T 'cleanFreed') -replace "'", "''")' -f (Size-Text `$freed))")
+    [void]$sb.AppendLine("`$msg = '$((T 'cleanFreed') -replace "'", "''")' -f (Size-Text `$freed)")
+    [void]$sb.AppendLine("if (`$script:BrowserOpen.Count -gt 0) { `$msg += ' ' + ('$((T 'cleanBrowserOpen') -replace "'", "''")' -f ((`$script:BrowserOpen | Select-Object -Unique) -join ', ')) }")
+    [void]$sb.AppendLine("Write-Host ('@@DONE ' + `$msg)")
     return $sb.ToString()
 }
 
@@ -18547,17 +18887,59 @@ $script:Panels = @(
 # ------------------------------------------------------------------------------
 # Pagina Strumenti
 # ------------------------------------------------------------------------------
-function New-ToolCard([string]$Title, [string]$Hint) {
+# Ogni strumento ha un'icona, un nome semplice e una frase che dice cosa fa.
+# Icone: Segoe Fluent Icons su Windows 11, Segoe MDL2 Assets su Windows 10;
+# i codici usati qui esistono in entrambi.
+$script:IconFont = New-Object System.Windows.Media.FontFamily('Segoe Fluent Icons, Segoe MDL2 Assets')
+
+function New-ToolIcon([string]$Glyph, [string]$Color, [double]$Size = 36) {
+    $b = New-Object System.Windows.Controls.Border
+    $b.Width = $Size; $b.Height = $Size; $b.CornerRadius = [Math]::Round($Size / 4)
+    $c = [System.Windows.Media.ColorConverter]::ConvertFromString($Color)
+    $b.Background = New-Object System.Windows.Media.SolidColorBrush ([System.Windows.Media.Color]::FromArgb(38, $c.R, $c.G, $c.B))
+    $t = New-Object System.Windows.Controls.TextBlock
+    $t.Text = [string][char][Convert]::ToInt32($Glyph, 16); $t.FontFamily = $script:IconFont; $t.FontSize = [Math]::Round($Size * 0.46)
+    $t.Foreground = New-AppBrush $Color; $t.HorizontalAlignment = 'Center'; $t.VerticalAlignment = 'Center'
+    $b.Child = $t
+    return $b
+}
+
+# Intestazione di una scheda: icona, titolo e una frase semplice.
+function New-ToolHead([string]$Glyph, [string]$Color, [string]$Title, [string]$Desc) {
+    $g = New-Object System.Windows.Controls.Grid; $g.Margin = '0,0,0,14'
+    $c0 = New-Object System.Windows.Controls.ColumnDefinition; $c0.Width = [System.Windows.GridLength]::Auto
+    $c1 = New-Object System.Windows.Controls.ColumnDefinition
+    $g.ColumnDefinitions.Add($c0); $g.ColumnDefinitions.Add($c1)
+    $ic = New-ToolIcon $Glyph $Color 42; $ic.VerticalAlignment = 'Top'
+    [void]$g.Children.Add($ic)
+    $sp = New-Object System.Windows.Controls.StackPanel; $sp.Margin = '14,0,0,0'; $sp.VerticalAlignment = 'Center'
+    $t = New-Object System.Windows.Controls.TextBlock
+    $t.Text = $Title; $t.FontSize = 17; $t.FontWeight = 'SemiBold'; $t.Foreground = New-AppBrush '#FFF2F4F7'
+    $t.FontFamily = 'Segoe UI Variable Display, Segoe UI'; $t.TextWrapping = 'Wrap'
+    [void]$sp.Children.Add($t)
+    if ($Desc) {
+        $d = New-Object System.Windows.Controls.TextBlock
+        $d.Text = $Desc; $d.Style = $window.FindResource('SubTitle'); $d.Margin = '0,3,0,0'; $d.FontSize = 12.5
+        [void]$sp.Children.Add($d)
+    }
+    [System.Windows.Controls.Grid]::SetColumn($sp, 1); [void]$g.Children.Add($sp)
+    return $g
+}
+
+function New-ToolCard([string]$Title, [string]$Hint, [string]$Glyph = '', [string]$Color = '#FF4C8DFF') {
     $card = New-Object System.Windows.Controls.Border
     $card.Style = $window.FindResource('Glass')
     $sp = New-Object System.Windows.Controls.StackPanel
-    $h = New-Object System.Windows.Controls.TextBlock
-    $h.Text = $Title.ToUpper(); $h.Style = $window.FindResource('CardTitle')
-    [void]$sp.Children.Add($h)
-    if ($Hint) {
-        $s = New-Object System.Windows.Controls.TextBlock
-        $s.Text = $Hint; $s.Style = $window.FindResource('SubTitle'); $s.Margin = '0,-4,0,10'
-        [void]$sp.Children.Add($s)
+    if ($Glyph) { [void]$sp.Children.Add((New-ToolHead $Glyph $Color $Title $Hint)) }
+    else {
+        $h = New-Object System.Windows.Controls.TextBlock
+        $h.Text = $Title.ToUpper(); $h.Style = $window.FindResource('CardTitle')
+        [void]$sp.Children.Add($h)
+        if ($Hint) {
+            $s = New-Object System.Windows.Controls.TextBlock
+            $s.Text = $Hint; $s.Style = $window.FindResource('SubTitle'); $s.Margin = '0,-4,0,10'
+            [void]$sp.Children.Add($s)
+        }
     }
     $card.Child = $sp
     return @{ Card = $card; Panel = $sp }
@@ -18565,29 +18947,52 @@ function New-ToolCard([string]$Title, [string]$Hint) {
 
 function New-ToolButton([string]$Text, [scriptblock]$Click, [string]$Style = 'GhostBtn') {
     $b = New-Object System.Windows.Controls.Button
-    $b.Content = $Text; $b.Style = $window.FindResource($Style); $b.Margin = '0,0,8,8'
+    $b.Content = $Text; $b.Style = $window.FindResource($Style); $b.Margin = '0,0,8,0'
     $b.Add_Click($Click)
     return $b
 }
 
-# Riga di una riparazione: titolo e spiegazione a sinistra, pulsante a destra.
-function New-ToolRow([string]$Key, [scriptblock]$Click) {
-    $g = New-Object System.Windows.Controls.Grid; $g.Margin = '0,0,0,12'
-    $c0 = New-Object System.Windows.Controls.ColumnDefinition
-    $c1 = New-Object System.Windows.Controls.ColumnDefinition; $c1.Width = [System.Windows.GridLength]::Auto
-    $g.ColumnDefinitions.Add($c0); $g.ColumnDefinitions.Add($c1)
-    $sp = New-Object System.Windows.Controls.StackPanel; $sp.VerticalAlignment = 'Center'; $sp.Margin = '0,0,12,0'
+# Riquadro di una riparazione: icona e nome, cosa fa, e il pulsante. $Tag dice
+# se serve un riavvio ('reboot') o se va usata con cautela ('caution').
+function New-ToolTile([string]$Key, [string]$Glyph, [string]$Color, [scriptblock]$Click, [string]$Tag = '') {
+    $b = New-Object System.Windows.Controls.Border
+    $b.Background = New-AppBrush '#FF111316'; $b.BorderBrush = New-AppBrush '#FF25282D'; $b.BorderThickness = 1
+    $b.CornerRadius = 9; $b.Padding = '14,12,14,12'; $b.Margin = '0,0,10,10'
+    $g = New-Object System.Windows.Controls.Grid
+    foreach ($h in 'Auto', '*', 'Auto') {
+        $rd = New-Object System.Windows.Controls.RowDefinition
+        $rd.Height = if ($h -eq '*') { New-Object System.Windows.GridLength(1, [System.Windows.GridUnitType]::Star) } else { [System.Windows.GridLength]::Auto }
+        $g.RowDefinitions.Add($rd)
+    }
+    $top = New-Object System.Windows.Controls.Grid
+    $tc0 = New-Object System.Windows.Controls.ColumnDefinition; $tc0.Width = [System.Windows.GridLength]::Auto
+    $tc1 = New-Object System.Windows.Controls.ColumnDefinition
+    $top.ColumnDefinitions.Add($tc0); $top.ColumnDefinitions.Add($tc1)
+    [void]$top.Children.Add((New-ToolIcon $Glyph $Color 32))
     $t = New-Object System.Windows.Controls.TextBlock
-    $t.Text = T "tool_$Key"; $t.FontSize = 13; $t.FontWeight = 'SemiBold'; $t.Foreground = New-AppBrush '#FFE6E8EB'; $t.TextWrapping = 'Wrap'
+    $t.Text = T "tool_$Key"; $t.FontSize = 13; $t.FontWeight = 'SemiBold'; $t.Foreground = New-AppBrush '#FFE6E8EB'
+    $t.TextWrapping = 'Wrap'; $t.VerticalAlignment = 'Center'; $t.Margin = '10,0,0,0'
+    [System.Windows.Controls.Grid]::SetColumn($t, 1); [void]$top.Children.Add($t)
+    [void]$g.Children.Add($top)
     $d = New-Object System.Windows.Controls.TextBlock
-    $d.Text = T "toolDesc_$Key"; $d.Style = $window.FindResource('SubTitle'); $d.Margin = '0,2,0,0'
-    [void]$sp.Children.Add($t); [void]$sp.Children.Add($d)
-    [void]$g.Children.Add($sp)
-    $b = New-Object System.Windows.Controls.Button
-    $b.Content = T 'toolRun'; $b.Style = $window.FindResource('DotBtn'); $b.Tag = New-AppBrush '#FF2DD4BF'
-    $b.VerticalAlignment = 'Center'; $b.Add_Click($Click)
-    [System.Windows.Controls.Grid]::SetColumn($b, 1); [void]$g.Children.Add($b)
-    return $g
+    $d.Text = T "toolDesc_$Key"; $d.Style = $window.FindResource('SubTitle'); $d.Margin = '0,9,0,10'
+    [System.Windows.Controls.Grid]::SetRow($d, 1); [void]$g.Children.Add($d)
+    $bottom = New-Object System.Windows.Controls.Grid
+    $bc0 = New-Object System.Windows.Controls.ColumnDefinition
+    $bc1 = New-Object System.Windows.Controls.ColumnDefinition; $bc1.Width = [System.Windows.GridLength]::Auto
+    $bottom.ColumnDefinitions.Add($bc0); $bottom.ColumnDefinitions.Add($bc1)
+    if ($Tag) {
+        $pill = if ($Tag -eq 'reboot') { New-AppPill (T 'tagReboot') '#FFFDBA74' '#26FB923C' } else { New-AppPill (T 'tagCaution') '#FFFCA5A5' '#26F87171' }
+        $pill.Margin = '0'; $pill.HorizontalAlignment = 'Left'
+        [void]$bottom.Children.Add($pill)
+    }
+    $btn = New-Object System.Windows.Controls.Button
+    $btn.Content = T 'toolRun'; $btn.Style = $window.FindResource('GhostBtn'); $btn.Padding = '18,6,18,6'
+    $btn.Add_Click($Click)
+    [System.Windows.Controls.Grid]::SetColumn($btn, 1); [void]$bottom.Children.Add($btn)
+    [System.Windows.Controls.Grid]::SetRow($bottom, 2); [void]$g.Children.Add($bottom)
+    $b.Child = $g
+    return $b
 }
 
 function Confirm-Tool([string]$Key, [string]$Kind = 'ask') {
@@ -18595,59 +19000,167 @@ function Confirm-Tool([string]$Key, [string]$Kind = 'ask') {
 }
 
 $script:CleanBoxes = @{}
+$script:CleanSizes = @{}
+$script:CleanSizeText = @{}
 $script:FeatureBoxes = @{}
+
+# Riga con testo a sinistra e interruttore a destra. Il modello delle caselle
+# mostra solo testo semplice: titolo e spiegazione stanno accanto, e un clic
+# sul testo sposta l'interruttore.
+function New-SwitchRow($Text, [string]$Desc, $Box) {
+    $g = New-Object System.Windows.Controls.Grid; $g.Margin = '0,0,0,6'
+    $c0 = New-Object System.Windows.Controls.ColumnDefinition
+    $c1 = New-Object System.Windows.Controls.ColumnDefinition; $c1.Width = [System.Windows.GridLength]::Auto
+    $g.ColumnDefinitions.Add($c0); $g.ColumnDefinitions.Add($c1)
+    $sp = New-Object System.Windows.Controls.StackPanel; $sp.VerticalAlignment = 'Center'; $sp.Margin = '0,0,12,0'
+    $sp.Background = [System.Windows.Media.Brushes]::Transparent; $sp.Cursor = 'Hand'; $sp.Tag = $Box
+    [void]$sp.Children.Add($Text)
+    if ($Desc) {
+        $d = New-Object System.Windows.Controls.TextBlock
+        $d.Text = $Desc; $d.Style = $window.FindResource('SubTitle'); $d.Margin = '0,1,0,0'
+        [void]$sp.Children.Add($d)
+    }
+    $sp.Add_MouseLeftButtonUp({ $b = $this.Tag; if ($b.IsEnabled) { $b.IsChecked = -not ($b.IsChecked -eq $true) } })
+    [void]$g.Children.Add($sp)
+    $Box.Content = ''; $Box.VerticalAlignment = 'Center'
+    [System.Windows.Controls.Grid]::SetColumn($Box, 1); [void]$g.Children.Add($Box)
+    return $g
+}
+
+# Riga della pulizia: nome, spazio occupato e spiegazione.
+function New-CleanRow($it) {
+    $cb = New-Object System.Windows.Controls.CheckBox
+    $cb.Tag = 'tool'; $cb.IsChecked = $it.On
+    $t = New-Object System.Windows.Controls.TextBlock; $t.TextWrapping = 'Wrap'
+    $r1 = New-Object System.Windows.Documents.Run (T "clean_$($it.Key)")
+    $r1.Foreground = New-AppBrush '#FFE6E8EB'; $r1.FontSize = 13
+    $r2 = New-Object System.Windows.Documents.Run ''
+    $r2.Foreground = New-AppBrush '#FF7EB1FF'; $r2.FontSize = 12.5; $r2.FontWeight = 'SemiBold'
+    [void]$t.Inlines.Add($r1); [void]$t.Inlines.Add($r2)
+    $cb.Add_Checked({ Update-CleanTotal }); $cb.Add_Unchecked({ Update-CleanTotal })
+    $script:CleanBoxes[$it.Key] = $cb
+    $script:CleanSizeText[$it.Key] = $r2
+    return (New-SwitchRow $t (T "cleanTip_$($it.Key)") $cb)
+}
+
+function Update-CleanTotal {
+    if ($null -eq $script:CleanTotalText) { return }
+    $sum = 0.0; $n = 0
+    foreach ($k in $script:CleanBoxes.Keys) {
+        if ($script:CleanBoxes[$k].IsChecked -ne $true) { continue }
+        $n++
+        if ($script:CleanSizes.ContainsKey($k)) { $sum += [double]$script:CleanSizes[$k] }
+    }
+    $sz = if ($sum -ge 1GB) { '{0:0.0} GB' -f ($sum / 1GB) } else { '{0:0} MB' -f ($sum / 1MB) }
+    $script:CleanTotalText.Text = if ($script:ToolScanJob) { T 'cleanMeasuring' } else { (T 'cleanTotal') -f $sz }
+    if ($script:CleanRunBtn) { $script:CleanRunBtn.IsEnabled = ($n -gt 0) }
+}
 
 function Show-ToolsPage {
     $panTools.Children.Clear()
-    $grid = New-Object System.Windows.Controls.Grid
-    foreach ($i in 0..1) { $cd = New-Object System.Windows.Controls.ColumnDefinition; $cd.Width = New-Object System.Windows.GridLength(1, [System.Windows.GridUnitType]::Star); $grid.ColumnDefinitions.Add($cd) }
-    $left = New-Object System.Windows.Controls.StackPanel; $right = New-Object System.Windows.Controls.StackPanel
-    [System.Windows.Controls.Grid]::SetColumn($right, 1)
-    [void]$grid.Children.Add($left); [void]$grid.Children.Add($right)
+    $root = New-Object System.Windows.Controls.StackPanel
 
-    # Pulizia
-    $c = New-ToolCard (T 'ttlClean') (T 'cleanHint')
-    $script:CleanBoxes = @{}
-    foreach ($it in $script:CleanItems) {
-        $cb = New-Object System.Windows.Controls.CheckBox
-        $cb.Tag = 'tool'; $cb.IsChecked = $it.On
-        $cb.Content = T "clean_$($it.Key)"
-        $cb.ToolTip = T "cleanTip_$($it.Key)"
-        $script:CleanBoxes[$it.Key] = $cb
-        [void]$c.Panel.Children.Add($cb)
-    }
-    $wp = New-Object System.Windows.Controls.WrapPanel; $wp.Margin = '0,10,0,0'
-    [void]$wp.Children.Add((New-ToolButton (T 'cleanScan') { Start-ToolScan }))
-    [void]$wp.Children.Add((New-ToolButton (T 'cleanRun') {
+    # --- riga 1: pulizia totale e dispositivi scollegati, le due cose piu' usate
+    $row1 = New-Object System.Windows.Controls.Grid
+    foreach ($i in 0..1) { $cd = New-Object System.Windows.Controls.ColumnDefinition; $cd.Width = New-Object System.Windows.GridLength(1, [System.Windows.GridUnitType]::Star); $row1.ColumnDefinitions.Add($cd) }
+
+    $c = New-ToolCard (T 'ttlCleanAll') (T 'cleanAllHint') 'E74D' '#FF4C8DFF'
+    $script:CleanBoxes = @{}; $script:CleanSizeText = @{}
+    foreach ($it in $script:CleanItems) { [void]$c.Panel.Children.Add((New-CleanRow $it)) }
+    $bar = New-Object System.Windows.Controls.Grid; $bar.Margin = '0,12,0,0'
+    $bc0 = New-Object System.Windows.Controls.ColumnDefinition
+    $bc1 = New-Object System.Windows.Controls.ColumnDefinition; $bc1.Width = [System.Windows.GridLength]::Auto
+    $bar.ColumnDefinitions.Add($bc0); $bar.ColumnDefinitions.Add($bc1)
+    $script:CleanTotalText = New-Object System.Windows.Controls.TextBlock
+    $script:CleanTotalText.FontSize = 13; $script:CleanTotalText.FontWeight = 'SemiBold'; $script:CleanTotalText.Foreground = New-AppBrush '#FFC5C9CF'
+    $script:CleanTotalText.VerticalAlignment = 'Center'
+    [void]$bar.Children.Add($script:CleanTotalText)
+    $btns = New-Object System.Windows.Controls.StackPanel; $btns.Orientation = 'Horizontal'
+    [void]$btns.Children.Add((New-ToolButton (T 'cleanRescan') { Start-ToolScan }))
+    $script:CleanRunBtn = New-ToolButton (T 'cleanNow') {
         $keys = @($script:CleanItems | Where-Object { $script:CleanBoxes[$_.Key].IsChecked -eq $true } | ForEach-Object { $_.Key })
         if ($keys.Count -eq 0) { return }
-        if (-not (Show-Dialog (T 'ttlClean') ((T 'cleanAsk') -f $keys.Count) 'warn')) { return }
+        if (-not (Show-Dialog (T 'ttlCleanAll') ((T 'cleanAsk') -f $keys.Count) 'warn')) { return }
         $script:ToolsNeedRefresh = $true
-        Add-ToolJob (T 'ttlClean') (Get-CleanScript $keys)
-    } 'PrimaryBtn'))
-    [void]$c.Panel.Children.Add($wp)
-    [void]$left.Children.Add($c.Card)
+        Add-ToolJob (T 'ttlCleanAll') (Get-CleanScript $keys)
+    } 'PrimaryBtn'
+    $script:CleanRunBtn.Margin = '0'
+    [void]$btns.Children.Add($script:CleanRunBtn)
+    [System.Windows.Controls.Grid]::SetColumn($btns, 1); [void]$bar.Children.Add($btns)
+    [void]$c.Panel.Children.Add($bar)
+    [void]$row1.Children.Add($c.Card)
 
-    # Riparazioni
-    $c = New-ToolCard (T 'ttlFix') (T 'fixHint')
-    [void]$c.Panel.Children.Add((New-ToolRow 'netQuick' { if (Confirm-Tool 'netQuick') { Add-ToolJob (T 'tool_netQuick') $script:ToolScripts.netQuick } }))
-    [void]$c.Panel.Children.Add((New-ToolRow 'netFull' { if (Confirm-Tool 'netFull' 'warn') { Add-ToolJob (T 'tool_netFull') $script:ToolScripts.netFull -Reboot } }))
-    [void]$c.Panel.Children.Add((New-ToolRow 'firewall' { if (Confirm-Tool 'firewall' 'danger') { Add-ToolJob (T 'tool_firewall') $script:ToolScripts.firewall } }))
-    [void]$c.Panel.Children.Add((New-ToolRow 'wuReset' { if (Confirm-Tool 'wuReset' 'warn') { Add-ToolJob (T 'tool_wuReset') $script:ToolScripts.wuReset -Reboot } }))
-    [void]$c.Panel.Children.Add((New-ToolRow 'repair' { if (Confirm-Tool 'repair') { Add-ToolJob (T 'tool_repair') $script:ToolScripts.repair } }))
-    [void]$c.Panel.Children.Add((New-ToolRow 'ntp' { Add-ToolJob (T 'tool_ntp') $script:ToolScripts.ntp }))
-    [void]$c.Panel.Children.Add((New-ToolRow 'rootCerts' { Add-ToolJob (T 'tool_rootCerts') $script:ToolScripts.rootCerts }))
-    [void]$c.Panel.Children.Add((New-ToolRow 'winget' { Add-ToolJob (T 'tool_winget') $script:ToolScripts.winget }))
-    [void]$c.Panel.Children.Add((New-ToolRow 'regBackup' { Add-ToolJob (T 'tool_regBackup') $script:ToolScripts.regBackup }))
-    [void]$c.Panel.Children.Add((New-ToolRow 'store' {
+    $c = New-ToolCard (T 'ttlGhost') (T 'ghostHint') 'E772' '#FF2DD4BF'
+    $script:GhostStatus = New-Object System.Windows.Controls.TextBlock
+    $script:GhostStatus.FontSize = 13; $script:GhostStatus.Foreground = New-AppBrush '#FFC5C9CF'; $script:GhostStatus.TextWrapping = 'Wrap'
+    $script:GhostStatus.Margin = '0,0,0,8'
+    [void]$c.Panel.Children.Add($script:GhostStatus)
+    $script:GhostAll = New-Object System.Windows.Controls.CheckBox
+    $script:GhostAll.Tag = 'tool'; $script:GhostAll.IsChecked = $true
+    $script:GhostAll.Add_Checked({ foreach ($g in $script:GhostBoxes) { $g.IsChecked = $true }; Update-GhostButton })
+    $script:GhostAll.Add_Unchecked({ foreach ($g in $script:GhostBoxes) { $g.IsChecked = $false }; Update-GhostButton })
+    $at = New-Object System.Windows.Controls.TextBlock; $at.Text = T 'ghostAll'; $at.FontWeight = 'SemiBold'; $at.Foreground = New-AppBrush '#FFC5C9CF'
+    $script:GhostAllRow = New-SwitchRow $at '' $script:GhostAll
+    $script:GhostAllRow.Visibility = 'Collapsed'; $script:GhostAllRow.Margin = '0,0,0,8'
+    [void]$c.Panel.Children.Add($script:GhostAllRow)
+    $sv = New-Object System.Windows.Controls.ScrollViewer; $sv.MaxHeight = 330; $sv.VerticalScrollBarVisibility = 'Auto'
+    $script:GhostList = New-Object System.Windows.Controls.StackPanel
+    $sv.Content = $script:GhostList
+    [void]$c.Panel.Children.Add($sv)
+    $gb = New-Object System.Windows.Controls.StackPanel; $gb.Orientation = 'Horizontal'; $gb.Margin = '0,12,0,0'; $gb.HorizontalAlignment = 'Right'
+    [void]$gb.Children.Add((New-ToolButton (T 'ghostRescan') { Start-GhostScan }))
+    $script:GhostRemoveBtn = New-ToolButton (T 'ghostRemove') { Invoke-GhostRemove } 'PrimaryBtn'
+    $script:GhostRemoveBtn.Margin = '0'; $script:GhostRemoveBtn.IsEnabled = $false
+    [void]$gb.Children.Add($script:GhostRemoveBtn)
+    [void]$c.Panel.Children.Add($gb)
+    $rightCol = New-Object System.Windows.Controls.StackPanel
+    [System.Windows.Controls.Grid]::SetColumn($rightCol, 1)
+    [void]$rightCol.Children.Add($c.Card)
+    [void]$row1.Children.Add($rightCol)
+    [void]$root.Children.Add($row1)
+
+    # Funzionalita' di Windows, sotto i dispositivi.
+    $c = New-ToolCard (T 'ttlFeatures') (T 'featHint') 'E71D' '#FFA78BFA'
+    $script:FeatureBoxes = @{}
+    foreach ($f in $script:Features) {
+        $cb = New-Object System.Windows.Controls.CheckBox
+        $cb.Tag = 'tool'; $cb.Content = T "feat_$($f.Key)"; $cb.ToolTip = T "featTip_$($f.Key)"
+        $script:FeatureBoxes[$f.Key] = $cb
+        [void]$c.Panel.Children.Add($cb)
+    }
+    $fb = New-ToolButton (T 'featRun') {
+        $keys = @($script:Features | Where-Object { $script:FeatureBoxes[$_.Key].IsChecked -eq $true -and $script:FeatureBoxes[$_.Key].IsEnabled } | ForEach-Object { $_.Key })
+        if ($keys.Count -eq 0) { return }
+        if (-not (Show-Dialog (T 'ttlFeatures') ((T 'featAsk') -f $keys.Count) 'ask')) { return }
+        foreach ($k in $keys) { $script:FeatureBoxes[$k].IsChecked = $false }
+        $script:ToolsNeedRefresh = $true
+        Add-ToolJob (T 'ttlFeatures') (Get-FeatureScript $keys) -Reboot
+    } 'PrimaryBtn'
+    $fb.Margin = '0,12,0,0'; $fb.HorizontalAlignment = 'Right'
+    [void]$c.Panel.Children.Add($fb)
+    [void]$rightCol.Children.Add($c.Card)
+
+    # --- riga 2: riparazioni, un riquadro per ciascuna
+    $c = New-ToolCard (T 'ttlFix') (T 'fixHint') 'E90F' '#FF34D399'
+    $ug = New-Object System.Windows.Controls.Primitives.UniformGrid; $ug.Columns = 3; $ug.Margin = '0,0,-10,-10'
+    [void]$ug.Children.Add((New-ToolTile 'netQuick' 'E701' '#FF38BDF8' { if (Confirm-Tool 'netQuick') { Add-ToolJob (T 'tool_netQuick') $script:ToolScripts.netQuick } }))
+    [void]$ug.Children.Add((New-ToolTile 'netFull' 'E839' '#FF38BDF8' { if (Confirm-Tool 'netFull' 'warn') { Add-ToolJob (T 'tool_netFull') $script:ToolScripts.netFull -Reboot } } 'reboot'))
+    [void]$ug.Children.Add((New-ToolTile 'firewall' 'EA18' '#FFF87171' { if (Confirm-Tool 'firewall' 'danger') { Add-ToolJob (T 'tool_firewall') $script:ToolScripts.firewall } } 'caution'))
+    [void]$ug.Children.Add((New-ToolTile 'wuReset' 'E895' '#FFFBBF24' { if (Confirm-Tool 'wuReset' 'warn') { Add-ToolJob (T 'tool_wuReset') $script:ToolScripts.wuReset -Reboot } } 'reboot'))
+    [void]$ug.Children.Add((New-ToolTile 'repair' 'E90F' '#FF34D399' { if (Confirm-Tool 'repair') { Add-ToolJob (T 'tool_repair') $script:ToolScripts.repair } }))
+    [void]$ug.Children.Add((New-ToolTile 'ntp' 'E823' '#FFA78BFA' { Add-ToolJob (T 'tool_ntp') $script:ToolScripts.ntp }))
+    [void]$ug.Children.Add((New-ToolTile 'rootCerts' 'E8D7' '#FF34D399' { Add-ToolJob (T 'tool_rootCerts') $script:ToolScripts.rootCerts }))
+    [void]$ug.Children.Add((New-ToolTile 'winget' 'E7B8' '#FF60A5FA' { Add-ToolJob (T 'tool_winget') $script:ToolScripts.winget }))
+    [void]$ug.Children.Add((New-ToolTile 'regBackup' 'E78C' '#FF60A5FA' { Add-ToolJob (T 'tool_regBackup') $script:ToolScripts.regBackup }))
+    [void]$ug.Children.Add((New-ToolTile 'store' 'E719' '#FF60A5FA' {
         Start-Process "$env:SystemRoot\System32\wsreset.exe" -ErrorAction SilentlyContinue
         Write-Log "[OK] Cache del Microsoft Store: wsreset avviato."
     }))
-    [void]$c.Panel.Children.Add((New-ToolRow 'explorer' {
+    [void]$ug.Children.Add((New-ToolTile 'explorer' 'EC50' '#FFFBBF24' {
         Stop-Process -Name explorer -Force -ErrorAction SilentlyContinue
         Write-Log "[OK] Esplora risorse riavviato."
     }))
-    [void]$c.Panel.Children.Add((New-ToolRow 'icons' {
+    [void]$ug.Children.Add((New-ToolTile 'icons' 'E8B9' '#FFFBBF24' {
         if (-not (Confirm-Tool 'icons')) { return }
         Stop-Process -Name explorer -Force -ErrorAction SilentlyContinue
         Start-Sleep -Milliseconds 800
@@ -18658,32 +19171,12 @@ function Show-ToolsPage {
         if (-not (Get-Process explorer -ErrorAction SilentlyContinue)) { Start-Process explorer.exe }
         Write-Log "[OK] Cache di icone e miniature ricostruita."
     }))
-    [void]$left.Children.Add($c.Card)
+    [void]$c.Panel.Children.Add($ug)
+    [void]$root.Children.Add($c.Card)
 
-    # Funzionalita' di Windows
-    $c = New-ToolCard (T 'ttlFeatures') (T 'featHint')
-    $script:FeatureBoxes = @{}
-    foreach ($f in $script:Features) {
-        $cb = New-Object System.Windows.Controls.CheckBox
-        $cb.Tag = 'tool'; $cb.Content = T "feat_$($f.Key)"; $cb.ToolTip = T "featTip_$($f.Key)"
-        $script:FeatureBoxes[$f.Key] = $cb
-        [void]$c.Panel.Children.Add($cb)
-    }
-    $wp = New-Object System.Windows.Controls.WrapPanel; $wp.Margin = '0,10,0,0'
-    [void]$wp.Children.Add((New-ToolButton (T 'featRun') {
-        $keys = @($script:Features | Where-Object { $script:FeatureBoxes[$_.Key].IsChecked -eq $true -and $script:FeatureBoxes[$_.Key].IsEnabled } | ForEach-Object { $_.Key })
-        if ($keys.Count -eq 0) { return }
-        if (-not (Show-Dialog (T 'ttlFeatures') ((T 'featAsk') -f $keys.Count) 'ask')) { return }
-        foreach ($k in $keys) { $script:FeatureBoxes[$k].IsChecked = $false }
-        $script:ToolsNeedRefresh = $true
-        Add-ToolJob (T 'ttlFeatures') (Get-FeatureScript $keys) -Reboot
-    } 'PrimaryBtn'))
-    [void]$c.Panel.Children.Add($wp)
-    [void]$right.Children.Add($c.Card)
 
-    # Pannelli di Windows
-    $c = New-ToolCard (T 'ttlPanels') (T 'panelsHint')
-    $ug = New-Object System.Windows.Controls.Primitives.UniformGrid; $ug.Columns = 2
+    $c = New-ToolCard (T 'ttlPanels') (T 'panelsHint') 'E713' '#FF94A3B8'
+    $ug = New-Object System.Windows.Controls.Primitives.UniformGrid; $ug.Columns = 4
     foreach ($p in $script:Panels) {
         $b = New-Object System.Windows.Controls.Button
         $b.Content = T "panel_$($p.Key)"; $b.Style = $window.FindResource('GhostBtn'); $b.Margin = '0,0,8,8'; $b.Tag = $p.Cmd
@@ -18691,30 +19184,29 @@ function Show-ToolsPage {
         [void]$ug.Children.Add($b)
     }
     [void]$c.Panel.Children.Add($ug)
-    [void]$right.Children.Add($c.Card)
+    [void]$root.Children.Add($c.Card)
 
-    [void]$panTools.Children.Add($grid)
+    [void]$panTools.Children.Add($root)
+    Update-CleanTotal
 }
 
 # Spazio occupato dalle voci di pulizia e stato delle funzionalita': letture
-# lente, in un runspace. Il risultato torna sulle caselle.
+# lente, in un runspace. Il risultato torna sulle righe.
 $script:ToolScanScript = @'
-param($items, $features)
+param($items, $features, $helpers)
+. ([ScriptBlock]::Create($helpers))
 $out = @{ Sizes = @{}; Features = @{} }
 foreach ($it in $items) {
     $sum = 0
-    foreach ($p in $it.Paths) {
-        $x = [Environment]::ExpandEnvironmentVariables($p)
-        if (Test-Path -LiteralPath $x) { $sum += (Get-ChildItem -LiteralPath $x -Force -Recurse -File -ErrorAction SilentlyContinue | Measure-Object Length -Sum).Sum }
-    }
-    if ($it.Key -eq 'recycle') {
-        foreach ($d in [IO.DriveInfo]::GetDrives() | Where-Object { $_.DriveType -eq 'Fixed' -and $_.IsReady }) {
-            $r = Join-Path $d.RootDirectory '$Recycle.Bin'
-            if (Test-Path -LiteralPath $r) { $sum += (Get-ChildItem -LiteralPath $r -Force -Recurse -File -ErrorAction SilentlyContinue | Measure-Object Length -Sum).Sum }
+    foreach ($p in $it.Paths) { $sum += Get-PathSize $p }
+    switch ($it.Key) {
+        'recycle' {
+            foreach ($d in [IO.DriveInfo]::GetDrives() | Where-Object { $_.DriveType -eq 'Fixed' -and $_.IsReady }) { $sum += Get-PathSize (Join-Path $d.RootDirectory '$Recycle.Bin') }
         }
-    }
-    if ($it.Key -eq 'thumbs') {
-        $sum += (Get-ChildItem "$env:LOCALAPPDATA\Microsoft\Windows\Explorer" -Filter 'thumbcache_*.db' -Force -ErrorAction SilentlyContinue | Measure-Object Length -Sum).Sum
+        'thumbs' { $sum += (Get-ChildItem "$env:LOCALAPPDATA\Microsoft\Windows\Explorer" -Filter 'thumbcache_*.db' -Force -ErrorAction SilentlyContinue | Measure-Object Length -Sum).Sum }
+        'browserHist' { $sum += Get-BrowserSize }
+        'browserCache' { $sum += Get-BrowserSize -Cache }
+        'recent' { $sum += (Get-ChildItem "$env:APPDATA\Microsoft\Windows\Recent" -Force -Recurse -File -ErrorAction SilentlyContinue | Where-Object { $_.Name -ne $QuickAccessPins } | Measure-Object Length -Sum).Sum }
     }
     $out.Sizes[$it.Key] = [double]$sum
 }
@@ -18733,9 +19225,10 @@ $out
 function Start-ToolScan {
     if ($script:ToolScanJob) { return }
     $ps = [powershell]::Create()
-    [void]$ps.AddScript($script:ToolScanScript).AddArgument($script:CleanItems).AddArgument($script:Features)
+    [void]$ps.AddScript($script:ToolScanScript).AddArgument($script:CleanItems).AddArgument($script:Features).AddArgument($script:ToolHelpers)
     $script:ToolScanJob = @{ Ps = $ps; H = $ps.BeginInvoke() }
-    foreach ($k in $script:CleanBoxes.Keys) { $script:CleanBoxes[$k].Content = "$(T "clean_$k")  ·  $(T 'cleanMeasuring')" }
+    foreach ($k in $script:CleanSizeText.Keys) { $script:CleanSizeText[$k].Text = "   ·  $(T 'cleanMeasuring')" }
+    Update-CleanTotal
     $t = New-Object System.Windows.Threading.DispatcherTimer
     $t.Interval = [TimeSpan]::FromMilliseconds(250)
     $t.Add_Tick({
@@ -18743,11 +19236,11 @@ function Start-ToolScan {
         $this.Stop()
         try { $r = @($script:ToolScanJob.Ps.EndInvoke($script:ToolScanJob.H)) | Where-Object { $_ -is [hashtable] } | Select-Object -First 1 } catch { $r = $null }
         $script:ToolScanJob.Ps.Dispose(); $script:ToolScanJob = $null
-        if ($null -eq $r) { return }
-        foreach ($k in $script:CleanBoxes.Keys) {
+        if ($null -eq $r) { Update-CleanTotal; return }
+        foreach ($k in $script:CleanSizeText.Keys) {
             $b = [double]$r.Sizes[$k]
-            $sz = if ($k -eq 'runHist') { '' } elseif ($b -ge 1GB) { '{0:0.0} GB' -f ($b / 1GB) } else { '{0:0} MB' -f ($b / 1MB) }
-            $script:CleanBoxes[$k].Content = if ($sz) { "$(T "clean_$k")  ·  $sz" } else { T "clean_$k" }
+            $script:CleanSizes[$k] = $b
+            $script:CleanSizeText[$k].Text = if ($b -ge 1GB) { '   ·  {0:0.0} GB' -f ($b / 1GB) } elseif ($b -ge 1MB) { '   ·  {0:0} MB' -f ($b / 1MB) } else { "   ·  $(T 'cleanEmpty')" }
         }
         foreach ($k in $script:FeatureBoxes.Keys) {
             $cb = $script:FeatureBoxes[$k]; $st = [string]$r.Features[$k]
@@ -18756,8 +19249,102 @@ function Start-ToolScan {
             [System.Windows.Controls.ToolTipService]::SetShowOnDisabled($cb, $true)
             if ($st -eq 'missing') { $cb.ToolTip = T 'featMissing' }
         }
+        Update-CleanTotal
     })
     $t.Start()
+}
+
+# ------------------------------------------------------------------------------
+# Dispositivi scollegati
+# ------------------------------------------------------------------------------
+# Ogni chiavetta, cuffia o periferica collegata almeno una volta lascia una voce
+# con il suo driver. Toglierle e' sicuro: ricollegando il dispositivo Windows lo
+# reinstalla. Restano fuori le classi di sistema (processori, volumi, firmware,
+# componenti software) e le voci ROOT, che Windows crea da solo.
+$script:GhostScanScript = @'
+$skip = @('System', 'Computer', 'Processor', 'Volume', 'VolumeSnapshot', 'Firmware', 'SoftwareComponent', 'LegacyDriver')
+try {
+    @(Get-PnpDevice -ErrorAction Stop | Where-Object {
+        -not $_.Present -and $skip -notcontains [string]$_.Class -and [string]$_.InstanceId -notmatch '^(ROOT|HTREE)\\'
+    } | Sort-Object Class, FriendlyName | ForEach-Object {
+        $n = if ($_.FriendlyName) { [string]$_.FriendlyName } elseif ($_.Description) { [string]$_.Description } else { [string]$_.InstanceId }
+        @{ Id = [string]$_.InstanceId; Name = $n; Class = [string]$_.Class }
+    })
+} catch { @{ Error = $_.Exception.Message } }
+'@
+
+$script:GhostBoxes = @()
+function Update-GhostButton {
+    if ($null -eq $script:GhostRemoveBtn) { return }
+    $n = @($script:GhostBoxes | Where-Object { $_.IsChecked -eq $true }).Count
+    $script:GhostRemoveBtn.IsEnabled = ($n -gt 0)
+    $script:GhostRemoveBtn.Content = if ($n -gt 0) { "$(T 'ghostRemove') ($n)" } else { T 'ghostRemove' }
+}
+
+function Start-GhostScan {
+    if ($script:GhostJob -or $null -eq $script:GhostList) { return }
+    $script:GhostList.Children.Clear(); $script:GhostBoxes = @()
+    $script:GhostAllRow.Visibility = 'Collapsed'
+    $script:GhostStatus.Text = T 'ghostSearching'
+    Update-GhostButton
+    $ps = [powershell]::Create()
+    [void]$ps.AddScript($script:GhostScanScript)
+    $script:GhostJob = @{ Ps = $ps; H = $ps.BeginInvoke() }
+    $t = New-Object System.Windows.Threading.DispatcherTimer
+    $t.Interval = [TimeSpan]::FromMilliseconds(250)
+    $t.Add_Tick({
+        if (-not $script:GhostJob.H.IsCompleted) { return }
+        $this.Stop()
+        try { $r = @($script:GhostJob.Ps.EndInvoke($script:GhostJob.H) | Where-Object { $_ -is [hashtable] }) } catch { $r = @() }
+        $script:GhostJob.Ps.Dispose(); $script:GhostJob = $null
+        $err = @($r | Where-Object { $_.ContainsKey('Error') })
+        $list = @($r | Where-Object { $_.ContainsKey('Id') })
+        if ($err.Count -gt 0) { $script:GhostStatus.Text = "$(T 'ghostError') $($err[0].Error)"; return }
+        if ($list.Count -eq 0) { $script:GhostStatus.Text = T 'ghostNone'; return }
+        $script:GhostStatus.Text = (T 'ghostFound') -f $list.Count
+        $script:GhostAll.IsChecked = $true; $script:GhostAllRow.Visibility = 'Visible'
+        foreach ($d in $list) {
+            $cb = New-Object System.Windows.Controls.CheckBox
+            $cb.Tag = $d.Id; $cb.IsChecked = $true
+            $tb = New-Object System.Windows.Controls.TextBlock; $tb.TextWrapping = 'Wrap'
+            $r1 = New-Object System.Windows.Documents.Run $d.Name; $r1.Foreground = New-AppBrush '#FFE6E8EB'; $r1.FontSize = 12.5
+            $r2 = New-Object System.Windows.Documents.Run "   $($d.Class)"; $r2.Foreground = New-AppBrush '#FF7F858D'; $r2.FontSize = 11.5
+            [void]$tb.Inlines.Add($r1); [void]$tb.Inlines.Add($r2)
+            $cb.Add_Checked({ Update-GhostButton }); $cb.Add_Unchecked({ Update-GhostButton })
+            $script:GhostBoxes += $cb
+            $row = New-SwitchRow $tb '' $cb; $row.Margin = '0,0,0,2'
+            [void]$script:GhostList.Children.Add($row)
+        }
+        Update-GhostButton
+    })
+    $t.Start()
+}
+
+# Rimozione con pnputil (Windows 10 2004 e successivi), una voce alla volta.
+function Get-GhostRemoveScript([string[]]$Ids) {
+    $sb = New-Object System.Text.StringBuilder
+    [void]$sb.AppendLine('$ok = 0; $ids = @(')
+    foreach ($id in $Ids) { [void]$sb.AppendLine("    '$($id -replace "'", "''")'") }
+    [void]$sb.AppendLine(')')
+    [void]$sb.AppendLine("Write-Host '@@STEP $((T 'ttlGhost') -replace "'", "''")'")
+    [void]$sb.AppendLine('for ($i = 0; $i -lt $ids.Count; $i++) {')
+    [void]$sb.AppendLine('    & pnputil.exe /remove-device $ids[$i] | Out-Null')
+    [void]$sb.AppendLine('    if ($LASTEXITCODE -eq 0 -or $LASTEXITCODE -eq 3010) { $ok++ }')
+    [void]$sb.AppendLine('    Write-Host ("@@PCT " + [int](100 * ($i + 1) / $ids.Count))')
+    [void]$sb.AppendLine('}')
+    [void]$sb.AppendLine("Write-Host ('@@DONE ' + ('$((T 'ghostDone') -replace "'", "''")' -f `$ok, `$ids.Count))")
+    [void]$sb.AppendLine('if ($ok -eq 0) { exit 1 }')
+    [void]$sb.AppendLine('exit 0')
+    return $sb.ToString()
+}
+
+function Invoke-GhostRemove {
+    $ids = @($script:GhostBoxes | Where-Object { $_.IsChecked -eq $true } | ForEach-Object { [string]$_.Tag })
+    if ($ids.Count -eq 0) { return }
+    if ([Environment]::OSVersion.Version.Build -lt 19041) { Show-Dialog (T 'ttlGhost') (T 'ghostOld') 'warn' | Out-Null; return }
+    if (-not (Show-Dialog (T 'ttlGhost') ((T 'ghostAsk') -f $ids.Count) 'ask')) { return }
+    $script:GhostRescan = $true
+    Add-ToolJob (T 'ttlGhost') (Get-GhostRemoveScript $ids)
 }
 
 function Show-ToolsPageIfNeeded {
@@ -18765,6 +19352,7 @@ function Show-ToolsPageIfNeeded {
     $script:ToolsBuiltLang = $script:LangCode
     Show-ToolsPage
     Start-ToolScan
+    Start-GhostScan
 }
 
 # ------------------------------------------------------------------------------

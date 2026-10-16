@@ -721,7 +721,7 @@ M:clean_doCache	Caché de Optimización de distribución
 M:clean_recycle	Papelera
 M:clean_errors	Informes de errores y volcados
 M:clean_thumbs	Caché de miniaturas
-M:clean_recent	Archivos recientes y listas de accesos
+M:clean_recent	Archivos recientes e historial de Ejecutar
 M:clean_runHist	Historial de Ejecutar y rutas escritas
 M:clean_prefetch	Prefetch
 M:cleanTip_winTemp	Archivos dejados por instaladores y el sistema.
@@ -731,11 +731,11 @@ M:cleanTip_doCache	Copias de actualizaciones compartidas con otros PC.
 M:cleanTip_recycle	Vacía la Papelera en todas las unidades.
 M:cleanTip_errors	Informes ya enviados y archivos de bloqueo.
 M:cleanTip_thumbs	Windows las recrea al abrir carpetas: la primera apertura será más lenta.
-M:cleanTip_recent	Quita los archivos recientes del Explorador, Inicio y la barra.
+M:cleanTip_recent	Listas de archivos abiertos recientemente, comandos de Ejecutar y rutas escritas. Las carpetas ancladas en Acceso rápido se quedan; los elementos anclados en las listas de las apps no.
 M:cleanTip_runHist	Comandos de Ejecutar (Win+R) y rutas escritas en el Explorador.
 M:cleanTip_prefetch	Windows lo usa para abrir antes los programas: tras limpiarlo los primeros inicios serán más lentos.
-M:ttlFix	Reparaciones
-M:fixHint	Empiezan enseguida, de una en una. El progreso se ve arriba también desde otras páginas.
+M:ttlFix	Reparaciones rápidas
+M:fixHint	Resuelven los problemas más comunes con un clic. Se ejecutan de una en una y el progreso se ve desde las otras páginas.
 M:toolRun	Ejecutar
 M:tool_netQuick	Red: restablecimiento rápido
 M:toolDesc_netQuick	Vacía la caché DNS y renueva la IP. La conexión se corta unos segundos.
@@ -924,3 +924,28 @@ M:homeTypeDescDesktop	Rendimiento pleno: sin ahorro de energía.
 M:homeTypeDescLaptop	Omite las opciones que gastan batería.
 M:homeTypeDescServer	Mantiene seguridad, servicios y diagnóstico: mejor rendimiento sin debilitar el servidor.
 M:homePhysDisks	Discos
+M:ttlCleanAll	Limpieza total del PC
+M:cleanAllHint	Libera espacio quitando archivos que ya no sirven. Contraseñas, cookies, sesiones y archivos personales no se tocan.
+M:clean_browserHist	Historial y descargas de los navegadores
+M:cleanTip_browserHist	Sitios visitados y lista de descargas de Chrome, Edge, Firefox, Brave, Opera y Vivaldi. Los archivos descargados, favoritos y sesiones se quedan.
+M:clean_browserCache	Caché de los navegadores
+M:cleanTip_browserCache	Copias de páginas que los navegadores guardan para abrirlas antes. No cierra tus sesiones; la primera visita será algo más lenta.
+M:cleanTotal	Espacio a liberar: {0}
+M:cleanNow	Limpiar ahora
+M:cleanRescan	Recalcular
+M:cleanEmpty	vacío
+M:cleanBrowserOpen	Para limpiar también {0}, cierra el navegador y repite.
+M:ttlGhost	Dispositivos desconectados
+M:ghostHint	Memorias, auriculares y periféricos usados antes dejan drivers y entradas. Quitarlos es seguro: si los vuelves a conectar, Windows los reinstala.
+M:ghostSearching	Buscando dispositivos desconectados...
+M:ghostNone	Ningún dispositivo desconectado: nada que limpiar.
+M:ghostFound	{0} dispositivos desconectados encontrados.
+M:ghostAll	Seleccionar todos
+M:ghostRemove	Quitar
+M:ghostRescan	Buscar de nuevo
+M:ghostAsk	¿Quito {0} dispositivos desconectados? Si los vuelves a conectar, Windows los reinstala.
+M:ghostOld	Requiere Windows 10 versión 2004 o posterior.
+M:ghostDone	Quitados {0} de {1}.
+M:ghostError	Lista no disponible:
+M:tagReboot	Requiere reinicio
+M:tagCaution	Con cuidado

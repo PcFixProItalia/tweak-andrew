@@ -679,7 +679,7 @@ $script:Msg = @{
     clean_recycle      = @{ it = "Cestino"; en = "Recycle Bin" }
     clean_errors       = @{ it = "Segnalazioni errori e dump"; en = "Error reports and dumps" }
     clean_thumbs       = @{ it = "Cache delle miniature"; en = "Thumbnail cache" }
-    clean_recent       = @{ it = "File recenti ed elenchi di salto"; en = "Recent files and jump lists" }
+    clean_recent       = @{ it = "File recenti e cronologia di Esegui"; en = "Recent files and Run history" }
     clean_runHist      = @{ it = "Cronologia di Esegui e dei percorsi digitati"; en = "Run and typed path history" }
     clean_prefetch     = @{ it = "Prefetch"; en = "Prefetch" }
     cleanTip_winTemp   = @{ it = "File lasciati dai programmi di installazione e dal sistema."; en = "Files left behind by installers and the system." }
@@ -689,11 +689,11 @@ $script:Msg = @{
     cleanTip_recycle   = @{ it = "Svuota il Cestino su tutti i dischi."; en = "Empties the Recycle Bin on every drive." }
     cleanTip_errors    = @{ it = "Rapporti già inviati e file di arresto anomalo."; en = "Reports already sent and crash files." }
     cleanTip_thumbs    = @{ it = "Windows le ricrea aprendo le cartelle: la prima apertura sarà più lenta."; en = "Windows rebuilds them when you open folders: the first opening will be slower." }
-    cleanTip_recent    = @{ it = "Toglie i file recenti da Esplora file, Start e barra delle applicazioni."; en = "Removes recent files from File Explorer, Start and the taskbar." }
+    cleanTip_recent    = @{ it = "Elenchi dei file aperti di recente, comandi di Esegui e percorsi digitati. Le cartelle fissate in Accesso rapido restano; gli elementi fissati negli elenchi delle app no."; en = "Lists of recently opened files, Run commands and typed paths. Folders pinned in Quick access stay; items pinned in app jump lists don't." }
     cleanTip_runHist   = @{ it = "Comandi scritti in Esegui (Win+R) e percorsi digitati in Esplora file."; en = "Commands typed in Run (Win+R) and paths typed in File Explorer." }
     cleanTip_prefetch  = @{ it = "Windows lo usa per aprire prima i programmi: dopo la pulizia i primi avvii saranno più lenti."; en = "Windows uses it to open programs faster: after cleaning the first launches will be slower." }
-    ttlFix             = @{ it = "Riparazioni"; en = "Repairs" }
-    fixHint            = @{ it = "Partono subito, una alla volta. L'avanzamento resta visibile in alto anche dalle altre pagine."; en = "They start right away, one at a time. Progress stays visible at the top from the other pages too." }
+    ttlFix             = @{ it = "Riparazioni rapide"; en = "Quick repairs" }
+    fixHint            = @{ it = "Risolvono i problemi più comuni con un clic. Partono una alla volta e l'avanzamento resta visibile anche dalle altre pagine."; en = "They fix the most common problems with one click. They run one at a time and progress stays visible from other pages too." }
     toolRun            = @{ it = "Esegui"; en = "Run" }
     tool_netQuick      = @{ it = "Rete: ripristino rapido"; en = "Network: quick reset" }
     toolDesc_netQuick  = @{ it = "Svuota la cache DNS e rinnova l'indirizzo IP. La connessione cade per qualche secondo."; en = "Flushes the DNS cache and renews the IP address. The connection drops for a few seconds." }
@@ -833,6 +833,31 @@ $script:Msg = @{
     homeTypeDescLaptop = @{ it = "Salta le voci che consumano batteria."; en = "Skips the entries that drain the battery." }
     homeTypeDescServer = @{ it = "Lascia attive sicurezza, servizi e diagnostica: migliora le prestazioni senza indebolire il server."; en = "Keeps security, services and diagnostics on: better performance without weakening the server." }
     homePhysDisks      = @{ it = "Dischi"; en = "Disks" }
+    ttlCleanAll        = @{ it = "Pulizia totale del PC"; en = "Full PC cleanup" }
+    cleanAllHint       = @{ it = "Libera spazio togliendo file che non servono più. Password, cookie, accessi ai siti e file personali non si toccano."; en = "Frees space by removing files you no longer need. Passwords, cookies, site logins and personal files are not touched." }
+    clean_browserHist  = @{ it = "Cronologia e download dei browser"; en = "Browser history and downloads" }
+    cleanTip_browserHist = @{ it = "Siti visitati ed elenco dei download di Chrome, Edge, Firefox, Brave, Opera e Vivaldi. I file scaricati, i preferiti e gli accessi restano."; en = "Visited sites and the download list of Chrome, Edge, Firefox, Brave, Opera and Vivaldi. Downloaded files, bookmarks and logins stay." }
+    clean_browserCache = @{ it = "Cache dei browser"; en = "Browser cache" }
+    cleanTip_browserCache = @{ it = "Copie delle pagine che i browser salvano per aprirle prima. Non ti disconnette dai siti; la prima apertura sarà un po' più lenta."; en = "Copies of pages browsers save to open them faster. It doesn't log you out; the first visit will be a little slower." }
+    cleanTotal         = @{ it = "Spazio da liberare: {0}"; en = "Space to free: {0}" }
+    cleanNow           = @{ it = "Pulisci ora"; en = "Clean now" }
+    cleanRescan        = @{ it = "Ricalcola"; en = "Recalculate" }
+    cleanEmpty         = @{ it = "vuoto"; en = "empty" }
+    cleanBrowserOpen   = @{ it = "Per pulire anche {0} chiudi il browser e ripeti."; en = "To clean {0} too, close the browser and run it again." }
+    ttlGhost           = @{ it = "Dispositivi scollegati"; en = "Disconnected devices" }
+    ghostHint          = @{ it = "Chiavette, cuffie e periferiche usate in passato lasciano driver e voci nel sistema. Toglierle è sicuro: se le ricolleghi, Windows le reinstalla da solo."; en = "USB sticks, headsets and devices used in the past leave drivers and entries behind. Removing them is safe: plug them back in and Windows reinstalls them." }
+    ghostSearching     = @{ it = "Cerco i dispositivi scollegati..."; en = "Looking for disconnected devices..." }
+    ghostNone          = @{ it = "Nessun dispositivo scollegato: non c'è niente da pulire."; en = "No disconnected devices: nothing to clean." }
+    ghostFound         = @{ it = "{0} dispositivi scollegati trovati."; en = "{0} disconnected devices found." }
+    ghostAll           = @{ it = "Seleziona tutti"; en = "Select all" }
+    ghostRemove        = @{ it = "Rimuovi"; en = "Remove" }
+    ghostRescan        = @{ it = "Cerca di nuovo"; en = "Search again" }
+    ghostAsk           = @{ it = "Rimuovo {0} dispositivi scollegati? Se li ricolleghi, Windows li reinstalla da solo."; en = "Remove {0} disconnected devices? Plug them back in and Windows reinstalls them." }
+    ghostOld           = @{ it = "Serve Windows 10 versione 2004 o successiva."; en = "Requires Windows 10 version 2004 or later." }
+    ghostDone          = @{ it = "Rimossi {0} su {1}."; en = "Removed {0} of {1}." }
+    ghostError         = @{ it = "Elenco non disponibile:"; en = "List not available:" }
+    tagReboot          = @{ it = "Serve un riavvio"; en = "Needs a restart" }
+    tagCaution         = @{ it = "Con cautela"; en = "Use with care" }
 }
 
 $script:LangCode = "it"

@@ -721,7 +721,7 @@ M:clean_doCache	Übermittlungsoptimierungs-Cache
 M:clean_recycle	Papierkorb
 M:clean_errors	Fehlerberichte und Speicherabbilder
 M:clean_thumbs	Miniaturansicht-Cache
-M:clean_recent	Zuletzt verwendete Dateien und Sprunglisten
+M:clean_recent	Zuletzt verwendete Dateien und Ausführen-Verlauf
 M:clean_runHist	Verlauf von Ausführen und eingegebenen Pfaden
 M:clean_prefetch	Prefetch
 M:cleanTip_winTemp	Von Installationsprogrammen und System hinterlassene Dateien.
@@ -731,11 +731,11 @@ M:cleanTip_doCache	Mit anderen PCs geteilte Update-Kopien.
 M:cleanTip_recycle	Leert den Papierkorb auf allen Laufwerken.
 M:cleanTip_errors	Bereits gesendete Berichte und Absturzdateien.
 M:cleanTip_thumbs	Windows erstellt sie beim Öffnen neu: das erste Öffnen ist langsamer.
-M:cleanTip_recent	Entfernt zuletzt verwendete Dateien aus Explorer, Start und Taskleiste.
+M:cleanTip_recent	Listen kürzlich geöffneter Dateien, Ausführen-Befehle und eingegebene Pfade. Im Schnellzugriff angeheftete Ordner bleiben; in Sprunglisten angeheftete Elemente nicht.
 M:cleanTip_runHist	In Ausführen (Win+R) eingegebene Befehle und im Explorer eingegebene Pfade.
 M:cleanTip_prefetch	Windows startet Programme damit schneller: danach sind die ersten Starts langsamer.
-M:ttlFix	Reparaturen
-M:fixHint	Sie starten sofort, einzeln. Der Fortschritt bleibt oben auch auf anderen Seiten sichtbar.
+M:ttlFix	Schnelle Reparaturen
+M:fixHint	Sie beheben die häufigsten Probleme mit einem Klick. Sie laufen nacheinander, der Fortschritt bleibt auf allen Seiten sichtbar.
 M:toolRun	Ausführen
 M:tool_netQuick	Netzwerk: schnelles Zurücksetzen
 M:toolDesc_netQuick	Leert den DNS-Cache und erneuert die IP. Die Verbindung bricht kurz ab.
@@ -924,3 +924,28 @@ M:homeTypeDescDesktop	Volle Leistung: kein Energiesparen.
 M:homeTypeDescLaptop	Lässt akkuzehrende Einträge aus.
 M:homeTypeDescServer	Lässt Sicherheit, Dienste und Diagnose an: mehr Leistung, ohne den Server zu schwächen.
 M:homePhysDisks	Datenträger
+M:ttlCleanAll	Komplette PC-Reinigung
+M:cleanAllHint	Schafft Platz, indem nicht mehr benötigte Dateien entfernt werden. Passwörter, Cookies, Anmeldungen und persönliche Dateien bleiben unberührt.
+M:clean_browserHist	Browserverlauf und Downloads
+M:cleanTip_browserHist	Besuchte Seiten und Downloadliste von Chrome, Edge, Firefox, Brave, Opera und Vivaldi. Heruntergeladene Dateien, Lesezeichen und Anmeldungen bleiben.
+M:clean_browserCache	Browser-Cache
+M:cleanTip_browserCache	Kopien von Seiten, die Browser zum schnelleren Öffnen speichern. Abmeldungen gibt es nicht; der erste Besuch ist etwas langsamer.
+M:cleanTotal	Freizugebender Platz: {0}
+M:cleanNow	Jetzt bereinigen
+M:cleanRescan	Neu berechnen
+M:cleanEmpty	leer
+M:cleanBrowserOpen	Um auch {0} zu bereinigen, schließe den Browser und wiederhole.
+M:ttlGhost	Getrennte Geräte
+M:ghostHint	Früher genutzte USB-Sticks, Headsets und Geräte hinterlassen Treiber und Einträge. Entfernen ist sicher: Beim erneuten Anschließen installiert Windows sie neu.
+M:ghostSearching	Suche nach getrennten Geräten...
+M:ghostNone	Keine getrennten Geräte: nichts zu bereinigen.
+M:ghostFound	{0} getrennte Geräte gefunden.
+M:ghostAll	Alle auswählen
+M:ghostRemove	Entfernen
+M:ghostRescan	Erneut suchen
+M:ghostAsk	{0} getrennte Geräte entfernen? Beim erneuten Anschließen installiert Windows sie neu.
+M:ghostOld	Erfordert Windows 10 Version 2004 oder neuer.
+M:ghostDone	{0} von {1} entfernt.
+M:ghostError	Liste nicht verfügbar:
+M:tagReboot	Neustart nötig
+M:tagCaution	Mit Vorsicht

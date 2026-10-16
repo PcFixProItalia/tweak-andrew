@@ -174,6 +174,7 @@ $script:ToolTimer.Add_Tick({
     Set-UiLock 'tools' $false
     $btnToolJobsClose.Visibility = 'Visible'
     if ($script:ToolsNeedRefresh) { $script:ToolsNeedRefresh = $false; Start-ToolScan }
+    if ($script:GhostRescan) { $script:GhostRescan = $false; Start-GhostScan }
 })
 
 $btnToolJobsClose.Add_Click({
@@ -184,21 +185,25 @@ $btnToolJobsClose.Add_Click({
 # ------------------------------------------------------------------------------
 # Script degli strumenti
 # ------------------------------------------------------------------------------
-# Pulizia: ogni voce ha le cartelle da svuotare e, se serve, un'azione a parte.
+# Pulizia totale: ogni voce ha le cartelle da svuotare e, se serve, un'azione a parte.
+# Dal vecchio file .bat restano fuori: Prefetch (Windows lo ricrea subito e
+# intanto programmi e avvio partono piu' lenti), i file .bak di tutto il disco C
+# (sono copie di sicurezza di programmi e utenti) e la ricreazione delle
+# cartelle Temp, che perdeva i loro permessi.
 $script:CleanItems = @(
-    @{ Key = 'winTemp';   On = $true;  Paths = @('%SystemRoot%\Temp') }
-    @{ Key = 'userTemp';  On = $true;  Paths = @('%TEMP%') }
-    @{ Key = 'wuCache';   On = $true;  Paths = @('%SystemRoot%\SoftwareDistribution\Download') }
-    @{ Key = 'doCache';   On = $true;  Paths = @('%SystemRoot%\ServiceProfiles\NetworkService\AppData\Local\Microsoft\Windows\DeliveryOptimization\Cache') }
-    @{ Key = 'recycle';   On = $true;  Paths = @() }
-    @{ Key = 'errors';    On = $true;  Paths = @('%ProgramData%\Microsoft\Windows\WER\ReportArchive', '%ProgramData%\Microsoft\Windows\WER\ReportQueue', '%LOCALAPPDATA%\CrashDumps', '%SystemRoot%\Minidump') }
-    @{ Key = 'thumbs';    On = $false; Paths = @() }
-    @{ Key = 'recent';    On = $false; Paths = @('%APPDATA%\Microsoft\Windows\Recent') }
-    @{ Key = 'runHist';   On = $false; Paths = @() }
-    @{ Key = 'prefetch';  On = $false; Paths = @('%SystemRoot%\Prefetch') }
+    @{ Key = 'winTemp';      On = $true;  Paths = @('%SystemRoot%\Temp') }
+    @{ Key = 'userTemp';     On = $true;  Paths = @('%TEMP%') }
+    @{ Key = 'wuCache';      On = $true;  Paths = @('%SystemRoot%\SoftwareDistribution\Download') }
+    @{ Key = 'doCache';      On = $true;  Paths = @('%SystemRoot%\ServiceProfiles\NetworkService\AppData\Local\Microsoft\Windows\DeliveryOptimization\Cache') }
+    @{ Key = 'recycle';      On = $true;  Paths = @() }
+    @{ Key = 'errors';       On = $true;  Paths = @('%ProgramData%\Microsoft\Windows\WER\ReportArchive', '%ProgramData%\Microsoft\Windows\WER\ReportQueue', '%LOCALAPPDATA%\CrashDumps', '%SystemRoot%\Minidump') }
+    @{ Key = 'browserHist';  On = $true;  Paths = @() }
+    @{ Key = 'browserCache'; On = $true;  Paths = @() }
+    @{ Key = 'recent';       On = $false; Paths = @() }
+    @{ Key = 'thumbs';       On = $false; Paths = @() }
 )
 
-# Funzioni comuni agli script: cartella svuotata senza toccare la cartella stessa.
+# Funzioni comuni agli script: girano in un processo a parte, quindi niente T.
 $script:ToolHelpers = @'
 function Clear-Dir([string]$p) {
     $p = [Environment]::ExpandEnvironmentVariables($p)
@@ -213,12 +218,146 @@ function Clear-Dir([string]$p) {
     return $size
 }
 function Size-Text([double]$b) { if ($b -ge 1GB) { '{0:0.0} GB' -f ($b / 1GB) } else { '{0:0} MB' -f ($b / 1MB) } }
+function Get-PathSize([string]$p) {
+    $p = [Environment]::ExpandEnvironmentVariables($p)
+    if (-not (Test-Path -LiteralPath $p)) { return 0 }
+    $item = Get-Item -LiteralPath $p -Force -ErrorAction SilentlyContinue
+    if ($item -and -not $item.PSIsContainer) { return [double]$item.Length }
+    return [double](Get-ChildItem -LiteralPath $p -Force -Recurse -File -ErrorAction SilentlyContinue | Measure-Object Length -Sum).Sum
+}
+
+# Browser basati su Chromium: la cronologia e l'elenco dei download stanno nel
+# file History del profilo. Cookie (Network\Cookies), password (Login Data) e
+# accessi stanno in altri file e non si toccano.
+# Cartelle base dei profili: variabili, cosi' la prova le punta su una cartella finta.
+$LocalApp = $env:LOCALAPPDATA
+$RoamingApp = $env:APPDATA
+$Browsers = @(
+    @{ Name = 'Chrome';   Proc = 'chrome';  Base = 'L'; Root = 'Google\Chrome\User Data';            Multi = $true }
+    @{ Name = 'Edge';     Proc = 'msedge';  Base = 'L'; Root = 'Microsoft\Edge\User Data';           Multi = $true }
+    @{ Name = 'Brave';    Proc = 'brave';   Base = 'L'; Root = 'BraveSoftware\Brave-Browser\User Data'; Multi = $true }
+    @{ Name = 'Vivaldi';  Proc = 'vivaldi'; Base = 'L'; Root = 'Vivaldi\User Data';                  Multi = $true }
+    @{ Name = 'Opera';    Proc = 'opera';   Base = 'R'; Root = 'Opera Software\Opera Stable';         Multi = $false }
+    @{ Name = 'Opera GX'; Proc = 'opera';   Base = 'R'; Root = 'Opera Software\Opera GX Stable';      Multi = $false }
+)
+$HistoryFiles = @('History', 'History-journal', 'Visited Links', 'Top Sites', 'Top Sites-journal', 'Shortcuts', 'Shortcuts-journal')
+$CacheDirs = @('Cache', 'Code Cache', 'GPUCache')
+
+function Get-BrowserProfiles($b) {
+    $root = Join-Path $(if ($b.Base -eq 'L') { $LocalApp } else { $RoamingApp }) $b.Root
+    if (-not (Test-Path -LiteralPath $root)) { return @() }
+    if (-not $b.Multi) { return @($root) }
+    return @(Get-ChildItem -LiteralPath $root -Directory -ErrorAction SilentlyContinue |
+             Where-Object { $_.Name -eq 'Default' -or $_.Name -like 'Profile *' } | ForEach-Object { $_.FullName })
+}
+function Get-FirefoxProfiles([switch]$Local) {
+    $base = if ($Local) { "$LocalApp\Mozilla\Firefox\Profiles" } else { "$RoamingApp\Mozilla\Firefox\Profiles" }
+    if (-not (Test-Path -LiteralPath $base)) { return @() }
+    return @(Get-ChildItem -LiteralPath $base -Directory -ErrorAction SilentlyContinue | ForEach-Object { $_.FullName })
+}
+function Test-BrowserOpen([string]$proc) { return [bool](Get-Process -Name $proc -ErrorAction SilentlyContinue) }
+
+# SQLite di Windows (winsqlite3.dll, presente da Windows 10): serve per Firefox,
+# che tiene cronologia e segnalibri nello stesso file.
+function Invoke-Sqlite([string]$db, [string]$sql) {
+    if (-not ('TweakAndrewSql.Lite' -as [type])) {
+        Add-Type -Namespace TweakAndrewSql -Name Lite -MemberDefinition @"
+[System.Runtime.InteropServices.DllImport("winsqlite3.dll", EntryPoint = "sqlite3_open_v2")] public static extern int Open(byte[] file, out System.IntPtr db, int flags, System.IntPtr vfs);
+[System.Runtime.InteropServices.DllImport("winsqlite3.dll", EntryPoint = "sqlite3_exec")] public static extern int Exec(System.IntPtr db, byte[] sql, System.IntPtr cb, System.IntPtr arg, out System.IntPtr err);
+[System.Runtime.InteropServices.DllImport("winsqlite3.dll", EntryPoint = "sqlite3_busy_timeout")] public static extern int Busy(System.IntPtr db, int ms);
+[System.Runtime.InteropServices.DllImport("winsqlite3.dll", EntryPoint = "sqlite3_close")] public static extern int Close(System.IntPtr db);
+"@
+    }
+    $h = [IntPtr]::Zero; $e = [IntPtr]::Zero
+    $r = [TweakAndrewSql.Lite]::Open([Text.Encoding]::UTF8.GetBytes($db + [char]0), [ref]$h, 2, [IntPtr]::Zero)
+    if ($r -ne 0) { if ($h -ne [IntPtr]::Zero) { [void][TweakAndrewSql.Lite]::Close($h) }; return $r }
+    [void][TweakAndrewSql.Lite]::Busy($h, 2000)
+    $r = [TweakAndrewSql.Lite]::Exec($h, [Text.Encoding]::UTF8.GetBytes($sql + [char]0), [IntPtr]::Zero, [IntPtr]::Zero, [ref]$e)
+    [void][TweakAndrewSql.Lite]::Close($h)
+    return $r
+}
+# Firefox: si cancellano le visite, gli indirizzi digitati e l'elenco dei
+# download; le pagine restano solo come voci senza visite, cosi' i segnalibri
+# (che puntano a quelle righe) non si toccano. Tutto in una transazione: se
+# qualcosa va storto non cambia nulla.
+$FirefoxSql = "BEGIN; DELETE FROM moz_historyvisits; DELETE FROM moz_inputhistory; " +
+              "DELETE FROM moz_annos WHERE anno_attribute_id IN (SELECT id FROM moz_anno_attributes WHERE name LIKE 'downloads/%'); " +
+              "UPDATE moz_places SET visit_count = 0, last_visit_date = NULL, frecency = 0; COMMIT;"
+
+# Cronologia dei browser. Restituisce lo spazio liberato; i browser aperti si
+# saltano e finiscono nell'elenco $script:BrowserOpen.
+function Clear-BrowserHistory {
+    $freed = 0
+    foreach ($b in $Browsers) {
+        $profiles = @(Get-BrowserProfiles $b)
+        if ($profiles.Count -eq 0) { continue }
+        if (Test-BrowserOpen $b.Proc) { $script:BrowserOpen += $b.Name; continue }
+        foreach ($p in $profiles) {
+            foreach ($f in $HistoryFiles) {
+                $x = Join-Path $p $f
+                if (Test-Path -LiteralPath $x) { try { $len = (Get-Item -LiteralPath $x -Force).Length; Remove-Item -LiteralPath $x -Force -ErrorAction Stop; $freed += $len } catch {} }
+            }
+        }
+    }
+    $ff = @(Get-FirefoxProfiles | Where-Object { Test-Path -LiteralPath (Join-Path $_ 'places.sqlite') })
+    if ($ff.Count -gt 0) {
+        if (Test-BrowserOpen 'firefox') { $script:BrowserOpen += 'Firefox' }
+        elseif (-not (Test-Path "$env:SystemRoot\System32\winsqlite3.dll")) { Write-Host 'ATTENZIONE: SQLite di Windows assente, cronologia di Firefox non pulita.' }
+        else {
+            foreach ($p in $ff) {
+                $r = Invoke-Sqlite (Join-Path $p 'places.sqlite') $FirefoxSql
+                if ($r -ne 0) { Write-Host "ATTENZIONE: cronologia di Firefox non pulita (codice SQLite $r)." }
+            }
+        }
+    }
+    return $freed
+}
+function Clear-BrowserCache {
+    $freed = 0
+    foreach ($b in $Browsers) {
+        $profiles = @(Get-BrowserProfiles $b)
+        if ($profiles.Count -eq 0) { continue }
+        if (Test-BrowserOpen $b.Proc) { if ($script:BrowserOpen -notcontains $b.Name) { $script:BrowserOpen += $b.Name }; continue }
+        foreach ($p in $profiles) { foreach ($d in $CacheDirs) { $freed += Clear-Dir (Join-Path $p $d) } }
+    }
+    $ff = @(Get-FirefoxProfiles -Local)
+    if ($ff.Count -gt 0) {
+        if (Test-BrowserOpen 'firefox') { if ($script:BrowserOpen -notcontains 'Firefox') { $script:BrowserOpen += 'Firefox' } }
+        else { foreach ($p in $ff) { $freed += Clear-Dir (Join-Path $p 'cache2') } }
+    }
+    return $freed
+}
+function Get-BrowserSize([switch]$Cache) {
+    $sum = 0
+    foreach ($b in $Browsers) {
+        foreach ($p in @(Get-BrowserProfiles $b)) {
+            if ($Cache) { foreach ($d in $CacheDirs) { $sum += Get-PathSize (Join-Path $p $d) } }
+            else { foreach ($f in $HistoryFiles) { $sum += Get-PathSize (Join-Path $p $f) } }
+        }
+    }
+    if ($Cache) { foreach ($p in @(Get-FirefoxProfiles -Local)) { $sum += Get-PathSize (Join-Path $p 'cache2') } }
+    return $sum
+}
+
+# Elementi recenti ed elenchi di salto. Resta il file delle cartelle fissate in
+# Accesso rapido: cancellarlo toglieva anche quelle.
+$QuickAccessPins = 'f01b4d95cf55d32a.automaticDestinations-ms'
+function Clear-Recent {
+    $freed = 0
+    $r = "$RoamingApp\Microsoft\Windows\Recent"
+    foreach ($f in @(Get-ChildItem -LiteralPath $r -Force -Recurse -File -ErrorAction SilentlyContinue | Where-Object { $_.Name -ne $QuickAccessPins })) {
+        try { $len = $f.Length; Remove-Item -LiteralPath $f.FullName -Force -ErrorAction Stop; $freed += $len } catch {}
+    }
+    Remove-ItemProperty 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU' -Name * -ErrorAction SilentlyContinue
+    Remove-ItemProperty 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\TypedPaths' -Name * -ErrorAction SilentlyContinue
+    return $freed
+}
 '@
 
 function Get-CleanScript([string[]]$Keys) {
     $sb = New-Object System.Text.StringBuilder
     [void]$sb.AppendLine($script:ToolHelpers)
-    [void]$sb.AppendLine('$freed = 0')
+    [void]$sb.AppendLine('$freed = 0; $script:BrowserOpen = @()')
     $i = 0
     foreach ($k in $Keys) {
         $item = $script:CleanItems | Where-Object { $_.Key -eq $k }
@@ -229,29 +368,30 @@ function Get-CleanScript([string[]]$Keys) {
             'wuCache' {
                 [void]$sb.AppendLine("Stop-Service wuauserv, bits -Force -ErrorAction SilentlyContinue")
                 [void]$sb.AppendLine("`$freed += Clear-Dir '%SystemRoot%\SoftwareDistribution\Download'")
-                [void]$sb.AppendLine("Start-Service wuauserv -ErrorAction SilentlyContinue")
+                [void]$sb.AppendLine("Start-Service bits, wuauserv -ErrorAction SilentlyContinue")
             }
             'doCache' {
                 [void]$sb.AppendLine("try { Delete-DeliveryOptimizationCache -Force -ErrorAction Stop } catch { `$freed += Clear-Dir '$($item.Paths[0])' }")
             }
             'recycle' {
-                [void]$sb.AppendLine("foreach (`$d in [IO.DriveInfo]::GetDrives() | Where-Object { `$_.DriveType -eq 'Fixed' -and `$_.IsReady }) { `$freed += Clear-Dir (Join-Path `$d.RootDirectory '`$Recycle.Bin') }")
+                [void]$sb.AppendLine("foreach (`$d in [IO.DriveInfo]::GetDrives() | Where-Object { `$_.DriveType -eq 'Fixed' -and `$_.IsReady }) { `$freed += Get-PathSize (Join-Path `$d.RootDirectory '`$Recycle.Bin') }")
                 [void]$sb.AppendLine("Clear-RecycleBin -Force -ErrorAction SilentlyContinue")
             }
             'thumbs' {
                 [void]$sb.AppendLine("Get-ChildItem `"`$env:LOCALAPPDATA\Microsoft\Windows\Explorer`" -Filter 'thumbcache_*.db' -Force -ErrorAction SilentlyContinue | ForEach-Object { try { `$l = `$_.Length; Remove-Item -LiteralPath `$_.FullName -Force -ErrorAction Stop; `$freed += `$l } catch {} }")
             }
-            'runHist' {
-                [void]$sb.AppendLine("Remove-ItemProperty 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU' -Name * -ErrorAction SilentlyContinue")
-                [void]$sb.AppendLine("Remove-ItemProperty 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\TypedPaths' -Name * -ErrorAction SilentlyContinue")
-            }
+            'browserHist'  { [void]$sb.AppendLine('$freed += Clear-BrowserHistory') }
+            'browserCache' { [void]$sb.AppendLine('$freed += Clear-BrowserCache') }
+            'recent'       { [void]$sb.AppendLine('$freed += Clear-Recent') }
             default {
                 foreach ($p in $item.Paths) { [void]$sb.AppendLine("`$freed += Clear-Dir '$p'") }
             }
         }
     }
     [void]$sb.AppendLine("Write-Host '@@PCT 100'")
-    [void]$sb.AppendLine("Write-Host ('@@DONE ' + '$((T 'cleanFreed') -replace "'", "''")' -f (Size-Text `$freed))")
+    [void]$sb.AppendLine("`$msg = '$((T 'cleanFreed') -replace "'", "''")' -f (Size-Text `$freed)")
+    [void]$sb.AppendLine("if (`$script:BrowserOpen.Count -gt 0) { `$msg += ' ' + ('$((T 'cleanBrowserOpen') -replace "'", "''")' -f ((`$script:BrowserOpen | Select-Object -Unique) -join ', ')) }")
+    [void]$sb.AppendLine("Write-Host ('@@DONE ' + `$msg)")
     return $sb.ToString()
 }
 
@@ -418,17 +558,59 @@ $script:Panels = @(
 # ------------------------------------------------------------------------------
 # Pagina Strumenti
 # ------------------------------------------------------------------------------
-function New-ToolCard([string]$Title, [string]$Hint) {
+# Ogni strumento ha un'icona, un nome semplice e una frase che dice cosa fa.
+# Icone: Segoe Fluent Icons su Windows 11, Segoe MDL2 Assets su Windows 10;
+# i codici usati qui esistono in entrambi.
+$script:IconFont = New-Object System.Windows.Media.FontFamily('Segoe Fluent Icons, Segoe MDL2 Assets')
+
+function New-ToolIcon([string]$Glyph, [string]$Color, [double]$Size = 36) {
+    $b = New-Object System.Windows.Controls.Border
+    $b.Width = $Size; $b.Height = $Size; $b.CornerRadius = [Math]::Round($Size / 4)
+    $c = [System.Windows.Media.ColorConverter]::ConvertFromString($Color)
+    $b.Background = New-Object System.Windows.Media.SolidColorBrush ([System.Windows.Media.Color]::FromArgb(38, $c.R, $c.G, $c.B))
+    $t = New-Object System.Windows.Controls.TextBlock
+    $t.Text = [string][char][Convert]::ToInt32($Glyph, 16); $t.FontFamily = $script:IconFont; $t.FontSize = [Math]::Round($Size * 0.46)
+    $t.Foreground = New-AppBrush $Color; $t.HorizontalAlignment = 'Center'; $t.VerticalAlignment = 'Center'
+    $b.Child = $t
+    return $b
+}
+
+# Intestazione di una scheda: icona, titolo e una frase semplice.
+function New-ToolHead([string]$Glyph, [string]$Color, [string]$Title, [string]$Desc) {
+    $g = New-Object System.Windows.Controls.Grid; $g.Margin = '0,0,0,14'
+    $c0 = New-Object System.Windows.Controls.ColumnDefinition; $c0.Width = [System.Windows.GridLength]::Auto
+    $c1 = New-Object System.Windows.Controls.ColumnDefinition
+    $g.ColumnDefinitions.Add($c0); $g.ColumnDefinitions.Add($c1)
+    $ic = New-ToolIcon $Glyph $Color 42; $ic.VerticalAlignment = 'Top'
+    [void]$g.Children.Add($ic)
+    $sp = New-Object System.Windows.Controls.StackPanel; $sp.Margin = '14,0,0,0'; $sp.VerticalAlignment = 'Center'
+    $t = New-Object System.Windows.Controls.TextBlock
+    $t.Text = $Title; $t.FontSize = 17; $t.FontWeight = 'SemiBold'; $t.Foreground = New-AppBrush '#FFF2F4F7'
+    $t.FontFamily = 'Segoe UI Variable Display, Segoe UI'; $t.TextWrapping = 'Wrap'
+    [void]$sp.Children.Add($t)
+    if ($Desc) {
+        $d = New-Object System.Windows.Controls.TextBlock
+        $d.Text = $Desc; $d.Style = $window.FindResource('SubTitle'); $d.Margin = '0,3,0,0'; $d.FontSize = 12.5
+        [void]$sp.Children.Add($d)
+    }
+    [System.Windows.Controls.Grid]::SetColumn($sp, 1); [void]$g.Children.Add($sp)
+    return $g
+}
+
+function New-ToolCard([string]$Title, [string]$Hint, [string]$Glyph = '', [string]$Color = '#FF4C8DFF') {
     $card = New-Object System.Windows.Controls.Border
     $card.Style = $window.FindResource('Glass')
     $sp = New-Object System.Windows.Controls.StackPanel
-    $h = New-Object System.Windows.Controls.TextBlock
-    $h.Text = $Title.ToUpper(); $h.Style = $window.FindResource('CardTitle')
-    [void]$sp.Children.Add($h)
-    if ($Hint) {
-        $s = New-Object System.Windows.Controls.TextBlock
-        $s.Text = $Hint; $s.Style = $window.FindResource('SubTitle'); $s.Margin = '0,-4,0,10'
-        [void]$sp.Children.Add($s)
+    if ($Glyph) { [void]$sp.Children.Add((New-ToolHead $Glyph $Color $Title $Hint)) }
+    else {
+        $h = New-Object System.Windows.Controls.TextBlock
+        $h.Text = $Title.ToUpper(); $h.Style = $window.FindResource('CardTitle')
+        [void]$sp.Children.Add($h)
+        if ($Hint) {
+            $s = New-Object System.Windows.Controls.TextBlock
+            $s.Text = $Hint; $s.Style = $window.FindResource('SubTitle'); $s.Margin = '0,-4,0,10'
+            [void]$sp.Children.Add($s)
+        }
     }
     $card.Child = $sp
     return @{ Card = $card; Panel = $sp }
@@ -436,29 +618,52 @@ function New-ToolCard([string]$Title, [string]$Hint) {
 
 function New-ToolButton([string]$Text, [scriptblock]$Click, [string]$Style = 'GhostBtn') {
     $b = New-Object System.Windows.Controls.Button
-    $b.Content = $Text; $b.Style = $window.FindResource($Style); $b.Margin = '0,0,8,8'
+    $b.Content = $Text; $b.Style = $window.FindResource($Style); $b.Margin = '0,0,8,0'
     $b.Add_Click($Click)
     return $b
 }
 
-# Riga di una riparazione: titolo e spiegazione a sinistra, pulsante a destra.
-function New-ToolRow([string]$Key, [scriptblock]$Click) {
-    $g = New-Object System.Windows.Controls.Grid; $g.Margin = '0,0,0,12'
-    $c0 = New-Object System.Windows.Controls.ColumnDefinition
-    $c1 = New-Object System.Windows.Controls.ColumnDefinition; $c1.Width = [System.Windows.GridLength]::Auto
-    $g.ColumnDefinitions.Add($c0); $g.ColumnDefinitions.Add($c1)
-    $sp = New-Object System.Windows.Controls.StackPanel; $sp.VerticalAlignment = 'Center'; $sp.Margin = '0,0,12,0'
+# Riquadro di una riparazione: icona e nome, cosa fa, e il pulsante. $Tag dice
+# se serve un riavvio ('reboot') o se va usata con cautela ('caution').
+function New-ToolTile([string]$Key, [string]$Glyph, [string]$Color, [scriptblock]$Click, [string]$Tag = '') {
+    $b = New-Object System.Windows.Controls.Border
+    $b.Background = New-AppBrush '#FF111316'; $b.BorderBrush = New-AppBrush '#FF25282D'; $b.BorderThickness = 1
+    $b.CornerRadius = 9; $b.Padding = '14,12,14,12'; $b.Margin = '0,0,10,10'
+    $g = New-Object System.Windows.Controls.Grid
+    foreach ($h in 'Auto', '*', 'Auto') {
+        $rd = New-Object System.Windows.Controls.RowDefinition
+        $rd.Height = if ($h -eq '*') { New-Object System.Windows.GridLength(1, [System.Windows.GridUnitType]::Star) } else { [System.Windows.GridLength]::Auto }
+        $g.RowDefinitions.Add($rd)
+    }
+    $top = New-Object System.Windows.Controls.Grid
+    $tc0 = New-Object System.Windows.Controls.ColumnDefinition; $tc0.Width = [System.Windows.GridLength]::Auto
+    $tc1 = New-Object System.Windows.Controls.ColumnDefinition
+    $top.ColumnDefinitions.Add($tc0); $top.ColumnDefinitions.Add($tc1)
+    [void]$top.Children.Add((New-ToolIcon $Glyph $Color 32))
     $t = New-Object System.Windows.Controls.TextBlock
-    $t.Text = T "tool_$Key"; $t.FontSize = 13; $t.FontWeight = 'SemiBold'; $t.Foreground = New-AppBrush '#FFE6E8EB'; $t.TextWrapping = 'Wrap'
+    $t.Text = T "tool_$Key"; $t.FontSize = 13; $t.FontWeight = 'SemiBold'; $t.Foreground = New-AppBrush '#FFE6E8EB'
+    $t.TextWrapping = 'Wrap'; $t.VerticalAlignment = 'Center'; $t.Margin = '10,0,0,0'
+    [System.Windows.Controls.Grid]::SetColumn($t, 1); [void]$top.Children.Add($t)
+    [void]$g.Children.Add($top)
     $d = New-Object System.Windows.Controls.TextBlock
-    $d.Text = T "toolDesc_$Key"; $d.Style = $window.FindResource('SubTitle'); $d.Margin = '0,2,0,0'
-    [void]$sp.Children.Add($t); [void]$sp.Children.Add($d)
-    [void]$g.Children.Add($sp)
-    $b = New-Object System.Windows.Controls.Button
-    $b.Content = T 'toolRun'; $b.Style = $window.FindResource('DotBtn'); $b.Tag = New-AppBrush '#FF2DD4BF'
-    $b.VerticalAlignment = 'Center'; $b.Add_Click($Click)
-    [System.Windows.Controls.Grid]::SetColumn($b, 1); [void]$g.Children.Add($b)
-    return $g
+    $d.Text = T "toolDesc_$Key"; $d.Style = $window.FindResource('SubTitle'); $d.Margin = '0,9,0,10'
+    [System.Windows.Controls.Grid]::SetRow($d, 1); [void]$g.Children.Add($d)
+    $bottom = New-Object System.Windows.Controls.Grid
+    $bc0 = New-Object System.Windows.Controls.ColumnDefinition
+    $bc1 = New-Object System.Windows.Controls.ColumnDefinition; $bc1.Width = [System.Windows.GridLength]::Auto
+    $bottom.ColumnDefinitions.Add($bc0); $bottom.ColumnDefinitions.Add($bc1)
+    if ($Tag) {
+        $pill = if ($Tag -eq 'reboot') { New-AppPill (T 'tagReboot') '#FFFDBA74' '#26FB923C' } else { New-AppPill (T 'tagCaution') '#FFFCA5A5' '#26F87171' }
+        $pill.Margin = '0'; $pill.HorizontalAlignment = 'Left'
+        [void]$bottom.Children.Add($pill)
+    }
+    $btn = New-Object System.Windows.Controls.Button
+    $btn.Content = T 'toolRun'; $btn.Style = $window.FindResource('GhostBtn'); $btn.Padding = '18,6,18,6'
+    $btn.Add_Click($Click)
+    [System.Windows.Controls.Grid]::SetColumn($btn, 1); [void]$bottom.Children.Add($btn)
+    [System.Windows.Controls.Grid]::SetRow($bottom, 2); [void]$g.Children.Add($bottom)
+    $b.Child = $g
+    return $b
 }
 
 function Confirm-Tool([string]$Key, [string]$Kind = 'ask') {
@@ -466,59 +671,167 @@ function Confirm-Tool([string]$Key, [string]$Kind = 'ask') {
 }
 
 $script:CleanBoxes = @{}
+$script:CleanSizes = @{}
+$script:CleanSizeText = @{}
 $script:FeatureBoxes = @{}
+
+# Riga con testo a sinistra e interruttore a destra. Il modello delle caselle
+# mostra solo testo semplice: titolo e spiegazione stanno accanto, e un clic
+# sul testo sposta l'interruttore.
+function New-SwitchRow($Text, [string]$Desc, $Box) {
+    $g = New-Object System.Windows.Controls.Grid; $g.Margin = '0,0,0,6'
+    $c0 = New-Object System.Windows.Controls.ColumnDefinition
+    $c1 = New-Object System.Windows.Controls.ColumnDefinition; $c1.Width = [System.Windows.GridLength]::Auto
+    $g.ColumnDefinitions.Add($c0); $g.ColumnDefinitions.Add($c1)
+    $sp = New-Object System.Windows.Controls.StackPanel; $sp.VerticalAlignment = 'Center'; $sp.Margin = '0,0,12,0'
+    $sp.Background = [System.Windows.Media.Brushes]::Transparent; $sp.Cursor = 'Hand'; $sp.Tag = $Box
+    [void]$sp.Children.Add($Text)
+    if ($Desc) {
+        $d = New-Object System.Windows.Controls.TextBlock
+        $d.Text = $Desc; $d.Style = $window.FindResource('SubTitle'); $d.Margin = '0,1,0,0'
+        [void]$sp.Children.Add($d)
+    }
+    $sp.Add_MouseLeftButtonUp({ $b = $this.Tag; if ($b.IsEnabled) { $b.IsChecked = -not ($b.IsChecked -eq $true) } })
+    [void]$g.Children.Add($sp)
+    $Box.Content = ''; $Box.VerticalAlignment = 'Center'
+    [System.Windows.Controls.Grid]::SetColumn($Box, 1); [void]$g.Children.Add($Box)
+    return $g
+}
+
+# Riga della pulizia: nome, spazio occupato e spiegazione.
+function New-CleanRow($it) {
+    $cb = New-Object System.Windows.Controls.CheckBox
+    $cb.Tag = 'tool'; $cb.IsChecked = $it.On
+    $t = New-Object System.Windows.Controls.TextBlock; $t.TextWrapping = 'Wrap'
+    $r1 = New-Object System.Windows.Documents.Run (T "clean_$($it.Key)")
+    $r1.Foreground = New-AppBrush '#FFE6E8EB'; $r1.FontSize = 13
+    $r2 = New-Object System.Windows.Documents.Run ''
+    $r2.Foreground = New-AppBrush '#FF7EB1FF'; $r2.FontSize = 12.5; $r2.FontWeight = 'SemiBold'
+    [void]$t.Inlines.Add($r1); [void]$t.Inlines.Add($r2)
+    $cb.Add_Checked({ Update-CleanTotal }); $cb.Add_Unchecked({ Update-CleanTotal })
+    $script:CleanBoxes[$it.Key] = $cb
+    $script:CleanSizeText[$it.Key] = $r2
+    return (New-SwitchRow $t (T "cleanTip_$($it.Key)") $cb)
+}
+
+function Update-CleanTotal {
+    if ($null -eq $script:CleanTotalText) { return }
+    $sum = 0.0; $n = 0
+    foreach ($k in $script:CleanBoxes.Keys) {
+        if ($script:CleanBoxes[$k].IsChecked -ne $true) { continue }
+        $n++
+        if ($script:CleanSizes.ContainsKey($k)) { $sum += [double]$script:CleanSizes[$k] }
+    }
+    $sz = if ($sum -ge 1GB) { '{0:0.0} GB' -f ($sum / 1GB) } else { '{0:0} MB' -f ($sum / 1MB) }
+    $script:CleanTotalText.Text = if ($script:ToolScanJob) { T 'cleanMeasuring' } else { (T 'cleanTotal') -f $sz }
+    if ($script:CleanRunBtn) { $script:CleanRunBtn.IsEnabled = ($n -gt 0) }
+}
 
 function Show-ToolsPage {
     $panTools.Children.Clear()
-    $grid = New-Object System.Windows.Controls.Grid
-    foreach ($i in 0..1) { $cd = New-Object System.Windows.Controls.ColumnDefinition; $cd.Width = New-Object System.Windows.GridLength(1, [System.Windows.GridUnitType]::Star); $grid.ColumnDefinitions.Add($cd) }
-    $left = New-Object System.Windows.Controls.StackPanel; $right = New-Object System.Windows.Controls.StackPanel
-    [System.Windows.Controls.Grid]::SetColumn($right, 1)
-    [void]$grid.Children.Add($left); [void]$grid.Children.Add($right)
+    $root = New-Object System.Windows.Controls.StackPanel
 
-    # Pulizia
-    $c = New-ToolCard (T 'ttlClean') (T 'cleanHint')
-    $script:CleanBoxes = @{}
-    foreach ($it in $script:CleanItems) {
-        $cb = New-Object System.Windows.Controls.CheckBox
-        $cb.Tag = 'tool'; $cb.IsChecked = $it.On
-        $cb.Content = T "clean_$($it.Key)"
-        $cb.ToolTip = T "cleanTip_$($it.Key)"
-        $script:CleanBoxes[$it.Key] = $cb
-        [void]$c.Panel.Children.Add($cb)
-    }
-    $wp = New-Object System.Windows.Controls.WrapPanel; $wp.Margin = '0,10,0,0'
-    [void]$wp.Children.Add((New-ToolButton (T 'cleanScan') { Start-ToolScan }))
-    [void]$wp.Children.Add((New-ToolButton (T 'cleanRun') {
+    # --- riga 1: pulizia totale e dispositivi scollegati, le due cose piu' usate
+    $row1 = New-Object System.Windows.Controls.Grid
+    foreach ($i in 0..1) { $cd = New-Object System.Windows.Controls.ColumnDefinition; $cd.Width = New-Object System.Windows.GridLength(1, [System.Windows.GridUnitType]::Star); $row1.ColumnDefinitions.Add($cd) }
+
+    $c = New-ToolCard (T 'ttlCleanAll') (T 'cleanAllHint') 'E74D' '#FF4C8DFF'
+    $script:CleanBoxes = @{}; $script:CleanSizeText = @{}
+    foreach ($it in $script:CleanItems) { [void]$c.Panel.Children.Add((New-CleanRow $it)) }
+    $bar = New-Object System.Windows.Controls.Grid; $bar.Margin = '0,12,0,0'
+    $bc0 = New-Object System.Windows.Controls.ColumnDefinition
+    $bc1 = New-Object System.Windows.Controls.ColumnDefinition; $bc1.Width = [System.Windows.GridLength]::Auto
+    $bar.ColumnDefinitions.Add($bc0); $bar.ColumnDefinitions.Add($bc1)
+    $script:CleanTotalText = New-Object System.Windows.Controls.TextBlock
+    $script:CleanTotalText.FontSize = 13; $script:CleanTotalText.FontWeight = 'SemiBold'; $script:CleanTotalText.Foreground = New-AppBrush '#FFC5C9CF'
+    $script:CleanTotalText.VerticalAlignment = 'Center'
+    [void]$bar.Children.Add($script:CleanTotalText)
+    $btns = New-Object System.Windows.Controls.StackPanel; $btns.Orientation = 'Horizontal'
+    [void]$btns.Children.Add((New-ToolButton (T 'cleanRescan') { Start-ToolScan }))
+    $script:CleanRunBtn = New-ToolButton (T 'cleanNow') {
         $keys = @($script:CleanItems | Where-Object { $script:CleanBoxes[$_.Key].IsChecked -eq $true } | ForEach-Object { $_.Key })
         if ($keys.Count -eq 0) { return }
-        if (-not (Show-Dialog (T 'ttlClean') ((T 'cleanAsk') -f $keys.Count) 'warn')) { return }
+        if (-not (Show-Dialog (T 'ttlCleanAll') ((T 'cleanAsk') -f $keys.Count) 'warn')) { return }
         $script:ToolsNeedRefresh = $true
-        Add-ToolJob (T 'ttlClean') (Get-CleanScript $keys)
-    } 'PrimaryBtn'))
-    [void]$c.Panel.Children.Add($wp)
-    [void]$left.Children.Add($c.Card)
+        Add-ToolJob (T 'ttlCleanAll') (Get-CleanScript $keys)
+    } 'PrimaryBtn'
+    $script:CleanRunBtn.Margin = '0'
+    [void]$btns.Children.Add($script:CleanRunBtn)
+    [System.Windows.Controls.Grid]::SetColumn($btns, 1); [void]$bar.Children.Add($btns)
+    [void]$c.Panel.Children.Add($bar)
+    [void]$row1.Children.Add($c.Card)
 
-    # Riparazioni
-    $c = New-ToolCard (T 'ttlFix') (T 'fixHint')
-    [void]$c.Panel.Children.Add((New-ToolRow 'netQuick' { if (Confirm-Tool 'netQuick') { Add-ToolJob (T 'tool_netQuick') $script:ToolScripts.netQuick } }))
-    [void]$c.Panel.Children.Add((New-ToolRow 'netFull' { if (Confirm-Tool 'netFull' 'warn') { Add-ToolJob (T 'tool_netFull') $script:ToolScripts.netFull -Reboot } }))
-    [void]$c.Panel.Children.Add((New-ToolRow 'firewall' { if (Confirm-Tool 'firewall' 'danger') { Add-ToolJob (T 'tool_firewall') $script:ToolScripts.firewall } }))
-    [void]$c.Panel.Children.Add((New-ToolRow 'wuReset' { if (Confirm-Tool 'wuReset' 'warn') { Add-ToolJob (T 'tool_wuReset') $script:ToolScripts.wuReset -Reboot } }))
-    [void]$c.Panel.Children.Add((New-ToolRow 'repair' { if (Confirm-Tool 'repair') { Add-ToolJob (T 'tool_repair') $script:ToolScripts.repair } }))
-    [void]$c.Panel.Children.Add((New-ToolRow 'ntp' { Add-ToolJob (T 'tool_ntp') $script:ToolScripts.ntp }))
-    [void]$c.Panel.Children.Add((New-ToolRow 'rootCerts' { Add-ToolJob (T 'tool_rootCerts') $script:ToolScripts.rootCerts }))
-    [void]$c.Panel.Children.Add((New-ToolRow 'winget' { Add-ToolJob (T 'tool_winget') $script:ToolScripts.winget }))
-    [void]$c.Panel.Children.Add((New-ToolRow 'regBackup' { Add-ToolJob (T 'tool_regBackup') $script:ToolScripts.regBackup }))
-    [void]$c.Panel.Children.Add((New-ToolRow 'store' {
+    $c = New-ToolCard (T 'ttlGhost') (T 'ghostHint') 'E772' '#FF2DD4BF'
+    $script:GhostStatus = New-Object System.Windows.Controls.TextBlock
+    $script:GhostStatus.FontSize = 13; $script:GhostStatus.Foreground = New-AppBrush '#FFC5C9CF'; $script:GhostStatus.TextWrapping = 'Wrap'
+    $script:GhostStatus.Margin = '0,0,0,8'
+    [void]$c.Panel.Children.Add($script:GhostStatus)
+    $script:GhostAll = New-Object System.Windows.Controls.CheckBox
+    $script:GhostAll.Tag = 'tool'; $script:GhostAll.IsChecked = $true
+    $script:GhostAll.Add_Checked({ foreach ($g in $script:GhostBoxes) { $g.IsChecked = $true }; Update-GhostButton })
+    $script:GhostAll.Add_Unchecked({ foreach ($g in $script:GhostBoxes) { $g.IsChecked = $false }; Update-GhostButton })
+    $at = New-Object System.Windows.Controls.TextBlock; $at.Text = T 'ghostAll'; $at.FontWeight = 'SemiBold'; $at.Foreground = New-AppBrush '#FFC5C9CF'
+    $script:GhostAllRow = New-SwitchRow $at '' $script:GhostAll
+    $script:GhostAllRow.Visibility = 'Collapsed'; $script:GhostAllRow.Margin = '0,0,0,8'
+    [void]$c.Panel.Children.Add($script:GhostAllRow)
+    $sv = New-Object System.Windows.Controls.ScrollViewer; $sv.MaxHeight = 330; $sv.VerticalScrollBarVisibility = 'Auto'
+    $script:GhostList = New-Object System.Windows.Controls.StackPanel
+    $sv.Content = $script:GhostList
+    [void]$c.Panel.Children.Add($sv)
+    $gb = New-Object System.Windows.Controls.StackPanel; $gb.Orientation = 'Horizontal'; $gb.Margin = '0,12,0,0'; $gb.HorizontalAlignment = 'Right'
+    [void]$gb.Children.Add((New-ToolButton (T 'ghostRescan') { Start-GhostScan }))
+    $script:GhostRemoveBtn = New-ToolButton (T 'ghostRemove') { Invoke-GhostRemove } 'PrimaryBtn'
+    $script:GhostRemoveBtn.Margin = '0'; $script:GhostRemoveBtn.IsEnabled = $false
+    [void]$gb.Children.Add($script:GhostRemoveBtn)
+    [void]$c.Panel.Children.Add($gb)
+    $rightCol = New-Object System.Windows.Controls.StackPanel
+    [System.Windows.Controls.Grid]::SetColumn($rightCol, 1)
+    [void]$rightCol.Children.Add($c.Card)
+    [void]$row1.Children.Add($rightCol)
+    [void]$root.Children.Add($row1)
+
+    # Funzionalita' di Windows, sotto i dispositivi.
+    $c = New-ToolCard (T 'ttlFeatures') (T 'featHint') 'E71D' '#FFA78BFA'
+    $script:FeatureBoxes = @{}
+    foreach ($f in $script:Features) {
+        $cb = New-Object System.Windows.Controls.CheckBox
+        $cb.Tag = 'tool'; $cb.Content = T "feat_$($f.Key)"; $cb.ToolTip = T "featTip_$($f.Key)"
+        $script:FeatureBoxes[$f.Key] = $cb
+        [void]$c.Panel.Children.Add($cb)
+    }
+    $fb = New-ToolButton (T 'featRun') {
+        $keys = @($script:Features | Where-Object { $script:FeatureBoxes[$_.Key].IsChecked -eq $true -and $script:FeatureBoxes[$_.Key].IsEnabled } | ForEach-Object { $_.Key })
+        if ($keys.Count -eq 0) { return }
+        if (-not (Show-Dialog (T 'ttlFeatures') ((T 'featAsk') -f $keys.Count) 'ask')) { return }
+        foreach ($k in $keys) { $script:FeatureBoxes[$k].IsChecked = $false }
+        $script:ToolsNeedRefresh = $true
+        Add-ToolJob (T 'ttlFeatures') (Get-FeatureScript $keys) -Reboot
+    } 'PrimaryBtn'
+    $fb.Margin = '0,12,0,0'; $fb.HorizontalAlignment = 'Right'
+    [void]$c.Panel.Children.Add($fb)
+    [void]$rightCol.Children.Add($c.Card)
+
+    # --- riga 2: riparazioni, un riquadro per ciascuna
+    $c = New-ToolCard (T 'ttlFix') (T 'fixHint') 'E90F' '#FF34D399'
+    $ug = New-Object System.Windows.Controls.Primitives.UniformGrid; $ug.Columns = 3; $ug.Margin = '0,0,-10,-10'
+    [void]$ug.Children.Add((New-ToolTile 'netQuick' 'E701' '#FF38BDF8' { if (Confirm-Tool 'netQuick') { Add-ToolJob (T 'tool_netQuick') $script:ToolScripts.netQuick } }))
+    [void]$ug.Children.Add((New-ToolTile 'netFull' 'E839' '#FF38BDF8' { if (Confirm-Tool 'netFull' 'warn') { Add-ToolJob (T 'tool_netFull') $script:ToolScripts.netFull -Reboot } } 'reboot'))
+    [void]$ug.Children.Add((New-ToolTile 'firewall' 'EA18' '#FFF87171' { if (Confirm-Tool 'firewall' 'danger') { Add-ToolJob (T 'tool_firewall') $script:ToolScripts.firewall } } 'caution'))
+    [void]$ug.Children.Add((New-ToolTile 'wuReset' 'E895' '#FFFBBF24' { if (Confirm-Tool 'wuReset' 'warn') { Add-ToolJob (T 'tool_wuReset') $script:ToolScripts.wuReset -Reboot } } 'reboot'))
+    [void]$ug.Children.Add((New-ToolTile 'repair' 'E90F' '#FF34D399' { if (Confirm-Tool 'repair') { Add-ToolJob (T 'tool_repair') $script:ToolScripts.repair } }))
+    [void]$ug.Children.Add((New-ToolTile 'ntp' 'E823' '#FFA78BFA' { Add-ToolJob (T 'tool_ntp') $script:ToolScripts.ntp }))
+    [void]$ug.Children.Add((New-ToolTile 'rootCerts' 'E8D7' '#FF34D399' { Add-ToolJob (T 'tool_rootCerts') $script:ToolScripts.rootCerts }))
+    [void]$ug.Children.Add((New-ToolTile 'winget' 'E7B8' '#FF60A5FA' { Add-ToolJob (T 'tool_winget') $script:ToolScripts.winget }))
+    [void]$ug.Children.Add((New-ToolTile 'regBackup' 'E78C' '#FF60A5FA' { Add-ToolJob (T 'tool_regBackup') $script:ToolScripts.regBackup }))
+    [void]$ug.Children.Add((New-ToolTile 'store' 'E719' '#FF60A5FA' {
         Start-Process "$env:SystemRoot\System32\wsreset.exe" -ErrorAction SilentlyContinue
         Write-Log "[OK] Cache del Microsoft Store: wsreset avviato."
     }))
-    [void]$c.Panel.Children.Add((New-ToolRow 'explorer' {
+    [void]$ug.Children.Add((New-ToolTile 'explorer' 'EC50' '#FFFBBF24' {
         Stop-Process -Name explorer -Force -ErrorAction SilentlyContinue
         Write-Log "[OK] Esplora risorse riavviato."
     }))
-    [void]$c.Panel.Children.Add((New-ToolRow 'icons' {
+    [void]$ug.Children.Add((New-ToolTile 'icons' 'E8B9' '#FFFBBF24' {
         if (-not (Confirm-Tool 'icons')) { return }
         Stop-Process -Name explorer -Force -ErrorAction SilentlyContinue
         Start-Sleep -Milliseconds 800
@@ -529,32 +842,12 @@ function Show-ToolsPage {
         if (-not (Get-Process explorer -ErrorAction SilentlyContinue)) { Start-Process explorer.exe }
         Write-Log "[OK] Cache di icone e miniature ricostruita."
     }))
-    [void]$left.Children.Add($c.Card)
+    [void]$c.Panel.Children.Add($ug)
+    [void]$root.Children.Add($c.Card)
 
-    # Funzionalita' di Windows
-    $c = New-ToolCard (T 'ttlFeatures') (T 'featHint')
-    $script:FeatureBoxes = @{}
-    foreach ($f in $script:Features) {
-        $cb = New-Object System.Windows.Controls.CheckBox
-        $cb.Tag = 'tool'; $cb.Content = T "feat_$($f.Key)"; $cb.ToolTip = T "featTip_$($f.Key)"
-        $script:FeatureBoxes[$f.Key] = $cb
-        [void]$c.Panel.Children.Add($cb)
-    }
-    $wp = New-Object System.Windows.Controls.WrapPanel; $wp.Margin = '0,10,0,0'
-    [void]$wp.Children.Add((New-ToolButton (T 'featRun') {
-        $keys = @($script:Features | Where-Object { $script:FeatureBoxes[$_.Key].IsChecked -eq $true -and $script:FeatureBoxes[$_.Key].IsEnabled } | ForEach-Object { $_.Key })
-        if ($keys.Count -eq 0) { return }
-        if (-not (Show-Dialog (T 'ttlFeatures') ((T 'featAsk') -f $keys.Count) 'ask')) { return }
-        foreach ($k in $keys) { $script:FeatureBoxes[$k].IsChecked = $false }
-        $script:ToolsNeedRefresh = $true
-        Add-ToolJob (T 'ttlFeatures') (Get-FeatureScript $keys) -Reboot
-    } 'PrimaryBtn'))
-    [void]$c.Panel.Children.Add($wp)
-    [void]$right.Children.Add($c.Card)
 
-    # Pannelli di Windows
-    $c = New-ToolCard (T 'ttlPanels') (T 'panelsHint')
-    $ug = New-Object System.Windows.Controls.Primitives.UniformGrid; $ug.Columns = 2
+    $c = New-ToolCard (T 'ttlPanels') (T 'panelsHint') 'E713' '#FF94A3B8'
+    $ug = New-Object System.Windows.Controls.Primitives.UniformGrid; $ug.Columns = 4
     foreach ($p in $script:Panels) {
         $b = New-Object System.Windows.Controls.Button
         $b.Content = T "panel_$($p.Key)"; $b.Style = $window.FindResource('GhostBtn'); $b.Margin = '0,0,8,8'; $b.Tag = $p.Cmd
@@ -562,30 +855,29 @@ function Show-ToolsPage {
         [void]$ug.Children.Add($b)
     }
     [void]$c.Panel.Children.Add($ug)
-    [void]$right.Children.Add($c.Card)
+    [void]$root.Children.Add($c.Card)
 
-    [void]$panTools.Children.Add($grid)
+    [void]$panTools.Children.Add($root)
+    Update-CleanTotal
 }
 
 # Spazio occupato dalle voci di pulizia e stato delle funzionalita': letture
-# lente, in un runspace. Il risultato torna sulle caselle.
+# lente, in un runspace. Il risultato torna sulle righe.
 $script:ToolScanScript = @'
-param($items, $features)
+param($items, $features, $helpers)
+. ([ScriptBlock]::Create($helpers))
 $out = @{ Sizes = @{}; Features = @{} }
 foreach ($it in $items) {
     $sum = 0
-    foreach ($p in $it.Paths) {
-        $x = [Environment]::ExpandEnvironmentVariables($p)
-        if (Test-Path -LiteralPath $x) { $sum += (Get-ChildItem -LiteralPath $x -Force -Recurse -File -ErrorAction SilentlyContinue | Measure-Object Length -Sum).Sum }
-    }
-    if ($it.Key -eq 'recycle') {
-        foreach ($d in [IO.DriveInfo]::GetDrives() | Where-Object { $_.DriveType -eq 'Fixed' -and $_.IsReady }) {
-            $r = Join-Path $d.RootDirectory '$Recycle.Bin'
-            if (Test-Path -LiteralPath $r) { $sum += (Get-ChildItem -LiteralPath $r -Force -Recurse -File -ErrorAction SilentlyContinue | Measure-Object Length -Sum).Sum }
+    foreach ($p in $it.Paths) { $sum += Get-PathSize $p }
+    switch ($it.Key) {
+        'recycle' {
+            foreach ($d in [IO.DriveInfo]::GetDrives() | Where-Object { $_.DriveType -eq 'Fixed' -and $_.IsReady }) { $sum += Get-PathSize (Join-Path $d.RootDirectory '$Recycle.Bin') }
         }
-    }
-    if ($it.Key -eq 'thumbs') {
-        $sum += (Get-ChildItem "$env:LOCALAPPDATA\Microsoft\Windows\Explorer" -Filter 'thumbcache_*.db' -Force -ErrorAction SilentlyContinue | Measure-Object Length -Sum).Sum
+        'thumbs' { $sum += (Get-ChildItem "$env:LOCALAPPDATA\Microsoft\Windows\Explorer" -Filter 'thumbcache_*.db' -Force -ErrorAction SilentlyContinue | Measure-Object Length -Sum).Sum }
+        'browserHist' { $sum += Get-BrowserSize }
+        'browserCache' { $sum += Get-BrowserSize -Cache }
+        'recent' { $sum += (Get-ChildItem "$env:APPDATA\Microsoft\Windows\Recent" -Force -Recurse -File -ErrorAction SilentlyContinue | Where-Object { $_.Name -ne $QuickAccessPins } | Measure-Object Length -Sum).Sum }
     }
     $out.Sizes[$it.Key] = [double]$sum
 }
@@ -604,9 +896,10 @@ $out
 function Start-ToolScan {
     if ($script:ToolScanJob) { return }
     $ps = [powershell]::Create()
-    [void]$ps.AddScript($script:ToolScanScript).AddArgument($script:CleanItems).AddArgument($script:Features)
+    [void]$ps.AddScript($script:ToolScanScript).AddArgument($script:CleanItems).AddArgument($script:Features).AddArgument($script:ToolHelpers)
     $script:ToolScanJob = @{ Ps = $ps; H = $ps.BeginInvoke() }
-    foreach ($k in $script:CleanBoxes.Keys) { $script:CleanBoxes[$k].Content = "$(T "clean_$k")  ·  $(T 'cleanMeasuring')" }
+    foreach ($k in $script:CleanSizeText.Keys) { $script:CleanSizeText[$k].Text = "   ·  $(T 'cleanMeasuring')" }
+    Update-CleanTotal
     $t = New-Object System.Windows.Threading.DispatcherTimer
     $t.Interval = [TimeSpan]::FromMilliseconds(250)
     $t.Add_Tick({
@@ -614,11 +907,11 @@ function Start-ToolScan {
         $this.Stop()
         try { $r = @($script:ToolScanJob.Ps.EndInvoke($script:ToolScanJob.H)) | Where-Object { $_ -is [hashtable] } | Select-Object -First 1 } catch { $r = $null }
         $script:ToolScanJob.Ps.Dispose(); $script:ToolScanJob = $null
-        if ($null -eq $r) { return }
-        foreach ($k in $script:CleanBoxes.Keys) {
+        if ($null -eq $r) { Update-CleanTotal; return }
+        foreach ($k in $script:CleanSizeText.Keys) {
             $b = [double]$r.Sizes[$k]
-            $sz = if ($k -eq 'runHist') { '' } elseif ($b -ge 1GB) { '{0:0.0} GB' -f ($b / 1GB) } else { '{0:0} MB' -f ($b / 1MB) }
-            $script:CleanBoxes[$k].Content = if ($sz) { "$(T "clean_$k")  ·  $sz" } else { T "clean_$k" }
+            $script:CleanSizes[$k] = $b
+            $script:CleanSizeText[$k].Text = if ($b -ge 1GB) { '   ·  {0:0.0} GB' -f ($b / 1GB) } elseif ($b -ge 1MB) { '   ·  {0:0} MB' -f ($b / 1MB) } else { "   ·  $(T 'cleanEmpty')" }
         }
         foreach ($k in $script:FeatureBoxes.Keys) {
             $cb = $script:FeatureBoxes[$k]; $st = [string]$r.Features[$k]
@@ -627,8 +920,102 @@ function Start-ToolScan {
             [System.Windows.Controls.ToolTipService]::SetShowOnDisabled($cb, $true)
             if ($st -eq 'missing') { $cb.ToolTip = T 'featMissing' }
         }
+        Update-CleanTotal
     })
     $t.Start()
+}
+
+# ------------------------------------------------------------------------------
+# Dispositivi scollegati
+# ------------------------------------------------------------------------------
+# Ogni chiavetta, cuffia o periferica collegata almeno una volta lascia una voce
+# con il suo driver. Toglierle e' sicuro: ricollegando il dispositivo Windows lo
+# reinstalla. Restano fuori le classi di sistema (processori, volumi, firmware,
+# componenti software) e le voci ROOT, che Windows crea da solo.
+$script:GhostScanScript = @'
+$skip = @('System', 'Computer', 'Processor', 'Volume', 'VolumeSnapshot', 'Firmware', 'SoftwareComponent', 'LegacyDriver')
+try {
+    @(Get-PnpDevice -ErrorAction Stop | Where-Object {
+        -not $_.Present -and $skip -notcontains [string]$_.Class -and [string]$_.InstanceId -notmatch '^(ROOT|HTREE)\\'
+    } | Sort-Object Class, FriendlyName | ForEach-Object {
+        $n = if ($_.FriendlyName) { [string]$_.FriendlyName } elseif ($_.Description) { [string]$_.Description } else { [string]$_.InstanceId }
+        @{ Id = [string]$_.InstanceId; Name = $n; Class = [string]$_.Class }
+    })
+} catch { @{ Error = $_.Exception.Message } }
+'@
+
+$script:GhostBoxes = @()
+function Update-GhostButton {
+    if ($null -eq $script:GhostRemoveBtn) { return }
+    $n = @($script:GhostBoxes | Where-Object { $_.IsChecked -eq $true }).Count
+    $script:GhostRemoveBtn.IsEnabled = ($n -gt 0)
+    $script:GhostRemoveBtn.Content = if ($n -gt 0) { "$(T 'ghostRemove') ($n)" } else { T 'ghostRemove' }
+}
+
+function Start-GhostScan {
+    if ($script:GhostJob -or $null -eq $script:GhostList) { return }
+    $script:GhostList.Children.Clear(); $script:GhostBoxes = @()
+    $script:GhostAllRow.Visibility = 'Collapsed'
+    $script:GhostStatus.Text = T 'ghostSearching'
+    Update-GhostButton
+    $ps = [powershell]::Create()
+    [void]$ps.AddScript($script:GhostScanScript)
+    $script:GhostJob = @{ Ps = $ps; H = $ps.BeginInvoke() }
+    $t = New-Object System.Windows.Threading.DispatcherTimer
+    $t.Interval = [TimeSpan]::FromMilliseconds(250)
+    $t.Add_Tick({
+        if (-not $script:GhostJob.H.IsCompleted) { return }
+        $this.Stop()
+        try { $r = @($script:GhostJob.Ps.EndInvoke($script:GhostJob.H) | Where-Object { $_ -is [hashtable] }) } catch { $r = @() }
+        $script:GhostJob.Ps.Dispose(); $script:GhostJob = $null
+        $err = @($r | Where-Object { $_.ContainsKey('Error') })
+        $list = @($r | Where-Object { $_.ContainsKey('Id') })
+        if ($err.Count -gt 0) { $script:GhostStatus.Text = "$(T 'ghostError') $($err[0].Error)"; return }
+        if ($list.Count -eq 0) { $script:GhostStatus.Text = T 'ghostNone'; return }
+        $script:GhostStatus.Text = (T 'ghostFound') -f $list.Count
+        $script:GhostAll.IsChecked = $true; $script:GhostAllRow.Visibility = 'Visible'
+        foreach ($d in $list) {
+            $cb = New-Object System.Windows.Controls.CheckBox
+            $cb.Tag = $d.Id; $cb.IsChecked = $true
+            $tb = New-Object System.Windows.Controls.TextBlock; $tb.TextWrapping = 'Wrap'
+            $r1 = New-Object System.Windows.Documents.Run $d.Name; $r1.Foreground = New-AppBrush '#FFE6E8EB'; $r1.FontSize = 12.5
+            $r2 = New-Object System.Windows.Documents.Run "   $($d.Class)"; $r2.Foreground = New-AppBrush '#FF7F858D'; $r2.FontSize = 11.5
+            [void]$tb.Inlines.Add($r1); [void]$tb.Inlines.Add($r2)
+            $cb.Add_Checked({ Update-GhostButton }); $cb.Add_Unchecked({ Update-GhostButton })
+            $script:GhostBoxes += $cb
+            $row = New-SwitchRow $tb '' $cb; $row.Margin = '0,0,0,2'
+            [void]$script:GhostList.Children.Add($row)
+        }
+        Update-GhostButton
+    })
+    $t.Start()
+}
+
+# Rimozione con pnputil (Windows 10 2004 e successivi), una voce alla volta.
+function Get-GhostRemoveScript([string[]]$Ids) {
+    $sb = New-Object System.Text.StringBuilder
+    [void]$sb.AppendLine('$ok = 0; $ids = @(')
+    foreach ($id in $Ids) { [void]$sb.AppendLine("    '$($id -replace "'", "''")'") }
+    [void]$sb.AppendLine(')')
+    [void]$sb.AppendLine("Write-Host '@@STEP $((T 'ttlGhost') -replace "'", "''")'")
+    [void]$sb.AppendLine('for ($i = 0; $i -lt $ids.Count; $i++) {')
+    [void]$sb.AppendLine('    & pnputil.exe /remove-device $ids[$i] | Out-Null')
+    [void]$sb.AppendLine('    if ($LASTEXITCODE -eq 0 -or $LASTEXITCODE -eq 3010) { $ok++ }')
+    [void]$sb.AppendLine('    Write-Host ("@@PCT " + [int](100 * ($i + 1) / $ids.Count))')
+    [void]$sb.AppendLine('}')
+    [void]$sb.AppendLine("Write-Host ('@@DONE ' + ('$((T 'ghostDone') -replace "'", "''")' -f `$ok, `$ids.Count))")
+    [void]$sb.AppendLine('if ($ok -eq 0) { exit 1 }')
+    [void]$sb.AppendLine('exit 0')
+    return $sb.ToString()
+}
+
+function Invoke-GhostRemove {
+    $ids = @($script:GhostBoxes | Where-Object { $_.IsChecked -eq $true } | ForEach-Object { [string]$_.Tag })
+    if ($ids.Count -eq 0) { return }
+    if ([Environment]::OSVersion.Version.Build -lt 19041) { Show-Dialog (T 'ttlGhost') (T 'ghostOld') 'warn' | Out-Null; return }
+    if (-not (Show-Dialog (T 'ttlGhost') ((T 'ghostAsk') -f $ids.Count) 'ask')) { return }
+    $script:GhostRescan = $true
+    Add-ToolJob (T 'ttlGhost') (Get-GhostRemoveScript $ids)
 }
 
 function Show-ToolsPageIfNeeded {
@@ -636,6 +1023,7 @@ function Show-ToolsPageIfNeeded {
     $script:ToolsBuiltLang = $script:LangCode
     Show-ToolsPage
     Start-ToolScan
+    Start-GhostScan
 }
 
 # ------------------------------------------------------------------------------

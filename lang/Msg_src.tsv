@@ -242,7 +242,7 @@ clean_doCache	Delivery Optimization cache
 clean_recycle	Recycle Bin
 clean_errors	Error reports and dumps
 clean_thumbs	Thumbnail cache
-clean_recent	Recent files and jump lists
+clean_recent	Recent files and Run history
 clean_runHist	Run and typed path history
 clean_prefetch	Prefetch
 cleanTip_winTemp	Files left behind by installers and the system.
@@ -252,11 +252,11 @@ cleanTip_doCache	Update copies shared with other PCs.
 cleanTip_recycle	Empties the Recycle Bin on every drive.
 cleanTip_errors	Reports already sent and crash files.
 cleanTip_thumbs	Windows rebuilds them when you open folders: the first opening will be slower.
-cleanTip_recent	Removes recent files from File Explorer, Start and the taskbar.
+cleanTip_recent	Lists of recently opened files, Run commands and typed paths. Folders pinned in Quick access stay; items pinned in app jump lists don't.
 cleanTip_runHist	Commands typed in Run (Win+R) and paths typed in File Explorer.
 cleanTip_prefetch	Windows uses it to open programs faster: after cleaning the first launches will be slower.
-ttlFix	Repairs
-fixHint	They start right away, one at a time. Progress stays visible at the top from the other pages too.
+ttlFix	Quick repairs
+fixHint	They fix the most common problems with one click. They run one at a time and progress stays visible from other pages too.
 toolRun	Run
 tool_netQuick	Network: quick reset
 toolDesc_netQuick	Flushes the DNS cache and renews the IP address. The connection drops for a few seconds.
@@ -396,3 +396,28 @@ homeTypeDescDesktop	Full performance: no power saving.
 homeTypeDescLaptop	Skips the entries that drain the battery.
 homeTypeDescServer	Keeps security, services and diagnostics on: better performance without weakening the server.
 homePhysDisks	Disks
+ttlCleanAll	Full PC cleanup
+cleanAllHint	Frees space by removing files you no longer need. Passwords, cookies, site logins and personal files are not touched.
+clean_browserHist	Browser history and downloads
+cleanTip_browserHist	Visited sites and the download list of Chrome, Edge, Firefox, Brave, Opera and Vivaldi. Downloaded files, bookmarks and logins stay.
+clean_browserCache	Browser cache
+cleanTip_browserCache	Copies of pages browsers save to open them faster. It doesn't log you out; the first visit will be a little slower.
+cleanTotal	Space to free: {0}
+cleanNow	Clean now
+cleanRescan	Recalculate
+cleanEmpty	empty
+cleanBrowserOpen	To clean {0} too, close the browser and run it again.
+ttlGhost	Disconnected devices
+ghostHint	USB sticks, headsets and devices used in the past leave drivers and entries behind. Removing them is safe: plug them back in and Windows reinstalls them.
+ghostSearching	Looking for disconnected devices...
+ghostNone	No disconnected devices: nothing to clean.
+ghostFound	{0} disconnected devices found.
+ghostAll	Select all
+ghostRemove	Remove
+ghostRescan	Search again
+ghostAsk	Remove {0} disconnected devices? Plug them back in and Windows reinstalls them.
+ghostOld	Requires Windows 10 version 2004 or later.
+ghostDone	Removed {0} of {1}.
+ghostError	List not available:
+tagReboot	Needs a restart
+tagCaution	Use with care

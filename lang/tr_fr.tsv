@@ -724,7 +724,7 @@ M:clean_doCache	Cache de l'optimisation de distribution
 M:clean_recycle	Corbeille
 M:clean_errors	Rapports d'erreurs et vidages
 M:clean_thumbs	Cache des miniatures
-M:clean_recent	Fichiers récents et listes de raccourcis
+M:clean_recent	Fichiers récents et historique Exécuter
 M:clean_runHist	Historique Exécuter et chemins saisis
 M:clean_prefetch	Prefetch
 M:cleanTip_winTemp	Fichiers laissés par les installateurs et le système.
@@ -734,11 +734,11 @@ M:cleanTip_doCache	Copies de mises à jour partagées avec d'autres PC.
 M:cleanTip_recycle	Vide la Corbeille sur tous les disques.
 M:cleanTip_errors	Rapports déjà envoyés et fichiers de plantage.
 M:cleanTip_thumbs	Windows les recrée à l'ouverture des dossiers : la première ouverture sera plus lente.
-M:cleanTip_recent	Retire les fichiers récents de l'Explorateur, de Démarrer et de la barre.
+M:cleanTip_recent	Listes des fichiers récents, commandes Exécuter et chemins saisis. Les dossiers épinglés dans l'Accès rapide restent ; les éléments épinglés dans les listes des applis non.
 M:cleanTip_runHist	Commandes tapées dans Exécuter (Win+R) et chemins saisis dans l'Explorateur.
 M:cleanTip_prefetch	Windows l'utilise pour ouvrir les programmes plus vite : après nettoyage les premiers lancements seront plus lents.
-M:ttlFix	Réparations
-M:fixHint	Elles démarrent aussitôt, une par une. La progression reste visible en haut depuis les autres pages.
+M:ttlFix	Réparations rapides
+M:fixHint	Elles règlent les problèmes courants en un clic. Une à la fois, avec la progression visible depuis les autres pages.
 M:toolRun	Exécuter
 M:tool_netQuick	Réseau : réinitialisation rapide
 M:toolDesc_netQuick	Vide le cache DNS et renouvelle l'IP. La connexion coupe quelques secondes.
@@ -927,3 +927,28 @@ M:homeTypeDescDesktop	Performances maximales : pas d'économie d'énergie.
 M:homeTypeDescLaptop	Ignore les éléments qui vident la batterie.
 M:homeTypeDescServer	Garde sécurité, services et diagnostic : de meilleures performances sans affaiblir le serveur.
 M:homePhysDisks	Disques
+M:ttlCleanAll	Nettoyage complet du PC
+M:cleanAllHint	Libère de l'espace en supprimant les fichiers inutiles. Mots de passe, cookies, connexions et fichiers personnels ne sont pas touchés.
+M:clean_browserHist	Historique et téléchargements des navigateurs
+M:cleanTip_browserHist	Sites visités et liste des téléchargements de Chrome, Edge, Firefox, Brave, Opera et Vivaldi. Les fichiers téléchargés, favoris et connexions restent.
+M:clean_browserCache	Cache des navigateurs
+M:cleanTip_browserCache	Copies des pages que les navigateurs gardent pour les ouvrir plus vite. Pas de déconnexion ; la première visite sera un peu plus lente.
+M:cleanTotal	Espace à libérer : {0}
+M:cleanNow	Nettoyer maintenant
+M:cleanRescan	Recalculer
+M:cleanEmpty	vide
+M:cleanBrowserOpen	Pour nettoyer aussi {0}, fermez le navigateur et recommencez.
+M:ttlGhost	Périphériques déconnectés
+M:ghostHint	Clés, casques et périphériques utilisés autrefois laissent pilotes et entrées. Les supprimer est sans risque : rebranchés, Windows les réinstalle.
+M:ghostSearching	Recherche des périphériques déconnectés...
+M:ghostNone	Aucun périphérique déconnecté : rien à nettoyer.
+M:ghostFound	{0} périphériques déconnectés trouvés.
+M:ghostAll	Tout sélectionner
+M:ghostRemove	Supprimer
+M:ghostRescan	Rechercher à nouveau
+M:ghostAsk	Supprimer {0} périphériques déconnectés ? Rebranchés, Windows les réinstalle.
+M:ghostOld	Nécessite Windows 10 version 2004 ou ultérieure.
+M:ghostDone	{0} sur {1} supprimés.
+M:ghostError	Liste indisponible :
+M:tagReboot	Redémarrage requis
+M:tagCaution	Avec prudence

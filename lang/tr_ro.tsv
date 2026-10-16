@@ -721,7 +721,7 @@ M:clean_doCache	Cache Optimizare livrare
 M:clean_recycle	Coș de reciclare
 M:clean_errors	Rapoarte de erori și dumpuri
 M:clean_thumbs	Cache miniaturi
-M:clean_recent	Fișiere recente și liste de salt
+M:clean_recent	Fișiere recente și istoricul Executare
 M:clean_runHist	Istoric Executare și căi tastate
 M:clean_prefetch	Prefetch
 M:cleanTip_winTemp	Fișiere lăsate de instalatoare și sistem.
@@ -731,11 +731,11 @@ M:cleanTip_doCache	Copii ale actualizărilor partajate cu alte PC-uri.
 M:cleanTip_recycle	Golește Coșul pe toate unitățile.
 M:cleanTip_errors	Rapoarte deja trimise și fișiere de blocare.
 M:cleanTip_thumbs	Windows le recreează la deschiderea folderelor: prima deschidere va fi mai lentă.
-M:cleanTip_recent	Elimină fișierele recente din Explorer, Start și bară.
+M:cleanTip_recent	Listele fișierelor deschise recent, comenzile Executare și căile tastate. Folderele fixate în Acces rapid rămân; elementele fixate în listele aplicațiilor nu.
 M:cleanTip_runHist	Comenzi din Executare (Win+R) și căi tastate în Explorer.
 M:cleanTip_prefetch	Windows îl folosește pentru pornire rapidă: după curățare primele porniri vor fi mai lente.
-M:ttlFix	Reparații
-M:fixHint	Pornesc imediat, pe rând. Progresul rămâne vizibil sus și din alte pagini.
+M:ttlFix	Reparații rapide
+M:fixHint	Rezolvă cele mai comune probleme cu un clic. Rulează pe rând, iar progresul se vede și din alte pagini.
 M:toolRun	Rulează
 M:tool_netQuick	Rețea: resetare rapidă
 M:toolDesc_netQuick	Golește cache-ul DNS și reînnoiește IP-ul. Conexiunea cade câteva secunde.
@@ -924,3 +924,28 @@ M:homeTypeDescDesktop	Performanță maximă: fără economisirea energiei.
 M:homeTypeDescLaptop	Sare peste elementele care consumă bateria.
 M:homeTypeDescServer	Păstrează securitatea, serviciile și diagnosticarea: performanță mai bună fără a slăbi serverul.
 M:homePhysDisks	Discuri
+M:ttlCleanAll	Curățare completă a PC-ului
+M:cleanAllHint	Eliberează spațiu ștergând fișierele inutile. Parolele, cookie-urile, autentificările și fișierele personale nu sunt atinse.
+M:clean_browserHist	Istoricul și descărcările browserelor
+M:cleanTip_browserHist	Site-urile vizitate și lista descărcărilor din Chrome, Edge, Firefox, Brave, Opera și Vivaldi. Fișierele descărcate, marcajele și autentificările rămân.
+M:clean_browserCache	Memoria cache a browserelor
+M:cleanTip_browserCache	Copii ale paginilor salvate de browsere pentru a le deschide mai repede. Nu te deconectează; prima vizită va fi puțin mai lentă.
+M:cleanTotal	Spațiu de eliberat: {0}
+M:cleanNow	Curăță acum
+M:cleanRescan	Recalculează
+M:cleanEmpty	gol
+M:cleanBrowserOpen	Pentru a curăța și {0}, închide browserul și repetă.
+M:ttlGhost	Dispozitive deconectate
+M:ghostHint	Stick-uri, căști și periferice folosite în trecut lasă drivere și intrări. Ștergerea e sigură: la reconectare, Windows le reinstalează.
+M:ghostSearching	Caut dispozitivele deconectate...
+M:ghostNone	Niciun dispozitiv deconectat: nimic de curățat.
+M:ghostFound	{0} dispozitive deconectate găsite.
+M:ghostAll	Selectează tot
+M:ghostRemove	Elimină
+M:ghostRescan	Caută din nou
+M:ghostAsk	Elimin {0} dispozitive deconectate? La reconectare, Windows le reinstalează.
+M:ghostOld	Necesită Windows 10 versiunea 2004 sau mai nouă.
+M:ghostDone	Eliminate {0} din {1}.
+M:ghostError	Listă indisponibilă:
+M:tagReboot	Necesită repornire
+M:tagCaution	Cu prudență
