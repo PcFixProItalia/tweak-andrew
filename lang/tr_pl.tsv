@@ -1015,3 +1015,11 @@ M:leftKind_reg	REJESTR
 M:leftKind_run	AUTOSTART
 M:leftKind_task	ZADANIE
 M:leftKind_svc	USŁUGA
+M:psRowLen	Długość kwantu
+M:psRowLenHint	Krótki: szybsza reakcja. Długi: większa stabilność.
+M:psRowType	Rodzaj kwantu
+M:psRowTypeHint	Zmienny: aktywne okno dostaje dłuższe kwanty.
+M:psRowBoost	Przewaga aktywnego okna
+M:psRowBoostHint	Ile więcej czasu dostaje niż programy w tle.
+M:psPending	Do zastosowania:
+M:psInUse	Już używane

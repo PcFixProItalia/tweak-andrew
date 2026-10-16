@@ -139,51 +139,104 @@ function Set-MenuHibernate([bool]$Show) {
 # Sei bit, tre coppie: durata del quanto (breve/lunga), quanto fisso o
 # variabile, e quanto vantaggio dare alla finestra in primo piano.
 $script:PsPath = 'HKLM:\SYSTEM\CurrentControlSet\Control\PriorityControl'
-$cmbPsPreset = E 'cmbPsPreset'; $txtPsCustom = E 'txtPsCustom'; $txtPsDecoded = E 'txtPsDecoded'
+$cmbPsPreset = E 'cmbPsPreset'; $txtPsDecoded = E 'txtPsDecoded'; $psDot = E 'psDot'
 $txtPsCurrent = E 'txtPsCurrent'; $btnPsApply = E 'btnPsApply'; $btnPsDefault = E 'btnPsDefault'
+# Tre selettori, uno per coppia di bit: valore del campo e testo del pulsante.
+$script:PsRows = @(
+    @{ Name = 'Len';   Shift = 4; Options = @(@(0, 'psAuto'), @(2, 'psShort'), @(1, 'psLong')) },
+    @{ Name = 'Type';  Shift = 2; Options = @(@(0, 'psAuto'), @(1, 'psVariable'), @(2, 'psFixed')) },
+    @{ Name = 'Boost'; Shift = 0; Options = @(@(0, '1:1'), @(1, '2:1'), @(2, '3:1')) }
+)
+$script:PsValue = 2
+$script:PsSyncing = $false
 
-function Format-PrioritySeparation([int]$v) {
-    $interval = ($v -shr 4) -band 3
-    $length   = ($v -shr 2) -band 3
-    $boost    = $v -band 3
-    $i = switch ($interval) { 1 { T 'psLong' } 2 { T 'psShort' } default { T 'psAuto' } }
-    $l = switch ($length)   { 1 { T 'psVariable' } 2 { T 'psFixed' } default { T 'psAuto' } }
-    $b = switch ($boost)    { 0 { '1:1' } 1 { '2:1' } default { '3:1' } }
-    return ("0x{0:X2} ({0})  ·  {1}: {2}  ·  {3}: {4}  ·  {5}: {6}" -f $v, (T 'psInterval'), $i, (T 'psQuantum'), $l, (T 'psBoost'), $b)
+function Get-PsField([int]$v, [int]$shift) {
+    $f = ($v -shr $shift) -band 3
+    if ($shift -gt 0 -and $f -eq 3) { return 0 }
+    if ($shift -eq 0 -and $f -eq 3) { return 2 }
+    return $f
 }
 
-function Get-PsSelected {
-    $item = $cmbPsPreset.SelectedItem
-    if ($null -eq $item) { return $null }
-    $tag = [int]$item.Tag
-    if ($tag -ge 0) { return $tag }
-    $raw = ([string]$txtPsCustom.Text).Trim() -replace '^0x', ''
-    if ($raw -notmatch '^[0-9A-Fa-f]{1,2}$') { return $null }
-    $n = [Convert]::ToInt32($raw, 16)
-    if ($n -gt 0x3F) { return $null }
-    return $n
+function Get-PsSelected { return $script:PsValue }
+
+# New-AppBrush arriva piu' avanti nello script: qui serve gia' all'avvio.
+function New-PsBrush([string]$hex) { New-Object System.Windows.Media.SolidColorBrush ([System.Windows.Media.ColorConverter]::ConvertFromString($hex)) }
+
+# Sceglie il profilo che corrisponde al valore, altrimenti «Personalizzato».
+function Sync-PsPreset {
+    $script:PsSyncing = $true
+    $match = $null
+    foreach ($it in $cmbPsPreset.Items) { if ([int]$it.Tag -eq $script:PsValue) { $match = $it } }
+    if ($null -eq $match) { $match = $cmbPsPreset.Items[$cmbPsPreset.Items.Count - 1] }
+    $cmbPsPreset.SelectedItem = $match
+    $script:PsSyncing = $false
+}
+
+function New-PsSegment([string]$text, [bool]$on, $tag) {
+    $b = New-Object System.Windows.Controls.Border
+    $b.CornerRadius = 5; $b.Padding = '6,5,6,5'; $b.Width = 84; $b.Cursor = 'Hand'; $b.Tag = $tag
+    $b.Background = New-PsBrush $(if ($on) { '#FF1D4ED8' } else { '#00000000' })
+    $t = New-Object System.Windows.Controls.TextBlock
+    $t.Text = $text; $t.FontSize = 12; $t.HorizontalAlignment = 'Center'
+    $t.FontWeight = $(if ($on) { 'SemiBold' } else { 'Normal' })
+    $t.Foreground = New-PsBrush $(if ($on) { '#FFFFFFFF' } else { '#FFA1A4AE' })
+    $b.Child = $t
+    if (-not $on) {
+        $b.Add_MouseEnter({ $this.Background = New-PsBrush '#FF1F222A' })
+        $b.Add_MouseLeave({ $this.Background = New-PsBrush '#00000000' })
+    }
+    $b.Add_MouseLeftButtonUp({
+        $shift = [int]$this.Tag[0]; $val = [int]$this.Tag[1]
+        $script:PsValue = ($script:PsValue -band (-bnot (3 -shl $shift))) -bor ($val -shl $shift)
+        Sync-PsPreset
+        Update-PsView
+    })
+    return $b
 }
 
 function Update-PsView {
     $cur = Get-RegOrNull $script:PsPath 'Win32PrioritySeparation'
-    if ($null -ne $cur) { $txtPsCurrent.Text = Format-PrioritySeparation ([int]$cur) }
-    $isCustom = ($null -ne $cmbPsPreset.SelectedItem -and [int]$cmbPsPreset.SelectedItem.Tag -lt 0)
-    $txtPsCustom.IsEnabled = $isCustom
-    $sel = Get-PsSelected
-    $txtPsDecoded.Text = if ($null -ne $sel) { Format-PrioritySeparation $sel } else { T 'psInvalid' }
+    $txtPsCurrent.Text = if ($null -ne $cur) { '0x{0:X2}' -f [int]$cur } else { '-' }
+    foreach ($row in $script:PsRows) {
+        (E ('lblPsRow' + $row.Name)).Text = T ('psRow' + $row.Name)
+        (E ('lblPsRow' + $row.Name + 'Hint')).Text = T ('psRow' + $row.Name + 'Hint')
+        $panel = E ('psSeg' + $row.Name)
+        $panel.Children.Clear()
+        $sel = Get-PsField $script:PsValue $row.Shift
+        foreach ($o in $row.Options) {
+            $text = [string](T $o[1])
+            if ($text.Length -gt 1) { $text = $text.Substring(0, 1).ToUpper() + $text.Substring(1) }
+            $panel.Children.Add((New-PsSegment $text ([int]$o[0] -eq $sel) @($row.Shift, [int]$o[0]))) | Out-Null
+        }
+    }
+    $pending = ($null -eq $cur -or [int]$cur -ne $script:PsValue)
+    $btnPsApply.IsEnabled = $pending
+    if ($pending) {
+        $txtPsDecoded.Text = ('{0} 0x{1:X2}' -f (T 'psPending'), $script:PsValue)
+        $txtPsDecoded.Foreground = New-PsBrush '#FFE9EAEE'
+        $psDot.Fill = New-PsBrush '#FF2563EB'
+    } else {
+        $txtPsDecoded.Text = T 'psInUse'
+        $txtPsDecoded.Foreground = New-PsBrush '#FF8B8E99'
+        $psDot.Fill = New-PsBrush '#FF3FB27F'
+    }
 }
 
-$cmbPsPreset.Add_SelectionChanged({ Update-PsView })
-$txtPsCustom.Add_TextChanged({ Update-PsView })
+$cmbPsPreset.Add_SelectionChanged({
+    if ($script:PsSyncing) { return }
+    $it = $cmbPsPreset.SelectedItem
+    if ($null -ne $it -and [int]$it.Tag -ge 0) { $script:PsValue = [int]$it.Tag }
+    Update-PsView
+})
 $btnPsApply.Add_Click({
-    $v = Get-PsSelected
-    if ($null -eq $v) { Write-Log "[AVVISO] $(T 'psInvalid')"; return }
+    $v = $script:PsValue
     Set-Reg $script:PsPath 'Win32PrioritySeparation' $v 'DWord' ("Win32PrioritySeparation = 0x{0:X2}" -f $v) | Out-Null
     Update-PsView
 })
 $btnPsDefault.Add_Click({
     Set-Reg $script:PsPath 'Win32PrioritySeparation' 2 'DWord' 'Win32PrioritySeparation = 0x02 (predefinito)' | Out-Null
-    $cmbPsPreset.SelectedIndex = 0
+    $script:PsValue = 2
+    Sync-PsPreset
     Update-PsView
 })
 
@@ -353,13 +406,8 @@ function Initialize-LivePages {
     Read-Mmcss
     Read-ShutdownMenu
     $cur = Get-RegOrNull $script:PsPath 'Win32PrioritySeparation'
-    $match = $null
-    foreach ($it in $cmbPsPreset.Items) { if ($null -ne $cur -and [int]$it.Tag -eq [int]$cur) { $match = $it } }
-    if ($match) { $cmbPsPreset.SelectedItem = $match }
-    else {
-        $cmbPsPreset.SelectedIndex = $cmbPsPreset.Items.Count - 1
-        if ($null -ne $cur) { $txtPsCustom.Text = '{0:X2}' -f [int]$cur }
-    }
+    if ($null -ne $cur) { $script:PsValue = [int]$cur -band 0x3F }
+    Sync-PsPreset
     Update-PsView
 }
 Initialize-LivePages

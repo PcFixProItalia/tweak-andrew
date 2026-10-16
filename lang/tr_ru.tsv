@@ -1015,3 +1015,11 @@ M:leftKind_reg	РЕЕСТР
 M:leftKind_run	АВТОЗАПУСК
 M:leftKind_task	ЗАДАНИЕ
 M:leftKind_svc	СЛУЖБА
+M:psRowLen	Длина кванта
+M:psRowLenHint	Короткий: отзывчивее. Длинный: стабильнее.
+M:psRowType	Тип кванта
+M:psRowTypeHint	Переменный: активное окно получает более длинные кванты.
+M:psRowBoost	Преимущество активного окна
+M:psRowBoostHint	Сколько дополнительного времени оно получает по сравнению с фоновыми программами.
+M:psPending	Будет применено:
+M:psInUse	Уже используется

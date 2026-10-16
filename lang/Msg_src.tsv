@@ -495,3 +495,11 @@ leftKind_reg	REGISTRY
 leftKind_run	STARTUP
 leftKind_task	TASK
 leftKind_svc	SERVICE
+psRowLen	Time slice length
+psRowLenHint	Short: more responsive. Long: steadier.
+psRowType	Slice type
+psRowTypeHint	Variable: the active window gets longer slices.
+psRowBoost	Active window boost
+psRowBoostHint	How much more time it gets than background programs.
+psPending	To apply:
+psInUse	Already in use

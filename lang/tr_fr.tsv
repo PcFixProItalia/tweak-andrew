@@ -1018,3 +1018,11 @@ M:leftKind_reg	REGISTRE
 M:leftKind_run	DÉMARRAGE
 M:leftKind_task	TÂCHE
 M:leftKind_svc	SERVICE
+M:psRowLen	Durée de la tranche
+M:psRowLenHint	Court : plus réactif. Long : plus régulier.
+M:psRowType	Type de tranche
+M:psRowTypeHint	Variable : la fenêtre active reçoit des tranches plus longues.
+M:psRowBoost	Avantage de la fenêtre active
+M:psRowBoostHint	Combien de temps en plus elle reçoit par rapport aux programmes en arrière-plan.
+M:psPending	À appliquer :
+M:psInUse	Déjà utilisé

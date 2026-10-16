@@ -2342,45 +2342,88 @@ $script:PlanData = @{
                                     <StackPanel Grid.Column="0">
                                         <Border Style="{StaticResource Glass}">
                                             <StackPanel>
-                                                <TextBlock x:Name="ttlPs" Text="PRIORITA DEL PROCESSORE" Style="{StaticResource CardTitle}"/>
-                                                <TextBlock x:Name="lblPsHint" Style="{StaticResource SubTitle}" Margin="0,0,0,12"
-                                                           Text="Decide quanto tempo di processore ricevono i programmi e quanto vantaggio ha la finestra in primo piano. Vale subito, senza riavvio."/>
-                                                <TextBlock x:Name="lblPsCurrent" Text="Valore attuale" Style="{StaticResource FieldLabel}" Margin="0,0,0,6"/>
-                                                <Border Style="{StaticResource GlassInner}" Padding="12,9" Margin="0,0,0,14">
-                                                    <TextBlock x:Name="txtPsCurrent" Text="-" Foreground="{DynamicResource PA}"
-                                                               FontFamily="Consolas, Courier New" FontSize="11.5" TextWrapping="Wrap"/>
-                                                </Border>
-                                                <TextBlock x:Name="lblPsPreset" Text="Profilo" Style="{StaticResource FieldLabel}" Margin="0,0,0,6"/>
-                                                <ComboBox x:Name="cmbPsPreset" Margin="0,0,0,10">
-                                                    <ComboBoxItem x:Name="psI02" Tag="2" Content="0x02 · Predefinito di Windows"/>
-                                                    <ComboBoxItem x:Name="psI26" Tag="38" Content="0x26 · Breve, variabile, primo piano 3:1 (giochi)"/>
-                                                    <ComboBoxItem x:Name="psI28" Tag="40" Content="0x28 · Breve, fisso, nessun vantaggio"/>
-                                                    <ComboBoxItem x:Name="psI2A" Tag="42" Content="0x2A · Breve, fisso, primo piano 3:1"/>
-                                                    <ComboBoxItem x:Name="psI24" Tag="36" Content="0x24 · Breve, variabile, nessun vantaggio"/>
-                                                    <ComboBoxItem x:Name="psI16" Tag="22" Content="0x16 · Lungo, variabile, primo piano 3:1"/>
-                                                    <ComboBoxItem x:Name="psI18" Tag="24" Content="0x18 · Lungo, fisso (server)"/>
-                                                    <ComboBoxItem x:Name="psICustom" Tag="-1" Content="Personalizzato"/>
-                                                </ComboBox>
-                                                <Grid Margin="0,0,0,10">
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="*"/>
-                                                        <ColumnDefinition Width="110"/>
-                                                    </Grid.ColumnDefinitions>
-                                                    <TextBlock x:Name="lblPsCustom" Text="Valore esadecimale" Style="{StaticResource FieldLabel}"/>
-                                                    <TextBox x:Name="txtPsCustom" Grid.Column="1" Height="34" Padding="10,0" Text="26" IsEnabled="False"/>
+                                                <Grid>
+                                                    <TextBlock x:Name="ttlPs" Text="PRIORITA DEL PROCESSORE" Style="{StaticResource CardTitle}" Margin="0,0,0,8" VerticalAlignment="Center"/>
+                                                    <Border HorizontalAlignment="Right" VerticalAlignment="Top" Background="#FF1C1F26" BorderBrush="#FF2A2D36" BorderThickness="1" CornerRadius="6" Padding="8,3">
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <TextBlock x:Name="lblPsCurrent" Text="Valore attuale" FontSize="11" Foreground="#FF8B8E99" VerticalAlignment="Center"/>
+                                                            <TextBlock x:Name="txtPsCurrent" Text="-" Margin="7,0,0,0" FontFamily="Cascadia Mono, Consolas" FontSize="11" Foreground="#FFE9EAEE" VerticalAlignment="Center"/>
+                                                        </StackPanel>
+                                                    </Border>
                                                 </Grid>
-                                                <Border Style="{StaticResource GlassInner}" Padding="12,9" Margin="0,0,0,14">
-                                                    <TextBlock x:Name="txtPsDecoded" Text="-" Foreground="#FFC9CBD2"
-                                                               FontFamily="Consolas, Courier New" FontSize="11.5" TextWrapping="Wrap"/>
+                                                <TextBlock x:Name="lblPsHint" Style="{StaticResource SubTitle}" Margin="0,0,0,14"
+                                                           Text="Decide quanto tempo di processore ricevono i programmi e quanto vantaggio ha la finestra in primo piano. Vale subito, senza riavvio."/>
+                                                <Grid Margin="0,0,0,14">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <TextBlock x:Name="lblPsPreset" Text="Profilo" Style="{StaticResource FieldLabel}" Margin="0,0,14,0"/>
+                                                    <ComboBox x:Name="cmbPsPreset" Grid.Column="1">
+                                                        <ComboBoxItem x:Name="psI02" Tag="2" Content="0x02 · Predefinito di Windows"/>
+                                                        <ComboBoxItem x:Name="psI26" Tag="38" Content="0x26 · Breve, variabile, primo piano 3:1 (giochi)"/>
+                                                        <ComboBoxItem x:Name="psI28" Tag="40" Content="0x28 · Breve, fisso, nessun vantaggio"/>
+                                                        <ComboBoxItem x:Name="psI2A" Tag="42" Content="0x2A · Breve, fisso, primo piano 3:1"/>
+                                                        <ComboBoxItem x:Name="psI24" Tag="36" Content="0x24 · Breve, variabile, nessun vantaggio"/>
+                                                        <ComboBoxItem x:Name="psI16" Tag="22" Content="0x16 · Lungo, variabile, primo piano 3:1"/>
+                                                        <ComboBoxItem x:Name="psI18" Tag="24" Content="0x18 · Lungo, fisso (server)"/>
+                                                        <ComboBoxItem x:Name="psICustom" Tag="-1" Content="Personalizzato"/>
+                                                    </ComboBox>
+                                                </Grid>
+                                                <Border Height="1" Background="#FF22252C" Margin="0,0,0,14"/>
+                                            <Grid Margin="0,0,0,12">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+                                                <StackPanel VerticalAlignment="Center" Margin="0,0,12,0">
+                                                    <TextBlock x:Name="lblPsRowLen" Text="-" FontSize="12.5" Foreground="#FFE9EAEE"/>
+                                                    <TextBlock x:Name="lblPsRowLenHint" Text="-" FontSize="11" Foreground="#FF8B8E99" TextWrapping="Wrap" Margin="0,2,0,0"/>
+                                                </StackPanel>
+                                                <Border Grid.Column="1" VerticalAlignment="Center" Background="#FF101217" BorderBrush="#FF272A33" BorderThickness="1" CornerRadius="7" Padding="2">
+                                                    <StackPanel x:Name="psSegLen" Orientation="Horizontal"/>
                                                 </Border>
+                                            </Grid>
+                                            <Grid Margin="0,0,0,12">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+                                                <StackPanel VerticalAlignment="Center" Margin="0,0,12,0">
+                                                    <TextBlock x:Name="lblPsRowType" Text="-" FontSize="12.5" Foreground="#FFE9EAEE"/>
+                                                    <TextBlock x:Name="lblPsRowTypeHint" Text="-" FontSize="11" Foreground="#FF8B8E99" TextWrapping="Wrap" Margin="0,2,0,0"/>
+                                                </StackPanel>
+                                                <Border Grid.Column="1" VerticalAlignment="Center" Background="#FF101217" BorderBrush="#FF272A33" BorderThickness="1" CornerRadius="7" Padding="2">
+                                                    <StackPanel x:Name="psSegType" Orientation="Horizontal"/>
+                                                </Border>
+                                            </Grid>
+                                            <Grid Margin="0,0,0,12">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+                                                <StackPanel VerticalAlignment="Center" Margin="0,0,12,0">
+                                                    <TextBlock x:Name="lblPsRowBoost" Text="-" FontSize="12.5" Foreground="#FFE9EAEE"/>
+                                                    <TextBlock x:Name="lblPsRowBoostHint" Text="-" FontSize="11" Foreground="#FF8B8E99" TextWrapping="Wrap" Margin="0,2,0,0"/>
+                                                </StackPanel>
+                                                <Border Grid.Column="1" VerticalAlignment="Center" Background="#FF101217" BorderBrush="#FF272A33" BorderThickness="1" CornerRadius="7" Padding="2">
+                                                    <StackPanel x:Name="psSegBoost" Orientation="Horizontal"/>
+                                                </Border>
+                                            </Grid>
+                                                <Border Height="1" Background="#FF22252C" Margin="0,2,0,12"/>
                                                 <Grid>
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="*"/>
-                                                        <ColumnDefinition Width="10"/>
-                                                        <ColumnDefinition Width="*"/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="8"/>
+                                                        <ColumnDefinition Width="Auto"/>
                                                     </Grid.ColumnDefinitions>
-                                                    <Button x:Name="btnPsDefault" Grid.Column="0" Style="{StaticResource GhostBtn}" Content="Predefinito"/>
-                                                    <Button x:Name="btnPsApply" Grid.Column="2" Style="{StaticResource PrimaryBtn}" FontSize="13" Content="Applica"/>
+                                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                                        <Ellipse x:Name="psDot" Width="7" Height="7" Fill="#FF5A5E69" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                                                        <TextBlock x:Name="txtPsDecoded" Text="-" FontSize="11.5" Foreground="#FF8B8E99" VerticalAlignment="Center"/>
+                                                    </StackPanel>
+                                                    <Button x:Name="btnPsDefault" Grid.Column="1" Style="{StaticResource GhostBtn}" Content="Predefinito"/>
+                                                    <Button x:Name="btnPsApply" Grid.Column="3" Style="{StaticResource PrimaryBtn}" FontSize="13" MinWidth="110" Content="Applica"/>
                                                 </Grid>
                                             </StackPanel>
                                         </Border>
@@ -3597,6 +3640,14 @@ $script:Msg = @{
     leftKind_run       = @{ it = "AVVIO"; en = "STARTUP" }
     leftKind_task      = @{ it = "ATTIVITÀ"; en = "TASK" }
     leftKind_svc       = @{ it = "SERVIZIO"; en = "SERVICE" }
+    psRowLen           = @{ it = "Durata del turno"; en = "Time slice length" }
+    psRowLenHint       = @{ it = "Breve: più reattivo. Lungo: più costante."; en = "Short: more responsive. Long: steadier." }
+    psRowType          = @{ it = "Tipo di turno"; en = "Slice type" }
+    psRowTypeHint      = @{ it = "Variabile: la finestra attiva riceve turni più lunghi."; en = "Variable: the active window gets longer slices." }
+    psRowBoost         = @{ it = "Vantaggio alla finestra attiva"; en = "Active window boost" }
+    psRowBoostHint     = @{ it = "Quanto tempo in più riceve rispetto ai programmi in background."; en = "How much more time it gets than background programs." }
+    psPending          = @{ it = "Da applicare:"; en = "To apply:" }
+    psInUse            = @{ it = "Già in uso"; en = "Already in use" }
 }
 
 $script:LangCode = "it"
@@ -16380,51 +16431,104 @@ function Set-MenuHibernate([bool]$Show) {
 # Sei bit, tre coppie: durata del quanto (breve/lunga), quanto fisso o
 # variabile, e quanto vantaggio dare alla finestra in primo piano.
 $script:PsPath = 'HKLM:\SYSTEM\CurrentControlSet\Control\PriorityControl'
-$cmbPsPreset = E 'cmbPsPreset'; $txtPsCustom = E 'txtPsCustom'; $txtPsDecoded = E 'txtPsDecoded'
+$cmbPsPreset = E 'cmbPsPreset'; $txtPsDecoded = E 'txtPsDecoded'; $psDot = E 'psDot'
 $txtPsCurrent = E 'txtPsCurrent'; $btnPsApply = E 'btnPsApply'; $btnPsDefault = E 'btnPsDefault'
+# Tre selettori, uno per coppia di bit: valore del campo e testo del pulsante.
+$script:PsRows = @(
+    @{ Name = 'Len';   Shift = 4; Options = @(@(0, 'psAuto'), @(2, 'psShort'), @(1, 'psLong')) },
+    @{ Name = 'Type';  Shift = 2; Options = @(@(0, 'psAuto'), @(1, 'psVariable'), @(2, 'psFixed')) },
+    @{ Name = 'Boost'; Shift = 0; Options = @(@(0, '1:1'), @(1, '2:1'), @(2, '3:1')) }
+)
+$script:PsValue = 2
+$script:PsSyncing = $false
 
-function Format-PrioritySeparation([int]$v) {
-    $interval = ($v -shr 4) -band 3
-    $length   = ($v -shr 2) -band 3
-    $boost    = $v -band 3
-    $i = switch ($interval) { 1 { T 'psLong' } 2 { T 'psShort' } default { T 'psAuto' } }
-    $l = switch ($length)   { 1 { T 'psVariable' } 2 { T 'psFixed' } default { T 'psAuto' } }
-    $b = switch ($boost)    { 0 { '1:1' } 1 { '2:1' } default { '3:1' } }
-    return ("0x{0:X2} ({0})  ·  {1}: {2}  ·  {3}: {4}  ·  {5}: {6}" -f $v, (T 'psInterval'), $i, (T 'psQuantum'), $l, (T 'psBoost'), $b)
+function Get-PsField([int]$v, [int]$shift) {
+    $f = ($v -shr $shift) -band 3
+    if ($shift -gt 0 -and $f -eq 3) { return 0 }
+    if ($shift -eq 0 -and $f -eq 3) { return 2 }
+    return $f
 }
 
-function Get-PsSelected {
-    $item = $cmbPsPreset.SelectedItem
-    if ($null -eq $item) { return $null }
-    $tag = [int]$item.Tag
-    if ($tag -ge 0) { return $tag }
-    $raw = ([string]$txtPsCustom.Text).Trim() -replace '^0x', ''
-    if ($raw -notmatch '^[0-9A-Fa-f]{1,2}$') { return $null }
-    $n = [Convert]::ToInt32($raw, 16)
-    if ($n -gt 0x3F) { return $null }
-    return $n
+function Get-PsSelected { return $script:PsValue }
+
+# New-AppBrush arriva piu' avanti nello script: qui serve gia' all'avvio.
+function New-PsBrush([string]$hex) { New-Object System.Windows.Media.SolidColorBrush ([System.Windows.Media.ColorConverter]::ConvertFromString($hex)) }
+
+# Sceglie il profilo che corrisponde al valore, altrimenti «Personalizzato».
+function Sync-PsPreset {
+    $script:PsSyncing = $true
+    $match = $null
+    foreach ($it in $cmbPsPreset.Items) { if ([int]$it.Tag -eq $script:PsValue) { $match = $it } }
+    if ($null -eq $match) { $match = $cmbPsPreset.Items[$cmbPsPreset.Items.Count - 1] }
+    $cmbPsPreset.SelectedItem = $match
+    $script:PsSyncing = $false
+}
+
+function New-PsSegment([string]$text, [bool]$on, $tag) {
+    $b = New-Object System.Windows.Controls.Border
+    $b.CornerRadius = 5; $b.Padding = '6,5,6,5'; $b.Width = 84; $b.Cursor = 'Hand'; $b.Tag = $tag
+    $b.Background = New-PsBrush $(if ($on) { '#FF1D4ED8' } else { '#00000000' })
+    $t = New-Object System.Windows.Controls.TextBlock
+    $t.Text = $text; $t.FontSize = 12; $t.HorizontalAlignment = 'Center'
+    $t.FontWeight = $(if ($on) { 'SemiBold' } else { 'Normal' })
+    $t.Foreground = New-PsBrush $(if ($on) { '#FFFFFFFF' } else { '#FFA1A4AE' })
+    $b.Child = $t
+    if (-not $on) {
+        $b.Add_MouseEnter({ $this.Background = New-PsBrush '#FF1F222A' })
+        $b.Add_MouseLeave({ $this.Background = New-PsBrush '#00000000' })
+    }
+    $b.Add_MouseLeftButtonUp({
+        $shift = [int]$this.Tag[0]; $val = [int]$this.Tag[1]
+        $script:PsValue = ($script:PsValue -band (-bnot (3 -shl $shift))) -bor ($val -shl $shift)
+        Sync-PsPreset
+        Update-PsView
+    })
+    return $b
 }
 
 function Update-PsView {
     $cur = Get-RegOrNull $script:PsPath 'Win32PrioritySeparation'
-    if ($null -ne $cur) { $txtPsCurrent.Text = Format-PrioritySeparation ([int]$cur) }
-    $isCustom = ($null -ne $cmbPsPreset.SelectedItem -and [int]$cmbPsPreset.SelectedItem.Tag -lt 0)
-    $txtPsCustom.IsEnabled = $isCustom
-    $sel = Get-PsSelected
-    $txtPsDecoded.Text = if ($null -ne $sel) { Format-PrioritySeparation $sel } else { T 'psInvalid' }
+    $txtPsCurrent.Text = if ($null -ne $cur) { '0x{0:X2}' -f [int]$cur } else { '-' }
+    foreach ($row in $script:PsRows) {
+        (E ('lblPsRow' + $row.Name)).Text = T ('psRow' + $row.Name)
+        (E ('lblPsRow' + $row.Name + 'Hint')).Text = T ('psRow' + $row.Name + 'Hint')
+        $panel = E ('psSeg' + $row.Name)
+        $panel.Children.Clear()
+        $sel = Get-PsField $script:PsValue $row.Shift
+        foreach ($o in $row.Options) {
+            $text = [string](T $o[1])
+            if ($text.Length -gt 1) { $text = $text.Substring(0, 1).ToUpper() + $text.Substring(1) }
+            $panel.Children.Add((New-PsSegment $text ([int]$o[0] -eq $sel) @($row.Shift, [int]$o[0]))) | Out-Null
+        }
+    }
+    $pending = ($null -eq $cur -or [int]$cur -ne $script:PsValue)
+    $btnPsApply.IsEnabled = $pending
+    if ($pending) {
+        $txtPsDecoded.Text = ('{0} 0x{1:X2}' -f (T 'psPending'), $script:PsValue)
+        $txtPsDecoded.Foreground = New-PsBrush '#FFE9EAEE'
+        $psDot.Fill = New-PsBrush '#FF2563EB'
+    } else {
+        $txtPsDecoded.Text = T 'psInUse'
+        $txtPsDecoded.Foreground = New-PsBrush '#FF8B8E99'
+        $psDot.Fill = New-PsBrush '#FF3FB27F'
+    }
 }
 
-$cmbPsPreset.Add_SelectionChanged({ Update-PsView })
-$txtPsCustom.Add_TextChanged({ Update-PsView })
+$cmbPsPreset.Add_SelectionChanged({
+    if ($script:PsSyncing) { return }
+    $it = $cmbPsPreset.SelectedItem
+    if ($null -ne $it -and [int]$it.Tag -ge 0) { $script:PsValue = [int]$it.Tag }
+    Update-PsView
+})
 $btnPsApply.Add_Click({
-    $v = Get-PsSelected
-    if ($null -eq $v) { Write-Log "[AVVISO] $(T 'psInvalid')"; return }
+    $v = $script:PsValue
     Set-Reg $script:PsPath 'Win32PrioritySeparation' $v 'DWord' ("Win32PrioritySeparation = 0x{0:X2}" -f $v) | Out-Null
     Update-PsView
 })
 $btnPsDefault.Add_Click({
     Set-Reg $script:PsPath 'Win32PrioritySeparation' 2 'DWord' 'Win32PrioritySeparation = 0x02 (predefinito)' | Out-Null
-    $cmbPsPreset.SelectedIndex = 0
+    $script:PsValue = 2
+    Sync-PsPreset
     Update-PsView
 })
 
@@ -16594,13 +16698,8 @@ function Initialize-LivePages {
     Read-Mmcss
     Read-ShutdownMenu
     $cur = Get-RegOrNull $script:PsPath 'Win32PrioritySeparation'
-    $match = $null
-    foreach ($it in $cmbPsPreset.Items) { if ($null -ne $cur -and [int]$it.Tag -eq [int]$cur) { $match = $it } }
-    if ($match) { $cmbPsPreset.SelectedItem = $match }
-    else {
-        $cmbPsPreset.SelectedIndex = $cmbPsPreset.Items.Count - 1
-        if ($null -ne $cur) { $txtPsCustom.Text = '{0:X2}' -f [int]$cur }
-    }
+    if ($null -ne $cur) { $script:PsValue = [int]$cur -band 0x3F }
+    Sync-PsPreset
     Update-PsView
 }
 Initialize-LivePages

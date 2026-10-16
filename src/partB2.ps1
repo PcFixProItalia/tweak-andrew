@@ -2275,45 +2275,88 @@
                                     <StackPanel Grid.Column="0">
                                         <Border Style="{StaticResource Glass}">
                                             <StackPanel>
-                                                <TextBlock x:Name="ttlPs" Text="PRIORITA DEL PROCESSORE" Style="{StaticResource CardTitle}"/>
-                                                <TextBlock x:Name="lblPsHint" Style="{StaticResource SubTitle}" Margin="0,0,0,12"
-                                                           Text="Decide quanto tempo di processore ricevono i programmi e quanto vantaggio ha la finestra in primo piano. Vale subito, senza riavvio."/>
-                                                <TextBlock x:Name="lblPsCurrent" Text="Valore attuale" Style="{StaticResource FieldLabel}" Margin="0,0,0,6"/>
-                                                <Border Style="{StaticResource GlassInner}" Padding="12,9" Margin="0,0,0,14">
-                                                    <TextBlock x:Name="txtPsCurrent" Text="-" Foreground="{DynamicResource PA}"
-                                                               FontFamily="Consolas, Courier New" FontSize="11.5" TextWrapping="Wrap"/>
-                                                </Border>
-                                                <TextBlock x:Name="lblPsPreset" Text="Profilo" Style="{StaticResource FieldLabel}" Margin="0,0,0,6"/>
-                                                <ComboBox x:Name="cmbPsPreset" Margin="0,0,0,10">
-                                                    <ComboBoxItem x:Name="psI02" Tag="2" Content="0x02 · Predefinito di Windows"/>
-                                                    <ComboBoxItem x:Name="psI26" Tag="38" Content="0x26 · Breve, variabile, primo piano 3:1 (giochi)"/>
-                                                    <ComboBoxItem x:Name="psI28" Tag="40" Content="0x28 · Breve, fisso, nessun vantaggio"/>
-                                                    <ComboBoxItem x:Name="psI2A" Tag="42" Content="0x2A · Breve, fisso, primo piano 3:1"/>
-                                                    <ComboBoxItem x:Name="psI24" Tag="36" Content="0x24 · Breve, variabile, nessun vantaggio"/>
-                                                    <ComboBoxItem x:Name="psI16" Tag="22" Content="0x16 · Lungo, variabile, primo piano 3:1"/>
-                                                    <ComboBoxItem x:Name="psI18" Tag="24" Content="0x18 · Lungo, fisso (server)"/>
-                                                    <ComboBoxItem x:Name="psICustom" Tag="-1" Content="Personalizzato"/>
-                                                </ComboBox>
-                                                <Grid Margin="0,0,0,10">
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="*"/>
-                                                        <ColumnDefinition Width="110"/>
-                                                    </Grid.ColumnDefinitions>
-                                                    <TextBlock x:Name="lblPsCustom" Text="Valore esadecimale" Style="{StaticResource FieldLabel}"/>
-                                                    <TextBox x:Name="txtPsCustom" Grid.Column="1" Height="34" Padding="10,0" Text="26" IsEnabled="False"/>
+                                                <Grid>
+                                                    <TextBlock x:Name="ttlPs" Text="PRIORITA DEL PROCESSORE" Style="{StaticResource CardTitle}" Margin="0,0,0,8" VerticalAlignment="Center"/>
+                                                    <Border HorizontalAlignment="Right" VerticalAlignment="Top" Background="#FF1C1F26" BorderBrush="#FF2A2D36" BorderThickness="1" CornerRadius="6" Padding="8,3">
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <TextBlock x:Name="lblPsCurrent" Text="Valore attuale" FontSize="11" Foreground="#FF8B8E99" VerticalAlignment="Center"/>
+                                                            <TextBlock x:Name="txtPsCurrent" Text="-" Margin="7,0,0,0" FontFamily="Cascadia Mono, Consolas" FontSize="11" Foreground="#FFE9EAEE" VerticalAlignment="Center"/>
+                                                        </StackPanel>
+                                                    </Border>
                                                 </Grid>
-                                                <Border Style="{StaticResource GlassInner}" Padding="12,9" Margin="0,0,0,14">
-                                                    <TextBlock x:Name="txtPsDecoded" Text="-" Foreground="#FFC9CBD2"
-                                                               FontFamily="Consolas, Courier New" FontSize="11.5" TextWrapping="Wrap"/>
+                                                <TextBlock x:Name="lblPsHint" Style="{StaticResource SubTitle}" Margin="0,0,0,14"
+                                                           Text="Decide quanto tempo di processore ricevono i programmi e quanto vantaggio ha la finestra in primo piano. Vale subito, senza riavvio."/>
+                                                <Grid Margin="0,0,0,14">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <TextBlock x:Name="lblPsPreset" Text="Profilo" Style="{StaticResource FieldLabel}" Margin="0,0,14,0"/>
+                                                    <ComboBox x:Name="cmbPsPreset" Grid.Column="1">
+                                                        <ComboBoxItem x:Name="psI02" Tag="2" Content="0x02 · Predefinito di Windows"/>
+                                                        <ComboBoxItem x:Name="psI26" Tag="38" Content="0x26 · Breve, variabile, primo piano 3:1 (giochi)"/>
+                                                        <ComboBoxItem x:Name="psI28" Tag="40" Content="0x28 · Breve, fisso, nessun vantaggio"/>
+                                                        <ComboBoxItem x:Name="psI2A" Tag="42" Content="0x2A · Breve, fisso, primo piano 3:1"/>
+                                                        <ComboBoxItem x:Name="psI24" Tag="36" Content="0x24 · Breve, variabile, nessun vantaggio"/>
+                                                        <ComboBoxItem x:Name="psI16" Tag="22" Content="0x16 · Lungo, variabile, primo piano 3:1"/>
+                                                        <ComboBoxItem x:Name="psI18" Tag="24" Content="0x18 · Lungo, fisso (server)"/>
+                                                        <ComboBoxItem x:Name="psICustom" Tag="-1" Content="Personalizzato"/>
+                                                    </ComboBox>
+                                                </Grid>
+                                                <Border Height="1" Background="#FF22252C" Margin="0,0,0,14"/>
+                                            <Grid Margin="0,0,0,12">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+                                                <StackPanel VerticalAlignment="Center" Margin="0,0,12,0">
+                                                    <TextBlock x:Name="lblPsRowLen" Text="-" FontSize="12.5" Foreground="#FFE9EAEE"/>
+                                                    <TextBlock x:Name="lblPsRowLenHint" Text="-" FontSize="11" Foreground="#FF8B8E99" TextWrapping="Wrap" Margin="0,2,0,0"/>
+                                                </StackPanel>
+                                                <Border Grid.Column="1" VerticalAlignment="Center" Background="#FF101217" BorderBrush="#FF272A33" BorderThickness="1" CornerRadius="7" Padding="2">
+                                                    <StackPanel x:Name="psSegLen" Orientation="Horizontal"/>
                                                 </Border>
+                                            </Grid>
+                                            <Grid Margin="0,0,0,12">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+                                                <StackPanel VerticalAlignment="Center" Margin="0,0,12,0">
+                                                    <TextBlock x:Name="lblPsRowType" Text="-" FontSize="12.5" Foreground="#FFE9EAEE"/>
+                                                    <TextBlock x:Name="lblPsRowTypeHint" Text="-" FontSize="11" Foreground="#FF8B8E99" TextWrapping="Wrap" Margin="0,2,0,0"/>
+                                                </StackPanel>
+                                                <Border Grid.Column="1" VerticalAlignment="Center" Background="#FF101217" BorderBrush="#FF272A33" BorderThickness="1" CornerRadius="7" Padding="2">
+                                                    <StackPanel x:Name="psSegType" Orientation="Horizontal"/>
+                                                </Border>
+                                            </Grid>
+                                            <Grid Margin="0,0,0,12">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+                                                <StackPanel VerticalAlignment="Center" Margin="0,0,12,0">
+                                                    <TextBlock x:Name="lblPsRowBoost" Text="-" FontSize="12.5" Foreground="#FFE9EAEE"/>
+                                                    <TextBlock x:Name="lblPsRowBoostHint" Text="-" FontSize="11" Foreground="#FF8B8E99" TextWrapping="Wrap" Margin="0,2,0,0"/>
+                                                </StackPanel>
+                                                <Border Grid.Column="1" VerticalAlignment="Center" Background="#FF101217" BorderBrush="#FF272A33" BorderThickness="1" CornerRadius="7" Padding="2">
+                                                    <StackPanel x:Name="psSegBoost" Orientation="Horizontal"/>
+                                                </Border>
+                                            </Grid>
+                                                <Border Height="1" Background="#FF22252C" Margin="0,2,0,12"/>
                                                 <Grid>
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="*"/>
-                                                        <ColumnDefinition Width="10"/>
-                                                        <ColumnDefinition Width="*"/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="8"/>
+                                                        <ColumnDefinition Width="Auto"/>
                                                     </Grid.ColumnDefinitions>
-                                                    <Button x:Name="btnPsDefault" Grid.Column="0" Style="{StaticResource GhostBtn}" Content="Predefinito"/>
-                                                    <Button x:Name="btnPsApply" Grid.Column="2" Style="{StaticResource PrimaryBtn}" FontSize="13" Content="Applica"/>
+                                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                                        <Ellipse x:Name="psDot" Width="7" Height="7" Fill="#FF5A5E69" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                                                        <TextBlock x:Name="txtPsDecoded" Text="-" FontSize="11.5" Foreground="#FF8B8E99" VerticalAlignment="Center"/>
+                                                    </StackPanel>
+                                                    <Button x:Name="btnPsDefault" Grid.Column="1" Style="{StaticResource GhostBtn}" Content="Predefinito"/>
+                                                    <Button x:Name="btnPsApply" Grid.Column="3" Style="{StaticResource PrimaryBtn}" FontSize="13" MinWidth="110" Content="Applica"/>
                                                 </Grid>
                                             </StackPanel>
                                         </Border>

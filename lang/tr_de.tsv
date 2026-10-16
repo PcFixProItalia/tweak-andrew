@@ -1015,3 +1015,11 @@ M:leftKind_reg	REGISTRIERUNG
 M:leftKind_run	AUTOSTART
 M:leftKind_task	AUFGABE
 M:leftKind_svc	DIENST
+M:psRowLen	Länge der Zeitscheibe
+M:psRowLenHint	Kurz: reaktionsschneller. Lang: gleichmäßiger.
+M:psRowType	Art der Zeitscheibe
+M:psRowTypeHint	Variabel: das aktive Fenster erhält längere Zeitscheiben.
+M:psRowBoost	Vorteil des aktiven Fensters
+M:psRowBoostHint	Wie viel mehr Zeit es als Hintergrundprogramme erhält.
+M:psPending	Anzuwenden:
+M:psInUse	Bereits aktiv

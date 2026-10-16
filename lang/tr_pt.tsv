@@ -1015,3 +1015,11 @@ M:leftKind_reg	REGISTRO
 M:leftKind_run	INICIALIZAÇÃO
 M:leftKind_task	TAREFA
 M:leftKind_svc	SERVIÇO
+M:psRowLen	Duração da fatia
+M:psRowLenHint	Curta: mais responsivo. Longa: mais constante.
+M:psRowType	Tipo de fatia
+M:psRowTypeHint	Variável: a janela ativa recebe fatias mais longas.
+M:psRowBoost	Vantagem da janela ativa
+M:psRowBoostHint	Quanto tempo a mais recebe em relação aos programas em segundo plano.
+M:psPending	A aplicar:
+M:psInUse	Já em uso

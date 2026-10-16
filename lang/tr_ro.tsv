@@ -1015,3 +1015,11 @@ M:leftKind_reg	REGISTRY
 M:leftKind_run	PORNIRE
 M:leftKind_task	ACTIVITATE
 M:leftKind_svc	SERVICIU
+M:psRowLen	Durata cuantei
+M:psRowLenHint	Scurtă: mai reactiv. Lungă: mai constant.
+M:psRowType	Tipul cuantei
+M:psRowTypeHint	Variabilă: fereastra activă primește cuante mai lungi.
+M:psRowBoost	Avantajul ferestrei active
+M:psRowBoostHint	Cât timp în plus primește față de programele din fundal.
+M:psPending	De aplicat:
+M:psInUse	Deja în uz

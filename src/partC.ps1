@@ -927,6 +927,14 @@ $script:Msg = @{
     leftKind_run       = @{ it = "AVVIO"; en = "STARTUP" }
     leftKind_task      = @{ it = "ATTIVITÀ"; en = "TASK" }
     leftKind_svc       = @{ it = "SERVIZIO"; en = "SERVICE" }
+    psRowLen           = @{ it = "Durata del turno"; en = "Time slice length" }
+    psRowLenHint       = @{ it = "Breve: più reattivo. Lungo: più costante."; en = "Short: more responsive. Long: steadier." }
+    psRowType          = @{ it = "Tipo di turno"; en = "Slice type" }
+    psRowTypeHint      = @{ it = "Variabile: la finestra attiva riceve turni più lunghi."; en = "Variable: the active window gets longer slices." }
+    psRowBoost         = @{ it = "Vantaggio alla finestra attiva"; en = "Active window boost" }
+    psRowBoostHint     = @{ it = "Quanto tempo in più riceve rispetto ai programmi in background."; en = "How much more time it gets than background programs." }
+    psPending          = @{ it = "Da applicare:"; en = "To apply:" }
+    psInUse            = @{ it = "Già in uso"; en = "Already in use" }
 }
 
 $script:LangCode = "it"

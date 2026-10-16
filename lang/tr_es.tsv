@@ -1015,3 +1015,11 @@ M:leftKind_reg	REGISTRO
 M:leftKind_run	INICIO
 M:leftKind_task	TAREA
 M:leftKind_svc	SERVICIO
+M:psRowLen	Duración del turno
+M:psRowLenHint	Corto: más reactivo. Largo: más constante.
+M:psRowType	Tipo de turno
+M:psRowTypeHint	Variable: la ventana activa recibe turnos más largos.
+M:psRowBoost	Ventaja de la ventana activa
+M:psRowBoostHint	Cuánto tiempo más recibe frente a los programas en segundo plano.
+M:psPending	Por aplicar:
+M:psInUse	Ya en uso
