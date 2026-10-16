@@ -101,7 +101,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="CheckBox">
-                        <Border x:Name="row" Background="Transparent" CornerRadius="7" Padding="10,8" SnapsToDevicePixels="True">
+                        <Border x:Name="row" Background="Transparent" CornerRadius="7" Padding="10,7" SnapsToDevicePixels="True">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
@@ -574,8 +574,8 @@
             <Setter Property="BorderBrush" Value="#FF25282D"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="CornerRadius" Value="10"/>
-            <Setter Property="Padding" Value="18"/>
-            <Setter Property="Margin" Value="6"/>
+            <Setter Property="Padding" Value="16,14"/>
+            <Setter Property="Margin" Value="5"/>
         </Style>
 
         <!-- Avvisi in cima alle pagine: fascia centrata con icona, diversa dalle schede delle impostazioni. -->
@@ -613,10 +613,10 @@
 
         <Style x:Key="CardTitle" TargetType="TextBlock">
             <Setter Property="FontFamily" Value="Segoe UI Variable Display, Segoe UI"/>
-            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="FontSize" Value="11.5"/>
-            <Setter Property="Foreground" Value="#FFA9AFB7"/>
-            <Setter Property="Margin" Value="0,0,0,12"/>
+            <Setter Property="Foreground" Value="#FF8FB4F5"/>
+            <Setter Property="Margin" Value="0,0,0,10"/>
         </Style>
 
         <Style x:Key="SubTitle" TargetType="TextBlock">
@@ -1262,12 +1262,20 @@
                                                  Minimum="0" Maximum="100" Value="0"/>
                                 </Grid>
                             </Border>
-                            <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
-                                <Border x:Name="pageAccent" Width="5" Height="26" CornerRadius="2.5" Background="#FFFF7A45" Margin="0,0,14,0"/>
-                                <TextBlock x:Name="lblPageTitle" Text="Prestazioni"
-                                           FontFamily="Segoe UI Variable Display, Segoe UI"
-                                           FontSize="26" FontWeight="Bold" Foreground="#FFEDEFF2" VerticalAlignment="Center"/>
-                            </StackPanel>
+                            <Grid Grid.Column="0" VerticalAlignment="Center" Margin="0,0,12,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Border x:Name="pageAccent" Width="5" CornerRadius="2.5" Background="#FFFF7A45" Margin="0,2,14,2"/>
+                                <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                    <TextBlock x:Name="lblPageTitle" Text="Prestazioni"
+                                               FontFamily="Segoe UI Variable Display, Segoe UI"
+                                               FontSize="25" FontWeight="Bold" Foreground="#FFEDEFF2"/>
+                                    <TextBlock x:Name="lblPageSub" Text="" FontSize="12.5" Foreground="#FF8C929A"
+                                               TextWrapping="Wrap" Margin="0,1,0,0" MaxWidth="640" HorizontalAlignment="Left"/>
+                                </StackPanel>
+                            </Grid>
                             <!-- «Rileva già attivi» sta qui e non nella barra in basso: con le lingue lunghe la barra andava su due righe. -->
                             <!-- Ripristino totale: sempre a portata, anche dalle pagine a effetto immediato. -->
                             <Button x:Name="btnEmergency" Grid.Column="2" Style="{StaticResource UndoBtn}" Height="36" Margin="0,0,10,0"

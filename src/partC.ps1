@@ -508,10 +508,10 @@ $script:Msg = @{
     aiTag              = @{ it = "IA"; en = "AI" }
     aiRelevant         = @{ it = "Riguarda le funzioni di intelligenza artificiale"; en = "Concerns artificial intelligence features" }
     catBulkTitle       = @{ it = "Modifica di più impostazioni"; en = "Change several settings" }
-    applyRecYes        = @{ it = "Applica le consigliate"; en = "Apply recommended" }
+    applyRecYes        = @{ it = "Scegli le consigliate"; en = "Pick recommended" }
     applyRecLimited    = @{ it = "Consigliate e con limitazioni"; en = "Recommended and limited" }
-    applyRecAll        = @{ it = "Applica tutte"; en = "Apply all" }
-    undoAllFactory     = @{ it = "Annulla tutto (impostazioni di fabbrica)"; en = "Undo all (factory settings)" }
+    applyRecAll        = @{ it = "Scegli tutte"; en = "Pick all" }
+    undoAllFactory     = @{ it = "Tutte come Windows appena installato"; en = "All as on a fresh Windows" }
     makeRestorePoint   = @{ it = "Crea un punto di ripristino"; en = "Create a restore point" }
     askRecYes          = @{ it = "Attivo tutte le protezioni consigliate, senza toccare le altre. Procedo?"; en = "I'll turn on every recommended protection and leave the rest alone. Go ahead?" }
     askRecLimited      = @{ it = "Attivo le consigliate e quelle con limitazioni: qualche funzione potrebbe smettere di funzionare. Procedo?"; en = "I'll turn on recommended and limited ones: some features may stop working. Go ahead?" }
@@ -521,7 +521,7 @@ $script:Msg = @{
     scopeUser          = @{ it = "Utente corrente"; en = "Current user" }
     scopeMachine       = @{ it = "Macchina locale"; en = "Local machine" }
     scopeAll           = @{ it = "Tutte"; en = "All" }
-    applyRecommended   = @{ it = "Applica le consigliate"; en = "Apply recommended" }
+    applyRecommended   = @{ it = "Scegli le consigliate"; en = "Pick recommended" }
     restoreWindows     = @{ it = "Predefiniti di Windows"; en = "Windows defaults" }
     askRecommended     = @{ it = "Porto le voci di questa pagina sui valori consigliati. Quelle senza consiglio restano come sono. Procedo?"; en = "I'll set this page's items to the recommended values. Items without a recommendation stay as they are. Go ahead?" }
     askWindowsDefaults = @{ it = "Riporto le voci di questa pagina ai valori di Windows appena installato. Procedo?"; en = "I'll put this page's items back to the values of a fresh Windows install. Go ahead?" }
@@ -858,6 +858,24 @@ $script:Msg = @{
     ghostError         = @{ it = "Elenco non disponibile:"; en = "List not available:" }
     tagReboot          = @{ it = "Serve un riavvio"; en = "Needs a restart" }
     tagCaution         = @{ it = "Con cautela"; en = "Use with care" }
+    pageSub_tabHome    = @{ it = "Il riepilogo del computer. Scegli qui il tipo di computer: decide cosa fanno «Consigliati» e «Seleziona tutto»."; en = "A summary of the computer. Choose the computer type here: it decides what «Recommended» and «Select all» do." }
+    pageSub_tabPerf    = @{ it = "Rendono Windows e i giochi più reattivi."; en = "They make Windows and games more responsive." }
+    pageSub_tabSched   = @{ it = "Quanto processore ricevono il programma in primo piano, i giochi e l'audio."; en = "How much processor time the foreground program, games and audio get." }
+    pageSub_tabPower   = @{ it = "Il piano energetico: quanto il PC risparmia corrente a scapito della velocità."; en = "The power plan: how much the PC saves power at the expense of speed." }
+    pageSub_tabGpu     = @{ it = "Il driver della scheda video: prestazioni, latenza e programmi di contorno."; en = "The graphics driver: performance, latency and extra programs." }
+    pageSub_tabStorage = @{ it = "I dischi, lo spazio libero e la manutenzione di SSD e dischi meccanici."; en = "Drives, free space and upkeep for SSDs and hard drives." }
+    pageSub_tabNet     = @{ it = "La connessione a Internet: profilo TCP, server DNS e risparmio delle schede di rete."; en = "The Internet connection: TCP profile, DNS servers and network adapter power saving." }
+    pageSub_tabPrivacy = @{ it = "Cosa Windows invia a Microsoft e quali suggerimenti e pubblicità ti mostra."; en = "What Windows sends to Microsoft and which suggestions and ads it shows you." }
+    pageSub_tabPriv2   = @{ it = "Permessi delle app, intelligenza artificiale e servizi online, voce per voce."; en = "App permissions, artificial intelligence and online services, one by one." }
+    pageSub_tabUi      = @{ it = "L'aspetto di Windows: tema, menu, mouse e tastiera."; en = "How Windows looks: theme, menus, mouse and keyboard." }
+    pageSub_tabExp     = @{ it = "Esplora file: icone del desktop, menu del tasto destro e cartelle."; en = "File Explorer: desktop icons, right-click menu and folders." }
+    pageSub_tabTask    = @{ it = "Il menu Start e la barra delle applicazioni."; en = "The Start menu and the taskbar." }
+    pageSub_tabNotif   = @{ it = "Notifiche, suggerimenti di Windows e suoni."; en = "Notifications, Windows tips and sounds." }
+    pageSub_tabGame    = @{ it = "La grafica dei giochi e gli effetti visivi di Windows."; en = "Game graphics and Windows visual effects." }
+    pageSub_tabWin     = @{ it = "Sicurezza, browser, aggiornamenti, servizi e attività pianificate."; en = "Security, browsers, updates, services and scheduled tasks." }
+    pageSub_tabApps    = @{ it = "Installa o aggiorna i programmi più usati con un clic."; en = "Install or update the most used programs with one click." }
+    pageSub_tabTools   = @{ it = "Pulizia, riparazioni e pannelli di Windows. Questi strumenti agiscono subito."; en = "Cleanup, repairs and Windows panels. These tools act right away." }
+    pageSub_tabAdv     = @{ it = "Per chi sa cosa sta facendo: qui si tolgono pezzi di Windows, una voce alla volta."; en = "For those who know what they're doing: this removes parts of Windows, one entry at a time." }
 }
 
 $script:LangCode = "it"

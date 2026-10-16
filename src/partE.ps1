@@ -93,12 +93,14 @@ function Show-Page {
         if ($entry.Nav.IsChecked -eq $true) {
             $entry.Page.Visibility = [System.Windows.Visibility]::Visible
             if ($null -ne $lblPageTitle) { $lblPageTitle.Text = [string]$entry.Nav.Content }
+            $sub = $window.FindName('lblPageSub')
+            if ($null -ne $sub) { $sub.Text = T "pageSub_$($entry.Nav.Name)" }
             # La barretta accanto al titolo prende il colore della pagina.
             $pa = $entry.Nav.Resources['PA']
             if ($null -ne $pa -and $null -ne $script:PageAccent) { $script:PageAccent.Background = $pa }
             if ($null -ne $pa -and $null -ne $script:GlowPage) { Set-PageGlow $pa.Color }
-            # Sulle pagine a effetto immediato la coda di «Applica» non serve: si nasconde.
-            $live = ($entry.Cat -and $entry.Cat -ne 'power') -or $entry.Apps -or $entry.Home -or $entry.Tools
+            # Sulle pagine che agiscono subito (Home, App, Strumenti) la barra di «Applica» non serve.
+            $live = $entry.Apps -or $entry.Home -or $entry.Tools
             foreach ($n in @('barQueue', 'pillSelected', 'btnDetectActive', 'chkRestorePoint')) {
                 $el = $window.FindName($n)
                 if ($el) { $el.Visibility = if ($live) { 'Collapsed' } else { 'Visible' } }

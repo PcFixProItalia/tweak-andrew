@@ -168,7 +168,7 @@ $script:PlanData = @{
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="CheckBox">
-                        <Border x:Name="row" Background="Transparent" CornerRadius="7" Padding="10,8" SnapsToDevicePixels="True">
+                        <Border x:Name="row" Background="Transparent" CornerRadius="7" Padding="10,7" SnapsToDevicePixels="True">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
@@ -641,8 +641,8 @@ $script:PlanData = @{
             <Setter Property="BorderBrush" Value="#FF25282D"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="CornerRadius" Value="10"/>
-            <Setter Property="Padding" Value="18"/>
-            <Setter Property="Margin" Value="6"/>
+            <Setter Property="Padding" Value="16,14"/>
+            <Setter Property="Margin" Value="5"/>
         </Style>
 
         <!-- Avvisi in cima alle pagine: fascia centrata con icona, diversa dalle schede delle impostazioni. -->
@@ -680,10 +680,10 @@ $script:PlanData = @{
 
         <Style x:Key="CardTitle" TargetType="TextBlock">
             <Setter Property="FontFamily" Value="Segoe UI Variable Display, Segoe UI"/>
-            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="FontSize" Value="11.5"/>
-            <Setter Property="Foreground" Value="#FFA9AFB7"/>
-            <Setter Property="Margin" Value="0,0,0,12"/>
+            <Setter Property="Foreground" Value="#FF8FB4F5"/>
+            <Setter Property="Margin" Value="0,0,0,10"/>
         </Style>
 
         <Style x:Key="SubTitle" TargetType="TextBlock">
@@ -1329,12 +1329,20 @@ $script:PlanData = @{
                                                  Minimum="0" Maximum="100" Value="0"/>
                                 </Grid>
                             </Border>
-                            <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
-                                <Border x:Name="pageAccent" Width="5" Height="26" CornerRadius="2.5" Background="#FFFF7A45" Margin="0,0,14,0"/>
-                                <TextBlock x:Name="lblPageTitle" Text="Prestazioni"
-                                           FontFamily="Segoe UI Variable Display, Segoe UI"
-                                           FontSize="26" FontWeight="Bold" Foreground="#FFEDEFF2" VerticalAlignment="Center"/>
-                            </StackPanel>
+                            <Grid Grid.Column="0" VerticalAlignment="Center" Margin="0,0,12,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Border x:Name="pageAccent" Width="5" CornerRadius="2.5" Background="#FFFF7A45" Margin="0,2,14,2"/>
+                                <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                    <TextBlock x:Name="lblPageTitle" Text="Prestazioni"
+                                               FontFamily="Segoe UI Variable Display, Segoe UI"
+                                               FontSize="25" FontWeight="Bold" Foreground="#FFEDEFF2"/>
+                                    <TextBlock x:Name="lblPageSub" Text="" FontSize="12.5" Foreground="#FF8C929A"
+                                               TextWrapping="Wrap" Margin="0,1,0,0" MaxWidth="640" HorizontalAlignment="Left"/>
+                                </StackPanel>
+                            </Grid>
                             <!-- «Rileva già attivi» sta qui e non nella barra in basso: con le lingue lunghe la barra andava su due righe. -->
                             <!-- Ripristino totale: sempre a portata, anche dalle pagine a effetto immediato. -->
                             <Button x:Name="btnEmergency" Grid.Column="2" Style="{StaticResource UndoBtn}" Height="36" Margin="0,0,10,0"
@@ -3181,10 +3189,10 @@ $script:Msg = @{
     aiTag              = @{ it = "IA"; en = "AI" }
     aiRelevant         = @{ it = "Riguarda le funzioni di intelligenza artificiale"; en = "Concerns artificial intelligence features" }
     catBulkTitle       = @{ it = "Modifica di più impostazioni"; en = "Change several settings" }
-    applyRecYes        = @{ it = "Applica le consigliate"; en = "Apply recommended" }
+    applyRecYes        = @{ it = "Scegli le consigliate"; en = "Pick recommended" }
     applyRecLimited    = @{ it = "Consigliate e con limitazioni"; en = "Recommended and limited" }
-    applyRecAll        = @{ it = "Applica tutte"; en = "Apply all" }
-    undoAllFactory     = @{ it = "Annulla tutto (impostazioni di fabbrica)"; en = "Undo all (factory settings)" }
+    applyRecAll        = @{ it = "Scegli tutte"; en = "Pick all" }
+    undoAllFactory     = @{ it = "Tutte come Windows appena installato"; en = "All as on a fresh Windows" }
     makeRestorePoint   = @{ it = "Crea un punto di ripristino"; en = "Create a restore point" }
     askRecYes          = @{ it = "Attivo tutte le protezioni consigliate, senza toccare le altre. Procedo?"; en = "I'll turn on every recommended protection and leave the rest alone. Go ahead?" }
     askRecLimited      = @{ it = "Attivo le consigliate e quelle con limitazioni: qualche funzione potrebbe smettere di funzionare. Procedo?"; en = "I'll turn on recommended and limited ones: some features may stop working. Go ahead?" }
@@ -3194,7 +3202,7 @@ $script:Msg = @{
     scopeUser          = @{ it = "Utente corrente"; en = "Current user" }
     scopeMachine       = @{ it = "Macchina locale"; en = "Local machine" }
     scopeAll           = @{ it = "Tutte"; en = "All" }
-    applyRecommended   = @{ it = "Applica le consigliate"; en = "Apply recommended" }
+    applyRecommended   = @{ it = "Scegli le consigliate"; en = "Pick recommended" }
     restoreWindows     = @{ it = "Predefiniti di Windows"; en = "Windows defaults" }
     askRecommended     = @{ it = "Porto le voci di questa pagina sui valori consigliati. Quelle senza consiglio restano come sono. Procedo?"; en = "I'll set this page's items to the recommended values. Items without a recommendation stay as they are. Go ahead?" }
     askWindowsDefaults = @{ it = "Riporto le voci di questa pagina ai valori di Windows appena installato. Procedo?"; en = "I'll put this page's items back to the values of a fresh Windows install. Go ahead?" }
@@ -3531,6 +3539,24 @@ $script:Msg = @{
     ghostError         = @{ it = "Elenco non disponibile:"; en = "List not available:" }
     tagReboot          = @{ it = "Serve un riavvio"; en = "Needs a restart" }
     tagCaution         = @{ it = "Con cautela"; en = "Use with care" }
+    pageSub_tabHome    = @{ it = "Il riepilogo del computer. Scegli qui il tipo di computer: decide cosa fanno «Consigliati» e «Seleziona tutto»."; en = "A summary of the computer. Choose the computer type here: it decides what «Recommended» and «Select all» do." }
+    pageSub_tabPerf    = @{ it = "Rendono Windows e i giochi più reattivi."; en = "They make Windows and games more responsive." }
+    pageSub_tabSched   = @{ it = "Quanto processore ricevono il programma in primo piano, i giochi e l'audio."; en = "How much processor time the foreground program, games and audio get." }
+    pageSub_tabPower   = @{ it = "Il piano energetico: quanto il PC risparmia corrente a scapito della velocità."; en = "The power plan: how much the PC saves power at the expense of speed." }
+    pageSub_tabGpu     = @{ it = "Il driver della scheda video: prestazioni, latenza e programmi di contorno."; en = "The graphics driver: performance, latency and extra programs." }
+    pageSub_tabStorage = @{ it = "I dischi, lo spazio libero e la manutenzione di SSD e dischi meccanici."; en = "Drives, free space and upkeep for SSDs and hard drives." }
+    pageSub_tabNet     = @{ it = "La connessione a Internet: profilo TCP, server DNS e risparmio delle schede di rete."; en = "The Internet connection: TCP profile, DNS servers and network adapter power saving." }
+    pageSub_tabPrivacy = @{ it = "Cosa Windows invia a Microsoft e quali suggerimenti e pubblicità ti mostra."; en = "What Windows sends to Microsoft and which suggestions and ads it shows you." }
+    pageSub_tabPriv2   = @{ it = "Permessi delle app, intelligenza artificiale e servizi online, voce per voce."; en = "App permissions, artificial intelligence and online services, one by one." }
+    pageSub_tabUi      = @{ it = "L'aspetto di Windows: tema, menu, mouse e tastiera."; en = "How Windows looks: theme, menus, mouse and keyboard." }
+    pageSub_tabExp     = @{ it = "Esplora file: icone del desktop, menu del tasto destro e cartelle."; en = "File Explorer: desktop icons, right-click menu and folders." }
+    pageSub_tabTask    = @{ it = "Il menu Start e la barra delle applicazioni."; en = "The Start menu and the taskbar." }
+    pageSub_tabNotif   = @{ it = "Notifiche, suggerimenti di Windows e suoni."; en = "Notifications, Windows tips and sounds." }
+    pageSub_tabGame    = @{ it = "La grafica dei giochi e gli effetti visivi di Windows."; en = "Game graphics and Windows visual effects." }
+    pageSub_tabWin     = @{ it = "Sicurezza, browser, aggiornamenti, servizi e attività pianificate."; en = "Security, browsers, updates, services and scheduled tasks." }
+    pageSub_tabApps    = @{ it = "Installa o aggiorna i programmi più usati con un clic."; en = "Install or update the most used programs with one click." }
+    pageSub_tabTools   = @{ it = "Pulizia, riparazioni e pannelli di Windows. Questi strumenti agiscono subito."; en = "Cleanup, repairs and Windows panels. These tools act right away." }
+    pageSub_tabAdv     = @{ it = "Per chi sa cosa sta facendo: qui si tolgono pezzi di Windows, una voce alla volta."; en = "For those who know what they're doing: this removes parts of Windows, one entry at a time." }
 }
 
 $script:LangCode = "it"
@@ -5341,10 +5367,10 @@ $script:Tr = @{
         'M:aiTag' = "IA"
         'M:aiRelevant' = "Afecta a las funciones de inteligencia artificial"
         'M:catBulkTitle' = "Cambiar varios ajustes"
-        'M:applyRecYes' = "Aplicar las recomendadas"
+        'M:applyRecYes' = "Elegir las recomendadas"
         'M:applyRecLimited' = "Recomendadas y con limitaciones"
-        'M:applyRecAll' = "Aplicar todas"
-        'M:undoAllFactory' = "Deshacer todo (valores de fábrica)"
+        'M:applyRecAll' = "Elegir todas"
+        'M:undoAllFactory' = "Todas como en un Windows recién instalado"
         'M:makeRestorePoint' = "Crear un punto de restauración"
         'M:askRecYes' = "Activo todas las protecciones recomendadas sin tocar las demás. ¿Sigo?"
         'M:askRecLimited' = "Activo las recomendadas y las limitadas: alguna función podría dejar de ir. ¿Sigo?"
@@ -5354,7 +5380,7 @@ $script:Tr = @{
         'M:scopeUser' = "Usuario actual"
         'M:scopeMachine' = "Equipo local"
         'M:scopeAll' = "Todas"
-        'M:applyRecommended' = "Aplicar las recomendadas"
+        'M:applyRecommended' = "Elegir las recomendadas"
         'M:restoreWindows' = "Valores de Windows"
         'M:askRecommended' = "Pongo las opciones de esta página en los valores recomendados. Las que no tienen recomendación no cambian. ¿Sigo?"
         'M:askWindowsDefaults' = "Devuelvo las opciones de esta página a los valores de un Windows recién instalado. ¿Sigo?"
@@ -5767,6 +5793,24 @@ $script:Tr = @{
         'M:ghostError' = "Lista no disponible:"
         'M:tagReboot' = "Requiere reinicio"
         'M:tagCaution' = "Con cuidado"
+        'M:pageSub_tabHome' = "Resumen del equipo. Elige aquí el tipo de equipo: decide qué hacen «Recomendados» y «Seleccionar todo»."
+        'M:pageSub_tabPerf' = "Hacen Windows y los juegos más ágiles."
+        'M:pageSub_tabSched' = "Cuánto procesador reciben el programa en primer plano, los juegos y el audio."
+        'M:pageSub_tabPower' = "El plan de energía: cuánto ahorra el PC a costa de la velocidad."
+        'M:pageSub_tabGpu' = "El driver de la tarjeta gráfica: rendimiento, latencia y programas extra."
+        'M:pageSub_tabStorage' = "Discos, espacio libre y mantenimiento de SSD y discos duros."
+        'M:pageSub_tabNet' = "La conexión a Internet: perfil TCP, servidores DNS y ahorro de los adaptadores."
+        'M:pageSub_tabPrivacy' = "Qué envía Windows a Microsoft y qué sugerencias y anuncios te muestra."
+        'M:pageSub_tabPriv2' = "Permisos de las apps, inteligencia artificial y servicios en línea, uno a uno."
+        'M:pageSub_tabUi' = "El aspecto de Windows: tema, menús, ratón y teclado."
+        'M:pageSub_tabExp' = "Explorador: iconos del escritorio, menú contextual y carpetas."
+        'M:pageSub_tabTask' = "El menú Inicio y la barra de tareas."
+        'M:pageSub_tabNotif' = "Notificaciones, sugerencias de Windows y sonidos."
+        'M:pageSub_tabGame' = "Gráficos de juegos y efectos visuales de Windows."
+        'M:pageSub_tabWin' = "Seguridad, navegadores, actualizaciones, servicios y tareas programadas."
+        'M:pageSub_tabApps' = "Instala o actualiza los programas más usados con un clic."
+        'M:pageSub_tabTools' = "Limpieza, reparaciones y paneles de Windows. Actúan al momento."
+        'M:pageSub_tabAdv' = "Para quien sabe lo que hace: aquí se quitan partes de Windows, una a una."
     }
     de = @{
         'L:lblSubtitle' = "Windows-Optimierung und -Steuerung — PcFixPro Italia"
@@ -6294,10 +6338,10 @@ $script:Tr = @{
         'M:aiTag' = "KI"
         'M:aiRelevant' = "Betrifft Funktionen der künstlichen Intelligenz"
         'M:catBulkTitle' = "Mehrere Einstellungen ändern"
-        'M:applyRecYes' = "Empfohlene anwenden"
+        'M:applyRecYes' = "Empfohlene wählen"
         'M:applyRecLimited' = "Empfohlene und eingeschränkte"
-        'M:applyRecAll' = "Alle anwenden"
-        'M:undoAllFactory' = "Alles zurücksetzen (Werkseinstellungen)"
+        'M:applyRecAll' = "Alle wählen"
+        'M:undoAllFactory' = "Alle wie bei frisch installiertem Windows"
         'M:makeRestorePoint' = "Wiederherstellungspunkt erstellen"
         'M:askRecYes' = "Ich aktiviere alle empfohlenen Schutzfunktionen, der Rest bleibt unverändert. Fortfahren?"
         'M:askRecLimited' = "Ich aktiviere empfohlene und eingeschränkte: Manche Funktionen könnten ausfallen. Fortfahren?"
@@ -6307,7 +6351,7 @@ $script:Tr = @{
         'M:scopeUser' = "Aktueller Benutzer"
         'M:scopeMachine' = "Lokaler Computer"
         'M:scopeAll' = "Alle"
-        'M:applyRecommended' = "Empfohlene anwenden"
+        'M:applyRecommended' = "Empfohlene wählen"
         'M:restoreWindows' = "Windows-Standard"
         'M:askRecommended' = "Ich setze die Einträge dieser Seite auf die empfohlenen Werte. Einträge ohne Empfehlung bleiben. Fortfahren?"
         'M:askWindowsDefaults' = "Ich setze die Einträge dieser Seite auf die Werte einer frischen Windows-Installation. Fortfahren?"
@@ -6720,6 +6764,24 @@ $script:Tr = @{
         'M:ghostError' = "Liste nicht verfügbar:"
         'M:tagReboot' = "Neustart nötig"
         'M:tagCaution' = "Mit Vorsicht"
+        'M:pageSub_tabHome' = "Übersicht über den Computer. Wähle hier den Gerätetyp: Er bestimmt, was «Empfohlene» und «Alles auswählen» tun."
+        'M:pageSub_tabPerf' = "Machen Windows und Spiele reaktionsschneller."
+        'M:pageSub_tabSched' = "Wie viel Prozessorzeit Vordergrundprogramm, Spiele und Audio bekommen."
+        'M:pageSub_tabPower' = "Der Energiesparplan: wie viel der PC auf Kosten der Leistung spart."
+        'M:pageSub_tabGpu' = "Der Grafiktreiber: Leistung, Latenz und Zusatzprogramme."
+        'M:pageSub_tabStorage' = "Laufwerke, freier Platz und Pflege von SSDs und Festplatten."
+        'M:pageSub_tabNet' = "Die Internetverbindung: TCP-Profil, DNS-Server und Energiesparen der Netzwerkadapter."
+        'M:pageSub_tabPrivacy' = "Was Windows an Microsoft sendet und welche Vorschläge und Werbung es zeigt."
+        'M:pageSub_tabPriv2' = "App-Berechtigungen, KI und Onlinedienste, einzeln."
+        'M:pageSub_tabUi' = "Das Aussehen von Windows: Design, Menüs, Maus und Tastatur."
+        'M:pageSub_tabExp' = "Datei-Explorer: Desktopsymbole, Kontextmenü und Ordner."
+        'M:pageSub_tabTask' = "Startmenü und Taskleiste."
+        'M:pageSub_tabNotif' = "Benachrichtigungen, Windows-Tipps und Sounds."
+        'M:pageSub_tabGame' = "Spielegrafik und visuelle Effekte von Windows."
+        'M:pageSub_tabWin' = "Sicherheit, Browser, Updates, Dienste und geplante Aufgaben."
+        'M:pageSub_tabApps' = "Installiere oder aktualisiere beliebte Programme mit einem Klick."
+        'M:pageSub_tabTools' = "Bereinigung, Reparaturen und Windows-Fenster. Diese Werkzeuge wirken sofort."
+        'M:pageSub_tabAdv' = "Für Erfahrene: Hier werden Teile von Windows entfernt, einzeln."
     }
     fr = @{
         'L:lblSubtitle' = "Optimisation et contrôle de Windows — PcFixPro Italia"
@@ -7250,10 +7312,10 @@ $script:Tr = @{
         'M:aiTag' = "IA"
         'M:aiRelevant' = "Concerne les fonctions d'intelligence artificielle"
         'M:catBulkTitle' = "Modifier plusieurs paramètres"
-        'M:applyRecYes' = "Appliquer les recommandées"
+        'M:applyRecYes' = "Choisir les recommandées"
         'M:applyRecLimited' = "Recommandées et avec réserves"
-        'M:applyRecAll' = "Tout appliquer"
-        'M:undoAllFactory' = "Tout annuler (paramètres d'usine)"
+        'M:applyRecAll' = "Tout choisir"
+        'M:undoAllFactory' = "Toutes comme sur un Windows neuf"
         'M:makeRestorePoint' = "Créer un point de restauration"
         'M:askRecYes' = "J'active toutes les protections recommandées sans toucher aux autres. Je continue ?"
         'M:askRecLimited' = "J'active les recommandées et celles avec réserves : certaines fonctions pourraient cesser de marcher. Je continue ?"
@@ -7263,7 +7325,7 @@ $script:Tr = @{
         'M:scopeUser' = "Utilisateur actuel"
         'M:scopeMachine' = "Ordinateur local"
         'M:scopeAll' = "Toutes"
-        'M:applyRecommended' = "Appliquer les recommandées"
+        'M:applyRecommended' = "Choisir les recommandées"
         'M:restoreWindows' = "Valeurs de Windows"
         'M:askRecommended' = "Je règle les éléments de cette page sur les valeurs recommandées. Ceux sans recommandation ne changent pas. Je continue ?"
         'M:askWindowsDefaults' = "Je remets les éléments de cette page aux valeurs d'un Windows fraîchement installé. Je continue ?"
@@ -7676,6 +7738,24 @@ $script:Tr = @{
         'M:ghostError' = "Liste indisponible :"
         'M:tagReboot' = "Redémarrage requis"
         'M:tagCaution' = "Avec prudence"
+        'M:pageSub_tabHome' = "Le résumé de l'ordinateur. Choisissez ici le type d'ordinateur : il décide de ce que font «Recommandés» et «Tout sélectionner»."
+        'M:pageSub_tabPerf' = "Rendent Windows et les jeux plus réactifs."
+        'M:pageSub_tabSched' = "Le temps processeur donné au programme au premier plan, aux jeux et à l'audio."
+        'M:pageSub_tabPower' = "Le mode d'alimentation : combien le PC économise au détriment de la vitesse."
+        'M:pageSub_tabGpu' = "Le pilote graphique : performances, latence et programmes annexes."
+        'M:pageSub_tabStorage' = "Disques, espace libre et entretien des SSD et disques durs."
+        'M:pageSub_tabNet' = "La connexion Internet : profil TCP, serveurs DNS et économie des cartes réseau."
+        'M:pageSub_tabPrivacy' = "Ce que Windows envoie à Microsoft et quelles suggestions et publicités il affiche."
+        'M:pageSub_tabPriv2' = "Autorisations des applis, IA et services en ligne, un par un."
+        'M:pageSub_tabUi' = "L'apparence de Windows : thème, menus, souris et clavier."
+        'M:pageSub_tabExp' = "Explorateur : icônes du bureau, menu du clic droit et dossiers."
+        'M:pageSub_tabTask' = "Le menu Démarrer et la barre des tâches."
+        'M:pageSub_tabNotif' = "Notifications, conseils de Windows et sons."
+        'M:pageSub_tabGame' = "Graphismes des jeux et effets visuels de Windows."
+        'M:pageSub_tabWin' = "Sécurité, navigateurs, mises à jour, services et tâches planifiées."
+        'M:pageSub_tabApps' = "Installez ou mettez à jour les programmes courants en un clic."
+        'M:pageSub_tabTools' = "Nettoyage, réparations et panneaux de Windows. Ces outils agissent tout de suite."
+        'M:pageSub_tabAdv' = "Pour les initiés : on retire ici des parties de Windows, une à une."
     }
     pl = @{
         'L:lblSubtitle' = "Optymalizacja i kontrola systemu Windows — PcFixPro Italia"
@@ -8203,10 +8283,10 @@ $script:Tr = @{
         'M:aiTag' = "AI"
         'M:aiRelevant' = "Dotyczy funkcji sztucznej inteligencji"
         'M:catBulkTitle' = "Zmiana wielu ustawień"
-        'M:applyRecYes' = "Zastosuj zalecane"
+        'M:applyRecYes' = "Wybierz zalecane"
         'M:applyRecLimited' = "Zalecane i z ograniczeniami"
-        'M:applyRecAll' = "Zastosuj wszystkie"
-        'M:undoAllFactory' = "Cofnij wszystko (ustawienia fabryczne)"
+        'M:applyRecAll' = "Wybierz wszystkie"
+        'M:undoAllFactory' = "Wszystkie jak w świeżym Windows"
         'M:makeRestorePoint' = "Utwórz punkt przywracania"
         'M:askRecYes' = "Włączę wszystkie zalecane zabezpieczenia, reszty nie ruszam. Kontynuować?"
         'M:askRecLimited' = "Włączę zalecane i ograniczone: niektóre funkcje mogą przestać działać. Kontynuować?"
@@ -8216,7 +8296,7 @@ $script:Tr = @{
         'M:scopeUser' = "Bieżący użytkownik"
         'M:scopeMachine' = "Komputer lokalny"
         'M:scopeAll' = "Wszystkie"
-        'M:applyRecommended' = "Zastosuj zalecane"
+        'M:applyRecommended' = "Wybierz zalecane"
         'M:restoreWindows' = "Domyślne Windows"
         'M:askRecommended' = "Ustawię pozycje tej strony na wartości zalecane. Te bez zalecenia pozostaną bez zmian. Kontynuować?"
         'M:askWindowsDefaults' = "Przywrócę pozycje tej strony do wartości świeżej instalacji Windows. Kontynuować?"
@@ -8629,6 +8709,24 @@ $script:Tr = @{
         'M:ghostError' = "Lista niedostępna:"
         'M:tagReboot' = "Wymaga restartu"
         'M:tagCaution' = "Ostrożnie"
+        'M:pageSub_tabHome' = "Podsumowanie komputera. Wybierz tu rodzaj komputera: decyduje, co robią «Zalecane» i «Zaznacz wszystko»."
+        'M:pageSub_tabPerf' = "Sprawiają, że Windows i gry reagują szybciej."
+        'M:pageSub_tabSched' = "Ile czasu procesora dostaje program na pierwszym planie, gry i dźwięk."
+        'M:pageSub_tabPower' = "Plan zasilania: ile komputer oszczędza energii kosztem szybkości."
+        'M:pageSub_tabGpu' = "Sterownik karty graficznej: wydajność, opóźnienie i dodatki."
+        'M:pageSub_tabStorage' = "Dyski, wolne miejsce i konserwacja SSD oraz HDD."
+        'M:pageSub_tabNet' = "Połączenie z internetem: profil TCP, serwery DNS i oszczędzanie kart sieciowych."
+        'M:pageSub_tabPrivacy' = "Co Windows wysyła do Microsoftu oraz jakie sugestie i reklamy pokazuje."
+        'M:pageSub_tabPriv2' = "Uprawnienia aplikacji, sztuczna inteligencja i usługi online, pojedynczo."
+        'M:pageSub_tabUi' = "Wygląd Windows: motyw, menu, mysz i klawiatura."
+        'M:pageSub_tabExp' = "Eksplorator plików: ikony pulpitu, menu prawego przycisku i foldery."
+        'M:pageSub_tabTask' = "Menu Start i pasek zadań."
+        'M:pageSub_tabNotif' = "Powiadomienia, porady Windows i dźwięki."
+        'M:pageSub_tabGame' = "Grafika gier i efekty wizualne Windows."
+        'M:pageSub_tabWin' = "Bezpieczeństwo, przeglądarki, aktualizacje, usługi i zadania."
+        'M:pageSub_tabApps' = "Zainstaluj lub zaktualizuj popularne programy jednym kliknięciem."
+        'M:pageSub_tabTools' = "Czyszczenie, naprawy i panele Windows. Działają od razu."
+        'M:pageSub_tabAdv' = "Dla zaawansowanych: tu usuwa się części Windows, pojedynczo."
     }
     pt = @{
         'L:lblSubtitle' = "Otimização e controle do Windows — PcFixPro Italia"
@@ -9156,10 +9254,10 @@ $script:Tr = @{
         'M:aiTag' = "IA"
         'M:aiRelevant' = "Afeta os recursos de inteligência artificial"
         'M:catBulkTitle' = "Alterar várias configurações"
-        'M:applyRecYes' = "Aplicar as recomendadas"
+        'M:applyRecYes' = "Escolher as recomendadas"
         'M:applyRecLimited' = "Recomendadas e com limitações"
-        'M:applyRecAll' = "Aplicar todas"
-        'M:undoAllFactory' = "Desfazer tudo (padrões de fábrica)"
+        'M:applyRecAll' = "Escolher todas"
+        'M:undoAllFactory' = "Todas como num Windows recém-instalado"
         'M:makeRestorePoint' = "Criar um ponto de restauração"
         'M:askRecYes' = "Vou ativar todas as proteções recomendadas sem mexer nas outras. Continuo?"
         'M:askRecLimited' = "Vou ativar as recomendadas e as limitadas: alguns recursos podem parar. Continuo?"
@@ -9169,7 +9267,7 @@ $script:Tr = @{
         'M:scopeUser' = "Usuário atual"
         'M:scopeMachine' = "Máquina local"
         'M:scopeAll' = "Todas"
-        'M:applyRecommended' = "Aplicar as recomendadas"
+        'M:applyRecommended' = "Escolher as recomendadas"
         'M:restoreWindows' = "Padrões do Windows"
         'M:askRecommended' = "Vou colocar os itens desta página nos valores recomendados. Os sem recomendação ficam como estão. Continuo?"
         'M:askWindowsDefaults' = "Vou voltar os itens desta página aos valores de um Windows recém-instalado. Continuo?"
@@ -9582,6 +9680,24 @@ $script:Tr = @{
         'M:ghostError' = "Lista indisponível:"
         'M:tagReboot' = "Requer reinício"
         'M:tagCaution' = "Com cuidado"
+        'M:pageSub_tabHome' = "O resumo do computador. Escolha aqui o tipo de computador: ele decide o que fazem «Recomendados» e «Selecionar tudo»."
+        'M:pageSub_tabPerf' = "Deixam o Windows e os jogos mais ágeis."
+        'M:pageSub_tabSched' = "Quanto processador recebem o programa em primeiro plano, os jogos e o áudio."
+        'M:pageSub_tabPower' = "O plano de energia: quanto o PC economiza à custa da velocidade."
+        'M:pageSub_tabGpu' = "O driver da placa de vídeo: desempenho, latência e programas extras."
+        'M:pageSub_tabStorage' = "Discos, espaço livre e manutenção de SSDs e HDs."
+        'M:pageSub_tabNet' = "A conexão com a Internet: perfil TCP, servidores DNS e economia dos adaptadores."
+        'M:pageSub_tabPrivacy' = "O que o Windows envia à Microsoft e quais sugestões e anúncios mostra."
+        'M:pageSub_tabPriv2' = "Permissões dos apps, inteligência artificial e serviços online, um a um."
+        'M:pageSub_tabUi' = "A aparência do Windows: tema, menus, mouse e teclado."
+        'M:pageSub_tabExp' = "Explorador: ícones da área de trabalho, menu do botão direito e pastas."
+        'M:pageSub_tabTask' = "O menu Iniciar e a barra de tarefas."
+        'M:pageSub_tabNotif' = "Notificações, dicas do Windows e sons."
+        'M:pageSub_tabGame' = "Gráficos dos jogos e efeitos visuais do Windows."
+        'M:pageSub_tabWin' = "Segurança, navegadores, atualizações, serviços e tarefas agendadas."
+        'M:pageSub_tabApps' = "Instale ou atualize os programas mais usados com um clique."
+        'M:pageSub_tabTools' = "Limpeza, reparos e painéis do Windows. Estas ferramentas agem na hora."
+        'M:pageSub_tabAdv' = "Para quem sabe o que faz: aqui se removem partes do Windows, uma a uma."
     }
     ro = @{
         'L:lblSubtitle' = "Optimizarea și controlul Windows — PcFixPro Italia"
@@ -10109,10 +10225,10 @@ $script:Tr = @{
         'M:aiTag' = "IA"
         'M:aiRelevant' = "Privește funcțiile de inteligență artificială"
         'M:catBulkTitle' = "Modificarea mai multor setări"
-        'M:applyRecYes' = "Aplică cele recomandate"
+        'M:applyRecYes' = "Alege cele recomandate"
         'M:applyRecLimited' = "Recomandate și cu limitări"
-        'M:applyRecAll' = "Aplică toate"
-        'M:undoAllFactory' = "Anulează tot (setări din fabrică)"
+        'M:applyRecAll' = "Alege toate"
+        'M:undoAllFactory' = "Toate ca pe un Windows proaspăt instalat"
         'M:makeRestorePoint' = "Creează un punct de restaurare"
         'M:askRecYes' = "Activez toate protecțiile recomandate, fără să le ating pe celelalte. Continui?"
         'M:askRecLimited' = "Activez cele recomandate și cu limitări: unele funcții pot înceta să meargă. Continui?"
@@ -10122,7 +10238,7 @@ $script:Tr = @{
         'M:scopeUser' = "Utilizator curent"
         'M:scopeMachine' = "Computer local"
         'M:scopeAll' = "Toate"
-        'M:applyRecommended' = "Aplică cele recomandate"
+        'M:applyRecommended' = "Alege cele recomandate"
         'M:restoreWindows' = "Implicite Windows"
         'M:askRecommended' = "Pun elementele acestei pagini pe valorile recomandate. Cele fără recomandare rămân la fel. Continui?"
         'M:askWindowsDefaults' = "Readuc elementele acestei pagini la valorile unui Windows proaspăt instalat. Continui?"
@@ -10535,6 +10651,24 @@ $script:Tr = @{
         'M:ghostError' = "Listă indisponibilă:"
         'M:tagReboot' = "Necesită repornire"
         'M:tagCaution' = "Cu prudență"
+        'M:pageSub_tabHome' = "Rezumatul calculatorului. Alege aici tipul: decide ce fac «Recomandate» și «Selectează tot»."
+        'M:pageSub_tabPerf' = "Fac Windows și jocurile mai receptive."
+        'M:pageSub_tabSched' = "Cât procesor primesc programul din prim-plan, jocurile și sunetul."
+        'M:pageSub_tabPower' = "Planul de alimentare: cât economisește PC-ul în dauna vitezei."
+        'M:pageSub_tabGpu' = "Driverul plăcii video: performanță, latență și programe suplimentare."
+        'M:pageSub_tabStorage' = "Discuri, spațiu liber și întreținerea SSD-urilor și HDD-urilor."
+        'M:pageSub_tabNet' = "Conexiunea la Internet: profil TCP, servere DNS și economisirea plăcilor de rețea."
+        'M:pageSub_tabPrivacy' = "Ce trimite Windows către Microsoft și ce sugestii și reclame îți arată."
+        'M:pageSub_tabPriv2' = "Permisiunile aplicațiilor, inteligența artificială și serviciile online, pe rând."
+        'M:pageSub_tabUi' = "Aspectul Windows: temă, meniuri, mouse și tastatură."
+        'M:pageSub_tabExp' = "Explorer: pictograme pe desktop, meniul clic dreapta și foldere."
+        'M:pageSub_tabTask' = "Meniul Start și bara de activități."
+        'M:pageSub_tabNotif' = "Notificări, sfaturi Windows și sunete."
+        'M:pageSub_tabGame' = "Grafica jocurilor și efectele vizuale Windows."
+        'M:pageSub_tabWin' = "Securitate, browsere, actualizări, servicii și activități programate."
+        'M:pageSub_tabApps' = "Instalează sau actualizează programele cele mai folosite cu un clic."
+        'M:pageSub_tabTools' = "Curățare, reparații și panouri Windows. Aceste instrumente acționează imediat."
+        'M:pageSub_tabAdv' = "Pentru cei care știu ce fac: aici se elimină părți din Windows, pe rând."
     }
     ru = @{
         'L:lblSubtitle' = "Оптимизация и управление Windows — PcFixPro Italia"
@@ -11062,10 +11196,10 @@ $script:Tr = @{
         'M:aiTag' = "ИИ"
         'M:aiRelevant' = "Касается функций искусственного интеллекта"
         'M:catBulkTitle' = "Изменение нескольких параметров"
-        'M:applyRecYes' = "Применить рекомендуемые"
+        'M:applyRecYes' = "Выбрать рекомендуемые"
         'M:applyRecLimited' = "Рекомендуемые и с ограничениями"
-        'M:applyRecAll' = "Применить все"
-        'M:undoAllFactory' = "Отменить всё (заводские настройки)"
+        'M:applyRecAll' = "Выбрать все"
+        'M:undoAllFactory' = "Все как в только что установленной Windows"
         'M:makeRestorePoint' = "Создать точку восстановления"
         'M:askRecYes' = "Включу все рекомендуемые защиты, остальные не трону. Продолжить?"
         'M:askRecLimited' = "Включу рекомендуемые и с ограничениями: часть функций может перестать работать. Продолжить?"
@@ -11075,7 +11209,7 @@ $script:Tr = @{
         'M:scopeUser' = "Текущий пользователь"
         'M:scopeMachine' = "Локальный компьютер"
         'M:scopeAll' = "Все"
-        'M:applyRecommended' = "Применить рекомендуемые"
+        'M:applyRecommended' = "Выбрать рекомендуемые"
         'M:restoreWindows' = "Значения Windows"
         'M:askRecommended' = "Установлю пункты этой страницы на рекомендуемые значения. Пункты без рекомендации не изменятся. Продолжить?"
         'M:askWindowsDefaults' = "Верну пункты этой страницы к значениям свежей установки Windows. Продолжить?"
@@ -11488,6 +11622,24 @@ $script:Tr = @{
         'M:ghostError' = "Список недоступен:"
         'M:tagReboot' = "Нужна перезагрузка"
         'M:tagCaution' = "Осторожно"
+        'M:pageSub_tabHome' = "Сводка о компьютере. Выберите здесь тип компьютера: он определяет, что делают «Рекомендуемые» и «Выбрать всё»."
+        'M:pageSub_tabPerf' = "Делают Windows и игры отзывчивее."
+        'M:pageSub_tabSched' = "Сколько времени процессора получают активная программа, игры и звук."
+        'M:pageSub_tabPower' = "Схема электропитания: насколько ПК экономит энергию в ущерб скорости."
+        'M:pageSub_tabGpu' = "Драйвер видеокарты: производительность, задержка и дополнительные программы."
+        'M:pageSub_tabStorage' = "Диски, свободное место и обслуживание SSD и HDD."
+        'M:pageSub_tabNet' = "Подключение к интернету: профиль TCP, DNS и энергосбережение сетевых адаптеров."
+        'M:pageSub_tabPrivacy' = "Что Windows отправляет в Microsoft и какие советы и рекламу показывает."
+        'M:pageSub_tabPriv2' = "Разрешения приложений, ИИ и онлайн-службы — по отдельности."
+        'M:pageSub_tabUi' = "Внешний вид Windows: тема, меню, мышь и клавиатура."
+        'M:pageSub_tabExp' = "Проводник: значки рабочего стола, контекстное меню и папки."
+        'M:pageSub_tabTask' = "Меню «Пуск» и панель задач."
+        'M:pageSub_tabNotif' = "Уведомления, советы Windows и звуки."
+        'M:pageSub_tabGame' = "Графика игр и визуальные эффекты Windows."
+        'M:pageSub_tabWin' = "Безопасность, браузеры, обновления, службы и задания."
+        'M:pageSub_tabApps' = "Установка и обновление популярных программ одним щелчком."
+        'M:pageSub_tabTools' = "Очистка, исправления и панели Windows. Эти инструменты действуют сразу."
+        'M:pageSub_tabAdv' = "Для опытных: здесь отключаются части Windows, по одной."
     }
 }
 
@@ -14893,12 +15045,14 @@ function Show-Page {
         if ($entry.Nav.IsChecked -eq $true) {
             $entry.Page.Visibility = [System.Windows.Visibility]::Visible
             if ($null -ne $lblPageTitle) { $lblPageTitle.Text = [string]$entry.Nav.Content }
+            $sub = $window.FindName('lblPageSub')
+            if ($null -ne $sub) { $sub.Text = T "pageSub_$($entry.Nav.Name)" }
             # La barretta accanto al titolo prende il colore della pagina.
             $pa = $entry.Nav.Resources['PA']
             if ($null -ne $pa -and $null -ne $script:PageAccent) { $script:PageAccent.Background = $pa }
             if ($null -ne $pa -and $null -ne $script:GlowPage) { Set-PageGlow $pa.Color }
-            # Sulle pagine a effetto immediato la coda di «Applica» non serve: si nasconde.
-            $live = ($entry.Cat -and $entry.Cat -ne 'power') -or $entry.Apps -or $entry.Home -or $entry.Tools
+            # Sulle pagine che agiscono subito (Home, App, Strumenti) la barra di «Applica» non serve.
+            $live = $entry.Apps -or $entry.Home -or $entry.Tools
             foreach ($n in @('barQueue', 'pillSelected', 'btnDetectActive', 'chkRestorePoint')) {
                 $el = $window.FindName($n)
                 if ($el) { $el.Visibility = if ($live) { 'Collapsed' } else { 'Visible' } }

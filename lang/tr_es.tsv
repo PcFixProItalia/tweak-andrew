@@ -523,10 +523,10 @@ M:recNo	No recomendada: quita una función útil
 M:aiTag	IA
 M:aiRelevant	Afecta a las funciones de inteligencia artificial
 M:catBulkTitle	Cambiar varios ajustes
-M:applyRecYes	Aplicar las recomendadas
+M:applyRecYes	Elegir las recomendadas
 M:applyRecLimited	Recomendadas y con limitaciones
-M:applyRecAll	Aplicar todas
-M:undoAllFactory	Deshacer todo (valores de fábrica)
+M:applyRecAll	Elegir todas
+M:undoAllFactory	Todas como en un Windows recién instalado
 M:makeRestorePoint	Crear un punto de restauración
 M:askRecYes	Activo todas las protecciones recomendadas sin tocar las demás. ¿Sigo?
 M:askRecLimited	Activo las recomendadas y las limitadas: alguna función podría dejar de ir. ¿Sigo?
@@ -536,7 +536,7 @@ M:privLegend	Interruptor encendido = protección activa. Punto verde recomendada
 M:scopeUser	Usuario actual
 M:scopeMachine	Equipo local
 M:scopeAll	Todas
-M:applyRecommended	Aplicar las recomendadas
+M:applyRecommended	Elegir las recomendadas
 M:restoreWindows	Valores de Windows
 M:askRecommended	Pongo las opciones de esta página en los valores recomendados. Las que no tienen recomendación no cambian. ¿Sigo?
 M:askWindowsDefaults	Devuelvo las opciones de esta página a los valores de un Windows recién instalado. ¿Sigo?
@@ -949,3 +949,21 @@ M:ghostDone	Quitados {0} de {1}.
 M:ghostError	Lista no disponible:
 M:tagReboot	Requiere reinicio
 M:tagCaution	Con cuidado
+M:pageSub_tabHome	Resumen del equipo. Elige aquí el tipo de equipo: decide qué hacen «Recomendados» y «Seleccionar todo».
+M:pageSub_tabPerf	Hacen Windows y los juegos más ágiles.
+M:pageSub_tabSched	Cuánto procesador reciben el programa en primer plano, los juegos y el audio.
+M:pageSub_tabPower	El plan de energía: cuánto ahorra el PC a costa de la velocidad.
+M:pageSub_tabGpu	El driver de la tarjeta gráfica: rendimiento, latencia y programas extra.
+M:pageSub_tabStorage	Discos, espacio libre y mantenimiento de SSD y discos duros.
+M:pageSub_tabNet	La conexión a Internet: perfil TCP, servidores DNS y ahorro de los adaptadores.
+M:pageSub_tabPrivacy	Qué envía Windows a Microsoft y qué sugerencias y anuncios te muestra.
+M:pageSub_tabPriv2	Permisos de las apps, inteligencia artificial y servicios en línea, uno a uno.
+M:pageSub_tabUi	El aspecto de Windows: tema, menús, ratón y teclado.
+M:pageSub_tabExp	Explorador: iconos del escritorio, menú contextual y carpetas.
+M:pageSub_tabTask	El menú Inicio y la barra de tareas.
+M:pageSub_tabNotif	Notificaciones, sugerencias de Windows y sonidos.
+M:pageSub_tabGame	Gráficos de juegos y efectos visuales de Windows.
+M:pageSub_tabWin	Seguridad, navegadores, actualizaciones, servicios y tareas programadas.
+M:pageSub_tabApps	Instala o actualiza los programas más usados con un clic.
+M:pageSub_tabTools	Limpieza, reparaciones y paneles de Windows. Actúan al momento.
+M:pageSub_tabAdv	Para quien sabe lo que hace: aquí se quitan partes de Windows, una a una.

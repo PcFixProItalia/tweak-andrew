@@ -523,10 +523,10 @@ M:recNo	Nerecomandată: elimină o funcție utilă
 M:aiTag	IA
 M:aiRelevant	Privește funcțiile de inteligență artificială
 M:catBulkTitle	Modificarea mai multor setări
-M:applyRecYes	Aplică cele recomandate
+M:applyRecYes	Alege cele recomandate
 M:applyRecLimited	Recomandate și cu limitări
-M:applyRecAll	Aplică toate
-M:undoAllFactory	Anulează tot (setări din fabrică)
+M:applyRecAll	Alege toate
+M:undoAllFactory	Toate ca pe un Windows proaspăt instalat
 M:makeRestorePoint	Creează un punct de restaurare
 M:askRecYes	Activez toate protecțiile recomandate, fără să le ating pe celelalte. Continui?
 M:askRecLimited	Activez cele recomandate și cu limitări: unele funcții pot înceta să meargă. Continui?
@@ -536,7 +536,7 @@ M:privLegend	Comutator pornit = protecție activă. Punct verde recomandată, po
 M:scopeUser	Utilizator curent
 M:scopeMachine	Computer local
 M:scopeAll	Toate
-M:applyRecommended	Aplică cele recomandate
+M:applyRecommended	Alege cele recomandate
 M:restoreWindows	Implicite Windows
 M:askRecommended	Pun elementele acestei pagini pe valorile recomandate. Cele fără recomandare rămân la fel. Continui?
 M:askWindowsDefaults	Readuc elementele acestei pagini la valorile unui Windows proaspăt instalat. Continui?
@@ -949,3 +949,21 @@ M:ghostDone	Eliminate {0} din {1}.
 M:ghostError	Listă indisponibilă:
 M:tagReboot	Necesită repornire
 M:tagCaution	Cu prudență
+M:pageSub_tabHome	Rezumatul calculatorului. Alege aici tipul: decide ce fac «Recomandate» și «Selectează tot».
+M:pageSub_tabPerf	Fac Windows și jocurile mai receptive.
+M:pageSub_tabSched	Cât procesor primesc programul din prim-plan, jocurile și sunetul.
+M:pageSub_tabPower	Planul de alimentare: cât economisește PC-ul în dauna vitezei.
+M:pageSub_tabGpu	Driverul plăcii video: performanță, latență și programe suplimentare.
+M:pageSub_tabStorage	Discuri, spațiu liber și întreținerea SSD-urilor și HDD-urilor.
+M:pageSub_tabNet	Conexiunea la Internet: profil TCP, servere DNS și economisirea plăcilor de rețea.
+M:pageSub_tabPrivacy	Ce trimite Windows către Microsoft și ce sugestii și reclame îți arată.
+M:pageSub_tabPriv2	Permisiunile aplicațiilor, inteligența artificială și serviciile online, pe rând.
+M:pageSub_tabUi	Aspectul Windows: temă, meniuri, mouse și tastatură.
+M:pageSub_tabExp	Explorer: pictograme pe desktop, meniul clic dreapta și foldere.
+M:pageSub_tabTask	Meniul Start și bara de activități.
+M:pageSub_tabNotif	Notificări, sfaturi Windows și sunete.
+M:pageSub_tabGame	Grafica jocurilor și efectele vizuale Windows.
+M:pageSub_tabWin	Securitate, browsere, actualizări, servicii și activități programate.
+M:pageSub_tabApps	Instalează sau actualizează programele cele mai folosite cu un clic.
+M:pageSub_tabTools	Curățare, reparații și panouri Windows. Aceste instrumente acționează imediat.
+M:pageSub_tabAdv	Pentru cei care știu ce fac: aici se elimină părți din Windows, pe rând.

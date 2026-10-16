@@ -71,10 +71,10 @@ recNo	Not recommended: removes a useful feature
 aiTag	AI
 aiRelevant	Concerns artificial intelligence features
 catBulkTitle	Change several settings
-applyRecYes	Apply recommended
+applyRecYes	Pick recommended
 applyRecLimited	Recommended and limited
-applyRecAll	Apply all
-undoAllFactory	Undo all (factory settings)
+applyRecAll	Pick all
+undoAllFactory	All as on a fresh Windows
 makeRestorePoint	Create a restore point
 askRecYes	I'll turn on every recommended protection and leave the rest alone. Go ahead?
 askRecLimited	I'll turn on recommended and limited ones: some features may stop working. Go ahead?
@@ -84,7 +84,7 @@ privLegend	Switch on = protection active. Green dot recommended, orange with lim
 scopeUser	Current user
 scopeMachine	Local machine
 scopeAll	All
-applyRecommended	Apply recommended
+applyRecommended	Pick recommended
 restoreWindows	Windows defaults
 askRecommended	I'll set this page's items to the recommended values. Items without a recommendation stay as they are. Go ahead?
 askWindowsDefaults	I'll put this page's items back to the values of a fresh Windows install. Go ahead?
@@ -421,3 +421,21 @@ ghostDone	Removed {0} of {1}.
 ghostError	List not available:
 tagReboot	Needs a restart
 tagCaution	Use with care
+pageSub_tabHome	A summary of the computer. Choose the computer type here: it decides what «Recommended» and «Select all» do.
+pageSub_tabPerf	They make Windows and games more responsive.
+pageSub_tabSched	How much processor time the foreground program, games and audio get.
+pageSub_tabPower	The power plan: how much the PC saves power at the expense of speed.
+pageSub_tabGpu	The graphics driver: performance, latency and extra programs.
+pageSub_tabStorage	Drives, free space and upkeep for SSDs and hard drives.
+pageSub_tabNet	The Internet connection: TCP profile, DNS servers and network adapter power saving.
+pageSub_tabPrivacy	What Windows sends to Microsoft and which suggestions and ads it shows you.
+pageSub_tabPriv2	App permissions, artificial intelligence and online services, one by one.
+pageSub_tabUi	How Windows looks: theme, menus, mouse and keyboard.
+pageSub_tabExp	File Explorer: desktop icons, right-click menu and folders.
+pageSub_tabTask	The Start menu and the taskbar.
+pageSub_tabNotif	Notifications, Windows tips and sounds.
+pageSub_tabGame	Game graphics and Windows visual effects.
+pageSub_tabWin	Security, browsers, updates, services and scheduled tasks.
+pageSub_tabApps	Install or update the most used programs with one click.
+pageSub_tabTools	Cleanup, repairs and Windows panels. These tools act right away.
+pageSub_tabAdv	For those who know what they're doing: this removes parts of Windows, one entry at a time.

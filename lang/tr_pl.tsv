@@ -523,10 +523,10 @@ M:recNo	Niezalecane: usuwa przydatną funkcję
 M:aiTag	AI
 M:aiRelevant	Dotyczy funkcji sztucznej inteligencji
 M:catBulkTitle	Zmiana wielu ustawień
-M:applyRecYes	Zastosuj zalecane
+M:applyRecYes	Wybierz zalecane
 M:applyRecLimited	Zalecane i z ograniczeniami
-M:applyRecAll	Zastosuj wszystkie
-M:undoAllFactory	Cofnij wszystko (ustawienia fabryczne)
+M:applyRecAll	Wybierz wszystkie
+M:undoAllFactory	Wszystkie jak w świeżym Windows
 M:makeRestorePoint	Utwórz punkt przywracania
 M:askRecYes	Włączę wszystkie zalecane zabezpieczenia, reszty nie ruszam. Kontynuować?
 M:askRecLimited	Włączę zalecane i ograniczone: niektóre funkcje mogą przestać działać. Kontynuować?
@@ -536,7 +536,7 @@ M:privLegend	Przełącznik włączony = ochrona aktywna. Zielona kropka zalecane
 M:scopeUser	Bieżący użytkownik
 M:scopeMachine	Komputer lokalny
 M:scopeAll	Wszystkie
-M:applyRecommended	Zastosuj zalecane
+M:applyRecommended	Wybierz zalecane
 M:restoreWindows	Domyślne Windows
 M:askRecommended	Ustawię pozycje tej strony na wartości zalecane. Te bez zalecenia pozostaną bez zmian. Kontynuować?
 M:askWindowsDefaults	Przywrócę pozycje tej strony do wartości świeżej instalacji Windows. Kontynuować?
@@ -949,3 +949,21 @@ M:ghostDone	Usunięto {0} z {1}.
 M:ghostError	Lista niedostępna:
 M:tagReboot	Wymaga restartu
 M:tagCaution	Ostrożnie
+M:pageSub_tabHome	Podsumowanie komputera. Wybierz tu rodzaj komputera: decyduje, co robią «Zalecane» i «Zaznacz wszystko».
+M:pageSub_tabPerf	Sprawiają, że Windows i gry reagują szybciej.
+M:pageSub_tabSched	Ile czasu procesora dostaje program na pierwszym planie, gry i dźwięk.
+M:pageSub_tabPower	Plan zasilania: ile komputer oszczędza energii kosztem szybkości.
+M:pageSub_tabGpu	Sterownik karty graficznej: wydajność, opóźnienie i dodatki.
+M:pageSub_tabStorage	Dyski, wolne miejsce i konserwacja SSD oraz HDD.
+M:pageSub_tabNet	Połączenie z internetem: profil TCP, serwery DNS i oszczędzanie kart sieciowych.
+M:pageSub_tabPrivacy	Co Windows wysyła do Microsoftu oraz jakie sugestie i reklamy pokazuje.
+M:pageSub_tabPriv2	Uprawnienia aplikacji, sztuczna inteligencja i usługi online, pojedynczo.
+M:pageSub_tabUi	Wygląd Windows: motyw, menu, mysz i klawiatura.
+M:pageSub_tabExp	Eksplorator plików: ikony pulpitu, menu prawego przycisku i foldery.
+M:pageSub_tabTask	Menu Start i pasek zadań.
+M:pageSub_tabNotif	Powiadomienia, porady Windows i dźwięki.
+M:pageSub_tabGame	Grafika gier i efekty wizualne Windows.
+M:pageSub_tabWin	Bezpieczeństwo, przeglądarki, aktualizacje, usługi i zadania.
+M:pageSub_tabApps	Zainstaluj lub zaktualizuj popularne programy jednym kliknięciem.
+M:pageSub_tabTools	Czyszczenie, naprawy i panele Windows. Działają od razu.
+M:pageSub_tabAdv	Dla zaawansowanych: tu usuwa się części Windows, pojedynczo.
