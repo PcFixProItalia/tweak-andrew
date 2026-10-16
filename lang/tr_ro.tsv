@@ -224,11 +224,6 @@ L:chkBootMenu	Meniu de pornire clasic (F8 disponibil)
 L:chkBootTimeout	Fără așteptare în meniul de pornire
 L:chkBootDynTick	Tick dinamic al nucleului — riscant: testează și măsoară
 L:chkBootTsc	Sincronizare TSC îmbunătățită — riscant: testează și măsoară
-L:ttlAppx	APLICAȚII PREINSTALATE
-L:lblAppxHint	Se pot reinstala din Store la nevoie.
-L:chkAppxBloat	Aplicații neesențiale (știri, vreme, hărți, Skype...)
-L:chkAppxXbox	Aplicații Xbox și suprapunerea de joc
-L:chkAppxProvision	Nu le restabili pentru utilizatorii noi
 L:ttlSec	SECURITATE REDUSĂ
 L:lblSecHint	Toate riscante: scad cu adevărat protecția calculatorului. «Recomandate» pornește două dintre ele, «Selectează tot» le pornește pe toate după o confirmare.
 L:chkSecSmartScreen	SmartScreen — verificarea fișierelor descărcate
@@ -396,9 +391,6 @@ H:chkBootMenu	Readuce meniul de pornire clasic, din care intri în modul de sigu
 H:chkBootTimeout	Dacă ai mai multe sisteme instalate, PC-ul pornește imediat, fără să aștepte în meniul de alegere.
 H:chkBootDynTick	Procesorul păstrează un ritm de sistem constant. Pe unele PC-uri scade latența, pe altele nu: trebuie testat.
 H:chkBootTsc	Face mai precisă măsurarea timpului între nucleele procesorului. Poate îmbunătăți fluiditatea: trebuie testat.
-H:chkAppxBloat	Elimină aplicații preinstalate precum știri, vreme, hărți și Skype. Mai mult spațiu și un Start mai ordonat.
-H:chkAppxXbox	Elimină aplicațiile Xbox și suprapunerea de joc. Evită dacă folosești Game Pass.
-H:chkAppxProvision	Aplicațiile eliminate nu revin când se creează un utilizator nou.
 H:chkSecSmartScreen	Oprește verificarea fișierelor descărcate. Fără avertismente la deschidere, dar și fără protecție împotriva fișierelor periculoase.
 H:chkSecSpectre	Elimină protecțiile împotriva unor defecte ale procesoarelor. Mai multă performanță, mai ales pe procesoarele vechi, dar mai puțină securitate.
 H:chkSecDefenderIdle	Antivirusul scanează doar când computerul e în repaus, fără să-l încarce. Protecția în timp real rămâne activă.
@@ -967,3 +959,59 @@ M:pageSub_tabWin	Securitate, browsere, actualizări, servicii și activități p
 M:pageSub_tabApps	Instalează sau actualizează programele cele mai folosite cu un clic.
 M:pageSub_tabTools	Curățare, reparații și panouri Windows. Aceste instrumente acționează imediat.
 M:pageSub_tabAdv	Pentru cei care știu ce fac: aici se elimină părți din Windows, pe rând.
+M:ttlDebloat	Elimină aplicații Windows
+M:debloatHint	Aplicații preinstalate de obicei inutile. Sunt bifate cele folosite rar; se reinstalează din Microsoft Store.
+M:debloatSearching	Caut aplicațiile instalate...
+M:debloatNone	Niciuna dintre aceste aplicații nu este instalată.
+M:debloatFound	{0} grupuri de aplicații găsite.
+M:debloatRun	Elimină selectate
+M:debloatAsk	Elimin {0} grupuri de aplicații pentru toți utilizatorii? Se reinstalează din Microsoft Store.
+M:debloatDone	Pachete eliminate: {0}.
+M:debloatStepApps	Aplicații Windows
+M:debloat_news	Microsoft News, Vremea, Bani și Sport
+M:debloat_bing	Căutare Bing
+M:debloat_copilot	Copilot
+M:debloat_widgets	Widgeturi (știri pe bară)
+M:debloat_teams	Microsoft Teams (personal)
+M:debloat_office	Microsoft 365 (Office) și OneNote preinstalate
+M:debloat_solitaire	Microsoft Solitaire Collection
+M:debloat_tips	Sfaturi, Obțineți ajutor și Hub feedback
+M:debloat_clipchamp	Clipchamp
+M:debloat_todo	Microsoft To Do și Power Automate
+M:debloat_people	Persoane, Hărți și Skype
+M:debloat_threeD	Aplicații 3D și realitate mixtă
+M:debloat_family	Microsoft Family și Cortana
+M:debloat_devhome	Dev Home
+M:debloat_spotify	Spotify preinstalat
+M:debloat_recorder	Înregistrator de sunet
+M:debloat_media	Media Player și Filme și TV
+M:debloat_outlook	Outlook (nou) și Mail și Calendar
+M:debloat_phone	Legătură telefon
+M:debloat_quick	Asistență rapidă
+M:debloat_alarms	Alarme și ceas
+M:debloat_sticky	Sticky Notes
+M:debloat_camera	Cameră
+M:debloat_photos	Fotografii
+M:debloat_xbox	Aplicații Xbox și Game Bar (necesare pentru Game Pass)
+M:debloat_onedrive	OneDrive (fișierele din folderul OneDrive rămân)
+M:ttlStartup	Programe la pornire
+M:startupHint	Cele pornite pornesc cu Windows și îl încetinesc. Oprirea nu șterge nimic: le repornești oricând, și din Managerul de activități.
+M:startupNone	Niciun program nu pornește la start.
+M:startupCount	{0} din {1} pornite.
+M:startupAll	toți utilizatorii
+M:startupUser	doar acest utilizator
+M:leftScanning	Caut resturile programelor dezinstalate...
+M:leftFound	{0} resturi găsite: sunt în partea de sus a listei.
+M:leftNone	Niciun rest: dezinstalarea a eliminat tot.
+M:leftTitle	Resturi ale programelor dezinstalate
+M:leftHint	Foldere, chei de registry și porniri automate rămase. Cele sigure sunt bifate; verifică întâi cele marcate «de verificat». Registry-ul se salvează înainte, folderele și fișierele merg în Coșul de reciclare.
+M:leftRemove	Elimină selectate
+M:leftAsk	Elimin {0} resturi? Registry-ul se salvează înainte, iar folderele și fișierele merg în Coș.
+M:leftDone	Resturi eliminate: {0} din {1}.
+M:leftCheck	de verificat
+M:leftKind_dir	FOLDER
+M:leftKind_file	FIȘIER
+M:leftKind_reg	REGISTRY
+M:leftKind_run	PORNIRE
+M:leftKind_task	ACTIVITATE
+M:leftKind_svc	SERVICIU

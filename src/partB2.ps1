@@ -2242,17 +2242,6 @@
 
                                         <Border Style="{StaticResource Glass}">
                                             <StackPanel>
-                                                <TextBlock x:Name="ttlAppx" Text="APP PREINSTALLATE" Style="{StaticResource CardTitle}"/>
-                                                <TextBlock x:Name="lblAppxHint" Style="{StaticResource SubTitle}" Margin="0,0,0,10"
-                                                           Text="Si reinstallano dallo Store quando servono."/>
-                                                <CheckBox x:Name="chkAppxBloat" Content="App non essenziali (notizie, meteo, mappe, Skype...)"/>
-                                                <CheckBox x:Name="chkAppxXbox" Content="App Xbox e overlay di gioco"/>
-                                                <CheckBox x:Name="chkAppxProvision" Content="Non ripristinarle per i nuovi utenti"/>
-                                            </StackPanel>
-                                        </Border>
-
-                                        <Border Style="{StaticResource Glass}">
-                                            <StackPanel>
                                                 <TextBlock x:Name="ttlSec" Text="SICUREZZA RIDOTTA" Style="{StaticResource CardTitle}" Foreground="#FFFF6B6B"/>
                                                 <TextBlock x:Name="lblSecHint" Style="{StaticResource SubTitle}" Margin="0,0,0,10"
                                                            Text="Tutte rischiose: abbassano davvero le difese del computer. «Consigliati» ne accende due, «Seleziona tutto» le accende tutte dopo una conferma."/>

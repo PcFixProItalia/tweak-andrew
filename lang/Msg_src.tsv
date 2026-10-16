@@ -439,3 +439,59 @@ pageSub_tabWin	Security, browsers, updates, services and scheduled tasks.
 pageSub_tabApps	Install or update the most used programs with one click.
 pageSub_tabTools	Cleanup, repairs and Windows panels. These tools act right away.
 pageSub_tabAdv	For those who know what they're doing: this removes parts of Windows, one entry at a time.
+ttlDebloat	Remove Windows apps
+debloatHint	Preinstalled apps you usually don't need. Those almost nobody uses are on; they can be reinstalled from the Microsoft Store.
+debloatSearching	Looking for installed apps...
+debloatNone	None of these apps is installed.
+debloatFound	{0} app groups found.
+debloatRun	Remove selected
+debloatAsk	Remove {0} app groups for all users? They can be reinstalled from the Microsoft Store.
+debloatDone	Packages removed: {0}.
+debloatStepApps	Windows apps
+debloat_news	Microsoft News, Weather, Money and Sports
+debloat_bing	Bing Search
+debloat_copilot	Copilot
+debloat_widgets	Widgets (news on the taskbar)
+debloat_teams	Microsoft Teams (personal)
+debloat_office	Preinstalled Microsoft 365 (Office) and OneNote
+debloat_solitaire	Microsoft Solitaire Collection
+debloat_tips	Tips, Get Help and Feedback Hub
+debloat_clipchamp	Clipchamp
+debloat_todo	Microsoft To Do and Power Automate
+debloat_people	People, Maps and Skype
+debloat_threeD	3D and mixed reality apps
+debloat_family	Microsoft Family and Cortana
+debloat_devhome	Dev Home
+debloat_spotify	Preinstalled Spotify
+debloat_recorder	Sound Recorder
+debloat_media	Media Player and Movies & TV
+debloat_outlook	Outlook (new) and Mail and Calendar
+debloat_phone	Phone Link
+debloat_quick	Quick Assist
+debloat_alarms	Alarms & Clock
+debloat_sticky	Sticky Notes
+debloat_camera	Camera
+debloat_photos	Photos
+debloat_xbox	Xbox apps and Game Bar (needed for Game Pass)
+debloat_onedrive	OneDrive (files in the OneDrive folder stay)
+ttlStartup	Startup programs
+startupHint	Enabled ones start with Windows and slow it down. Turning one off deletes nothing: turn it back on whenever you like, also from Task Manager.
+startupNone	No program starts with Windows.
+startupCount	{0} of {1} enabled.
+startupAll	all users
+startupUser	this user only
+leftScanning	Looking for leftovers of uninstalled programs...
+leftFound	{0} leftovers found: they're at the top of the list.
+leftNone	No leftovers: the uninstall removed everything.
+leftTitle	Leftovers of uninstalled programs
+leftHint	Folders, registry keys and startup entries left behind. Safe ones are on; check the ones marked «to check» first. The registry is backed up first, folders and files go to the Recycle Bin.
+leftRemove	Remove selected
+leftAsk	Remove {0} leftovers? The registry is backed up first and folders and files go to the Recycle Bin.
+leftDone	Leftovers removed: {0} of {1}.
+leftCheck	to check
+leftKind_dir	FOLDER
+leftKind_file	FILE
+leftKind_reg	REGISTRY
+leftKind_run	STARTUP
+leftKind_task	TASK
+leftKind_svc	SERVICE

@@ -2309,17 +2309,6 @@ $script:PlanData = @{
 
                                         <Border Style="{StaticResource Glass}">
                                             <StackPanel>
-                                                <TextBlock x:Name="ttlAppx" Text="APP PREINSTALLATE" Style="{StaticResource CardTitle}"/>
-                                                <TextBlock x:Name="lblAppxHint" Style="{StaticResource SubTitle}" Margin="0,0,0,10"
-                                                           Text="Si reinstallano dallo Store quando servono."/>
-                                                <CheckBox x:Name="chkAppxBloat" Content="App non essenziali (notizie, meteo, mappe, Skype...)"/>
-                                                <CheckBox x:Name="chkAppxXbox" Content="App Xbox e overlay di gioco"/>
-                                                <CheckBox x:Name="chkAppxProvision" Content="Non ripristinarle per i nuovi utenti"/>
-                                            </StackPanel>
-                                        </Border>
-
-                                        <Border Style="{StaticResource Glass}">
-                                            <StackPanel>
                                                 <TextBlock x:Name="ttlSec" Text="SICUREZZA RIDOTTA" Style="{StaticResource CardTitle}" Foreground="#FFFF6B6B"/>
                                                 <TextBlock x:Name="lblSecHint" Style="{StaticResource SubTitle}" Margin="0,0,0,10"
                                                            Text="Tutte rischiose: abbassano davvero le difese del computer. «Consigliati» ne accende due, «Seleziona tutto» le accende tutte dopo una conferma."/>
@@ -3026,11 +3015,6 @@ $script:Loc = @{
     chkBootDynTick     = @{ it = "Tick dinamico del kernel — rischioso: provalo e misura"; en = "Kernel dynamic tick — risky: try it and measure" }
     chkBootTsc         = @{ it = "Sincronizzazione TSC potenziata — rischioso: provala e misura"; en = "Enhanced TSC sync policy — risky: try it and measure" }
 
-    ttlAppx            = @{ it = "APP PREINSTALLATE"; en = "PREINSTALLED APPS" }
-    lblAppxHint        = @{ it = "Si reinstallano dallo Store quando servono."; en = "They can be reinstalled from the Store whenever needed." }
-    chkAppxBloat       = @{ it = "App non essenziali (notizie, meteo, mappe, Skype...)"; en = "Non-essential apps (news, weather, maps, Skype...)" }
-    chkAppxXbox        = @{ it = "App Xbox e overlay di gioco"; en = "Xbox apps and game overlay" }
-    chkAppxProvision   = @{ it = "Non ripristinarle per i nuovi utenti"; en = "Do not restore them for new users" }
 
     ttlSec             = @{ it = "SICUREZZA RIDOTTA"; en = "REDUCED SECURITY" }
     lblSecHint         = @{ it = "Tutte rischiose: abbassano davvero le difese del computer. «Consigliati» ne accende due, «Seleziona tutto» le accende tutte dopo una conferma."; en = "All risky: they genuinely lower the computer's defenses. «Recommended» turns on two of them, «Select all» turns on all of them after a confirmation." }
@@ -3603,6 +3587,62 @@ $script:Msg = @{
     pageSub_tabApps    = @{ it = "Installa o aggiorna i programmi più usati con un clic."; en = "Install or update the most used programs with one click." }
     pageSub_tabTools   = @{ it = "Pulizia, riparazioni e pannelli di Windows. Questi strumenti agiscono subito."; en = "Cleanup, repairs and Windows panels. These tools act right away." }
     pageSub_tabAdv     = @{ it = "Per chi sa cosa sta facendo: qui si tolgono pezzi di Windows, una voce alla volta."; en = "For those who know what they're doing: this removes parts of Windows, one entry at a time." }
+    ttlDebloat         = @{ it = "Togli le app di Windows"; en = "Remove Windows apps" }
+    debloatHint        = @{ it = "App preinstallate che di solito non servono. Accese quelle che quasi nessuno usa; si possono reinstallare dal Microsoft Store."; en = "Preinstalled apps you usually don't need. Those almost nobody uses are on; they can be reinstalled from the Microsoft Store." }
+    debloatSearching   = @{ it = "Cerco le app installate..."; en = "Looking for installed apps..." }
+    debloatNone        = @{ it = "Nessuna di queste app è installata."; en = "None of these apps is installed." }
+    debloatFound       = @{ it = "{0} gruppi di app presenti."; en = "{0} app groups found." }
+    debloatRun         = @{ it = "Togli selezionate"; en = "Remove selected" }
+    debloatAsk         = @{ it = "Tolgo {0} gruppi di app per tutti gli utenti? Si possono reinstallare dal Microsoft Store."; en = "Remove {0} app groups for all users? They can be reinstalled from the Microsoft Store." }
+    debloatDone        = @{ it = "Pacchetti tolti: {0}."; en = "Packages removed: {0}." }
+    debloatStepApps    = @{ it = "App di Windows"; en = "Windows apps" }
+    debloat_news       = @{ it = "Microsoft News, Meteo, Money e Sport"; en = "Microsoft News, Weather, Money and Sports" }
+    debloat_bing       = @{ it = "Ricerca Bing"; en = "Bing Search" }
+    debloat_copilot    = @{ it = "Copilot"; en = "Copilot" }
+    debloat_widgets    = @{ it = "Widget (notizie sulla barra)"; en = "Widgets (news on the taskbar)" }
+    debloat_teams      = @{ it = "Microsoft Teams (uso personale)"; en = "Microsoft Teams (personal)" }
+    debloat_office     = @{ it = "Microsoft 365 (Office) e OneNote preinstallati"; en = "Preinstalled Microsoft 365 (Office) and OneNote" }
+    debloat_solitaire  = @{ it = "Microsoft Solitaire Collection"; en = "Microsoft Solitaire Collection" }
+    debloat_tips       = @{ it = "Suggerimenti, Assistenza e Hub di Feedback"; en = "Tips, Get Help and Feedback Hub" }
+    debloat_clipchamp  = @{ it = "Clipchamp"; en = "Clipchamp" }
+    debloat_todo       = @{ it = "Microsoft To Do e Power Automate"; en = "Microsoft To Do and Power Automate" }
+    debloat_people     = @{ it = "Persone, Mappe e Skype"; en = "People, Maps and Skype" }
+    debloat_threeD     = @{ it = "App 3D e realtà mista"; en = "3D and mixed reality apps" }
+    debloat_family     = @{ it = "Microsoft Family e Cortana"; en = "Microsoft Family and Cortana" }
+    debloat_devhome    = @{ it = "Dev Home"; en = "Dev Home" }
+    debloat_spotify    = @{ it = "Spotify preinstallato"; en = "Preinstalled Spotify" }
+    debloat_recorder   = @{ it = "Registratore di suoni"; en = "Sound Recorder" }
+    debloat_media      = @{ it = "Lettore multimediale e Film e TV"; en = "Media Player and Movies & TV" }
+    debloat_outlook    = @{ it = "Outlook (nuovo) e Posta e Calendario"; en = "Outlook (new) and Mail and Calendar" }
+    debloat_phone      = @{ it = "Collegamento al telefono"; en = "Phone Link" }
+    debloat_quick      = @{ it = "Assistenza rapida"; en = "Quick Assist" }
+    debloat_alarms     = @{ it = "Sveglie e orologio"; en = "Alarms & Clock" }
+    debloat_sticky     = @{ it = "Sticky Notes"; en = "Sticky Notes" }
+    debloat_camera     = @{ it = "Fotocamera"; en = "Camera" }
+    debloat_photos     = @{ it = "Foto"; en = "Photos" }
+    debloat_xbox       = @{ it = "App Xbox e Game Bar (servono per Game Pass)"; en = "Xbox apps and Game Bar (needed for Game Pass)" }
+    debloat_onedrive   = @{ it = "OneDrive (i file nella cartella OneDrive restano)"; en = "OneDrive (files in the OneDrive folder stay)" }
+    ttlStartup         = @{ it = "Programmi all'avvio"; en = "Startup programs" }
+    startupHint        = @{ it = "Quelli accesi partono da soli con Windows e lo rallentano. Spegnere non cancella niente: si riaccende quando vuoi, anche da Gestione attività."; en = "Enabled ones start with Windows and slow it down. Turning one off deletes nothing: turn it back on whenever you like, also from Task Manager." }
+    startupNone        = @{ it = "Nessun programma parte all'avvio."; en = "No program starts with Windows." }
+    startupCount       = @{ it = "{0} accesi su {1}."; en = "{0} of {1} enabled." }
+    startupAll         = @{ it = "tutti gli utenti"; en = "all users" }
+    startupUser        = @{ it = "solo questo utente"; en = "this user only" }
+    leftScanning       = @{ it = "Cerco i residui dei programmi disinstallati..."; en = "Looking for leftovers of uninstalled programs..." }
+    leftFound          = @{ it = "Trovati {0} residui: li trovi in cima all'elenco."; en = "{0} leftovers found: they're at the top of the list." }
+    leftNone           = @{ it = "Nessun residuo: la disinstallazione ha tolto tutto."; en = "No leftovers: the uninstall removed everything." }
+    leftTitle          = @{ it = "Residui dei programmi disinstallati"; en = "Leftovers of uninstalled programs" }
+    leftHint           = @{ it = "Cartelle, chiavi di registro e avvii automatici rimasti. Accesi quelli sicuri; quelli «da controllare» guardali prima. Il registro viene salvato prima, cartelle e file vanno nel Cestino."; en = "Folders, registry keys and startup entries left behind. Safe ones are on; check the ones marked «to check» first. The registry is backed up first, folders and files go to the Recycle Bin." }
+    leftRemove         = @{ it = "Togli selezionati"; en = "Remove selected" }
+    leftAsk            = @{ it = "Tolgo {0} residui? Il registro viene salvato prima e cartelle e file vanno nel Cestino."; en = "Remove {0} leftovers? The registry is backed up first and folders and files go to the Recycle Bin." }
+    leftDone           = @{ it = "Residui tolti: {0} su {1}."; en = "Leftovers removed: {0} of {1}." }
+    leftCheck          = @{ it = "da controllare"; en = "to check" }
+    leftKind_dir       = @{ it = "CARTELLA"; en = "FOLDER" }
+    leftKind_file      = @{ it = "FILE"; en = "FILE" }
+    leftKind_reg       = @{ it = "REGISTRO"; en = "REGISTRY" }
+    leftKind_run       = @{ it = "AVVIO"; en = "STARTUP" }
+    leftKind_task      = @{ it = "ATTIVITÀ"; en = "TASK" }
+    leftKind_svc       = @{ it = "SERVIZIO"; en = "SERVICE" }
 }
 
 $script:LangCode = "it"
@@ -3803,7 +3843,7 @@ $chkWuNoStore = E 'chkWuNoStore'; $chkWuProfile = E 'chkWuProfile'
 $chkAdvUtc = E 'chkAdvUtc'; $chkAdvRazer = E 'chkAdvRazer'; $chkAdvLogi = E 'chkAdvLogi'; $chkIPv4Pref = E 'chkIPv4Pref'
 $chkBootQuiet = E 'chkBootQuiet'; $chkBootMenu = E 'chkBootMenu'; $chkBootTimeout = E 'chkBootTimeout'
 $chkBootDynTick = E 'chkBootDynTick'; $chkBootTsc = E 'chkBootTsc'; $btnBootReset = E 'btnBootReset'
-$chkAppxBloat = E 'chkAppxBloat'; $chkAppxXbox = E 'chkAppxXbox'; $chkAppxProvision = E 'chkAppxProvision'
+
 $chkSecSmartScreen = E 'chkSecSmartScreen'; $chkSecSpectre = E 'chkSecSpectre'; $chkSecDownfall = E 'chkSecDownfall'; $chkSecDefenderIdle = E 'chkSecDefenderIdle'
 
 # ------------------------------------------------------------------------------
@@ -4834,9 +4874,6 @@ $script:Tips = @{
     chkBootTimeout = @{ it = "Se hai più sistemi installati, il PC parte subito senza aspettare nel menu di scelta."; en = "If several systems are installed, the PC starts right away without waiting in the choice menu." }
     chkBootDynTick = @{ it = "Il processore tiene un ritmo di sistema costante. Su alcuni PC abbassa la latenza, su altri no: va provato."; en = "The processor keeps a constant system tick. On some PCs it lowers latency, on others it does not: test it." }
     chkBootTsc = @{ it = "Rende più precisa la misura del tempo tra i core del processore. Può migliorare la fluidità: va provato."; en = "Makes timekeeping across processor cores more precise. Can improve smoothness: test it." }
-    chkAppxBloat = @{ it = "Rimuove app preinstallate come notizie, meteo, mappe e Skype. Più spazio e menu Start più ordinato."; en = "Removes preinstalled apps such as news, weather, maps and Skype. More space and a tidier Start menu." }
-    chkAppxXbox = @{ it = "Rimuove le app Xbox e l'overlay di gioco. Da evitare se usi Game Pass."; en = "Removes Xbox apps and the game overlay. Avoid it if you use Game Pass." }
-    chkAppxProvision = @{ it = "Le app rimosse non ricompaiono quando si crea un nuovo utente."; en = "Removed apps do not come back when a new user is created." }
     chkSecSmartScreen = @{ it = "Spegne il controllo dei file scaricati. Nessun avviso all'apertura, ma nessuna protezione da file pericolosi."; en = "Turns off the check on downloaded files. No warnings when opening them, but no protection from dangerous files." }
     chkSecSpectre = @{ it = "Toglie le protezioni contro alcune falle dei processori. Più prestazioni, soprattutto sulle CPU vecchie, ma meno sicurezza."; en = "Removes protections against some processor flaws. More performance, especially on older CPUs, but less security." }
     chkSecDefenderIdle = @{ it = "L'antivirus fa le scansioni solo a computer fermo e senza appesantirlo. La protezione in tempo reale resta attiva."; en = "The antivirus scans only when the computer is idle and without weighing it down. Real-time protection stays on." }
@@ -5114,11 +5151,6 @@ $script:Tr = @{
         'L:chkBootTimeout' = "Sin espera en el menú de arranque"
         'L:chkBootDynTick' = "Tick dinámico del kernel — arriesgado: pruébalo y mide"
         'L:chkBootTsc' = "Sincronización TSC mejorada — arriesgado: pruébala y mide"
-        'L:ttlAppx' = "APLICACIONES PREINSTALADAS"
-        'L:lblAppxHint' = "Se pueden reinstalar desde Store cuando hagan falta."
-        'L:chkAppxBloat' = "Aplicaciones no esenciales (noticias, tiempo, mapas, Skype...)"
-        'L:chkAppxXbox' = "Aplicaciones de Xbox y superposición de juego"
-        'L:chkAppxProvision' = "No restaurarlas para usuarios nuevos"
         'L:ttlSec' = "SEGURIDAD REDUCIDA"
         'L:lblSecHint' = "Todas arriesgadas: reducen de verdad las defensas del equipo. «Recomendados» activa dos, «Seleccionar todo» las activa todas tras una confirmación."
         'L:chkSecSmartScreen' = "SmartScreen — control de archivos descargados"
@@ -5286,9 +5318,6 @@ $script:Tr = @{
         'H:chkBootTimeout' = "Si tienes varios sistemas instalados, el equipo arranca enseguida sin esperar en el menú."
         'H:chkBootDynTick' = "El procesador mantiene un ritmo de sistema constante. En algunos equipos baja la latencia y en otros no: hay que probarlo."
         'H:chkBootTsc' = "Hace más precisa la medida del tiempo entre los núcleos del procesador. Puede mejorar la fluidez: hay que probarlo."
-        'H:chkAppxBloat' = "Quita aplicaciones preinstaladas como noticias, tiempo, mapas y Skype. Más espacio y un Inicio más ordenado."
-        'H:chkAppxXbox' = "Quita las aplicaciones de Xbox y la superposición de juego. Evítalo si usas Game Pass."
-        'H:chkAppxProvision' = "Las aplicaciones quitadas no vuelven al crear un usuario nuevo."
         'H:chkSecSmartScreen' = "Apaga el control de los archivos descargados. Sin avisos al abrirlos, pero sin protección frente a archivos peligrosos."
         'H:chkSecSpectre' = "Quita las protecciones contra algunos fallos de los procesadores. Más rendimiento, sobre todo en CPU antiguas, pero menos seguridad."
         'H:chkSecDefenderIdle' = "El antivirus analiza solo con el equipo en reposo y sin cargarlo. La protección en tiempo real sigue activa."
@@ -5857,6 +5886,62 @@ $script:Tr = @{
         'M:pageSub_tabApps' = "Instala o actualiza los programas más usados con un clic."
         'M:pageSub_tabTools' = "Limpieza, reparaciones y paneles de Windows. Actúan al momento."
         'M:pageSub_tabAdv' = "Para quien sabe lo que hace: aquí se quitan partes de Windows, una a una."
+        'M:ttlDebloat' = "Quitar apps de Windows"
+        'M:debloatHint' = "Apps preinstaladas que suelen sobrar. Activadas las que casi nadie usa; se reinstalan desde Microsoft Store."
+        'M:debloatSearching' = "Buscando apps instaladas..."
+        'M:debloatNone' = "Ninguna de estas apps está instalada."
+        'M:debloatFound' = "{0} grupos de apps presentes."
+        'M:debloatRun' = "Quitar seleccionadas"
+        'M:debloatAsk' = "¿Quito {0} grupos de apps para todos los usuarios? Se reinstalan desde Microsoft Store."
+        'M:debloatDone' = "Paquetes quitados: {0}."
+        'M:debloatStepApps' = "Apps de Windows"
+        'M:debloat_news' = "Microsoft News, El Tiempo, Dinero y Deportes"
+        'M:debloat_bing' = "Búsqueda de Bing"
+        'M:debloat_copilot' = "Copilot"
+        'M:debloat_widgets' = "Widgets (noticias en la barra)"
+        'M:debloat_teams' = "Microsoft Teams (personal)"
+        'M:debloat_office' = "Microsoft 365 (Office) y OneNote preinstalados"
+        'M:debloat_solitaire' = "Microsoft Solitaire Collection"
+        'M:debloat_tips' = "Sugerencias, Obtener ayuda y Centro de opiniones"
+        'M:debloat_clipchamp' = "Clipchamp"
+        'M:debloat_todo' = "Microsoft To Do y Power Automate"
+        'M:debloat_people' = "Contactos, Mapas y Skype"
+        'M:debloat_threeD' = "Apps 3D y de realidad mixta"
+        'M:debloat_family' = "Microsoft Family y Cortana"
+        'M:debloat_devhome' = "Dev Home"
+        'M:debloat_spotify' = "Spotify preinstalado"
+        'M:debloat_recorder' = "Grabadora de sonidos"
+        'M:debloat_media' = "Reproductor multimedia y Películas y TV"
+        'M:debloat_outlook' = "Outlook (nuevo) y Correo y Calendario"
+        'M:debloat_phone' = "Enlace móvil"
+        'M:debloat_quick' = "Asistencia rápida"
+        'M:debloat_alarms' = "Alarmas y reloj"
+        'M:debloat_sticky' = "Sticky Notes"
+        'M:debloat_camera' = "Cámara"
+        'M:debloat_photos' = "Fotos"
+        'M:debloat_xbox' = "Apps de Xbox y Game Bar (necesarias para Game Pass)"
+        'M:debloat_onedrive' = "OneDrive (los archivos de la carpeta OneDrive se quedan)"
+        'M:ttlStartup' = "Programas al inicio"
+        'M:startupHint' = "Los activados arrancan con Windows y lo ralentizan. Desactivar no borra nada: se reactiva cuando quieras, también desde el Administrador de tareas."
+        'M:startupNone' = "Ningún programa arranca al inicio."
+        'M:startupCount' = "{0} de {1} activados."
+        'M:startupAll' = "todos los usuarios"
+        'M:startupUser' = "solo este usuario"
+        'M:leftScanning' = "Buscando restos de los programas desinstalados..."
+        'M:leftFound' = "{0} restos encontrados: están arriba en la lista."
+        'M:leftNone' = "Sin restos: la desinstalación quitó todo."
+        'M:leftTitle' = "Restos de programas desinstalados"
+        'M:leftHint' = "Carpetas, claves del registro e inicios que quedaron. Los seguros están activados; revisa antes los marcados «a revisar». El registro se guarda antes, carpetas y archivos van a la Papelera."
+        'M:leftRemove' = "Quitar seleccionados"
+        'M:leftAsk' = "¿Quito {0} restos? El registro se guarda antes y carpetas y archivos van a la Papelera."
+        'M:leftDone' = "Restos quitados: {0} de {1}."
+        'M:leftCheck' = "a revisar"
+        'M:leftKind_dir' = "CARPETA"
+        'M:leftKind_file' = "ARCHIVO"
+        'M:leftKind_reg' = "REGISTRO"
+        'M:leftKind_run' = "INICIO"
+        'M:leftKind_task' = "TAREA"
+        'M:leftKind_svc' = "SERVICIO"
     }
     de = @{
         'L:lblSubtitle' = "Windows-Optimierung und -Steuerung — PcFixPro Italia"
@@ -6085,11 +6170,6 @@ $script:Tr = @{
         'L:chkBootTimeout' = "Keine Wartezeit im Startmenü"
         'L:chkBootDynTick' = "Dynamischer Kernel-Tick — riskant: testen und messen"
         'L:chkBootTsc' = "Verbesserte TSC-Synchronisierung — riskant: testen und messen"
-        'L:ttlAppx' = "VORINSTALLIERTE APPS"
-        'L:lblAppxHint' = "Sie lassen sich bei Bedarf aus dem Store neu installieren."
-        'L:chkAppxBloat' = "Nicht benötigte Apps (Nachrichten, Wetter, Karten, Skype...)"
-        'L:chkAppxXbox' = "Xbox-Apps und Spiel-Overlay"
-        'L:chkAppxProvision' = "Für neue Benutzer nicht wiederherstellen"
         'L:ttlSec' = "VERRINGERTE SICHERHEIT"
         'L:lblSecHint' = "Alle riskant: Sie senken den Schutz des Computers wirklich. «Empfohlene» schaltet zwei davon ein, «Alles auswählen» nach einer Bestätigung alle."
         'L:chkSecSmartScreen' = "SmartScreen — Prüfung heruntergeladener Dateien"
@@ -6257,9 +6337,6 @@ $script:Tr = @{
         'H:chkBootTimeout' = "Wenn mehrere Systeme installiert sind, startet der PC sofort, ohne im Auswahlmenü zu warten."
         'H:chkBootDynTick' = "Der Prozessor hält einen gleichmäßigen Systemtakt. Auf manchen PCs sinkt die Latenz, auf anderen nicht: ausprobieren."
         'H:chkBootTsc' = "Macht die Zeitmessung zwischen den Prozessorkernen genauer. Kann die Flüssigkeit verbessern: ausprobieren."
-        'H:chkAppxBloat' = "Entfernt vorinstallierte Apps wie Nachrichten, Wetter, Karten und Skype. Mehr Platz und ein aufgeräumteres Startmenü."
-        'H:chkAppxXbox' = "Entfernt Xbox-Apps und das Spiel-Overlay. Vermeide es, wenn du Game Pass nutzt."
-        'H:chkAppxProvision' = "Entfernte Apps kehren nicht zurück, wenn ein neuer Benutzer angelegt wird."
         'H:chkSecSmartScreen' = "Schaltet die Prüfung heruntergeladener Dateien ab. Keine Warnungen beim Öffnen, aber kein Schutz vor gefährlichen Dateien."
         'H:chkSecSpectre' = "Entfernt den Schutz vor einigen Prozessorlücken. Mehr Leistung, vor allem bei älteren CPUs, aber weniger Sicherheit."
         'H:chkSecDefenderIdle' = "Der Virenschutz scannt nur, wenn der Computer ruht, und ohne ihn auszubremsen. Der Echtzeitschutz bleibt aktiv."
@@ -6828,6 +6905,62 @@ $script:Tr = @{
         'M:pageSub_tabApps' = "Installiere oder aktualisiere beliebte Programme mit einem Klick."
         'M:pageSub_tabTools' = "Bereinigung, Reparaturen und Windows-Fenster. Diese Werkzeuge wirken sofort."
         'M:pageSub_tabAdv' = "Für Erfahrene: Hier werden Teile von Windows entfernt, einzeln."
+        'M:ttlDebloat' = "Windows-Apps entfernen"
+        'M:debloatHint' = "Vorinstallierte Apps, die man meist nicht braucht. Fast nie genutzte sind aktiviert; im Microsoft Store wieder installierbar."
+        'M:debloatSearching' = "Suche installierte Apps..."
+        'M:debloatNone' = "Keine dieser Apps ist installiert."
+        'M:debloatFound' = "{0} App-Gruppen vorhanden."
+        'M:debloatRun' = "Ausgewählte entfernen"
+        'M:debloatAsk' = "{0} App-Gruppen für alle Benutzer entfernen? Im Microsoft Store wieder installierbar."
+        'M:debloatDone' = "Entfernte Pakete: {0}."
+        'M:debloatStepApps' = "Windows-Apps"
+        'M:debloat_news' = "Microsoft News, Wetter, Finanzen und Sport"
+        'M:debloat_bing' = "Bing-Suche"
+        'M:debloat_copilot' = "Copilot"
+        'M:debloat_widgets' = "Widgets (Nachrichten auf der Taskleiste)"
+        'M:debloat_teams' = "Microsoft Teams (privat)"
+        'M:debloat_office' = "Vorinstalliertes Microsoft 365 (Office) und OneNote"
+        'M:debloat_solitaire' = "Microsoft Solitaire Collection"
+        'M:debloat_tips' = "Tipps, Hilfe anfordern und Feedback-Hub"
+        'M:debloat_clipchamp' = "Clipchamp"
+        'M:debloat_todo' = "Microsoft To Do und Power Automate"
+        'M:debloat_people' = "Kontakte, Karten und Skype"
+        'M:debloat_threeD' = "3D- und Mixed-Reality-Apps"
+        'M:debloat_family' = "Microsoft Family und Cortana"
+        'M:debloat_devhome' = "Dev Home"
+        'M:debloat_spotify' = "Vorinstalliertes Spotify"
+        'M:debloat_recorder' = "Audiorekorder"
+        'M:debloat_media' = "Medienwiedergabe und Filme & TV"
+        'M:debloat_outlook' = "Outlook (neu) und Mail und Kalender"
+        'M:debloat_phone' = "Smartphone-Link"
+        'M:debloat_quick' = "Remotehilfe"
+        'M:debloat_alarms' = "Uhr"
+        'M:debloat_sticky' = "Kurznotizen"
+        'M:debloat_camera' = "Kamera"
+        'M:debloat_photos' = "Fotos"
+        'M:debloat_xbox' = "Xbox-Apps und Game Bar (für Game Pass nötig)"
+        'M:debloat_onedrive' = "OneDrive (Dateien im OneDrive-Ordner bleiben)"
+        'M:ttlStartup' = "Autostart-Programme"
+        'M:startupHint' = "Aktivierte starten mit Windows und bremsen es. Deaktivieren löscht nichts: jederzeit wieder einschaltbar, auch im Task-Manager."
+        'M:startupNone' = "Kein Programm startet automatisch."
+        'M:startupCount' = "{0} von {1} aktiviert."
+        'M:startupAll' = "alle Benutzer"
+        'M:startupUser' = "nur dieser Benutzer"
+        'M:leftScanning' = "Suche nach Resten deinstallierter Programme..."
+        'M:leftFound' = "{0} Reste gefunden: oben in der Liste."
+        'M:leftNone' = "Keine Reste: Die Deinstallation hat alles entfernt."
+        'M:leftTitle' = "Reste deinstallierter Programme"
+        'M:leftHint' = "Zurückgebliebene Ordner, Registrierungsschlüssel und Autostarts. Sichere sind aktiviert; die «zu prüfen» zuerst ansehen. Die Registrierung wird vorher gesichert, Ordner und Dateien gehen in den Papierkorb."
+        'M:leftRemove' = "Ausgewählte entfernen"
+        'M:leftAsk' = "{0} Reste entfernen? Die Registrierung wird gesichert, Ordner und Dateien gehen in den Papierkorb."
+        'M:leftDone' = "Entfernte Reste: {0} von {1}."
+        'M:leftCheck' = "zu prüfen"
+        'M:leftKind_dir' = "ORDNER"
+        'M:leftKind_file' = "DATEI"
+        'M:leftKind_reg' = "REGISTRIERUNG"
+        'M:leftKind_run' = "AUTOSTART"
+        'M:leftKind_task' = "AUFGABE"
+        'M:leftKind_svc' = "DIENST"
     }
     fr = @{
         'L:lblSubtitle' = "Optimisation et contrôle de Windows — PcFixPro Italia"
@@ -7059,11 +7192,6 @@ $script:Tr = @{
         'L:chkBootTimeout' = "Aucune attente dans le menu de démarrage"
         'L:chkBootDynTick' = "Tick dynamique du noyau — risqué : testez et mesurez"
         'L:chkBootTsc' = "Synchronisation TSC renforcée — risqué : testez et mesurez"
-        'L:ttlAppx' = "APPLICATIONS PRÉINSTALLÉES"
-        'L:lblAppxHint' = "Elles se réinstallent depuis le Store en cas de besoin."
-        'L:chkAppxBloat' = "Applications non essentielles (actualités, météo, cartes, Skype...)"
-        'L:chkAppxXbox' = "Applications Xbox et superposition de jeu"
-        'L:chkAppxProvision' = "Ne pas les restaurer pour les nouveaux utilisateurs"
         'L:ttlSec' = "SÉCURITÉ RÉDUITE"
         'L:lblSecHint' = "Toutes risquées : elles abaissent réellement les défenses de l'ordinateur. «Recommandés» en active deux, «Tout sélectionner» les active toutes après confirmation."
         'L:chkSecSmartScreen' = "SmartScreen — contrôle des fichiers téléchargés"
@@ -7231,9 +7359,6 @@ $script:Tr = @{
         'H:chkBootTimeout' = "Si plusieurs systèmes sont installés, le PC démarre tout de suite sans attendre dans le menu de choix."
         'H:chkBootDynTick' = "Le processeur garde un rythme système constant. Sur certains PC la latence baisse, sur d'autres non : à tester."
         'H:chkBootTsc' = "Rend la mesure du temps entre les cœurs du processeur plus précise. Peut améliorer la fluidité : à tester."
-        'H:chkAppxBloat' = "Supprime des applications préinstallées comme actualités, météo, cartes et Skype. Plus d'espace et un Démarrer mieux rangé."
-        'H:chkAppxXbox' = "Supprime les applications Xbox et la superposition de jeu. À éviter si vous utilisez le Game Pass."
-        'H:chkAppxProvision' = "Les applications supprimées ne reviennent pas à la création d'un nouvel utilisateur."
         'H:chkSecSmartScreen' = "Coupe le contrôle des fichiers téléchargés. Plus d'avertissement à l'ouverture, mais plus de protection contre les fichiers dangereux."
         'H:chkSecSpectre' = "Retire les protections contre certaines failles des processeurs. Plus de performances, surtout sur les CPU anciens, mais moins de sécurité."
         'H:chkSecDefenderIdle' = "L'antivirus analyse seulement quand l'ordinateur est au repos, sans l'alourdir. La protection en temps réel reste active."
@@ -7802,6 +7927,62 @@ $script:Tr = @{
         'M:pageSub_tabApps' = "Installez ou mettez à jour les programmes courants en un clic."
         'M:pageSub_tabTools' = "Nettoyage, réparations et panneaux de Windows. Ces outils agissent tout de suite."
         'M:pageSub_tabAdv' = "Pour les initiés : on retire ici des parties de Windows, une à une."
+        'M:ttlDebloat' = "Supprimer des applis Windows"
+        'M:debloatHint' = "Applis préinstallées rarement utiles. Celles que presque personne n'utilise sont cochées ; réinstallables depuis le Microsoft Store."
+        'M:debloatSearching' = "Recherche des applis installées..."
+        'M:debloatNone' = "Aucune de ces applis n'est installée."
+        'M:debloatFound' = "{0} groupes d'applis présents."
+        'M:debloatRun' = "Supprimer la sélection"
+        'M:debloatAsk' = "Supprimer {0} groupes d'applis pour tous les utilisateurs ? Réinstallables depuis le Microsoft Store."
+        'M:debloatDone' = "Paquets supprimés : {0}."
+        'M:debloatStepApps' = "Applis Windows"
+        'M:debloat_news' = "Microsoft News, Météo, Finance et Sports"
+        'M:debloat_bing' = "Recherche Bing"
+        'M:debloat_copilot' = "Copilot"
+        'M:debloat_widgets' = "Widgets (actualités dans la barre)"
+        'M:debloat_teams' = "Microsoft Teams (personnel)"
+        'M:debloat_office' = "Microsoft 365 (Office) et OneNote préinstallés"
+        'M:debloat_solitaire' = "Microsoft Solitaire Collection"
+        'M:debloat_tips' = "Astuces, Obtenir de l'aide et Hub de commentaires"
+        'M:debloat_clipchamp' = "Clipchamp"
+        'M:debloat_todo' = "Microsoft To Do et Power Automate"
+        'M:debloat_people' = "Contacts, Cartes et Skype"
+        'M:debloat_threeD' = "Applis 3D et réalité mixte"
+        'M:debloat_family' = "Microsoft Family et Cortana"
+        'M:debloat_devhome' = "Dev Home"
+        'M:debloat_spotify' = "Spotify préinstallé"
+        'M:debloat_recorder' = "Enregistreur vocal"
+        'M:debloat_media' = "Lecteur multimédia et Films et TV"
+        'M:debloat_outlook' = "Outlook (nouveau) et Courrier et Calendrier"
+        'M:debloat_phone' = "Mobile connecté"
+        'M:debloat_quick' = "Assistance rapide"
+        'M:debloat_alarms' = "Alarmes et horloge"
+        'M:debloat_sticky' = "Pense-bêtes"
+        'M:debloat_camera' = "Caméra"
+        'M:debloat_photos' = "Photos"
+        'M:debloat_xbox' = "Applis Xbox et Game Bar (nécessaires au Game Pass)"
+        'M:debloat_onedrive' = "OneDrive (les fichiers du dossier OneDrive restent)"
+        'M:ttlStartup' = "Programmes au démarrage"
+        'M:startupHint' = "Les programmes actifs démarrent avec Windows et le ralentissent. Désactiver ne supprime rien : réactivable quand vous voulez, aussi depuis le Gestionnaire des tâches."
+        'M:startupNone' = "Aucun programme ne démarre avec Windows."
+        'M:startupCount' = "{0} sur {1} activés."
+        'M:startupAll' = "tous les utilisateurs"
+        'M:startupUser' = "cet utilisateur seulement"
+        'M:leftScanning' = "Recherche des restes des programmes désinstallés..."
+        'M:leftFound' = "{0} restes trouvés : en haut de la liste."
+        'M:leftNone' = "Aucun reste : la désinstallation a tout supprimé."
+        'M:leftTitle' = "Restes des programmes désinstallés"
+        'M:leftHint' = "Dossiers, clés de registre et démarrages restants. Les sûrs sont cochés ; vérifiez d'abord ceux marqués «à vérifier». Le registre est sauvegardé avant, dossiers et fichiers vont dans la Corbeille."
+        'M:leftRemove' = "Supprimer la sélection"
+        'M:leftAsk' = "Supprimer {0} restes ? Le registre est sauvegardé et dossiers et fichiers vont dans la Corbeille."
+        'M:leftDone' = "Restes supprimés : {0} sur {1}."
+        'M:leftCheck' = "à vérifier"
+        'M:leftKind_dir' = "DOSSIER"
+        'M:leftKind_file' = "FICHIER"
+        'M:leftKind_reg' = "REGISTRE"
+        'M:leftKind_run' = "DÉMARRAGE"
+        'M:leftKind_task' = "TÂCHE"
+        'M:leftKind_svc' = "SERVICE"
     }
     pl = @{
         'L:lblSubtitle' = "Optymalizacja i kontrola systemu Windows — PcFixPro Italia"
@@ -8030,11 +8211,6 @@ $script:Tr = @{
         'L:chkBootTimeout' = "Bez czekania w menu rozruchu"
         'L:chkBootDynTick' = "Dynamiczny tick jądra — ryzykowne: przetestuj i zmierz"
         'L:chkBootTsc' = "Ulepszona synchronizacja TSC — ryzykowne: przetestuj i zmierz"
-        'L:ttlAppx' = "PREINSTALOWANE APLIKACJE"
-        'L:lblAppxHint' = "W razie potrzeby można je zainstalować ponownie ze Sklepu."
-        'L:chkAppxBloat' = "Zbędne aplikacje (wiadomości, pogoda, mapy, Skype...)"
-        'L:chkAppxXbox' = "Aplikacje Xbox i nakładka gier"
-        'L:chkAppxProvision' = "Nie przywracaj ich dla nowych użytkowników"
         'L:ttlSec' = "OBNIŻONE BEZPIECZEŃSTWO"
         'L:lblSecHint' = "Wszystkie ryzykowne: naprawdę obniżają ochronę komputera. «Zalecane» włącza dwie z nich, «Zaznacz wszystko» włącza wszystkie po potwierdzeniu."
         'L:chkSecSmartScreen' = "SmartScreen — sprawdzanie pobranych plików"
@@ -8202,9 +8378,6 @@ $script:Tr = @{
         'H:chkBootTimeout' = "Jeśli masz kilka systemów, komputer startuje od razu, bez czekania w menu wyboru."
         'H:chkBootDynTick' = "Procesor utrzymuje stały rytm systemu. Na niektórych komputerach obniża opóźnienia, na innych nie: trzeba sprawdzić."
         'H:chkBootTsc' = "Zwiększa precyzję pomiaru czasu między rdzeniami procesora. Może poprawić płynność: trzeba sprawdzić."
-        'H:chkAppxBloat' = "Usuwa preinstalowane aplikacje, np. wiadomości, pogodę, mapy i Skype. Więcej miejsca i porządniejsze menu Start."
-        'H:chkAppxXbox' = "Usuwa aplikacje Xbox i nakładkę gier. Unikaj, jeśli korzystasz z Game Pass."
-        'H:chkAppxProvision' = "Usunięte aplikacje nie wracają po utworzeniu nowego użytkownika."
         'H:chkSecSmartScreen' = "Wyłącza sprawdzanie pobranych plików. Brak ostrzeżeń przy otwieraniu, ale też brak ochrony przed groźnymi plikami."
         'H:chkSecSpectre' = "Usuwa zabezpieczenia przed niektórymi lukami procesorów. Więcej wydajności, zwłaszcza na starszych CPU, ale mniej bezpieczeństwa."
         'H:chkSecDefenderIdle' = "Antywirus skanuje tylko, gdy komputer jest bezczynny, i nie obciąża go. Ochrona w czasie rzeczywistym pozostaje włączona."
@@ -8773,6 +8946,62 @@ $script:Tr = @{
         'M:pageSub_tabApps' = "Zainstaluj lub zaktualizuj popularne programy jednym kliknięciem."
         'M:pageSub_tabTools' = "Czyszczenie, naprawy i panele Windows. Działają od razu."
         'M:pageSub_tabAdv' = "Dla zaawansowanych: tu usuwa się części Windows, pojedynczo."
+        'M:ttlDebloat' = "Usuń aplikacje Windows"
+        'M:debloatHint' = "Preinstalowane aplikacje, zwykle zbędne. Zaznaczone są te prawie nieużywane; można je przywrócić ze Sklepu Microsoft."
+        'M:debloatSearching' = "Szukam zainstalowanych aplikacji..."
+        'M:debloatNone' = "Żadna z tych aplikacji nie jest zainstalowana."
+        'M:debloatFound' = "Znaleziono {0} grup aplikacji."
+        'M:debloatRun' = "Usuń zaznaczone"
+        'M:debloatAsk' = "Usunąć {0} grup aplikacji dla wszystkich użytkowników? Można je przywrócić ze Sklepu."
+        'M:debloatDone' = "Usunięte pakiety: {0}."
+        'M:debloatStepApps' = "Aplikacje Windows"
+        'M:debloat_news' = "Microsoft News, Pogoda, Finanse i Sport"
+        'M:debloat_bing' = "Wyszukiwanie Bing"
+        'M:debloat_copilot' = "Copilot"
+        'M:debloat_widgets' = "Widżety (wiadomości na pasku)"
+        'M:debloat_teams' = "Microsoft Teams (osobisty)"
+        'M:debloat_office' = "Preinstalowane Microsoft 365 (Office) i OneNote"
+        'M:debloat_solitaire' = "Microsoft Solitaire Collection"
+        'M:debloat_tips' = "Porady, Uzyskaj pomoc i Centrum opinii"
+        'M:debloat_clipchamp' = "Clipchamp"
+        'M:debloat_todo' = "Microsoft To Do i Power Automate"
+        'M:debloat_people' = "Kontakty, Mapy i Skype"
+        'M:debloat_threeD' = "Aplikacje 3D i rzeczywistości mieszanej"
+        'M:debloat_family' = "Microsoft Family i Cortana"
+        'M:debloat_devhome' = "Dev Home"
+        'M:debloat_spotify' = "Preinstalowany Spotify"
+        'M:debloat_recorder' = "Rejestrator dźwięku"
+        'M:debloat_media' = "Odtwarzacz multimedialny i Filmy i TV"
+        'M:debloat_outlook' = "Outlook (nowy) oraz Poczta i Kalendarz"
+        'M:debloat_phone' = "Łącze z telefonem"
+        'M:debloat_quick' = "Szybka pomoc"
+        'M:debloat_alarms' = "Alarmy i zegar"
+        'M:debloat_sticky' = "Karteczki samoprzylepne"
+        'M:debloat_camera' = "Aparat"
+        'M:debloat_photos' = "Zdjęcia"
+        'M:debloat_xbox' = "Aplikacje Xbox i Game Bar (potrzebne do Game Pass)"
+        'M:debloat_onedrive' = "OneDrive (pliki w folderze OneDrive zostają)"
+        'M:ttlStartup' = "Programy autostartu"
+        'M:startupHint' = "Włączone startują z Windows i go spowalniają. Wyłączenie niczego nie usuwa: można włączyć ponownie, także w Menedżerze zadań."
+        'M:startupNone' = "Żaden program nie startuje z systemem."
+        'M:startupCount' = "Włączone: {0} z {1}."
+        'M:startupAll' = "wszyscy użytkownicy"
+        'M:startupUser' = "tylko ten użytkownik"
+        'M:leftScanning' = "Szukam pozostałości odinstalowanych programów..."
+        'M:leftFound' = "Znaleziono {0} pozostałości: są na górze listy."
+        'M:leftNone' = "Brak pozostałości: odinstalowanie usunęło wszystko."
+        'M:leftTitle' = "Pozostałości odinstalowanych programów"
+        'M:leftHint' = "Pozostałe foldery, klucze rejestru i autostarty. Bezpieczne są zaznaczone; te «do sprawdzenia» najpierw obejrzyj. Rejestr jest zapisywany wcześniej, foldery i pliki trafiają do Kosza."
+        'M:leftRemove' = "Usuń zaznaczone"
+        'M:leftAsk' = "Usunąć {0} pozostałości? Rejestr zostanie zapisany, a foldery i pliki trafią do Kosza."
+        'M:leftDone' = "Usunięte pozostałości: {0} z {1}."
+        'M:leftCheck' = "do sprawdzenia"
+        'M:leftKind_dir' = "FOLDER"
+        'M:leftKind_file' = "PLIK"
+        'M:leftKind_reg' = "REJESTR"
+        'M:leftKind_run' = "AUTOSTART"
+        'M:leftKind_task' = "ZADANIE"
+        'M:leftKind_svc' = "USŁUGA"
     }
     pt = @{
         'L:lblSubtitle' = "Otimização e controle do Windows — PcFixPro Italia"
@@ -9001,11 +9230,6 @@ $script:Tr = @{
         'L:chkBootTimeout' = "Sem espera no menu de inicialização"
         'L:chkBootDynTick' = "Tick dinâmico do kernel — arriscado: teste e meça"
         'L:chkBootTsc' = "Sincronização TSC aprimorada — arriscado: teste e meça"
-        'L:ttlAppx' = "APPS PRÉ-INSTALADOS"
-        'L:lblAppxHint' = "Podem ser reinstalados pela Store quando precisar."
-        'L:chkAppxBloat' = "Apps não essenciais (notícias, clima, mapas, Skype...)"
-        'L:chkAppxXbox' = "Apps do Xbox e sobreposição de jogo"
-        'L:chkAppxProvision' = "Não restaurá-los para novos usuários"
         'L:ttlSec' = "SEGURANÇA REDUZIDA"
         'L:lblSecHint' = "Todas arriscadas: reduzem de verdade as defesas do computador. «Recomendados» liga duas, «Selecionar tudo» liga todas após uma confirmação."
         'L:chkSecSmartScreen' = "SmartScreen — verificação de arquivos baixados"
@@ -9173,9 +9397,6 @@ $script:Tr = @{
         'H:chkBootTimeout' = "Se houver vários sistemas instalados, o PC inicia na hora sem esperar no menu de escolha."
         'H:chkBootDynTick' = "O processador mantém um ritmo de sistema constante. Em alguns PCs reduz a latência, em outros não: teste."
         'H:chkBootTsc' = "Deixa mais precisa a medição do tempo entre os núcleos do processador. Pode melhorar a fluidez: teste."
-        'H:chkAppxBloat' = "Remove apps pré-instalados como notícias, clima, mapas e Skype. Mais espaço e um Iniciar mais organizado."
-        'H:chkAppxXbox' = "Remove os apps do Xbox e a sobreposição de jogo. Evite se usa o Game Pass."
-        'H:chkAppxProvision' = "Os apps removidos não voltam quando um novo usuário é criado."
         'H:chkSecSmartScreen' = "Desliga a verificação dos arquivos baixados. Sem avisos ao abri-los, mas sem proteção contra arquivos perigosos."
         'H:chkSecSpectre' = "Remove as proteções contra algumas falhas dos processadores. Mais desempenho, sobretudo em CPUs antigas, mas menos segurança."
         'H:chkSecDefenderIdle' = "O antivírus só verifica com o computador em repouso e sem pesar. A proteção em tempo real continua ativa."
@@ -9744,6 +9965,62 @@ $script:Tr = @{
         'M:pageSub_tabApps' = "Instale ou atualize os programas mais usados com um clique."
         'M:pageSub_tabTools' = "Limpeza, reparos e painéis do Windows. Estas ferramentas agem na hora."
         'M:pageSub_tabAdv' = "Para quem sabe o que faz: aqui se removem partes do Windows, uma a uma."
+        'M:ttlDebloat' = "Remover apps do Windows"
+        'M:debloatHint' = "Apps pré-instalados que costumam sobrar. Ligados os que quase ninguém usa; reinstaláveis pela Microsoft Store."
+        'M:debloatSearching' = "Procurando apps instalados..."
+        'M:debloatNone' = "Nenhum destes apps está instalado."
+        'M:debloatFound' = "{0} grupos de apps presentes."
+        'M:debloatRun' = "Remover selecionados"
+        'M:debloatAsk' = "Remover {0} grupos de apps para todos os usuários? Reinstaláveis pela Microsoft Store."
+        'M:debloatDone' = "Pacotes removidos: {0}."
+        'M:debloatStepApps' = "Apps do Windows"
+        'M:debloat_news' = "Microsoft News, Clima, Dinheiro e Esportes"
+        'M:debloat_bing' = "Pesquisa Bing"
+        'M:debloat_copilot' = "Copilot"
+        'M:debloat_widgets' = "Widgets (notícias na barra)"
+        'M:debloat_teams' = "Microsoft Teams (pessoal)"
+        'M:debloat_office' = "Microsoft 365 (Office) e OneNote pré-instalados"
+        'M:debloat_solitaire' = "Microsoft Solitaire Collection"
+        'M:debloat_tips' = "Dicas, Obter Ajuda e Hub de Comentários"
+        'M:debloat_clipchamp' = "Clipchamp"
+        'M:debloat_todo' = "Microsoft To Do e Power Automate"
+        'M:debloat_people' = "Pessoas, Mapas e Skype"
+        'M:debloat_threeD' = "Apps 3D e de realidade mista"
+        'M:debloat_family' = "Microsoft Family e Cortana"
+        'M:debloat_devhome' = "Dev Home"
+        'M:debloat_spotify' = "Spotify pré-instalado"
+        'M:debloat_recorder' = "Gravador de Som"
+        'M:debloat_media' = "Reprodutor Multimédia e Filmes e TV"
+        'M:debloat_outlook' = "Outlook (novo) e Email e Calendário"
+        'M:debloat_phone' = "Ligação ao Telemóvel"
+        'M:debloat_quick' = "Assistência Rápida"
+        'M:debloat_alarms' = "Alarmes e Relógio"
+        'M:debloat_sticky' = "Notas Autoadesivas"
+        'M:debloat_camera' = "Câmara"
+        'M:debloat_photos' = "Fotos"
+        'M:debloat_xbox' = "Apps Xbox e Game Bar (necessários para o Game Pass)"
+        'M:debloat_onedrive' = "OneDrive (os arquivos da pasta OneDrive ficam)"
+        'M:ttlStartup' = "Programas na inicialização"
+        'M:startupHint' = "Os ligados iniciam com o Windows e o deixam lento. Desligar não apaga nada: religue quando quiser, inclusive pelo Gerenciador de Tarefas."
+        'M:startupNone' = "Nenhum programa inicia com o Windows."
+        'M:startupCount' = "{0} de {1} ligados."
+        'M:startupAll' = "todos os usuários"
+        'M:startupUser' = "só este usuário"
+        'M:leftScanning' = "Procurando restos dos programas desinstalados..."
+        'M:leftFound' = "{0} restos encontrados: estão no topo da lista."
+        'M:leftNone' = "Nenhum resto: a desinstalação removeu tudo."
+        'M:leftTitle' = "Restos de programas desinstalados"
+        'M:leftHint' = "Pastas, chaves do registro e inicializações que ficaram. Os seguros estão ligados; verifique antes os marcados «a verificar». O registro é salvo antes, pastas e arquivos vão para a Lixeira."
+        'M:leftRemove' = "Remover selecionados"
+        'M:leftAsk' = "Remover {0} restos? O registro é salvo antes e pastas e arquivos vão para a Lixeira."
+        'M:leftDone' = "Restos removidos: {0} de {1}."
+        'M:leftCheck' = "a verificar"
+        'M:leftKind_dir' = "PASTA"
+        'M:leftKind_file' = "ARQUIVO"
+        'M:leftKind_reg' = "REGISTRO"
+        'M:leftKind_run' = "INICIALIZAÇÃO"
+        'M:leftKind_task' = "TAREFA"
+        'M:leftKind_svc' = "SERVIÇO"
     }
     ro = @{
         'L:lblSubtitle' = "Optimizarea și controlul Windows — PcFixPro Italia"
@@ -9972,11 +10249,6 @@ $script:Tr = @{
         'L:chkBootTimeout' = "Fără așteptare în meniul de pornire"
         'L:chkBootDynTick' = "Tick dinamic al nucleului — riscant: testează și măsoară"
         'L:chkBootTsc' = "Sincronizare TSC îmbunătățită — riscant: testează și măsoară"
-        'L:ttlAppx' = "APLICAȚII PREINSTALATE"
-        'L:lblAppxHint' = "Se pot reinstala din Store la nevoie."
-        'L:chkAppxBloat' = "Aplicații neesențiale (știri, vreme, hărți, Skype...)"
-        'L:chkAppxXbox' = "Aplicații Xbox și suprapunerea de joc"
-        'L:chkAppxProvision' = "Nu le restabili pentru utilizatorii noi"
         'L:ttlSec' = "SECURITATE REDUSĂ"
         'L:lblSecHint' = "Toate riscante: scad cu adevărat protecția calculatorului. «Recomandate» pornește două dintre ele, «Selectează tot» le pornește pe toate după o confirmare."
         'L:chkSecSmartScreen' = "SmartScreen — verificarea fișierelor descărcate"
@@ -10144,9 +10416,6 @@ $script:Tr = @{
         'H:chkBootTimeout' = "Dacă ai mai multe sisteme instalate, PC-ul pornește imediat, fără să aștepte în meniul de alegere."
         'H:chkBootDynTick' = "Procesorul păstrează un ritm de sistem constant. Pe unele PC-uri scade latența, pe altele nu: trebuie testat."
         'H:chkBootTsc' = "Face mai precisă măsurarea timpului între nucleele procesorului. Poate îmbunătăți fluiditatea: trebuie testat."
-        'H:chkAppxBloat' = "Elimină aplicații preinstalate precum știri, vreme, hărți și Skype. Mai mult spațiu și un Start mai ordonat."
-        'H:chkAppxXbox' = "Elimină aplicațiile Xbox și suprapunerea de joc. Evită dacă folosești Game Pass."
-        'H:chkAppxProvision' = "Aplicațiile eliminate nu revin când se creează un utilizator nou."
         'H:chkSecSmartScreen' = "Oprește verificarea fișierelor descărcate. Fără avertismente la deschidere, dar și fără protecție împotriva fișierelor periculoase."
         'H:chkSecSpectre' = "Elimină protecțiile împotriva unor defecte ale procesoarelor. Mai multă performanță, mai ales pe procesoarele vechi, dar mai puțină securitate."
         'H:chkSecDefenderIdle' = "Antivirusul scanează doar când computerul e în repaus, fără să-l încarce. Protecția în timp real rămâne activă."
@@ -10715,6 +10984,62 @@ $script:Tr = @{
         'M:pageSub_tabApps' = "Instalează sau actualizează programele cele mai folosite cu un clic."
         'M:pageSub_tabTools' = "Curățare, reparații și panouri Windows. Aceste instrumente acționează imediat."
         'M:pageSub_tabAdv' = "Pentru cei care știu ce fac: aici se elimină părți din Windows, pe rând."
+        'M:ttlDebloat' = "Elimină aplicații Windows"
+        'M:debloatHint' = "Aplicații preinstalate de obicei inutile. Sunt bifate cele folosite rar; se reinstalează din Microsoft Store."
+        'M:debloatSearching' = "Caut aplicațiile instalate..."
+        'M:debloatNone' = "Niciuna dintre aceste aplicații nu este instalată."
+        'M:debloatFound' = "{0} grupuri de aplicații găsite."
+        'M:debloatRun' = "Elimină selectate"
+        'M:debloatAsk' = "Elimin {0} grupuri de aplicații pentru toți utilizatorii? Se reinstalează din Microsoft Store."
+        'M:debloatDone' = "Pachete eliminate: {0}."
+        'M:debloatStepApps' = "Aplicații Windows"
+        'M:debloat_news' = "Microsoft News, Vremea, Bani și Sport"
+        'M:debloat_bing' = "Căutare Bing"
+        'M:debloat_copilot' = "Copilot"
+        'M:debloat_widgets' = "Widgeturi (știri pe bară)"
+        'M:debloat_teams' = "Microsoft Teams (personal)"
+        'M:debloat_office' = "Microsoft 365 (Office) și OneNote preinstalate"
+        'M:debloat_solitaire' = "Microsoft Solitaire Collection"
+        'M:debloat_tips' = "Sfaturi, Obțineți ajutor și Hub feedback"
+        'M:debloat_clipchamp' = "Clipchamp"
+        'M:debloat_todo' = "Microsoft To Do și Power Automate"
+        'M:debloat_people' = "Persoane, Hărți și Skype"
+        'M:debloat_threeD' = "Aplicații 3D și realitate mixtă"
+        'M:debloat_family' = "Microsoft Family și Cortana"
+        'M:debloat_devhome' = "Dev Home"
+        'M:debloat_spotify' = "Spotify preinstalat"
+        'M:debloat_recorder' = "Înregistrator de sunet"
+        'M:debloat_media' = "Media Player și Filme și TV"
+        'M:debloat_outlook' = "Outlook (nou) și Mail și Calendar"
+        'M:debloat_phone' = "Legătură telefon"
+        'M:debloat_quick' = "Asistență rapidă"
+        'M:debloat_alarms' = "Alarme și ceas"
+        'M:debloat_sticky' = "Sticky Notes"
+        'M:debloat_camera' = "Cameră"
+        'M:debloat_photos' = "Fotografii"
+        'M:debloat_xbox' = "Aplicații Xbox și Game Bar (necesare pentru Game Pass)"
+        'M:debloat_onedrive' = "OneDrive (fișierele din folderul OneDrive rămân)"
+        'M:ttlStartup' = "Programe la pornire"
+        'M:startupHint' = "Cele pornite pornesc cu Windows și îl încetinesc. Oprirea nu șterge nimic: le repornești oricând, și din Managerul de activități."
+        'M:startupNone' = "Niciun program nu pornește la start."
+        'M:startupCount' = "{0} din {1} pornite."
+        'M:startupAll' = "toți utilizatorii"
+        'M:startupUser' = "doar acest utilizator"
+        'M:leftScanning' = "Caut resturile programelor dezinstalate..."
+        'M:leftFound' = "{0} resturi găsite: sunt în partea de sus a listei."
+        'M:leftNone' = "Niciun rest: dezinstalarea a eliminat tot."
+        'M:leftTitle' = "Resturi ale programelor dezinstalate"
+        'M:leftHint' = "Foldere, chei de registry și porniri automate rămase. Cele sigure sunt bifate; verifică întâi cele marcate «de verificat». Registry-ul se salvează înainte, folderele și fișierele merg în Coșul de reciclare."
+        'M:leftRemove' = "Elimină selectate"
+        'M:leftAsk' = "Elimin {0} resturi? Registry-ul se salvează înainte, iar folderele și fișierele merg în Coș."
+        'M:leftDone' = "Resturi eliminate: {0} din {1}."
+        'M:leftCheck' = "de verificat"
+        'M:leftKind_dir' = "FOLDER"
+        'M:leftKind_file' = "FIȘIER"
+        'M:leftKind_reg' = "REGISTRY"
+        'M:leftKind_run' = "PORNIRE"
+        'M:leftKind_task' = "ACTIVITATE"
+        'M:leftKind_svc' = "SERVICIU"
     }
     ru = @{
         'L:lblSubtitle' = "Оптимизация и управление Windows — PcFixPro Italia"
@@ -10943,11 +11268,6 @@ $script:Tr = @{
         'L:chkBootTimeout' = "Без ожидания в меню загрузки"
         'L:chkBootDynTick' = "Динамический тик ядра — рискованно: проверьте и измерьте"
         'L:chkBootTsc' = "Улучшенная синхронизация TSC — рискованно: проверьте и измерьте"
-        'L:ttlAppx' = "ПРЕДУСТАНОВЛЕННЫЕ ПРИЛОЖЕНИЯ"
-        'L:lblAppxHint' = "При необходимости их можно переустановить из Store."
-        'L:chkAppxBloat' = "Необязательные приложения (новости, погода, карты, Skype...)"
-        'L:chkAppxXbox' = "Приложения Xbox и игровой оверлей"
-        'L:chkAppxProvision' = "Не восстанавливать для новых пользователей"
         'L:ttlSec' = "СНИЖЕННАЯ БЕЗОПАСНОСТЬ"
         'L:lblSecHint' = "Все рискованные: действительно снижают защиту компьютера. «Рекомендуемые» включает две из них, «Выбрать всё» включает все после подтверждения."
         'L:chkSecSmartScreen' = "SmartScreen — проверка скачанных файлов"
@@ -11115,9 +11435,6 @@ $script:Tr = @{
         'H:chkBootTimeout' = "Если установлено несколько систем, ПК загружается сразу, без ожидания в меню выбора."
         'H:chkBootDynTick' = "Процессор держит постоянный системный ритм. На одних ПК задержка снижается, на других нет: нужно проверять."
         'H:chkBootTsc' = "Делает отсчёт времени между ядрами процессора точнее. Может повысить плавность: нужно проверять."
-        'H:chkAppxBloat' = "Удаляет предустановленные приложения вроде новостей, погоды, карт и Skype. Больше места и аккуратнее «Пуск»."
-        'H:chkAppxXbox' = "Удаляет приложения Xbox и игровой оверлей. Не используйте, если у вас Game Pass."
-        'H:chkAppxProvision' = "Удалённые приложения не появятся снова при создании нового пользователя."
         'H:chkSecSmartScreen' = "Отключает проверку скачанных файлов. Нет предупреждений при открытии, но нет и защиты от опасных файлов."
         'H:chkSecSpectre' = "Убирает защиту от некоторых уязвимостей процессоров. Выше производительность, особенно на старых ЦП, но ниже безопасность."
         'H:chkSecDefenderIdle' = "Антивирус сканирует только в простое и не нагружает компьютер. Защита в реальном времени остаётся включённой."
@@ -11686,6 +12003,62 @@ $script:Tr = @{
         'M:pageSub_tabApps' = "Установка и обновление популярных программ одним щелчком."
         'M:pageSub_tabTools' = "Очистка, исправления и панели Windows. Эти инструменты действуют сразу."
         'M:pageSub_tabAdv' = "Для опытных: здесь отключаются части Windows, по одной."
+        'M:ttlDebloat' = "Удалить приложения Windows"
+        'M:debloatHint' = "Предустановленные приложения, которые обычно не нужны. Включены почти неиспользуемые; их можно вернуть из Microsoft Store."
+        'M:debloatSearching' = "Поиск установленных приложений..."
+        'M:debloatNone' = "Ни одно из этих приложений не установлено."
+        'M:debloatFound' = "Найдено групп приложений: {0}."
+        'M:debloatRun' = "Удалить выбранные"
+        'M:debloatAsk' = "Удалить группы приложений ({0}) для всех пользователей? Их можно вернуть из Microsoft Store."
+        'M:debloatDone' = "Удалено пакетов: {0}."
+        'M:debloatStepApps' = "Приложения Windows"
+        'M:debloat_news' = "Microsoft News, Погода, Деньги и Спорт"
+        'M:debloat_bing' = "Поиск Bing"
+        'M:debloat_copilot' = "Copilot"
+        'M:debloat_widgets' = "Мини-приложения (новости на панели)"
+        'M:debloat_teams' = "Microsoft Teams (личный)"
+        'M:debloat_office' = "Предустановленные Microsoft 365 (Office) и OneNote"
+        'M:debloat_solitaire' = "Microsoft Solitaire Collection"
+        'M:debloat_tips' = "Советы, Техническая поддержка и Центр отзывов"
+        'M:debloat_clipchamp' = "Clipchamp"
+        'M:debloat_todo' = "Microsoft To Do и Power Automate"
+        'M:debloat_people' = "Люди, Карты и Skype"
+        'M:debloat_threeD' = "3D-приложения и смешанная реальность"
+        'M:debloat_family' = "Microsoft Family и Cortana"
+        'M:debloat_devhome' = "Dev Home"
+        'M:debloat_spotify' = "Предустановленный Spotify"
+        'M:debloat_recorder' = "Звукозапись"
+        'M:debloat_media' = "Медиаплеер и Кино и ТВ"
+        'M:debloat_outlook' = "Outlook (новый) и Почта и Календарь"
+        'M:debloat_phone' = "Связь с телефоном"
+        'M:debloat_quick' = "Быстрая помощь"
+        'M:debloat_alarms' = "Будильники и часы"
+        'M:debloat_sticky' = "Записки"
+        'M:debloat_camera' = "Камера"
+        'M:debloat_photos' = "Фотографии"
+        'M:debloat_xbox' = "Приложения Xbox и Game Bar (нужны для Game Pass)"
+        'M:debloat_onedrive' = "OneDrive (файлы в папке OneDrive остаются)"
+        'M:ttlStartup' = "Автозагрузка"
+        'M:startupHint' = "Включённые запускаются с Windows и замедляют её. Отключение ничего не удаляет: включите снова когда угодно, также в диспетчере задач."
+        'M:startupNone' = "Нет программ в автозагрузке."
+        'M:startupCount' = "Включено {0} из {1}."
+        'M:startupAll' = "все пользователи"
+        'M:startupUser' = "только этот пользователь"
+        'M:leftScanning' = "Поиск остатков удалённых программ..."
+        'M:leftFound' = "Найдено остатков: {0}. Они вверху списка."
+        'M:leftNone' = "Остатков нет: удаление убрало всё."
+        'M:leftTitle' = "Остатки удалённых программ"
+        'M:leftHint' = "Оставшиеся папки, ключи реестра и автозапуск. Безопасные включены; помеченные «проверить» сначала посмотрите. Реестр сохраняется заранее, папки и файлы попадают в корзину."
+        'M:leftRemove' = "Удалить выбранные"
+        'M:leftAsk' = "Удалить остатки ({0})? Реестр сохраняется заранее, папки и файлы попадают в корзину."
+        'M:leftDone' = "Удалено остатков: {0} из {1}."
+        'M:leftCheck' = "проверить"
+        'M:leftKind_dir' = "ПАПКА"
+        'M:leftKind_file' = "ФАЙЛ"
+        'M:leftKind_reg' = "РЕЕСТР"
+        'M:leftKind_run' = "АВТОЗАПУСК"
+        'M:leftKind_task' = "ЗАДАНИЕ"
+        'M:leftKind_svc' = "СЛУЖБА"
     }
 }
 
@@ -13101,36 +13474,6 @@ function Disable-Tasks {
     else { Write-Log "[SALTATO] $Label - nessuna attivita' presente." }
 }
 
-# Rimuove app preinstallate per l'utente corrente. Con $AlsoProvisioned toglie
-# anche la copia di sistema, quella che Windows reinstalla ai nuovi profili.
-function Remove-AppxList {
-    param([Parameter(Mandatory)][string[]]$Names,[bool]$AlsoProvisioned = $false,[string]$Label = 'App')
-    $removed = 0
-    $provisioned = $null
-    if ($AlsoProvisioned) {
-        try { $provisioned = @(Get-AppxProvisionedPackage -Online -ErrorAction Stop) } catch { $provisioned = @() }
-    }
-    foreach ($n in $Names) {
-        try {
-            foreach ($pkg in @(Get-AppxPackage -Name $n -ErrorAction SilentlyContinue)) {
-                Remove-AppxPackage -Package $pkg.PackageFullName -ErrorAction Stop
-                Write-Log "[OK] Rimossa: $($pkg.Name)"
-                $removed++
-            }
-        } catch { Write-Log "[AVVISO] $n - $($_.Exception.Message)" }
-        if ($AlsoProvisioned) {
-            foreach ($pp in @($provisioned | Where-Object { $_.DisplayName -eq $n })) {
-                try {
-                    Remove-AppxProvisionedPackage -Online -PackageName $pp.PackageName -ErrorAction Stop | Out-Null
-                    Write-Log "[OK] Non tornera' per i nuovi utenti: $($pp.DisplayName)"
-                } catch {}
-            }
-        }
-    }
-    if ($removed -eq 0) { Write-Log "[SALTATO] $Label - nessuna app da rimuovere." }
-    else { Write-Log "[OK] $Label - $removed app rimosse." }
-}
-
 # Svuota una cartella e ne vieta la scrittura a tutti: il programma che la usa
 # per installarsi non riesce piu' a copiarci nulla.
 function Lock-Folder([string]$Path, [string]$Label) {
@@ -14104,28 +14447,6 @@ function Build-Actions {
         Set-Bcd '/set tscsyncpolicy Enhanced' 'Sincronizzazione TSC'
     }
 
-    # ---------- AVANZATE: app preinstallate ----------
-    Add-IfChecked $chkAppxBloat {
-        Remove-AppxList @(
-            'Microsoft.3DBuilder','Microsoft.549981C3F5F10','Microsoft.BingFinance','Microsoft.BingNews',
-            'Microsoft.BingSports','Microsoft.BingWeather','Microsoft.GetHelp','Microsoft.Getstarted',
-            'Microsoft.Messaging','Microsoft.Microsoft3DViewer','Microsoft.MicrosoftOfficeHub',
-            'Microsoft.MicrosoftSolitaireCollection','Microsoft.MixedReality.Portal','Microsoft.NetworkSpeedTest',
-            'Microsoft.OneConnect','Microsoft.People','Microsoft.Print3D','Microsoft.SkypeApp','Microsoft.Wallet',
-            'Microsoft.WindowsAlarms','Microsoft.WindowsFeedbackHub','Microsoft.WindowsMaps',
-            'Microsoft.WindowsSoundRecorder','Microsoft.YourPhone','Microsoft.ZuneMusic','Microsoft.ZuneVideo',
-            'Microsoft.Todos','Microsoft.PowerAutomateDesktop','Microsoft.Windows.DevHome',
-            'MicrosoftTeams','MSTeams','Clipchamp.Clipchamp','MicrosoftCorporationII.QuickAssist'
-        ) ($chkAppxProvision.IsChecked -eq $true) 'App non essenziali'
-    }
-    Add-IfChecked $chkAppxXbox {
-        Remove-AppxList @(
-            'Microsoft.XboxApp','Microsoft.GamingApp','Microsoft.XboxGameOverlay','Microsoft.XboxGamingOverlay',
-            'Microsoft.XboxSpeechToTextOverlay','Microsoft.XboxIdentityProvider'
-        ) ($chkAppxProvision.IsChecked -eq $true) 'App Xbox'
-        Write-Log "[INFO] Xbox.TCUI resta installata: alcuni giochi la richiedono per l'accesso."
-    }
-
     # ---------- AVANZATE: sicurezza ridotta ----------
     Add-IfChecked $chkSecSmartScreen {
         Set-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\System' 'EnableSmartScreen' 0 'DWord' 'SmartScreen'
@@ -14852,9 +15173,6 @@ function Build-UndoActions {
     Add-UndoIfChecked $chkBootDynTick { Reset-Bcd '/deletevalue disabledynamictick' 'Tick dinamico del kernel' }
     Add-UndoIfChecked $chkBootTsc { Reset-Bcd '/deletevalue tscsyncpolicy' 'Sincronizzazione TSC' }
 
-    Add-NoUndo $chkAppxBloat 'le app rimosse si reinstallano dal Microsoft Store.'
-    Add-NoUndo $chkAppxXbox 'le app rimosse si reinstallano dal Microsoft Store.'
-    Add-NoUndo $chkAppxProvision 'le app rimosse si reinstallano dal Microsoft Store.'
 
     Add-UndoIfChecked $chkSecSmartScreen {
         Reset-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\System' 'EnableSmartScreen'
@@ -17485,6 +17803,8 @@ function Show-AppInstalled {
     $panApps.Children.Clear()
     $q = Get-AppFilterText
     $stack = New-Object System.Windows.Controls.StackPanel
+    $lc = New-LeftoverCard
+    if ($lc) { [void]$stack.Children.Add($lc) }
 
     # Aggiornamenti: quelli che winget sa aggiornare, da scegliere uno per uno.
     $updates = @($script:AppUpdates.Values | Sort-Object Name | Where-Object { -not $q -or $_.Name -like "*$q*" -or $_.Id -like "*$q*" })
@@ -17812,6 +18132,7 @@ $script:AppTimer.Add_Tick({
         Start-AppExport
         Start-AppUpgradeScan
         Show-AppView
+        Start-LeftoverWatch
         return
     }
     if ($null -eq $script:AppExport -and $null -eq $script:AppScan) { $script:AppTimer.Stop() }
@@ -17936,6 +18257,8 @@ $btnAppsAction.Add_Click({
     if ($radAppsInstalled.IsChecked) {
         if (-not (Show-Dialog (T 'confirmTitle') ((T 'appsAskUninstall') -f $keys.Count) 'danger')) { return }
         foreach ($a in @($script:AppInstalledList | Where-Object { $keys -contains $_.Key })) {
+            # I dati per cercare i residui si prendono adesso: dopo la voce non c'e' piu'.
+            if ($a.Kind -eq 'Win32') { [void]$script:LeftoverPending.Add((Get-LeftoverHint $a)) }
             $c = Get-UninstallCommand $a
             Add-AppJob 'uninstall' $a.Name $c[0] $c[1] $false
         }
@@ -17979,6 +18302,304 @@ $txtAppSearch.Add_TextChanged({
     $lblAppSearchHint.Visibility = if ($txtAppSearch.Text) { 'Collapsed' } else { 'Visible' }
     if ($script:AppsReady) { Show-AppView }
 })
+
+# ------------------------------------------------------------------------------
+# Residui dopo la disinstallazione (come Revo Uninstaller)
+# ------------------------------------------------------------------------------
+# Finita la disinstallazione si cercano le tracce rimaste: cartelle del
+# programma, chiavi di registro, avvii automatici, attivita' pianificate,
+# servizi e collegamenti. Si propongono solo elementi con il nome del
+# programma o dentro la sua cartella; le cartelle generiche (Windows,
+# Microsoft, Common Files...) e quelle dell'editore con altri programmi dentro
+# non compaiono mai. Prima di togliere qualcosa: le chiavi di registro e le
+# attivita' finiscono in una copia di sicurezza, cartelle e collegamenti nel
+# Cestino.
+$script:LeftoverPending = New-Object System.Collections.ArrayList
+$script:LeftoverResults = @()
+$script:LeftoverBoxes = @()
+$script:LeftoverBackup = Join-Path $env:ProgramData 'TweakAndrew\Residui'
+
+$script:LeftoverScanScript = @'
+param($apps)
+$protected = @('windows', 'microsoft', 'common files', 'windowsapps', 'program files', 'program files (x86)', 'programdata',
+               'users', 'packages', 'temp', 'microsoft corporation', 'microsoft.net', 'internet explorer', 'windows defender',
+               'windows nt', 'windowspowershell', 'reference assemblies', 'msbuild', 'installer', 'intel', 'nvidia corporation',
+               'amd', 'google', 'mozilla', 'apple', 'adobe', 'package cache', 'start menu', 'programs', 'startup', 'desktop')
+function Core([string]$n) {
+    $c = $n -replace '\s*\(.*?\)', '' -replace '\s+(v|version\s*)?\d+(\.\d+)+.*$', '' -replace '\s+\d{4}$', '' -replace '(?i)\s+(x64|x86|64-bit|32-bit|\(64-bit\))$', ''
+    return $c.Trim(' ', '-', '_', '.')
+}
+function Norm([string]$s) { return ($s -replace '[\s\-_\.]', '').ToLowerInvariant() }
+function Add-Item($list, $kind, $path, $label, $sure) {
+    if (-not $path) { return }
+    if (@($list | Where-Object { $_.Path -eq $path -and $_.Kind -eq $kind }).Count) { return }
+    [void]$list.Add(@{ Kind = $kind; Path = $path; Label = $label; Sure = [bool]$sure })
+}
+$out = @()
+foreach ($a in $apps) {
+    $list = New-Object System.Collections.ArrayList
+    $core = Core $a.Name
+    $pub = Core ($a.Publisher -replace '(?i),?\s*(inc|ltd|llc|gmbh|s\.?r\.?l|s\.?p\.?a|corporation|corp|co)\.?$', '')
+    $nc = Norm $core; $np = Norm $pub
+    if ($nc.Length -lt 3 -or $protected -contains $core.ToLowerInvariant()) { $out += @{ Name = $a.Name; Items = @() }; continue }
+    $sysRoots = @($env:SystemRoot, "$env:SystemDrive\", $env:ProgramFiles, ${env:ProgramFiles(x86)}, $env:ProgramData, $env:APPDATA, $env:LOCALAPPDATA) | ForEach-Object { $_.TrimEnd('\') }
+
+    # 1. La cartella dichiarata dal programma e quella del suo disinstallatore.
+    $dirs = @()
+    if ($a.Location) { $dirs += $a.Location.Trim('"').TrimEnd('\') }
+    foreach ($s in @($a.Icon, $a.Uninstall)) {
+        if ($s -match '^"?([A-Za-z]:\\[^",]+?\.(exe|ico|dll))') { $dirs += (Split-Path $Matches[1] -Parent) }
+    }
+    foreach ($d in $dirs) {
+        if (-not $d -or -not (Test-Path -LiteralPath $d)) { continue }
+        if ($sysRoots -contains $d -or $d -like "$env:SystemRoot*") { continue }
+        if ($protected -contains (Split-Path $d -Leaf).ToLowerInvariant()) { continue }
+        Add-Item $list 'dir' $d $d $true
+    }
+    $known = @($list | ForEach-Object { $_.Path })
+
+    # 2. Cartelle con il nome del programma, anche dentro quella dell'editore.
+    $roots = @($env:ProgramFiles, ${env:ProgramFiles(x86)}, $env:ProgramData, $env:APPDATA, $env:LOCALAPPDATA, (Join-Path (Split-Path $env:LOCALAPPDATA -Parent) 'LocalLow')) | Where-Object { $_ -and (Test-Path -LiteralPath $_) } | Select-Object -Unique
+    foreach ($r in $roots) {
+        foreach ($d in @(Get-ChildItem -LiteralPath $r -Directory -Force -ErrorAction SilentlyContinue)) {
+            $n = Norm $d.Name
+            if ($protected -contains $d.Name.ToLowerInvariant()) {
+                if ($np -and $n -eq $np) { } else { continue }
+            }
+            if ($n -eq $nc) { Add-Item $list 'dir' $d.FullName $d.FullName $true; continue }
+            if ($np -and $np.Length -ge 3 -and $n -eq $np) {
+                $subs = @(Get-ChildItem -LiteralPath $d.FullName -Directory -Force -ErrorAction SilentlyContinue)
+                foreach ($s in $subs) { if ((Norm $s.Name) -eq $nc) { Add-Item $list 'dir' $s.FullName $s.FullName $true } }
+                $files = @(Get-ChildItem -LiteralPath $d.FullName -File -Force -ErrorAction SilentlyContinue)
+                $others = @($subs | Where-Object { (Norm $_.Name) -ne $nc })
+                if ($others.Count -eq 0 -and $files.Count -eq 0 -and $subs.Count -gt 0) { Add-Item $list 'dir' $d.FullName $d.FullName $false }
+                continue
+            }
+            if ($nc.Length -ge 5 -and $n.StartsWith($nc)) { Add-Item $list 'dir' $d.FullName $d.FullName $false }
+        }
+    }
+
+    # 3. Registro: la voce di disinstallazione se e' rimasta, e le chiavi del programma.
+    if ($a.RegPath -and (Test-Path -LiteralPath $a.RegPath)) { Add-Item $list 'reg' $a.RegPath (($a.RegPath -replace '^Microsoft\.PowerShell\.Core\\Registry::', '')) $true }
+    foreach ($hive in 'HKCU:\Software', 'HKLM:\SOFTWARE', 'HKLM:\SOFTWARE\WOW6432Node') {
+        foreach ($k in @(Get-ChildItem -LiteralPath $hive -ErrorAction SilentlyContinue)) {
+            $n = Norm $k.PSChildName
+            if ($n -eq $nc -and $protected -notcontains $k.PSChildName.ToLowerInvariant()) { Add-Item $list 'reg' $k.PSPath $k.Name $true; continue }
+            if ($np -and $np.Length -ge 3 -and $n -eq $np) {
+                $subs = @(Get-ChildItem -LiteralPath $k.PSPath -ErrorAction SilentlyContinue)
+                foreach ($s in $subs) { if ((Norm $s.PSChildName) -eq $nc) { Add-Item $list 'reg' $s.PSPath $s.Name $true } }
+                if ($subs.Count -gt 0 -and @($subs | Where-Object { (Norm $_.PSChildName) -ne $nc }).Count -eq 0 -and $protected -notcontains $k.PSChildName.ToLowerInvariant()) {
+                    Add-Item $list 'reg' $k.PSPath $k.Name $false
+                }
+            }
+        }
+    }
+    $dirsNow = @($list | Where-Object { $_.Kind -eq 'dir' } | ForEach-Object { $_.Path })
+    function Test-Mine([string]$text) {
+        if (-not $text) { return $false }
+        foreach ($d in $dirsNow) { if ($text -like "*$d*") { return $true } }
+        return ((Norm $text) -like "*$nc*")
+    }
+
+    # 4. Avvio automatico: chiavi Run e cartelle Esecuzione automatica.
+    foreach ($rk in 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Run', 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run', 'HKLM:\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Run') {
+        $p = Get-Item -LiteralPath $rk -ErrorAction SilentlyContinue
+        if (-not $p) { continue }
+        foreach ($v in $p.GetValueNames()) {
+            if ((Test-Mine ([string]$p.GetValue($v))) -or (Norm $v) -eq $nc) { Add-Item $list 'run' "$rk|$v" "$($p.Name)  →  $v" $true }
+        }
+    }
+    foreach ($sf in "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup", "$env:ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp") {
+        foreach ($f in @(Get-ChildItem -LiteralPath $sf -File -ErrorAction SilentlyContinue)) {
+            if ((Norm $f.BaseName) -like "*$nc*") { Add-Item $list 'file' $f.FullName $f.FullName $true }
+        }
+    }
+
+    # 5. Menu Start: collegamenti e cartelle con il nome del programma.
+    foreach ($sm in "$env:ProgramData\Microsoft\Windows\Start Menu\Programs", "$env:APPDATA\Microsoft\Windows\Start Menu\Programs") {
+        foreach ($f in @(Get-ChildItem -LiteralPath $sm -Force -ErrorAction SilentlyContinue)) {
+            $n = Norm $f.BaseName
+            if ($n -eq $nc -or ($np -and $n -eq $np -and $f.PSIsContainer)) { Add-Item $list $(if ($f.PSIsContainer) { 'dir' } else { 'file' }) $f.FullName $f.FullName $true }
+        }
+    }
+    foreach ($dk in [Environment]::GetFolderPath('Desktop'), [Environment]::GetFolderPath('CommonDesktopDirectory')) {
+        foreach ($f in @(Get-ChildItem -LiteralPath $dk -Filter '*.lnk' -ErrorAction SilentlyContinue)) {
+            if ((Norm $f.BaseName) -eq $nc) { Add-Item $list 'file' $f.FullName $f.FullName $true }
+        }
+    }
+
+    # 6. Attivita' pianificate e servizi che puntano al programma.
+    try {
+        foreach ($t in @(Get-ScheduledTask -ErrorAction Stop | Where-Object { $_.TaskPath -notlike '\Microsoft\*' })) {
+            $exe = (@($t.Actions | ForEach-Object { [string]$_.Execute + ' ' + [string]$_.Arguments }) -join ' ')
+            if ((Norm $t.TaskName) -like "*$nc*" -or (Test-Mine $exe)) { Add-Item $list 'task' "$($t.TaskPath)|$($t.TaskName)" "$($t.TaskPath)$($t.TaskName)" $true }
+        }
+    } catch {}
+    foreach ($s in @(Get-CimInstance Win32_Service -ErrorAction SilentlyContinue)) {
+        $pn = [string]$s.PathName
+        if ($pn -like "*$env:SystemRoot*") { continue }
+        if (Test-Mine $pn) { Add-Item $list 'svc' $s.Name "$($s.DisplayName)  ($($s.Name))" $false }
+    }
+    # Cartelle e file dentro una cartella gia' proposta: basta la cartella.
+    $dirsAll = @($list | Where-Object { $_.Kind -eq 'dir' } | ForEach-Object { $_.Path.TrimEnd('\') + '\' })
+    $list = @($list | Where-Object { $it = $_; -not ($it.Kind -in 'dir', 'file' -and @($dirsAll | Where-Object { $it.Path.StartsWith($_, [StringComparison]::OrdinalIgnoreCase) }).Count -gt 0) })
+    $out += @{ Name = $a.Name; Items = @($list) }
+}
+$out
+'@
+
+# Dati del programma presi prima di disinstallarlo: dopo la voce non c'e' piu'.
+function Get-LeftoverHint($a) {
+    $p = $null
+    if ($a.Key -like 'w:*') { $p = Get-ItemProperty -LiteralPath ($a.Key.Substring(2)) -ErrorAction SilentlyContinue }
+    return @{ Name = $a.Name; Publisher = $a.Publisher; Location = [string]$p.InstallLocation; Icon = [string]$p.DisplayIcon
+              Uninstall = [string]$p.UninstallString; RegPath = $(if ($a.Key -like 'w:*') { $a.Key.Substring(2) } else { '' }); Since = Get-Date }
+}
+
+# Si aspetta che il programma sparisca dall'elenco: molti disinstallatori aprono
+# una finestra e il comando finisce prima di loro. Si cerca solo quando la
+# voce di disinstallazione non c'e' piu', o dopo 10 minuti.
+function Start-LeftoverWatch {
+    if ($script:LeftoverPending.Count -eq 0) { return }
+    if ($script:LeftoverTimer) { $script:LeftoverTimer.Start(); return }
+    $script:LeftoverTimer = New-Object System.Windows.Threading.DispatcherTimer
+    $script:LeftoverTimer.Interval = [TimeSpan]::FromSeconds(3)
+    $script:LeftoverTimer.Add_Tick({
+        if ($script:LeftoverJob) { return }
+        $ready = @($script:LeftoverPending | Where-Object { -not $_.RegPath -or -not (Test-Path -LiteralPath $_.RegPath) -or ((Get-Date) - $_.Since).TotalMinutes -ge 10 })
+        if ($ready.Count -eq 0) { return }
+        foreach ($r in $ready) { $script:LeftoverPending.Remove($r) }
+        if ($script:LeftoverPending.Count -eq 0) { $this.Stop() }
+        Start-LeftoverScan $ready
+    })
+    $script:LeftoverTimer.Start()
+}
+
+function Start-LeftoverScan([array]$apps) {
+    $txtAppsStatus.Text = T 'leftScanning'
+    $ps = [powershell]::Create()
+    [void]$ps.AddScript($script:LeftoverScanScript).AddArgument($apps)
+    $script:LeftoverJob = @{ Ps = $ps; H = $ps.BeginInvoke() }
+    $t = New-Object System.Windows.Threading.DispatcherTimer
+    $t.Interval = [TimeSpan]::FromMilliseconds(300)
+    $t.Add_Tick({
+        if (-not $script:LeftoverJob.H.IsCompleted) { return }
+        $this.Stop()
+        try { $r = @($script:LeftoverJob.Ps.EndInvoke($script:LeftoverJob.H) | Where-Object { $_ -is [hashtable] }) } catch { $r = @() }
+        $script:LeftoverJob.Ps.Dispose(); $script:LeftoverJob = $null
+        $script:LeftoverResults = @($script:LeftoverResults) + @($r | Where-Object { @($_.Items).Count -gt 0 })
+        $n = 0; foreach ($x in $r) { $n += @($x.Items).Count }
+        $txtAppsStatus.Text = if ($n -gt 0) { (T 'leftFound') -f $n } else { T 'leftNone' }
+        Write-Log "[INFO] Residui trovati: $n"
+        if ($script:AppsReady) { Show-AppView }
+    })
+    $t.Start()
+}
+
+# Scheda dei residui, in cima all'elenco dei programmi installati.
+function New-LeftoverCard {
+    $script:LeftoverBoxes = @()
+    if (@($script:LeftoverResults).Count -eq 0) { return $null }
+    $btn = New-Object System.Windows.Controls.Button
+    $btn.Style = $window.FindResource('DotBtn'); $btn.Content = T 'leftRemove'; $btn.Tag = New-AppBrush '#FFF87171'
+    $btn.Add_Click({ Invoke-LeftoverRemove })
+    $c = New-AppCard (T 'leftTitle') $btn
+    [void]$c.Panel.Children.Add((New-AppNote (T 'leftHint')))
+    foreach ($res in $script:LeftoverResults) {
+        $h = New-Object System.Windows.Controls.TextBlock
+        $h.Text = $res.Name; $h.FontWeight = 'SemiBold'; $h.FontSize = 13; $h.Foreground = New-AppBrush '#FFE6E8EB'; $h.Margin = '4,10,0,4'
+        [void]$c.Panel.Children.Add($h)
+        foreach ($it in $res.Items) {
+            $cb = New-Object System.Windows.Controls.CheckBox
+            $cb.Tag = $it; $cb.IsChecked = $it.Sure
+            $tb = New-Object System.Windows.Controls.TextBlock; $tb.TextWrapping = 'Wrap'
+            $r1 = New-Object System.Windows.Documents.Run ("$(T "leftKind_$($it.Kind)")   "); $r1.Foreground = New-AppBrush '#FF7EB1FF'; $r1.FontSize = 11.5; $r1.FontWeight = 'SemiBold'
+            $r2 = New-Object System.Windows.Documents.Run $it.Label; $r2.Foreground = New-AppBrush '#FFC5C9CF'; $r2.FontSize = 12
+            [void]$tb.Inlines.Add($r1); [void]$tb.Inlines.Add($r2)
+            if (-not $it.Sure) { $r3 = New-Object System.Windows.Documents.Run ("   $(T 'leftCheck')"); $r3.Foreground = New-AppBrush '#FFFDBA74'; $r3.FontSize = 11.5; [void]$tb.Inlines.Add($r3) }
+            $script:LeftoverBoxes += $cb
+            [void]$c.Panel.Children.Add((New-SwitchRow $tb '' $cb))
+        }
+    }
+    return $c.Card
+}
+
+# Toglie gli elementi scelti. Registro e attivita' prima si salvano in
+# %ProgramData%\TweakAndrew\Residui, cartelle e file vanno nel Cestino.
+function Remove-LeftoverItems([array]$items, [switch]$Permanent) {
+    Add-Type -AssemblyName Microsoft.VisualBasic
+    $dir = Join-Path $script:LeftoverBackup (Get-Date -Format 'yyyyMMdd_HHmmss')
+    $ok = 0; $i = 0
+    foreach ($it in $items) {
+        $i++
+        try {
+            switch ($it.Kind) {
+                'dir' {
+                    if (-not (Test-Path -LiteralPath $it.Path)) { $ok++; break }
+                    if ($Permanent) { Remove-Item -LiteralPath $it.Path -Recurse -Force -ErrorAction Stop }
+                    else { [Microsoft.VisualBasic.FileIO.FileSystem]::DeleteDirectory($it.Path, 'OnlyErrorDialogs', 'SendToRecycleBin', 'DoNothing') }
+                    $ok++
+                }
+                'file' {
+                    if (-not (Test-Path -LiteralPath $it.Path)) { $ok++; break }
+                    if ($Permanent) { Remove-Item -LiteralPath $it.Path -Force -ErrorAction Stop }
+                    else { [Microsoft.VisualBasic.FileIO.FileSystem]::DeleteFile($it.Path, 'OnlyErrorDialogs', 'SendToRecycleBin', 'DoNothing') }
+                    $ok++
+                }
+                'reg' {
+                    New-Item -ItemType Directory -Force $dir | Out-Null
+                    $native = (Get-Item -LiteralPath $it.Path -ErrorAction Stop).Name
+                    & reg.exe export $native (Join-Path $dir "registro_$i.reg") /y | Out-Null
+                    if ($LASTEXITCODE -ne 0) { throw "copia di sicurezza non riuscita" }
+                    Remove-Item -LiteralPath $it.Path -Recurse -Force -ErrorAction Stop
+                    $ok++
+                }
+                'run' {
+                    $k, $v = $it.Path -split '\|', 2
+                    New-Item -ItemType Directory -Force $dir | Out-Null
+                    $native = (Get-Item -LiteralPath $k -ErrorAction Stop).Name
+                    & reg.exe export $native (Join-Path $dir "avvio_$i.reg") /y | Out-Null
+                    if ($LASTEXITCODE -ne 0) { throw "copia di sicurezza non riuscita" }
+                    Remove-ItemProperty -LiteralPath $k -Name $v -ErrorAction Stop
+                    $ok++
+                }
+                'task' {
+                    $tp, $tn = $it.Path -split '\|', 2
+                    New-Item -ItemType Directory -Force $dir | Out-Null
+                    Export-ScheduledTask -TaskPath $tp -TaskName $tn -ErrorAction Stop | Out-File (Join-Path $dir "attivita_$i.xml") -Encoding Unicode
+                    Unregister-ScheduledTask -TaskPath $tp -TaskName $tn -Confirm:$false -ErrorAction Stop
+                    $ok++
+                }
+                'svc' {
+                    # Solo se il programma del servizio non esiste piu': altrimenti e' ancora in uso.
+                    $s = Get-CimInstance Win32_Service -Filter "Name='$($it.Path -replace "'", "''")'" -ErrorAction Stop
+                    $exe = if ([string]$s.PathName -match '^"?([^"]+?\.exe)') { $Matches[1] } else { '' }
+                    if ($exe -and (Test-Path -LiteralPath $exe)) { Write-Log "[SALTATO] Servizio $($it.Path) - il programma c'e' ancora."; break }
+                    New-Item -ItemType Directory -Force $dir | Out-Null
+                    & reg.exe export "HKLM\SYSTEM\CurrentControlSet\Services\$($it.Path)" (Join-Path $dir "servizio_$i.reg") /y | Out-Null
+                    Stop-Service -Name $it.Path -Force -ErrorAction SilentlyContinue
+                    & sc.exe delete $it.Path | Out-Null
+                    if ($LASTEXITCODE -eq 0) { $ok++ }
+                }
+            }
+            Write-Log "[OK] Residuo tolto: $($it.Label)"
+        } catch { Write-Log "[ERRORE] Residuo $($it.Label) - $($_.Exception.Message)" }
+    }
+    return @{ Ok = $ok; Backup = $dir }
+}
+
+function Invoke-LeftoverRemove {
+    $items = @($script:LeftoverBoxes | Where-Object { $_.IsChecked -eq $true } | ForEach-Object { $_.Tag })
+    if ($items.Count -eq 0) { return }
+    if (-not (Show-Dialog (T 'leftTitle') ((T 'leftAsk') -f $items.Count) 'warn')) { return }
+    $window.Cursor = 'Wait'
+    try { $r = Remove-LeftoverItems $items } finally { $window.Cursor = $null }
+    $script:LeftoverResults = @()
+    $txtAppsStatus.Text = (T 'leftDone') -f $r.Ok, $items.Count
+    if (Test-Path -LiteralPath $r.Backup) { Write-Log "[INFO] Copia di sicurezza dei residui: $($r.Backup)" }
+    $script:AppInstalledList = @()
+    Show-AppView
+}
 
 # Prima apertura della pagina: filtri, catalogo e controllo delle app gia' presenti.
 function Show-AppsPageIfNeeded {
@@ -18704,6 +19325,7 @@ $script:ToolTimer.Add_Tick({
     $btnToolJobsClose.Visibility = 'Visible'
     if ($script:ToolsNeedRefresh) { $script:ToolsNeedRefresh = $false; Start-ToolScan }
     if ($script:GhostRescan) { $script:GhostRescan = $false; Start-GhostScan }
+    if ($script:DebloatRescan) { $script:DebloatRescan = $false; Start-DebloatScan }
 })
 
 $btnToolJobsClose.Add_Click({
@@ -19288,7 +19910,20 @@ function Show-ToolsPage {
     [void]$btns.Children.Add($script:CleanRunBtn)
     [System.Windows.Controls.Grid]::SetColumn($btns, 1); [void]$bar.Children.Add($btns)
     [void]$c.Panel.Children.Add($bar)
-    [void]$row1.Children.Add($c.Card)
+    $leftCol = New-Object System.Windows.Controls.StackPanel
+    [void]$leftCol.Children.Add($c.Card)
+
+    # Programmi all'avvio, sotto la pulizia.
+    $c = New-ToolCard (T 'ttlStartup') (T 'startupHint') 'E7E8' '#FFFBBF24'
+    $script:StartupStatus = New-Object System.Windows.Controls.TextBlock
+    $script:StartupStatus.FontSize = 13; $script:StartupStatus.Foreground = New-AppBrush '#FFC5C9CF'; $script:StartupStatus.Margin = '0,0,0,8'
+    [void]$c.Panel.Children.Add($script:StartupStatus)
+    $sv2 = New-Object System.Windows.Controls.ScrollViewer; $sv2.MaxHeight = 420; $sv2.VerticalScrollBarVisibility = 'Auto'
+    $script:StartupList = New-Object System.Windows.Controls.StackPanel
+    $sv2.Content = $script:StartupList
+    [void]$c.Panel.Children.Add($sv2)
+    [void]$leftCol.Children.Add($c.Card)
+    [void]$row1.Children.Add($leftCol)
 
     $c = New-ToolCard (T 'ttlGhost') (T 'ghostHint') 'E772' '#FF2DD4BF'
     $script:GhostStatus = New-Object System.Windows.Controls.TextBlock
@@ -19313,9 +19948,25 @@ function Show-ToolsPage {
     $script:GhostRemoveBtn.Margin = '0'; $script:GhostRemoveBtn.IsEnabled = $false
     [void]$gb.Children.Add($script:GhostRemoveBtn)
     [void]$c.Panel.Children.Add($gb)
+    $ghostCard = $c.Card
     $rightCol = New-Object System.Windows.Controls.StackPanel
     [System.Windows.Controls.Grid]::SetColumn($rightCol, 1)
+
+    # App di Windows da togliere (debloat), in cima alla colonna destra.
+    $c = New-ToolCard (T 'ttlDebloat') (T 'debloatHint') 'E74C' '#FFF472B6'
+    $script:DebloatStatus = New-Object System.Windows.Controls.TextBlock
+    $script:DebloatStatus.FontSize = 13; $script:DebloatStatus.Foreground = New-AppBrush '#FFC5C9CF'; $script:DebloatStatus.Margin = '0,0,0,8'
+    [void]$c.Panel.Children.Add($script:DebloatStatus)
+    $script:DebloatList = New-Object System.Windows.Controls.StackPanel
+    [void]$c.Panel.Children.Add($script:DebloatList)
+    $db = New-Object System.Windows.Controls.StackPanel; $db.Orientation = 'Horizontal'; $db.Margin = '0,12,0,0'; $db.HorizontalAlignment = 'Right'
+    [void]$db.Children.Add((New-ToolButton (T 'ghostRescan') { Start-DebloatScan }))
+    $script:DebloatRunBtn = New-ToolButton (T 'debloatRun') { Invoke-Debloat } 'PrimaryBtn'
+    $script:DebloatRunBtn.Margin = '0'; $script:DebloatRunBtn.IsEnabled = $false
+    [void]$db.Children.Add($script:DebloatRunBtn)
+    [void]$c.Panel.Children.Add($db)
     [void]$rightCol.Children.Add($c.Card)
+    [void]$rightCol.Children.Add($ghostCard)
     [void]$row1.Children.Add($rightCol)
     [void]$root.Children.Add($row1)
 
@@ -19520,6 +20171,216 @@ function Start-GhostScan {
     $t.Start()
 }
 
+# ------------------------------------------------------------------------------
+# Debloat: app di Windows da togliere
+# ------------------------------------------------------------------------------
+# Elenco preso da quello di ReviOS (playbook open source di Revision), piu' le
+# app che il programma toglieva gia' dalla pagina Avanzate. Si vedono solo le
+# app presenti. Accese di serie quelle che non servono quasi a nessuno; spente
+# quelle che qualcuno usa (Foto, Fotocamera, Xbox, Outlook, OneDrive...).
+# Restano fuori i pacchetti di sistema che ReviOS toglie con un suo strumento
+# (Edge, componenti WinSxS): toglierli rompe aggiornamenti e funzioni di
+# Windows, e Edge in Europa si disinstalla gia' da Impostazioni.
+$script:DebloatApps = @(
+    @{ K = 'news';      L = 'Microsoft News, MSN Meteo, Money e Sport'; On = $true;  P = @('Microsoft.BingNews', 'Microsoft.BingWeather', 'Microsoft.BingFinance', 'Microsoft.BingSports') }
+    @{ K = 'bing';      L = 'Bing Search';                         On = $true;  P = @('Microsoft.BingSearch') }
+    @{ K = 'copilot';   L = 'Copilot';                             On = $true;  P = @('Microsoft.Copilot', 'Microsoft.Windows.Ai.Copilot.Provider') }
+    @{ K = 'widgets';   L = 'Widget (notizie sulla barra)';        On = $true;  P = @('MicrosoftWindows.Client.WebExperience', 'Microsoft.WidgetsPlatformRuntime', 'Microsoft.StartExperiencesApp') }
+    @{ K = 'teams';     L = 'Microsoft Teams (personale)';         On = $true;  P = @('MicrosoftTeams', 'MSTeams') }
+    @{ K = 'office';    L = 'Microsoft 365 (Office) e collegamenti'; On = $true;  P = @('Microsoft.MicrosoftOfficeHub', 'Microsoft.Office.OneNote') }
+    @{ K = 'solitaire'; L = 'Microsoft Solitaire Collection';      On = $true;  P = @('Microsoft.MicrosoftSolitaireCollection') }
+    @{ K = 'tips';      L = 'Suggerimenti, Assistenza e Hub di Feedback'; On = $true; P = @('Microsoft.Getstarted', 'Microsoft.GetHelp', 'Microsoft.WindowsFeedbackHub') }
+    @{ K = 'clipchamp'; L = 'Clipchamp';                           On = $true;  P = @('Clipchamp.Clipchamp') }
+    @{ K = 'todo';      L = 'Microsoft To Do e Power Automate';    On = $true;  P = @('Microsoft.Todos', 'Microsoft.PowerAutomateDesktop') }
+    @{ K = 'people';    L = 'Persone, Mappe e Skype';              On = $true;  P = @('Microsoft.People', 'Microsoft.WindowsMaps', 'Microsoft.SkypeApp', 'Microsoft.Messaging') }
+    @{ K = 'threeD';    L = 'App 3D e realtà mista';               On = $true;  P = @('Microsoft.Microsoft3DViewer', 'Microsoft.3DBuilder', 'Microsoft.Print3D', 'Microsoft.MSPaint', 'Microsoft.MixedReality.Portal') }
+    @{ K = 'family';    L = 'Microsoft Family e Cortana';          On = $true;  P = @('MicrosoftCorporationII.MicrosoftFamily', 'Microsoft.549981C3F5F10') }
+    @{ K = 'devhome';   L = 'Dev Home';                            On = $true;  P = @('Microsoft.Windows.DevHome') }
+    @{ K = 'spotify';   L = 'Spotify (preinstallato)';             On = $true;  P = @('SpotifyAB.SpotifyMusic') }
+    @{ K = 'recorder';  L = 'Registratore di suoni';               On = $false; P = @('Microsoft.WindowsSoundRecorder') }
+    @{ K = 'media';     L = 'Lettore multimediale e Film e TV';    On = $false; P = @('Microsoft.ZuneMusic', 'Microsoft.ZuneVideo') }
+    @{ K = 'outlook';   L = 'Outlook (nuovo) e Posta e Calendario'; On = $false; P = @('Microsoft.OutlookForWindows', 'microsoft.windowscommunicationsapps') }
+    @{ K = 'phone';     L = 'Collegamento al telefono';            On = $false; P = @('Microsoft.YourPhone', 'MicrosoftWindows.CrossDevice') }
+    @{ K = 'quick';     L = 'Assistenza rapida';                   On = $false; P = @('MicrosoftCorporationII.QuickAssist') }
+    @{ K = 'alarms';    L = 'Sveglie e orologio';                  On = $false; P = @('Microsoft.WindowsAlarms') }
+    @{ K = 'sticky';    L = 'Sticky Notes';                        On = $false; P = @('Microsoft.MicrosoftStickyNotes') }
+    @{ K = 'camera';    L = 'Fotocamera';                          On = $false; P = @('Microsoft.WindowsCamera') }
+    @{ K = 'photos';    L = 'Foto';                                On = $false; P = @('Microsoft.Windows.Photos') }
+    @{ K = 'xbox';      L = 'App Xbox e Game Bar';                 On = $false; P = @('Microsoft.XboxApp', 'Microsoft.GamingApp', 'Microsoft.XboxGameOverlay', 'Microsoft.XboxGamingOverlay', 'Microsoft.XboxSpeechToTextOverlay', 'Microsoft.XboxIdentityProvider') }
+    @{ K = 'onedrive';  L = 'OneDrive';                            On = $false; P = @() }
+)
+$script:DebloatBoxes = @{}
+
+# Quali app ci sono: l'elenco di tutti gli utenti richiede i permessi di
+# amministratore; senza, si guarda quello dell'utente.
+$script:DebloatScanScript = @'
+param($apps)
+$names = @{}
+try { foreach ($p in @(Get-AppxPackage -AllUsers -ErrorAction Stop)) { $names[$p.Name] = $true } }
+catch { foreach ($p in @(Get-AppxPackage -ErrorAction SilentlyContinue)) { $names[$p.Name] = $true } }
+$found = @()
+foreach ($a in $apps) {
+    if ($a.K -eq 'onedrive') {
+        if ((Test-Path "$env:LOCALAPPDATA\Microsoft\OneDrive\OneDrive.exe") -or (Test-Path "$env:ProgramFiles\Microsoft OneDrive\OneDrive.exe") -or
+            (Test-Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Uninstall\OneDriveSetup.exe')) { $found += $a.K }
+        continue
+    }
+    if (@($a.P | Where-Object { $names.ContainsKey($_) }).Count -gt 0) { $found += $a.K }
+}
+,$found
+'@
+
+function Get-DebloatScript([string[]]$Keys) {
+    $sb = New-Object System.Text.StringBuilder
+    $pk = @()
+    foreach ($k in $Keys) { $pk += ($script:DebloatApps | Where-Object { $_.K -eq $k }).P }
+    [void]$sb.AppendLine('$ok = 0; $names = @(' + (($pk | ForEach-Object { "'$_'" }) -join ', ') + ')')
+    [void]$sb.AppendLine("Write-Host '@@STEP $((T 'debloatStepApps') -replace "'", "''")'")
+    [void]$sb.AppendLine('$prov = @(); try { $prov = @(Get-AppxProvisionedPackage -Online -ErrorAction Stop) } catch {}')
+    [void]$sb.AppendLine('for ($i = 0; $i -lt $names.Count; $i++) {')
+    [void]$sb.AppendLine('    $n = $names[$i]')
+    [void]$sb.AppendLine('    foreach ($p in @(Get-AppxPackage -AllUsers -Name $n -ErrorAction SilentlyContinue)) {')
+    [void]$sb.AppendLine('        try { Remove-AppxPackage -Package $p.PackageFullName -AllUsers -ErrorAction Stop; $ok++ }')
+    [void]$sb.AppendLine('        catch { try { Remove-AppxPackage -Package $p.PackageFullName -ErrorAction Stop; $ok++ } catch { Write-Host "ATTENZIONE: $n - $($_.Exception.Message)" } }')
+    [void]$sb.AppendLine('    }')
+    # Tolte anche dall'immagine: non tornano per i nuovi utenti.
+    [void]$sb.AppendLine('    foreach ($pp in @($prov | Where-Object { $_.DisplayName -eq $n })) { try { Remove-AppxProvisionedPackage -Online -PackageName $pp.PackageName -ErrorAction Stop | Out-Null } catch {} }')
+    [void]$sb.AppendLine('    Write-Host ("@@PCT " + [int](90 * ($i + 1) / [Math]::Max(1, $names.Count)))')
+    [void]$sb.AppendLine('}')
+    if ($Keys -contains 'onedrive') {
+        # Disinstallazione ufficiale di OneDrive; la cartella con i file resta.
+        [void]$sb.AppendLine("Write-Host '@@STEP OneDrive'")
+        [void]$sb.AppendLine('Get-Process OneDrive -ErrorAction SilentlyContinue | Stop-Process -Force -ErrorAction SilentlyContinue')
+        [void]$sb.AppendLine('$u = (Get-ItemProperty "HKCU:\Software\Microsoft\Windows\CurrentVersion\Uninstall\OneDriveSetup.exe" -ErrorAction SilentlyContinue).UninstallString')
+        [void]$sb.AppendLine('if ($u) { Start-Process cmd.exe "/c `"$u`"" -Wait -WindowStyle Hidden; $ok++ }')
+        [void]$sb.AppendLine('else { foreach ($s in "$env:SystemRoot\System32\OneDriveSetup.exe", "$env:SystemRoot\SysWOW64\OneDriveSetup.exe") { if (Test-Path $s) { Start-Process $s "/uninstall" -Wait; $ok++; break } } }')
+    }
+    [void]$sb.AppendLine("Write-Host '@@PCT 100'")
+    [void]$sb.AppendLine("Write-Host ('@@DONE ' + ('$((T 'debloatDone') -replace "'", "''")' -f `$ok))")
+    [void]$sb.AppendLine('exit 0')
+    return $sb.ToString()
+}
+
+function Start-DebloatScan {
+    if ($script:DebloatJob -or $null -eq $script:DebloatList) { return }
+    $script:DebloatList.Children.Clear(); $script:DebloatBoxes = @{}
+    $script:DebloatStatus.Text = T 'debloatSearching'
+    Update-DebloatButton
+    $ps = [powershell]::Create()
+    [void]$ps.AddScript($script:DebloatScanScript).AddArgument($script:DebloatApps)
+    $script:DebloatJob = @{ Ps = $ps; H = $ps.BeginInvoke() }
+    $t = New-Object System.Windows.Threading.DispatcherTimer
+    $t.Interval = [TimeSpan]::FromMilliseconds(250)
+    $t.Add_Tick({
+        if (-not $script:DebloatJob.H.IsCompleted) { return }
+        $this.Stop()
+        try { $found = @($script:DebloatJob.Ps.EndInvoke($script:DebloatJob.H) | ForEach-Object { $_ }) } catch { $found = @() }
+        $script:DebloatJob.Ps.Dispose(); $script:DebloatJob = $null
+        $script:DebloatStatus.Text = if ($found.Count -eq 0) { T 'debloatNone' } else { (T 'debloatFound') -f $found.Count }
+        foreach ($a in $script:DebloatApps) {
+            if ($found -notcontains $a.K) { continue }
+            $cb = New-Object System.Windows.Controls.CheckBox
+            $cb.Tag = 'tool'; $cb.IsChecked = $a.On
+            $cb.Add_Checked({ Update-DebloatButton }); $cb.Add_Unchecked({ Update-DebloatButton })
+            $tb = New-Object System.Windows.Controls.TextBlock; $tb.Text = (T "debloat_$($a.K)"); $tb.Foreground = New-AppBrush '#FFE6E8EB'; $tb.FontSize = 12.5; $tb.TextWrapping = 'Wrap'
+            $script:DebloatBoxes[$a.K] = $cb
+            $row = New-SwitchRow $tb '' $cb; $row.Margin = '0,0,0,1'
+            [void]$script:DebloatList.Children.Add($row)
+        }
+        Update-DebloatButton
+    })
+    $t.Start()
+}
+
+function Update-DebloatButton {
+    if ($null -eq $script:DebloatRunBtn) { return }
+    $n = @($script:DebloatBoxes.Values | Where-Object { $_.IsChecked -eq $true }).Count
+    $script:DebloatRunBtn.IsEnabled = ($n -gt 0)
+    $script:DebloatRunBtn.Content = if ($n -gt 0) { "$(T 'debloatRun') ($n)" } else { T 'debloatRun' }
+}
+
+function Invoke-Debloat {
+    $keys = @($script:DebloatBoxes.Keys | Where-Object { $script:DebloatBoxes[$_].IsChecked -eq $true })
+    if ($keys.Count -eq 0) { return }
+    if (-not (Show-Dialog (T 'ttlDebloat') ((T 'debloatAsk') -f $keys.Count) 'warn')) { return }
+    $script:DebloatRescan = $true
+    Add-ToolJob (T 'ttlDebloat') (Get-DebloatScript $keys)
+}
+
+# ------------------------------------------------------------------------------
+# Programmi all'avvio
+# ------------------------------------------------------------------------------
+# Stesso metodo di Gestione attivita': lo stato sta nelle chiavi StartupApproved
+# (primo byte 2 = acceso, 3 = spento). Niente si cancella: si riaccende quando
+# si vuole, anche da Gestione attivita'.
+$script:StartupSources = @(
+    @{ Run = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Run';             App = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\StartupApproved\Run';           All = $false }
+    @{ Run = 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run';             App = 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\StartupApproved\Run';           All = $true }
+    @{ Run = 'HKLM:\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Run'; App = 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\StartupApproved\Run32';         All = $true }
+    @{ Dir = "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup";      App = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\StartupApproved\StartupFolder'; All = $false }
+    @{ Dir = "$env:ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp";  App = 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\StartupApproved\StartupFolder'; All = $true }
+)
+
+function Get-StartupEntries {
+    $list = @()
+    foreach ($s in $script:StartupSources) {
+        $names = @()
+        if ($s.Run) {
+            $k = Get-Item -LiteralPath $s.Run -ErrorAction SilentlyContinue
+            if ($k) { foreach ($v in $k.GetValueNames()) { if ($v) { $names += @{ N = $v; Cmd = [string]$k.GetValue($v) } } } }
+        } else {
+            foreach ($f in @(Get-ChildItem -LiteralPath $s.Dir -File -ErrorAction SilentlyContinue | Where-Object { $_.Name -ne 'desktop.ini' })) { $names += @{ N = $f.Name; Cmd = $f.FullName } }
+        }
+        foreach ($n in $names) {
+            $raw = (Get-ItemProperty -LiteralPath $s.App -Name $n.N -ErrorAction SilentlyContinue).($n.N)
+            $on = -not ($raw -is [byte[]] -and $raw.Length -gt 0 -and ($raw[0] -band 1) -eq 1)
+            $list += @{ Name = $n.N; Cmd = $n.Cmd; App = $s.App; All = $s.All; On = $on }
+        }
+    }
+    return @($list | Sort-Object { $_.Name })
+}
+
+function Set-StartupEntry($e, [bool]$On) {
+    try {
+        if (-not (Test-Path -LiteralPath $e.App)) { New-Item -Path $e.App -Force | Out-Null }
+        $b = New-Object byte[] 12
+        if ($On) { $b[0] = 2 } else {
+            $b[0] = 3
+            [BitConverter]::GetBytes([DateTime]::UtcNow.ToFileTimeUtc()).CopyTo($b, 4)
+        }
+        New-ItemProperty -LiteralPath $e.App -Name $e.Name -PropertyType Binary -Value $b -Force | Out-Null
+        Write-Log "[OK] Avvio automatico: $($e.Name) $(if ($On) { 'acceso' } else { 'spento' })"
+    } catch { Write-Log "[ERRORE] Avvio automatico $($e.Name) - $($_.Exception.Message)" }
+}
+
+function Update-StartupStatus {
+    $e = @($script:StartupEntries)
+    $script:StartupStatus.Text = if ($e.Count -eq 0) { T 'startupNone' } else { (T 'startupCount') -f @($e | Where-Object { $_.On }).Count, $e.Count }
+}
+
+function Show-StartupList {
+    if ($null -eq $script:StartupList) { return }
+    $script:StartupBuilding = $true
+    $script:StartupList.Children.Clear()
+    $entries = Get-StartupEntries
+    $script:StartupEntries = $entries
+    Update-StartupStatus
+    foreach ($e in $entries) {
+        $cb = New-Object System.Windows.Controls.CheckBox
+        $cb.Tag = $e; $cb.IsChecked = $e.On
+        $handler = { if (-not $script:StartupBuilding) { Set-StartupEntry $this.Tag ($this.IsChecked -eq $true); $this.Tag.On = ($this.IsChecked -eq $true); Update-StartupStatus } }
+        $cb.Add_Checked($handler); $cb.Add_Unchecked($handler)
+        $tb = New-Object System.Windows.Controls.TextBlock; $tb.TextWrapping = 'Wrap'
+        $r1 = New-Object System.Windows.Documents.Run $e.Name; $r1.Foreground = New-AppBrush '#FFE6E8EB'; $r1.FontSize = 12.5
+        $r2 = New-Object System.Windows.Documents.Run ("   " + $(if ($e.All) { T 'startupAll' } else { T 'startupUser' })); $r2.Foreground = New-AppBrush '#FF7F858D'; $r2.FontSize = 11.5
+        [void]$tb.Inlines.Add($r1); [void]$tb.Inlines.Add($r2)
+        $cmd = [string]$e.Cmd; if ($cmd.Length -gt 90) { $cmd = $cmd.Substring(0, 87) + '...' }
+        $row = New-SwitchRow $tb $cmd $cb; $row.Margin = '0,0,0,3'
+        [void]$script:StartupList.Children.Add($row)
+    }
+    $script:StartupBuilding = $false
+}
+
 # Rimozione con pnputil (Windows 10 2004 e successivi), una voce alla volta.
 function Get-GhostRemoveScript([string[]]$Ids) {
     $sb = New-Object System.Text.StringBuilder
@@ -19553,6 +20414,8 @@ function Show-ToolsPageIfNeeded {
     Show-ToolsPage
     Start-ToolScan
     Start-GhostScan
+    Start-DebloatScan
+    Show-StartupList
 }
 
 # ------------------------------------------------------------------------------

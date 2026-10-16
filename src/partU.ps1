@@ -634,9 +634,6 @@ function Build-UndoActions {
     Add-UndoIfChecked $chkBootDynTick { Reset-Bcd '/deletevalue disabledynamictick' 'Tick dinamico del kernel' }
     Add-UndoIfChecked $chkBootTsc { Reset-Bcd '/deletevalue tscsyncpolicy' 'Sincronizzazione TSC' }
 
-    Add-NoUndo $chkAppxBloat 'le app rimosse si reinstallano dal Microsoft Store.'
-    Add-NoUndo $chkAppxXbox 'le app rimosse si reinstallano dal Microsoft Store.'
-    Add-NoUndo $chkAppxProvision 'le app rimosse si reinstallano dal Microsoft Store.'
 
     Add-UndoIfChecked $chkSecSmartScreen {
         Reset-Reg 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\System' 'EnableSmartScreen'

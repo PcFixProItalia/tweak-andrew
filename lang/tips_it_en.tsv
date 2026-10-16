@@ -122,9 +122,6 @@ chkBootMenu	Rimette il menu di avvio classico, che permette di entrare in modali
 chkBootTimeout	Se hai più sistemi installati, il PC parte subito senza aspettare nel menu di scelta.	If several systems are installed, the PC starts right away without waiting in the choice menu.
 chkBootDynTick	Il processore tiene un ritmo di sistema costante. Su alcuni PC abbassa la latenza, su altri no: va provato.	The processor keeps a constant system tick. On some PCs it lowers latency, on others it does not: test it.
 chkBootTsc	Rende più precisa la misura del tempo tra i core del processore. Può migliorare la fluidità: va provato.	Makes timekeeping across processor cores more precise. Can improve smoothness: test it.
-chkAppxBloat	Rimuove app preinstallate come notizie, meteo, mappe e Skype. Più spazio e menu Start più ordinato.	Removes preinstalled apps such as news, weather, maps and Skype. More space and a tidier Start menu.
-chkAppxXbox	Rimuove le app Xbox e l'overlay di gioco. Da evitare se usi Game Pass.	Removes Xbox apps and the game overlay. Avoid it if you use Game Pass.
-chkAppxProvision	Le app rimosse non ricompaiono quando si crea un nuovo utente.	Removed apps do not come back when a new user is created.
 chkSecSmartScreen	Spegne il controllo dei file scaricati. Nessun avviso all'apertura, ma nessuna protezione da file pericolosi.	Turns off the check on downloaded files. No warnings when opening them, but no protection from dangerous files.
 chkSecSpectre	Toglie le protezioni contro alcune falle dei processori. Più prestazioni, soprattutto sulle CPU vecchie, ma meno sicurezza.	Removes protections against some processor flaws. More performance, especially on older CPUs, but less security.
 chkSecDefenderIdle	L'antivirus fa le scansioni solo a computer fermo e senza appesantirlo. La protezione in tempo reale resta attiva.	The antivirus scans only when the computer is idle and without weighing it down. Real-time protection stays on.

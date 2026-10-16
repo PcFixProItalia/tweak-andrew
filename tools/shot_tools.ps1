@@ -11,7 +11,7 @@ $script:ShotTimer.Interval = [TimeSpan]::FromMilliseconds(500)
 $script:ShotTimer.Add_Tick({
     $script:ShotTicks++
     if ($script:ShotTicks -eq 1) { Set-Language '__LANG__'; (E 'tabTools').IsChecked = $true; return }
-    if (($script:ToolScanJob -or $script:GhostJob) -and $script:ShotTicks -lt 120) { return }
+    if (($script:ToolScanJob -or $script:GhostJob -or $script:DebloatJob) -and $script:ShotTicks -lt 120) { return }
     $script:ShotTimer.Stop()
     $panTools.UpdateLayout()
     $w = [int]$panTools.ActualWidth; $h = [int]$panTools.ActualHeight

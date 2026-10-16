@@ -175,6 +175,7 @@ $script:ToolTimer.Add_Tick({
     $btnToolJobsClose.Visibility = 'Visible'
     if ($script:ToolsNeedRefresh) { $script:ToolsNeedRefresh = $false; Start-ToolScan }
     if ($script:GhostRescan) { $script:GhostRescan = $false; Start-GhostScan }
+    if ($script:DebloatRescan) { $script:DebloatRescan = $false; Start-DebloatScan }
 })
 
 $btnToolJobsClose.Add_Click({
@@ -759,7 +760,20 @@ function Show-ToolsPage {
     [void]$btns.Children.Add($script:CleanRunBtn)
     [System.Windows.Controls.Grid]::SetColumn($btns, 1); [void]$bar.Children.Add($btns)
     [void]$c.Panel.Children.Add($bar)
-    [void]$row1.Children.Add($c.Card)
+    $leftCol = New-Object System.Windows.Controls.StackPanel
+    [void]$leftCol.Children.Add($c.Card)
+
+    # Programmi all'avvio, sotto la pulizia.
+    $c = New-ToolCard (T 'ttlStartup') (T 'startupHint') 'E7E8' '#FFFBBF24'
+    $script:StartupStatus = New-Object System.Windows.Controls.TextBlock
+    $script:StartupStatus.FontSize = 13; $script:StartupStatus.Foreground = New-AppBrush '#FFC5C9CF'; $script:StartupStatus.Margin = '0,0,0,8'
+    [void]$c.Panel.Children.Add($script:StartupStatus)
+    $sv2 = New-Object System.Windows.Controls.ScrollViewer; $sv2.MaxHeight = 420; $sv2.VerticalScrollBarVisibility = 'Auto'
+    $script:StartupList = New-Object System.Windows.Controls.StackPanel
+    $sv2.Content = $script:StartupList
+    [void]$c.Panel.Children.Add($sv2)
+    [void]$leftCol.Children.Add($c.Card)
+    [void]$row1.Children.Add($leftCol)
 
     $c = New-ToolCard (T 'ttlGhost') (T 'ghostHint') 'E772' '#FF2DD4BF'
     $script:GhostStatus = New-Object System.Windows.Controls.TextBlock
@@ -784,9 +798,25 @@ function Show-ToolsPage {
     $script:GhostRemoveBtn.Margin = '0'; $script:GhostRemoveBtn.IsEnabled = $false
     [void]$gb.Children.Add($script:GhostRemoveBtn)
     [void]$c.Panel.Children.Add($gb)
+    $ghostCard = $c.Card
     $rightCol = New-Object System.Windows.Controls.StackPanel
     [System.Windows.Controls.Grid]::SetColumn($rightCol, 1)
+
+    # App di Windows da togliere (debloat), in cima alla colonna destra.
+    $c = New-ToolCard (T 'ttlDebloat') (T 'debloatHint') 'E74C' '#FFF472B6'
+    $script:DebloatStatus = New-Object System.Windows.Controls.TextBlock
+    $script:DebloatStatus.FontSize = 13; $script:DebloatStatus.Foreground = New-AppBrush '#FFC5C9CF'; $script:DebloatStatus.Margin = '0,0,0,8'
+    [void]$c.Panel.Children.Add($script:DebloatStatus)
+    $script:DebloatList = New-Object System.Windows.Controls.StackPanel
+    [void]$c.Panel.Children.Add($script:DebloatList)
+    $db = New-Object System.Windows.Controls.StackPanel; $db.Orientation = 'Horizontal'; $db.Margin = '0,12,0,0'; $db.HorizontalAlignment = 'Right'
+    [void]$db.Children.Add((New-ToolButton (T 'ghostRescan') { Start-DebloatScan }))
+    $script:DebloatRunBtn = New-ToolButton (T 'debloatRun') { Invoke-Debloat } 'PrimaryBtn'
+    $script:DebloatRunBtn.Margin = '0'; $script:DebloatRunBtn.IsEnabled = $false
+    [void]$db.Children.Add($script:DebloatRunBtn)
+    [void]$c.Panel.Children.Add($db)
     [void]$rightCol.Children.Add($c.Card)
+    [void]$rightCol.Children.Add($ghostCard)
     [void]$row1.Children.Add($rightCol)
     [void]$root.Children.Add($row1)
 
@@ -991,6 +1021,216 @@ function Start-GhostScan {
     $t.Start()
 }
 
+# ------------------------------------------------------------------------------
+# Debloat: app di Windows da togliere
+# ------------------------------------------------------------------------------
+# Elenco preso da quello di ReviOS (playbook open source di Revision), piu' le
+# app che il programma toglieva gia' dalla pagina Avanzate. Si vedono solo le
+# app presenti. Accese di serie quelle che non servono quasi a nessuno; spente
+# quelle che qualcuno usa (Foto, Fotocamera, Xbox, Outlook, OneDrive...).
+# Restano fuori i pacchetti di sistema che ReviOS toglie con un suo strumento
+# (Edge, componenti WinSxS): toglierli rompe aggiornamenti e funzioni di
+# Windows, e Edge in Europa si disinstalla gia' da Impostazioni.
+$script:DebloatApps = @(
+    @{ K = 'news';      L = 'Microsoft News, MSN Meteo, Money e Sport'; On = $true;  P = @('Microsoft.BingNews', 'Microsoft.BingWeather', 'Microsoft.BingFinance', 'Microsoft.BingSports') }
+    @{ K = 'bing';      L = 'Bing Search';                         On = $true;  P = @('Microsoft.BingSearch') }
+    @{ K = 'copilot';   L = 'Copilot';                             On = $true;  P = @('Microsoft.Copilot', 'Microsoft.Windows.Ai.Copilot.Provider') }
+    @{ K = 'widgets';   L = 'Widget (notizie sulla barra)';        On = $true;  P = @('MicrosoftWindows.Client.WebExperience', 'Microsoft.WidgetsPlatformRuntime', 'Microsoft.StartExperiencesApp') }
+    @{ K = 'teams';     L = 'Microsoft Teams (personale)';         On = $true;  P = @('MicrosoftTeams', 'MSTeams') }
+    @{ K = 'office';    L = 'Microsoft 365 (Office) e collegamenti'; On = $true;  P = @('Microsoft.MicrosoftOfficeHub', 'Microsoft.Office.OneNote') }
+    @{ K = 'solitaire'; L = 'Microsoft Solitaire Collection';      On = $true;  P = @('Microsoft.MicrosoftSolitaireCollection') }
+    @{ K = 'tips';      L = 'Suggerimenti, Assistenza e Hub di Feedback'; On = $true; P = @('Microsoft.Getstarted', 'Microsoft.GetHelp', 'Microsoft.WindowsFeedbackHub') }
+    @{ K = 'clipchamp'; L = 'Clipchamp';                           On = $true;  P = @('Clipchamp.Clipchamp') }
+    @{ K = 'todo';      L = 'Microsoft To Do e Power Automate';    On = $true;  P = @('Microsoft.Todos', 'Microsoft.PowerAutomateDesktop') }
+    @{ K = 'people';    L = 'Persone, Mappe e Skype';              On = $true;  P = @('Microsoft.People', 'Microsoft.WindowsMaps', 'Microsoft.SkypeApp', 'Microsoft.Messaging') }
+    @{ K = 'threeD';    L = 'App 3D e realtà mista';               On = $true;  P = @('Microsoft.Microsoft3DViewer', 'Microsoft.3DBuilder', 'Microsoft.Print3D', 'Microsoft.MSPaint', 'Microsoft.MixedReality.Portal') }
+    @{ K = 'family';    L = 'Microsoft Family e Cortana';          On = $true;  P = @('MicrosoftCorporationII.MicrosoftFamily', 'Microsoft.549981C3F5F10') }
+    @{ K = 'devhome';   L = 'Dev Home';                            On = $true;  P = @('Microsoft.Windows.DevHome') }
+    @{ K = 'spotify';   L = 'Spotify (preinstallato)';             On = $true;  P = @('SpotifyAB.SpotifyMusic') }
+    @{ K = 'recorder';  L = 'Registratore di suoni';               On = $false; P = @('Microsoft.WindowsSoundRecorder') }
+    @{ K = 'media';     L = 'Lettore multimediale e Film e TV';    On = $false; P = @('Microsoft.ZuneMusic', 'Microsoft.ZuneVideo') }
+    @{ K = 'outlook';   L = 'Outlook (nuovo) e Posta e Calendario'; On = $false; P = @('Microsoft.OutlookForWindows', 'microsoft.windowscommunicationsapps') }
+    @{ K = 'phone';     L = 'Collegamento al telefono';            On = $false; P = @('Microsoft.YourPhone', 'MicrosoftWindows.CrossDevice') }
+    @{ K = 'quick';     L = 'Assistenza rapida';                   On = $false; P = @('MicrosoftCorporationII.QuickAssist') }
+    @{ K = 'alarms';    L = 'Sveglie e orologio';                  On = $false; P = @('Microsoft.WindowsAlarms') }
+    @{ K = 'sticky';    L = 'Sticky Notes';                        On = $false; P = @('Microsoft.MicrosoftStickyNotes') }
+    @{ K = 'camera';    L = 'Fotocamera';                          On = $false; P = @('Microsoft.WindowsCamera') }
+    @{ K = 'photos';    L = 'Foto';                                On = $false; P = @('Microsoft.Windows.Photos') }
+    @{ K = 'xbox';      L = 'App Xbox e Game Bar';                 On = $false; P = @('Microsoft.XboxApp', 'Microsoft.GamingApp', 'Microsoft.XboxGameOverlay', 'Microsoft.XboxGamingOverlay', 'Microsoft.XboxSpeechToTextOverlay', 'Microsoft.XboxIdentityProvider') }
+    @{ K = 'onedrive';  L = 'OneDrive';                            On = $false; P = @() }
+)
+$script:DebloatBoxes = @{}
+
+# Quali app ci sono: l'elenco di tutti gli utenti richiede i permessi di
+# amministratore; senza, si guarda quello dell'utente.
+$script:DebloatScanScript = @'
+param($apps)
+$names = @{}
+try { foreach ($p in @(Get-AppxPackage -AllUsers -ErrorAction Stop)) { $names[$p.Name] = $true } }
+catch { foreach ($p in @(Get-AppxPackage -ErrorAction SilentlyContinue)) { $names[$p.Name] = $true } }
+$found = @()
+foreach ($a in $apps) {
+    if ($a.K -eq 'onedrive') {
+        if ((Test-Path "$env:LOCALAPPDATA\Microsoft\OneDrive\OneDrive.exe") -or (Test-Path "$env:ProgramFiles\Microsoft OneDrive\OneDrive.exe") -or
+            (Test-Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Uninstall\OneDriveSetup.exe')) { $found += $a.K }
+        continue
+    }
+    if (@($a.P | Where-Object { $names.ContainsKey($_) }).Count -gt 0) { $found += $a.K }
+}
+,$found
+'@
+
+function Get-DebloatScript([string[]]$Keys) {
+    $sb = New-Object System.Text.StringBuilder
+    $pk = @()
+    foreach ($k in $Keys) { $pk += ($script:DebloatApps | Where-Object { $_.K -eq $k }).P }
+    [void]$sb.AppendLine('$ok = 0; $names = @(' + (($pk | ForEach-Object { "'$_'" }) -join ', ') + ')')
+    [void]$sb.AppendLine("Write-Host '@@STEP $((T 'debloatStepApps') -replace "'", "''")'")
+    [void]$sb.AppendLine('$prov = @(); try { $prov = @(Get-AppxProvisionedPackage -Online -ErrorAction Stop) } catch {}')
+    [void]$sb.AppendLine('for ($i = 0; $i -lt $names.Count; $i++) {')
+    [void]$sb.AppendLine('    $n = $names[$i]')
+    [void]$sb.AppendLine('    foreach ($p in @(Get-AppxPackage -AllUsers -Name $n -ErrorAction SilentlyContinue)) {')
+    [void]$sb.AppendLine('        try { Remove-AppxPackage -Package $p.PackageFullName -AllUsers -ErrorAction Stop; $ok++ }')
+    [void]$sb.AppendLine('        catch { try { Remove-AppxPackage -Package $p.PackageFullName -ErrorAction Stop; $ok++ } catch { Write-Host "ATTENZIONE: $n - $($_.Exception.Message)" } }')
+    [void]$sb.AppendLine('    }')
+    # Tolte anche dall'immagine: non tornano per i nuovi utenti.
+    [void]$sb.AppendLine('    foreach ($pp in @($prov | Where-Object { $_.DisplayName -eq $n })) { try { Remove-AppxProvisionedPackage -Online -PackageName $pp.PackageName -ErrorAction Stop | Out-Null } catch {} }')
+    [void]$sb.AppendLine('    Write-Host ("@@PCT " + [int](90 * ($i + 1) / [Math]::Max(1, $names.Count)))')
+    [void]$sb.AppendLine('}')
+    if ($Keys -contains 'onedrive') {
+        # Disinstallazione ufficiale di OneDrive; la cartella con i file resta.
+        [void]$sb.AppendLine("Write-Host '@@STEP OneDrive'")
+        [void]$sb.AppendLine('Get-Process OneDrive -ErrorAction SilentlyContinue | Stop-Process -Force -ErrorAction SilentlyContinue')
+        [void]$sb.AppendLine('$u = (Get-ItemProperty "HKCU:\Software\Microsoft\Windows\CurrentVersion\Uninstall\OneDriveSetup.exe" -ErrorAction SilentlyContinue).UninstallString')
+        [void]$sb.AppendLine('if ($u) { Start-Process cmd.exe "/c `"$u`"" -Wait -WindowStyle Hidden; $ok++ }')
+        [void]$sb.AppendLine('else { foreach ($s in "$env:SystemRoot\System32\OneDriveSetup.exe", "$env:SystemRoot\SysWOW64\OneDriveSetup.exe") { if (Test-Path $s) { Start-Process $s "/uninstall" -Wait; $ok++; break } } }')
+    }
+    [void]$sb.AppendLine("Write-Host '@@PCT 100'")
+    [void]$sb.AppendLine("Write-Host ('@@DONE ' + ('$((T 'debloatDone') -replace "'", "''")' -f `$ok))")
+    [void]$sb.AppendLine('exit 0')
+    return $sb.ToString()
+}
+
+function Start-DebloatScan {
+    if ($script:DebloatJob -or $null -eq $script:DebloatList) { return }
+    $script:DebloatList.Children.Clear(); $script:DebloatBoxes = @{}
+    $script:DebloatStatus.Text = T 'debloatSearching'
+    Update-DebloatButton
+    $ps = [powershell]::Create()
+    [void]$ps.AddScript($script:DebloatScanScript).AddArgument($script:DebloatApps)
+    $script:DebloatJob = @{ Ps = $ps; H = $ps.BeginInvoke() }
+    $t = New-Object System.Windows.Threading.DispatcherTimer
+    $t.Interval = [TimeSpan]::FromMilliseconds(250)
+    $t.Add_Tick({
+        if (-not $script:DebloatJob.H.IsCompleted) { return }
+        $this.Stop()
+        try { $found = @($script:DebloatJob.Ps.EndInvoke($script:DebloatJob.H) | ForEach-Object { $_ }) } catch { $found = @() }
+        $script:DebloatJob.Ps.Dispose(); $script:DebloatJob = $null
+        $script:DebloatStatus.Text = if ($found.Count -eq 0) { T 'debloatNone' } else { (T 'debloatFound') -f $found.Count }
+        foreach ($a in $script:DebloatApps) {
+            if ($found -notcontains $a.K) { continue }
+            $cb = New-Object System.Windows.Controls.CheckBox
+            $cb.Tag = 'tool'; $cb.IsChecked = $a.On
+            $cb.Add_Checked({ Update-DebloatButton }); $cb.Add_Unchecked({ Update-DebloatButton })
+            $tb = New-Object System.Windows.Controls.TextBlock; $tb.Text = (T "debloat_$($a.K)"); $tb.Foreground = New-AppBrush '#FFE6E8EB'; $tb.FontSize = 12.5; $tb.TextWrapping = 'Wrap'
+            $script:DebloatBoxes[$a.K] = $cb
+            $row = New-SwitchRow $tb '' $cb; $row.Margin = '0,0,0,1'
+            [void]$script:DebloatList.Children.Add($row)
+        }
+        Update-DebloatButton
+    })
+    $t.Start()
+}
+
+function Update-DebloatButton {
+    if ($null -eq $script:DebloatRunBtn) { return }
+    $n = @($script:DebloatBoxes.Values | Where-Object { $_.IsChecked -eq $true }).Count
+    $script:DebloatRunBtn.IsEnabled = ($n -gt 0)
+    $script:DebloatRunBtn.Content = if ($n -gt 0) { "$(T 'debloatRun') ($n)" } else { T 'debloatRun' }
+}
+
+function Invoke-Debloat {
+    $keys = @($script:DebloatBoxes.Keys | Where-Object { $script:DebloatBoxes[$_].IsChecked -eq $true })
+    if ($keys.Count -eq 0) { return }
+    if (-not (Show-Dialog (T 'ttlDebloat') ((T 'debloatAsk') -f $keys.Count) 'warn')) { return }
+    $script:DebloatRescan = $true
+    Add-ToolJob (T 'ttlDebloat') (Get-DebloatScript $keys)
+}
+
+# ------------------------------------------------------------------------------
+# Programmi all'avvio
+# ------------------------------------------------------------------------------
+# Stesso metodo di Gestione attivita': lo stato sta nelle chiavi StartupApproved
+# (primo byte 2 = acceso, 3 = spento). Niente si cancella: si riaccende quando
+# si vuole, anche da Gestione attivita'.
+$script:StartupSources = @(
+    @{ Run = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Run';             App = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\StartupApproved\Run';           All = $false }
+    @{ Run = 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run';             App = 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\StartupApproved\Run';           All = $true }
+    @{ Run = 'HKLM:\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Run'; App = 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\StartupApproved\Run32';         All = $true }
+    @{ Dir = "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup";      App = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\StartupApproved\StartupFolder'; All = $false }
+    @{ Dir = "$env:ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp";  App = 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\StartupApproved\StartupFolder'; All = $true }
+)
+
+function Get-StartupEntries {
+    $list = @()
+    foreach ($s in $script:StartupSources) {
+        $names = @()
+        if ($s.Run) {
+            $k = Get-Item -LiteralPath $s.Run -ErrorAction SilentlyContinue
+            if ($k) { foreach ($v in $k.GetValueNames()) { if ($v) { $names += @{ N = $v; Cmd = [string]$k.GetValue($v) } } } }
+        } else {
+            foreach ($f in @(Get-ChildItem -LiteralPath $s.Dir -File -ErrorAction SilentlyContinue | Where-Object { $_.Name -ne 'desktop.ini' })) { $names += @{ N = $f.Name; Cmd = $f.FullName } }
+        }
+        foreach ($n in $names) {
+            $raw = (Get-ItemProperty -LiteralPath $s.App -Name $n.N -ErrorAction SilentlyContinue).($n.N)
+            $on = -not ($raw -is [byte[]] -and $raw.Length -gt 0 -and ($raw[0] -band 1) -eq 1)
+            $list += @{ Name = $n.N; Cmd = $n.Cmd; App = $s.App; All = $s.All; On = $on }
+        }
+    }
+    return @($list | Sort-Object { $_.Name })
+}
+
+function Set-StartupEntry($e, [bool]$On) {
+    try {
+        if (-not (Test-Path -LiteralPath $e.App)) { New-Item -Path $e.App -Force | Out-Null }
+        $b = New-Object byte[] 12
+        if ($On) { $b[0] = 2 } else {
+            $b[0] = 3
+            [BitConverter]::GetBytes([DateTime]::UtcNow.ToFileTimeUtc()).CopyTo($b, 4)
+        }
+        New-ItemProperty -LiteralPath $e.App -Name $e.Name -PropertyType Binary -Value $b -Force | Out-Null
+        Write-Log "[OK] Avvio automatico: $($e.Name) $(if ($On) { 'acceso' } else { 'spento' })"
+    } catch { Write-Log "[ERRORE] Avvio automatico $($e.Name) - $($_.Exception.Message)" }
+}
+
+function Update-StartupStatus {
+    $e = @($script:StartupEntries)
+    $script:StartupStatus.Text = if ($e.Count -eq 0) { T 'startupNone' } else { (T 'startupCount') -f @($e | Where-Object { $_.On }).Count, $e.Count }
+}
+
+function Show-StartupList {
+    if ($null -eq $script:StartupList) { return }
+    $script:StartupBuilding = $true
+    $script:StartupList.Children.Clear()
+    $entries = Get-StartupEntries
+    $script:StartupEntries = $entries
+    Update-StartupStatus
+    foreach ($e in $entries) {
+        $cb = New-Object System.Windows.Controls.CheckBox
+        $cb.Tag = $e; $cb.IsChecked = $e.On
+        $handler = { if (-not $script:StartupBuilding) { Set-StartupEntry $this.Tag ($this.IsChecked -eq $true); $this.Tag.On = ($this.IsChecked -eq $true); Update-StartupStatus } }
+        $cb.Add_Checked($handler); $cb.Add_Unchecked($handler)
+        $tb = New-Object System.Windows.Controls.TextBlock; $tb.TextWrapping = 'Wrap'
+        $r1 = New-Object System.Windows.Documents.Run $e.Name; $r1.Foreground = New-AppBrush '#FFE6E8EB'; $r1.FontSize = 12.5
+        $r2 = New-Object System.Windows.Documents.Run ("   " + $(if ($e.All) { T 'startupAll' } else { T 'startupUser' })); $r2.Foreground = New-AppBrush '#FF7F858D'; $r2.FontSize = 11.5
+        [void]$tb.Inlines.Add($r1); [void]$tb.Inlines.Add($r2)
+        $cmd = [string]$e.Cmd; if ($cmd.Length -gt 90) { $cmd = $cmd.Substring(0, 87) + '...' }
+        $row = New-SwitchRow $tb $cmd $cb; $row.Margin = '0,0,0,3'
+        [void]$script:StartupList.Children.Add($row)
+    }
+    $script:StartupBuilding = $false
+}
+
 # Rimozione con pnputil (Windows 10 2004 e successivi), una voce alla volta.
 function Get-GhostRemoveScript([string[]]$Ids) {
     $sb = New-Object System.Text.StringBuilder
@@ -1024,6 +1264,8 @@ function Show-ToolsPageIfNeeded {
     Show-ToolsPage
     Start-ToolScan
     Start-GhostScan
+    Start-DebloatScan
+    Show-StartupList
 }
 
 # ------------------------------------------------------------------------------

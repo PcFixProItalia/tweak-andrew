@@ -60,36 +60,6 @@ function Disable-Tasks {
     else { Write-Log "[SALTATO] $Label - nessuna attivita' presente." }
 }
 
-# Rimuove app preinstallate per l'utente corrente. Con $AlsoProvisioned toglie
-# anche la copia di sistema, quella che Windows reinstalla ai nuovi profili.
-function Remove-AppxList {
-    param([Parameter(Mandatory)][string[]]$Names,[bool]$AlsoProvisioned = $false,[string]$Label = 'App')
-    $removed = 0
-    $provisioned = $null
-    if ($AlsoProvisioned) {
-        try { $provisioned = @(Get-AppxProvisionedPackage -Online -ErrorAction Stop) } catch { $provisioned = @() }
-    }
-    foreach ($n in $Names) {
-        try {
-            foreach ($pkg in @(Get-AppxPackage -Name $n -ErrorAction SilentlyContinue)) {
-                Remove-AppxPackage -Package $pkg.PackageFullName -ErrorAction Stop
-                Write-Log "[OK] Rimossa: $($pkg.Name)"
-                $removed++
-            }
-        } catch { Write-Log "[AVVISO] $n - $($_.Exception.Message)" }
-        if ($AlsoProvisioned) {
-            foreach ($pp in @($provisioned | Where-Object { $_.DisplayName -eq $n })) {
-                try {
-                    Remove-AppxProvisionedPackage -Online -PackageName $pp.PackageName -ErrorAction Stop | Out-Null
-                    Write-Log "[OK] Non tornera' per i nuovi utenti: $($pp.DisplayName)"
-                } catch {}
-            }
-        }
-    }
-    if ($removed -eq 0) { Write-Log "[SALTATO] $Label - nessuna app da rimuovere." }
-    else { Write-Log "[OK] $Label - $removed app rimosse." }
-}
-
 # Svuota una cartella e ne vieta la scrittura a tutti: il programma che la usa
 # per installarsi non riesce piu' a copiarci nulla.
 function Lock-Folder([string]$Path, [string]$Label) {
@@ -1061,28 +1031,6 @@ function Build-Actions {
     }
     Add-IfChecked $chkBootTsc {
         Set-Bcd '/set tscsyncpolicy Enhanced' 'Sincronizzazione TSC'
-    }
-
-    # ---------- AVANZATE: app preinstallate ----------
-    Add-IfChecked $chkAppxBloat {
-        Remove-AppxList @(
-            'Microsoft.3DBuilder','Microsoft.549981C3F5F10','Microsoft.BingFinance','Microsoft.BingNews',
-            'Microsoft.BingSports','Microsoft.BingWeather','Microsoft.GetHelp','Microsoft.Getstarted',
-            'Microsoft.Messaging','Microsoft.Microsoft3DViewer','Microsoft.MicrosoftOfficeHub',
-            'Microsoft.MicrosoftSolitaireCollection','Microsoft.MixedReality.Portal','Microsoft.NetworkSpeedTest',
-            'Microsoft.OneConnect','Microsoft.People','Microsoft.Print3D','Microsoft.SkypeApp','Microsoft.Wallet',
-            'Microsoft.WindowsAlarms','Microsoft.WindowsFeedbackHub','Microsoft.WindowsMaps',
-            'Microsoft.WindowsSoundRecorder','Microsoft.YourPhone','Microsoft.ZuneMusic','Microsoft.ZuneVideo',
-            'Microsoft.Todos','Microsoft.PowerAutomateDesktop','Microsoft.Windows.DevHome',
-            'MicrosoftTeams','MSTeams','Clipchamp.Clipchamp','MicrosoftCorporationII.QuickAssist'
-        ) ($chkAppxProvision.IsChecked -eq $true) 'App non essenziali'
-    }
-    Add-IfChecked $chkAppxXbox {
-        Remove-AppxList @(
-            'Microsoft.XboxApp','Microsoft.GamingApp','Microsoft.XboxGameOverlay','Microsoft.XboxGamingOverlay',
-            'Microsoft.XboxSpeechToTextOverlay','Microsoft.XboxIdentityProvider'
-        ) ($chkAppxProvision.IsChecked -eq $true) 'App Xbox'
-        Write-Log "[INFO] Xbox.TCUI resta installata: alcuni giochi la richiedono per l'accesso."
     }
 
     # ---------- AVANZATE: sicurezza ridotta ----------

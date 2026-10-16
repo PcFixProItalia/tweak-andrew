@@ -299,11 +299,6 @@ $script:Loc = @{
     chkBootDynTick     = @{ it = "Tick dinamico del kernel — rischioso: provalo e misura"; en = "Kernel dynamic tick — risky: try it and measure" }
     chkBootTsc         = @{ it = "Sincronizzazione TSC potenziata — rischioso: provala e misura"; en = "Enhanced TSC sync policy — risky: try it and measure" }
 
-    ttlAppx            = @{ it = "APP PREINSTALLATE"; en = "PREINSTALLED APPS" }
-    lblAppxHint        = @{ it = "Si reinstallano dallo Store quando servono."; en = "They can be reinstalled from the Store whenever needed." }
-    chkAppxBloat       = @{ it = "App non essenziali (notizie, meteo, mappe, Skype...)"; en = "Non-essential apps (news, weather, maps, Skype...)" }
-    chkAppxXbox        = @{ it = "App Xbox e overlay di gioco"; en = "Xbox apps and game overlay" }
-    chkAppxProvision   = @{ it = "Non ripristinarle per i nuovi utenti"; en = "Do not restore them for new users" }
 
     ttlSec             = @{ it = "SICUREZZA RIDOTTA"; en = "REDUCED SECURITY" }
     lblSecHint         = @{ it = "Tutte rischiose: abbassano davvero le difese del computer. «Consigliati» ne accende due, «Seleziona tutto» le accende tutte dopo una conferma."; en = "All risky: they genuinely lower the computer's defenses. «Recommended» turns on two of them, «Select all» turns on all of them after a confirmation." }
@@ -876,6 +871,62 @@ $script:Msg = @{
     pageSub_tabApps    = @{ it = "Installa o aggiorna i programmi più usati con un clic."; en = "Install or update the most used programs with one click." }
     pageSub_tabTools   = @{ it = "Pulizia, riparazioni e pannelli di Windows. Questi strumenti agiscono subito."; en = "Cleanup, repairs and Windows panels. These tools act right away." }
     pageSub_tabAdv     = @{ it = "Per chi sa cosa sta facendo: qui si tolgono pezzi di Windows, una voce alla volta."; en = "For those who know what they're doing: this removes parts of Windows, one entry at a time." }
+    ttlDebloat         = @{ it = "Togli le app di Windows"; en = "Remove Windows apps" }
+    debloatHint        = @{ it = "App preinstallate che di solito non servono. Accese quelle che quasi nessuno usa; si possono reinstallare dal Microsoft Store."; en = "Preinstalled apps you usually don't need. Those almost nobody uses are on; they can be reinstalled from the Microsoft Store." }
+    debloatSearching   = @{ it = "Cerco le app installate..."; en = "Looking for installed apps..." }
+    debloatNone        = @{ it = "Nessuna di queste app è installata."; en = "None of these apps is installed." }
+    debloatFound       = @{ it = "{0} gruppi di app presenti."; en = "{0} app groups found." }
+    debloatRun         = @{ it = "Togli selezionate"; en = "Remove selected" }
+    debloatAsk         = @{ it = "Tolgo {0} gruppi di app per tutti gli utenti? Si possono reinstallare dal Microsoft Store."; en = "Remove {0} app groups for all users? They can be reinstalled from the Microsoft Store." }
+    debloatDone        = @{ it = "Pacchetti tolti: {0}."; en = "Packages removed: {0}." }
+    debloatStepApps    = @{ it = "App di Windows"; en = "Windows apps" }
+    debloat_news       = @{ it = "Microsoft News, Meteo, Money e Sport"; en = "Microsoft News, Weather, Money and Sports" }
+    debloat_bing       = @{ it = "Ricerca Bing"; en = "Bing Search" }
+    debloat_copilot    = @{ it = "Copilot"; en = "Copilot" }
+    debloat_widgets    = @{ it = "Widget (notizie sulla barra)"; en = "Widgets (news on the taskbar)" }
+    debloat_teams      = @{ it = "Microsoft Teams (uso personale)"; en = "Microsoft Teams (personal)" }
+    debloat_office     = @{ it = "Microsoft 365 (Office) e OneNote preinstallati"; en = "Preinstalled Microsoft 365 (Office) and OneNote" }
+    debloat_solitaire  = @{ it = "Microsoft Solitaire Collection"; en = "Microsoft Solitaire Collection" }
+    debloat_tips       = @{ it = "Suggerimenti, Assistenza e Hub di Feedback"; en = "Tips, Get Help and Feedback Hub" }
+    debloat_clipchamp  = @{ it = "Clipchamp"; en = "Clipchamp" }
+    debloat_todo       = @{ it = "Microsoft To Do e Power Automate"; en = "Microsoft To Do and Power Automate" }
+    debloat_people     = @{ it = "Persone, Mappe e Skype"; en = "People, Maps and Skype" }
+    debloat_threeD     = @{ it = "App 3D e realtà mista"; en = "3D and mixed reality apps" }
+    debloat_family     = @{ it = "Microsoft Family e Cortana"; en = "Microsoft Family and Cortana" }
+    debloat_devhome    = @{ it = "Dev Home"; en = "Dev Home" }
+    debloat_spotify    = @{ it = "Spotify preinstallato"; en = "Preinstalled Spotify" }
+    debloat_recorder   = @{ it = "Registratore di suoni"; en = "Sound Recorder" }
+    debloat_media      = @{ it = "Lettore multimediale e Film e TV"; en = "Media Player and Movies & TV" }
+    debloat_outlook    = @{ it = "Outlook (nuovo) e Posta e Calendario"; en = "Outlook (new) and Mail and Calendar" }
+    debloat_phone      = @{ it = "Collegamento al telefono"; en = "Phone Link" }
+    debloat_quick      = @{ it = "Assistenza rapida"; en = "Quick Assist" }
+    debloat_alarms     = @{ it = "Sveglie e orologio"; en = "Alarms & Clock" }
+    debloat_sticky     = @{ it = "Sticky Notes"; en = "Sticky Notes" }
+    debloat_camera     = @{ it = "Fotocamera"; en = "Camera" }
+    debloat_photos     = @{ it = "Foto"; en = "Photos" }
+    debloat_xbox       = @{ it = "App Xbox e Game Bar (servono per Game Pass)"; en = "Xbox apps and Game Bar (needed for Game Pass)" }
+    debloat_onedrive   = @{ it = "OneDrive (i file nella cartella OneDrive restano)"; en = "OneDrive (files in the OneDrive folder stay)" }
+    ttlStartup         = @{ it = "Programmi all'avvio"; en = "Startup programs" }
+    startupHint        = @{ it = "Quelli accesi partono da soli con Windows e lo rallentano. Spegnere non cancella niente: si riaccende quando vuoi, anche da Gestione attività."; en = "Enabled ones start with Windows and slow it down. Turning one off deletes nothing: turn it back on whenever you like, also from Task Manager." }
+    startupNone        = @{ it = "Nessun programma parte all'avvio."; en = "No program starts with Windows." }
+    startupCount       = @{ it = "{0} accesi su {1}."; en = "{0} of {1} enabled." }
+    startupAll         = @{ it = "tutti gli utenti"; en = "all users" }
+    startupUser        = @{ it = "solo questo utente"; en = "this user only" }
+    leftScanning       = @{ it = "Cerco i residui dei programmi disinstallati..."; en = "Looking for leftovers of uninstalled programs..." }
+    leftFound          = @{ it = "Trovati {0} residui: li trovi in cima all'elenco."; en = "{0} leftovers found: they're at the top of the list." }
+    leftNone           = @{ it = "Nessun residuo: la disinstallazione ha tolto tutto."; en = "No leftovers: the uninstall removed everything." }
+    leftTitle          = @{ it = "Residui dei programmi disinstallati"; en = "Leftovers of uninstalled programs" }
+    leftHint           = @{ it = "Cartelle, chiavi di registro e avvii automatici rimasti. Accesi quelli sicuri; quelli «da controllare» guardali prima. Il registro viene salvato prima, cartelle e file vanno nel Cestino."; en = "Folders, registry keys and startup entries left behind. Safe ones are on; check the ones marked «to check» first. The registry is backed up first, folders and files go to the Recycle Bin." }
+    leftRemove         = @{ it = "Togli selezionati"; en = "Remove selected" }
+    leftAsk            = @{ it = "Tolgo {0} residui? Il registro viene salvato prima e cartelle e file vanno nel Cestino."; en = "Remove {0} leftovers? The registry is backed up first and folders and files go to the Recycle Bin." }
+    leftDone           = @{ it = "Residui tolti: {0} su {1}."; en = "Leftovers removed: {0} of {1}." }
+    leftCheck          = @{ it = "da controllare"; en = "to check" }
+    leftKind_dir       = @{ it = "CARTELLA"; en = "FOLDER" }
+    leftKind_file      = @{ it = "FILE"; en = "FILE" }
+    leftKind_reg       = @{ it = "REGISTRO"; en = "REGISTRY" }
+    leftKind_run       = @{ it = "AVVIO"; en = "STARTUP" }
+    leftKind_task      = @{ it = "ATTIVITÀ"; en = "TASK" }
+    leftKind_svc       = @{ it = "SERVIZIO"; en = "SERVICE" }
 }
 
 $script:LangCode = "it"
@@ -1076,7 +1127,7 @@ $chkWuNoStore = E 'chkWuNoStore'; $chkWuProfile = E 'chkWuProfile'
 $chkAdvUtc = E 'chkAdvUtc'; $chkAdvRazer = E 'chkAdvRazer'; $chkAdvLogi = E 'chkAdvLogi'; $chkIPv4Pref = E 'chkIPv4Pref'
 $chkBootQuiet = E 'chkBootQuiet'; $chkBootMenu = E 'chkBootMenu'; $chkBootTimeout = E 'chkBootTimeout'
 $chkBootDynTick = E 'chkBootDynTick'; $chkBootTsc = E 'chkBootTsc'; $btnBootReset = E 'btnBootReset'
-$chkAppxBloat = E 'chkAppxBloat'; $chkAppxXbox = E 'chkAppxXbox'; $chkAppxProvision = E 'chkAppxProvision'
+
 $chkSecSmartScreen = E 'chkSecSmartScreen'; $chkSecSpectre = E 'chkSecSpectre'; $chkSecDownfall = E 'chkSecDownfall'; $chkSecDefenderIdle = E 'chkSecDefenderIdle'
 
 # ------------------------------------------------------------------------------

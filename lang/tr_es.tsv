@@ -224,11 +224,6 @@ L:chkBootMenu	Menú de arranque clásico (F8 disponible)
 L:chkBootTimeout	Sin espera en el menú de arranque
 L:chkBootDynTick	Tick dinámico del kernel — arriesgado: pruébalo y mide
 L:chkBootTsc	Sincronización TSC mejorada — arriesgado: pruébala y mide
-L:ttlAppx	APLICACIONES PREINSTALADAS
-L:lblAppxHint	Se pueden reinstalar desde Store cuando hagan falta.
-L:chkAppxBloat	Aplicaciones no esenciales (noticias, tiempo, mapas, Skype...)
-L:chkAppxXbox	Aplicaciones de Xbox y superposición de juego
-L:chkAppxProvision	No restaurarlas para usuarios nuevos
 L:ttlSec	SEGURIDAD REDUCIDA
 L:lblSecHint	Todas arriesgadas: reducen de verdad las defensas del equipo. «Recomendados» activa dos, «Seleccionar todo» las activa todas tras una confirmación.
 L:chkSecSmartScreen	SmartScreen — control de archivos descargados
@@ -396,9 +391,6 @@ H:chkBootMenu	Recupera el menú de arranque clásico, que permite entrar en modo
 H:chkBootTimeout	Si tienes varios sistemas instalados, el equipo arranca enseguida sin esperar en el menú.
 H:chkBootDynTick	El procesador mantiene un ritmo de sistema constante. En algunos equipos baja la latencia y en otros no: hay que probarlo.
 H:chkBootTsc	Hace más precisa la medida del tiempo entre los núcleos del procesador. Puede mejorar la fluidez: hay que probarlo.
-H:chkAppxBloat	Quita aplicaciones preinstaladas como noticias, tiempo, mapas y Skype. Más espacio y un Inicio más ordenado.
-H:chkAppxXbox	Quita las aplicaciones de Xbox y la superposición de juego. Evítalo si usas Game Pass.
-H:chkAppxProvision	Las aplicaciones quitadas no vuelven al crear un usuario nuevo.
 H:chkSecSmartScreen	Apaga el control de los archivos descargados. Sin avisos al abrirlos, pero sin protección frente a archivos peligrosos.
 H:chkSecSpectre	Quita las protecciones contra algunos fallos de los procesadores. Más rendimiento, sobre todo en CPU antiguas, pero menos seguridad.
 H:chkSecDefenderIdle	El antivirus analiza solo con el equipo en reposo y sin cargarlo. La protección en tiempo real sigue activa.
@@ -967,3 +959,59 @@ M:pageSub_tabWin	Seguridad, navegadores, actualizaciones, servicios y tareas pro
 M:pageSub_tabApps	Instala o actualiza los programas más usados con un clic.
 M:pageSub_tabTools	Limpieza, reparaciones y paneles de Windows. Actúan al momento.
 M:pageSub_tabAdv	Para quien sabe lo que hace: aquí se quitan partes de Windows, una a una.
+M:ttlDebloat	Quitar apps de Windows
+M:debloatHint	Apps preinstaladas que suelen sobrar. Activadas las que casi nadie usa; se reinstalan desde Microsoft Store.
+M:debloatSearching	Buscando apps instaladas...
+M:debloatNone	Ninguna de estas apps está instalada.
+M:debloatFound	{0} grupos de apps presentes.
+M:debloatRun	Quitar seleccionadas
+M:debloatAsk	¿Quito {0} grupos de apps para todos los usuarios? Se reinstalan desde Microsoft Store.
+M:debloatDone	Paquetes quitados: {0}.
+M:debloatStepApps	Apps de Windows
+M:debloat_news	Microsoft News, El Tiempo, Dinero y Deportes
+M:debloat_bing	Búsqueda de Bing
+M:debloat_copilot	Copilot
+M:debloat_widgets	Widgets (noticias en la barra)
+M:debloat_teams	Microsoft Teams (personal)
+M:debloat_office	Microsoft 365 (Office) y OneNote preinstalados
+M:debloat_solitaire	Microsoft Solitaire Collection
+M:debloat_tips	Sugerencias, Obtener ayuda y Centro de opiniones
+M:debloat_clipchamp	Clipchamp
+M:debloat_todo	Microsoft To Do y Power Automate
+M:debloat_people	Contactos, Mapas y Skype
+M:debloat_threeD	Apps 3D y de realidad mixta
+M:debloat_family	Microsoft Family y Cortana
+M:debloat_devhome	Dev Home
+M:debloat_spotify	Spotify preinstalado
+M:debloat_recorder	Grabadora de sonidos
+M:debloat_media	Reproductor multimedia y Películas y TV
+M:debloat_outlook	Outlook (nuevo) y Correo y Calendario
+M:debloat_phone	Enlace móvil
+M:debloat_quick	Asistencia rápida
+M:debloat_alarms	Alarmas y reloj
+M:debloat_sticky	Sticky Notes
+M:debloat_camera	Cámara
+M:debloat_photos	Fotos
+M:debloat_xbox	Apps de Xbox y Game Bar (necesarias para Game Pass)
+M:debloat_onedrive	OneDrive (los archivos de la carpeta OneDrive se quedan)
+M:ttlStartup	Programas al inicio
+M:startupHint	Los activados arrancan con Windows y lo ralentizan. Desactivar no borra nada: se reactiva cuando quieras, también desde el Administrador de tareas.
+M:startupNone	Ningún programa arranca al inicio.
+M:startupCount	{0} de {1} activados.
+M:startupAll	todos los usuarios
+M:startupUser	solo este usuario
+M:leftScanning	Buscando restos de los programas desinstalados...
+M:leftFound	{0} restos encontrados: están arriba en la lista.
+M:leftNone	Sin restos: la desinstalación quitó todo.
+M:leftTitle	Restos de programas desinstalados
+M:leftHint	Carpetas, claves del registro e inicios que quedaron. Los seguros están activados; revisa antes los marcados «a revisar». El registro se guarda antes, carpetas y archivos van a la Papelera.
+M:leftRemove	Quitar seleccionados
+M:leftAsk	¿Quito {0} restos? El registro se guarda antes y carpetas y archivos van a la Papelera.
+M:leftDone	Restos quitados: {0} de {1}.
+M:leftCheck	a revisar
+M:leftKind_dir	CARPETA
+M:leftKind_file	ARCHIVO
+M:leftKind_reg	REGISTRO
+M:leftKind_run	INICIO
+M:leftKind_task	TAREA
+M:leftKind_svc	SERVICIO

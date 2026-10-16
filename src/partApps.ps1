@@ -345,6 +345,8 @@ function Show-AppInstalled {
     $panApps.Children.Clear()
     $q = Get-AppFilterText
     $stack = New-Object System.Windows.Controls.StackPanel
+    $lc = New-LeftoverCard
+    if ($lc) { [void]$stack.Children.Add($lc) }
 
     # Aggiornamenti: quelli che winget sa aggiornare, da scegliere uno per uno.
     $updates = @($script:AppUpdates.Values | Sort-Object Name | Where-Object { -not $q -or $_.Name -like "*$q*" -or $_.Id -like "*$q*" })
@@ -672,6 +674,7 @@ $script:AppTimer.Add_Tick({
         Start-AppExport
         Start-AppUpgradeScan
         Show-AppView
+        Start-LeftoverWatch
         return
     }
     if ($null -eq $script:AppExport -and $null -eq $script:AppScan) { $script:AppTimer.Stop() }
@@ -796,6 +799,8 @@ $btnAppsAction.Add_Click({
     if ($radAppsInstalled.IsChecked) {
         if (-not (Show-Dialog (T 'confirmTitle') ((T 'appsAskUninstall') -f $keys.Count) 'danger')) { return }
         foreach ($a in @($script:AppInstalledList | Where-Object { $keys -contains $_.Key })) {
+            # I dati per cercare i residui si prendono adesso: dopo la voce non c'e' piu'.
+            if ($a.Kind -eq 'Win32') { [void]$script:LeftoverPending.Add((Get-LeftoverHint $a)) }
             $c = Get-UninstallCommand $a
             Add-AppJob 'uninstall' $a.Name $c[0] $c[1] $false
         }
@@ -839,6 +844,304 @@ $txtAppSearch.Add_TextChanged({
     $lblAppSearchHint.Visibility = if ($txtAppSearch.Text) { 'Collapsed' } else { 'Visible' }
     if ($script:AppsReady) { Show-AppView }
 })
+
+# ------------------------------------------------------------------------------
+# Residui dopo la disinstallazione (come Revo Uninstaller)
+# ------------------------------------------------------------------------------
+# Finita la disinstallazione si cercano le tracce rimaste: cartelle del
+# programma, chiavi di registro, avvii automatici, attivita' pianificate,
+# servizi e collegamenti. Si propongono solo elementi con il nome del
+# programma o dentro la sua cartella; le cartelle generiche (Windows,
+# Microsoft, Common Files...) e quelle dell'editore con altri programmi dentro
+# non compaiono mai. Prima di togliere qualcosa: le chiavi di registro e le
+# attivita' finiscono in una copia di sicurezza, cartelle e collegamenti nel
+# Cestino.
+$script:LeftoverPending = New-Object System.Collections.ArrayList
+$script:LeftoverResults = @()
+$script:LeftoverBoxes = @()
+$script:LeftoverBackup = Join-Path $env:ProgramData 'TweakAndrew\Residui'
+
+$script:LeftoverScanScript = @'
+param($apps)
+$protected = @('windows', 'microsoft', 'common files', 'windowsapps', 'program files', 'program files (x86)', 'programdata',
+               'users', 'packages', 'temp', 'microsoft corporation', 'microsoft.net', 'internet explorer', 'windows defender',
+               'windows nt', 'windowspowershell', 'reference assemblies', 'msbuild', 'installer', 'intel', 'nvidia corporation',
+               'amd', 'google', 'mozilla', 'apple', 'adobe', 'package cache', 'start menu', 'programs', 'startup', 'desktop')
+function Core([string]$n) {
+    $c = $n -replace '\s*\(.*?\)', '' -replace '\s+(v|version\s*)?\d+(\.\d+)+.*$', '' -replace '\s+\d{4}$', '' -replace '(?i)\s+(x64|x86|64-bit|32-bit|\(64-bit\))$', ''
+    return $c.Trim(' ', '-', '_', '.')
+}
+function Norm([string]$s) { return ($s -replace '[\s\-_\.]', '').ToLowerInvariant() }
+function Add-Item($list, $kind, $path, $label, $sure) {
+    if (-not $path) { return }
+    if (@($list | Where-Object { $_.Path -eq $path -and $_.Kind -eq $kind }).Count) { return }
+    [void]$list.Add(@{ Kind = $kind; Path = $path; Label = $label; Sure = [bool]$sure })
+}
+$out = @()
+foreach ($a in $apps) {
+    $list = New-Object System.Collections.ArrayList
+    $core = Core $a.Name
+    $pub = Core ($a.Publisher -replace '(?i),?\s*(inc|ltd|llc|gmbh|s\.?r\.?l|s\.?p\.?a|corporation|corp|co)\.?$', '')
+    $nc = Norm $core; $np = Norm $pub
+    if ($nc.Length -lt 3 -or $protected -contains $core.ToLowerInvariant()) { $out += @{ Name = $a.Name; Items = @() }; continue }
+    $sysRoots = @($env:SystemRoot, "$env:SystemDrive\", $env:ProgramFiles, ${env:ProgramFiles(x86)}, $env:ProgramData, $env:APPDATA, $env:LOCALAPPDATA) | ForEach-Object { $_.TrimEnd('\') }
+
+    # 1. La cartella dichiarata dal programma e quella del suo disinstallatore.
+    $dirs = @()
+    if ($a.Location) { $dirs += $a.Location.Trim('"').TrimEnd('\') }
+    foreach ($s in @($a.Icon, $a.Uninstall)) {
+        if ($s -match '^"?([A-Za-z]:\\[^",]+?\.(exe|ico|dll))') { $dirs += (Split-Path $Matches[1] -Parent) }
+    }
+    foreach ($d in $dirs) {
+        if (-not $d -or -not (Test-Path -LiteralPath $d)) { continue }
+        if ($sysRoots -contains $d -or $d -like "$env:SystemRoot*") { continue }
+        if ($protected -contains (Split-Path $d -Leaf).ToLowerInvariant()) { continue }
+        Add-Item $list 'dir' $d $d $true
+    }
+    $known = @($list | ForEach-Object { $_.Path })
+
+    # 2. Cartelle con il nome del programma, anche dentro quella dell'editore.
+    $roots = @($env:ProgramFiles, ${env:ProgramFiles(x86)}, $env:ProgramData, $env:APPDATA, $env:LOCALAPPDATA, (Join-Path (Split-Path $env:LOCALAPPDATA -Parent) 'LocalLow')) | Where-Object { $_ -and (Test-Path -LiteralPath $_) } | Select-Object -Unique
+    foreach ($r in $roots) {
+        foreach ($d in @(Get-ChildItem -LiteralPath $r -Directory -Force -ErrorAction SilentlyContinue)) {
+            $n = Norm $d.Name
+            if ($protected -contains $d.Name.ToLowerInvariant()) {
+                if ($np -and $n -eq $np) { } else { continue }
+            }
+            if ($n -eq $nc) { Add-Item $list 'dir' $d.FullName $d.FullName $true; continue }
+            if ($np -and $np.Length -ge 3 -and $n -eq $np) {
+                $subs = @(Get-ChildItem -LiteralPath $d.FullName -Directory -Force -ErrorAction SilentlyContinue)
+                foreach ($s in $subs) { if ((Norm $s.Name) -eq $nc) { Add-Item $list 'dir' $s.FullName $s.FullName $true } }
+                $files = @(Get-ChildItem -LiteralPath $d.FullName -File -Force -ErrorAction SilentlyContinue)
+                $others = @($subs | Where-Object { (Norm $_.Name) -ne $nc })
+                if ($others.Count -eq 0 -and $files.Count -eq 0 -and $subs.Count -gt 0) { Add-Item $list 'dir' $d.FullName $d.FullName $false }
+                continue
+            }
+            if ($nc.Length -ge 5 -and $n.StartsWith($nc)) { Add-Item $list 'dir' $d.FullName $d.FullName $false }
+        }
+    }
+
+    # 3. Registro: la voce di disinstallazione se e' rimasta, e le chiavi del programma.
+    if ($a.RegPath -and (Test-Path -LiteralPath $a.RegPath)) { Add-Item $list 'reg' $a.RegPath (($a.RegPath -replace '^Microsoft\.PowerShell\.Core\\Registry::', '')) $true }
+    foreach ($hive in 'HKCU:\Software', 'HKLM:\SOFTWARE', 'HKLM:\SOFTWARE\WOW6432Node') {
+        foreach ($k in @(Get-ChildItem -LiteralPath $hive -ErrorAction SilentlyContinue)) {
+            $n = Norm $k.PSChildName
+            if ($n -eq $nc -and $protected -notcontains $k.PSChildName.ToLowerInvariant()) { Add-Item $list 'reg' $k.PSPath $k.Name $true; continue }
+            if ($np -and $np.Length -ge 3 -and $n -eq $np) {
+                $subs = @(Get-ChildItem -LiteralPath $k.PSPath -ErrorAction SilentlyContinue)
+                foreach ($s in $subs) { if ((Norm $s.PSChildName) -eq $nc) { Add-Item $list 'reg' $s.PSPath $s.Name $true } }
+                if ($subs.Count -gt 0 -and @($subs | Where-Object { (Norm $_.PSChildName) -ne $nc }).Count -eq 0 -and $protected -notcontains $k.PSChildName.ToLowerInvariant()) {
+                    Add-Item $list 'reg' $k.PSPath $k.Name $false
+                }
+            }
+        }
+    }
+    $dirsNow = @($list | Where-Object { $_.Kind -eq 'dir' } | ForEach-Object { $_.Path })
+    function Test-Mine([string]$text) {
+        if (-not $text) { return $false }
+        foreach ($d in $dirsNow) { if ($text -like "*$d*") { return $true } }
+        return ((Norm $text) -like "*$nc*")
+    }
+
+    # 4. Avvio automatico: chiavi Run e cartelle Esecuzione automatica.
+    foreach ($rk in 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Run', 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run', 'HKLM:\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Run') {
+        $p = Get-Item -LiteralPath $rk -ErrorAction SilentlyContinue
+        if (-not $p) { continue }
+        foreach ($v in $p.GetValueNames()) {
+            if ((Test-Mine ([string]$p.GetValue($v))) -or (Norm $v) -eq $nc) { Add-Item $list 'run' "$rk|$v" "$($p.Name)  →  $v" $true }
+        }
+    }
+    foreach ($sf in "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup", "$env:ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp") {
+        foreach ($f in @(Get-ChildItem -LiteralPath $sf -File -ErrorAction SilentlyContinue)) {
+            if ((Norm $f.BaseName) -like "*$nc*") { Add-Item $list 'file' $f.FullName $f.FullName $true }
+        }
+    }
+
+    # 5. Menu Start: collegamenti e cartelle con il nome del programma.
+    foreach ($sm in "$env:ProgramData\Microsoft\Windows\Start Menu\Programs", "$env:APPDATA\Microsoft\Windows\Start Menu\Programs") {
+        foreach ($f in @(Get-ChildItem -LiteralPath $sm -Force -ErrorAction SilentlyContinue)) {
+            $n = Norm $f.BaseName
+            if ($n -eq $nc -or ($np -and $n -eq $np -and $f.PSIsContainer)) { Add-Item $list $(if ($f.PSIsContainer) { 'dir' } else { 'file' }) $f.FullName $f.FullName $true }
+        }
+    }
+    foreach ($dk in [Environment]::GetFolderPath('Desktop'), [Environment]::GetFolderPath('CommonDesktopDirectory')) {
+        foreach ($f in @(Get-ChildItem -LiteralPath $dk -Filter '*.lnk' -ErrorAction SilentlyContinue)) {
+            if ((Norm $f.BaseName) -eq $nc) { Add-Item $list 'file' $f.FullName $f.FullName $true }
+        }
+    }
+
+    # 6. Attivita' pianificate e servizi che puntano al programma.
+    try {
+        foreach ($t in @(Get-ScheduledTask -ErrorAction Stop | Where-Object { $_.TaskPath -notlike '\Microsoft\*' })) {
+            $exe = (@($t.Actions | ForEach-Object { [string]$_.Execute + ' ' + [string]$_.Arguments }) -join ' ')
+            if ((Norm $t.TaskName) -like "*$nc*" -or (Test-Mine $exe)) { Add-Item $list 'task' "$($t.TaskPath)|$($t.TaskName)" "$($t.TaskPath)$($t.TaskName)" $true }
+        }
+    } catch {}
+    foreach ($s in @(Get-CimInstance Win32_Service -ErrorAction SilentlyContinue)) {
+        $pn = [string]$s.PathName
+        if ($pn -like "*$env:SystemRoot*") { continue }
+        if (Test-Mine $pn) { Add-Item $list 'svc' $s.Name "$($s.DisplayName)  ($($s.Name))" $false }
+    }
+    # Cartelle e file dentro una cartella gia' proposta: basta la cartella.
+    $dirsAll = @($list | Where-Object { $_.Kind -eq 'dir' } | ForEach-Object { $_.Path.TrimEnd('\') + '\' })
+    $list = @($list | Where-Object { $it = $_; -not ($it.Kind -in 'dir', 'file' -and @($dirsAll | Where-Object { $it.Path.StartsWith($_, [StringComparison]::OrdinalIgnoreCase) }).Count -gt 0) })
+    $out += @{ Name = $a.Name; Items = @($list) }
+}
+$out
+'@
+
+# Dati del programma presi prima di disinstallarlo: dopo la voce non c'e' piu'.
+function Get-LeftoverHint($a) {
+    $p = $null
+    if ($a.Key -like 'w:*') { $p = Get-ItemProperty -LiteralPath ($a.Key.Substring(2)) -ErrorAction SilentlyContinue }
+    return @{ Name = $a.Name; Publisher = $a.Publisher; Location = [string]$p.InstallLocation; Icon = [string]$p.DisplayIcon
+              Uninstall = [string]$p.UninstallString; RegPath = $(if ($a.Key -like 'w:*') { $a.Key.Substring(2) } else { '' }); Since = Get-Date }
+}
+
+# Si aspetta che il programma sparisca dall'elenco: molti disinstallatori aprono
+# una finestra e il comando finisce prima di loro. Si cerca solo quando la
+# voce di disinstallazione non c'e' piu', o dopo 10 minuti.
+function Start-LeftoverWatch {
+    if ($script:LeftoverPending.Count -eq 0) { return }
+    if ($script:LeftoverTimer) { $script:LeftoverTimer.Start(); return }
+    $script:LeftoverTimer = New-Object System.Windows.Threading.DispatcherTimer
+    $script:LeftoverTimer.Interval = [TimeSpan]::FromSeconds(3)
+    $script:LeftoverTimer.Add_Tick({
+        if ($script:LeftoverJob) { return }
+        $ready = @($script:LeftoverPending | Where-Object { -not $_.RegPath -or -not (Test-Path -LiteralPath $_.RegPath) -or ((Get-Date) - $_.Since).TotalMinutes -ge 10 })
+        if ($ready.Count -eq 0) { return }
+        foreach ($r in $ready) { $script:LeftoverPending.Remove($r) }
+        if ($script:LeftoverPending.Count -eq 0) { $this.Stop() }
+        Start-LeftoverScan $ready
+    })
+    $script:LeftoverTimer.Start()
+}
+
+function Start-LeftoverScan([array]$apps) {
+    $txtAppsStatus.Text = T 'leftScanning'
+    $ps = [powershell]::Create()
+    [void]$ps.AddScript($script:LeftoverScanScript).AddArgument($apps)
+    $script:LeftoverJob = @{ Ps = $ps; H = $ps.BeginInvoke() }
+    $t = New-Object System.Windows.Threading.DispatcherTimer
+    $t.Interval = [TimeSpan]::FromMilliseconds(300)
+    $t.Add_Tick({
+        if (-not $script:LeftoverJob.H.IsCompleted) { return }
+        $this.Stop()
+        try { $r = @($script:LeftoverJob.Ps.EndInvoke($script:LeftoverJob.H) | Where-Object { $_ -is [hashtable] }) } catch { $r = @() }
+        $script:LeftoverJob.Ps.Dispose(); $script:LeftoverJob = $null
+        $script:LeftoverResults = @($script:LeftoverResults) + @($r | Where-Object { @($_.Items).Count -gt 0 })
+        $n = 0; foreach ($x in $r) { $n += @($x.Items).Count }
+        $txtAppsStatus.Text = if ($n -gt 0) { (T 'leftFound') -f $n } else { T 'leftNone' }
+        Write-Log "[INFO] Residui trovati: $n"
+        if ($script:AppsReady) { Show-AppView }
+    })
+    $t.Start()
+}
+
+# Scheda dei residui, in cima all'elenco dei programmi installati.
+function New-LeftoverCard {
+    $script:LeftoverBoxes = @()
+    if (@($script:LeftoverResults).Count -eq 0) { return $null }
+    $btn = New-Object System.Windows.Controls.Button
+    $btn.Style = $window.FindResource('DotBtn'); $btn.Content = T 'leftRemove'; $btn.Tag = New-AppBrush '#FFF87171'
+    $btn.Add_Click({ Invoke-LeftoverRemove })
+    $c = New-AppCard (T 'leftTitle') $btn
+    [void]$c.Panel.Children.Add((New-AppNote (T 'leftHint')))
+    foreach ($res in $script:LeftoverResults) {
+        $h = New-Object System.Windows.Controls.TextBlock
+        $h.Text = $res.Name; $h.FontWeight = 'SemiBold'; $h.FontSize = 13; $h.Foreground = New-AppBrush '#FFE6E8EB'; $h.Margin = '4,10,0,4'
+        [void]$c.Panel.Children.Add($h)
+        foreach ($it in $res.Items) {
+            $cb = New-Object System.Windows.Controls.CheckBox
+            $cb.Tag = $it; $cb.IsChecked = $it.Sure
+            $tb = New-Object System.Windows.Controls.TextBlock; $tb.TextWrapping = 'Wrap'
+            $r1 = New-Object System.Windows.Documents.Run ("$(T "leftKind_$($it.Kind)")   "); $r1.Foreground = New-AppBrush '#FF7EB1FF'; $r1.FontSize = 11.5; $r1.FontWeight = 'SemiBold'
+            $r2 = New-Object System.Windows.Documents.Run $it.Label; $r2.Foreground = New-AppBrush '#FFC5C9CF'; $r2.FontSize = 12
+            [void]$tb.Inlines.Add($r1); [void]$tb.Inlines.Add($r2)
+            if (-not $it.Sure) { $r3 = New-Object System.Windows.Documents.Run ("   $(T 'leftCheck')"); $r3.Foreground = New-AppBrush '#FFFDBA74'; $r3.FontSize = 11.5; [void]$tb.Inlines.Add($r3) }
+            $script:LeftoverBoxes += $cb
+            [void]$c.Panel.Children.Add((New-SwitchRow $tb '' $cb))
+        }
+    }
+    return $c.Card
+}
+
+# Toglie gli elementi scelti. Registro e attivita' prima si salvano in
+# %ProgramData%\TweakAndrew\Residui, cartelle e file vanno nel Cestino.
+function Remove-LeftoverItems([array]$items, [switch]$Permanent) {
+    Add-Type -AssemblyName Microsoft.VisualBasic
+    $dir = Join-Path $script:LeftoverBackup (Get-Date -Format 'yyyyMMdd_HHmmss')
+    $ok = 0; $i = 0
+    foreach ($it in $items) {
+        $i++
+        try {
+            switch ($it.Kind) {
+                'dir' {
+                    if (-not (Test-Path -LiteralPath $it.Path)) { $ok++; break }
+                    if ($Permanent) { Remove-Item -LiteralPath $it.Path -Recurse -Force -ErrorAction Stop }
+                    else { [Microsoft.VisualBasic.FileIO.FileSystem]::DeleteDirectory($it.Path, 'OnlyErrorDialogs', 'SendToRecycleBin', 'DoNothing') }
+                    $ok++
+                }
+                'file' {
+                    if (-not (Test-Path -LiteralPath $it.Path)) { $ok++; break }
+                    if ($Permanent) { Remove-Item -LiteralPath $it.Path -Force -ErrorAction Stop }
+                    else { [Microsoft.VisualBasic.FileIO.FileSystem]::DeleteFile($it.Path, 'OnlyErrorDialogs', 'SendToRecycleBin', 'DoNothing') }
+                    $ok++
+                }
+                'reg' {
+                    New-Item -ItemType Directory -Force $dir | Out-Null
+                    $native = (Get-Item -LiteralPath $it.Path -ErrorAction Stop).Name
+                    & reg.exe export $native (Join-Path $dir "registro_$i.reg") /y | Out-Null
+                    if ($LASTEXITCODE -ne 0) { throw "copia di sicurezza non riuscita" }
+                    Remove-Item -LiteralPath $it.Path -Recurse -Force -ErrorAction Stop
+                    $ok++
+                }
+                'run' {
+                    $k, $v = $it.Path -split '\|', 2
+                    New-Item -ItemType Directory -Force $dir | Out-Null
+                    $native = (Get-Item -LiteralPath $k -ErrorAction Stop).Name
+                    & reg.exe export $native (Join-Path $dir "avvio_$i.reg") /y | Out-Null
+                    if ($LASTEXITCODE -ne 0) { throw "copia di sicurezza non riuscita" }
+                    Remove-ItemProperty -LiteralPath $k -Name $v -ErrorAction Stop
+                    $ok++
+                }
+                'task' {
+                    $tp, $tn = $it.Path -split '\|', 2
+                    New-Item -ItemType Directory -Force $dir | Out-Null
+                    Export-ScheduledTask -TaskPath $tp -TaskName $tn -ErrorAction Stop | Out-File (Join-Path $dir "attivita_$i.xml") -Encoding Unicode
+                    Unregister-ScheduledTask -TaskPath $tp -TaskName $tn -Confirm:$false -ErrorAction Stop
+                    $ok++
+                }
+                'svc' {
+                    # Solo se il programma del servizio non esiste piu': altrimenti e' ancora in uso.
+                    $s = Get-CimInstance Win32_Service -Filter "Name='$($it.Path -replace "'", "''")'" -ErrorAction Stop
+                    $exe = if ([string]$s.PathName -match '^"?([^"]+?\.exe)') { $Matches[1] } else { '' }
+                    if ($exe -and (Test-Path -LiteralPath $exe)) { Write-Log "[SALTATO] Servizio $($it.Path) - il programma c'e' ancora."; break }
+                    New-Item -ItemType Directory -Force $dir | Out-Null
+                    & reg.exe export "HKLM\SYSTEM\CurrentControlSet\Services\$($it.Path)" (Join-Path $dir "servizio_$i.reg") /y | Out-Null
+                    Stop-Service -Name $it.Path -Force -ErrorAction SilentlyContinue
+                    & sc.exe delete $it.Path | Out-Null
+                    if ($LASTEXITCODE -eq 0) { $ok++ }
+                }
+            }
+            Write-Log "[OK] Residuo tolto: $($it.Label)"
+        } catch { Write-Log "[ERRORE] Residuo $($it.Label) - $($_.Exception.Message)" }
+    }
+    return @{ Ok = $ok; Backup = $dir }
+}
+
+function Invoke-LeftoverRemove {
+    $items = @($script:LeftoverBoxes | Where-Object { $_.IsChecked -eq $true } | ForEach-Object { $_.Tag })
+    if ($items.Count -eq 0) { return }
+    if (-not (Show-Dialog (T 'leftTitle') ((T 'leftAsk') -f $items.Count) 'warn')) { return }
+    $window.Cursor = 'Wait'
+    try { $r = Remove-LeftoverItems $items } finally { $window.Cursor = $null }
+    $script:LeftoverResults = @()
+    $txtAppsStatus.Text = (T 'leftDone') -f $r.Ok, $items.Count
+    if (Test-Path -LiteralPath $r.Backup) { Write-Log "[INFO] Copia di sicurezza dei residui: $($r.Backup)" }
+    $script:AppInstalledList = @()
+    Show-AppView
+}
 
 # Prima apertura della pagina: filtri, catalogo e controllo delle app gia' presenti.
 function Show-AppsPageIfNeeded {

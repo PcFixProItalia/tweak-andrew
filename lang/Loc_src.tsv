@@ -234,11 +234,6 @@ chkBootMenu	Classic boot menu (F8 available)
 chkBootTimeout	No wait in the boot menu
 chkBootDynTick	Kernel dynamic tick — risky: try it and measure
 chkBootTsc	Enhanced TSC sync policy — risky: try it and measure
-ttlAppx	PREINSTALLED APPS
-lblAppxHint	They can be reinstalled from the Store whenever needed.
-chkAppxBloat	Non-essential apps (news, weather, maps, Skype...)
-chkAppxXbox	Xbox apps and game overlay
-chkAppxProvision	Do not restore them for new users
 ttlSec	REDUCED SECURITY
 lblSecHint	All risky: they genuinely lower the computer's defenses. «Recommended» turns on two of them, «Select all» turns on all of them after a confirmation.
 chkSecSmartScreen	SmartScreen — checking downloaded files

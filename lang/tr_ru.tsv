@@ -224,11 +224,6 @@ L:chkBootMenu	Классическое меню загрузки (доступн
 L:chkBootTimeout	Без ожидания в меню загрузки
 L:chkBootDynTick	Динамический тик ядра — рискованно: проверьте и измерьте
 L:chkBootTsc	Улучшенная синхронизация TSC — рискованно: проверьте и измерьте
-L:ttlAppx	ПРЕДУСТАНОВЛЕННЫЕ ПРИЛОЖЕНИЯ
-L:lblAppxHint	При необходимости их можно переустановить из Store.
-L:chkAppxBloat	Необязательные приложения (новости, погода, карты, Skype...)
-L:chkAppxXbox	Приложения Xbox и игровой оверлей
-L:chkAppxProvision	Не восстанавливать для новых пользователей
 L:ttlSec	СНИЖЕННАЯ БЕЗОПАСНОСТЬ
 L:lblSecHint	Все рискованные: действительно снижают защиту компьютера. «Рекомендуемые» включает две из них, «Выбрать всё» включает все после подтверждения.
 L:chkSecSmartScreen	SmartScreen — проверка скачанных файлов
@@ -396,9 +391,6 @@ H:chkBootMenu	Возвращает классическое меню загру�
 H:chkBootTimeout	Если установлено несколько систем, ПК загружается сразу, без ожидания в меню выбора.
 H:chkBootDynTick	Процессор держит постоянный системный ритм. На одних ПК задержка снижается, на других нет: нужно проверять.
 H:chkBootTsc	Делает отсчёт времени между ядрами процессора точнее. Может повысить плавность: нужно проверять.
-H:chkAppxBloat	Удаляет предустановленные приложения вроде новостей, погоды, карт и Skype. Больше места и аккуратнее «Пуск».
-H:chkAppxXbox	Удаляет приложения Xbox и игровой оверлей. Не используйте, если у вас Game Pass.
-H:chkAppxProvision	Удалённые приложения не появятся снова при создании нового пользователя.
 H:chkSecSmartScreen	Отключает проверку скачанных файлов. Нет предупреждений при открытии, но нет и защиты от опасных файлов.
 H:chkSecSpectre	Убирает защиту от некоторых уязвимостей процессоров. Выше производительность, особенно на старых ЦП, но ниже безопасность.
 H:chkSecDefenderIdle	Антивирус сканирует только в простое и не нагружает компьютер. Защита в реальном времени остаётся включённой.
@@ -967,3 +959,59 @@ M:pageSub_tabWin	Безопасность, браузеры, обновлени�
 M:pageSub_tabApps	Установка и обновление популярных программ одним щелчком.
 M:pageSub_tabTools	Очистка, исправления и панели Windows. Эти инструменты действуют сразу.
 M:pageSub_tabAdv	Для опытных: здесь отключаются части Windows, по одной.
+M:ttlDebloat	Удалить приложения Windows
+M:debloatHint	Предустановленные приложения, которые обычно не нужны. Включены почти неиспользуемые; их можно вернуть из Microsoft Store.
+M:debloatSearching	Поиск установленных приложений...
+M:debloatNone	Ни одно из этих приложений не установлено.
+M:debloatFound	Найдено групп приложений: {0}.
+M:debloatRun	Удалить выбранные
+M:debloatAsk	Удалить группы приложений ({0}) для всех пользователей? Их можно вернуть из Microsoft Store.
+M:debloatDone	Удалено пакетов: {0}.
+M:debloatStepApps	Приложения Windows
+M:debloat_news	Microsoft News, Погода, Деньги и Спорт
+M:debloat_bing	Поиск Bing
+M:debloat_copilot	Copilot
+M:debloat_widgets	Мини-приложения (новости на панели)
+M:debloat_teams	Microsoft Teams (личный)
+M:debloat_office	Предустановленные Microsoft 365 (Office) и OneNote
+M:debloat_solitaire	Microsoft Solitaire Collection
+M:debloat_tips	Советы, Техническая поддержка и Центр отзывов
+M:debloat_clipchamp	Clipchamp
+M:debloat_todo	Microsoft To Do и Power Automate
+M:debloat_people	Люди, Карты и Skype
+M:debloat_threeD	3D-приложения и смешанная реальность
+M:debloat_family	Microsoft Family и Cortana
+M:debloat_devhome	Dev Home
+M:debloat_spotify	Предустановленный Spotify
+M:debloat_recorder	Звукозапись
+M:debloat_media	Медиаплеер и Кино и ТВ
+M:debloat_outlook	Outlook (новый) и Почта и Календарь
+M:debloat_phone	Связь с телефоном
+M:debloat_quick	Быстрая помощь
+M:debloat_alarms	Будильники и часы
+M:debloat_sticky	Записки
+M:debloat_camera	Камера
+M:debloat_photos	Фотографии
+M:debloat_xbox	Приложения Xbox и Game Bar (нужны для Game Pass)
+M:debloat_onedrive	OneDrive (файлы в папке OneDrive остаются)
+M:ttlStartup	Автозагрузка
+M:startupHint	Включённые запускаются с Windows и замедляют её. Отключение ничего не удаляет: включите снова когда угодно, также в диспетчере задач.
+M:startupNone	Нет программ в автозагрузке.
+M:startupCount	Включено {0} из {1}.
+M:startupAll	все пользователи
+M:startupUser	только этот пользователь
+M:leftScanning	Поиск остатков удалённых программ...
+M:leftFound	Найдено остатков: {0}. Они вверху списка.
+M:leftNone	Остатков нет: удаление убрало всё.
+M:leftTitle	Остатки удалённых программ
+M:leftHint	Оставшиеся папки, ключи реестра и автозапуск. Безопасные включены; помеченные «проверить» сначала посмотрите. Реестр сохраняется заранее, папки и файлы попадают в корзину.
+M:leftRemove	Удалить выбранные
+M:leftAsk	Удалить остатки ({0})? Реестр сохраняется заранее, папки и файлы попадают в корзину.
+M:leftDone	Удалено остатков: {0} из {1}.
+M:leftCheck	проверить
+M:leftKind_dir	ПАПКА
+M:leftKind_file	ФАЙЛ
+M:leftKind_reg	РЕЕСТР
+M:leftKind_run	АВТОЗАПУСК
+M:leftKind_task	ЗАДАНИЕ
+M:leftKind_svc	СЛУЖБА

@@ -227,11 +227,6 @@ L:chkBootMenu	Menu de démarrage classique (F8 disponible)
 L:chkBootTimeout	Aucune attente dans le menu de démarrage
 L:chkBootDynTick	Tick dynamique du noyau — risqué : testez et mesurez
 L:chkBootTsc	Synchronisation TSC renforcée — risqué : testez et mesurez
-L:ttlAppx	APPLICATIONS PRÉINSTALLÉES
-L:lblAppxHint	Elles se réinstallent depuis le Store en cas de besoin.
-L:chkAppxBloat	Applications non essentielles (actualités, météo, cartes, Skype...)
-L:chkAppxXbox	Applications Xbox et superposition de jeu
-L:chkAppxProvision	Ne pas les restaurer pour les nouveaux utilisateurs
 L:ttlSec	SÉCURITÉ RÉDUITE
 L:lblSecHint	Toutes risquées : elles abaissent réellement les défenses de l'ordinateur. «Recommandés» en active deux, «Tout sélectionner» les active toutes après confirmation.
 L:chkSecSmartScreen	SmartScreen — contrôle des fichiers téléchargés
@@ -399,9 +394,6 @@ H:chkBootMenu	Rétablit le menu de démarrage classique, qui permet d'entrer en 
 H:chkBootTimeout	Si plusieurs systèmes sont installés, le PC démarre tout de suite sans attendre dans le menu de choix.
 H:chkBootDynTick	Le processeur garde un rythme système constant. Sur certains PC la latence baisse, sur d'autres non : à tester.
 H:chkBootTsc	Rend la mesure du temps entre les cœurs du processeur plus précise. Peut améliorer la fluidité : à tester.
-H:chkAppxBloat	Supprime des applications préinstallées comme actualités, météo, cartes et Skype. Plus d'espace et un Démarrer mieux rangé.
-H:chkAppxXbox	Supprime les applications Xbox et la superposition de jeu. À éviter si vous utilisez le Game Pass.
-H:chkAppxProvision	Les applications supprimées ne reviennent pas à la création d'un nouvel utilisateur.
 H:chkSecSmartScreen	Coupe le contrôle des fichiers téléchargés. Plus d'avertissement à l'ouverture, mais plus de protection contre les fichiers dangereux.
 H:chkSecSpectre	Retire les protections contre certaines failles des processeurs. Plus de performances, surtout sur les CPU anciens, mais moins de sécurité.
 H:chkSecDefenderIdle	L'antivirus analyse seulement quand l'ordinateur est au repos, sans l'alourdir. La protection en temps réel reste active.
@@ -970,3 +962,59 @@ M:pageSub_tabWin	Sécurité, navigateurs, mises à jour, services et tâches pla
 M:pageSub_tabApps	Installez ou mettez à jour les programmes courants en un clic.
 M:pageSub_tabTools	Nettoyage, réparations et panneaux de Windows. Ces outils agissent tout de suite.
 M:pageSub_tabAdv	Pour les initiés : on retire ici des parties de Windows, une à une.
+M:ttlDebloat	Supprimer des applis Windows
+M:debloatHint	Applis préinstallées rarement utiles. Celles que presque personne n'utilise sont cochées ; réinstallables depuis le Microsoft Store.
+M:debloatSearching	Recherche des applis installées...
+M:debloatNone	Aucune de ces applis n'est installée.
+M:debloatFound	{0} groupes d'applis présents.
+M:debloatRun	Supprimer la sélection
+M:debloatAsk	Supprimer {0} groupes d'applis pour tous les utilisateurs ? Réinstallables depuis le Microsoft Store.
+M:debloatDone	Paquets supprimés : {0}.
+M:debloatStepApps	Applis Windows
+M:debloat_news	Microsoft News, Météo, Finance et Sports
+M:debloat_bing	Recherche Bing
+M:debloat_copilot	Copilot
+M:debloat_widgets	Widgets (actualités dans la barre)
+M:debloat_teams	Microsoft Teams (personnel)
+M:debloat_office	Microsoft 365 (Office) et OneNote préinstallés
+M:debloat_solitaire	Microsoft Solitaire Collection
+M:debloat_tips	Astuces, Obtenir de l'aide et Hub de commentaires
+M:debloat_clipchamp	Clipchamp
+M:debloat_todo	Microsoft To Do et Power Automate
+M:debloat_people	Contacts, Cartes et Skype
+M:debloat_threeD	Applis 3D et réalité mixte
+M:debloat_family	Microsoft Family et Cortana
+M:debloat_devhome	Dev Home
+M:debloat_spotify	Spotify préinstallé
+M:debloat_recorder	Enregistreur vocal
+M:debloat_media	Lecteur multimédia et Films et TV
+M:debloat_outlook	Outlook (nouveau) et Courrier et Calendrier
+M:debloat_phone	Mobile connecté
+M:debloat_quick	Assistance rapide
+M:debloat_alarms	Alarmes et horloge
+M:debloat_sticky	Pense-bêtes
+M:debloat_camera	Caméra
+M:debloat_photos	Photos
+M:debloat_xbox	Applis Xbox et Game Bar (nécessaires au Game Pass)
+M:debloat_onedrive	OneDrive (les fichiers du dossier OneDrive restent)
+M:ttlStartup	Programmes au démarrage
+M:startupHint	Les programmes actifs démarrent avec Windows et le ralentissent. Désactiver ne supprime rien : réactivable quand vous voulez, aussi depuis le Gestionnaire des tâches.
+M:startupNone	Aucun programme ne démarre avec Windows.
+M:startupCount	{0} sur {1} activés.
+M:startupAll	tous les utilisateurs
+M:startupUser	cet utilisateur seulement
+M:leftScanning	Recherche des restes des programmes désinstallés...
+M:leftFound	{0} restes trouvés : en haut de la liste.
+M:leftNone	Aucun reste : la désinstallation a tout supprimé.
+M:leftTitle	Restes des programmes désinstallés
+M:leftHint	Dossiers, clés de registre et démarrages restants. Les sûrs sont cochés ; vérifiez d'abord ceux marqués «à vérifier». Le registre est sauvegardé avant, dossiers et fichiers vont dans la Corbeille.
+M:leftRemove	Supprimer la sélection
+M:leftAsk	Supprimer {0} restes ? Le registre est sauvegardé et dossiers et fichiers vont dans la Corbeille.
+M:leftDone	Restes supprimés : {0} sur {1}.
+M:leftCheck	à vérifier
+M:leftKind_dir	DOSSIER
+M:leftKind_file	FICHIER
+M:leftKind_reg	REGISTRE
+M:leftKind_run	DÉMARRAGE
+M:leftKind_task	TÂCHE
+M:leftKind_svc	SERVICE

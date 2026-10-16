@@ -224,11 +224,6 @@ L:chkBootMenu	Klasyczne menu rozruchu (dostępny F8)
 L:chkBootTimeout	Bez czekania w menu rozruchu
 L:chkBootDynTick	Dynamiczny tick jądra — ryzykowne: przetestuj i zmierz
 L:chkBootTsc	Ulepszona synchronizacja TSC — ryzykowne: przetestuj i zmierz
-L:ttlAppx	PREINSTALOWANE APLIKACJE
-L:lblAppxHint	W razie potrzeby można je zainstalować ponownie ze Sklepu.
-L:chkAppxBloat	Zbędne aplikacje (wiadomości, pogoda, mapy, Skype...)
-L:chkAppxXbox	Aplikacje Xbox i nakładka gier
-L:chkAppxProvision	Nie przywracaj ich dla nowych użytkowników
 L:ttlSec	OBNIŻONE BEZPIECZEŃSTWO
 L:lblSecHint	Wszystkie ryzykowne: naprawdę obniżają ochronę komputera. «Zalecane» włącza dwie z nich, «Zaznacz wszystko» włącza wszystkie po potwierdzeniu.
 L:chkSecSmartScreen	SmartScreen — sprawdzanie pobranych plików
@@ -396,9 +391,6 @@ H:chkBootMenu	Przywraca klasyczne menu rozruchu, z którego wejdziesz w tryb awa
 H:chkBootTimeout	Jeśli masz kilka systemów, komputer startuje od razu, bez czekania w menu wyboru.
 H:chkBootDynTick	Procesor utrzymuje stały rytm systemu. Na niektórych komputerach obniża opóźnienia, na innych nie: trzeba sprawdzić.
 H:chkBootTsc	Zwiększa precyzję pomiaru czasu między rdzeniami procesora. Może poprawić płynność: trzeba sprawdzić.
-H:chkAppxBloat	Usuwa preinstalowane aplikacje, np. wiadomości, pogodę, mapy i Skype. Więcej miejsca i porządniejsze menu Start.
-H:chkAppxXbox	Usuwa aplikacje Xbox i nakładkę gier. Unikaj, jeśli korzystasz z Game Pass.
-H:chkAppxProvision	Usunięte aplikacje nie wracają po utworzeniu nowego użytkownika.
 H:chkSecSmartScreen	Wyłącza sprawdzanie pobranych plików. Brak ostrzeżeń przy otwieraniu, ale też brak ochrony przed groźnymi plikami.
 H:chkSecSpectre	Usuwa zabezpieczenia przed niektórymi lukami procesorów. Więcej wydajności, zwłaszcza na starszych CPU, ale mniej bezpieczeństwa.
 H:chkSecDefenderIdle	Antywirus skanuje tylko, gdy komputer jest bezczynny, i nie obciąża go. Ochrona w czasie rzeczywistym pozostaje włączona.
@@ -967,3 +959,59 @@ M:pageSub_tabWin	Bezpieczeństwo, przeglądarki, aktualizacje, usługi i zadania
 M:pageSub_tabApps	Zainstaluj lub zaktualizuj popularne programy jednym kliknięciem.
 M:pageSub_tabTools	Czyszczenie, naprawy i panele Windows. Działają od razu.
 M:pageSub_tabAdv	Dla zaawansowanych: tu usuwa się części Windows, pojedynczo.
+M:ttlDebloat	Usuń aplikacje Windows
+M:debloatHint	Preinstalowane aplikacje, zwykle zbędne. Zaznaczone są te prawie nieużywane; można je przywrócić ze Sklepu Microsoft.
+M:debloatSearching	Szukam zainstalowanych aplikacji...
+M:debloatNone	Żadna z tych aplikacji nie jest zainstalowana.
+M:debloatFound	Znaleziono {0} grup aplikacji.
+M:debloatRun	Usuń zaznaczone
+M:debloatAsk	Usunąć {0} grup aplikacji dla wszystkich użytkowników? Można je przywrócić ze Sklepu.
+M:debloatDone	Usunięte pakiety: {0}.
+M:debloatStepApps	Aplikacje Windows
+M:debloat_news	Microsoft News, Pogoda, Finanse i Sport
+M:debloat_bing	Wyszukiwanie Bing
+M:debloat_copilot	Copilot
+M:debloat_widgets	Widżety (wiadomości na pasku)
+M:debloat_teams	Microsoft Teams (osobisty)
+M:debloat_office	Preinstalowane Microsoft 365 (Office) i OneNote
+M:debloat_solitaire	Microsoft Solitaire Collection
+M:debloat_tips	Porady, Uzyskaj pomoc i Centrum opinii
+M:debloat_clipchamp	Clipchamp
+M:debloat_todo	Microsoft To Do i Power Automate
+M:debloat_people	Kontakty, Mapy i Skype
+M:debloat_threeD	Aplikacje 3D i rzeczywistości mieszanej
+M:debloat_family	Microsoft Family i Cortana
+M:debloat_devhome	Dev Home
+M:debloat_spotify	Preinstalowany Spotify
+M:debloat_recorder	Rejestrator dźwięku
+M:debloat_media	Odtwarzacz multimedialny i Filmy i TV
+M:debloat_outlook	Outlook (nowy) oraz Poczta i Kalendarz
+M:debloat_phone	Łącze z telefonem
+M:debloat_quick	Szybka pomoc
+M:debloat_alarms	Alarmy i zegar
+M:debloat_sticky	Karteczki samoprzylepne
+M:debloat_camera	Aparat
+M:debloat_photos	Zdjęcia
+M:debloat_xbox	Aplikacje Xbox i Game Bar (potrzebne do Game Pass)
+M:debloat_onedrive	OneDrive (pliki w folderze OneDrive zostają)
+M:ttlStartup	Programy autostartu
+M:startupHint	Włączone startują z Windows i go spowalniają. Wyłączenie niczego nie usuwa: można włączyć ponownie, także w Menedżerze zadań.
+M:startupNone	Żaden program nie startuje z systemem.
+M:startupCount	Włączone: {0} z {1}.
+M:startupAll	wszyscy użytkownicy
+M:startupUser	tylko ten użytkownik
+M:leftScanning	Szukam pozostałości odinstalowanych programów...
+M:leftFound	Znaleziono {0} pozostałości: są na górze listy.
+M:leftNone	Brak pozostałości: odinstalowanie usunęło wszystko.
+M:leftTitle	Pozostałości odinstalowanych programów
+M:leftHint	Pozostałe foldery, klucze rejestru i autostarty. Bezpieczne są zaznaczone; te «do sprawdzenia» najpierw obejrzyj. Rejestr jest zapisywany wcześniej, foldery i pliki trafiają do Kosza.
+M:leftRemove	Usuń zaznaczone
+M:leftAsk	Usunąć {0} pozostałości? Rejestr zostanie zapisany, a foldery i pliki trafią do Kosza.
+M:leftDone	Usunięte pozostałości: {0} z {1}.
+M:leftCheck	do sprawdzenia
+M:leftKind_dir	FOLDER
+M:leftKind_file	PLIK
+M:leftKind_reg	REJESTR
+M:leftKind_run	AUTOSTART
+M:leftKind_task	ZADANIE
+M:leftKind_svc	USŁUGA
