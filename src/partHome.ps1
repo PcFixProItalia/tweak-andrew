@@ -300,8 +300,8 @@ function New-HomeTypeTile([string]$value, [string]$title, [string]$desc, [bool]$
     $b = New-Object System.Windows.Controls.Border
     $b.CornerRadius = 8; $b.Padding = '12,10,12,10'; $b.Margin = '0,0,10,0'; $b.Cursor = 'Hand'
     $b.BorderThickness = 1
-    $b.BorderBrush = New-AppBrush $(if ($selected) { '#FF3A3D46' } else { '#FF1C1E24' })
-    $b.Background = New-AppBrush $(if ($selected) { '#FF1B1D23' } else { '#FF0F1014' })
+    $b.BorderBrush = New-AppBrush $(if ($selected) { '#FF2563EB' } else { '#FF2A2D36' })
+    $b.Background = New-AppBrush $(if ($selected) { '#FF15244A' } else { '#FF1C1F26' })
     $b.Tag = $value
     $sp = New-Object System.Windows.Controls.StackPanel
     $top = New-Object System.Windows.Controls.Grid
@@ -328,7 +328,7 @@ function New-HomeTypeCard($i) {
     $hg.ColumnDefinitions.Add($hc0); $hg.ColumnDefinitions.Add($hc1)
     $cap = New-Object System.Windows.Controls.TextBlock; $cap.Text = T 'homePcType'; $cap.Style = $window.FindResource('CardTitle'); $cap.Margin = '0'; $cap.VerticalAlignment = 'Center'
     [void]$hg.Children.Add($cap)
-    $now = New-AppPill ((T 'homeTypeInUse') -f (Get-PcTypeName (Get-PcType))) '#FF9EC2FF' '#266EA8FF'
+    $now = New-AppPill ((T 'homeTypeInUse') -f (Get-PcTypeName (Get-PcType))) '#FF9EC2FF' '#332563EB'
     $now.Margin = '12,0,0,0'
     [System.Windows.Controls.Grid]::SetColumn($now, 1); $now.HorizontalAlignment = 'Left'
     [void]$hg.Children.Add($now)
@@ -399,7 +399,7 @@ function New-HomeVolumeRow($v) {
     $bg = New-Object System.Windows.Controls.Border; $bg.CornerRadius = 3; $bg.Background = New-AppBrush '#FF24262D'
     [System.Windows.Controls.Grid]::SetColumnSpan($bg, 2); [void]$bar.Children.Add($bg)
     $fill = New-Object System.Windows.Controls.Border; $fill.CornerRadius = 3
-    $fill.Background = New-AppBrush $(if ($used -ge 0.9) { '#FFF87171' } elseif ($used -ge 0.75) { '#FFE0A25E' } else { '#FF6EA8FF' })
+    $fill.Background = New-AppBrush $(if ($used -ge 0.9) { '#FFF87171' } elseif ($used -ge 0.75) { '#FFE0A25E' } else { '#FF2563EB' })
     [void]$bar.Children.Add($fill)
     [void]$sp.Children.Add($bar)
     return $sp

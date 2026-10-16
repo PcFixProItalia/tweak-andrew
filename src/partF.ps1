@@ -196,7 +196,7 @@ function Add-PlanRow {
     if ($isActive) {
         $btn.Content = T 'planActive'
         $btn.IsEnabled = $false
-        $card.BorderBrush = New-Brush "#FF6EA8FF"
+        $card.BorderBrush = New-Brush "#FF2563EB"
         $card.Background = New-Brush "#1FFFC53D"
     } else {
         $btn.Content = T 'planApply'
@@ -227,7 +227,7 @@ function Show-PlanList {
 
     $panPlans.Children.Clear()
 
-    Add-PlanGroupTitle (T 'planTop') $panPlans "#FF6EA8FF"
+    Add-PlanGroupTitle (T 'planTop') $panPlans "#FF2563EB"
     foreach ($e in ($script:PlanCatalog | Where-Object { $_.Group -eq 'top' })) { Add-PlanRow $e $panPlans }
 
     Add-PlanGroupTitle (T 'planWindows') $panPlans "#FF8E919C"

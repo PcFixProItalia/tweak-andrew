@@ -598,7 +598,7 @@ function New-ToolHead([string]$Glyph, [string]$Color, [string]$Title, [string]$D
     return $g
 }
 
-function New-ToolCard([string]$Title, [string]$Hint, [string]$Glyph = '', [string]$Color = '#FF6EA8FF') {
+function New-ToolCard([string]$Title, [string]$Hint, [string]$Glyph = '', [string]$Color = '#FF2563EB') {
     $card = New-Object System.Windows.Controls.Border
     $card.Style = $window.FindResource('Glass')
     $sp = New-Object System.Windows.Controls.StackPanel
@@ -736,7 +736,7 @@ function Show-ToolsPage {
     $row1 = New-Object System.Windows.Controls.Grid
     foreach ($i in 0..1) { $cd = New-Object System.Windows.Controls.ColumnDefinition; $cd.Width = New-Object System.Windows.GridLength(1, [System.Windows.GridUnitType]::Star); $row1.ColumnDefinitions.Add($cd) }
 
-    $c = New-ToolCard (T 'ttlCleanAll') (T 'cleanAllHint') 'E74D' '#FF6EA8FF'
+    $c = New-ToolCard (T 'ttlCleanAll') (T 'cleanAllHint') 'E74D' '#FF2563EB'
     $script:CleanBoxes = @{}; $script:CleanSizeText = @{}
     foreach ($it in $script:CleanItems) { [void]$c.Panel.Children.Add((New-CleanRow $it)) }
     $bar = New-Object System.Windows.Controls.Grid; $bar.Margin = '0,12,0,0'

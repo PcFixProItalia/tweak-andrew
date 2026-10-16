@@ -14,7 +14,7 @@ function Show-Dialog {
         [ValidateSet('ask','warn','danger')][string]$Kind = 'ask',
         [string]$Detail = ''
     )
-    $accent = switch ($Kind) { 'warn' { '#FFFFB86B' } 'danger' { '#FFF87171' } default { '#FF6EA8FF' } }
+    $accent = switch ($Kind) { 'warn' { '#FFFFB86B' } 'danger' { '#FFF87171' } default { '#FF2563EB' } }
     $glyph  = if ($Kind -eq 'ask') { '?' } else { '!' }
 
     [xml]$dx = @'
