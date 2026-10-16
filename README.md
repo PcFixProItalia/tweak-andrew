@@ -46,10 +46,27 @@ una console virtuale (ConPTY) e il programma ne legge la percentuale di
 download. Gli aggiornamenti disponibili vengono da `winget upgrade`, le app
 gia' presenti da `winget export` e dall'elenco dei programmi installati.
 
+Dopo una disinstallazione il programma cerca i residui, come Revo Uninstaller:
+cartelle del programma, chiavi di registro, avvii automatici, attivita'
+pianificate, servizi e collegamenti. Aspetta che la voce del programma sparisca
+(molti disinstallatori aprono una finestra e finiscono dopo il comando).
+Propone solo elementi con il nome del programma o dentro la sua cartella, mai
+cartelle generiche o quelle dell'editore con altri programmi dentro. Il
+registro e le attivita' si salvano in `%ProgramData%\TweakAndrew\Residui`,
+cartelle e file vanno nel Cestino.
+
 ## Strumenti
 
-Pulizia selettiva, riparazioni (rete, Windows Update, DISM e SFC, orologio,
-winget, Store, icone), funzionalità di Windows e pannelli classici. Non serve
+Pulizia totale del PC (anche cronologia e cache dei browser, senza toccare
+password e cookie), programmi all'avvio (stesso metodo di Gestione attivita'),
+app di Windows da togliere, dispositivi scollegati, riparazioni (rete, Windows
+Update, DISM e SFC, orologio, winget, Store, icone), funzionalità di Windows e
+pannelli classici.
+
+Le app da togliere vengono dall'elenco del playbook di ReviOS, open source.
+Restano fuori i pacchetti di sistema che ReviOS toglie con un suo strumento
+(componenti WinSxS, Edge): toglierli rompe aggiornamenti e funzioni di Windows,
+e in Europa Edge si disinstalla gia' da Impostazioni. Non serve
 più O&O ShutUp10++: le sue voci stanno in Privacy e Privacy avanzata, con gli
 stessi livelli di consiglio. Gli strumenti girano uno alla volta
 in una console virtuale, così la percentuale di DISM e SFC arriva al pannello.
@@ -65,7 +82,8 @@ piena se la voce è già lì; un clic la porta al consiglio (nelle pagine con «
 
 ## Aspetto
 
-Tema «Graphite»: fondo grafite piatto, schede con bordi sottili e angoli da 10
+Tema «Graphite»: fondo quasi nero con tre aloni di colore sfumati, schede di
+vetro (piu' chiare e un po' trasparenti, bordo luminoso in alto) e angoli da 10
 pixel, un solo colore d'accento (`#4C8DFF`) per tutte le pagine e Segoe UI
 Variable come carattere. Il colore resta solo dove porta un significato:
 avvisi in arancio, sicurezza ridotta in rosso, marchi NVIDIA, AMD e Intel.
