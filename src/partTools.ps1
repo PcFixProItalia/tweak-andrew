@@ -90,7 +90,7 @@ function Add-ToolJob([string]$Name, [string]$Script, [switch]$Reboot) {
     if (-not (Test-ToolBusy)) { $script:ToolJobList.Clear(); $panToolJobs.Children.Clear() }
     $job = @{ Name = $Name; Label = $Name; Script = $Script; Reboot = [bool]$Reboot; Proc = $null; Done = $false; Ok = $false; Frac = 0.0 }
     New-AppJobRow $job $panToolJobs
-    Set-AppJobView $job (T 'jobWait') 0 '#FF7887AD'
+    Set-AppJobView $job (T 'jobWait') 0 '#FF767985'
     [void]$script:ToolJobList.Add($job)
     $script:ToolJobs.Enqueue($job)
     $bdToolJobs.Visibility = 'Visible'; $btnToolJobsClose.Visibility = 'Collapsed'
@@ -109,7 +109,7 @@ function Start-ToolJob($job) {
         catch { Write-Log "[ERRORE] $($job.Name) - $($_.Exception.Message)"; Complete-ToolJob $job -1; return }
     }
     Write-Log "[INFO] Avvio: $($job.Name)"
-    Set-AppJobView $job (T 'jobPrep') -1 '#FFC9D3EC'
+    Set-AppJobView $job (T 'jobPrep') -1 '#FFC9CBD2'
 }
 
 function Update-ToolJobProgress($job) {
@@ -126,8 +126,8 @@ function Update-ToolJobProgress($job) {
     $pct = -1
     if ($own.Count -gt 0) { $pct = [int]$own[$own.Count - 1].Groups[1].Value }
     elseif ($any.Count -gt 0) { $pct = [Math]::Min(100, [int]$any[$any.Count - 1].Groups[1].Value) }
-    if ($pct -ge 0) { Set-AppJobView $job "$text  ·  $pct%" $pct '#FFE8EEFC'; $job.Frac = $pct / 100 }
-    else { Set-AppJobView $job $text -1 '#FFE8EEFC'; $job.Frac = 0.05 }
+    if ($pct -ge 0) { Set-AppJobView $job "$text  ·  $pct%" $pct '#FFE9EAEE'; $job.Frac = $pct / 100 }
+    else { Set-AppJobView $job $text -1 '#FFE9EAEE'; $job.Frac = 0.05 }
 }
 
 function Complete-ToolJob($job, [int]$code) {
@@ -642,7 +642,7 @@ function New-ToolTile([string]$Key, [string]$Glyph, [string]$Color, [scriptblock
     $top.ColumnDefinitions.Add($tc0); $top.ColumnDefinitions.Add($tc1)
     [void]$top.Children.Add((New-ToolIcon $Glyph $Color 32))
     $t = New-Object System.Windows.Controls.TextBlock
-    $t.Text = T "tool_$Key"; $t.FontSize = 13; $t.FontWeight = 'SemiBold'; $t.Foreground = New-AppBrush '#FFE8EEFC'
+    $t.Text = T "tool_$Key"; $t.FontSize = 13; $t.FontWeight = 'SemiBold'; $t.Foreground = New-AppBrush '#FFE9EAEE'
     $t.TextWrapping = 'Wrap'; $t.VerticalAlignment = 'Center'; $t.Margin = '10,0,0,0'
     [System.Windows.Controls.Grid]::SetColumn($t, 1); [void]$top.Children.Add($t)
     [void]$g.Children.Add($top)
@@ -705,7 +705,7 @@ function New-CleanRow($it) {
     $cb.Tag = 'tool'; $cb.IsChecked = $it.On
     $t = New-Object System.Windows.Controls.TextBlock; $t.TextWrapping = 'Wrap'
     $r1 = New-Object System.Windows.Documents.Run (T "clean_$($it.Key)")
-    $r1.Foreground = New-AppBrush '#FFE8EEFC'; $r1.FontSize = 13
+    $r1.Foreground = New-AppBrush '#FFE9EAEE'; $r1.FontSize = 13
     $r2 = New-Object System.Windows.Documents.Run ''
     $r2.Foreground = New-AppBrush '#FF7EB1FF'; $r2.FontSize = 12.5; $r2.FontWeight = 'SemiBold'
     [void]$t.Inlines.Add($r1); [void]$t.Inlines.Add($r2)
@@ -744,7 +744,7 @@ function Show-ToolsPage {
     $bc1 = New-Object System.Windows.Controls.ColumnDefinition; $bc1.Width = [System.Windows.GridLength]::Auto
     $bar.ColumnDefinitions.Add($bc0); $bar.ColumnDefinitions.Add($bc1)
     $script:CleanTotalText = New-Object System.Windows.Controls.TextBlock
-    $script:CleanTotalText.FontSize = 13; $script:CleanTotalText.FontWeight = 'SemiBold'; $script:CleanTotalText.Foreground = New-AppBrush '#FFC9D3EC'
+    $script:CleanTotalText.FontSize = 13; $script:CleanTotalText.FontWeight = 'SemiBold'; $script:CleanTotalText.Foreground = New-AppBrush '#FFC9CBD2'
     $script:CleanTotalText.VerticalAlignment = 'Center'
     [void]$bar.Children.Add($script:CleanTotalText)
     $btns = New-Object System.Windows.Controls.StackPanel; $btns.Orientation = 'Horizontal'
@@ -766,7 +766,7 @@ function Show-ToolsPage {
     # Programmi all'avvio, sotto la pulizia.
     $c = New-ToolCard (T 'ttlStartup') (T 'startupHint') 'E7E8' '#FFFBBF24'
     $script:StartupStatus = New-Object System.Windows.Controls.TextBlock
-    $script:StartupStatus.FontSize = 13; $script:StartupStatus.Foreground = New-AppBrush '#FFC9D3EC'; $script:StartupStatus.Margin = '0,0,0,8'
+    $script:StartupStatus.FontSize = 13; $script:StartupStatus.Foreground = New-AppBrush '#FFC9CBD2'; $script:StartupStatus.Margin = '0,0,0,8'
     [void]$c.Panel.Children.Add($script:StartupStatus)
     $sv2 = New-Object System.Windows.Controls.ScrollViewer; $sv2.MaxHeight = 420; $sv2.VerticalScrollBarVisibility = 'Auto'
     $script:StartupList = New-Object System.Windows.Controls.StackPanel
@@ -777,14 +777,14 @@ function Show-ToolsPage {
 
     $c = New-ToolCard (T 'ttlGhost') (T 'ghostHint') 'E772' '#FF2DD4BF'
     $script:GhostStatus = New-Object System.Windows.Controls.TextBlock
-    $script:GhostStatus.FontSize = 13; $script:GhostStatus.Foreground = New-AppBrush '#FFC9D3EC'; $script:GhostStatus.TextWrapping = 'Wrap'
+    $script:GhostStatus.FontSize = 13; $script:GhostStatus.Foreground = New-AppBrush '#FFC9CBD2'; $script:GhostStatus.TextWrapping = 'Wrap'
     $script:GhostStatus.Margin = '0,0,0,8'
     [void]$c.Panel.Children.Add($script:GhostStatus)
     $script:GhostAll = New-Object System.Windows.Controls.CheckBox
     $script:GhostAll.Tag = 'tool'; $script:GhostAll.IsChecked = $true
     $script:GhostAll.Add_Checked({ foreach ($g in $script:GhostBoxes) { $g.IsChecked = $true }; Update-GhostButton })
     $script:GhostAll.Add_Unchecked({ foreach ($g in $script:GhostBoxes) { $g.IsChecked = $false }; Update-GhostButton })
-    $at = New-Object System.Windows.Controls.TextBlock; $at.Text = T 'ghostAll'; $at.FontWeight = 'SemiBold'; $at.Foreground = New-AppBrush '#FFC9D3EC'
+    $at = New-Object System.Windows.Controls.TextBlock; $at.Text = T 'ghostAll'; $at.FontWeight = 'SemiBold'; $at.Foreground = New-AppBrush '#FFC9CBD2'
     $script:GhostAllRow = New-SwitchRow $at '' $script:GhostAll
     $script:GhostAllRow.Visibility = 'Collapsed'; $script:GhostAllRow.Margin = '0,0,0,8'
     [void]$c.Panel.Children.Add($script:GhostAllRow)
@@ -805,7 +805,7 @@ function Show-ToolsPage {
     # App di Windows da togliere (debloat), in cima alla colonna destra.
     $c = New-ToolCard (T 'ttlDebloat') (T 'debloatHint') 'E74C' '#FFF472B6'
     $script:DebloatStatus = New-Object System.Windows.Controls.TextBlock
-    $script:DebloatStatus.FontSize = 13; $script:DebloatStatus.Foreground = New-AppBrush '#FFC9D3EC'; $script:DebloatStatus.Margin = '0,0,0,8'
+    $script:DebloatStatus.FontSize = 13; $script:DebloatStatus.Foreground = New-AppBrush '#FFC9CBD2'; $script:DebloatStatus.Margin = '0,0,0,8'
     [void]$c.Panel.Children.Add($script:DebloatStatus)
     $script:DebloatList = New-Object System.Windows.Controls.StackPanel
     [void]$c.Panel.Children.Add($script:DebloatList)
@@ -1008,8 +1008,8 @@ function Start-GhostScan {
             $cb = New-Object System.Windows.Controls.CheckBox
             $cb.Tag = $d.Id; $cb.IsChecked = $true
             $tb = New-Object System.Windows.Controls.TextBlock; $tb.TextWrapping = 'Wrap'
-            $r1 = New-Object System.Windows.Documents.Run $d.Name; $r1.Foreground = New-AppBrush '#FFE8EEFC'; $r1.FontSize = 12.5
-            $r2 = New-Object System.Windows.Documents.Run "   $($d.Class)"; $r2.Foreground = New-AppBrush '#FF8C9CC4'; $r2.FontSize = 11.5
+            $r1 = New-Object System.Windows.Documents.Run $d.Name; $r1.Foreground = New-AppBrush '#FFE9EAEE'; $r1.FontSize = 12.5
+            $r2 = New-Object System.Windows.Documents.Run "   $($d.Class)"; $r2.Foreground = New-AppBrush '#FF8B8E99'; $r2.FontSize = 11.5
             [void]$tb.Inlines.Add($r1); [void]$tb.Inlines.Add($r2)
             $cb.Add_Checked({ Update-GhostButton }); $cb.Add_Unchecked({ Update-GhostButton })
             $script:GhostBoxes += $cb
@@ -1132,7 +1132,7 @@ function Start-DebloatScan {
             $cb = New-Object System.Windows.Controls.CheckBox
             $cb.Tag = 'tool'; $cb.IsChecked = $a.On
             $cb.Add_Checked({ Update-DebloatButton }); $cb.Add_Unchecked({ Update-DebloatButton })
-            $tb = New-Object System.Windows.Controls.TextBlock; $tb.Text = (T "debloat_$($a.K)"); $tb.Foreground = New-AppBrush '#FFE8EEFC'; $tb.FontSize = 12.5; $tb.TextWrapping = 'Wrap'
+            $tb = New-Object System.Windows.Controls.TextBlock; $tb.Text = (T "debloat_$($a.K)"); $tb.Foreground = New-AppBrush '#FFE9EAEE'; $tb.FontSize = 12.5; $tb.TextWrapping = 'Wrap'
             $script:DebloatBoxes[$a.K] = $cb
             $row = New-SwitchRow $tb '' $cb; $row.Margin = '0,0,0,1'
             [void]$script:DebloatList.Children.Add($row)
@@ -1221,8 +1221,8 @@ function Show-StartupList {
         $handler = { if (-not $script:StartupBuilding) { Set-StartupEntry $this.Tag ($this.IsChecked -eq $true); $this.Tag.On = ($this.IsChecked -eq $true); Update-StartupStatus } }
         $cb.Add_Checked($handler); $cb.Add_Unchecked($handler)
         $tb = New-Object System.Windows.Controls.TextBlock; $tb.TextWrapping = 'Wrap'
-        $r1 = New-Object System.Windows.Documents.Run $e.Name; $r1.Foreground = New-AppBrush '#FFE8EEFC'; $r1.FontSize = 12.5
-        $r2 = New-Object System.Windows.Documents.Run ("   " + $(if ($e.All) { T 'startupAll' } else { T 'startupUser' })); $r2.Foreground = New-AppBrush '#FF8C9CC4'; $r2.FontSize = 11.5
+        $r1 = New-Object System.Windows.Documents.Run $e.Name; $r1.Foreground = New-AppBrush '#FFE9EAEE'; $r1.FontSize = 12.5
+        $r2 = New-Object System.Windows.Documents.Run ("   " + $(if ($e.All) { T 'startupAll' } else { T 'startupUser' })); $r2.Foreground = New-AppBrush '#FF8B8E99'; $r2.FontSize = 11.5
         [void]$tb.Inlines.Add($r1); [void]$tb.Inlines.Add($r2)
         $cmd = [string]$e.Cmd; if ($cmd.Length -gt 90) { $cmd = $cmd.Substring(0, 87) + '...' }
         $row = New-SwitchRow $tb $cmd $cb; $row.Margin = '0,0,0,3'
@@ -1363,14 +1363,14 @@ function Show-WuProfiles {
         $sp = New-Object System.Windows.Controls.StackPanel
         $t = New-Object System.Windows.Controls.TextBlock
         $t.Text = T "wu_$p"; $t.FontSize = 14; $t.FontWeight = 'Bold'; $t.FontFamily = 'Segoe UI Variable Display, Segoe UI'
-        $t.Foreground = New-AppBrush $(if ($p -eq 'disable') { '#FFF87171' } else { '#FFEEF3FF' })
+        $t.Foreground = New-AppBrush $(if ($p -eq 'disable') { '#FFF87171' } else { '#FFEEEFF2' })
         $s = New-Object System.Windows.Controls.TextBlock
         $s.Text = T "wuSub_$p"; $s.FontSize = 11.5; $s.Margin = '0,2,0,6'
-        $s.Foreground = New-AppBrush $(if ($p -eq 'disable') { '#FFF87171' } else { '#FFA5B3D6' })
+        $s.Foreground = New-AppBrush $(if ($p -eq 'disable') { '#FFF87171' } else { '#FFA1A4AE' })
         [void]$sp.Children.Add($t); [void]$sp.Children.Add($s)
         foreach ($line in ((T "wuList_$p") -split ';')) {
             $l = New-Object System.Windows.Controls.TextBlock
-            $l.Text = "·  $line"; $l.FontSize = 11.5; $l.Foreground = New-AppBrush '#FFC9D3EC'; $l.TextWrapping = 'Wrap'; $l.Margin = '0,1,0,0'
+            $l.Text = "·  $line"; $l.FontSize = 11.5; $l.Foreground = New-AppBrush '#FFC9CBD2'; $l.TextWrapping = 'Wrap'; $l.Margin = '0,1,0,0'
             [void]$sp.Children.Add($l)
         }
         $rb.Content = $sp

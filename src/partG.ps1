@@ -23,7 +23,7 @@ function Show-Dialog {
         WindowStyle="None" AllowsTransparency="True" Background="Transparent"
         ShowInTaskbar="False" ResizeMode="NoResize" SizeToContent="WidthAndHeight"
         WindowStartupLocation="CenterOwner" TextOptions.TextFormattingMode="Ideal" UseLayoutRounding="True">
-    <Border Margin="24" CornerRadius="20" Background="#FF0E1D4A" BorderBrush="#1FFFFFFF" BorderThickness="1"
+    <Border Margin="24" CornerRadius="20" Background="#FF111318" BorderBrush="#1FFFFFFF" BorderThickness="1"
             Padding="26,24,24,22" MinWidth="380" MaxWidth="480">
         <Border.Effect>
             <DropShadowEffect BlurRadius="36" ShadowDepth="6" Opacity="0.7" Color="#000000"/>
@@ -40,7 +40,7 @@ function Show-Dialog {
                 </Border>
                 <StackPanel Grid.Column="1">
                     <TextBlock x:Name="dTitle" FontFamily="Segoe UI Variable Display, Segoe UI" FontWeight="Bold"
-                               FontSize="16" Foreground="#FFEEF3FF" TextWrapping="Wrap" Margin="0,6,0,8"/>
+                               FontSize="16" Foreground="#FFEEEFF2" TextWrapping="Wrap" Margin="0,6,0,8"/>
                     <TextBlock x:Name="dMsg" FontFamily="Segoe UI Variable Text, Segoe UI" FontSize="13" Foreground="#FFB4B4BE"
                                TextWrapping="Wrap" LineHeight="20"/>
                     <TextBlock x:Name="dDetail" FontFamily="Segoe UI Variable Text, Segoe UI" FontSize="12" Margin="0,10,0,0"

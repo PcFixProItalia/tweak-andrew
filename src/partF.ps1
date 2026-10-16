@@ -168,7 +168,7 @@ function Add-PlanRow {
     $title.FontWeight = [System.Windows.FontWeights]::SemiBold
     $title.FontSize = 13
     $title.TextWrapping = [System.Windows.TextWrapping]::Wrap
-    $title.Foreground = New-Brush "#FFEEF3FF"
+    $title.Foreground = New-Brush "#FFEEEFF2"
 
     $desc = New-Object System.Windows.Controls.TextBlock
     $desc.Text = $(if ($script:Msg.ContainsKey("pd_$($Entry.Key)")) { T "pd_$($Entry.Key)" } else { [string]$Entry.Desc })
@@ -230,7 +230,7 @@ function Show-PlanList {
     Add-PlanGroupTitle (T 'planTop') $panPlans "#FF6EA8FF"
     foreach ($e in ($script:PlanCatalog | Where-Object { $_.Group -eq 'top' })) { Add-PlanRow $e $panPlans }
 
-    Add-PlanGroupTitle (T 'planWindows') $panPlans "#FF8F9DC2"
+    Add-PlanGroupTitle (T 'planWindows') $panPlans "#FF8E919C"
     foreach ($e in ($script:PlanCatalog | Where-Object { $_.Group -eq 'windows' })) { Add-PlanRow $e $panPlans }
 
     Add-PlanGroupTitle (T 'planTest') $panPlans "#FFE0A25E"

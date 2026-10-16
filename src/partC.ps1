@@ -1353,7 +1353,7 @@ function Show-StorageInventory {
             $cd.Width = if ($w -eq '*') { New-Object System.Windows.GridLength(1, [System.Windows.GridUnitType]::Star) } else { [System.Windows.GridLength]::Auto }
             $head.ColumnDefinitions.Add($cd)
         }
-        $pillColor = switch ($kind) { 'NVMe' { @('#FFA5B4FC', '#26818CF8') } 'SSD' { @('#FF7DD3FC', '#2638BDF8') } 'HDD' { @('#FFFCD34D', '#26F59E0B') } 'USB' { @('#FFC9D3EC', '#1FFFFFFF') } default { @('#FFC9D3EC', '#1FFFFFFF') } }
+        $pillColor = switch ($kind) { 'NVMe' { @('#FFA5B4FC', '#26818CF8') } 'SSD' { @('#FF7DD3FC', '#2638BDF8') } 'HDD' { @('#FFFCD34D', '#26F59E0B') } 'USB' { @('#FFC9CBD2', '#1FFFFFFF') } default { @('#FFC9CBD2', '#1FFFFFFF') } }
         $pills = New-Object System.Windows.Controls.StackPanel; $pills.Orientation = 'Horizontal'
         [void]$pills.Children.Add((New-DiskPill $kind $pillColor[0] $pillColor[1]))
         if ($isSys) { [void]$pills.Children.Add((New-DiskPill (T 'diskSystem') '#FF3DBE8B' '#263DBE8B')) }
@@ -1361,7 +1361,7 @@ function Show-StorageInventory {
 
         $name = New-Object System.Windows.Controls.TextBlock
         $name.Text = [string]$d.FriendlyName; $name.FontWeight = 'SemiBold'; $name.FontSize = 13
-        $name.Foreground = New-DiskBrush '#FFEEF3FF'; $name.VerticalAlignment = 'Center'; $name.TextTrimming = 'CharacterEllipsis'
+        $name.Foreground = New-DiskBrush '#FFEEEFF2'; $name.VerticalAlignment = 'Center'; $name.TextTrimming = 'CharacterEllipsis'
         [System.Windows.Controls.Grid]::SetColumn($name, 1); [void]$head.Children.Add($name)
 
         $right = New-Object System.Windows.Controls.StackPanel; $right.Orientation = 'Horizontal'; $right.VerticalAlignment = 'Center'
@@ -1370,7 +1370,7 @@ function Show-StorageInventory {
         $dot.Fill = New-DiskBrush $(if ($healthy) { '#FF3DBE8B' } else { '#FFFFB86B' })
         $dot.ToolTip = if ($healthy) { T 'diskHealthy' } else { T 'diskWarning' }
         $size = New-Object System.Windows.Controls.TextBlock
-        $size.Text = Format-DiskSize ([double]$d.Size); $size.Foreground = New-DiskBrush '#FFA5B3D6'; $size.FontSize = 12
+        $size.Text = Format-DiskSize ([double]$d.Size); $size.Foreground = New-DiskBrush '#FFA1A4AE'; $size.FontSize = 12
         [void]$right.Children.Add($size); [void]$right.Children.Add($dot)
         [System.Windows.Controls.Grid]::SetColumn($right, 2); [void]$head.Children.Add($right)
         [void]$sp.Children.Add($head)
@@ -1395,7 +1395,7 @@ function Show-StorageInventory {
             [System.Windows.Controls.Grid]::SetColumn($bar, 1); [void]$row.Children.Add($bar)
             $free = New-Object System.Windows.Controls.TextBlock
             $free.Text = (T 'volFree') -f (Format-DiskSize ([double]$v.SizeRemaining)), (Format-DiskSize ([double]$v.Size))
-            $free.Foreground = New-DiskBrush '#FFA5B3D6'; $free.FontSize = 11.5; $free.Margin = '12,0,0,0'; $free.VerticalAlignment = 'Center'
+            $free.Foreground = New-DiskBrush '#FFA1A4AE'; $free.FontSize = 11.5; $free.Margin = '12,0,0,0'; $free.VerticalAlignment = 'Center'
             [System.Windows.Controls.Grid]::SetColumn($free, 2); [void]$row.Children.Add($free)
             if ($v.FileSystemLabel) { $row.ToolTip = [string]$v.FileSystemLabel }
             [void]$sp.Children.Add($row)
@@ -1800,7 +1800,7 @@ function Update-ApplyButton {
     if ($null -ne $btnDeselectAll) { $btnDeselectAll.IsEnabled = ($total -gt 0) }
     if ($null -ne $txtSelectedCount) {
         $txtSelectedCount.Text = "$total"
-        if ($total -gt 0) { $txtSelectedCount.Foreground = "#FF3DBE8B" } else { $txtSelectedCount.Foreground = "#FF6A7AA3" }
+        if ($total -gt 0) { $txtSelectedCount.Foreground = "#FF3DBE8B" } else { $txtSelectedCount.Foreground = "#FF666A75" }
     }
 }
 

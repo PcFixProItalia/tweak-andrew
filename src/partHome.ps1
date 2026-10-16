@@ -221,8 +221,8 @@ function Add-HomeRow($panel, [string]$label, [string]$value) {
     $c0 = New-Object System.Windows.Controls.ColumnDefinition; $c0.Width = New-Object System.Windows.GridLength(118)
     $c1 = New-Object System.Windows.Controls.ColumnDefinition
     $g.ColumnDefinitions.Add($c0); $g.ColumnDefinitions.Add($c1)
-    $l = New-HomeText $label 12 '#FF8C9CC4'
-    $v = New-HomeText $value 12.5 '#FFE8EEFC'
+    $l = New-HomeText $label 12 '#FF8B8E99'
+    $v = New-HomeText $value 12.5 '#FFE9EAEE'
     $v.Margin = '8,0,0,0'
     [System.Windows.Controls.Grid]::SetColumn($v, 1)
     [void]$g.Children.Add($l); [void]$g.Children.Add($v)
@@ -230,7 +230,7 @@ function Add-HomeRow($panel, [string]$label, [string]$value) {
 }
 
 function Add-HomeItem($panel, [string]$title) {
-    $t = New-HomeText $title 13 '#FFEEF3FF' 'SemiBold'
+    $t = New-HomeText $title 13 '#FFEEEFF2' 'SemiBold'
     $t.Margin = if ($panel.Children.Count -gt 1) { '0,12,0,3' } else { '0,0,0,3' }
     [void]$panel.Children.Add($t)
 }
@@ -266,10 +266,10 @@ function New-HomeHero($i) {
     $name = New-HomeText $i.Pc 28 '#FFFFFFFF' 'Bold'; $name.FontFamily = 'Segoe UI Variable Display, Segoe UI'
     [void]$left.Children.Add($name)
     $grp = if ($i.PartOfDomain) { T 'homeDomain' } else { T 'homeWorkgroup' }
-    $l1 = New-HomeText "$($i.User)   ·   $grp $($i.Domain)" 12.5 '#FFA5B3D6'; $l1.Margin = '0,4,0,0'
+    $l1 = New-HomeText "$($i.User)   ·   $grp $($i.Domain)" 12.5 '#FFA1A4AE'; $l1.Margin = '0,4,0,0'
     [void]$left.Children.Add($l1)
     $osLine = (@($i.Os, $i.OsVersion) | Where-Object { $_ }) -join ' '
-    $l2 = New-HomeText "$osLine   ·   build $($i.OsBuild)   ·   $($i.OsArch)" 12.5 '#FFA5B3D6'; $l2.Margin = '0,2,0,0'
+    $l2 = New-HomeText "$osLine   ·   build $($i.OsBuild)   ·   $($i.OsArch)" 12.5 '#FFA1A4AE'; $l2.Margin = '0,2,0,0'
     [void]$left.Children.Add($l2)
 
     $chips = New-Object System.Windows.Controls.WrapPanel; $chips.Margin = '0,12,0,0'
@@ -284,7 +284,7 @@ function New-HomeHero($i) {
         $(if ($i.InstallDate) { (T 'homeInstalledOn') -f (Format-HomeDate $i.InstallDate) }),
         $model)) {
         if (-not $c) { continue }
-        $p = New-AppPill $c '#FFC9D3EC' '#1CFFFFFF'; $p.Margin = '0,0,8,6'; $p.Padding = '10,4,10,4'
+        $p = New-AppPill $c '#FFC9CBD2' '#1CFFFFFF'; $p.Margin = '0,0,8,6'; $p.Padding = '10,4,10,4'
         [void]$chips.Children.Add($p)
     }
     [void]$left.Children.Add($chips)
@@ -307,11 +307,11 @@ function New-HomeTypeTile([string]$value, [string]$title, [string]$desc, [bool]$
     $top = New-Object System.Windows.Controls.Grid
     $tc0 = New-Object System.Windows.Controls.ColumnDefinition; $tc1 = New-Object System.Windows.Controls.ColumnDefinition; $tc1.Width = [System.Windows.GridLength]::Auto
     $top.ColumnDefinitions.Add($tc0); $top.ColumnDefinitions.Add($tc1)
-    $t = New-HomeText $title 14 $(if ($selected) { '#FFFFFFFF' } else { '#FFE8EEFC' }) 'SemiBold'
+    $t = New-HomeText $title 14 $(if ($selected) { '#FFFFFFFF' } else { '#FFE9EAEE' }) 'SemiBold'
     [void]$top.Children.Add($t)
     if ($selected) { $tk = New-AppTick '#FF6EA8FF' 12; $tk.VerticalAlignment = 'Center'; [System.Windows.Controls.Grid]::SetColumn($tk, 1); [void]$top.Children.Add($tk) }
     [void]$sp.Children.Add($top)
-    $d = New-HomeText $desc 12 '#FFA5B3D6'; $d.Margin = '0,5,0,0'
+    $d = New-HomeText $desc 12 '#FFA1A4AE'; $d.Margin = '0,5,0,0'
     [void]$sp.Children.Add($d)
     $b.Child = $sp
     $b.Add_MouseLeftButtonUp({ if ((Get-PcTypeSetting) -ne [string]$this.Tag) { Set-PcTypeSetting ([string]$this.Tag) } })
@@ -333,7 +333,7 @@ function New-HomeTypeCard($i) {
     [System.Windows.Controls.Grid]::SetColumn($now, 1); $now.HorizontalAlignment = 'Left'
     [void]$hg.Children.Add($now)
     [void]$sp.Children.Add($hg)
-    $sub = New-HomeText (T 'homeTypeHint') 12.5 '#FFA5B3D6'; $sub.Margin = '0,0,0,12'
+    $sub = New-HomeText (T 'homeTypeHint') 12.5 '#FFA1A4AE'; $sub.Margin = '0,0,0,12'
     [void]$sp.Children.Add($sub)
     $grid = New-Object System.Windows.Controls.Grid
     $set = Get-PcTypeSetting
@@ -363,7 +363,7 @@ function New-HomeDiskRow($d) {
     $c0 = New-Object System.Windows.Controls.ColumnDefinition
     $c1 = New-Object System.Windows.Controls.ColumnDefinition; $c1.Width = [System.Windows.GridLength]::Auto
     $g.ColumnDefinitions.Add($c0); $g.ColumnDefinitions.Add($c1)
-    $n = New-HomeText $d.Name 12.5 '#FFE8EEFC'; $n.TextWrapping = 'NoWrap'; $n.TextTrimming = 'CharacterEllipsis'; $n.VerticalAlignment = 'Center'
+    $n = New-HomeText $d.Name 12.5 '#FFE9EAEE'; $n.TextWrapping = 'NoWrap'; $n.TextTrimming = 'CharacterEllipsis'; $n.VerticalAlignment = 'Center'
     [void]$g.Children.Add($n)
     $tags = New-Object System.Windows.Controls.StackPanel; $tags.Orientation = 'Horizontal'
     $kind = if ($d.Bus -eq 'NVMe') { 'NVMe' } elseif ($d.Media -in @('SSD', 'HDD')) { $d.Media } else { '' }
@@ -371,8 +371,8 @@ function New-HomeDiskRow($d) {
         $col = switch ($kind) { 'NVMe' { '#FF9EC2FF' } 'SSD' { '#FF7FD1B9' } default { '#FFE0A25E' } }
         [void]$tags.Children.Add((New-AppPill $kind $col '#1CFFFFFF'))
     }
-    if ($d.Bus -and $d.Bus -notin @('NVMe', 'Unspecified')) { [void]$tags.Children.Add((New-AppPill $d.Bus '#FFC9D3EC' '#1CFFFFFF')) }
-    $sz = New-HomeText (Format-HomeSize $d.Size) 12.5 '#FFC9D3EC'; $sz.Margin = '10,0,0,0'; $sz.VerticalAlignment = 'Center'; $sz.Width = 64; $sz.TextAlignment = 'Right'
+    if ($d.Bus -and $d.Bus -notin @('NVMe', 'Unspecified')) { [void]$tags.Children.Add((New-AppPill $d.Bus '#FFC9CBD2' '#1CFFFFFF')) }
+    $sz = New-HomeText (Format-HomeSize $d.Size) 12.5 '#FFC9CBD2'; $sz.Margin = '10,0,0,0'; $sz.VerticalAlignment = 'Center'; $sz.Width = 64; $sz.TextAlignment = 'Right'
     [void]$tags.Children.Add($sz)
     [System.Windows.Controls.Grid]::SetColumn($tags, 1); [void]$g.Children.Add($tags)
     return $g
@@ -385,9 +385,9 @@ function New-HomeVolumeRow($v) {
     $c1 = New-Object System.Windows.Controls.ColumnDefinition; $c1.Width = [System.Windows.GridLength]::Auto
     $g.ColumnDefinitions.Add($c0); $g.ColumnDefinitions.Add($c1)
     $lbl = if ($v.Label) { "$($v.Letter):  $($v.Label)" } else { "$($v.Letter):" }
-    $n = New-HomeText $lbl 12.5 '#FFE8EEFC'; $n.TextWrapping = 'NoWrap'; $n.TextTrimming = 'CharacterEllipsis'
+    $n = New-HomeText $lbl 12.5 '#FFE9EAEE'; $n.TextWrapping = 'NoWrap'; $n.TextTrimming = 'CharacterEllipsis'
     [void]$g.Children.Add($n)
-    $f = New-HomeText ((T 'homeFreeFmt') -f (Format-HomeSize $v.Free), (Format-HomeSize $v.Size)) 12 '#FFA5B3D6'; $f.TextWrapping = 'NoWrap'
+    $f = New-HomeText ((T 'homeFreeFmt') -f (Format-HomeSize $v.Free), (Format-HomeSize $v.Size)) 12 '#FFA1A4AE'; $f.TextWrapping = 'NoWrap'
     [System.Windows.Controls.Grid]::SetColumn($f, 1); [void]$g.Children.Add($f)
     [void]$sp.Children.Add($g)
     # Con un 1 intero [Math]::Min sceglie la versione per interi e arrotonda a 0 o 1.
@@ -412,10 +412,10 @@ function New-HomeStorageCard($i) {
     $left = New-Object System.Windows.Controls.StackPanel; $left.Margin = '0,0,14,0'
     $right = New-Object System.Windows.Controls.StackPanel; $right.Margin = '14,0,0,0'
     [System.Windows.Controls.Grid]::SetColumn($right, 1)
-    $h1 = New-HomeText (T 'homePhysDisks') 12 '#FF8C9CC4' 'SemiBold'; $h1.Margin = '0,0,0,8'
+    $h1 = New-HomeText (T 'homePhysDisks') 12 '#FF8B8E99' 'SemiBold'; $h1.Margin = '0,0,0,8'
     [void]$left.Children.Add($h1)
     foreach ($d in $i.Disks) { [void]$left.Children.Add((New-HomeDiskRow $d)) }
-    $h2 = New-HomeText (T 'homeVolumes') 12 '#FF8C9CC4' 'SemiBold'; $h2.Margin = '0,0,0,8'
+    $h2 = New-HomeText (T 'homeVolumes') 12 '#FF8B8E99' 'SemiBold'; $h2.Margin = '0,0,0,8'
     [void]$right.Children.Add($h2)
     foreach ($v in $i.Volumes) { [void]$right.Children.Add((New-HomeVolumeRow $v)) }
     [void]$g.Children.Add($left); [void]$g.Children.Add($right)
